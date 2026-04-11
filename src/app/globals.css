@@ -1,0 +1,86 @@
+﻿@import "tailwindcss";
+
+:root {
+  --background: #f4f1ea;
+  --foreground: #1f2933;
+  --primary: #445766;
+  --primary-dark: #32424f;
+  --surface: #ffffff;
+  --surface-muted: #fbf9f5;
+  --surface-soft: #eef2f1;
+  --surface-contrast: #e3e9e8;
+  --muted: #65707c;
+  --muted-strong: #4d5863;
+  --border: #d7dedc;
+  --border-strong: #c2cbc9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-contrast: var(--surface-contrast);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --font-sans: var(--font-jost), Arial, Helvetica, sans-serif;
+  --font-jost: var(--font-jost), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-cormorant), "Times New Roman", Times, serif;
+  --font-cormorant: var(--font-cormorant), "Times New Roman", Times, serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f8f6f2 0%, var(--background) 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: rgba(68, 87, 102, 0.18);
+  color: var(--foreground);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Slide-in animation from left */
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.3s ease-out;
+}
+
+/* Fade-in animation for backdrop */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+

@@ -1,0 +1,1182 @@
+﻿'use client';
+
+import { useState, useEffect, useMemo, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { Product, ProductConfiguration, DEFAULT_CONFIGURATION, PriceBandMatrix, CustomizationPricing as CustomizationPricingType } from '@/types';
+import { useCart } from '@/context/CartContext';
+import ProductGallery from './ProductGallery';
+import ProductReviews from './ProductReviews';
+import RelatedProducts from './RelatedProducts';
+import StarRating from './StarRating';
+import CategoryInfoSection from '@/components/collection/CategoryInfoSection';
+import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
+import { PRODUCT_GUIDES } from '@/data/guides';
+import {
+  calculateTotalPrice,
+  configToCustomizations,
+  getTotalInches,
+} from '@/lib/pricing';
+import {
+  SizeSelector,
+  RoomTypeSelector,
+  HeadrailSelector,
+  HeadrailColourSelector,
+  InstallationMethodSelector,
+  ControlOptionSelector,
+  StackingSelector,
+  BottomChainSelector,
+  BracketTypeSelector,
+  SimpleDropdown,
+  RollStyleSelector,
+} from './customization';
+import {
+  HEADRAIL_OPTIONS,
+  HEADRAIL_COLOUR_OPTIONS,
+  INSTALLATION_METHOD_OPTIONS,
+  ROLLER_INSTALLATION_OPTIONS,
+  ZEBRA_INSTALLATION_OPTIONS,
+  CONTROL_OPTIONS,
+  ROLLER_CONTROL_OPTIONS,
+  VERTICAL_STACKING_OPTIONS,
+  CONTROL_SIDE_OPTIONS,
+  BOTTOM_CHAIN_OPTIONS,
+  BRACKET_TYPE_OPTIONS,
+  CHAIN_COLOR_OPTIONS,
+  WRAPPED_CASSETTE_OPTIONS,
+  CASSETTE_MATCHING_BAR_OPTIONS,
+  ROLLER_CASSETTE_OPTIONS,
+  MOTORIZATION_OPTIONS,
+  BLIND_COLOR_OPTIONS,
+  FRAME_COLOR_OPTIONS,
+  OPENING_DIRECTION_OPTIONS,
+  BOTTOM_BAR_OPTIONS,
+  ROLL_STYLE_OPTIONS
+} from '@/data/customizations';
+import { ROOM_TYPE_OPTIONS } from '@/data/roomTypes';
+import { CONTINUOUS_CHAIN_CARD, CONTINUOUS_CHAIN_CARD_ROLLER, CONTINUOUS_CHAIN_CARD_ZEBRA, CASSETTE_CARD, CASSETTE_CARD_ROLLER, CASSETTE_CARD_ZEBRA, MOTORIZATION_CARD, BOTTOM_BAR_CARD } from '@/data/optionalCustomizations';
+import Image from 'next/image';
+
+interface ProductPageProps {
+  product: Product;
+  relatedProducts: Product[];
+}
+
+const ProductPage = ({
+  product,
+  relatedProducts,
+}: ProductPageProps) => {
+  const { addToCart } = useCart();
+  const searchParams = useSearchParams();
+
+  const [config, setConfig] = useState<ProductConfiguration>({
+    ...DEFAULT_CONFIGURATION,
+    width: 0,
+    widthFraction: '0',
+    height: 0,
+    heightFraction: '0',
+  });
+
+  // State for pricing data from backend
+  const [priceMatrix, setPriceMatrix] = useState<PriceBandMatrix | null>(null);
+  const [customizationPricing, setCustomizationPricing] = useState<CustomizationPricingType[]>([]);
+  const [isValidating, setIsValidating] = useState(false);
+  const fetchingRef = useRef(false);
+
+  // Collapsible sections state
+  const [isMeasureOpen, setIsMeasureOpen] = useState(true);
+  const [isCustomizeOpen, setIsCustomizeOpen] = useState(true);
+
+  // Selected optional customization cards (multi-select)
+  const [selectedOptionalCards, setSelectedOptionalCards] = useState<{
+    continuousChain: boolean;
+    cassette: boolean;
+    motorization: boolean;
+    bottomBar: boolean;
+  }>({
+    continuousChain: false,
+    cassette: false,
+    motorization: false,
+    bottomBar: false,
+  });
+
+  // Force motorization when arriving from a motorised collection page (e.g. Motorised EclipseCore)
+  const forceMotorization = searchParams.get('motorized') === 'true';
+
+  // Pre-select motorization when arriving from a motorised collection page
+  useEffect(() => {
+    if (forceMotorization) {
+      setSelectedOptionalCards((prev) => ({
+        ...prev,
+        motorization: true,
+        continuousChain: false,
+      }));
+      setConfig((prev) => ({ ...prev, chainColor: null, controlSide: null }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Fetch pricing data on mount
+  useEffect(() => {
+    // Prevent multiple simultaneous fetches
+    if (fetchingRef.current) {
+      return;
+    }
+
+    fetchingRef.current = true;
+    let isMounted = true;
+
+    const loadPricingData = async () => {
+      try {
+        const [matrix, customizations] = await Promise.all([
+          fetchPriceMatrix(product.slug),
+          fetchCustomizationPricing(),
+        ]);
+
+        // Only update state if component is still mounted
+        if (isMounted) {
+          // Inject bottom bar pricing if not present
+          const bottomBarPricing = BOTTOM_BAR_OPTIONS.map(option => ({
+            category: 'bottom-bar',
+            optionId: option.id,
+            name: option.name,
+            prices: [{ widthMm: null, price: option.price || 0 }]
+          }));
+
+          setPriceMatrix(matrix);
+          setCustomizationPricing([...customizations, ...bottomBarPricing]);
+        }
+      } catch (error) {
+        console.error('Failed to load pricing data:', error);
+        // Pricing will fall back to old system if this fails
+      } finally {
+        if (isMounted) {
+          fetchingRef.current = false;
+        }
+      }
+    };
+
+    loadPricingData();
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+      fetchingRef.current = false;
+    };
+  }, [product.slug]);
+
+  // Determine which options to use based on product category
+  const isRollerOrDayNight = useMemo(() => {
+    const category = product.category.toLowerCase();
+    return category.includes('roller') || category.includes('day') || category.includes('night');
+  }, [product.category]);
+
+  const isDayNight = useMemo(() => {
+    const category = product.category.toLowerCase();
+    return category.includes('day') || category.includes('night') || category.includes('zebra');
+  }, [product.category]);
+
+  const guideType = useMemo(() => {
+    const cat = product.category.toLowerCase();
+    if (cat.includes('vertical'))                                               return 'vertical' as const;
+    if (cat.includes('zebra') || cat.includes('day') || cat.includes('night')) return 'zebra' as const;
+    if (cat.includes('roller'))                                                return 'roller' as const;
+    return null;
+  }, [product.category]);
+
+  const guideLinks = useMemo(() => {
+    if (guideType) {
+      return PRODUCT_GUIDES[guideType];
+    }
+
+    // Fallback so both guide buttons are always available.
+    return {
+      installation: '/guides',
+      measurement: '/guides',
+    };
+  }, [guideType]);
+
+  const installationOptions = isDayNight
+    ? ZEBRA_INSTALLATION_OPTIONS
+    : isRollerOrDayNight
+    ? ROLLER_INSTALLATION_OPTIONS
+    : INSTALLATION_METHOD_OPTIONS;
+  const controlOptions = isRollerOrDayNight ? ROLLER_CONTROL_OPTIONS : CONTROL_OPTIONS;
+  const continuousChainCard = isDayNight ? CONTINUOUS_CHAIN_CARD_ZEBRA : isRollerOrDayNight ? CONTINUOUS_CHAIN_CARD_ROLLER : CONTINUOUS_CHAIN_CARD;
+  const cassetteCard = isDayNight ? CASSETTE_CARD_ZEBRA : isRollerOrDayNight ? CASSETTE_CARD_ROLLER : CASSETTE_CARD;
+
+  // Dynamic stacking options for vertical blinds — combination-specific images per control type
+  const stackingOptions = useMemo(() => {
+    return VERTICAL_STACKING_OPTIONS[config.controlOption ?? ''] ?? [];
+  }, [config.controlOption]);
+
+  // Reset stacking when control changes and selected stack is no longer valid
+  useEffect(() => {
+    if (!config.controlOption) return;
+    const validIds = (VERTICAL_STACKING_OPTIONS[config.controlOption] ?? []).map((o) => o.id);
+    if (config.stacking && !validIds.includes(config.stacking)) {
+      setConfig((prev) => ({ ...prev, stacking: null }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config.controlOption]);
+
+  // Determine which options should be visible based on product type and selected headrail
+  const visibleOptions = useMemo(() => {
+    const headrail = config.headrail;
+
+    // For roller blinds and day/night blinds - use product.features settings
+    if (isRollerOrDayNight) {
+      return {
+        showSize: product.features.hasSize,
+        showHeadrail: product.features.hasHeadrail,
+        showHeadrailColour: product.features.hasHeadrailColour,
+        showInstallationMethod: product.features.hasInstallationMethod,
+        showControlOption: product.features.hasControlOption,
+        showStacking: product.features.hasStacking,
+        showControlSide: product.features.hasControlSide,
+        showBottomChain: product.features.hasBottomChain,
+        showBracketType: product.features.hasBracketType,
+        showMotorization: product.features.hasMotorization,
+        showBlindColor: product.features.hasBlindColor,
+        showFrameColor: product.features.hasFrameColor,
+        showOpeningDirection: product.features.hasOpeningDirection,
+        showBottomBar: product.features.hasBottomBar,
+        showRollStyle: product.features.hasRollStyle,
+      };
+    }
+
+    // For vertical blinds (with headrail)
+    return {
+      // Size and Headrail are always visible
+      showSize: product.features.hasSize,
+      showHeadrail: product.features.hasHeadrail,
+
+      // Headrail Colour only for Platinum
+      showHeadrailColour: product.features.hasHeadrailColour && headrail === 'platinum',
+
+      // Installation Method always visible
+      showInstallationMethod: product.features.hasInstallationMethod,
+
+      // Control Option for Classic and Platinum
+      showControlOption: product.features.hasControlOption && (headrail === 'classic' || headrail === 'platinum'),
+
+      // Stacking for Classic and Platinum
+      showStacking: product.features.hasStacking && (headrail === 'classic' || headrail === 'platinum'),
+
+      // Control Side for Classic and Platinum
+      showControlSide: product.features.hasControlSide && (headrail === 'classic' || headrail === 'platinum'),
+
+      // Bottom Chain for all headrail types (Classic, Platinum)
+      showBottomChain: product.features.hasBottomChain && (headrail === 'classic' || headrail === 'platinum'),
+
+      // Bracket Type for Classic and Platinum
+      showBracketType: product.features.hasBracketType && (headrail === 'classic' || headrail === 'platinum'),
+
+      showBlindColor: product.features.hasBlindColor,
+      showFrameColor: product.features.hasFrameColor,
+      showOpeningDirection: product.features.hasOpeningDirection,
+      showBottomBar: product.features.hasBottomBar,
+      showRollStyle: product.features.hasRollStyle,
+    };
+  }, [config.headrail, isRollerOrDayNight, product.features]);
+
+  // Build list of selected customizations for pricing
+  const selectedCustomizations = useMemo(() => {
+    return configToCustomizations({
+      headrail: config.headrail,
+      headrailColour: visibleOptions.showHeadrailColour ? config.headrailColour : null,
+      installationMethod: visibleOptions.showInstallationMethod ? config.installationMethod : null,
+      controlOption: visibleOptions.showControlOption ? config.controlOption : null,
+      stacking: visibleOptions.showStacking ? config.stacking : null,
+      controlSide: visibleOptions.showControlSide ? config.controlSide : null,
+      bottomChain: visibleOptions.showBottomChain ? config.bottomChain : null,
+      bracketType: visibleOptions.showBracketType ? config.bracketType : null,
+      chainColor: config.chainColor,
+      wrappedCassette: config.wrappedCassette,
+      cassetteMatchingBar: config.cassetteMatchingBar,
+      isRollerCassette: product.features.hasRollerCassette,
+      motorization: config.motorization,
+      bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
+      rollStyle: visibleOptions.showRollStyle ? config.rollStyle : null,
+    });
+  }, [config, visibleOptions, product.features.hasRollerCassette]);
+
+  // Calculate price using new pricing system
+  const priceCalculation = useMemo(() => {
+    // Need valid dimensions to calculate price
+    const widthInches = getTotalInches(config.width, config.widthFraction, config.widthUnit);
+    const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
+
+    if (!priceMatrix || widthInches <= 0 || heightInches <= 0) {
+      return null;
+    }
+
+    return calculateTotalPrice(
+      widthInches,
+      heightInches,
+      priceMatrix,
+      selectedCustomizations,
+      customizationPricing
+    );
+  }, [config.width, config.widthFraction, config.widthUnit, config.height, config.heightFraction, config.heightUnit, priceMatrix, selectedCustomizations, customizationPricing]);
+
+  // Get display price - use new pricing system if available, otherwise fallback
+  const totalPrice = useMemo(() => {
+    if (priceCalculation) {
+      return priceCalculation.totalPrice;
+    }
+    // Fallback to base price from product if pricing not loaded
+    return product.price;
+  }, [priceCalculation, product.price]);
+
+  // Show minimum price indicator when no dimensions selected
+  const showMinPriceIndicator = config.width === 0 || config.height === 0;
+
+  // Calculate dynamic size ranges from price band
+  const sizeRanges = useMemo(() => {
+    if (!priceMatrix || !priceMatrix.widthBands || !priceMatrix.heightBands) {
+      return null;
+    }
+
+    if (priceMatrix.widthBands.length === 0 || priceMatrix.heightBands.length === 0) {
+      return null;
+    }
+
+    const widthBands = priceMatrix.widthBands;
+    const heightBands = priceMatrix.heightBands;
+
+    const minWidth = Math.min(...widthBands.map(b => b.inches));
+    const maxWidth = Math.max(...widthBands.map(b => b.inches));
+    const minHeight = Math.min(...heightBands.map(b => b.inches));
+    const maxHeight = Math.max(...heightBands.map(b => b.inches));
+
+    // Debug log (remove in production)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Size ranges calculated:', { minWidth, maxWidth, minHeight, maxHeight, priceMatrix: priceMatrix.name });
+    }
+
+    return {
+      minWidth,
+      maxWidth,
+      minHeight,
+      maxHeight,
+    };
+  }, [priceMatrix]);
+
+  const handleAddToCart = async () => {
+    // Validate dimensions are selected
+    if (config.width === 0 || config.height === 0) {
+      alert('Please select width and height before adding to cart.');
+      return;
+    }
+
+    setIsValidating(true);
+
+    try {
+      // Validate price with backend
+      const widthInches = getTotalInches(config.width, config.widthFraction, config.widthUnit);
+      const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
+
+      const validation = await validateCartPrice(
+        {
+          handle: product.slug,
+          widthInches,
+          heightInches,
+          customizations: selectedCustomizations,
+        },
+        totalPrice
+      );
+
+      if (!validation.valid) {
+        console.warn('Price mismatch detected:', {
+          submitted: totalPrice,
+          calculated: validation.calculatedPrice,
+          difference: validation.difference,
+        });
+        // Use the backend calculated price to ensure accuracy
+        const productWithPrice = {
+          ...product,
+          price: validation.calculatedPrice,
+        };
+        addToCart(productWithPrice, config);
+      } else {
+        // Price matches, proceed with cart
+        const productWithPrice = {
+          ...product,
+          price: totalPrice,
+        };
+        addToCart(productWithPrice, config);
+      }
+    } catch (error) {
+      console.error('Price validation failed:', error);
+      // Fallback: add to cart anyway with frontend calculated price
+      const productWithPrice = {
+        ...product,
+        price: totalPrice,
+      };
+      addToCart(productWithPrice, config);
+    } finally {
+      setIsValidating(false);
+    }
+  };
+
+  return (
+    <div className="bg-white">
+      {/* Breadcrumb */}
+      <div className="px-4 md:px-6 lg:px-16 py-4 md:py-5">
+        <div className="max-w-[1320px] mx-auto">
+          <nav className="flex items-center gap-2 text-xs md:text-sm text-muted tracking-[0.02em]">
+            <Link href="/collections" className="hover:text-primary transition-colors">Back to Shop</Link>
+            <span>&gt;</span>
+            <span className="text-foreground truncate">{product.name}</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Main Product Section */}
+      <section className="px-4 md:px-6 lg:px-16 pb-10 md:pb-14">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="flex flex-col lg:flex-row gap-7 md:gap-10 lg:gap-12">
+            {/* Left - Gallery with Thumbnails on Left */}
+            <div className="w-full lg:w-[52%] lg:sticky lg:top-20 lg:self-start">
+              <div className="rounded-[20px] border border-border bg-surface p-3 md:p-4 shadow-[0_8px_26px_rgba(31,41,51,0.06)]">
+                <ProductGallery images={product.images} videos={product.videos} productName={product.name} />
+              </div>
+            </div>
+
+            {/* Right - Product Info */}
+            <div className="w-full lg:w-[48%]">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-muted mb-2">
+                {product.category}
+              </p>
+              {/* Product Title */}
+              <h1 className="font-display text-[34px] leading-[1.05] md:text-[42px] md:leading-[1.04] font-semibold text-foreground mb-2">
+                {product.name}
+              </h1>
+
+              {/* Description */}
+              <p className="text-sm md:text-[15px] leading-[1.65] text-muted mb-4 md:mb-5">
+                {product.description}
+              </p>
+
+              {/* Rating */}
+              <div className="flex items-center gap-2 mb-5 md:mb-6">
+                <StarRating rating={product.rating} size="md" filledColor="text-primary" emptyColor="text-border-strong" />
+                <span className="text-xs md:text-sm text-muted">{product.reviewCount} reviews</span>
+              </div>
+
+              {/* Shipping Info Box */}
+              <div className="flex items-center border border-border rounded-[16px] mb-5 md:mb-6 px-3 md:px-4 py-3 bg-surface shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-surface-soft rounded-[12px] flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 md:w-6 md:h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                  </svg>
+                </div>
+                <div className="ml-2 md:ml-3">
+                  <div className="text-[10px] md:text-xs text-muted">Estimated Delivery Date</div>
+                  <div className="text-xs md:text-sm font-semibold text-foreground">12 Working Days</div>
+                </div>
+              </div>
+
+              {/* Price Section */}
+              <div className="border border-border rounded-[16px] p-4 md:p-6 mb-5 md:mb-6 bg-surface shadow-[0_6px_18px_rgba(31,41,51,0.05)]">
+                <div className="flex flex-col items-center lg:items-start">
+                  <div className="flex items-baseline gap-2 mb-2 md:mb-3">
+                    <span className="text-2xl md:text-[34px] leading-none font-semibold text-foreground">
+                      {showMinPriceIndicator
+                        ? formatPriceWithCurrency(formatPrice(product.price), product.currency)
+                        : formatPriceWithCurrency(formatPrice(totalPrice), product.currency)
+                      }
+                    </span>
+                  </div>
+                  {priceCalculation && !showMinPriceIndicator && (
+                    <div className="text-xs text-muted mb-1">
+                      Size: {priceCalculation.widthBand?.inches}&quot; × {priceCalculation.heightBand?.inches}&quot;
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Customization Sections */}
+              <div className="space-y-5">
+                {/* Measure your windows - Collapsible Section */}
+                <div className="border border-border rounded-[16px] overflow-hidden bg-surface shadow-[0_4px_16px_rgba(31,41,51,0.04)]">
+                  <button
+                    onClick={() => setIsMeasureOpen(!isMeasureOpen)}
+                    className="w-full flex items-center justify-between p-4 md:p-5 bg-surface-soft hover:bg-surface-contrast transition-colors"
+                    aria-expanded={isMeasureOpen}
+                  >
+                    <h2 className="text-lg font-medium text-foreground">Measure your windows</h2>
+                    <div className="shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center ml-3">
+                      {isMeasureOpen ? (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ) : (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                      )}
+                    </div>
+                  </button>
+
+                  {isMeasureOpen && (
+                    <div className="p-4 md:p-6 space-y-6 bg-surface">
+                      {/* Size Selector */}
+                      {product.features.hasSize && (
+                        <SizeSelector
+                          width={config.width}
+                          widthFraction={config.widthFraction}
+                          height={config.height}
+                          heightFraction={config.heightFraction}
+                          unit={config.widthUnit}
+                          onWidthChange={(value) => setConfig({ ...config, width: value })}
+                          onWidthFractionChange={(value) => setConfig({ ...config, widthFraction: value })}
+                          onHeightChange={(value) => setConfig({ ...config, height: value })}
+                          onHeightFractionChange={(value) => setConfig({ ...config, heightFraction: value })}
+                          onUnitChange={(unit) => setConfig({ ...config, widthUnit: unit, heightUnit: unit })}
+                          minWidth={sizeRanges?.minWidth}
+                          maxWidth={sizeRanges?.maxWidth}
+                          minHeight={sizeRanges?.minHeight}
+                          maxHeight={sizeRanges?.maxHeight}
+                        />
+                      )}
+
+                      {/* Installation Method Selector */}
+                      {product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
+                        <InstallationMethodSelector
+                          options={installationOptions}
+                          selectedMethod={config.installationMethod}
+                          onMethodChange={(methodId) => setConfig({ ...config, installationMethod: methodId })}
+                        />
+                      )}
+
+
+
+                      {/* Blind Name Selector (Room Type dropdown AND input) */}
+                      <RoomTypeSelector
+                        options={ROOM_TYPE_OPTIONS}
+                        selectedRoomType={config.roomType}
+                        onRoomTypeChange={(roomTypeId) => setConfig({ ...config, roomType: roomTypeId })}
+                        blindName={config.blindName}
+                        onBlindNameChange={(value) => setConfig({ ...config, blindName: value || null })}
+                      />
+
+                      {/* Roll Style Selector */}
+                      {product.features.hasRollStyle && visibleOptions.showRollStyle && (
+                        <RollStyleSelector
+                          options={ROLL_STYLE_OPTIONS}
+                          selectedRollStyle={config.rollStyle}
+                          onRollStyleChange={(styleId) => setConfig({ ...config, rollStyle: styleId })}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Customize your order - Collapsible Section */}
+                <div className="border border-border rounded-[16px] overflow-hidden bg-surface shadow-[0_4px_16px_rgba(31,41,51,0.04)]">
+                  <button
+                    onClick={() => setIsCustomizeOpen(!isCustomizeOpen)}
+                    className="w-full flex items-center justify-between p-4 md:p-5 bg-surface-soft hover:bg-surface-contrast transition-colors"
+                    aria-expanded={isCustomizeOpen}
+                  >
+                    <h2 className="text-lg font-medium text-foreground">Customize your blind</h2>
+                    <div className="shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center ml-3">
+                      {isCustomizeOpen ? (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ) : (
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                      )}
+                    </div>
+                  </button>
+
+                  {isCustomizeOpen && (
+                    <div className="p-4 md:p-6 space-y-6 divide-y divide-border bg-surface">
+                      {/* Headrail Selector */}
+                      {product.features.hasHeadrail && (
+                        <div className="pt-0 first:pt-0 pb-6">
+                          <HeadrailSelector
+                            options={HEADRAIL_OPTIONS}
+                            selectedHeadrail={config.headrail}
+                            onHeadrailChange={(headrailId) => setConfig({ ...config, headrail: headrailId })}
+                          />
+                        </div>
+                      )}
+
+                      {/* Headrail Colour Selector */}
+                      {product.features.hasHeadrailColour && visibleOptions.showHeadrailColour && (
+                        <div className="pt-6">
+                          <HeadrailColourSelector
+                            options={HEADRAIL_COLOUR_OPTIONS}
+                            selectedColour={config.headrailColour}
+                            onColourChange={(colourId) => setConfig({ ...config, headrailColour: colourId })}
+                          />
+                        </div>
+                      )}
+
+                      {/* Control Option Selector */}
+                      {product.features.hasControlOption && visibleOptions.showControlOption && (
+                        <div className="pt-6">
+                          <ControlOptionSelector
+                            options={controlOptions}
+                            selectedOption={config.controlOption}
+                            onOptionChange={(optionId) => setConfig({ ...config, controlOption: optionId })}
+                          />
+                        </div>
+                      )}
+
+                      {/* Stacking Selector */}
+                      {product.features.hasStacking && visibleOptions.showStacking && (
+                        <div className="pt-6">
+                          <StackingSelector
+                            options={stackingOptions}
+                            selectedStacking={config.stacking}
+                            onStackingChange={(stackingId) => setConfig({ ...config, stacking: stackingId })}
+                          />
+                        </div>
+                      )}
+
+
+                      {/* Bottom Chain Selector */}
+                      {product.features.hasBottomChain && visibleOptions.showBottomChain && (
+                        <div className="pt-6">
+                          <BottomChainSelector
+                            options={BOTTOM_CHAIN_OPTIONS.filter(opt => !('pvcOnly' in opt) || product.features.hasPvcFabric)}
+                            selectedChain={config.bottomChain}
+                            onChainChange={(chainId) => setConfig({ ...config, bottomChain: chainId })}
+                          />
+                        </div>
+                      )}
+
+                      {/* Bracket Type Selector */}
+                      {product.features.hasBracketType && visibleOptions.showBracketType && (
+                        <div className="pt-6">
+                          <BracketTypeSelector
+                            options={BRACKET_TYPE_OPTIONS}
+                            selectedBracket={config.bracketType}
+                            onBracketChange={(bracketId) => setConfig({ ...config, bracketType: bracketId })}
+                          />
+                        </div>
+                      )}
+
+                      {/* Blind Color Selector */}
+                      {product.features.hasBlindColor && visibleOptions.showBlindColor && (
+                        <div className="pt-6">
+                          <h3 className="text-sm font-medium text-foreground mb-3">Blind Color</h3>
+                          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                            {BLIND_COLOR_OPTIONS.map((option) => (
+                              <button
+                                key={option.id}
+                                onClick={() => setConfig({ ...config, blindColor: option.id })}
+                                className={`flex flex-col items-center justify-center p-2 border-2 rounded-[12px] transition-all ${config.blindColor === option.id
+                                  ? 'border-primary bg-surface-soft'
+                                  : 'border-border hover:border-border-strong'
+                                  }`}
+                              >
+                                {option.image && (
+                                  <div className="w-full aspect-square relative mb-1.5 rounded overflow-hidden shadow-sm">
+                                    <div className={`w-full h-full ${option.id === 'white' ? 'bg-white border border-gray-100' : option.id === 'cream' ? 'bg-[#FFFDD0]' : 'bg-[#232833]'}`}></div>
+                                  </div>
+                                )}
+                                <span className="text-xs font-medium text-center text-foreground">{option.name}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Frame Color Selector */}
+                      {product.features.hasFrameColor && visibleOptions.showFrameColor && (
+                        <div className="pt-6">
+                          <h3 className="text-sm font-medium text-foreground mb-3">Frame Color</h3>
+                          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                            {FRAME_COLOR_OPTIONS.map((option) => (
+                              <button
+                                key={option.id}
+                                onClick={() => setConfig({ ...config, frameColor: option.id })}
+                                className={`flex flex-col items-center justify-center p-2 border-2 rounded-[12px] transition-all ${config.frameColor === option.id
+                                  ? 'border-primary bg-surface-soft'
+                                  : 'border-border hover:border-border-strong'
+                                  }`}
+                              >
+                                {option.image && (
+                                  <div className="w-full aspect-square relative mb-1.5 rounded overflow-hidden shadow-sm">
+                                    <div className={`w-full h-full ${option.id === 'white' ? 'bg-white border border-gray-100' : 'bg-[#5a6780]'}`}></div>
+                                  </div>
+                                )}
+                                <span className="text-xs font-medium text-center text-foreground">{option.name}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Opening Direction Selector */}
+                      {product.features.hasOpeningDirection && visibleOptions.showOpeningDirection && (
+                        <div className="pt-6">
+                          <SimpleDropdown
+                            label="Opening Direction"
+                            options={OPENING_DIRECTION_OPTIONS}
+                            selectedValue={config.openingDirection}
+                            onChange={(optionId) => setConfig({ ...config, openingDirection: optionId })}
+                            placeholder="Select opening direction"
+                          />
+                        </div>
+                      )}
+
+                      {/* Optional Customization Cards Row */}
+                      <div className="pt-6 pb-6 border-b border-border">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+                          {/* Bottom Bar Card - Only for products with hasBottomBar */}
+                          {product.features.hasBottomBar && visibleOptions.showBottomBar && (
+                            <div
+                              onClick={() => {
+                                const newValue = !selectedOptionalCards.bottomBar;
+                                setSelectedOptionalCards({
+                                  ...selectedOptionalCards,
+                                  bottomBar: newValue,
+                                });
+                                if (!newValue) {
+                                  setConfig({
+                                    ...config,
+                                    bottomBar: null
+                                  });
+                                }
+                              }}
+                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.bottomBar
+                                ? 'border-primary bg-surface-soft shadow-sm'
+                                : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
+                                }`}
+                            >
+                              {selectedOptionalCards.bottomBar && (
+                                <div className="absolute top-3 right-3 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-sm z-10">
+                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </div>
+                              )}
+                              {BOTTOM_BAR_CARD?.image && (
+                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.bottomBar
+                                  ? 'bg-surface-soft shadow-inner'
+                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                  }`}>
+                                  <Image
+                                    src={BOTTOM_BAR_CARD.image}
+                                    alt={BOTTOM_BAR_CARD.name}
+                                    width={120}
+                                    height={120}
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                {BOTTOM_BAR_CARD?.name || 'Bottom Bar Option'}
+                              </h4>
+                              {BOTTOM_BAR_CARD?.description && (
+                                <p className="text-xs text-muted leading-relaxed mb-2">{BOTTOM_BAR_CARD.description}</p>
+                              )}
+
+                              {/* Dropdowns inside the card */}
+                              {selectedOptionalCards.bottomBar && (
+                                <div
+                                  className="mt-4 space-y-3 pt-3 border-t border-border"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <SimpleDropdown
+                                    label="Select Bottom Bar"
+                                    options={BOTTOM_BAR_OPTIONS}
+                                    selectedValue={config.bottomBar}
+                                    onChange={(optionId) => setConfig({ ...config, bottomBar: optionId })}
+                                    placeholder="Select bottom bar style"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          {/* Continuous Chain - Select Location Card */}
+                          {product.features.hasChainColor && (
+                            <div
+                              onClick={() => {
+                                const newValue = !selectedOptionalCards.continuousChain;
+                                setSelectedOptionalCards({
+                                  ...selectedOptionalCards,
+                                  continuousChain: newValue,
+                                  motorization: newValue ? false : selectedOptionalCards.motorization,
+                                });
+                                if (newValue) {
+                                  setConfig({ ...config, motorization: null });
+                                } else {
+                                  setConfig({ ...config, chainColor: null, controlSide: null });
+                                }
+                              }}
+                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.continuousChain
+                                ? 'border-primary bg-surface-soft shadow-sm'
+                                : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
+                                }`}
+                            >
+                              {selectedOptionalCards.continuousChain && (
+                                <div className="absolute top-3 right-3 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-sm z-10">
+                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </div>
+                              )}
+                              {continuousChainCard.image && (
+                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.continuousChain
+                                  ? 'bg-surface-soft shadow-inner'
+                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                  }`}>
+                                  <Image
+                                    src={continuousChainCard.image}
+                                    alt={continuousChainCard.name}
+                                    width={120}
+                                    height={120}
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                {continuousChainCard.name}
+                              </h4>
+                              {continuousChainCard.description && (
+                                <p className="text-xs text-muted leading-relaxed mb-2">{continuousChainCard.description}</p>
+                              )}
+                              {continuousChainCard.price > 0 && (
+                                <span className="absolute bottom-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-[12px] shadow-sm">
+                                  +${continuousChainCard.price.toFixed(2)}
+                                </span>
+                              )}
+
+                              {/* Dropdowns inside the card */}
+                              {selectedOptionalCards.continuousChain && (
+                                <div
+                                  className="mt-4 space-y-3 pt-3 border-t border-border"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <SimpleDropdown
+                                    label="Select Location"
+                                    options={CONTROL_SIDE_OPTIONS}
+                                    selectedValue={config.controlSide}
+                                    onChange={(sideId) => setConfig({ ...config, controlSide: sideId })}
+                                    placeholder="Select location"
+                                  />
+                                  <SimpleDropdown
+                                    label="Chain Color"
+                                    options={CHAIN_COLOR_OPTIONS}
+                                    selectedValue={config.chainColor}
+                                    onChange={(colorId) => setConfig({ ...config, chainColor: colorId })}
+                                    placeholder="Select chain color"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Cassette and Bottom Matching Bar Card */}
+                          {(product.features.hasWrappedCassette || product.features.hasCassetteMatchingBar || product.features.hasRollerCassette) && (
+                            <div
+                              onClick={() => {
+                                const newValue = !selectedOptionalCards.cassette;
+                                setSelectedOptionalCards({
+                                  ...selectedOptionalCards,
+                                  cassette: newValue,
+                                });
+                                if (!newValue) {
+                                  setConfig({
+                                    ...config,
+                                    wrappedCassette: null,
+                                    cassetteMatchingBar: null
+                                  });
+                                }
+                              }}
+                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.cassette
+                                ? 'border-primary bg-surface-soft shadow-sm'
+                                : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
+                                }`}
+                            >
+                              {selectedOptionalCards.cassette && (
+                                <div className="absolute top-3 right-3 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-sm z-10">
+                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </div>
+                              )}
+                              {cassetteCard.image && (
+                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.cassette
+                                  ? 'bg-surface-soft shadow-inner'
+                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                  }`}>
+                                  <Image
+                                    src={cassetteCard.image}
+                                    alt={cassetteCard.name}
+                                    width={120}
+                                    height={120}
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                {cassetteCard.name}
+                              </h4>
+                              {cassetteCard.description && (
+                                <p className="text-xs text-muted leading-relaxed mb-2">{cassetteCard.description}</p>
+                              )}
+                              {cassetteCard.price > 0 && (
+                                <span className="absolute bottom-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-[12px] shadow-sm">
+                                  +${cassetteCard.price.toFixed(2)}
+                                </span>
+                              )}
+
+                              {/* Dropdowns inside the card */}
+                              {selectedOptionalCards.cassette && (
+                                <div
+                                  className="mt-4 space-y-3 pt-3 border-t border-border"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  {product.features.hasWrappedCassette && (
+                                    <SimpleDropdown
+                                      label="Cassette Color"
+                                      options={WRAPPED_CASSETTE_OPTIONS}
+                                      selectedValue={config.wrappedCassette}
+                                      onChange={(optionId) => setConfig({ ...config, wrappedCassette: optionId })}
+                                      placeholder="Select cassette color"
+                                    />
+                                  )}
+                                  {product.features.hasCassetteMatchingBar && (
+                                    <SimpleDropdown
+                                      label="Cassette and Bottom Matching Bar"
+                                      options={CASSETTE_MATCHING_BAR_OPTIONS}
+                                      selectedValue={config.cassetteMatchingBar}
+                                      onChange={(optionId) => setConfig({ ...config, cassetteMatchingBar: optionId })}
+                                      placeholder="Select cassette and bottom bar"
+                                    />
+                                  )}
+                                  {product.features.hasRollerCassette && (
+                                    <SimpleDropdown
+                                      label="Cassette and Bottom Matching Bar"
+                                      options={ROLLER_CASSETTE_OPTIONS}
+                                      selectedValue={config.cassetteMatchingBar}
+                                      onChange={(optionId) => setConfig({ ...config, cassetteMatchingBar: optionId })}
+                                      placeholder="Select cassette color"
+                                    />
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Motorization Card */}
+                          {(product.features.hasMotorization || forceMotorization) && (
+                            <div
+                              onClick={() => {
+                                // When forced (e.g. Motorised EclipseCore), don't allow toggling off
+                                if (forceMotorization) return;
+                                const newValue = !selectedOptionalCards.motorization;
+                                setSelectedOptionalCards({
+                                  ...selectedOptionalCards,
+                                  motorization: newValue,
+                                  continuousChain: newValue ? false : selectedOptionalCards.continuousChain,
+                                });
+                                if (newValue) {
+                                  setConfig({ ...config, chainColor: null, controlSide: null });
+                                } else {
+                                  setConfig({ ...config, motorization: null });
+                                }
+                              }}
+                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.motorization
+                                ? 'border-primary bg-surface-soft shadow-sm'
+                                : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
+                                }`}
+                            >
+                              {selectedOptionalCards.motorization && (
+                                <div className="absolute top-3 right-3 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-sm z-10">
+                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </div>
+                              )}
+                              {MOTORIZATION_CARD.image && (
+                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.motorization
+                                  ? 'bg-surface-soft shadow-inner'
+                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                  }`}>
+                                  <Image
+                                    src={MOTORIZATION_CARD.image}
+                                    alt={MOTORIZATION_CARD.name}
+                                    width={120}
+                                    height={120}
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                {MOTORIZATION_CARD.name}
+                              </h4>
+                              {MOTORIZATION_CARD.description && (
+                                <p className="text-xs text-muted leading-relaxed mb-2">{MOTORIZATION_CARD.description}</p>
+                              )}
+
+                              {/* Simple Price Text */}
+                              <div className="mt-2 text-sm font-medium text-primary">
+                                +$95.00 (Remote)
+                              </div>
+
+                              {/* Dropdowns inside the card */}
+                              {selectedOptionalCards.motorization && (
+                                <div
+                                  className="mt-4 pt-3 border-t border-[#d9dfeb]/50"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <SimpleDropdown
+                                    label="Motorization Option"
+                                    options={MOTORIZATION_OPTIONS}
+                                    selectedValue={config.motorization}
+                                    onChange={(optionId) => setConfig({ ...config, motorization: optionId })}
+                                    placeholder="Select motorization"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Add to Cart Button */}
+              <button
+                onClick={handleAddToCart}
+                disabled={isValidating || showMinPriceIndicator}
+                className={`w-full mt-5 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || showMinPriceIndicator
+                  ? 'bg-[#98a4bb] text-white cursor-not-allowed'
+                  : 'bg-primary text-white hover:bg-primary-dark shadow-[0_10px_20px_rgba(68,87,102,0.24)] hover:shadow-[0_12px_24px_rgba(68,87,102,0.28)]'
+                  }`}
+              >
+                {isValidating
+                  ? 'Adding to Cart...'
+                  : `Add to Cart — ${formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(product.price) : formatPrice(totalPrice), product.currency)}`}
+              </button>
+
+              {/* Installation & Measurement Guide Buttons */}
+              <div className="flex gap-3 mt-3">
+                <a
+                  href={guideLinks.installation}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2.5 border border-border bg-surface text-muted text-sm font-medium rounded-[12px] text-center hover:border-border-strong hover:text-foreground hover:bg-surface-soft transition-colors"
+                >
+                  Installation Guide
+                </a>
+                <a
+                  href={guideLinks.measurement}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2.5 border border-border bg-surface text-muted text-sm font-medium rounded-[12px] text-center hover:border-border-strong hover:text-foreground hover:bg-surface-soft transition-colors"
+                >
+                  Measurement Guide
+                </a>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="mt-6 border border-border rounded-[16px] p-4 bg-surface shadow-[0_6px_16px_rgba(31,41,51,0.04)]">
+                {/* Payment logos */}
+                <div className="flex justify-center mb-4">
+                  <Image
+                    src="/products/payment-badge.png"
+                    alt="Accepted payment methods"
+                    width={500}
+                    height={80}
+                    className="h-12 w-auto object-contain"
+                  />
+                </div>
+                {/* Trust cards */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="flex flex-col items-center text-center p-3 border border-border rounded-[12px] bg-surface-soft">
+                    <Image
+                      src="/products/warranty.webp"
+                      alt="Warranty"
+                      width={48}
+                      height={48}
+                      className="w-10 h-10 object-contain mb-2"
+                    />
+                    <span className="text-xs font-semibold text-foreground leading-tight">Warranty</span>
+                    <span className="text-xs text-muted mt-0.5 leading-tight">
+                      {product.category.toLowerCase() === 'vertical blinds' && product.tags.includes('waterproof') && product.tags.includes('blackout')
+                        ? '10 Years Warranty'
+                        : '5 Years Warranty'}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-3 border border-border rounded-[12px] bg-surface-soft">
+                    <Image
+                      src="/products/easyAssembly.webp"
+                      alt="Easy Assembly"
+                      width={48}
+                      height={48}
+                      className="w-10 h-10 object-contain mb-2"
+                    />
+                    <span className="text-xs font-semibold text-foreground leading-tight">Easy Assembly</span>
+                    <span className="text-xs text-muted mt-0.5 leading-tight">Minimal no hassle assembly. All Fittings included</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center p-3 border border-border rounded-[12px] bg-surface-soft">
+                    <Image
+                      src="/products/review.png"
+                      alt="Trustpilot reviews"
+                      width={80}
+                      height={40}
+                      className="w-16 h-auto object-contain mb-2"
+                    />
+                    <span className="text-xs font-semibold text-foreground leading-tight">4.5/5 Stars</span>
+                    <span className="text-xs text-muted mt-0.5 leading-tight">Rated Excellent on Trustpilot</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Details Section - Full Width */}
+      <CategoryInfoSection
+        categorySlug={
+          forceMotorization
+            ? (({ 'roller-blinds': 'motorised-roller-shades', 'day-and-night-blinds': 'motorised-dual-zebra-shades', 'pleated-blinds': 'motorised-eclipsecore' } as Record<string, string>)[product.category.toLowerCase().replace(/\s+/g, '-')] ?? product.category.toLowerCase().replace(/\s+/g, '-'))
+            : product.category.toLowerCase().replace(/\s+/g, '-')
+        }
+        productTags={product.tags}
+      />
+
+      {/* Reviews Section — hidden */}
+      {false && product.slug !== 'non-driii-honeycomb-blackout-blinds' && (
+        <section className="px-4 md:px-6 lg:px-16 py-8 md:py-12 bg-surface-soft border-t border-border">
+          <div className="max-w-[1320px] mx-auto">
+            <ProductReviews
+              reviews={product.reviews}
+              averageRating={product.rating}
+              totalReviews={product.reviewCount}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Related Products */}
+      {product.slug !== 'non-driii-honeycomb-blackout-blinds' && relatedProducts.length > 0 && (
+        <section className="px-4 md:px-6 lg:px-16 py-8 md:py-12 bg-white">
+          <div className="max-w-[1320px] mx-auto">
+            <RelatedProducts products={relatedProducts} />
+          </div>
+        </section>
+      )}
+    </div>
+  );
+};
+
+export default ProductPage;
+
