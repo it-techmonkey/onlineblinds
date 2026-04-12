@@ -92,8 +92,8 @@ export default function AboutPage() {
       <main>
         <section className="relative flex h-130 items-center justify-center overflow-hidden md:h-150">
           <Image
-            src="/home/craftsmanship-bg.webp"
-            alt="Craftsman working on custom blinds"
+            src="/about/hero-bg.webp"
+            alt="Warm natural sunlight filtering through premium custom sheer roller blinds in a modern living room"
             fill
             className="object-cover"
             priority
@@ -131,8 +131,8 @@ export default function AboutPage() {
 
             <div className="relative h-75 overflow-hidden rounded-2xl sm:h-85 lg:h-82.25">
               <Image
-                src="/home/craftsmanship-bg.webp"
-                alt="Craftsman at work"
+                src="/about/story.png"
+                alt="Close-up of skilled artisan carefully measuring and assembling premium textured fabric for custom window blinds"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 576px"
