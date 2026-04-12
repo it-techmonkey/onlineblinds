@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Jost } from 'next/font/google';
+import { Manrope, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   variable: '--font-cormorant',
-  weight: ['400', '500', '600', '700'],
+  weight: ['500', '600', '700'],
   subsets: ['latin'],
 });
 
-const jost = Jost({
+// Using same variable name so all existing font-jost classes continue to work
+const manrope = Manrope({
   variable: '--font-jost',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} ${cormorant.variable} antialiased font-jost`}>
+      <body className={`${manrope.variable} ${playfair.variable} antialiased font-jost`}>
         <AuthProvider>
           <CartProvider>
             {children}

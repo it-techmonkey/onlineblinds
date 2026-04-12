@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,16 +11,26 @@ interface ProductCardProps {
     name: string;
     slug: string;
     price: number;
+    compareAtPrice?: number;
     currency?: string;
     rating: number;
     image?: string;
     images?: string[];
+    isBestSeller?: boolean;
   };
   className?: string;
   preselectedMotorization?: boolean;
+  showBestSellerBadge?: boolean;
+  showComparePrice?: boolean;
 }
 
-export default function ProductCard({ product, className = '', preselectedMotorization = false }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  className = '',
+  preselectedMotorization = false,
+  showBestSellerBadge = true,
+  showComparePrice = true,
+}: ProductCardProps) {
   const router = useRouter();
   const imageUrl = product.image || product.images?.[0] || '';
   const currency = product.currency || 'USD';
@@ -31,44 +41,52 @@ export default function ProductCard({ product, className = '', preselectedMotori
     e.stopPropagation();
     router.push(`/product/${product.slug}?customize=true${motorizedParam}`);
   };
-  
+
   return (
-    <Link 
-      href={`/product/${product.slug}${preselectedMotorization ? '?motorized=true' : ''}`} 
-      className={`group relative flex flex-col overflow-hidden rounded-[12px] border border-border bg-surface p-[1px] transition-shadow hover:shadow-[0_16px_30px_rgba(31,41,51,0.08)] ${className}`}
+    <Link
+      href={`/product/${product.slug}${preselectedMotorization ? '?motorized=true' : ''}`}
+      className={`group relative flex flex-col overflow-hidden rounded-xl bg-white border border-border transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.09)] hover:-translate-y-0.5 ${className}`}
     >
-      <div className="relative z-[2] h-[280px] w-full overflow-hidden rounded-[11px] rounded-b-none bg-surface-soft md:h-[384px]">
+      {/* Image */}
+      <div className="relative h-[260px] md:h-[300px] w-full overflow-hidden bg-neutral-50">
         <Image
           src={imageUrl}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
-        
+        {/* Best Seller badge */}
+        {showBestSellerBadge && product.isBestSeller && (
+          <div className="absolute top-3 left-3 bg-primary text-white text-[10px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-full">
+            Best Seller
+          </div>
+        )}
+        {/* Hover CTA */}
+        <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+          <button
+            onClick={handleAddToCart}
+            className="w-full bg-foreground/90 backdrop-blur-sm text-white font-jost text-[13px] font-semibold py-3 hover:bg-foreground transition-colors flex items-center justify-center gap-2"
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M5.33 14.67a.67.67 0 100-1.34.67.67 0 000 1.34zM12.67 14.67a.67.67 0 100-1.34.67.67 0 000 1.34zM1.37 1.37H2.7l1.77 8.28c.065.303.234.574.477.766.244.193.547.294.857.304h6.52c.303 0 .598-.104.834-.294.237-.19.4-.455.465-.752l1.1-4.953H3.41" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Customize &amp; Buy
+          </button>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-2 p-4 w-full z-[1]">
-        <h3 className="font-jost w-full truncate text-[16px] leading-[24px] font-medium text-foreground">
-          {product.name}
-        </h3>
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-2">
-            <span className="font-jost text-[18px] leading-[28px] font-semibold text-foreground">
-              {formatPriceWithCurrency(product.price, currency)}
+      {/* Info */}
+      <div className="flex flex-col gap-1.5 p-4">
+        <h3 className="font-jost font-medium text-[14.5px] text-foreground truncate">{product.name}</h3>
+        <div className="flex items-center gap-2 mt-0.5">
+          <span className="font-jost font-semibold text-[16px] text-foreground">
+            {formatPriceWithCurrency(product.price, currency)}
+          </span>
+          {showComparePrice && product.compareAtPrice && product.compareAtPrice > product.price && (
+            <span className="font-jost text-[13px] text-muted line-through">
+              {formatPriceWithCurrency(product.compareAtPrice, currency)}
             </span>
-          </div>
-          
-          {/* Add Button */}
-          <button 
-            onClick={handleAddToCart}
-            className="group/btn flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-foreground shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] transition-colors hover:border-primary hover:bg-primary hover:text-white"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M5.33329 14.6667C5.70148 14.6667 5.99996 14.3682 5.99996 14C5.99996 13.6319 5.70148 13.3334 5.33329 13.3334C4.9651 13.3334 4.66663 13.6319 4.66663 14C4.66663 14.3682 4.9651 14.6667 5.33329 14.6667Z" stroke="currentColor" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12.6667 14.6667C13.0349 14.6667 13.3333 14.3682 13.3333 14C13.3333 13.6319 13.0349 13.3334 12.6667 13.3334C12.2985 13.3334 12 13.6319 12 14C12 14.3682 12.2985 14.6667 12.6667 14.6667Z" stroke="currentColor" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M1.3667 1.3667H2.70003L4.47337 9.6467C4.53842 9.94994 4.70715 10.221 4.95051 10.4133C5.19387 10.6055 5.49664 10.7069 5.8067 10.7H12.3267C12.6301 10.6995 12.9244 10.5956 13.1607 10.4053C13.3971 10.215 13.5615 9.94972 13.6267 9.65337L14.7267 4.70003H3.41337" stroke="currentColor" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+          )}
         </div>
       </div>
     </Link>

@@ -1,7 +1,6 @@
 ﻿'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import categoryContent from '@/data/categoryContent';
 import { NAVIGATION_SLUG_MAPPING, NAVIGATION_TAG_FILTERS } from '@/data/navigation';
 
@@ -19,19 +18,19 @@ interface AccordionItem {
 
 function AccordionRow({ item, isOpen, onToggle }: { item: AccordionItem; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div className="overflow-hidden rounded-[12px] border border-border bg-surface">
+    <div className="overflow-hidden rounded-[16px] border border-border bg-white transition-all duration-200">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-4 py-4 text-left transition-colors hover:bg-surface-soft md:px-5"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-surface-soft md:px-6 md:py-5"
         aria-expanded={isOpen}
       >
-        <span className="text-sm font-semibold text-foreground md:text-base">{item.title}</span>
-        <span className="ml-4 shrink-0 text-lg leading-none text-muted">
+        <span className="text-[15px] font-semibold text-foreground md:text-[17px]">{item.title}</span>
+        <span className="ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-lg leading-none text-muted">
           {isOpen ? '−' : '+'}
         </span>
       </button>
       {isOpen && (
-        <div className="border-t border-border px-4 pb-5 pt-2 text-sm leading-relaxed text-muted md:px-5">
+        <div className="border-t border-border px-5 pb-6 pt-4 text-sm leading-relaxed text-muted md:px-6">
           {item.content}
         </div>
       )}
@@ -238,23 +237,57 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
   ];
 
   const warrantyYears = resolvedSlug === 'waterproof-blackout-vertical-blinds' ? 10 : 5;
+  const overviewPoints = [
+    `${warrantyYears}-year manufacturer coverage`,
+    'Made-to-measure for a precise fit',
+    'Guides and expert support included',
+  ];
 
   return (
     <section className="border-t border-border bg-white">
+      <div className="px-4 pt-10 md:px-6 md:pt-14 lg:px-20">
+        <div className="mx-auto max-w-[1400px] border-b border-border pb-8 md:pb-10">
+          <div className="rounded-[20px] border border-border bg-surface px-5 py-6 md:px-6 md:py-7">
+            <div className="flex flex-col gap-6">
+              <div className="max-w-[860px]">
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-primary">Product Details</p>
+                <h2 className="font-display text-[32px] font-semibold leading-[1.05] text-foreground md:text-[40px]">
+                  Everything you need to know
+                </h2>
+                <p className="mt-4 text-sm leading-[1.8] text-muted md:text-[15px]">
+                  Materials, specifications, care guidance, and support details for this product are collected below in one place.
+                </p>
+              </div>
+              <div className="grid gap-3 md:grid-cols-3">
+                {overviewPoints.map((point) => (
+                  <div key={point} className="flex min-h-[88px] items-center rounded-[14px] border border-border bg-white px-5 py-4">
+                    <p className="text-sm font-medium leading-relaxed text-foreground">{point}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Guarantee */}
       <div className="px-4 md:px-6 lg:px-20 pt-10 md:pt-12">
-        <div className="mx-auto max-w-[1400px] rounded-[16px] border border-border bg-surface px-6 py-6 md:px-8 md:py-8">
-          <p className="mb-2 text-[11px] uppercase tracking-[0.14em] text-muted">Warranty & Support</p>
-          <h2 className="font-['Cormorant_Garamond',serif] text-3xl font-semibold leading-[1.05] text-foreground md:text-4xl">
-            {warrantyYears}-Year Manufacturer Guarantee
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-            Every blind is backed by manufacturer support. For assistance, contact{' '}
-            <a href="mailto:enquiries@onlineblinds.com" className="font-semibold text-primary hover:underline">
-              enquiries@onlineblinds.com
-            </a>
-            . Photos may be required for claims processing.
-          </p>
+        <div className="mx-auto max-w-[1400px] rounded-[20px] border border-border bg-white px-6 py-6 md:px-8 md:py-8">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center">
+            <div>
+              <p className="mb-2 text-[11px] uppercase tracking-[0.16em] text-primary">Warranty & Support</p>
+              <h2 className="font-display text-3xl font-semibold leading-[1.05] text-foreground md:text-4xl">
+                {warrantyYears}-Year Manufacturer Guarantee
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
+                Every blind is backed by manufacturer support. For assistance, contact{' '}
+                <a href="mailto:enquiries@onlineblinds.com" className="font-semibold text-primary hover:underline">
+                  enquiries@onlineblinds.com
+                </a>
+                . Photos may be required for claims processing.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -262,9 +295,13 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
       {items.length > 0 && (
         <div className="px-4 md:px-6 lg:px-20 py-10 md:py-12">
           <div className="max-w-[1400px] mx-auto">
-            <div className="mb-5">
-              <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-muted">Product Knowledge</p>
-              <h3 className="text-2xl font-semibold text-foreground md:text-3xl">Details & Specifications</h3>
+            <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-primary">Product Knowledge</p>
+                <h3 className="font-display text-[30px] font-semibold leading-none text-foreground md:text-[38px]">
+                  Details & Specifications
+                </h3>
+              </div>
             </div>
             <div className="space-y-3">
               {items.map((item) => (
@@ -282,12 +319,17 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
 
       {/* Why Choose */}
       <div className="px-4 md:px-6 lg:px-20 pb-10 md:pb-12">
-        <div className="mx-auto max-w-[1400px] rounded-[16px] border border-border bg-surface p-6 md:p-8">
-          <h2 className="mb-6 text-2xl font-semibold text-foreground md:text-3xl">Why Choose Online Blinds</h2>
+        <div className="mx-auto max-w-[1400px] rounded-[20px] border border-border bg-white p-6 md:p-8">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-primary">Why Choose Us</p>
+              <h2 className="font-display text-[30px] font-semibold leading-none text-foreground md:text-[38px]">Why Choose Online Blinds</h2>
+            </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {whyChooseFeatures.map((feat, i) => (
-              <div key={i} className="rounded-[12px] border border-surface-contrast bg-surface-soft p-4">
-                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-[10px] bg-surface-soft text-primary">
+              <div key={i} className="rounded-[16px] border border-border bg-surface p-5">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[12px] bg-primary-light text-primary">
                   {feat.icon}
                 </div>
                 <p className="mb-1.5 text-sm font-semibold text-foreground md:text-base">{feat.title}</p>
@@ -297,31 +339,6 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
           </div>
         </div>
       </div>
-
-      {/* Texas Story */}
-      <div className="px-4 md:px-6 lg:px-20 pb-14 md:pb-16">
-        <div className="mx-auto grid max-w-[1400px] overflow-hidden rounded-[16px] border border-border bg-surface lg:grid-cols-2">
-          <div className="relative min-h-[260px] md:min-h-[320px]">
-            <Image
-              src="/home/craftsmanship-bg.webp"
-              alt="Proudly designed and manufactured in Texas"
-              fill
-              className="object-cover object-top"
-            />
-          </div>
-          <div className="p-6 md:p-8 flex flex-col justify-center">
-            <p className="mb-2 text-[11px] uppercase tracking-[0.14em] text-muted">Made in Texas, USA</p>
-            <h2 className="mb-3 text-2xl font-semibold leading-tight text-foreground md:text-3xl">
-              Crafted Locally, Built to Last
-            </h2>
-            <p className="text-sm leading-relaxed text-muted md:text-base">
-              Our blinds are designed, assembled, and quality-checked in Texas, giving you reliable lead times,
-              consistent quality, and long-term durability.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
-

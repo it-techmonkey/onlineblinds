@@ -87,20 +87,20 @@ export default function ProductGridWithFilters({
       <div className="flex items-center justify-between gap-[32px] mb-[32px]">
         {/* Product Count */}
         <div>
-          <div className="font-['Jost:Regular',sans-serif] font-normal text-[14px] text-muted leading-[20px]">
+          <div className="font-jost text-[14px] font-normal text-muted leading-[20px]">
             {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
           </div>
         </div>
 
         {/* Sort Dropdown */}
         <div className="flex gap-[12px] items-center">
-          <div className="font-['Jost:Regular',sans-serif] font-normal text-[14px] text-muted leading-[20px]">
+          <div className="font-jost text-[14px] font-normal text-muted leading-[20px]">
             Sort by:
           </div>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="h-[36px] w-[180px] rounded-[4.4px] border border-border bg-surface px-[13px] py-[9px] font-['Jost:Regular',sans-serif] text-[14px] leading-[20px] font-normal text-foreground shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]"
+            className="h-[36px] w-[180px] rounded-[4.4px] border border-border bg-surface px-[13px] py-[9px] font-jost text-[14px] leading-[20px] font-normal text-foreground shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]"
           >
             <option value="best-selling">Best Selling</option>
             <option value="price-low">Price: Low to High</option>
@@ -119,12 +119,12 @@ export default function ProductGridWithFilters({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
             </svg>
           </div>
-          <h3 className="mb-2 font-['Jost:Medium',sans-serif] text-[16px] font-medium text-foreground">No products found</h3>
-          <p className="mb-4 font-['Jost:Regular',sans-serif] text-[14px] font-normal text-muted">Try adjusting your filters to find what you&apos;re looking for.</p>
+          <h3 className="mb-2 font-jost text-[16px] font-medium text-foreground">No products found</h3>
+          <p className="mb-4 font-jost text-[14px] font-normal text-muted">Try adjusting your filters to find what you&apos;re looking for.</p>
           {hasActiveFilters && (
             <button
               onClick={clearAllFilters}
-              className="rounded-[4.4px] bg-primary px-4 py-2 font-['Jost:Medium',sans-serif] text-[14px] font-medium text-white hover:bg-primary-dark"
+              className="rounded-[4.4px] bg-primary px-4 py-2 font-jost text-[14px] font-medium text-white hover:bg-primary-dark"
             >
               Clear All Filters
             </button>
@@ -150,7 +150,7 @@ export default function ProductGridWithFilters({
             <div className="flex justify-center pt-8 mt-8">
               <button
                 onClick={() => setVisibleCount((prev) => prev + 24)}
-                className="rounded-[4.4px] border border-border bg-surface px-8 py-3 font-['Jost:Medium',sans-serif] text-[14px] font-medium text-foreground transition-colors hover:bg-foreground hover:text-white"
+                className="rounded-[4.4px] border border-border bg-surface px-8 py-3 font-jost text-[14px] font-medium text-foreground transition-colors hover:bg-foreground hover:text-white"
               >
                 Load More Products
               </button>
@@ -158,7 +158,7 @@ export default function ProductGridWithFilters({
           )}
 
           {/* Results Info */}
-          <div className="mt-4 text-center font-['Jost:Regular',sans-serif] text-[14px] font-normal text-muted">
+          <div className="mt-4 text-center font-jost text-[14px] font-normal text-muted">
             Showing {displayedProducts.length} of {filteredProducts.length} products
           </div>
         </>

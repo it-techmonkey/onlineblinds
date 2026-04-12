@@ -1,7 +1,5 @@
 'use client';
 
-import StarRating from './StarRating';
-
 export const CustomerReviewsSection = () => {
     const reviews = [
         {
@@ -34,10 +32,6 @@ export const CustomerReviewsSection = () => {
                             <h3 className="text-xl font-bold mb-6 leading-tight">
                                 {review.headline}
                             </h3>
-
-                            <div className="mb-4">
-                                <StarRating rating={5} filledColor="text-[#FFD700]" size="md" />
-                            </div>
 
                             <div className="font-semibold text-lg mb-4 text-white">{review.author}</div>
 

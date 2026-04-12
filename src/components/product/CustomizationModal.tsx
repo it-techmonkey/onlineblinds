@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Product, ProductConfiguration, PriceBandMatrix, CustomizationPricing as CustomizationPricingType } from '@/types';
 import { useCart } from '@/context/CartContext';
 import ProductGallery from './ProductGallery';
-import StarRating from './StarRating';
 import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
 import {
   calculateTotalPrice,
@@ -369,9 +368,6 @@ const CustomizationModal = ({
               <p className="text-xs md:text-sm text-gray-500 mb-2">
                 Estimated Shipping Date: <span className="text-[#335c99] font-medium">{product.estimatedDelivery}</span>
               </p>
-              <div className="flex items-center gap-1 mb-4 md:mb-6">
-                <StarRating rating={product.rating} />
-              </div>
 
               {/* Configuration Title */}
               <h2 className="text-lg md:text-xl font-medium text-[#25344d] mb-4 md:mb-6 mt-6 md:mt-8">Configure Your Window Treatment</h2>

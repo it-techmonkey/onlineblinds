@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 
 const categoryItems = [
@@ -14,43 +14,47 @@ const categoryItems = [
 
 const CategoryGrid = () => {
   return (
-    <section className="bg-background py-16 md:py-24">
-      <div className="max-w-[1280px] mx-auto px-6">
-        {/* Heading Container */}
-        <div className="flex flex-col gap-2 mb-10 w-full">
-          <h2 className="font-display font-semibold text-[36px] leading-[40px] text-foreground">
-            Shop by Category
-          </h2>
-          <p className="font-jost font-normal text-[16px] leading-[24px] text-muted">
-            Browse our full range of made-to-measure window coverings
-          </p>
+    <section className="bg-white py-16 md:py-24">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+        {/* Header row */}
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-primary mb-2">Collections</p>
+            <h2 className="font-display font-semibold text-[38px] leading-[1.1] tracking-tight text-foreground">
+              Shop by Category
+            </h2>
+          </div>
+          <Link href="/collections" className="hidden md:flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-primary transition-colors group">
+            View all
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-0.5 transition-transform">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {categoryItems.map((cat) => (
             <Link
               key={cat.label}
               href={cat.href}
-              className="group flex flex-col items-center gap-4 overflow-hidden rounded-[12px] border border-border bg-surface p-[1px] pb-[17px] transition-shadow hover:shadow-[0_16px_30px_rgba(31,41,51,0.07)]"
+              className="group flex flex-col overflow-hidden rounded-xl bg-neutral-50 transition-all duration-300 hover:shadow-[0_12px_32px_rgba(0,0,0,0.09)] hover:-translate-y-0.5"
             >
-              {/* Image Container */}
-              <div className="relative h-[216px] w-full overflow-hidden rounded-[11px] rounded-b-none bg-surface-soft">
+              <div className="relative h-[200px] md:h-[220px] w-full overflow-hidden">
                 {cat.image && (
                   <Image
                     src={cat.image}
                     alt={cat.label}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                 )}
               </div>
-              
-              {/* Label */}
-              <div className="w-full px-4 text-center">
-                <span className="font-jost font-medium text-[16px] leading-[24px] text-foreground">
-                  {cat.label}
-                </span>
+              <div className="px-4 py-3 flex items-center justify-between">
+                <span className="font-jost font-medium text-[13.5px] text-foreground leading-snug">{cat.label}</span>
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="text-muted shrink-0 translate-x-[-4px] opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
             </Link>
           ))}

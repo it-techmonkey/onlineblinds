@@ -81,10 +81,10 @@ const guides = [
 
 const TypeBadge = ({ type }: { type: string }) => (
   <span
-    className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+    className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.12em] ${
       type === 'Installation'
-        ? 'bg-[rgba(68,87,102,0.12)] text-primary'
-        : 'bg-surface-soft text-muted-strong'
+        ? 'bg-foreground text-white'
+        : 'bg-primary-light text-primary-dark'
     }`}
   >
     {type}
@@ -97,54 +97,54 @@ export default function GuidesPage() {
       <Header />
 
       <main>
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-foreground via-primary to-primary-dark px-4 py-14 md:px-6 md:py-20 lg:px-20">
-          <div className="max-w-[1400px] mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        <section className="px-4 pb-8 pt-10 md:px-6 md:pb-12 md:pt-14 lg:px-20">
+          <div className="mx-auto max-w-[980px] rounded-[28px] border border-border bg-[linear-gradient(180deg,#ffffff_0%,#f8fcfb_100%)] px-6 py-10 md:px-10 md:py-14">
+            <p className="mb-3 font-jost text-[11px] font-medium uppercase tracking-[0.2em] text-primary">
+              Support
+            </p>
+            <h1 className="max-w-[620px] font-display text-[38px] leading-[1.02] text-foreground md:text-[54px]">
               Measure &amp; Fit Guides
             </h1>
-            <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto">
-              Download our free step-by-step guides to measure and install your blinds perfectly every time.
+            <p className="mt-4 max-w-[520px] font-jost text-[14px] leading-[1.8] text-muted md:text-[15px]">
+              Clean, straightforward PDF guides for measuring and installing each blind style with confidence.
             </p>
           </div>
         </section>
 
-        {/* Guides */}
-        <section className="px-4 md:px-6 lg:px-20 py-12 md:py-16">
-          <div className="max-w-[1400px] mx-auto space-y-12">
+        <section className="px-4 pb-14 pt-2 md:px-6 md:pb-20 lg:px-20">
+          <div className="mx-auto max-w-[980px] space-y-12">
             {guides.map((group) => (
-              <div key={group.category}>
-                <h2 className="mb-5 border-b border-border pb-3 text-xl font-semibold text-foreground md:text-2xl">
-                  {group.category}
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div key={group.category} className="grid gap-5 border-t border-border pt-6 md:grid-cols-[220px_minmax(0,1fr)] md:gap-8 md:pt-8">
+                <div>
+                  <h2 className="font-display text-[26px] leading-none text-foreground md:text-[30px]">
+                    {group.category}
+                  </h2>
+                  <p className="mt-2 font-jost text-[13px] leading-[1.7] text-muted">
+                    {group.items.length} guide{group.items.length > 1 ? 's' : ''} available
+                  </p>
+                </div>
+                <div className="space-y-2.5">
                   {group.items.map((guide) => (
                     <a
                       key={guide.file}
                       href={guide.file}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-start gap-4 rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:border-primary/40 hover:shadow-md"
+                      className="group flex items-center justify-between gap-4 rounded-2xl border border-transparent bg-background-alt px-4 py-4 transition-all hover:border-border-strong hover:bg-white"
                     >
-                      {/* PDF icon */}
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[rgba(68,87,102,0.1)] transition-colors group-hover:bg-[rgba(68,87,102,0.16)]">
-                        <svg className="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="mb-2 text-sm font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <TypeBadge type={guide.type} />
+                          <span className="font-jost text-[10px] uppercase tracking-[0.16em] text-muted">PDF</span>
+                        </div>
+                        <p className="font-jost text-sm font-medium leading-snug text-foreground md:text-[15px]">
                           {guide.title}
                         </p>
-                        <div className="flex items-center justify-between">
-                          <TypeBadge type={guide.type} />
-                          <span className="flex items-center gap-1 text-xs text-muted">
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                            </svg>
-                            PDF
-                          </span>
-                        </div>
+                      </div>
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-foreground transition-transform group-hover:translate-y-0.5">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 5v14m0 0 5-5m-5 5-5-5" />
+                        </svg>
                       </div>
                     </a>
                   ))}

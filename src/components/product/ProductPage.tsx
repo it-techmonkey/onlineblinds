@@ -8,7 +8,6 @@ import { useCart } from '@/context/CartContext';
 import ProductGallery from './ProductGallery';
 import ProductReviews from './ProductReviews';
 import RelatedProducts from './RelatedProducts';
-import StarRating from './StarRating';
 import CategoryInfoSection from '@/components/collection/CategoryInfoSection';
 import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
 import { PRODUCT_GUIDES } from '@/data/guides';
@@ -453,17 +452,6 @@ const ProductPage = ({
               <h1 className="font-display text-[34px] leading-[1.05] md:text-[42px] md:leading-[1.04] font-semibold text-foreground mb-2">
                 {product.name}
               </h1>
-
-              {/* Description */}
-              <p className="text-sm md:text-[15px] leading-[1.65] text-muted mb-4 md:mb-5">
-                {product.description}
-              </p>
-
-              {/* Rating */}
-              <div className="flex items-center gap-2 mb-5 md:mb-6">
-                <StarRating rating={product.rating} size="md" filledColor="text-primary" emptyColor="text-border-strong" />
-                <span className="text-xs md:text-sm text-muted">{product.reviewCount} reviews</span>
-              </div>
 
               {/* Shipping Info Box */}
               <div className="flex items-center border border-border rounded-[16px] mb-5 md:mb-6 px-3 md:px-4 py-3 bg-surface shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
@@ -1133,7 +1121,7 @@ const ProductPage = ({
                       height={40}
                       className="w-16 h-auto object-contain mb-2"
                     />
-                    <span className="text-xs font-semibold text-foreground leading-tight">4.5/5 Stars</span>
+                    <span className="text-xs font-semibold text-foreground leading-tight">Trusted by Customers</span>
                     <span className="text-xs text-muted mt-0.5 leading-tight">Rated Excellent on Trustpilot</span>
                   </div>
                 </div>
@@ -1179,4 +1167,3 @@ const ProductPage = ({
 };
 
 export default ProductPage;
-

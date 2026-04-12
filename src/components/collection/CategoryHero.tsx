@@ -43,19 +43,19 @@ export default function CategoryHero({ title, description, productCount }: Categ
         <div className="flex flex-col gap-[8px] items-start max-w-[1280px] px-[24px] w-[1280px]">
           {/* Product Count Label */}
           <div className="w-full">
-            <div className="font-['Jost:Medium',sans-serif] font-medium text-[14px] text-white/72 tracking-[0.7px] uppercase leading-[20px]">
+            <div className="font-jost font-medium text-[14px] text-white/72 tracking-[0.7px] uppercase leading-[20px]">
               {isComingSoon ? 'Coming Soon' : `${productCount} Product${productCount === 1 ? '' : 's'} Available`}
             </div>
           </div>
 
           {/* Heading */}
           <div className="w-full">
-            <h1 className="font-['Cormorant_Garamond:Bold',sans-serif] text-[48px] text-white leading-[48px]">
+            <h1 className="font-display text-[48px] font-semibold text-white leading-[48px]">
               {title}
             </h1>
           </div>
 
-          <p className="max-w-2xl font-['Jost:Regular',sans-serif] text-[15px] leading-[24px] text-white/76 md:text-[16px]">
+          <p className="max-w-2xl font-jost text-[15px] leading-[24px] text-white/76 md:text-[16px]">
             {description}
           </p>
 
@@ -65,7 +65,7 @@ export default function CategoryHero({ title, description, productCount }: Categ
               <svg className="h-[16px] w-[16px] text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
               </svg>
-              <div className="font-['Jost:Regular',sans-serif] font-normal text-[14px] text-white/78 leading-[20px]">
+              <div className="font-jost text-[14px] font-normal text-white/78 leading-[20px]">
                 Free Samples
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function CategoryHero({ title, description, productCount }: Categ
               <svg className="h-[16px] w-[16px] text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <div className="font-['Jost:Regular',sans-serif] font-normal text-[14px] text-white/78 leading-[20px]">
+              <div className="font-jost text-[14px] font-normal text-white/78 leading-[20px]">
                 Fast Delivery
               </div>
             </div>

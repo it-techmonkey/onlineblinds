@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types';
-import StarRating from './StarRating';
 import { formatPriceWithCurrency } from '@/lib/api';
 
 interface RelatedProductsProps {
@@ -42,20 +41,15 @@ const RelatedProducts = ({ products }: RelatedProductsProps) => {
 
             {/* Product Info */}
             <div className="bg-white p-3 md:p-4 flex flex-col gap-3">
-              <div className="flex flex-col gap-1.5">
-                {/* Name & Price */}
-                <div className="flex flex-col gap-1">
-                  <Link href={`/product/${product.slug}`}>
-                    <h3 className="text-sm md:text-base font-medium text-[#1f2a44] capitalize line-clamp-2 leading-snug hover:text-[#335c99] transition-colors">{product.name}</h3>
-                  </Link>
-                  <div className="flex items-end gap-2">
-                    <span className="text-base md:text-xl font-semibold text-[#1f2a44]">
-                      {formatPriceWithCurrency(product.price, product.currency)}
-                    </span>
-                  </div>
+              <div className="flex flex-col gap-1">
+                <Link href={`/product/${product.slug}`}>
+                  <h3 className="text-sm md:text-base font-medium text-[#1f2a44] capitalize line-clamp-2 leading-snug hover:text-[#335c99] transition-colors">{product.name}</h3>
+                </Link>
+                <div className="flex items-end gap-2">
+                  <span className="text-base md:text-xl font-semibold text-[#1f2a44]">
+                    {formatPriceWithCurrency(product.price, product.currency)}
+                  </span>
                 </div>
-                {/* Stars */}
-                <StarRating rating={product.rating} size="sm" filledColor="text-[#335c99]" emptyColor="text-[#cfdaea]" />
               </div>
 
               {/* Add to Cart Button - Hidden on mobile */}
@@ -75,4 +69,3 @@ const RelatedProducts = ({ products }: RelatedProductsProps) => {
 };
 
 export default RelatedProducts;
-

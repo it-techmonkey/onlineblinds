@@ -1,6 +1,7 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { ProductCard } from '@/components/product';
 import { fetchProducts, transformProduct } from '@/lib/api';
 
@@ -24,7 +25,7 @@ const fallbackImages = [
   "/home/products/vertical-blinds-4.jpg",
   "/home/products/vertical-blinds-5.jpg",
   "/home/products/blinds.jpeg",
-  "/home/products/vertical-blinds-1.jpg"
+  "/home/products/vertical-blinds-1.jpg",
 ];
 
 const BestSelling = () => {
@@ -32,60 +33,55 @@ const BestSelling = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadProducts = async () => {
+    const load = async () => {
       try {
         const response = await fetchProducts({ limit: 8 });
-        const mappedProducts = response.data.slice(0, 8).map((productData, index) => {
-          const product = transformProduct(productData);
+        setProducts(response.data.slice(0, 8).map((pd, i) => {
+          const p = transformProduct(pd);
           return {
-            id: product.id,
-            name: product.name,
-            slug: product.slug,
-            price: product.price,
-            compareAtPrice: Math.round(product.price * 1.4),
-            currency: product.currency,
-            rating: product.rating,
-            image: fallbackImages[index % fallbackImages.length], // Use fallback design images
-            images: product.images,
-            isBestSeller: true,
+            id: p.id, name: p.name, slug: p.slug, price: p.price,
+            compareAtPrice: Math.round(p.price * 1.4), currency: p.currency,
+            rating: p.rating, image: fallbackImages[i % fallbackImages.length],
+            images: p.images, isBestSeller: true,
           };
-        });
-        setProducts(mappedProducts);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      } finally {
-        setLoading(false);
-      }
+        }));
+      } catch (e) { console.error(e); }
+      finally { setLoading(false); }
     };
-
-    loadProducts();
+    load();
   }, []);
 
   return (
-    <section className="bg-background py-16 md:py-24">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div className="flex flex-col gap-2 mb-10 w-full">
-          <h2 className="font-display font-semibold text-[36px] leading-[40px] text-foreground">
-            Best Selling Products
-          </h2>
-          <p className="font-jost font-normal text-[16px] leading-[24px] text-muted">
-            Our most popular window coverings
-          </p>
+    <section className="bg-neutral-50 py-16 md:py-24">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-primary mb-2">Bestsellers</p>
+            <h2 className="font-display font-semibold text-[38px] leading-[1.1] tracking-tight text-foreground">
+              Best Selling Products
+            </h2>
+          </div>
+          <Link href="/collections" className="hidden md:flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-primary transition-colors group">
+            View all
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-0.5 transition-transform">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
         </div>
-        
+
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="h-[400px] w-full animate-pulse rounded-[12px] bg-surface-soft" />
-            ))}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[...Array(8)].map((_, i) => <div key={i} className="h-[380px] rounded-xl bg-neutral-100 animate-pulse" />)}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-            {products.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {products.map((p) => (
+              <ProductCard
+                key={p.id}
+                product={p}
                 className="w-full"
+                showBestSellerBadge={false}
+                showComparePrice={false}
               />
             ))}
           </div>
@@ -96,4 +92,3 @@ const BestSelling = () => {
 };
 
 export default BestSelling;
-

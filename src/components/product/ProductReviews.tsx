@@ -1,7 +1,6 @@
 ﻿'use client';
 
 import { ProductReview } from '@/types';
-import StarRating from './StarRating';
 
 interface ProductReviewsProps {
   reviews: ProductReview[];
@@ -25,12 +24,11 @@ const ProductReviews = ({ reviews, averageRating, totalReviews }: ProductReviews
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-0">
           {/* Left side - Rating summary and bars */}
           <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6 lg:gap-16">
-            {/* Rating Number & Stars */}
+            {/* Rating Summary */}
             <div className="flex flex-col gap-3 md:gap-4">
               <h3 className="text-lg md:text-xl font-medium text-[#1f2a44]">Reviews</h3>
               <div className="flex flex-col gap-1">
                 <span className="text-2xl md:text-[32px] font-bold text-black leading-tight md:leading-[34px]">{averageRating.toFixed(1)}</span>
-                <StarRating rating={Math.round(averageRating)} size="md" filledColor="text-[#e7b66b]" />
                 <span className="text-xs font-medium text-[#858585]">({totalReviews} Reviews)</span>
               </div>
             </div>
@@ -85,9 +83,6 @@ const ProductReviews = ({ reviews, averageRating, totalReviews }: ProductReviews
             <div className="flex flex-col gap-3 py-3">
               {/* Date */}
               <span className="text-xs font-medium text-[#858585] leading-5">{review.date}</span>
-              
-              {/* Stars */}
-              <StarRating rating={review.rating} size="sm" filledColor="text-[#e7b66b]" className="gap-2" />
               
               {/* Author */}
               <div className="flex items-center gap-3">
