@@ -18,14 +18,14 @@ interface AccordionItem {
 
 function AccordionRow({ item, isOpen, onToggle }: { item: AccordionItem; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div className="overflow-hidden rounded-[16px] border border-border bg-white transition-all duration-200">
+    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-[0_1px_0_rgba(17,17,17,0.02)] transition-all duration-200 hover:shadow-[0_10px_24px_rgba(15,23,42,0.06)]">
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-surface-soft md:px-6 md:py-5"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-surface-soft/80 md:px-6 md:py-5"
         aria-expanded={isOpen}
       >
         <span className="text-[15px] font-semibold text-foreground md:text-[17px]">{item.title}</span>
-        <span className="ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-lg leading-none text-muted">
+        <span className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-lg leading-none text-muted transition-all duration-200 ${isOpen ? 'border-primary/30 bg-primary-light text-primary' : ''}`}>
           {isOpen ? '−' : '+'}
         </span>
       </button>
@@ -246,10 +246,10 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
   return (
     <section className="border-t border-border bg-white">
       <div className="px-4 pt-10 md:px-6 md:pt-14 lg:px-20">
-        <div className="mx-auto max-w-[1400px] border-b border-border pb-8 md:pb-10">
-          <div className="rounded-[20px] border border-border bg-surface px-5 py-6 md:px-6 md:py-7">
+        <div className="mx-auto max-w-350 border-b border-border pb-8 md:pb-10">
+          <div className="rounded-[20px] border border-border bg-[linear-gradient(180deg,#ffffff_0%,#f7fcfb_100%)] px-5 py-6 md:px-6 md:py-7">
             <div className="flex flex-col gap-6">
-              <div className="max-w-[860px]">
+              <div className="max-w-215">
               <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.18em] text-primary">Product Details</p>
                 <h2 className="font-display text-[32px] font-semibold leading-[1.05] text-foreground md:text-[40px]">
                   Everything you need to know
@@ -260,7 +260,7 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
               </div>
               <div className="grid gap-3 md:grid-cols-3">
                 {overviewPoints.map((point) => (
-                  <div key={point} className="flex min-h-[88px] items-center rounded-[14px] border border-border bg-white px-5 py-4">
+                  <div key={point} className="flex min-h-22 items-center rounded-[14px] border border-border bg-white px-5 py-4 shadow-[0_2px_12px_rgba(15,23,42,0.03)]">
                     <p className="text-sm font-medium leading-relaxed text-foreground">{point}</p>
                   </div>
                 ))}
@@ -272,7 +272,7 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
 
       {/* Guarantee */}
       <div className="px-4 md:px-6 lg:px-20 pt-10 md:pt-12">
-        <div className="mx-auto max-w-[1400px] rounded-[20px] border border-border bg-white px-6 py-6 md:px-8 md:py-8">
+        <div className="mx-auto max-w-350 rounded-[20px] border border-border bg-white px-6 py-6 md:px-8 md:py-8">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center">
             <div>
               <p className="mb-2 text-[11px] uppercase tracking-[0.16em] text-primary">Warranty & Support</p>
@@ -294,7 +294,7 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
       {/* Category-specific accordion */}
       {items.length > 0 && (
         <div className="px-4 md:px-6 lg:px-20 py-10 md:py-12">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="mx-auto max-w-350">
             <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-primary">Product Knowledge</p>
@@ -319,7 +319,7 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
 
       {/* Why Choose */}
       <div className="px-4 md:px-6 lg:px-20 pb-10 md:pb-12">
-        <div className="mx-auto max-w-[1400px] rounded-[20px] border border-border bg-white p-6 md:p-8">
+        <div className="mx-auto max-w-350 rounded-[20px] border border-border bg-white p-6 md:p-8">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-1 text-[11px] uppercase tracking-[0.14em] text-primary">Why Choose Us</p>
@@ -328,8 +328,8 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {whyChooseFeatures.map((feat, i) => (
-              <div key={i} className="rounded-[16px] border border-border bg-surface p-5">
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-[12px] bg-primary-light text-primary">
+              <div key={i} className="rounded-2xl border border-border bg-surface p-5">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary-light text-primary">
                   {feat.icon}
                 </div>
                 <p className="mb-1.5 text-sm font-semibold text-foreground md:text-base">{feat.title}</p>

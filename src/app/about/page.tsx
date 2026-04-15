@@ -1,10 +1,10 @@
-﻿import Image from 'next/image';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Header, Footer } from '@/components';
 
 export const metadata: Metadata = {
-  title: 'About Us - Online Blinds | Custom Blinds Made in Texas',
-  description: 'Learn about Online Blinds - over 15 years of expertise in custom window coverings. Designed for light, built for life. Manufactured in Texas.',
+  title: 'About Us - Online Blinds | Custom Blinds Made in Yorkshire',
+  description: 'Learn about Online Blinds - over 15 years of expertise in custom window coverings. Designed for light, built for life. Manufactured in Yorkshire.',
 };
 
 type StatIconVariant = 'experience' | 'customers' | 'custom' | 'guarantee';
@@ -31,7 +31,7 @@ const highlights = [
   },
   {
     title: 'Expert Craftsmanship',
-    description: 'Our skilled artisans in Texas bring decades of experience to every window covering we produce.',
+    description: 'Our skilled artisans in Yorkshire bring decades of experience to every window covering we produce.',
   },
   {
     title: 'Free Samples',

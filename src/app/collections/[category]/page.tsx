@@ -1,5 +1,5 @@
 ﻿import { notFound } from 'next/navigation';
-import { Header, Footer, FlashSale, FAQ } from '@/components';
+import { Header, Footer, FAQ } from '@/components';
 import { fetchCategories, fetchProductsByCategory, transformProduct, extractFilterOptions } from '@/lib/api';
 import { Product, ApiProduct } from '@/types';
 import CategoryHero from '@/components/collection/CategoryHero';
@@ -160,7 +160,6 @@ export default async function CollectionPage({ params }: PageProps) {
           )}
         </div>
 
-        <FlashSale />
         <FAQ />
       </main>
 

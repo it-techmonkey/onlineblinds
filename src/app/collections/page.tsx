@@ -1,4 +1,4 @@
-﻿import { Header, Footer, FlashSale, FAQ } from '@/components';
+﻿import { Header, Footer, FAQ } from '@/components';
 import { fetchProducts, transformProduct, extractFilterOptions } from '@/lib/api';
 import CategoryHero from '@/components/collection/CategoryHero';
 import ProductGridWithFilters from '@/components/collection/ProductGridWithFilters';
@@ -42,8 +42,6 @@ export default async function CollectionsPage() {
             />
           </div>
         </div>
-
-        <FlashSale />
         <FAQ />
       </main>
 

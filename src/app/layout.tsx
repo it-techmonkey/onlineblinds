@@ -3,6 +3,7 @@ import { Manrope, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
+import GlobalPolish from '@/components/ui/GlobalPolish';
 
 const playfair = Playfair_Display({
   variable: '--font-cormorant',
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} ${playfair.variable} antialiased font-jost`}>
+        <GlobalPolish />
         <AuthProvider>
           <CartProvider>
             {children}

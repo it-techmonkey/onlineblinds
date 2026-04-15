@@ -58,41 +58,47 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-[600px] md:h-[680px] w-full overflow-hidden bg-neutral-100">
-      {/* Images */}
+    <section className="relative h-130 sm:h-155 md:h-175 w-full overflow-hidden bg-neutral-100">
+      {/* Images with subtle zoom */}
       {slides.map((slide, i) => (
-        <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}>
-          <Image src={slide.src} alt={slide.alt} fill className="object-cover" priority={i === 0} />
+        <div
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
+        >
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            className={`object-cover transition-transform duration-8000 ease-out ${i === current ? 'scale-105' : 'scale-100'}`}
+            priority={i === 0}
+          />
         </div>
       ))}
 
-      {/* Overlay — clean, dark-left */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/70 via-black/35 to-black/5" />
+      {/* Minimal overlay for legible text */}
+      <div className="absolute inset-0 z-10 bg-linear-to-r from-black/70 via-black/45 to-black/20" />
 
       {/* Content */}
       <div className="absolute inset-0 z-20 flex items-center">
-        <div className="w-full max-w-[1280px] mx-auto px-5 md:px-8">
-          <div key={animKey} className="animate-slide-up-fade flex flex-col gap-4 max-w-[520px]">
-            {/* Eyebrow — clean teal label */}
-            <p className="font-jost text-[11px] font-semibold tracking-[0.16em] uppercase text-primary bg-white/90 rounded-full px-3 py-1 self-start">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div key={animKey} className="animate-slide-up-fade flex flex-col gap-4 max-w-75 sm:max-w-115 md:max-w-140">
+            <p className="font-jost text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-primary/95 bg-white/90 rounded-full px-3 py-1 self-start">
               {slides[current].eyebrow}
             </p>
 
-            {/* Title */}
             <h1
-              className="font-display font-semibold text-[60px] md:text-[72px] text-white leading-[1.0] tracking-[-0.02em]"
+              className="font-display font-semibold text-[42px] sm:text-[52px] md:text-[72px] text-white leading-[0.98] tracking-[-0.02em]"
               style={{ whiteSpace: 'pre-line' }}
             >
               {slides[current].title}
             </h1>
 
-            {/* CTA */}
             <Link
               href={slides[current].href}
-              className="self-start mt-2 flex items-center gap-2.5 bg-primary hover:bg-primary-dark text-white font-jost font-semibold text-[14px] tracking-wide px-7 h-12 rounded-lg transition-colors shadow-md group"
+              className="self-start mt-1 inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-jost font-semibold text-[13px] sm:text-[14px] tracking-wide px-5 sm:px-6 h-11 rounded-md transition-colors duration-200 group"
             >
               {slides[current].buttonText}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform group-hover:translate-x-0.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform group-hover:translate-x-1">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
@@ -103,7 +109,7 @@ const Hero = () => {
       {/* Prev / Next */}
       <button
         onClick={() => handleNav(current === 0 ? slides.length - 1 : current - 1)}
-        className="absolute left-4 top-1/2 z-30 -translate-y-1/2 w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/25 transition-all"
+        className="hidden sm:flex absolute left-4 top-1/2 z-30 -translate-y-1/2 w-10 h-10 rounded-full bg-white/12 backdrop-blur border border-white/20 items-center justify-center hover:bg-white/22 transition-colors duration-200"
         aria-label="Previous"
       >
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -112,7 +118,7 @@ const Hero = () => {
       </button>
       <button
         onClick={() => handleNav((current + 1) % slides.length)}
-        className="absolute right-4 top-1/2 z-30 -translate-y-1/2 w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/25 transition-all"
+        className="hidden sm:flex absolute right-4 top-1/2 z-30 -translate-y-1/2 w-10 h-10 rounded-full bg-white/12 backdrop-blur border border-white/20 items-center justify-center hover:bg-white/22 transition-colors duration-200"
         aria-label="Next"
       >
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -120,17 +126,37 @@ const Hero = () => {
         </svg>
       </button>
 
-      {/* Slide counter */}
-      <div className="absolute bottom-7 right-6 z-30 flex items-center gap-3">
+      {/* Slide indicators */}
+      <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => handleNav(i)}
             aria-label={`Slide ${i + 1}`}
-            className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-primary' : 'w-2 h-2 bg-white/40 hover:bg-white/60'}`}
-          />
+            className="relative h-0.75 rounded-full transition-all duration-500 overflow-hidden"
+            style={{ width: i === current ? 26 : 10, background: 'rgba(255,255,255,0.35)' }}
+          >
+            {i === current && (
+              <span
+                className="absolute inset-0 bg-primary rounded-full"
+                style={{
+                  animation: `slide-progress ${INTERVAL_MS}ms linear forwards`,
+                }}
+              />
+            )}
+            {i !== current && (
+              <span className="absolute inset-0 bg-white/50 rounded-full" />
+            )}
+          </button>
         ))}
       </div>
+
+      <style jsx>{`
+        @keyframes slide-progress {
+          from { transform: scaleX(0); transform-origin: left; }
+          to   { transform: scaleX(1); transform-origin: left; }
+        }
+      `}</style>
     </section>
   );
 };

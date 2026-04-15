@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { Product } from '@/types';
 import { ProductPage, CustomerReviewsSection, ProductFeatureSection, ProductComparisonSection, HowItWorksSection, ProductRechargeSection, ProductWarrantySection, ProductComparisonTableSection } from '@/components/product';
-import { Header, FlashSale, FAQ, Footer, } from '@/components';
+import { Header, FAQ, Footer, } from '@/components';
 import { fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
 
 interface ProductPageProps {
@@ -119,7 +119,6 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
         </Suspense>
         {slug !== 'non-driii-honeycomb-blackout-blinds' && (
           <>
-            {/* <FlashSale /> */}
             <FAQ />
           </>
         )}

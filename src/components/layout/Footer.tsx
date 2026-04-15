@@ -3,34 +3,34 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral-900 text-white">
+    <footer className="bg-[linear-gradient(180deg,#171717_0%,#0f0f0f_100%)] text-white">
       {/* Main footer */}
-      <div className="max-w-[1280px] mx-auto px-5 md:px-8 py-14">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+      <div className="mx-auto max-w-7xl px-5 py-14 md:px-8">
+        <div className="flex flex-col items-center text-center md:flex-row md:items-start md:justify-between md:text-left gap-10">
 
           {/* Brand */}
-          <div className="flex flex-col gap-4 max-w-[280px]">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/icons/logo.svg" alt="Online Blinds" width={20} height={20} className="filter brightness-0 invert" />
+          <div className="flex max-w-70 flex-col items-center md:items-start gap-4">
+            <Link href="/" className="group flex items-center gap-2">
+              <Image src="/icons/logo.svg" alt="Online Blinds" width={20} height={20} className="filter brightness-0 invert transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110" />
               <span className="font-display font-semibold text-[20px] text-white">
                 Online <span className="italic text-primary">Blinds</span>
               </span>
             </Link>
             <p className="font-jost text-[13.5px] text-white/50 leading-relaxed">
-              Premium custom blinds, manufactured in Texas. 15+ years of expertise.
+              Premium custom blinds, manufactured in Yorkshire. 15+ years of expertise.
             </p>
-            <div className="flex gap-4">
-              <a href="#" aria-label="Facebook" className="text-white/40 hover:text-white transition-colors">
-                <Image src="/icons/facebook.svg" alt="Facebook" width={16} height={16} className="filter brightness-0 invert opacity-50 hover:opacity-100" />
+            <div className="flex justify-center md:justify-start gap-3">
+              <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/40 transition-all duration-200 hover:-translate-y-px hover:border-white/25 hover:bg-white/10 hover:text-white">
+                <Image src="/icons/facebook.svg" alt="Facebook" width={16} height={16} className="filter brightness-0 invert opacity-65" />
               </a>
-              <a href="#" aria-label="Instagram" className="text-white/40 hover:text-white transition-colors">
-                <Image src="/icons/instagram.svg" alt="Instagram" width={16} height={16} className="filter brightness-0 invert opacity-50 hover:opacity-100" />
+              <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/40 transition-all duration-200 hover:-translate-y-px hover:border-white/25 hover:bg-white/10 hover:text-white">
+                <Image src="/icons/instagram.svg" alt="Instagram" width={16} height={16} className="filter brightness-0 invert opacity-65" />
               </a>
             </div>
           </div>
 
           {/* Links — two columns */}
-          <div className="flex gap-12 md:gap-16">
+          <div className="flex justify-center md:justify-start gap-12 md:gap-16">
             <div className="flex flex-col gap-3">
               <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Shop</p>
               {['Blinds', 'Shades', 'Motorization', 'Blackout', 'Free Samples'].map((l) => (
@@ -51,22 +51,21 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col items-center md:items-start gap-3">
             <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Contact</p>
             <a href="tel:+18326706705" className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">+1 832-670-6705</a>
             <a href="mailto:enquiries@onlineblinds.com" className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">enquiries@onlineblinds.com</a>
-            <p className="font-jost text-[13px] text-white/30">Houston, TX</p>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/8">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-4 md:flex-row md:px-8">
           <p className="font-jost text-[12px] text-white/30">© {new Date().getFullYear()} Online Blinds. All Rights Reserved.</p>
           <div className="flex gap-5">
-            <Link href="#" className="font-jost text-[12px] text-white/30 hover:text-white/60 transition-colors">Privacy Policy</Link>
-            <Link href="#" className="font-jost text-[12px] text-white/30 hover:text-white/60 transition-colors">Terms</Link>
+            <Link href="#" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Privacy Policy</Link>
+            <Link href="#" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Terms</Link>
           </div>
         </div>
       </div>

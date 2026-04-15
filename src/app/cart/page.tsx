@@ -286,32 +286,30 @@ export default function CartPage() {
 
   if (cart.items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f8f4ec]">
-        <header className="sticky top-0 z-50 bg-white shadow-sm">
-          {/* < /> */}
-          <Header />
-          
-        </header>
+      <div className="min-h-screen bg-background-alt">
+        <Header />
 
-        <div className="px-4 md:px-6 lg:px-20 py-12 md:py-16">
-          <div className="max-w-[1200px] mx-auto">
-            <div className="bg-white rounded-lg p-8 md:p-12 text-center">
-              <div className="flex justify-center mb-6">
-                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center">
-                  <Image src="/icons/cart.svg" alt="Empty Cart" width={48} height={48} className="opacity-50" />
+        <main className="px-4 py-12 md:px-6 md:py-16 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-2xl border border-border bg-white px-6 py-10 text-center shadow-sm md:px-10 md:py-14">
+              <div className="mb-6 flex justify-center">
+                <div className="flex h-22 w-22 items-center justify-center rounded-full bg-primary-light text-primary">
+                  <Image src="/icons/cart.svg" alt="Empty Cart" width={44} height={44} className="opacity-80" />
                 </div>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-[#25344d] mb-3">Your Cart is Empty</h1>
-              <p className="text-gray-600 mb-8">Looks like you haven&apos;t added any items to your cart yet.</p>
+              <h1 className="font-display text-[36px] leading-none text-foreground md:text-[44px]">Your Cart is Empty</h1>
+              <p className="mx-auto mt-3 max-w-lg text-[15px] text-muted md:text-[16px]">
+                Looks like you haven&apos;t added any custom blinds yet. Explore collections and build your perfect fit.
+              </p>
               <Link
-                href="/"
-                className="inline-block bg-[#335c99] text-white py-3 px-8 rounded-lg text-base font-medium hover:bg-[#244779] transition-colors"
+                href="/collections"
+                className="mt-8 inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 font-jost text-[14px] font-semibold uppercase tracking-[0.06em] text-white transition-colors hover:bg-primary-dark"
               >
-                Continue Shopping
+                Browse Collections
               </Link>
             </div>
           </div>
-        </div>
+        </main>
 
         <Footer />
       </div>
@@ -319,46 +317,46 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f4ec]">
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <Header />
-        
-      </header>
+    <div className="min-h-screen bg-background-alt">
+      <Header />
 
-      <div className="bg-white px-4 md:px-6 lg:px-20 py-4">
-        <div className="max-w-[1200px] mx-auto">
-          <nav className="flex items-center gap-2 text-sm text-gray-500">
-            <Link href="/" className="hover:text-[#335c99]">Home</Link>
-            <span>&gt;</span>
-            <span className="text-[#25344d] font-medium">Shopping Cart</span>
+      <section className="border-b border-border bg-white px-4 py-5 md:px-6 md:py-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <nav className="mb-2 flex items-center gap-2 text-[13px] text-muted">
+            <Link href="/" className="hover:text-primary">Home</Link>
+            <span>/</span>
+            <span className="font-medium text-foreground">Shopping Cart</span>
           </nav>
+          <h1 className="font-display text-[34px] leading-none text-foreground md:text-[42px]">
+            Your Cart <span className="font-jost text-[17px] font-medium text-muted">({cart.itemCount} {cart.itemCount === 1 ? 'item' : 'items'})</span>
+          </h1>
         </div>
-      </div>
+      </section>
 
-      <div className="px-4 md:px-6 lg:px-20 py-8 md:py-12">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-            <div className="flex-1">
-              <div className="bg-white rounded-lg p-4 md:p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h1 className="text-2xl md:text-3xl font-bold text-[#25344d]">
-                    Shopping Cart ({cart.itemCount} {cart.itemCount === 1 ? 'item' : 'items'})
-                  </h1>
+      <main className="px-4 py-8 md:px-6 md:py-10 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
+            <section className="lg:col-span-8 xl:col-span-9">
+              <div className="rounded-2xl border border-border bg-white p-4 md:p-6">
+                <div className="mb-6 flex items-center justify-between">
+                  <h2 className="font-jost text-[15px] font-semibold uppercase tracking-[0.08em] text-foreground">
+                    Selected Products
+                  </h2>
                   {cart.items.length > 0 && (
                     <button
                       onClick={() => setShowClearConfirm(true)}
-                      className="text-sm text-red-600 hover:text-red-700 font-medium"
+                      className="rounded-md border border-red-200 px-3 py-1.5 text-[12px] font-semibold uppercase tracking-[0.04em] text-red-600 transition-colors hover:bg-red-50"
                     >
                       Clear Cart
                     </button>
                   )}
                 </div>
 
-                <div className="divide-y divide-gray-200">
+                <div className="space-y-4">
                   {cart.items.map((item) => (
-                    <div key={item.id} className="py-6 first:pt-0 last:pb-0">
+                    <article key={item.id} className="rounded-xl border border-border bg-surface-muted p-4 md:p-5">
                       <div className="flex gap-4 md:gap-6">
-                        <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
+                        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg border border-border bg-white md:h-28 md:w-28">
                           <Image
                             src={item.product.images[0]}
                             alt={item.product.name}
@@ -368,19 +366,19 @@ export default function CartPage() {
                         </div>
 
                         <div className="flex-1 min-w-0">
-                          <div className="flex justify-between gap-4 mb-2">
+                          <div className="mb-3 flex justify-between gap-4">
                             <div>
                               <Link
                                 href={`/product/${item.product.slug}`}
-                                className="text-base md:text-lg font-semibold text-[#25344d] hover:text-[#335c99] line-clamp-2"
+                                className="line-clamp-2 text-[16px] font-semibold text-foreground hover:text-primary md:text-[18px]"
                               >
                                 {item.product.name}
                               </Link>
-                              <p className="text-sm text-gray-500 mt-1">{item.product.category}</p>
+                              <p className="mt-1 text-[12px] font-medium uppercase tracking-[0.04em] text-muted">{item.product.category}</p>
                             </div>
                             <button
                               onClick={() => removeFromCart(item.id)}
-                              className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0"
+                              className="shrink-0 text-muted transition-colors hover:text-red-600"
                               aria-label="Remove item"
                             >
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -389,9 +387,9 @@ export default function CartPage() {
                             </button>
                           </div>
 
-                          <div className="mb-3">
+                          <div className="mb-4 space-y-1">
                             {formatConfiguration(item.configuration).map((detail, idx) => (
-                              <p key={idx} className="text-xs md:text-sm text-gray-600">
+                              <p key={idx} className="text-[12px] text-muted md:text-[13px]">
                                 {detail}
                               </p>
                             ))}
@@ -401,10 +399,10 @@ export default function CartPage() {
                               const costs = getCustomizationCosts(item.configuration);
                               if (costs.length > 0) {
                                 return (
-                                  <div className="mt-2 pt-2 border-t border-gray-200">
-                                    <p className="text-xs font-medium text-gray-700 mb-1">Customization Costs:</p>
+                                  <div className="mt-3 rounded-lg border border-primary/20 bg-primary-light p-3">
+                                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.04em] text-foreground">Customization Costs</p>
                                     {costs.map((cost, idx) => (
-                                      <p key={idx} className="text-xs text-[#335c99] flex justify-between">
+                                      <p key={idx} className="flex justify-between text-[12px] text-foreground">
                                         <span>+ {cost.label}</span>
                                         <span className="font-medium">${cost.price.toFixed(2)}</span>
                                       </p>
@@ -416,25 +414,25 @@ export default function CartPage() {
                             })()}
                           </div>
 
-                          <div className="flex items-center justify-between gap-4 flex-wrap">
+                          <div className="flex flex-wrap items-center justify-between gap-4">
                             <div className="flex items-center gap-3">
-                              <span className="text-sm text-gray-600">Quantity:</span>
-                              <div className="flex items-center border border-gray-300 rounded-lg">
+                              <span className="text-[13px] text-muted">Quantity</span>
+                              <div className="flex items-center overflow-hidden rounded-lg border border-border bg-white">
                                 <button
                                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                  className="px-3 py-1.5 hover:bg-gray-100 transition-colors"
+                                  className="px-3 py-1.5 text-foreground transition-colors hover:bg-surface-muted"
                                   aria-label="Decrease quantity"
                                 >
                                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                                   </svg>
                                 </button>
-                                <span className="px-4 py-1.5 text-sm font-medium min-w-[40px] text-center">
+                                <span className="min-w-10 px-4 py-1.5 text-center text-sm font-medium">
                                   {item.quantity}
                                 </span>
                                 <button
                                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                  className="px-3 py-1.5 hover:bg-gray-100 transition-colors"
+                                  className="px-3 py-1.5 text-foreground transition-colors hover:bg-surface-muted"
                                   aria-label="Increase quantity"
                                 >
                                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -443,20 +441,20 @@ export default function CartPage() {
                                 </button>
                               </div>
                             </div>
-                            <div className="text-lg md:text-xl font-bold text-[#25344d]">
+                            <div className="text-[20px] font-bold text-foreground md:text-[22px]">
                               {formatPriceWithCurrency(item.product.price * item.quantity, item.product.currency)}
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </article>
                   ))}
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="mt-6 border-t border-border pt-6">
                   <Link
-                    href="/"
-                    className="inline-flex items-center gap-2 text-[#335c99] hover:text-[#244779] font-medium"
+                    href="/collections"
+                    className="inline-flex items-center gap-2 font-medium text-primary hover:text-primary-dark"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -465,32 +463,32 @@ export default function CartPage() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="lg:w-[380px]">
-              <div className="bg-white rounded-lg p-6 sticky top-6">
-                <h2 className="text-xl font-bold text-[#25344d] mb-4">Order Summary</h2>
+            <aside className="lg:col-span-4 xl:col-span-3">
+              <div className="rounded-2xl border border-border bg-white p-5 shadow-sm lg:sticky lg:top-24 md:p-6">
+                <h2 className="mb-4 font-display text-[30px] leading-none text-foreground">Order Summary</h2>
 
                 <div className="space-y-3 mb-4">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Subtotal</span>
-                    <span className="font-medium text-[#25344d]">{formatPriceWithCurrency(cart.total)}</span>
+                    <span className="text-muted">Subtotal</span>
+                    <span className="font-medium text-foreground">{formatPriceWithCurrency(cart.total)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Shipping</span>
-                    <span className="text-sm text-gray-500 italic">Calculated at checkout</span>
+                    <span className="text-muted">Shipping</span>
+                    <span className="text-sm italic text-muted">Calculated at checkout</span>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-4 mb-6">
+                <div className="mb-6 border-t border-border pt-4">
                   <div className="flex justify-between items-baseline">
-                    <span className="text-lg font-bold text-[#25344d]">Total</span>
-                    <span className="text-2xl font-bold text-[#335c99]">{formatPriceWithCurrency(finalTotal)}</span>
+                    <span className="text-lg font-bold text-foreground">Total</span>
+                    <span className="text-2xl font-bold text-primary">{formatPriceWithCurrency(finalTotal)}</span>
                   </div>
                 </div>
 
                 {checkoutError && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                  <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
                     <p className="text-xs text-red-800">{checkoutError}</p>
                   </div>
                 )}
@@ -498,7 +496,7 @@ export default function CartPage() {
                 <button
                   onClick={handleCheckout}
                   disabled={isCheckingOut}
-                  className="w-full bg-[#335c99] text-white py-3 px-6 rounded-lg text-base font-medium hover:bg-[#244779] transition-colors mb-3 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="mb-3 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 text-base font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isCheckingOut ? (
                     <>
@@ -513,43 +511,43 @@ export default function CartPage() {
                   )}
                 </button>
 
-                <button className="w-full border border-gray-300 text-[#25344d] py-3 px-6 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors">
+                <button className="h-12 w-full rounded-lg border border-border px-6 text-base font-medium text-foreground transition-colors hover:bg-surface-muted">
                   Request Free Samples
                 </button>
 
-                <div className="mt-6 pt-6 border-t border-gray-200">
+                <div className="mt-6 border-t border-border pt-6">
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <svg className="w-5 h-5 text-[#335c99] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-sm text-gray-600">30-day return policy</span>
+                      <span className="text-sm text-muted">30-day return policy</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <svg className="w-5 h-5 text-[#335c99] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-sm text-gray-600">Secure checkout</span>
+                      <span className="text-sm text-muted">Secure checkout</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </aside>
           </div>
         </div>
-      </div>
+      </main>
 
       {showClearConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-xl font-bold text-[#25344d] mb-3">Clear Cart?</h3>
-            <p className="text-gray-600 mb-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/45 p-4">
+          <div className="w-full max-w-md rounded-xl border border-border bg-white p-6 shadow-lg">
+            <h3 className="mb-3 text-xl font-bold text-foreground">Clear Cart?</h3>
+            <p className="mb-6 text-muted">
               Are you sure you want to remove all items from your cart? This action cannot be undone.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowClearConfirm(false)}
-                className="flex-1 border border-gray-300 text-[#25344d] py-2.5 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                className="flex-1 rounded-lg border border-border px-4 py-2.5 font-medium text-foreground transition-colors hover:bg-surface-muted"
               >
                 Cancel
               </button>
@@ -558,7 +556,7 @@ export default function CartPage() {
                   clearCart();
                   setShowClearConfirm(false);
                 }}
-                className="flex-1 bg-red-600 text-white py-2.5 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors"
+                className="flex-1 rounded-lg bg-red-600 px-4 py-2.5 font-medium text-white transition-colors hover:bg-red-700"
               >
                 Clear Cart
               </button>

@@ -15,13 +15,13 @@ const WindowTypes = () => {
         {/* Heading */}
         <div className="text-center max-w-[560px] flex flex-col gap-3 items-center">
           <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[#c9a96e] shrink-0" />
-            <p className="font-jost font-medium text-[11px] tracking-[0.14em] uppercase text-[#c9a96e]">
+            <span className="h-px w-8 bg-[#c9a96e] shrink-0 rounded-full" />
+            <p className="font-jost font-semibold text-[11px] tracking-[0.18em] uppercase text-[#c9a96e]">
               Find Your Match
             </p>
-            <span className="h-px w-8 bg-[#c9a96e] shrink-0" />
+            <span className="h-px w-8 bg-[#c9a96e] shrink-0 rounded-full" />
           </div>
-          <h2 className="font-display text-[36px] md:text-[40px] font-semibold text-foreground tracking-[-0.02em] leading-[1.1]">
+          <h2 className="font-display text-[34px] md:text-[40px] font-semibold text-foreground tracking-[-0.02em] leading-[1.1]">
             Shop by Window Type
           </h2>
           <p className="font-jost text-[15px] text-muted leading-relaxed">
@@ -30,15 +30,15 @@ const WindowTypes = () => {
         </div>
 
         {/* Types */}
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 justify-items-center">
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 justify-items-center">
           {windowTypes.map((type) => (
             <button
               key={type.id}
-              className="flex flex-col gap-4 items-center w-full max-w-[200px] group rounded-[16px] border border-border bg-surface p-5 py-6 transition-all duration-200 hover:border-[#c9a96e]/40 hover:shadow-[0_8px_24px_rgba(31,41,51,0.08)] hover:-translate-y-1"
+              className="flex flex-col gap-4 items-center w-full max-w-[200px] group rounded-2xl border border-border bg-surface p-5 py-7 transition-all duration-250 hover:border-[#c9a96e]/50 hover:shadow-[0_10px_28px_rgba(31,41,51,0.08)] hover:-translate-y-1.5 hover:bg-[#fdfaf5]"
             >
               <div className="h-[100px] md:h-[120px] flex items-center justify-center">
                 <div
-                  className="relative transition-transform group-hover:scale-105"
+                  className="relative transition-transform duration-300 group-hover:scale-110"
                   style={{ width: `${type.width * 0.72}px`, height: `${type.height * 0.72}px` }}
                 >
                   <Image
@@ -50,7 +50,7 @@ const WindowTypes = () => {
                   />
                 </div>
               </div>
-              <span className="font-jost text-[14px] font-medium text-foreground text-center leading-snug">
+              <span className="font-jost text-[14px] font-semibold text-foreground text-center leading-snug group-hover:text-[#b8945a] transition-colors duration-200">
                 {type.name}
               </span>
             </button>

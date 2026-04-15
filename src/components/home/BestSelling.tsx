@@ -52,18 +52,24 @@ const BestSelling = () => {
   }, []);
 
   return (
-    <section className="bg-neutral-50 py-16 md:py-24">
+    <section className="bg-neutral-50 py-16 md:py-24 border-y border-border/60">
       <div className="max-w-[1280px] mx-auto px-5 md:px-8">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-primary mb-2">Bestsellers</p>
-            <h2 className="font-display font-semibold text-[38px] leading-[1.1] tracking-tight text-foreground">
+        <div className="flex items-end justify-between mb-10 md:mb-12">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2.5">
+              <span className="block w-6 h-0.5 bg-primary rounded-full" />
+              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-primary">Bestsellers</p>
+            </div>
+            <h2 className="font-display font-semibold text-[36px] md:text-[40px] leading-[1.1] tracking-tight text-foreground">
               Best Selling Products
             </h2>
           </div>
-          <Link href="/collections" className="hidden md:flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-primary transition-colors group">
+          <Link
+            href="/collections"
+            className="hidden md:flex items-center gap-1.5 text-[13px] font-medium text-muted hover:text-primary transition-colors group"
+          >
             View all
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-0.5 transition-transform">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-1 transition-transform duration-200">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
@@ -71,7 +77,9 @@ const BestSelling = () => {
 
         {loading ? (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[...Array(8)].map((_, i) => <div key={i} className="h-[380px] rounded-xl bg-neutral-100 animate-pulse" />)}
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="h-[380px] rounded-xl animate-shimmer" />
+            ))}
           </div>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
