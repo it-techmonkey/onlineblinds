@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-const STAGGER_STEP_MS = 70;
-const STAGGER_MAX_MS = 420;
+const STAGGER_STEP_MS = 85;
+const STAGGER_MAX_MS = 510;
 
 function isHTMLElement(node: Element): node is HTMLElement {
   return node instanceof HTMLElement;
@@ -25,7 +25,7 @@ function collectRevealTargets(main: HTMLElement): HTMLElement[] {
 export default function GlobalPolish() {
   const pathname = usePathname();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const main = document.querySelector('main');
     if (!main || !(main instanceof HTMLElement)) return;
 
@@ -49,8 +49,8 @@ export default function GlobalPolish() {
             });
           },
           {
-            threshold: 0.14,
-            rootMargin: '0px 0px -8% 0px',
+            threshold: 0.1,
+            rootMargin: '0px 0px -6% 0px',
           }
         );
 

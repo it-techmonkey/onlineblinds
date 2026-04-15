@@ -108,15 +108,11 @@ const Header = () => {
 
           <Link href="/" className="flex items-center gap-2 shrink-0 group">
             <Image
-              src="/icons/logo.svg"
+              src="/icons/logo.png"
               alt="Online Blinds"
-              width={22}
-              height={22}
-              className="transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110"
+              width={100}
+              height={30}
             />
-            <span className="hidden whitespace-nowrap sm:block font-display font-semibold text-[20px] tracking-[-0.02em] text-foreground leading-none">
-              Online <span className="italic text-primary">Blinds</span>
-            </span>
           </Link>
         </div>
 

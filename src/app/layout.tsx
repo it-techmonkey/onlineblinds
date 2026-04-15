@@ -21,9 +21,6 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: 'Online Blinds - Custom Blinds Made to Measure',
   description: 'Discover custom blinds and shades designed for your space and lifestyle, crafted for beauty, and built to last.',
-  icons: {
-    icon: '/icons/logo.svg',
-  },
 };
 
 export default function RootLayout({

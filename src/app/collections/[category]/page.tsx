@@ -1,4 +1,4 @@
-﻿import { notFound } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { Header, Footer, FAQ } from '@/components';
 import { fetchCategories, fetchProductsByCategory, transformProduct, extractFilterOptions } from '@/lib/api';
 import { Product, ApiProduct } from '@/types';
@@ -143,6 +143,7 @@ export default async function CollectionPage({ params }: PageProps) {
       <main>
         <CategoryHero
           title={categoryName}
+          slug={categorySlug}
           description={categoryDescription}
           productCount={products.length}
         />

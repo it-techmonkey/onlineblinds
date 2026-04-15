@@ -4,26 +4,63 @@ import Image from 'next/image';
 
 interface CategoryHeroProps {
   title: string;
+  slug?: string;
   description: string;
   productCount: number;
 }
 
-// Category images mapping
-const categoryImages: Record<string, string> = {
-  'Vertical Blinds': '/home/products/vertical-blinds-1.jpg',
-  'Roller Blinds': '/home/products/vertical-blinds-2.jpg',
-  'Metal Venetian Blinds': '/home/products/vertical-blinds-5.jpg',
-  'Venetian Blinds': '/home/products/vertical-blinds-5.jpg',
-  'Roman Blinds': '/home/products/vertical-blinds-3.jpg',
-  'Day and Night Blinds': '/home/products/vertical-blinds-4.jpg',
+const slugToImageMap: Record<string, string> = {
+  // Navigation Custom Slugs
+  'light-filtering-vertical-blinds': '/collections/hero-lf-vertical.png',
+  'blackout-vertical-blinds': '/collections/hero-bo-vertical.png',
+  'waterproof-blackout-vertical-blinds': '/collections/hero-wp-vertical.png',
+  'light-filtering-roller-shades': '/collections/hero-lf-roller.png',
+  'blackout-roller-shades': '/collections/hero-bo-roller.png',
+  'waterproof-blackout-roller-shades': '/collections/hero-wp-roller.png',
+  'dual-zebra-shades': '/collections/hero-daynight.png', // We already have this
+  'motorised-roller-shades': '/collections/hero-mot-roller.png',
+  'motorised-dual-zebra-shades': '/collections/hero-mot-zebra.png',
+  'motorised-eclipsecore': '/collections/hero-eclipsecore.png',
+  'blackout-roller-shades-category': '/collections/hero-bo-roller.png',
+  'blackout-dual-zebra-shades': '/collections/hero-bo-zebra.png',
+  'blackout-vertical-blinds-category': '/collections/hero-bo-vertical.png',
+  'eclipsecore-shades': '/collections/hero-eclipsecore.png',
+  'shop-by-feature': '/collections/hero-feature.png',
+  'shop-by-room': '/collections/hero-room.png',
+
+  // Backend Base Slugs
+  'vertical-blinds': '/collections/hero-vertical.png',
+  'roller-blinds': '/collections/hero-roller.png',
+  'day-and-night-blinds': '/collections/hero-daynight.png',
+  'pleated-blinds': '/collections/hero-eclipsecore.png',
+  'venetian-blinds': '/collections/hero-venetian.png',
+  'roman-blinds': '/collections/hero-roman.png',
 };
 
-export default function CategoryHero({ title, description, productCount }: CategoryHeroProps) {
-  const image = categoryImages[title] || '/home/products/blinds.jpeg';
+const getHeroImage = (title: string, slug?: string): string => {
+  // 1. Exact Match via Slug
+  if (slug && slugToImageMap[slug]) {
+    return slugToImageMap[slug];
+  }
+
+  // 2. Fallback Substring Matching via Title
+  const t = title.toLowerCase();
+  if (t.includes('vertical')) return '/collections/hero-vertical.png';
+  if (t.includes('venetian')) return '/collections/hero-venetian.png';
+  if (t.includes('roman')) return '/collections/hero-roman.png';
+  if (t.includes('zebra') || t.includes('day and night')) return '/collections/hero-daynight.png';
+  if (t.includes('roller') || t.includes('shade')) return '/collections/hero-roller.png';
+
+  // 3. Global Default Fallback
+  return '/collections/hero-all.png';
+};
+
+export default function CategoryHero({ title, slug, description, productCount }: CategoryHeroProps) {
+  const image = getHeroImage(title, slug);
   const isComingSoon = productCount === 0;
 
   return (
-    <section className="relative h-[350px] w-full overflow-hidden">
+    <section className="relative h-[500px] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

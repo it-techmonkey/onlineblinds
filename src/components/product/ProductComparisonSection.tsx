@@ -270,22 +270,12 @@ export const ProductComparisonSection = () => {
                         <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                     </defs>
                     <g className="parallax">
-                        <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" className="animate-[move-forever_12s_cubic-bezier(0.55,0.5,0.45,0.5)_infinite]" />
-                        <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" className="animate-[move-forever_12s_cubic-bezier(0.55,0.5,0.45,0.5)_infinite_delay-[-2s]" />
-                        <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" className="animate-[move-forever_12s_cubic-bezier(0.55,0.5,0.45,0.5)_infinite_delay-[-4s]" />
-                        <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" className="animate-[move-forever_12s_cubic-bezier(0.55,0.5,0.45,0.5)_infinite_delay-[-5s]" />
+                                                <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" className="animate-wave-1" />
+                                                <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" className="animate-wave-2" />
+                                                <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" className="animate-wave-3" />
+                                                <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" className="animate-wave-4" />
                     </g>
                 </svg>
-                <style jsx>{`
-              @keyframes move-forever {
-                0% {
-                  transform: translate3d(-90px, 0, 0);
-                }
-                100% {
-                  transform: translate3d(85px, 0, 0);
-                }
-              }
-            `}</style>
             </div>
         </section>
     );

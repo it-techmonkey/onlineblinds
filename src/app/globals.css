@@ -21,8 +21,13 @@
   --shadow-soft: 0 12px 32px rgba(15, 23, 42, 0.06);
   --shadow-lift: 0 16px 38px rgba(15, 23, 42, 0.1);
   --ring-soft: 0 0 0 4px rgba(13, 148, 136, 0.12);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-duration-fast: 180ms;
+  --motion-duration-base: 260ms;
+  --motion-duration-slow: 420ms;
+  --transition-base: var(--motion-duration-base) var(--motion-ease-standard);
+  --transition-spring: var(--motion-duration-slow) var(--motion-ease-emphasized);
 }
 
 @theme inline {
@@ -110,21 +115,21 @@ main {
   from { transform: translateX(-100%); }
   to   { transform: translateX(0); }
 }
-.animate-slide-in-left { animation: slide-in-left 0.28s ease-out; }
+.animate-slide-in-left { animation: slide-in-left 0.36s var(--motion-ease-emphasized) both; }
 
 /* Backdrop fade */
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-.animate-fade-in { animation: fade-in 0.25s ease-out; }
+.animate-fade-in { animation: fade-in 0.32s var(--motion-ease-standard) both; }
 
 /* Hero content entrance */
 @keyframes slide-up-fade {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-slide-up-fade { animation: slide-up-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-slide-up-fade { animation: slide-up-fade 0.62s var(--motion-ease-emphasized) both; }
 
 /* Route-level section reveal */
 @keyframes polish-enter {
@@ -144,7 +149,7 @@ main {
   to   { opacity: 1; transform: translateY(0); }
 }
 .animate-reveal-up {
-  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: reveal-up 0.72s var(--motion-ease-emphasized) both;
 }
 
 /* Stagger helpers */
@@ -179,14 +184,24 @@ main {
 }
 .animate-float { animation: float 4s ease-in-out infinite; }
 
+/* Gentle decorative wave drift */
+@keyframes wave-drift {
+  0% { transform: translate3d(-90px, 0, 0); }
+  100% { transform: translate3d(85px, 0, 0); }
+}
+.animate-wave-1 { animation: wave-drift 18s linear infinite; }
+.animate-wave-2 { animation: wave-drift 24s linear -2s infinite; }
+.animate-wave-3 { animation: wave-drift 30s linear -4s infinite; }
+.animate-wave-4 { animation: wave-drift 36s linear -5s infinite; }
+
 /* ===================== SCROLL REVEAL ===================== */
 
 /* Elements with [data-reveal] start invisible; JS adds .is-visible */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(18px);
+  transition: opacity 0.62s var(--motion-ease-emphasized),
+              transform 0.62s var(--motion-ease-emphasized);
 }
 [data-reveal].is-visible {
   opacity: 1;
@@ -200,11 +215,14 @@ main {
 [data-reveal][data-delay="600"] { transition-delay: 600ms; }
 
 .polish-reveal {
-  opacity: 1;
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .polish-reveal.polish-visible {
-  animation: polish-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+  transform: translateY(0);
+  animation: polish-enter 0.8s var(--motion-ease-emphasized) both;
   animation-delay: var(--polish-delay, 0ms);
 }
 
