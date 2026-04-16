@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -28,6 +28,7 @@ import {
   BracketTypeSelector,
   SimpleDropdown,
   RollStyleSelector,
+  OpeningDirectionSelector,
 } from './customization';
 import {
   HEADRAIL_OPTIONS,
@@ -707,12 +708,10 @@ const ProductPage = ({
                       {/* Opening Direction Selector */}
                       {product.features.hasOpeningDirection && visibleOptions.showOpeningDirection && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label="Opening Direction"
+                          <OpeningDirectionSelector
                             options={OPENING_DIRECTION_OPTIONS}
-                            selectedValue={config.openingDirection}
-                            onChange={(optionId) => setConfig({ ...config, openingDirection: optionId })}
-                            placeholder="Select opening direction"
+                            selectedDirection={config.openingDirection}
+                            onDirectionChange={(optionId) => setConfig({ ...config, openingDirection: optionId })}
                           />
                         </div>
                       )}
