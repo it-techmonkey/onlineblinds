@@ -70,18 +70,18 @@ const MotorizationSelector = ({ options, selectedOption, onOptionChange }: Motor
                         {option.id !== 'none' ? (
                             <div className="absolute top-2 right-2 z-20 flex flex-col items-end gap-1 pointer-events-none">
                                 <span className="bg-[#335c99] text-white text-[10px] md:text-xs px-2 py-1 rounded font-medium shadow-sm whitespace-nowrap">
-                                    +$95.00 (Motor)
+                                    +£95.00 (Motor)
                                 </span>
                                 {option.price != null && option.price > 0 && (
                                     <span className="bg-[#335c99]/90 text-white text-[10px] md:text-xs px-2 py-1 rounded font-medium shadow-sm whitespace-nowrap">
-                                        +${option.price.toFixed(2)} (Remote)
+                                        +£{option.price.toFixed(2)} (Remote)
                                     </span>
                                 )}
                             </div>
                         ) : (
                             option.price != null && option.price > 0 && (
                                 <span className="absolute top-2 right-2 z-20 bg-[#335c99] text-white text-xs px-2 py-1 rounded font-medium shadow-sm pointer-events-none">
-                                    +${option.price.toFixed(2)}
+                                    +£{option.price.toFixed(2)}
                                 </span>
                             )
                         )}

@@ -69,7 +69,7 @@ const InstallationMethodSelector = ({ options, selectedMethod, onMethodChange }:
                         {/* Price Badge (if price > 0) */}
                         {option.price != null && option.price > 0 && (
                             <span className="absolute top-2 right-2 bg-[#335c99] text-white text-xs px-2 py-1 rounded">
-                                +${option.price.toFixed(2)}
+                                +£{option.price.toFixed(2)}
                             </span>
                         )}
 

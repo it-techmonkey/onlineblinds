@@ -65,7 +65,7 @@ const CassetteMatchingBarSelector = ({ options, selectedBar, onBarChange }: Cass
                                 </span>
                                 {option.price != null && option.price > 0 ? (
                                     <span className="text-[#335c99] text-xs font-bold">
-                                        +${option.price.toFixed(2)}
+                                        +£{option.price.toFixed(2)}
                                     </span>
                                 ) : (
                                     <span className="text-gray-400 text-xs">Included</span>

@@ -451,7 +451,7 @@ export function getCurrencySymbol(code: string): string {
 /**
  * Format price with currency symbol
  */
-export function formatPriceWithCurrency(price: number, currency: string = 'USD'): string {
+export function formatPriceWithCurrency(price: number, currency: string = 'GBP'): string {
   const symbol = getCurrencySymbol(currency);
   const formatted = formatPrice(price);
   if (['JPY', 'KRW'].includes(currency.toUpperCase())) {
@@ -507,7 +507,7 @@ export function transformProduct(apiProduct: ApiProduct): Product {
     category: categoryName,
     tags: apiProduct.tags.map(t => t.slug),
     price: formatPrice(price),
-    currency: 'USD',
+    currency: 'GBP',
     rating: DEFAULT_RATING,
     reviewCount: DEFAULT_REVIEW_COUNT,
     estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,

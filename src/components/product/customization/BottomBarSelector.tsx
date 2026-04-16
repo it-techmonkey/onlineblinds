@@ -59,7 +59,7 @@ const BottomBarSelector = ({ options, selectedBottomBar, onBottomBarChange }: Bo
 
                                 {option.price != null && option.price > 0 && (
                                     <span className="text-[#335c99] text-xs font-bold">
-                                        +${option.price.toFixed(2)}
+                                        +£{option.price.toFixed(2)}
                                     </span>
                                 )}
                             </div>

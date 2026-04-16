@@ -143,7 +143,7 @@ const WrappedCassetteSelector = ({ options, selectedOption, onOptionChange }: Wr
 
                                 {option.price && option.price > 0 ? (
                                     <span className="text-xs font-semibold bg-[#335c99] text-white px-2 py-1 rounded">
-                                        +${option.price.toFixed(2)}
+                                        +£{option.price.toFixed(2)}
                                     </span>
                                 ) : null}
                             </button>

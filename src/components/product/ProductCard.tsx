@@ -33,7 +33,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   const router = useRouter();
   const imageUrl = product.image || product.images?.[0] || '';
-  const currency = product.currency || 'USD';
+  const currency = product.currency || 'GBP';
   const motorizedParam = preselectedMotorization ? '&motorized=true' : '';
 
   const handleAddToCart = (e: React.MouseEvent) => {

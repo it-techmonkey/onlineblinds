@@ -91,7 +91,7 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                                 {selectedOption.name}
                                 {selectedOption.price != null && selectedOption.price > 0 && (
                                     <span className="text-[#335c99] font-medium ml-2">
-                                        (+ ${selectedOption.price.toFixed(2)})
+                                        (+ £{selectedOption.price.toFixed(2)})
                                     </span>
                                 )}
                             </span>
@@ -157,7 +157,7 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                                     <p className="text-sm font-medium text-[#1f2a44]">{option.name}</p>
                                     {option.price != null && option.price > 0 && (
                                         <p className="text-xs text-[#335c99] font-semibold mt-0.5">
-                                            + ${option.price.toFixed(2)}
+                                            + £{option.price.toFixed(2)}
                                         </p>
                                     )}
                                 </div>
