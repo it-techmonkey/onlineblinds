@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { PortalDropdownMenu } from './index';
+import { PortalDropdownMenu } from './PortalDropdownMenu';
 
 interface RoomTypeOption {
   id: string;
@@ -42,10 +42,6 @@ const RoomTypeSelector = ({
       });
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current?.contains(event.target as Node)) return;
-      setIsOpen(false);
-    };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -54,15 +50,12 @@ const RoomTypeSelector = ({
       }
     };
 
-    const timer = setTimeout(() => document.addEventListener('mousedown', handleClickOutside), 0);
     updateMenuPosition();
     window.addEventListener('scroll', updateMenuPosition, true);
     window.addEventListener('resize', updateMenuPosition);
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      clearTimeout(timer);
-      document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', updateMenuPosition, true);
       window.removeEventListener('resize', updateMenuPosition);

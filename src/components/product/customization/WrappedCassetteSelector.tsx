@@ -20,24 +20,7 @@ const WrappedCassetteSelector = ({ options, selectedOption, onOptionChange }: Wr
     const [isOpen, setIsOpen] = useState(false);
     const [imagePreview, setImagePreview] = useState<{ name: string; image: string } | null>(null);
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
-    const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const menuRef = useRef<HTMLDivElement>(null);
-
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
-                menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setIsOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
 
     useEffect(() => {
         if (isOpen && buttonRef.current) {
@@ -72,7 +55,7 @@ const WrappedCassetteSelector = ({ options, selectedOption, onOptionChange }: Wr
             </div>
 
             {/* Custom Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative">
                 <button
                     ref={buttonRef}
                     type="button"
@@ -99,7 +82,6 @@ const WrappedCassetteSelector = ({ options, selectedOption, onOptionChange }: Wr
                             onClick={() => setIsOpen(false)}
                         />
                         <div
-                            ref={menuRef}
                             className="fixed z-[99999] bg-white border border-[#d9dfeb] rounded-[12px] shadow-xl max-h-80 overflow-y-auto"
                             style={{
                                 top: `${menuPosition.top}px`,

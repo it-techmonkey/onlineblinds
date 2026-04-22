@@ -38,8 +38,11 @@ function getCookieOptions(maxAge?: number) {
 export function getStorefrontDomain(): string {
   const domain =
     process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ||
-    process.env.NEXT_PUBLIC_SHOPIFY_ACCOUNT_DOMAIN?.replace(/^account\./, 'orders.') ||
-    'orders.onlineblinds.com';
+    process.env.NEXT_PUBLIC_SHOPIFY_ACCOUNT_DOMAIN?.replace(/^account\./, 'orders.');
+
+  if (!domain) {
+    throw new Error('NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN or NEXT_PUBLIC_SHOPIFY_ACCOUNT_DOMAIN is required');
+  }
 
   return domain.replace(/^https?:\/\//, '');
 }
@@ -156,7 +159,7 @@ export async function exchangeCodeForCustomerTokens(code: string): Promise<Custo
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: buildAuthorizationHeader(),
       Origin: getAppBaseUrl(),
-      'User-Agent': 'onlineblinds-headless-auth',
+      'User-Agent': 'blackout-blinds-headless-auth',
     },
     body,
     cache: 'no-store',
@@ -184,7 +187,7 @@ export async function refreshCustomerTokens(refreshToken: string): Promise<Custo
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: buildAuthorizationHeader(),
       Origin: getAppBaseUrl(),
-      'User-Agent': 'onlineblinds-headless-auth',
+      'User-Agent': 'blackout-blinds-headless-auth',
     },
     body,
     cache: 'no-store',

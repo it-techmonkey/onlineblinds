@@ -46,7 +46,7 @@ async function apiFetch<T>(endpoint: string, options?: RequestInit, retries: num
   const isServerSide = typeof window === 'undefined';
 
   const controller = new AbortController();
-  const timeout = isServerSide ? 30000 : 10000;
+  const timeout = 30000;
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
   try {
@@ -470,8 +470,17 @@ export function formatPriceWithCurrency(price: number, currency: string = 'GBP')
 /** Slug for EclipseCore / honeycomb blackout product - homepage links here; must use eclipsecore-shades features */
 const ECLIPSECORE_HONEYCOMB_SLUG = 'non-driii-honeycomb-blackout-blinds';
 
+// Detect Shopify system/internal collections (all-caps names, or containing filter/index markers)
+function isSystemCategory(name: string): boolean {
+  return (
+    name === name.toUpperCase() ||
+    /do not delete|filter index|smart product/i.test(name)
+  );
+}
+
 export function transformProduct(apiProduct: ApiProduct): Product {
-  const categoryName = apiProduct.categories[0]?.name || 'Blinds';
+  const userCategory = apiProduct.categories.find((c) => !isSystemCategory(c.name));
+  const categoryName = userCategory?.name || 'Blinds';
 
   // Get all category slugs for the product (products can have multiple categories)
   let categorySlugs = apiProduct.categories.map(c => c.slug);

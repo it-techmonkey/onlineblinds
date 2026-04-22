@@ -38,8 +38,11 @@ interface StorefrontCollection {
 interface StorefrontProduct {
   id: string;
   handle: string;
+  description: string;
   title: string;
   descriptionHtml: string;
+  productType: string;
+  vendor: string;
   tags: string[];
   createdAt: string;
   updatedAt: string;
@@ -49,6 +52,12 @@ interface StorefrontProduct {
   collections: {
     edges: Array<{ node: StorefrontCollection }>;
   };
+  metafields: Array<{
+    key: string;
+    namespace: string;
+    type: string;
+    value: string;
+  } | null>;
 }
 
 interface StorefrontProductsResponse {
@@ -98,7 +107,10 @@ const PRODUCT_FIELDS = `
   id
   handle
   title
+  description
   descriptionHtml
+  productType
+  vendor
   tags
   createdAt
   updatedAt
@@ -119,6 +131,21 @@ const PRODUCT_FIELDS = `
         description
       }
     }
+  }
+  metafields(identifiers: [
+    { namespace: "custom", key: "subtitle" }
+    { namespace: "custom", key: "estimated_delivery" }
+    { namespace: "custom", key: "rating" }
+    { namespace: "custom", key: "review_count" }
+    { namespace: "custom", key: "product_details" }
+    { namespace: "custom", key: "specifications" }
+    { namespace: "custom", key: "measuring_installation" }
+    { namespace: "custom", key: "delivery_returns" }
+  ]) {
+    key
+    namespace
+    type
+    value
   }
 `;
 
@@ -171,14 +198,6 @@ const CUSTOMER_FIELDS = `
   lastName
   emailAddress {
     emailAddress
-  }
-`;
-
-const CUSTOMER_QUERY = `
-  query customer($customerAccessToken: String!) {
-    customer {
-      ${CUSTOMER_FIELDS}
-    }
   }
 `;
 
@@ -270,16 +289,40 @@ function mapStorefrontProduct(
     slug: slugify(tag),
   }));
 
+  const metafields = Object.fromEntries(
+    sfProduct.metafields
+      .filter((metafield): metafield is NonNullable<typeof metafield> => Boolean(metafield))
+      .map((metafield) => [metafield.key, metafield.value])
+  );
+
+  const parseOptionalNumber = (value: string | undefined): number | null => {
+    if (!value) return null;
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  };
+
   return {
     id: sfProduct.id,
     slug: sfProduct.handle,
     title: sfProduct.title,
-    description: sfProduct.descriptionHtml || null,
+    description: sfProduct.description || null,
+    descriptionHtml: sfProduct.descriptionHtml || null,
     images: sfProduct.images.edges.map((edge) => edge.node.url),
+    imageAlts: sfProduct.images.edges.map((edge) => edge.node.altText || ''),
     videos: [],
     price: minimumPrices[sfProduct.handle] || 0,
     createdAt: sfProduct.createdAt,
     updatedAt: sfProduct.updatedAt,
+    vendor: sfProduct.vendor || null,
+    productType: sfProduct.productType || null,
+    subtitle: metafields.subtitle || null,
+    estimatedDelivery: metafields.estimated_delivery || null,
+    rating: parseOptionalNumber(metafields.rating),
+    reviewCount: parseOptionalNumber(metafields.review_count),
+    productDetails: metafields.product_details || null,
+    specifications: metafields.specifications || null,
+    measuringInstallation: metafields.measuring_installation || null,
+    deliveryReturns: metafields.delivery_returns || null,
     categories,
     tags,
   };
@@ -469,7 +512,7 @@ export async function fetchShopifyCollectionsMapped(): Promise<
     slug: col.handle,
     name: col.title,
     description: col.description,
-    productCount: 0, // Count is determined from product data
+    productCount: 0,
   }));
 }
 
@@ -501,7 +544,7 @@ export async function shopifyCustomerFetch(
       Origin: typeof window === 'undefined'
         ? (process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'))
         : window.location.origin,
-      'User-Agent': 'onlineblinds-headless-auth',
+      'User-Agent': 'blackout-blinds-headless-auth',
     },
     body: JSON.stringify({
       query: `query Customer { customer { ${CUSTOMER_FIELDS} } }`,
@@ -542,3 +585,4 @@ export async function shopifyCustomerFetch(
     phone: null,
   };
 }
+

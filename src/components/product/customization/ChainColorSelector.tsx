@@ -24,28 +24,6 @@ const ChainColorSelector = ({ options, selectedColor, onColorChange }: ChainColo
     const [imagePreview, setImagePreview] = useState<{ name: string; image: string } | null>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
-    // Handle click outside to close dropdown
-    useEffect(() => {
-        if (!isOpen) return;
-
-        const handleClickOutside = (event: MouseEvent) => {
-            const target = event.target as Node;
-            if (buttonRef.current?.contains(target)) {
-                return;
-            }
-            setIsOpen(false);
-        };
-
-        const timer = setTimeout(() => {
-            document.addEventListener('mousedown', handleClickOutside);
-        }, 0);
-
-        return () => {
-            clearTimeout(timer);
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isOpen]);
-
     // Update menu position
     useEffect(() => {
         if (!isOpen || !buttonRef.current) return;

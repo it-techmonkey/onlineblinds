@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="flex max-w-70 flex-col items-center md:items-start gap-4">
             <Link href="/" className="group flex items-center gap-2">
-              <Image src="/icons/logo-footer.png" alt="Online Blinds" width={120} height={20} />
+              <Image src="/icons/logo-footer.webp" alt="Online Blinds" width={120} height={20} />
             </Link>
             <p className="font-jost text-[13.5px] text-white/50 leading-relaxed">
               Premium custom blinds, manufactured in Yorkshire. 15+ years of expertise.

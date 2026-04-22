@@ -115,6 +115,17 @@ export default function CartPage() {
       parts.push(`Size: ${widthStr}" × ${heightStr}"`);
     }
 
+    // Room Type
+    if (config.roomType) {
+      const label = config.roomType.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+      parts.push(`Room: ${label}`);
+    }
+
+    // Blind Name
+    if (config.blindName) {
+      parts.push(`Blind Name: ${config.blindName}`);
+    }
+
     // Headrail Type
     if (config.headrail) {
       const headrailOption = HEADRAIL_OPTIONS.find(opt => opt.id === config.headrail);
@@ -374,7 +385,6 @@ export default function CartPage() {
                               >
                                 {item.product.name}
                               </Link>
-                              <p className="mt-1 text-[12px] font-medium uppercase tracking-[0.04em] text-muted">{item.product.category}</p>
                             </div>
                             <button
                               onClick={() => removeFromCart(item.id)}

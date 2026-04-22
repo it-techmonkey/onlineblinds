@@ -108,7 +108,7 @@ const Header = () => {
 
           <Link href="/" className="flex items-center gap-2 shrink-0 group">
             <Image
-              src="/icons/logo.png"
+              src="/icons/logo.webp"
               alt="Online Blinds"
               width={100}
               height={30}

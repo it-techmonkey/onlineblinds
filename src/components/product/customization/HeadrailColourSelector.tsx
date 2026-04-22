@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { PriceOption } from '@/types';
+import { PortalDropdownMenu } from './PortalDropdownMenu';
+import { PortalImageModal } from './PortalImageModal';
 
 interface HeadrailColourSelectorProps {
     options: PriceOption[];
@@ -14,45 +16,44 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
     const [isOpen, setIsOpen] = useState(false);
     const [imagePreview, setImagePreview] = useState<{ name: string; image: string } | null>(null);
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
-    const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const menuRef = useRef<HTMLDivElement>(null);
 
-    // Close dropdown when clicking outside
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
-                menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setIsOpen(false);
+        if (!isOpen || !buttonRef.current) return;
+
+        const updateMenuPosition = () => {
+            if (buttonRef.current) {
+                const buttonRect = buttonRef.current.getBoundingClientRect();
+                setMenuPosition({
+                    top: buttonRect.bottom + 8,
+                    left: buttonRect.left,
+                    width: buttonRect.width,
+                });
             }
         };
 
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+        updateMenuPosition();
+        window.addEventListener('scroll', updateMenuPosition, true);
+        window.addEventListener('resize', updateMenuPosition);
+
+        return () => {
+            window.removeEventListener('scroll', updateMenuPosition, true);
+            window.removeEventListener('resize', updateMenuPosition);
+        };
+    }, [isOpen]);
 
     useEffect(() => {
-        if (isOpen && buttonRef.current) {
-            const updateMenuPosition = () => {
-                if (buttonRef.current) {
-                    const buttonRect = buttonRef.current.getBoundingClientRect();
-                    setMenuPosition({
-                        top: buttonRect.bottom + 4,
-                        left: buttonRect.left,
-                        width: buttonRect.width,
-                    });
-                }
-            };
+        if (!isOpen) return;
 
-            updateMenuPosition();
-            window.addEventListener('scroll', updateMenuPosition, true);
-            window.addEventListener('resize', updateMenuPosition);
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsOpen(false);
+                buttonRef.current?.focus();
+            }
+        };
 
-            return () => {
-                window.removeEventListener('scroll', updateMenuPosition, true);
-                window.removeEventListener('resize', updateMenuPosition);
-            };
-        }
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
     }, [isOpen]);
 
     const selectedOption = options.find((opt) => opt.id === selectedColour);
@@ -64,20 +65,22 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
             </div>
 
             {/* Custom Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative">
                 {/* Dropdown Trigger */}
                 <button
                     ref={buttonRef}
                     type="button"
-                    onClick={() => setIsOpen(!isOpen)}
-                    className={`w-full px-4 py-3 pr-10 border rounded-[12px] text-left cursor-pointer transition-colors bg-white ${isOpen ? 'border-[#335c99]' : 'border-[#cbd6e6]'
+                    onClick={() => setIsOpen((open) => !open)}
+                    className={`w-full px-4 py-3 pr-10 border rounded-xl text-left cursor-pointer transition-colors bg-white ${isOpen ? 'border-[#335c99]' : 'border-[#cbd6e6]'
                         } hover:border-[#b8c7df] focus:border-[#335c99] focus:outline-none`}
+                    aria-haspopup="listbox"
+                    aria-expanded={isOpen}
                 >
                     {selectedOption ? (
                         <div className="flex items-center gap-3">
                             {/* Selected Option Image */}
                             {selectedOption.image && (
-                                <div className="relative h-8 w-8 bg-[#e7eef8] rounded border border-[#d9dfeb] flex-shrink-0">
+                                <div className="relative h-8 w-8 bg-[#e7eef8] rounded border border-[#d9dfeb] shrink-0">
                                     <Image
                                         src={selectedOption.image}
                                         alt={selectedOption.name}
@@ -112,80 +115,70 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                 </div>
-
-                {/* Dropdown Menu */}
-                {isOpen && (
-                    <>
-                        <div
-                            className="fixed inset-0 z-[99998]"
-                            onClick={() => setIsOpen(false)}
-                        />
-                        <div
-                            ref={menuRef}
-                            className="fixed z-[99999] bg-white border-2 border-[#d9dfeb] rounded-[12px] shadow-xl max-h-[320px] overflow-y-auto"
-                            style={{
-                                top: `${menuPosition.top}px`,
-                                left: `${menuPosition.left}px`,
-                                width: `${menuPosition.width}px`,
-                            }}
-                        >
-                        {options.map((option) => (
-                            <button
-                                key={option.id}
-                                type="button"
-                                onClick={() => { onColourChange(option.id); setIsOpen(false); }}
-                                className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-[#e7eef8] transition-colors border-b border-[#e3e8f1] last:border-b-0 ${selectedColour === option.id ? 'bg-[#eef2f8]' : ''
-                                    }`}
-                            >
-                                {/* Option Image */}
-                                {option.image && (
-                                    <div
-                                        className="relative h-10 w-10 bg-[#e7eef8] rounded border border-[#d9dfeb] flex-shrink-0 cursor-zoom-in"
-                                        onClick={(e) => { e.stopPropagation(); setIsOpen(false); setImagePreview({ name: option.name, image: option.image! }); }}
-                                    >
-                                        <Image
-                                            src={option.image}
-                                            alt={option.name}
-                                            fill
-                                            className="object-contain p-1"
-                                        />
-                                    </div>
-                                )}
-
-                                {/* Option Text */}
-                                <div className="flex-1 text-left">
-                                    <p className="text-sm font-medium text-[#1f2a44]">{option.name}</p>
-                                    {option.price != null && option.price > 0 && (
-                                        <p className="text-xs text-[#335c99] font-semibold mt-0.5">
-                                            + £{option.price.toFixed(2)}
-                                        </p>
-                                    )}
-                                </div>
-
-                                {/* Checkmark for selected */}
-                                {selectedColour === option.id && (
-                                    <div className="w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                )}
-                            </button>
-                        ))}
-                        </div>
-                    </>
-                )}
             </div>
 
-            {imagePreview && (
-                <>
+            <PortalDropdownMenu
+                isOpen={isOpen}
+                menuPosition={menuPosition}
+                onClose={() => setIsOpen(false)}
+            >
+                {options.map((option) => (
                     <div
-                        className="fixed inset-0 z-[100000] bg-black/50"
-                        onClick={() => setImagePreview(null)}
-                        aria-hidden="true"
-                    />
-                    <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[100001] bg-white rounded-xl shadow-2xl border border-[#d9dfeb] overflow-hidden max-w-[90vw] max-h-[90vh] flex flex-col">
-                        <div className="relative w-[280px] sm:w-[320px] aspect-[4/3] bg-[#e7eef8] flex items-center justify-center p-4">
+                        key={option.id}
+                        className={`w-full px-4 py-3 flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedColour === option.id ? 'bg-[#eef2f8]' : 'hover:bg-[#e7eef8]'}`}
+                    >
+                        {option.image && (
+                            <button
+                                type="button"
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    setIsOpen(false);
+                                    setImagePreview({ name: option.name, image: option.image! });
+                                }}
+                                className="relative h-10 w-10 bg-[#e7eef8] rounded border border-[#d9dfeb] shrink-0 cursor-zoom-in"
+                                aria-label={`View image for ${option.name}`}
+                                title={`View ${option.name}`}
+                            >
+                                <Image
+                                    src={option.image}
+                                    alt={option.name}
+                                    fill
+                                    className="object-contain p-1"
+                                />
+                            </button>
+                        )}
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                onColourChange(option.id);
+                                setIsOpen(false);
+                            }}
+                            className="grow min-w-0 text-left"
+                        >
+                            <p className="text-sm font-medium text-[#1f2a44]">{option.name}</p>
+                            {option.price != null && option.price > 0 && (
+                                <p className="text-xs text-[#335c99] font-semibold mt-0.5">
+                                    + £{option.price.toFixed(2)}
+                                </p>
+                            )}
+                        </button>
+
+                        {selectedColour === option.id && (
+                            <div className="w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center shrink-0">
+                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </PortalDropdownMenu>
+
+            <PortalImageModal isOpen={!!imagePreview} onClose={() => setImagePreview(null)}>
+                {imagePreview && (
+                    <div className="bg-white rounded-xl shadow-2xl border border-[#d9dfeb] overflow-hidden max-w-[90vw] max-h-[90vh] flex flex-col">
+                        <div className="relative w-70 sm:w-[320px] aspect-4/3 bg-[#e7eef8] flex items-center justify-center p-4">
                             <Image src={imagePreview.image} alt={imagePreview.name} width={320} height={240} className="object-contain max-w-full max-h-full" />
                         </div>
                         <p className="text-center text-sm font-medium text-[#1f2a44] px-4 py-3 border-t border-gray-100">
@@ -197,8 +190,8 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                             </svg>
                         </button>
                     </div>
-                </>
-            )}
+                )}
+            </PortalImageModal>
         </div>
     );
 };

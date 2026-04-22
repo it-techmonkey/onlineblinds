@@ -40,10 +40,11 @@ const DropdownPortal = ({
 
   return createPortal(
     <>
-      <div className="fixed inset-0 z-9998" onClick={onClose} aria-hidden="true" />
+      <div className="fixed inset-0" style={{ zIndex: 9998 }} onClick={onClose} aria-hidden="true" />
       <div
-        className="fixed z-9999 bg-white border border-[#d9dfeb] rounded-xl shadow-2xl overflow-hidden"
+        className="fixed bg-white border border-[#d9dfeb] rounded-xl shadow-2xl overflow-hidden"
         style={{
+          zIndex: 9999,
           top: `${menuPosition.top}px`,
           left: `${menuPosition.left}px`,
           width: `${menuPosition.width}px`,
@@ -120,8 +121,8 @@ const ImagePreviewPortal = ({
 
   return createPortal(
     <>
-      <div className="fixed inset-0 z-10000 bg-black/50" onClick={onClose} aria-hidden="true" />
-      <div className="fixed left-1/2 top-1/2 z-10001 -translate-x-1/2 -translate-y-1/2">
+      <div className="fixed inset-0 bg-black/50" style={{ zIndex: 10000 }} onClick={onClose} aria-hidden="true" />
+      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 10001 }}>
         <div className="bg-white rounded-xl shadow-2xl border border-[#d9dfeb] overflow-hidden flex flex-col relative">
           <div className="relative w-70 sm:w-80 aspect-4/3 bg-[#e7eef8] flex items-center justify-center p-4">
             <Image
@@ -168,11 +169,6 @@ const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder =
       setMenuPosition({ top: rect.bottom + 8, left: rect.left, width: rect.width });
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (buttonRef.current?.contains(event.target as Node)) return;
-      setIsOpen(false);
-    };
-
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsOpen(false);
@@ -180,7 +176,6 @@ const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder =
       }
     };
 
-    const timer = setTimeout(() => document.addEventListener('mousedown', handleClickOutside), 0);
     updateMenuPosition();
 
     window.addEventListener('scroll', updateMenuPosition, true);
@@ -188,8 +183,6 @@ const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder =
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      clearTimeout(timer);
-      document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', updateMenuPosition, true);
       window.removeEventListener('resize', updateMenuPosition);
