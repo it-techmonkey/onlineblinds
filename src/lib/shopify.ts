@@ -436,10 +436,25 @@ async function getMinimumPrices(): Promise<Record<string, number>> {
   // On the server, call pricing service directly instead of HTTP-calling our own API route.
   // This avoids 401 issues on Vercel deployments with protection enabled.
   if (isServerSide) {
-    const pricingService = await import('@/lib/server/pricing.service');
-    cachedMinimumPrices = await pricingService.getMinimumPricesByHandle();
-    pricesCacheTime = now;
-    return cachedMinimumPrices;
+    try {
+      const pricingService = await import('@/lib/server/pricing.service');
+      cachedMinimumPrices = await pricingService.getMinimumPricesByHandle();
+      if (Object.keys(cachedMinimumPrices).length === 0) {
+        console.warn(
+          '[Pricing] getMinimumPricesByHandle returned no prices. ' +
+          'Check that: (1) price band data is seeded in the DB, ' +
+          '(2) SHOPIFY_ADMIN_ACCESS_TOKEN is set, and ' +
+          '(3) the custom.price_band_name metafield is set on Shopify products.'
+        );
+      }
+      pricesCacheTime = now;
+      return cachedMinimumPrices;
+    } catch (err: any) {
+      console.error('[Pricing] Failed to fetch minimum prices from DB:', err?.message || err);
+      cachedMinimumPrices = {};
+      pricesCacheTime = now;
+      return cachedMinimumPrices;
+    }
   }
 
   const base = getApiBaseUrl();

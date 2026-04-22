@@ -20,11 +20,6 @@ const guides = [
         file: '/guides/vertical_blinds_installation_guide_onlineblinds.pdf',
         type: 'Installation',
       },
-      {
-        title: 'Blackout Vertical Blinds – How to Measure',
-        file: '/guides/how_to_measure_blackout_vertical_blinds.pdf',
-        type: 'Measuring',
-      },
     ],
   },
   {
