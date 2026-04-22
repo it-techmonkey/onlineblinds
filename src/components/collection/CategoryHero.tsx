@@ -60,7 +60,7 @@ export default function CategoryHero({ title, slug, description, productCount }:
   const isComingSoon = productCount === 0;
 
   return (
-    <section className="relative h-[500px] w-full overflow-hidden">
+    <section className="relative h-[320px] md:h-[500px] w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -77,7 +77,7 @@ export default function CategoryHero({ title, slug, description, productCount }:
 
       {/* Content Container */}
       <div className="absolute inset-0 z-[2] flex items-center justify-center">
-        <div className="flex flex-col gap-[8px] items-start max-w-[1280px] px-[24px] w-[1280px]">
+        <div className="flex flex-col gap-[8px] items-start max-w-[1280px] px-[24px] w-full">
           {/* Product Count Label */}
           <div className="w-full">
             <div className="font-jost font-medium text-[14px] text-white/72 tracking-[0.7px] uppercase leading-[20px]">
@@ -87,7 +87,7 @@ export default function CategoryHero({ title, slug, description, productCount }:
 
           {/* Heading */}
           <div className="w-full">
-            <h1 className="font-display text-[48px] font-semibold text-white leading-[48px]">
+            <h1 className="font-display text-[28px] leading-[32px] md:text-[48px] md:leading-[48px] font-semibold text-white">
               {title}
             </h1>
           </div>

@@ -40,7 +40,8 @@ const Footer = () => {
                 { label: 'About', href: '/about' },
                 { label: 'Guides', href: '/guides' },
                 { label: 'Contact', href: '#' },
-                { label: 'Privacy', href: '#' },
+                { label: 'Privacy', href: '/privacy-policy' },
+                { label: 'Terms', href: '/terms-and-conditions' },
               ].map((l) => (
                 <Link key={l.label} href={l.href} className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">{l.label}</Link>
               ))}
@@ -61,8 +62,8 @@ const Footer = () => {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-4 md:flex-row md:px-8">
           <p className="font-jost text-[12px] text-white/30">© {new Date().getFullYear()} Online Blinds. All Rights Reserved.</p>
           <div className="flex gap-5">
-            <Link href="#" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Privacy Policy</Link>
-            <Link href="#" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Terms</Link>
+            <Link href="/privacy-policy" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Terms</Link>
           </div>
         </div>
       </div>

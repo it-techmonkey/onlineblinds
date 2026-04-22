@@ -84,7 +84,7 @@ export default function ProductGridWithFilters({
   return (
     <div className="w-full">
       {/* Toolbar */}
-      <div className="flex items-center justify-between gap-[32px] mb-[32px]">
+      <div className="flex flex-wrap items-center justify-between gap-[12px] mb-[32px]">
         {/* Product Count */}
         <div>
           <div className="font-jost text-[14px] font-normal text-muted leading-[20px]">
@@ -132,7 +132,7 @@ export default function ProductGridWithFilters({
         </div>
       ) : (
         <>
-          <div className="gap-x-[24px] gap-y-[24px] grid grid-cols-[repeat(4,minmax(0,1fr))] w-full">
+          <div className="gap-x-[24px] gap-y-[24px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
             {displayedProducts.map((product) => (
               <ProductCard
                 key={product.id}
