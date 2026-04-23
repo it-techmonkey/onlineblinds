@@ -361,8 +361,7 @@ export default function PrivacyPolicyPage() {
           <p className="font-jost text-[15px] leading-[1.75] text-muted">
             Online Blinds Express operates this store and website, including all related information, content, features,
             tools, products and services, in order to provide you, the customer, with a curated shopping experience (the
-            &ldquo;Services&rdquo;). Online Blinds Express is powered by Shopify, which enables us to provide the
-            Services to you. This Privacy Policy describes how we collect, use, and disclose your personal information
+            &ldquo;Services&rdquo;). This Privacy Policy describes how we collect, use, and disclose your personal information
             when you visit, use, or make a purchase or other transaction using the Services or otherwise communicate with
             us. If there is a conflict between our Terms of Service and this Privacy Policy, this Privacy Policy controls
             with respect to the collection, processing, and disclosure of your personal information.
