@@ -23,10 +23,10 @@ const slides = [
   },
   {
     src: '/home/hero/hero-img3.webp',
-    alt: 'Dual Zebra Shades',
+    alt: 'Day and Night Blinds',
     eyebrow: 'Elegance meets light control',
-    title: 'Dual\nZebra Shades',
-    buttonText: 'Shop Zebra Shades',
+    title: 'Day and Night\nBlinds',
+    buttonText: 'Shop Day and Night Blinds',
     href: '/collections/day-and-night-blinds',
   },
 ];
