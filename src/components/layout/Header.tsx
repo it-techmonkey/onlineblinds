@@ -140,13 +140,13 @@ const Header = () => {
                           if (item.label === 'Blinds') {
                             if (link.label.includes('Light filtering Vertical')) icon = '/nav-icons/vertical-blinds.webp';
                             else if (link.label.includes('Blackout vertical')) icon = '/nav-icons/blackout-blinds.svg';
-                            else if (link.label.includes('All blinds')) icon = '/nav-icons/roller-blinds.webp';
+                            else if (link.label.includes('All Vertical')) icon = '/nav-icons/vertical-blinds.webp';
                           } else if (item.label === 'Shades') {
                             if (link.label.includes('Light filtering roller')) icon = '/nav-icons/roller-blinds.webp';
                             else if (link.label.includes('Blackout roller')) icon = '/nav-icons/blackout-blinds.svg';
                             else if (link.label.includes('Waterproof')) icon = '/nav-icons/waterproof-blinds.svg';
                             else if (link.label.includes('Dual zebra')) icon = '/nav-icons/day-night-blinds.webp';
-                            else if (link.label.includes('All blinds')) icon = '/nav-icons/roller-blinds.webp';
+                            else if (link.label.includes('All Roller')) icon = '/nav-icons/roller-blinds.webp';
                           } else if (item.label === 'Motorization') {
                             if (link.label.includes('roller')) icon = '/nav-icons/roller-blinds.webp';
                             else if (link.label.includes('Dual')) icon = '/nav-icons/day-night-blinds.webp';

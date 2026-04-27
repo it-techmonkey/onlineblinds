@@ -21,7 +21,7 @@ export const navigationData: NavigationItem[] = [
       { label: 'Light filtering Vertical blinds', href: '/collections/light-filtering-vertical-blinds' },
       { label: 'Blackout vertical blinds', href: '/collections/blackout-vertical-blinds' },
       { label: 'Waterproof Blackout vertical blinds', href: '/collections/waterproof-blackout-vertical-blinds' },
-      { label: 'All blinds and shades', href: '/collections' },
+      { label: 'All Vertical Blinds', href: '/collections/vertical-blinds' },
     ]
   },
   {
@@ -31,7 +31,7 @@ export const navigationData: NavigationItem[] = [
       { label: 'Blackout roller Shades', href: '/collections/blackout-roller-shades' },
       { label: 'Waterproof Blackout roller Shades', href: '/collections/waterproof-blackout-roller-shades' },
       { label: 'Dual zebra Shades', href: '/collections/dual-zebra-shades' },
-      { label: 'All blinds and shades', href: '/collections' },
+      { label: 'All Roller Shades', href: '/collections/roller-blinds' },
     ]
   },
   {
@@ -91,9 +91,11 @@ export const ALL_COLLECTION_SLUGS = [
 
 // Custom descriptions for collection hero sections
 export const COLLECTION_DESCRIPTIONS: Record<string, string> = {
+  'vertical-blinds': 'Explore our full range of made-to-measure vertical blinds, including light filtering, blackout, and waterproof options designed for smooth light control and a clean modern finish.',
   'light-filtering-vertical-blinds': 'Custom made-to-measure light filtering vertical blinds that softly diffuse natural light while maintaining privacy. Perfect for modern homes with quality materials and easy installation.',
   'blackout-vertical-blinds': 'Made-to-measure blackout vertical blinds providing complete privacy, light control, and modern style. Custom sized for a perfect fit with quality materials and easy installation.',
   'waterproof-blackout-vertical-blinds': 'Durable waterproof blackout vertical blinds crafted from premium PVC soft fabric with 89mm slats. Custom made, easy to install, and backed by a 10-year warranty.',
+  'roller-blinds': 'Browse our complete collection of made-to-measure roller shades, including light filtering, blackout, and waterproof styles crafted for clean lines, privacy, and everyday ease.',
   'light-filtering-roller-shades': 'Elegant light filtering roller shades that soften sunlight while maintaining natural brightness and privacy. Custom sized with premium fabrics for a perfect fit in any room.',
   'blackout-roller-shades': 'Stylish blackout roller shades designed to block sunlight, improve privacy, and enhance comfort. Custom made to measure with premium fabrics for the perfect window treatment.',
   'waterproof-blackout-roller-shades': 'Durable waterproof blackout roller shades ideal for moisture-prone environments. Custom made with premium materials for excellent light control, privacy, and long-lasting performance.',
@@ -107,9 +109,11 @@ export const COLLECTION_DESCRIPTIONS: Record<string, string> = {
 
 // Display names for collection slugs (used when category not in backend)
 export const COLLECTION_DISPLAY_NAMES: Record<string, string> = {
+  'vertical-blinds': 'Vertical Blinds',
   'light-filtering-vertical-blinds': 'Light filtering Vertical blinds',
   'blackout-vertical-blinds': 'Blackout vertical blinds',
   'waterproof-blackout-vertical-blinds': 'Waterproof Blackout vertical blinds',
+  'roller-blinds': 'Roller Shades',
   'light-filtering-roller-shades': 'Light filtering roller Shades',
   'blackout-roller-shades': 'Blackout roller Shades',
   'waterproof-blackout-roller-shades': 'Waterproof Blackout roller Shades',
