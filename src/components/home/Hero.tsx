@@ -27,7 +27,7 @@ const slides = [
     eyebrow: 'Elegance meets light control',
     title: 'Dual\nZebra Shades',
     buttonText: 'Shop Zebra Shades',
-    href: '/collections/dual-zebra-shades',
+    href: '/collections/day-and-night-blinds',
   },
 ];
 

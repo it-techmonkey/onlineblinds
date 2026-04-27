@@ -17,7 +17,6 @@ const slugToImageMap: Record<string, string> = {
   'light-filtering-roller-shades': '/collections/hero-lf-roller.png',
   'blackout-roller-shades': '/collections/hero-bo-roller.png',
   'waterproof-blackout-roller-shades': '/collections/hero-wp-roller.png',
-  'dual-zebra-shades': '/collections/hero-daynight.png', // We already have this
   'motorised-roller-shades': '/collections/hero-mot-roller.png',
   'motorised-dual-zebra-shades': '/collections/hero-mot-zebra.png',
   'motorised-eclipsecore': '/collections/hero-eclipsecore.png',

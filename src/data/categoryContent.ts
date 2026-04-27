@@ -485,7 +485,7 @@ const categoryContent: Record<string, CategoryContent> = {
     ],
   },
 
-  'dual-zebra-shades': {
+  'day-and-night-blinds': {
     productDetails: [
       'Dual zebra shades are a modern and stylish window treatment designed to give you complete control over light and privacy. These innovative blinds feature alternating sheer and solid fabric bands that slide past each other, allowing you to easily adjust the level of sunlight entering your room.',
       'At Online Blinds, our dual zebra shades are custom made to measure, ensuring a perfect fit for every window. Their sleek design and versatile functionality make them one of the most popular window coverings for modern homes.',

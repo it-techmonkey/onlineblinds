@@ -5,7 +5,7 @@ const categoryItems = [
   { label: 'Light Filtering Vertical Blinds', href: '/collections/light-filtering-vertical-blinds', image: "/home/categories/light_filtering_vertical_blinds.webp" },
   { label: 'Blackout Vertical Blinds', href: '/collections/blackout-vertical-blinds', image: "/home/categories/blackout_vertical_blinds.webp" },
   { label: 'Waterproof Blackout Roller Shades', href: '/collections/waterproof-blackout-roller-shades', image: "/home/categories/waterproof_blackout_roller_shades.webp" },
-  { label: 'Dual Zebra Shades', href: '/collections/dual-zebra-shades', image: "/home/categories/dual_zebra_shades.webp" },
+  { label: 'Dual Zebra Shades', href: '/collections/day-and-night-blinds', image: "/home/categories/dual_zebra_shades.webp" },
   { label: 'Light Filtering Roller Shades', href: '/collections/light-filtering-roller-shades', image: "/home/categories/light_filtering_roller_shades.webp" },
   { label: 'Blackout Roller Shades', href: '/collections/blackout-roller-shades', image: "/home/categories/blackout_roller_shades.webp" },
   { label: 'Motorized Roller Shades', href: '/collections/motorised-roller-shades', image: "/home/categories/motorised_roller_shades.webp" },

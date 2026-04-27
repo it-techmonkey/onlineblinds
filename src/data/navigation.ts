@@ -30,7 +30,7 @@ export const navigationData: NavigationItem[] = [
       { label: 'Light filtering roller Shades', href: '/collections/light-filtering-roller-shades' },
       { label: 'Blackout roller Shades', href: '/collections/blackout-roller-shades' },
       { label: 'Waterproof Blackout roller Shades', href: '/collections/waterproof-blackout-roller-shades' },
-      { label: 'Dual zebra Shades', href: '/collections/dual-zebra-shades' },
+      { label: 'Day and Night Blinds', href: '/collections/day-and-night-blinds' },
       { label: 'All Roller Shades', href: '/collections/roller-blinds' },
     ]
   },
@@ -77,7 +77,7 @@ export const ALL_COLLECTION_SLUGS = [
   'light-filtering-roller-shades',
   'blackout-roller-shades',
   'waterproof-blackout-roller-shades',
-  'dual-zebra-shades',
+  'day-and-night-blinds',
   'motorised-roller-shades',
   'motorised-dual-zebra-shades',
   'motorised-eclipsecore',
@@ -99,7 +99,7 @@ export const COLLECTION_DESCRIPTIONS: Record<string, string> = {
   'light-filtering-roller-shades': 'Elegant light filtering roller shades that soften sunlight while maintaining natural brightness and privacy. Custom sized with premium fabrics for a perfect fit in any room.',
   'blackout-roller-shades': 'Stylish blackout roller shades designed to block sunlight, improve privacy, and enhance comfort. Custom made to measure with premium fabrics for the perfect window treatment.',
   'waterproof-blackout-roller-shades': 'Durable waterproof blackout roller shades ideal for moisture-prone environments. Custom made with premium materials for excellent light control, privacy, and long-lasting performance.',
-  'dual-zebra-shades': 'Versatile dual zebra shades offering flexible light control and modern style. Custom made to measure with premium materials for the perfect day and night window covering.',
+  'day-and-night-blinds': 'Versatile day and night blinds offering flexible light control and modern style. Custom made to measure with premium materials for the perfect window covering.',
   'motorised-roller-shades': 'Convenient motorised roller shades with smooth remote-controlled operation. Custom sized with durable materials for effortless light control and modern design in any room.',
   'motorised-dual-zebra-shades': 'Stylish motorised dual zebra shades combining flexible light control with remote operation. Custom made to measure for a perfect fit in any contemporary home.',
   'blackout-roller-shades-category': 'Stylish blackout roller shades designed to block sunlight, improve privacy, and enhance comfort. Custom made to measure with premium fabrics for the perfect window treatment.',
@@ -117,7 +117,7 @@ export const COLLECTION_DISPLAY_NAMES: Record<string, string> = {
   'light-filtering-roller-shades': 'Light filtering roller Shades',
   'blackout-roller-shades': 'Blackout roller Shades',
   'waterproof-blackout-roller-shades': 'Waterproof Blackout roller Shades',
-  'dual-zebra-shades': 'Dual zebra Shades',
+  'day-and-night-blinds': 'Day and Night Blinds',
   'motorised-roller-shades': 'Motorised roller shades',
   'motorised-dual-zebra-shades': 'Motorised Dual zebra shades',
   'motorised-eclipsecore': 'Motorised EclipseCore',
@@ -142,8 +142,6 @@ export const NAVIGATION_SLUG_MAPPING: Record<string, string> = {
   'light-filtering-roller-shades': 'roller-blinds', // Primary: roller-blinds, Tag: light-filtering
   'blackout-roller-shades': 'roller-blinds', // Primary: roller-blinds, Tag: blackout
   'waterproof-blackout-roller-shades': 'roller-blinds', // Primary: roller-blinds, Tags: waterproof, blackout
-  'dual-zebra-shades': 'day-and-night-blinds', // Primary: day-and-night-blinds
-
   // Motorization - map to primary category (motorized is a secondary category)
   'motorised-roller-shades': 'roller-blinds', // Primary: roller-blinds, Secondary: motorized-blinds
   'motorised-dual-zebra-shades': 'day-and-night-blinds', // Primary: day-and-night-blinds, Secondary: motorized-blinds
@@ -172,7 +170,7 @@ export const NAVIGATION_TAG_FILTERS: Record<string, string[]> = {
   'blackout-roller-shades-category': ['blackout'],
   'blackout-dual-zebra-shades': ['blackout'],
   'blackout-vertical-blinds-category': ['blackout'],
-  'dual-zebra-shades': [],
+  'day-and-night-blinds': [],
   'eclipsecore-shades': [],
 };
 
