@@ -15,15 +15,23 @@ interface MotorizationSelectorProps {
     options: MotorizationOption[];
     selectedOption: string | null;
     onOptionChange: (optionId: string) => void;
+    heading?: string;
+    basePriceLabel?: string | null;
 }
 
-const MotorizationSelector = ({ options, selectedOption, onOptionChange }: MotorizationSelectorProps) => {
+const MotorizationSelector = ({
+    options,
+    selectedOption,
+    onOptionChange,
+    heading = 'Motorization',
+    basePriceLabel = '+£95.00 (Motor)',
+}: MotorizationSelectorProps) => {
     const [imagePreview, setImagePreview] = useState<{ name: string; image: string } | null>(null);
 
     return (
         <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
-                <h3 className="text-lg font-medium text-[#1f2a44]">Motorization</h3>
+                <h3 className="text-lg font-medium text-[#1f2a44]">{heading}</h3>
             </div>
 
             {/* Options Grid */}
@@ -69,9 +77,11 @@ const MotorizationSelector = ({ options, selectedOption, onOptionChange }: Motor
                         {/* Price Badge */}
                         {option.id !== 'none' ? (
                             <div className="absolute top-2 right-2 z-20 flex flex-col items-end gap-1 pointer-events-none">
-                                <span className="bg-[#335c99] text-white text-[10px] md:text-xs px-2 py-1 rounded font-medium shadow-sm whitespace-nowrap">
-                                    +£95.00 (Motor)
-                                </span>
+                                {basePriceLabel && (
+                                    <span className="bg-[#335c99] text-white text-[10px] md:text-xs px-2 py-1 rounded font-medium shadow-sm whitespace-nowrap">
+                                        {basePriceLabel}
+                                    </span>
+                                )}
                                 {option.price != null && option.price > 0 && (
                                     <span className="bg-[#335c99]/90 text-white text-[10px] md:text-xs px-2 py-1 rounded font-medium shadow-sm whitespace-nowrap">
                                         +£{option.price.toFixed(2)} (Remote)
@@ -124,4 +134,3 @@ const MotorizationSelector = ({ options, selectedOption, onOptionChange }: Motor
 };
 
 export default MotorizationSelector;
-

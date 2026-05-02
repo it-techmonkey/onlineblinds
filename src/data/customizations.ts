@@ -2,7 +2,6 @@
 
 // Headrail type options (used for vertical blinds)
 export const HEADRAIL_OPTIONS = [
-  // { id: 'louvres-only', name: 'Louvres/Slats Only', price: 0, image: '/products/headrail/louvresOnly.png' },
   { id: 'classic', name: 'Classic Headrail', price: 0, image: '/products/headrail/classicHeadrail.png' },
   { id: 'platinum', name: 'Platinum Headrail', price: 0, image: '/products/headrail/platinumHeadrail.png' },
 ];

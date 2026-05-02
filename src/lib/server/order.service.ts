@@ -1,6 +1,7 @@
 import { calculateProductPrice, type PricingRequest } from './pricing.service';
 import { getAdminApiUrl, getAdminHeaders, validateShopifyConfig } from './shopify-admin';
 import { getCachedProduct } from './product-cache';
+import { isHeightOnlyVerticalProduct } from '@/lib/vertical-blinds';
 
 // ============================================
 // Types
@@ -106,11 +107,15 @@ function configToCustomizations(config: CheckoutItemRequest['configuration']): P
 
 function buildLineItemProperties(
   item: CheckoutItemRequest,
-  calculatedPrice: number
+  calculatedPrice: number,
+  productTags: string[]
 ): { key: string; value: string }[] {
   const properties: { key: string; value: string }[] = [];
+  const heightOnlyVertical = isHeightOnlyVerticalProduct(productTags);
 
-  properties.push({ key: 'Width', value: `${item.widthInches} inches` });
+  if (!heightOnlyVertical) {
+    properties.push({ key: 'Width', value: `${item.widthInches} inches` });
+  }
   properties.push({ key: 'Height', value: `${item.heightInches} inches` });
 
   if (item.configuration.roomType) {
@@ -221,7 +226,14 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     if (!item.handle) {
       throw new CheckoutError('Each item must have a handle', 400);
     }
-    if (typeof item.widthInches !== 'number' || item.widthInches <= 0) {
+    const cachedProduct = await getCachedProduct(item.handle);
+    if (!cachedProduct) {
+      throw new CheckoutError(`Product not found: ${item.handle}`, 404);
+    }
+
+    const heightOnlyVertical = isHeightOnlyVerticalProduct(cachedProduct.tags);
+
+    if (typeof item.widthInches !== 'number' || (!heightOnlyVertical && item.widthInches <= 0)) {
       throw new CheckoutError('Each item must have a positive widthInches', 400);
     }
     if (typeof item.heightInches !== 'number' || item.heightInches <= 0) {
@@ -229,11 +241,6 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     }
     if (typeof item.quantity !== 'number' || item.quantity < 1) {
       throw new CheckoutError('Each item must have a quantity >= 1', 400);
-    }
-
-    const cachedProduct = await getCachedProduct(item.handle);
-    if (!cachedProduct) {
-      throw new CheckoutError(`Product not found: ${item.handle}`, 404);
     }
 
     const productTitle = item.configuration.blindName?.trim() || cachedProduct.title;
@@ -256,10 +263,12 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     }
 
     const itemPrice = pricing.totalPrice;
-    const lineItemTitle = `${productTitle} – ${item.widthInches}" × ${item.heightInches}"`;
+    const lineItemTitle = heightOnlyVertical
+      ? `${productTitle} – Height ${item.heightInches}"`
+      : `${productTitle} – ${item.widthInches}" × ${item.heightInches}"`;
 
     const variantId = await getPrimaryVariantIdByHandle(item.handle);
-    const customAttributes = buildLineItemProperties(item, itemPrice);
+    const customAttributes = buildLineItemProperties(item, itemPrice, cachedProduct.tags);
 
     if (variantId) {
       lineItems.push({

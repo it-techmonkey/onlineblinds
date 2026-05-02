@@ -22,6 +22,7 @@ export const navigationData: NavigationItem[] = [
       { label: 'Blackout vertical blinds', href: '/collections/blackout-vertical-blinds' },
       { label: 'Waterproof Blackout vertical blinds', href: '/collections/waterproof-blackout-vertical-blinds' },
       { label: 'All Vertical Blinds', href: '/collections/vertical-blinds' },
+      { label: 'Replacement Vertical Blinds Slat', href: '/collections/replacement-vertical-blinds-slat' },
     ]
   },
   {
@@ -74,6 +75,7 @@ export const ALL_COLLECTION_SLUGS = [
   'light-filtering-vertical-blinds',
   'blackout-vertical-blinds',
   'waterproof-blackout-vertical-blinds',
+  'replacement-vertical-blinds-slat',
   'light-filtering-roller-shades',
   'blackout-roller-shades',
   'waterproof-blackout-roller-shades',
@@ -95,6 +97,7 @@ export const COLLECTION_DESCRIPTIONS: Record<string, string> = {
   'light-filtering-vertical-blinds': 'Custom made-to-measure light filtering vertical blinds that softly diffuse natural light while maintaining privacy. Perfect for modern homes with quality materials and easy installation.',
   'blackout-vertical-blinds': 'Made-to-measure blackout vertical blinds providing complete privacy, light control, and modern style. Custom sized for a perfect fit with quality materials and easy installation.',
   'waterproof-blackout-vertical-blinds': 'Durable waterproof blackout vertical blinds crafted from premium PVC soft fabric with 89mm slats. Custom made, easy to install, and backed by a 10-year warranty.',
+  'replacement-vertical-blinds-slat': 'Shop made-to-measure replacement vertical blind slats with simple height-based pricing and bottom weight or chain options to refresh existing vertical blinds.',
   'roller-blinds': 'Browse our complete collection of made-to-measure roller shades, including light filtering, blackout, and waterproof styles crafted for clean lines, privacy, and everyday ease.',
   'light-filtering-roller-shades': 'Elegant light filtering roller shades that soften sunlight while maintaining natural brightness and privacy. Custom sized with premium fabrics for a perfect fit in any room.',
   'blackout-roller-shades': 'Stylish blackout roller shades designed to block sunlight, improve privacy, and enhance comfort. Custom made to measure with premium fabrics for the perfect window treatment.',
@@ -113,6 +116,7 @@ export const COLLECTION_DISPLAY_NAMES: Record<string, string> = {
   'light-filtering-vertical-blinds': 'Light filtering Vertical blinds',
   'blackout-vertical-blinds': 'Blackout vertical blinds',
   'waterproof-blackout-vertical-blinds': 'Waterproof Blackout vertical blinds',
+  'replacement-vertical-blinds-slat': 'Replacement Vertical Blinds Slat',
   'roller-blinds': 'Roller Shades',
   'light-filtering-roller-shades': 'Light filtering roller Shades',
   'blackout-roller-shades': 'Blackout roller Shades',
@@ -143,7 +147,7 @@ export const NAVIGATION_SLUG_MAPPING: Record<string, string> = {
   'blackout-roller-shades': 'roller-blinds', // Primary: roller-blinds, Tag: blackout
   'waterproof-blackout-roller-shades': 'roller-blinds', // Primary: roller-blinds, Tags: waterproof, blackout
   // Motorization - map to primary category (motorized is a secondary category)
-  'motorised-roller-shades': 'roller-blinds', // Primary: roller-blinds, Secondary: motorized-blinds
+  'motorised-roller-shades': 'motorized-blinds', // Primary: motorized-blinds, Tag: roller-blinds-electrical
   'motorised-dual-zebra-shades': 'day-and-night-blinds', // Primary: day-and-night-blinds, Secondary: motorized-blinds
   'motorised-eclipsecore': 'pleated-blinds', // Primary: pleated-blinds, Secondary: motorized-blinds
 
@@ -170,6 +174,7 @@ export const NAVIGATION_TAG_FILTERS: Record<string, string[]> = {
   'blackout-roller-shades-category': ['blackout'],
   'blackout-dual-zebra-shades': ['blackout'],
   'blackout-vertical-blinds-category': ['blackout'],
+  'motorised-roller-shades': ['roller-blinds-electrical'],
   'day-and-night-blinds': [],
   'eclipsecore-shades': [],
 };

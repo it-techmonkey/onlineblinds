@@ -1,4 +1,9 @@
-import { SizeBands, PriceBandMatrix, CustomizationPricing, WidthBand, HeightBand } from '@/types';
+import { PriceBandMatrix, CustomizationPricing, WidthBand, HeightBand } from '@/types';
+import {
+  calculateReplacementVerticalSlatPrice,
+  isHeightOnlyVerticalProduct,
+} from './vertical-blinds';
+import { getMotorizationBasePrice } from './electrical-roller';
 
 // ============================================
 // Types
@@ -148,7 +153,8 @@ export function calculateTotalPrice(
   heightInches: number,
   priceMatrix: PriceBandMatrix,
   selectedCustomizations: { category: string; optionId: string }[],
-  customizationPricing: CustomizationPricing[]
+  customizationPricing: CustomizationPricing[],
+  productTags: string[] = []
 ): {
   dimensionPrice: number;
   customizationPrices: CustomizationPriceResult[];
@@ -156,6 +162,39 @@ export function calculateTotalPrice(
   widthBand: WidthBand | null;
   heightBand: HeightBand | null;
 } | null {
+  if (isHeightOnlyVerticalProduct(productTags)) {
+    const dimensionPrice = calculateReplacementVerticalSlatPrice(heightInches, productTags);
+
+    if (dimensionPrice == null) {
+      return null;
+    }
+
+    const customizationPrices: CustomizationPriceResult[] = [];
+
+    for (const customization of selectedCustomizations) {
+      const priceResult = getCustomizationPrice(
+        customization.category,
+        customization.optionId,
+        null,
+        customizationPricing
+      );
+
+      if (priceResult && priceResult.price > 0) {
+        customizationPrices.push(priceResult);
+      }
+    }
+
+    const customizationTotal = customizationPrices.reduce((sum, c) => sum + c.price, 0);
+
+    return {
+      dimensionPrice,
+      customizationPrices,
+      totalPrice: dimensionPrice + customizationTotal,
+      widthBand: null,
+      heightBand: null,
+    };
+  }
+
   // Calculate dimension price
   const dimensionResult = calculateDimensionPrice(widthInches, heightInches, priceMatrix);
 
@@ -183,8 +222,7 @@ export function calculateTotalPrice(
   const customizationTotal = customizationPrices.reduce((sum, c) => sum + c.price, 0);
 
   // Add motorization base price if applicable
-  const hasMotorization = selectedCustomizations.some(c => c.category === 'motorization');
-  const motorizationBasePrice = hasMotorization ? 95 : 0;
+  const motorizationBasePrice = getMotorizationBasePrice(productTags, selectedCustomizations);
 
   const totalPrice = dimensionResult.dimensionPrice + customizationTotal + motorizationBasePrice;
 

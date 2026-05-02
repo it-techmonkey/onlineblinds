@@ -12,6 +12,15 @@ import {
   getTotalInches,
 } from '@/lib/pricing';
 import {
+  getMinimumReplacementVerticalSlatPrice,
+  isReplacementVerticalSlatProduct,
+  REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
+} from '@/lib/vertical-blinds';
+import {
+  getElectricalRollerRemoteOptions,
+  isElectricalRollerProduct,
+} from '@/lib/electrical-roller';
+import {
   SizeSelector,
   HeadrailSelector,
   HeadrailColourSelector,
@@ -61,34 +70,37 @@ const CustomizationModal = ({
   onClose,
 }: CustomizationModalProps) => {
   const { addToCart } = useCart();
+  const isElectricalRoller = useMemo(
+    () => isElectricalRollerProduct(product.tags),
+    [product.tags]
+  );
+  const electricalRollerMotorizationOptions = useMemo(
+    () => getElectricalRollerRemoteOptions(MOTORIZATION_OPTIONS),
+    []
+  );
 
   // State for pricing data from backend
   const [priceMatrix, setPriceMatrix] = useState<PriceBandMatrix | null>(null);
   const [customizationPricing, setCustomizationPricing] = useState<CustomizationPricingType[]>([]);
   const [pricingLoaded, setPricingLoaded] = useState(false);
   const [isValidating, setIsValidating] = useState(false);
-  const fetchingRef = useRef(false);
+  const customizationFetchingRef = useRef(false);
+  const matrixFetchingRef = useRef(false);
 
-  // Fetch pricing data on mount
+  // Fetch customization pricing on mount
   useEffect(() => {
-    // Prevent multiple simultaneous fetches
-    if (fetchingRef.current) {
+    if (customizationFetchingRef.current) {
       return;
     }
 
-    fetchingRef.current = true;
+    customizationFetchingRef.current = true;
     let isMounted = true;
 
-    const loadPricingData = async () => {
+    const loadCustomizationPricing = async () => {
       try {
-        const [matrix, customizations] = await Promise.all([
-          fetchPriceMatrix(product.slug),
-          fetchCustomizationPricing(),
-        ]);
+        const customizations = await fetchCustomizationPricing();
 
-        // Only update state if component is still mounted
         if (isMounted) {
-          // Inject bottom bar pricing if not present
           const bottomBarPricing = BOTTOM_BAR_OPTIONS.map(option => ({
             category: 'bottom-bar',
             optionId: option.id,
@@ -96,37 +108,34 @@ const CustomizationModal = ({
             prices: [{ widthMm: null, price: option.price || 0 }]
           }));
 
-          setPriceMatrix(matrix);
           setCustomizationPricing([...customizations, ...bottomBarPricing]);
           setPricingLoaded(true);
         }
       } catch (error) {
-        console.error('Failed to load pricing data:', error);
-        // Pricing will fall back to old system if this fails
+        console.error('Failed to load customization pricing:', error);
         if (isMounted) {
           setPricingLoaded(true);
         }
       } finally {
         if (isMounted) {
-          fetchingRef.current = false;
+          customizationFetchingRef.current = false;
         }
       }
     };
 
-    loadPricingData();
+    loadCustomizationPricing();
 
-    // Cleanup function
     return () => {
       isMounted = false;
-      fetchingRef.current = false;
+      customizationFetchingRef.current = false;
     };
   }, [product.slug]);
 
   // Determine which options to use based on product category
   const isRollerOrDayNight = useMemo(() => {
     const category = product.category.toLowerCase();
-    return category.includes('roller') || category.includes('day') || category.includes('night');
-  }, [product.category]);
+    return isElectricalRoller || category.includes('roller') || category.includes('day') || category.includes('night');
+  }, [isElectricalRoller, product.category]);
 
   const isDayNight = useMemo(() => {
     const category = product.category.toLowerCase();
@@ -144,6 +153,55 @@ const CustomizationModal = ({
   const stackingOptions = useMemo(() => {
     return VERTICAL_STACKING_OPTIONS[config.controlOption ?? ''] ?? [];
   }, [config.controlOption]);
+  const isReplacementVerticalSlat = useMemo(
+    () => isReplacementVerticalSlatProduct(product.tags),
+    [product.tags]
+  );
+  const usesHeightOnlyVerticalPricing = isReplacementVerticalSlat;
+  const shouldFetchPriceMatrix = useMemo(() => {
+    if (isReplacementVerticalSlat) {
+      return false;
+    }
+
+    return true;
+  }, [
+    isReplacementVerticalSlat,
+  ]);
+
+  useEffect(() => {
+    if (!shouldFetchPriceMatrix) {
+      setPriceMatrix(null);
+      return;
+    }
+    if (matrixFetchingRef.current) {
+      return;
+    }
+
+    matrixFetchingRef.current = true;
+    let isMounted = true;
+
+    const loadPriceMatrix = async () => {
+      try {
+        const matrix = await fetchPriceMatrix(product.slug);
+        if (isMounted) {
+          setPriceMatrix(matrix);
+        }
+      } catch (error) {
+        console.error('Failed to load price matrix:', error);
+      } finally {
+        if (isMounted) {
+          matrixFetchingRef.current = false;
+        }
+      }
+    };
+
+    loadPriceMatrix();
+
+    return () => {
+      isMounted = false;
+      matrixFetchingRef.current = false;
+    };
+  }, [product.slug, shouldFetchPriceMatrix]);
 
   // Reset stacking when control changes and selected stack is no longer valid
   useEffect(() => {
@@ -155,10 +213,64 @@ const CustomizationModal = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config.controlOption]);
 
+  useEffect(() => {
+    if (!isElectricalRoller) return;
+
+    setConfig((prev) => {
+      const nextMotorization =
+        prev.motorization && prev.motorization !== 'none'
+          ? prev.motorization
+          : electricalRollerMotorizationOptions[0]?.id ?? null;
+
+      if (
+        prev.chainColor === null &&
+        prev.controlSide === null &&
+        prev.motorization === nextMotorization
+      ) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        chainColor: null,
+        controlSide: null,
+        motorization: nextMotorization,
+      };
+    });
+  }, [electricalRollerMotorizationOptions, isElectricalRoller, setConfig]);
+
+  useEffect(() => {
+    if (!usesHeightOnlyVerticalPricing) return;
+
+    setConfig((prev) => {
+      const nextConfig = {
+        ...prev,
+        width: 0,
+        widthFraction: '0',
+        headrailColour: null,
+        installationMethod: null,
+        controlOption: null,
+        stacking: null,
+        controlSide: null,
+        bracketType: null,
+      };
+
+      const changed =
+        prev.width !== nextConfig.width ||
+        prev.widthFraction !== nextConfig.widthFraction ||
+        prev.headrailColour !== nextConfig.headrailColour ||
+        prev.installationMethod !== nextConfig.installationMethod ||
+        prev.controlOption !== nextConfig.controlOption ||
+        prev.stacking !== nextConfig.stacking ||
+        prev.controlSide !== nextConfig.controlSide ||
+        prev.bracketType !== nextConfig.bracketType;
+
+      return changed ? nextConfig : prev;
+    });
+  }, [usesHeightOnlyVerticalPricing, setConfig]);
+
   // Determine which options should be visible based on product type and selected headrail
   const visibleOptions = useMemo(() => {
-    const headrail = config.headrail;
-
     // For roller blinds and day/night blinds - use product.features settings
     if (isRollerOrDayNight) {
       return {
@@ -176,6 +288,22 @@ const CustomizationModal = ({
       };
     }
 
+    if (isReplacementVerticalSlat) {
+      return {
+        showSize: product.features.hasSize,
+        showHeadrail: false,
+        showHeadrailColour: false,
+        showInstallationMethod: false,
+        showControlOption: false,
+        showStacking: false,
+        showControlSide: false,
+        showBottomChain: product.features.hasBottomChain,
+        showBracketType: false,
+        showMotorization: product.features.hasMotorization,
+        showBottomBar: false,
+      };
+    }
+
     // For vertical blinds (with headrail)
     return {
       // Size and Headrail are always visible
@@ -183,29 +311,31 @@ const CustomizationModal = ({
       showHeadrail: product.features.hasHeadrail,
 
       // Headrail Colour only for Platinum
-      showHeadrailColour: product.features.hasHeadrailColour && headrail === 'platinum',
+      showHeadrailColour: product.features.hasHeadrailColour && config.headrail === 'platinum',
 
-      // Installation Method for Classic and Platinum
-      showInstallationMethod: product.features.hasInstallationMethod && (headrail === 'classic' || headrail === 'platinum'),
+      showInstallationMethod: product.features.hasInstallationMethod,
 
       // Control Option for Classic and Platinum
-      showControlOption: product.features.hasControlOption && (headrail === 'classic' || headrail === 'platinum'),
+      showControlOption: product.features.hasControlOption && (config.headrail === 'classic' || config.headrail === 'platinum'),
 
       // Stacking for Classic and Platinum
-      showStacking: product.features.hasStacking && (headrail === 'classic' || headrail === 'platinum'),
+      showStacking: product.features.hasStacking && (config.headrail === 'classic' || config.headrail === 'platinum'),
 
       // Control Side for Classic and Platinum
-      showControlSide: product.features.hasControlSide && (headrail === 'classic' || headrail === 'platinum'),
+      showControlSide: product.features.hasControlSide && (config.headrail === 'classic' || config.headrail === 'platinum'),
 
-      // Bottom Chain for all headrail types (Classic, Platinum)
-      showBottomChain: product.features.hasBottomChain && (headrail === 'classic' || headrail === 'platinum'),
+      // Bottom Chain is available on regular vertical blinds
+      showBottomChain: product.features.hasBottomChain && (
+        config.headrail === 'classic' ||
+        config.headrail === 'platinum'
+      ),
 
       // Bracket Type for Classic and Platinum
-      showBracketType: product.features.hasBracketType && (headrail === 'classic' || headrail === 'platinum'),
+      showBracketType: product.features.hasBracketType && (config.headrail === 'classic' || config.headrail === 'platinum'),
 
       showBottomBar: product.features.hasBottomBar,
     };
-  }, [config.headrail, isRollerOrDayNight, product.features]);
+  }, [config.headrail, isReplacementVerticalSlat, isRollerOrDayNight, product.features]);
 
   // Build list of selected customizations for pricing
   const selectedCustomizations = useMemo(() => {
@@ -218,33 +348,38 @@ const CustomizationModal = ({
       controlSide: visibleOptions.showControlSide ? config.controlSide : null,
       bottomChain: visibleOptions.showBottomChain ? config.bottomChain : null,
       bracketType: visibleOptions.showBracketType ? config.bracketType : null,
-      chainColor: config.chainColor,
+      chainColor: isElectricalRoller ? null : config.chainColor,
       wrappedCassette: config.wrappedCassette,
       cassetteMatchingBar: config.cassetteMatchingBar,
       isRollerCassette: product.features.hasRollerCassette,
       motorization: config.motorization,
       bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
     });
-  }, [config, visibleOptions]);
+  }, [config, visibleOptions, product.features.hasRollerCassette, isElectricalRoller]);
 
   // Calculate price using new pricing system
   const priceCalculation = useMemo(() => {
-    // Need valid dimensions to calculate price
-    const widthInches = getTotalInches(config.width, config.widthFraction, config.widthUnit);
+    const widthInches = isReplacementVerticalSlat
+      ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+      : getTotalInches(config.width, config.widthFraction, config.widthUnit);
     const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
 
-    if (!priceMatrix || widthInches <= 0 || heightInches <= 0) {
+    if (heightInches <= 0) {
+      return null;
+    }
+    if (!usesHeightOnlyVerticalPricing && (!priceMatrix || widthInches <= 0)) {
       return null;
     }
 
     return calculateTotalPrice(
       widthInches,
       heightInches,
-      priceMatrix,
+      priceMatrix ?? { id: '', name: '', widthBands: [], heightBands: [], prices: [] },
       selectedCustomizations,
-      customizationPricing
+      customizationPricing,
+      product.tags
     );
-  }, [config.width, config.widthFraction, config.height, config.heightFraction, priceMatrix, selectedCustomizations, customizationPricing]);
+  }, [config.width, config.widthFraction, config.widthUnit, config.height, config.heightFraction, config.heightUnit, isReplacementVerticalSlat, usesHeightOnlyVerticalPricing, priceMatrix, product.tags, selectedCustomizations, customizationPricing]);
 
   // Get display price - use new pricing system if available, otherwise fallback
   const totalPrice = useMemo(() => {
@@ -254,6 +389,14 @@ const CustomizationModal = ({
     // Fallback to base price from product if pricing not loaded
     return product.price;
   }, [priceCalculation, product.price]);
+
+  const minimumDisplayedPrice = useMemo(() => {
+    if (!usesHeightOnlyVerticalPricing) {
+      return product.price;
+    }
+
+    return getMinimumReplacementVerticalSlatPrice(product.tags) ?? product.price;
+  }, [product.price, product.tags, usesHeightOnlyVerticalPricing]);
 
   // Calculate dynamic size ranges from price band
   const sizeRanges = useMemo(() => {
@@ -278,12 +421,14 @@ const CustomizationModal = ({
   }, [priceMatrix]);
 
   // Show minimum price indicator when no dimensions selected
-  const showMinPriceIndicator = config.width === 0 || config.height === 0;
+  const showMinPriceIndicator = usesHeightOnlyVerticalPricing
+    ? config.height === 0
+    : config.width === 0 || config.height === 0;
 
   const handleAddToCart = async () => {
     // Validate dimensions are selected
-    if (config.width === 0 || config.height === 0) {
-      alert('Please select width and height before adding to cart.');
+    if ((usesHeightOnlyVerticalPricing && config.height === 0) || (!usesHeightOnlyVerticalPricing && (config.width === 0 || config.height === 0))) {
+      alert(usesHeightOnlyVerticalPricing ? 'Please select height before adding to cart.' : 'Please select width and height before adding to cart.');
       return;
     }
 
@@ -291,7 +436,9 @@ const CustomizationModal = ({
 
     try {
       // Validate price with backend
-      const widthInches = getTotalInches(config.width, config.widthFraction, config.widthUnit);
+      const widthInches = isReplacementVerticalSlat
+        ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+        : getTotalInches(config.width, config.widthFraction, config.widthUnit);
       const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
 
       const validation = await validateCartPrice(
@@ -391,6 +538,7 @@ const CustomizationModal = ({
                       maxWidth={sizeRanges?.maxWidth}
                       minHeight={sizeRanges?.minHeight}
                       maxHeight={sizeRanges?.maxHeight}
+                      showWidth={!usesHeightOnlyVerticalPricing}
                     />
                   </div>
                 )}
@@ -484,7 +632,7 @@ const CustomizationModal = ({
                 )}
 
                 {/* Chain Color Selector */}
-                {product.features.hasChainColor && (
+                {product.features.hasChainColor && !isElectricalRoller && (
                   <div className="pt-6 relative z-10">
                     <ChainColorSelector
                       options={CHAIN_COLOR_OPTIONS}
@@ -543,13 +691,23 @@ const CustomizationModal = ({
                 )}
 
                 {/* Motorization Selector */}
-                {product.features.hasMotorization && (
+                {(product.features.hasMotorization || isElectricalRoller) && (
                   <div className="pt-6 relative z-[2]">
-                    <MotorizationSelector
-                      options={MOTORIZATION_OPTIONS}
-                      selectedOption={config.motorization}
-                      onOptionChange={(optionId) => setConfig({ ...config, motorization: optionId })}
-                    />
+                    {isElectricalRoller ? (
+                      <SimpleDropdown
+                        label="Remote Control"
+                        options={electricalRollerMotorizationOptions}
+                        selectedValue={config.motorization}
+                        onChange={(optionId) => setConfig({ ...config, motorization: optionId })}
+                        placeholder="Select remote option"
+                      />
+                    ) : (
+                      <MotorizationSelector
+                        options={MOTORIZATION_OPTIONS}
+                        selectedOption={config.motorization}
+                        onOptionChange={(optionId) => setConfig({ ...config, motorization: optionId })}
+                      />
+                    )}
                   </div>
                 )}
               </div>
@@ -568,13 +726,15 @@ const CustomizationModal = ({
               </span>
               <div className="text-xl md:text-2xl font-bold text-[#25344d]">
                 {showMinPriceIndicator
-                  ? formatPriceWithCurrency(formatPrice(product.price), product.currency)
+                  ? formatPriceWithCurrency(formatPrice(minimumDisplayedPrice), product.currency)
                   : formatPriceWithCurrency(formatPrice(totalPrice), product.currency)
                 }
               </div>
               {priceCalculation && !showMinPriceIndicator && (
                 <div className="text-xs text-gray-400">
-                  Size: {priceCalculation.widthBand?.inches}" × {priceCalculation.heightBand?.inches}"
+                  {usesHeightOnlyVerticalPricing
+                    ? `Height-only pricing: ${getTotalInches(config.height, config.heightFraction, config.heightUnit).toFixed(2)}"`
+                    : `Size: ${priceCalculation.widthBand?.inches}" × ${priceCalculation.heightBand?.inches}"`}
                 </div>
               )}
             </div>
@@ -596,4 +756,3 @@ const CustomizationModal = ({
 };
 
 export default CustomizationModal;
-

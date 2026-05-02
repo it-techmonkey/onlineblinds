@@ -120,6 +120,7 @@ import {
   fetchShopifyProductByHandleMerged,
   fetchShopifyCollectionsMapped,
 } from './shopify';
+import { isElectricalRollerProduct } from './electrical-roller';
 
 /**
  * Fetch all categories from Shopify collections.
@@ -162,23 +163,26 @@ export async function fetchProducts(params?: FetchProductsParams): Promise<ApiPr
       });
     }
 
-    // Apply pagination
+    // Apply pagination only when a limit is explicitly provided
     const page = params?.page || 1;
-    const limit = params?.limit || 20;
-    const startIndex = (page - 1) * limit;
-    const paginatedProducts = allProducts.slice(startIndex, startIndex + limit);
-    const totalPages = Math.ceil(allProducts.length / limit);
+    const limit = params?.limit;
+    const paginatedProducts = typeof limit === 'number'
+      ? allProducts.slice((page - 1) * limit, (page - 1) * limit + limit)
+      : allProducts;
+    const totalPages = typeof limit === 'number'
+      ? Math.ceil(allProducts.length / limit)
+      : 1;
 
     return {
       success: true,
       data: paginatedProducts,
       pagination: {
         page,
-        limit,
+        limit: limit ?? allProducts.length,
         total: allProducts.length,
         totalPages,
-        hasNextPage: page < totalPages,
-        hasPreviousPage: page > 1,
+        hasNextPage: typeof limit === 'number' ? page < totalPages : false,
+        hasPreviousPage: typeof limit === 'number' ? page > 1 : false,
       },
     };
   } catch (error: any) {
@@ -233,7 +237,7 @@ export async function fetchProductsByCategory(
   requiredCategories?: string[]
 ): Promise<ApiProduct[]> {
   try {
-    const response = await fetchProducts({ limit: 500 });
+    const response = await fetchProducts();
 
     return response.data.filter((product) => {
       // Must have the primary category
@@ -479,11 +483,19 @@ function isSystemCategory(name: string): boolean {
 }
 
 export function transformProduct(apiProduct: ApiProduct): Product {
+  const tagSlugs = apiProduct.tags.map(t => t.slug.toLowerCase());
+  const electricalRoller = isElectricalRollerProduct(tagSlugs);
   const userCategory = apiProduct.categories.find((c) => !isSystemCategory(c.name));
-  const categoryName = userCategory?.name || 'Blinds';
+  const categoryName = electricalRoller
+    ? 'Motorised Roller Shades'
+    : userCategory?.name || 'Blinds';
 
   // Get all category slugs for the product (products can have multiple categories)
   let categorySlugs = apiProduct.categories.map(c => c.slug);
+
+  if (electricalRoller && !categorySlugs.includes('roller-blinds')) {
+    categorySlugs = ['roller-blinds', ...categorySlugs];
+  }
 
   // EclipseCore / honeycomb blackout product: ensure we use eclipsecore-shades features so
   // "Measure your window" and "Customize your blind" show Size, Blind Color, Frame Color, Opening Direction
@@ -504,7 +516,6 @@ export function transformProduct(apiProduct: ApiProduct): Product {
 
   // Enable pet-friendly chain option for waterproof vertical blinds
   // 'waterproof-blackout-vertical-blinds' is a nav slug; backend products use category 'vertical-blinds' + 'waterproof' tag
-  const tagSlugs = apiProduct.tags.map(t => t.slug.toLowerCase());
   const hasPvcFabric = categorySlugs.some(s => s.toLowerCase() === 'vertical-blinds') &&
     tagSlugs.includes('waterproof');
   features.hasPvcFabric = hasPvcFabric;

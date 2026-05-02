@@ -4,12 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { formatPriceWithCurrency } from '@/lib/api';
+import { isElectricalRollerProduct } from '@/lib/electrical-roller';
 
 interface ProductCardProps {
   product: {
     id: string;
     name: string;
     slug: string;
+    tags?: string[];
     price: number;
     compareAtPrice?: number;
     currency?: string;
@@ -35,6 +37,8 @@ export default function ProductCard({
   const imageUrl = product.image || product.images?.[0] || '';
   const currency = product.currency || 'GBP';
   const motorizedParam = preselectedMotorization ? '&motorized=true' : '';
+  const showMotorizedRemote =
+    preselectedMotorization || isElectricalRollerProduct(product.tags || []);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -55,6 +59,17 @@ export default function ProductCard({
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
+        {showMotorizedRemote && (
+          <div className="pointer-events-none absolute bottom-0 right-0 z-10">
+            <Image
+              src="/motorized_remote.webp"
+              alt="Motorized remote"
+              width={88}
+              height={88}
+              className="h-auto w-[100px] md:w-[140px] object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.16)]"
+            />
+          </div>
+        )}
         {/* Best Seller badge */}
         {showBestSellerBadge && product.isBestSeller && (
           <div className="absolute top-3 left-3 bg-primary text-white text-[10px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded-full">

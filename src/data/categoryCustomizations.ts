@@ -31,6 +31,29 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
         hasRollerCassette: false,
     },
 
+    'replacement-vertical-blinds-slat': {
+        hasSize: true,
+        hasHeadrail: false,
+        hasHeadrailColour: false,
+        hasInstallationMethod: false,
+        hasControlOption: false,
+        hasStacking: false,
+        hasControlSide: false,
+        hasBottomChain: true,
+        hasBracketType: false,
+        hasChainColor: false,
+        hasWrappedCassette: false,
+        hasCassetteMatchingBar: false,
+        hasMotorization: false,
+        hasBlindColor: false,
+        hasFrameColor: false,
+        hasOpeningDirection: false,
+        hasBottomBar: false,
+        hasRollStyle: false,
+        hasPvcFabric: false,
+        hasRollerCassette: false,
+    },
+
     // Roller Blinds
     'roller-blinds': {
         hasSize: true,
@@ -303,6 +326,7 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
  */
 const PRIMARY_CATEGORIES = [
     'vertical-blinds',
+    'replacement-vertical-blinds-slat',
     'roller-blinds',
     'roman-blinds',
     'venetian-blinds',

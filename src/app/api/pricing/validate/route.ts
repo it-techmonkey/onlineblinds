@@ -11,6 +11,18 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    if (widthInches <= 0) {
+      return NextResponse.json(
+        { success: false, error: { message: 'widthInches must be a positive number' } },
+        { status: 400 }
+      );
+    }
+    if (heightInches <= 0) {
+      return NextResponse.json(
+        { success: false, error: { message: 'heightInches must be a positive number' } },
+        { status: 400 }
+      );
+    }
 
     const validation = await pricingService.validateCartPrice(
       { handle, widthInches, heightInches, customizations },

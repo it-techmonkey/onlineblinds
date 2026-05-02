@@ -76,6 +76,10 @@ interface StorefrontProductByHandleResponse {
 
 interface StorefrontCollectionsResponse {
   collections: {
+    pageInfo: {
+      hasNextPage: boolean;
+      endCursor: string | null;
+    };
     edges: Array<{
       node: {
         id: string;
@@ -174,8 +178,12 @@ const PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 const COLLECTIONS_QUERY = `
-  query Collections($first: Int!) {
-    collections(first: $first) {
+  query Collections($first: Int!, $after: String) {
+    collections(first: $first, after: $after) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
         node {
           id
@@ -395,13 +403,28 @@ export async function fetchShopifyCollections(): Promise<
     description: string | null;
   }>
 > {
-  const data =
-    await storefrontFetch<StorefrontCollectionsResponse>(
-      COLLECTIONS_QUERY,
-      { first: 50 }
-    );
+  const collections: Array<{
+    id: string;
+    handle: string;
+    title: string;
+    description: string | null;
+  }> = [];
+  let cursor: string | null = null;
+  let hasNextPage = true;
 
-  return data.collections.edges.map((edge) => edge.node);
+  while (hasNextPage) {
+    const data: StorefrontCollectionsResponse =
+      await storefrontFetch<StorefrontCollectionsResponse>(
+        COLLECTIONS_QUERY,
+        { first: 50, after: cursor }
+      );
+
+    collections.push(...data.collections.edges.map((edge: { node: StorefrontCollection }) => edge.node));
+    hasNextPage = data.collections.pageInfo.hasNextPage;
+    cursor = data.collections.pageInfo.endCursor;
+  }
+
+  return collections;
 }
 
 // ============================================

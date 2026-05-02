@@ -8,6 +8,7 @@ import { shopifyConfig, validateShopifyConfig } from './shopify-admin';
 export interface CachedProduct {
   priceBandName: string | null;
   title: string;
+  tags: string[];
 }
 
 const PRODUCTS_WITH_METAFIELD_QUERY = `
@@ -21,6 +22,7 @@ const PRODUCTS_WITH_METAFIELD_QUERY = `
         node {
           handle
           title
+          tags
           priceBandName: metafield(namespace: "custom", key: "price_band_name") {
             value
           }
@@ -73,6 +75,7 @@ async function fetchAllShopifyProducts(): Promise<Record<string, CachedProduct>>
       cache[node.handle] = {
         priceBandName: node.priceBandName?.value ?? null,
         title: node.title,
+        tags: node.tags ?? [],
       };
     }
 

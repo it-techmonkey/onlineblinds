@@ -6,6 +6,10 @@ import { Header, Footer } from '@/components';
 import { formatPriceWithCurrency, createCheckout } from '@/lib/api';
 import { getTotalInches } from '@/lib/pricing';
 import { CheckoutItemRequest } from '@/types';
+import {
+  isReplacementVerticalSlatProduct,
+  REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
+} from '@/lib/vertical-blinds';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -41,13 +45,16 @@ export default function CartPage() {
       // Convert cart items to checkout request format
       const checkoutItems: CheckoutItemRequest[] = cart.items.map((item) => {
         const config = item.configuration;
+        const isReplacementVerticalSlat = isReplacementVerticalSlatProduct(item.product.tags);
 
         // Convert to inches (handles cm/fractions)
-        const widthInches = getTotalInches(
-          config.width,
-          config.widthFraction,
-          config.widthUnit
-        );
+        const widthInches = isReplacementVerticalSlat
+          ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+          : getTotalInches(
+              config.width,
+              config.widthFraction,
+              config.widthUnit
+            );
         const heightInches = getTotalInches(
           config.height,
           config.heightFraction,
@@ -105,11 +112,15 @@ export default function CartPage() {
 
   const finalTotal = cart.total;
 
-  const formatConfiguration = (config: any) => {
+  const formatConfiguration = (config: any, productTags: string[]) => {
     const parts = [];
+    const usesHeightOnlyVerticalPricing = isReplacementVerticalSlatProduct(productTags);
 
     // Size (always show if available)
-    if (config.width && config.height) {
+    if (usesHeightOnlyVerticalPricing && config.height) {
+      const heightStr = `${config.height}${config.heightFraction !== '0' ? ` ${config.heightFraction}` : ''}`;
+      parts.push(`Height: ${heightStr}"`);
+    } else if (config.width && config.height) {
       const widthStr = `${config.width}${config.widthFraction !== '0' ? ` ${config.widthFraction}` : ''}`;
       const heightStr = `${config.height}${config.heightFraction !== '0' ? ` ${config.heightFraction}` : ''}`;
       parts.push(`Size: ${widthStr}" × ${heightStr}"`);
@@ -398,7 +409,7 @@ export default function CartPage() {
                           </div>
 
                           <div className="mb-4 space-y-1">
-                            {formatConfiguration(item.configuration).map((detail, idx) => (
+                            {formatConfiguration(item.configuration, item.product.tags).map((detail, idx) => (
                               <p key={idx} className="text-[12px] text-muted md:text-[13px]">
                                 {detail}
                               </p>
@@ -579,4 +590,3 @@ export default function CartPage() {
     </div>
   );
 }
-

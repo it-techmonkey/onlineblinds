@@ -14,7 +14,7 @@ export default async function CollectionsPage() {
   let filterOptions: { colors: string[]; patterns: string[] } = { colors: [], patterns: [] };
   
   try {
-    const response = await fetchProducts({ limit: 500 });
+    const response = await fetchProducts();
     const apiProducts = response.data;
     products = apiProducts.map(transformProduct);
     filterOptions = extractFilterOptions(apiProducts);
@@ -49,4 +49,3 @@ export default async function CollectionsPage() {
     </div>
   );
 }
-

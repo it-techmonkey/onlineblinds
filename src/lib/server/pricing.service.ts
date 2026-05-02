@@ -1,6 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { prisma } from './database';
-import { getPriceBandNameByHandle, getAllCachedProducts } from './product-cache';
+import { getAllCachedProducts } from './product-cache';
+import {
+  calculateReplacementVerticalSlatPrice,
+  inferVerticalPriceBandNameFromTags,
+  isHeightOnlyVerticalProduct,
+} from '@/lib/vertical-blinds';
+import {
+  getMinimumPriceWithElectricalRollerUplift,
+  getMotorizationBasePrice,
+} from '@/lib/electrical-roller';
 
 // ============================================
 // Types
@@ -87,7 +96,12 @@ async function findCeilingHeightBand(heightInches: number, priceBandId: string) 
 }
 
 async function resolvePriceBand(handle: string) {
-  const priceBandName = await getPriceBandNameByHandle(handle);
+  const cachedProducts = await getAllCachedProducts();
+  const cachedProduct = cachedProducts[handle];
+  const priceBandName =
+    cachedProduct?.priceBandName ??
+    inferVerticalPriceBandNameFromTags(cachedProduct?.tags ?? []);
+
   if (!priceBandName) {
     throw new Error(`Product "${handle}" not found or has no price band assigned`);
   }
@@ -108,6 +122,75 @@ async function resolvePriceBand(handle: string) {
 // ============================================
 
 export async function calculateProductPrice(request: PricingRequest): Promise<PricingResponse> {
+  const cachedProducts = await getAllCachedProducts();
+  const cachedProduct = cachedProducts[request.handle];
+
+  if (!cachedProduct) {
+    throw new Error(`Product "${request.handle}" not found or has no price band assigned`);
+  }
+
+  if (isHeightOnlyVerticalProduct(cachedProduct.tags)) {
+    const dimensionPrice = calculateReplacementVerticalSlatPrice(request.heightInches, cachedProduct.tags);
+    if (dimensionPrice == null) {
+      throw new Error(`Unable to determine replacement vertical slat pricing for "${request.handle}"`);
+    }
+
+    const customizationPrices: PricingResponse['customizationPrices'] = [];
+
+    if (request.customizations && request.customizations.length > 0) {
+      for (const customization of request.customizations) {
+        const option = await prisma.customizationOption.findUnique({
+          where: {
+            category_optionId: {
+              category: customization.category,
+              optionId: customization.optionId,
+            },
+          },
+          include: {
+            pricingEntries: {
+              where: { widthBandId: null },
+            },
+          },
+        }) ?? await prisma.customizationOption.findUnique({
+          where: {
+            category_optionId: {
+              category: customization.category === 'cassette-bar' ? 'roller-cassette' : customization.category,
+              optionId: customization.optionId,
+            },
+          },
+          include: {
+            pricingEntries: {
+              where: { widthBandId: null },
+            },
+          },
+        });
+
+        if (option && option.pricingEntries.length > 0) {
+          const pricing = option.pricingEntries.find((p: { widthBandId: string | null; price: unknown }) => p.widthBandId === null);
+
+          if (pricing) {
+            customizationPrices.push({
+              category: option.category,
+              optionId: option.optionId,
+              name: option.name,
+              price: Number(pricing.price),
+            });
+          }
+        }
+      }
+    }
+
+    const customizationTotal = customizationPrices.reduce((sum, c) => sum + c.price, 0);
+
+    return {
+      dimensionPrice,
+      customizationPrices,
+      totalPrice: dimensionPrice + customizationTotal,
+      widthBand: { mm: 0, inches: 0 },
+      heightBand: { mm: Math.round(request.heightInches * 25.4), inches: Math.ceil(request.heightInches) },
+    };
+  }
+
   const priceBand = await resolvePriceBand(request.handle);
 
   const widthBand = await findCeilingWidthBand(request.widthInches, priceBand.id);
@@ -190,8 +273,10 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   }
 
   const customizationTotal = customizationPrices.reduce((sum, c) => sum + c.price, 0);
-  const hasMotorization = request.customizations?.some(c => c.category === 'motorization');
-  const motorizationBasePrice = hasMotorization ? 95 : 0;
+  const motorizationBasePrice = getMotorizationBasePrice(
+    cachedProduct.tags,
+    request.customizations ?? []
+  );
   const totalPrice = dimensionPrice + customizationTotal + motorizationBasePrice;
 
   return {
@@ -279,7 +364,12 @@ export async function getHeightBands() {
 }
 
 export async function resolveHandleToPriceBand(handle: string) {
-  const priceBandName = await getPriceBandNameByHandle(handle);
+  const cachedProducts = await getAllCachedProducts();
+  const cachedProduct = cachedProducts[handle];
+  const priceBandName =
+    cachedProduct?.priceBandName ??
+    inferVerticalPriceBandNameFromTags(cachedProduct?.tags ?? []);
+
   if (!priceBandName) return null;
 
   return prisma.priceBand.findUnique({ where: { name: priceBandName } });
@@ -344,7 +434,12 @@ export async function getMinimumPricesByHandle(): Promise<Record<string, number>
   const bandNames = new Set<string>();
   for (const handle of Object.keys(allProducts)) {
     const product = allProducts[handle];
-    if (product.priceBandName) bandNames.add(product.priceBandName);
+    const priceBandName =
+      product.priceBandName ??
+      inferVerticalPriceBandNameFromTags(product.tags);
+    if (priceBandName) {
+      bandNames.add(priceBandName);
+    }
   }
 
   const priceBands = await prisma.priceBand.findMany({
@@ -356,12 +451,18 @@ export async function getMinimumPricesByHandle(): Promise<Record<string, number>
 
   for (const handle of Object.keys(allProducts)) {
     const product = allProducts[handle];
-    if (!product.priceBandName) continue;
-    const bandId = bandNameToId.get(product.priceBandName);
+    const priceBandName =
+      product.priceBandName ??
+      inferVerticalPriceBandNameFromTags(product.tags);
+    if (!priceBandName) continue;
+    const bandId = bandNameToId.get(priceBandName);
     if (bandId) {
       const price = minPrices.get(bandId);
       if (price !== undefined) {
-        result[handle] = price;
+        result[handle] = getMinimumPriceWithElectricalRollerUplift(
+          price,
+          product.tags
+        );
       }
     }
   }
