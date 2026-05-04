@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { PortalDropdownMenu } from './PortalDropdownMenu';
-import { PortalImageModal } from './PortalImageModal';
+import PortalHoverImagePreview from './PortalHoverImagePreview';
 
 interface BracketTypeOption {
     id: string;
@@ -21,7 +21,7 @@ interface BracketTypeSelectorProps {
 
 const BracketTypeSelector = ({ options, selectedBracket, onBracketChange }: BracketTypeSelectorProps) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [imagePreview, setImagePreview] = useState<{ name: string; image: string } | null>(null);
+    const [hoveredPreview, setHoveredPreview] = useState<{ name: string; image: string; anchorRect: { top: number; left: number; right: number; bottom: number; width: number; height: number } } | null>(null);
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -111,20 +111,14 @@ const BracketTypeSelector = ({ options, selectedBracket, onBracketChange }: Brac
                         className={`w-full px-4 py-3 text-left hover:bg-[#e7eef8] flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${
                             selectedBracket === option.id ? 'bg-[#eef2f8]' : ''
                         }`}
+                        onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
+                        onMouseLeave={() => setHoveredPreview(null)}
                     >
-                        {/* Thumbnail Image */}
                         {option.image && (
-                            <button
-                                type="button"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setIsOpen(false);
-                                    setImagePreview({ name: option.name, image: option.image! });
-                                }}
-                                className="w-10 h-10 bg-[#d9dfeb] rounded-md overflow-hidden border border-[#d9dfeb] hover:border-[#b8c7df] transition-colors cursor-pointer"
+                            <div
+                                className="w-10 h-10 bg-[#d9dfeb] rounded-md overflow-hidden border border-[#d9dfeb]"
                                 style={{ flexShrink: 0 }}
-                                title={`View ${option.name}`}
-                                aria-label={`View image for ${option.name}`}
+                                aria-hidden="true"
                             >
                                 <Image
                                     src={option.image}
@@ -133,7 +127,7 @@ const BracketTypeSelector = ({ options, selectedBracket, onBracketChange }: Brac
                                     height={40}
                                     className="object-cover w-full h-full"
                                 />
-                            </button>
+                            </div>
                         )}
 
                         <button
@@ -157,43 +151,13 @@ const BracketTypeSelector = ({ options, selectedBracket, onBracketChange }: Brac
                                 +£{option.price.toFixed(2)}
                             </span>
                         )}
+
                     </div>
                 ))}
             </PortalDropdownMenu>
-
-            {/* Portal Image Preview Modal */}
-            <PortalImageModal isOpen={!!imagePreview} onClose={() => setImagePreview(null)}>
-                {imagePreview && (
-                    <div className="bg-white rounded-xl shadow-2xl border border-[#d9dfeb] overflow-hidden flex flex-col">
-                        <div className="relative bg-[#e7eef8] flex items-center justify-center p-4" style={{ width: 280, maxWidth: '100%', aspectRatio: '4 / 3' }}>
-                            <Image
-                                src={imagePreview.image}
-                                alt={imagePreview.name}
-                                width={320}
-                                height={240}
-                                className="object-contain max-w-full max-h-full"
-                                priority
-                            />
-                        </div>
-                        <p className="text-center text-sm font-medium text-[#1f2a44] px-4 py-3 border-t border-[#e3e8f1]">
-                            {imagePreview.name}
-                        </p>
-                        <button
-                            type="button"
-                            onClick={() => setImagePreview(null)}
-                            className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 hover:bg-white border border-[#d9dfeb] flex items-center justify-center text-[#596783] hover:text-[#1f2a44] shadow-sm transition-colors"
-                            aria-label="Close image preview"
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                )}
-            </PortalImageModal>
+            <PortalHoverImagePreview preview={hoveredPreview} />
         </div>
     );
 };
 
 export default BracketTypeSelector;
-

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import PortalHoverImagePreview from './PortalHoverImagePreview';
 
 interface DropdownOption {
   id: string;
@@ -26,7 +27,6 @@ const DropdownPortal = ({
   selectedValue,
   onChange,
   onClose,
-  onImagePreview,
 }: {
   isOpen: boolean;
   menuPosition: { top: number; left: number; width: number };
@@ -34,9 +34,14 @@ const DropdownPortal = ({
   selectedValue: string | null;
   onChange: (value: string) => void;
   onClose: () => void;
-  onImagePreview: (name: string, image: string) => void;
 }) => {
+  const [hoveredPreview, setHoveredPreview] = useState<{ name: string; image: string; anchorRect: { top: number; left: number; right: number; bottom: number; width: number; height: number } } | null>(null);
   if (!isOpen) return null;
+
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : menuPosition.width;
+  const desiredWidth = Math.max(menuPosition.width, 340);
+  const width = Math.min(desiredWidth, Math.max(280, viewportWidth - 24));
+  const left = Math.max(12, Math.min(menuPosition.left, viewportWidth - width - 12));
 
   return createPortal(
     <>
@@ -46,10 +51,11 @@ const DropdownPortal = ({
         style={{
           zIndex: 9999,
           top: `${menuPosition.top}px`,
-          left: `${menuPosition.left}px`,
-          width: `${menuPosition.width}px`,
+          left: `${left}px`,
+          width: `${width}px`,
           maxHeight: '320px',
           overflowY: 'auto',
+          overflowX: 'visible',
         }}
         role="listbox"
       >
@@ -57,21 +63,16 @@ const DropdownPortal = ({
           <div
             key={option.id}
             className={`px-4 py-3 text-left hover:bg-[#e7eef8] flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedValue === option.id ? 'bg-[#eef2f8]' : ''}`}
+            onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
+            onMouseLeave={() => setHoveredPreview(null)}
           >
             {option.image && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onImagePreview(option.name, option.image!);
-                  onClose();
-                }}
-                className="w-10 h-10 rounded-md overflow-hidden shrink-0 border border-[#d9dfeb] bg-[#e7eef8] hover:border-[#b8c7df] transition-colors cursor-pointer"
-                title={`View ${option.name}`}
-                aria-label={`View image for ${option.name}`}
+              <div
+                className="w-10 h-10 rounded-md overflow-hidden shrink-0 border border-[#d9dfeb] bg-[#e7eef8] transition-colors"
+                aria-hidden="true"
               >
                 <Image src={option.image} alt={option.name} width={40} height={40} className="object-cover w-full h-full" />
-              </button>
+              </div>
             )}
 
             <button
@@ -82,7 +83,7 @@ const DropdownPortal = ({
               }}
               className="grow min-w-0 flex items-center gap-3 text-left"
             >
-              <p className={`text-sm font-medium ${selectedValue === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
+              <p className={`min-w-0 break-words text-sm font-medium ${selectedValue === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
                 {option.name}
               </p>
             </button>
@@ -102,53 +103,11 @@ const DropdownPortal = ({
                 </div>
               </div>
             )}
+
           </div>
         ))}
       </div>
-    </>,
-    document.body
-  );
-};
-
-const ImagePreviewPortal = ({
-  imagePreview,
-  onClose,
-}: {
-  imagePreview: { name: string; image: string } | null;
-  onClose: () => void;
-}) => {
-  if (!imagePreview) return null;
-
-  return createPortal(
-    <>
-      <div className="fixed inset-0 bg-black/50" style={{ zIndex: 10000 }} onClick={onClose} aria-hidden="true" />
-      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: 10001 }}>
-        <div className="bg-white rounded-xl shadow-2xl border border-[#d9dfeb] overflow-hidden flex flex-col relative">
-          <div className="relative w-70 sm:w-80 aspect-4/3 bg-[#e7eef8] flex items-center justify-center p-4">
-            <Image
-              src={imagePreview.image}
-              alt={imagePreview.name}
-              width={320}
-              height={240}
-              className="object-contain max-w-full max-h-full"
-              priority
-            />
-          </div>
-          <p className="text-center text-sm font-medium text-[#1f2a44] px-4 py-3 border-t border-[#e3e8f1]">
-            {imagePreview.name}
-          </p>
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 hover:bg-white border border-[#d9dfeb] flex items-center justify-center text-[#596783] hover:text-[#1f2a44] shadow-sm transition-colors"
-            aria-label="Close image preview"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
+      <PortalHoverImagePreview preview={hoveredPreview} />
     </>,
     document.body
   );
@@ -157,7 +116,6 @@ const ImagePreviewPortal = ({
 const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder = 'Select' }: SimpleDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
-  const [imagePreview, setImagePreview] = useState<{ name: string; image: string } | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -226,13 +184,9 @@ const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder =
         selectedValue={selectedValue}
         onChange={onChange}
         onClose={() => setIsOpen(false)}
-        onImagePreview={(name, image) => setImagePreview({ name, image })}
       />
-
-      <ImagePreviewPortal imagePreview={imagePreview} onClose={() => setImagePreview(null)} />
     </div>
   );
 };
 
 export default SimpleDropdown;
-

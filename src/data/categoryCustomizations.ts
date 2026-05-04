@@ -54,6 +54,29 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
         hasRollerCassette: false,
     },
 
+    'easy-stick-blinds': {
+        hasSize: true,
+        hasHeadrail: false,
+        hasHeadrailColour: false,
+        hasInstallationMethod: true,
+        hasControlOption: true,
+        hasStacking: false,
+        hasControlSide: true,
+        hasBottomChain: false,
+        hasBracketType: false,
+        hasChainColor: false,
+        hasWrappedCassette: false,
+        hasCassetteMatchingBar: false,
+        hasMotorization: false,
+        hasBlindColor: false,
+        hasFrameColor: true,
+        hasOpeningDirection: false,
+        hasBottomBar: false,
+        hasRollStyle: false,
+        hasPvcFabric: false,
+        hasRollerCassette: false,
+    },
+
     // Roller Blinds
     'roller-blinds': {
         hasSize: true,
@@ -80,16 +103,16 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
 
     // Roman Blinds
     'roman-blinds': {
-        hasSize: false,
+        hasSize: true,
         hasHeadrail: false,
         hasHeadrailColour: false,
-        hasInstallationMethod: false,
-        hasControlOption: false,
+        hasInstallationMethod: true,
+        hasControlOption: true,
         hasStacking: false,
         hasControlSide: false,
         hasBottomChain: false,
         hasBracketType: false,
-        hasChainColor: false,
+        hasChainColor: true,
         hasWrappedCassette: false,
         hasCassetteMatchingBar: false,
         hasMotorization: false,
@@ -104,10 +127,10 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
 
     // Venetian Blinds
     'venetian-blinds': {
-        hasSize: false,
+        hasSize: true,
         hasHeadrail: false,
         hasHeadrailColour: false,
-        hasInstallationMethod: false,
+        hasInstallationMethod: true,
         hasControlOption: false,
         hasStacking: false,
         hasControlSide: false,
@@ -176,7 +199,99 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
         hasRollerCassette: false,
     },
 
-    // Wooden Blinds (similar to venetian)
+    'faux-wooden-blinds': {
+        hasSize: true,
+        hasHeadrail: false,
+        hasHeadrailColour: false,
+        hasInstallationMethod: true,
+        hasControlOption: true,
+        hasStacking: false,
+        hasControlSide: false,
+        hasBottomChain: false,
+        hasBracketType: false,
+        hasChainColor: false,
+        hasWrappedCassette: false,
+        hasCassetteMatchingBar: false,
+        hasMotorization: false,
+        hasBlindColor: false,
+        hasFrameColor: false,
+        hasOpeningDirection: false,
+        hasBottomBar: false,
+        hasRollStyle: false,
+        hasPvcFabric: false,
+        hasRollerCassette: false,
+    },
+
+    'perfect-fit-wooden': {
+        hasSize: true,
+        hasHeadrail: false,
+        hasHeadrailColour: false,
+        hasInstallationMethod: true,
+        hasControlOption: false,
+        hasStacking: false,
+        hasControlSide: true,
+        hasBottomChain: false,
+        hasBracketType: true,
+        hasChainColor: false,
+        hasWrappedCassette: false,
+        hasCassetteMatchingBar: false,
+        hasMotorization: false,
+        hasBlindColor: false,
+        hasFrameColor: true,
+        hasOpeningDirection: false,
+        hasBottomBar: false,
+        hasRollStyle: false,
+        hasPvcFabric: false,
+        hasRollerCassette: false,
+    },
+
+    'perfect-fit-metal': {
+        hasSize: true,
+        hasHeadrail: false,
+        hasHeadrailColour: false,
+        hasInstallationMethod: true,
+        hasControlOption: false,
+        hasStacking: false,
+        hasControlSide: true,
+        hasBottomChain: false,
+        hasBracketType: true,
+        hasChainColor: false,
+        hasWrappedCassette: false,
+        hasCassetteMatchingBar: false,
+        hasMotorization: false,
+        hasBlindColor: false,
+        hasFrameColor: true,
+        hasOpeningDirection: false,
+        hasBottomBar: false,
+        hasRollStyle: false,
+        hasPvcFabric: false,
+        hasRollerCassette: false,
+    },
+
+    'perfect-fit-shutter': {
+        hasSize: true,
+        hasHeadrail: false,
+        hasHeadrailColour: false,
+        hasInstallationMethod: true,
+        hasControlOption: true,
+        hasStacking: false,
+        hasControlSide: false,
+        hasBottomChain: false,
+        hasBracketType: true,
+        hasChainColor: false,
+        hasWrappedCassette: false,
+        hasCassetteMatchingBar: false,
+        hasMotorization: false,
+        hasBlindColor: false,
+        hasFrameColor: false,
+        hasOpeningDirection: false,
+        hasBottomBar: false,
+        hasRollStyle: false,
+        hasPvcFabric: false,
+        hasRollerCassette: false,
+    },
+
+    // Wooden Blinds (reserved for future real wood category)
     'wooden-blinds': {
         hasSize: false,
         hasHeadrail: false,
@@ -202,11 +317,11 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
 
     // No Drill Blinds (similar to roller)
     'no-drill-blinds': {
-        hasSize: false,
+        hasSize: true,
         hasHeadrail: false,
         hasHeadrailColour: false,
-        hasInstallationMethod: false,
-        hasControlOption: false,
+        hasInstallationMethod: true,
+        hasControlOption: true,
         hasStacking: false,
         hasControlSide: false,
         hasBottomChain: false,
@@ -327,11 +442,17 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
 const PRIMARY_CATEGORIES = [
     'vertical-blinds',
     'replacement-vertical-blinds-slat',
+    'easy-stick-blinds',
+    'no-drill-blinds',
     'roller-blinds',
     'roman-blinds',
     'venetian-blinds',
     'day-and-night-blinds',
     'pleated-blinds',
+    'faux-wooden-blinds',
+    'perfect-fit-wooden',
+    'perfect-fit-metal',
+    'perfect-fit-shutter',
     'wooden-blinds',
     'skylight-blinds',
     'eclipsecore-shades',
@@ -371,7 +492,9 @@ export function getCategoryCustomizations(
     const mappedSlugs = normalizedSlugs.map(slug => slugMapping[slug] || slug);
 
     // Find primary category (core product type)
-    const primaryCategory = mappedSlugs.find(slug => PRIMARY_CATEGORIES.includes(slug));
+    const primaryCategory = mappedSlugs.includes('no-drill-blinds')
+        ? 'no-drill-blinds'
+        : mappedSlugs.find(slug => PRIMARY_CATEGORIES.includes(slug));
 
     // Get base features from primary category
     let features: ProductFeatures;

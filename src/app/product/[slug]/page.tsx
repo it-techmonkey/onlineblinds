@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import { Product } from '@/types';
+import { PriceBandMatrix, Product } from '@/types';
 import { ProductPage, CustomerReviewsSection, ProductFeatureSection, ProductComparisonSection, HowItWorksSection, ProductRechargeSection, ProductWarrantySection, ProductComparisonTableSection } from '@/components/product';
 import { Header, FAQ, Footer, } from '@/components';
-import { fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
+import { fetchPriceMatrix, fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
+import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 
 interface ProductPageProps {
   params: Promise<{
@@ -62,6 +63,21 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
   }
 
   const product = transformProduct(productData);
+  let initialPriceMatrix: PriceBandMatrix | null = null;
+
+  if (!isReplacementVerticalSlatProduct(product.tags)) {
+    try {
+      const matrix = await fetchPriceMatrix(product.slug);
+      initialPriceMatrix =
+        matrix.widthBands.length > 0 && matrix.heightBands.length > 0
+          ? matrix
+          : null;
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error fetching product price matrix:', error);
+      }
+    }
+  }
 
   let relatedProducts: Product[] = [];
   try {
@@ -115,6 +131,7 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
           <ProductPage
             product={product}
             relatedProducts={relatedProducts}
+            initialPriceMatrix={initialPriceMatrix}
           />
         </Suspense>
         {slug !== 'non-driii-honeycomb-blackout-blinds' && (

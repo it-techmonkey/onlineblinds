@@ -120,7 +120,10 @@ import {
   fetchShopifyProductByHandleMerged,
   fetchShopifyCollectionsMapped,
 } from './shopify';
-import { isElectricalRollerProduct } from './electrical-roller';
+import {
+  isElectricalDayNightProduct,
+  isElectricalRollerProduct,
+} from './electrical-roller';
 
 /**
  * Fetch all categories from Shopify collections.
@@ -485,9 +488,12 @@ function isSystemCategory(name: string): boolean {
 export function transformProduct(apiProduct: ApiProduct): Product {
   const tagSlugs = apiProduct.tags.map(t => t.slug.toLowerCase());
   const electricalRoller = isElectricalRollerProduct(tagSlugs);
+  const electricalDayNight = isElectricalDayNightProduct(tagSlugs);
   const userCategory = apiProduct.categories.find((c) => !isSystemCategory(c.name));
   const categoryName = electricalRoller
     ? 'Motorised Roller Shades'
+    : electricalDayNight
+      ? 'Motorised Dual Zebra Shades'
     : userCategory?.name || 'Blinds';
 
   // Get all category slugs for the product (products can have multiple categories)
@@ -495,6 +501,9 @@ export function transformProduct(apiProduct: ApiProduct): Product {
 
   if (electricalRoller && !categorySlugs.includes('roller-blinds')) {
     categorySlugs = ['roller-blinds', ...categorySlugs];
+  }
+  if (electricalDayNight && !categorySlugs.includes('day-and-night-blinds')) {
+    categorySlugs = ['day-and-night-blinds', ...categorySlugs];
   }
 
   // EclipseCore / honeycomb blackout product: ensure we use eclipsecore-shades features so

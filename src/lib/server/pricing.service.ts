@@ -7,7 +7,7 @@ import {
   isHeightOnlyVerticalProduct,
 } from '@/lib/vertical-blinds';
 import {
-  getMinimumPriceWithElectricalRollerUplift,
+  getMinimumPriceWithMotorizedUplift,
   getMotorizationBasePrice,
 } from '@/lib/electrical-roller';
 
@@ -58,6 +58,25 @@ export interface CustomizationPricingData {
 // ============================================
 
 async function findCeilingWidthBand(widthInches: number, priceBandId: string) {
+  const [minWidthBand, maxWidthBand] = await Promise.all([
+    prisma.widthBand.findFirst({
+      where: { priceCells: { some: { priceBandId } } },
+      orderBy: { widthInches: 'asc' },
+    }),
+    prisma.widthBand.findFirst({
+      where: { priceCells: { some: { priceBandId } } },
+      orderBy: { widthInches: 'desc' },
+    }),
+  ]);
+
+  if (!minWidthBand || !maxWidthBand) {
+    return null;
+  }
+
+  if (widthInches < minWidthBand.widthInches || widthInches > maxWidthBand.widthInches) {
+    return null;
+  }
+
   const widthBand = await prisma.widthBand.findFirst({
     where: {
       widthInches: { gte: Math.ceil(widthInches) },
@@ -66,17 +85,29 @@ async function findCeilingWidthBand(widthInches: number, priceBandId: string) {
     orderBy: { widthInches: 'asc' },
   });
 
-  if (!widthBand) {
-    return prisma.widthBand.findFirst({
-      where: { priceCells: { some: { priceBandId } } },
-      orderBy: { widthInches: 'desc' },
-    });
-  }
-
   return widthBand;
 }
 
 async function findCeilingHeightBand(heightInches: number, priceBandId: string) {
+  const [minHeightBand, maxHeightBand] = await Promise.all([
+    prisma.heightBand.findFirst({
+      where: { priceCells: { some: { priceBandId } } },
+      orderBy: { heightInches: 'asc' },
+    }),
+    prisma.heightBand.findFirst({
+      where: { priceCells: { some: { priceBandId } } },
+      orderBy: { heightInches: 'desc' },
+    }),
+  ]);
+
+  if (!minHeightBand || !maxHeightBand) {
+    return null;
+  }
+
+  if (heightInches < minHeightBand.heightInches || heightInches > maxHeightBand.heightInches) {
+    return null;
+  }
+
   const heightBand = await prisma.heightBand.findFirst({
     where: {
       heightInches: { gte: Math.ceil(heightInches) },
@@ -84,13 +115,6 @@ async function findCeilingHeightBand(heightInches: number, priceBandId: string) 
     },
     orderBy: { heightInches: 'asc' },
   });
-
-  if (!heightBand) {
-    return prisma.heightBand.findFirst({
-      where: { priceCells: { some: { priceBandId } } },
-      orderBy: { heightInches: 'desc' },
-    });
-  }
 
   return heightBand;
 }
@@ -197,7 +221,7 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   const heightBand = await findCeilingHeightBand(request.heightInches, priceBand.id);
 
   if (!widthBand || !heightBand) {
-    throw new Error('Unable to find appropriate size bands');
+    throw new Error('Selected measurements are outside the allowed range for this product');
   }
 
   const priceCell = await prisma.priceCell.findUnique({
@@ -459,7 +483,7 @@ export async function getMinimumPricesByHandle(): Promise<Record<string, number>
     if (bandId) {
       const price = minPrices.get(bandId);
       if (price !== undefined) {
-        result[handle] = getMinimumPriceWithElectricalRollerUplift(
+        result[handle] = getMinimumPriceWithMotorizedUplift(
           price,
           product.tags
         );

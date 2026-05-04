@@ -20,10 +20,15 @@ const slugToImageMap: Record<string, string> = {
   'motorised-roller-shades': '/collections/hero-mot-roller.png',
   'motorised-dual-zebra-shades': '/collections/hero-mot-zebra.png',
   'motorised-eclipsecore': '/collections/hero-eclipsecore.png',
+  'motorised-blinds': '/collections/hero-mot-roller.png',
   'blackout-roller-shades-category': '/collections/hero-bo-roller.png',
   'blackout-dual-zebra-shades': '/collections/hero-bo-zebra.png',
   'blackout-vertical-blinds-category': '/collections/hero-bo-vertical.png',
   'eclipsecore-shades': '/collections/hero-eclipsecore.png',
+  'blackout-blinds': '/collections/hero-bo-roller.png',
+  'light-filtering-blinds': '/collections/hero-lf-roller.png',
+  'waterproof-blinds': '/collections/hero-wp-roller.png',
+  'perfect-fit-blinds': '/collections/hero-eclipsecore.png',
   'shop-by-feature': '/collections/hero-feature.png',
   'shop-by-room': '/collections/hero-room.png',
 
@@ -33,7 +38,11 @@ const slugToImageMap: Record<string, string> = {
   'day-and-night-blinds': '/collections/hero-daynight.png',
   'pleated-blinds': '/collections/hero-eclipsecore.png',
   'venetian-blinds': '/collections/hero-venetian.png',
+  'metal-venetian-blind': '/collections/hero-venetian.png',
   'roman-blinds': '/collections/hero-roman.png',
+  'perfect-fit-metal': '/collections/hero-venetian.png',
+  'perfect-fit-wooden': '/collections/hero-all.png',
+  'perfect-fit-shutter': '/collections/hero-all.png',
 };
 
 const getHeroImage = (title: string, slug?: string): string => {

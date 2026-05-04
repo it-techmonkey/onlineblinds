@@ -33,14 +33,18 @@ export interface CustomizationPriceResult {
 export function findCeilingWidthBand(widthInches: number, widthBands: WidthBand[]): WidthBand | null {
   // Sort bands by inches ascending
   const sortedBands = [...widthBands].sort((a, b) => a.inches - b.inches);
+  if (sortedBands.length === 0) {
+    return null;
+  }
+
+  const minBand = sortedBands[0];
+  const maxBand = sortedBands[sortedBands.length - 1];
+  if (widthInches < minBand.inches || widthInches > maxBand.inches) {
+    return null;
+  }
 
   // Find the smallest band >= requested width
   const ceilingBand = sortedBands.find(band => band.inches >= Math.ceil(widthInches));
-
-  // If no band found, return the largest band
-  if (!ceilingBand && sortedBands.length > 0) {
-    return sortedBands[sortedBands.length - 1];
-  }
 
   return ceilingBand || null;
 }
@@ -52,14 +56,18 @@ export function findCeilingWidthBand(widthInches: number, widthBands: WidthBand[
 export function findCeilingHeightBand(heightInches: number, heightBands: HeightBand[]): HeightBand | null {
   // Sort bands by inches ascending
   const sortedBands = [...heightBands].sort((a, b) => a.inches - b.inches);
+  if (sortedBands.length === 0) {
+    return null;
+  }
+
+  const minBand = sortedBands[0];
+  const maxBand = sortedBands[sortedBands.length - 1];
+  if (heightInches < minBand.inches || heightInches > maxBand.inches) {
+    return null;
+  }
 
   // Find the smallest band >= requested height
   const ceilingBand = sortedBands.find(band => band.inches >= Math.ceil(heightInches));
-
-  // If no band found, return the largest band
-  if (!ceilingBand && sortedBands.length > 0) {
-    return sortedBands[sortedBands.length - 1];
-  }
 
   return ceilingBand || null;
 }
@@ -244,17 +252,23 @@ export function configToCustomizations(config: {
   headrailColour?: string | null;
   installationMethod?: string | null;
   controlOption?: string | null;
+  liningType?: string | null;
   stacking?: string | null;
   controlSide?: string | null;
   bottomChain?: string | null;
   bracketType?: string | null;
   chainColor?: string | null;
+  chainColorCategory?: string;
+  frameColorCategory?: string;
   wrappedCassette?: string | null;
   cassetteMatchingBar?: string | null;
   isRollerCassette?: boolean;
   motorization?: string | null;
+  brand?: string | null;
+  blindType?: string | null;
   blindColor?: string | null;
   frameColor?: string | null;
+  numberOfPanels?: string | null;
   openingDirection?: string | null;
   bottomBar?: string | null;
   rollStyle?: string | null;
@@ -273,6 +287,9 @@ export function configToCustomizations(config: {
   if (config.controlOption) {
     customizations.push({ category: 'control-option', optionId: config.controlOption });
   }
+  if (config.liningType) {
+    customizations.push({ category: 'lining-type', optionId: config.liningType });
+  }
   if (config.stacking) {
     customizations.push({ category: 'stacking', optionId: config.stacking });
   }
@@ -286,7 +303,7 @@ export function configToCustomizations(config: {
     customizations.push({ category: 'bracket-type', optionId: config.bracketType });
   }
   if (config.chainColor) {
-    customizations.push({ category: 'chain-color', optionId: config.chainColor });
+    customizations.push({ category: config.chainColorCategory ?? 'chain-color', optionId: config.chainColor });
   }
   if (config.wrappedCassette) {
     customizations.push({ category: 'wrapped-cassette', optionId: config.wrappedCassette });
@@ -298,11 +315,20 @@ export function configToCustomizations(config: {
   if (config.motorization && config.motorization !== 'none') {
     customizations.push({ category: 'motorization', optionId: config.motorization });
   }
+  if (config.brand) {
+    customizations.push({ category: 'skylight-brand', optionId: config.brand });
+  }
+  if (config.blindType) {
+    customizations.push({ category: 'skylight-blind-type', optionId: config.blindType });
+  }
   if (config.blindColor) {
     customizations.push({ category: 'blind-color', optionId: config.blindColor });
   }
   if (config.frameColor) {
-    customizations.push({ category: 'frame-color', optionId: config.frameColor });
+    customizations.push({ category: config.frameColorCategory ?? 'frame-color', optionId: config.frameColor });
+  }
+  if (config.numberOfPanels) {
+    customizations.push({ category: 'number-of-panels', optionId: config.numberOfPanels });
   }
   if (config.openingDirection) {
     customizations.push({ category: 'opening-direction', optionId: config.openingDirection });

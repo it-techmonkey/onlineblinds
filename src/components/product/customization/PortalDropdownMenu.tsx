@@ -22,20 +22,26 @@ export const PortalDropdownMenu = ({
 }: PortalDropdownMenuProps): ReactNode => {
   if (!isOpen) return null;
 
+  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : menuPosition.width;
+  const desiredWidth = Math.max(menuPosition.width, 340);
+  const width = Math.min(desiredWidth, Math.max(280, viewportWidth - 24));
+  const left = Math.max(12, Math.min(menuPosition.left, viewportWidth - width - 12));
+
   return createPortal(
     <>
       {/* Backdrop to close on outside click */}
         <div className="fixed inset-0" style={{ zIndex: 9998 }} onClick={onClose} aria-hidden="true" />
       {/* Menu */}
       <div
-          className="fixed bg-white border border-[#d9dfeb] shadow-2xl overflow-hidden"
+          className="fixed bg-white border border-[#d9dfeb] shadow-2xl"
         style={{
             zIndex: 9999,
           top: `${menuPosition.top}px`,
-          left: `${menuPosition.left}px`,
-          width: `${menuPosition.width}px`,
+          left: `${left}px`,
+          width: `${width}px`,
           maxHeight: '320px',
           overflowY: 'auto',
+          overflowX: 'visible',
             borderRadius: 12,
         }}
       >

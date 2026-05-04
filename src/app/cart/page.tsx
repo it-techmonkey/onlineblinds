@@ -10,6 +10,15 @@ import {
   isReplacementVerticalSlatProduct,
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
 } from '@/lib/vertical-blinds';
+import { findSkylightBlindTypeOption, findSkylightBrandOption } from '@/data/skylight';
+import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
+import { isFauxWoodenProduct } from '@/lib/faux-wooden';
+import { getPerfectFitMetalFieldLabels, isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
+import {
+  getPerfectFitShutterFieldLabels,
+  isPerfectFitShutterProduct,
+} from '@/lib/perfect-fit-shutter';
+import { getPerfectFitWoodenFieldLabels, isPerfectFitWoodenProduct } from '@/lib/perfect-fit-wooden';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -19,16 +28,45 @@ import {
   HEADRAIL_COLOUR_OPTIONS,
   INSTALLATION_METHOD_OPTIONS,
   ROLLER_INSTALLATION_OPTIONS,
+  NO_DRILL_INSTALLATION_OPTIONS,
+  EASY_STICK_MEASUREMENT_TYPE_OPTIONS,
+  EASY_STICK_HONEYCOMB_OPERATION_OPTIONS,
+  EASY_STICK_WOOD_OPERATION_OPTIONS,
+  EASY_STICK_PROFILE_COLOR_OPTIONS,
+  EASY_STICK_FITTING_OPTIONS,
+  EASY_STICK_SLAT_SIZE_OPTIONS,
+  EASY_STICK_METAL_CONTROLS_OPTIONS,
+  EASY_STICK_WOOD_CONTROL_SIDE_OPTIONS,
+  PERFECT_FIT_WOODEN_MEASUREMENT_TYPE_OPTIONS,
+  PERFECT_FIT_WOODEN_CONTROL_SIDE_OPTIONS,
+  PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS,
+  PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS,
+  PERFECT_FIT_METAL_MEASUREMENT_TYPE_OPTIONS,
+  PERFECT_FIT_METAL_CONTROL_SIDE_OPTIONS,
+  PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS,
+  PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS,
+  PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS,
+  PERFECT_FIT_SHUTTER_HANDLE_LOCATION_OPTIONS,
+  PERFECT_FIT_SHUTTER_MEASUREMENT_TYPE_OPTIONS,
+  PERFECT_FIT_SHUTTER_PANEL_OPTIONS,
+  ROMAN_INSTALLATION_OPTIONS,
+  VENETIAN_INSTALLATION_OPTIONS,
   CONTROL_OPTIONS,
   ROLLER_CONTROL_OPTIONS,
+  WOODEN_TOGGLE_OPTIONS,
+  ROMAN_CONTROL_OPTIONS,
   VERTICAL_STACKING_OPTIONS,
   CONTROL_SIDE_OPTIONS,
   BOTTOM_CHAIN_OPTIONS,
   BRACKET_TYPE_OPTIONS,
   CHAIN_COLOR_OPTIONS,
+  ROMAN_CHAIN_COLOR_OPTIONS,
+  LINING_TYPE_OPTIONS,
   WRAPPED_CASSETTE_OPTIONS,
   CASSETTE_MATCHING_BAR_OPTIONS,
 } from '@/data/customizations';
+import { getEasyStickFieldLabels, getEasyStickSubtype, isEasyStickProduct } from '@/lib/easy-stick';
+import { isRomanProduct } from '@/lib/roman-blinds';
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -46,20 +84,30 @@ export default function CartPage() {
       const checkoutItems: CheckoutItemRequest[] = cart.items.map((item) => {
         const config = item.configuration;
         const isReplacementVerticalSlat = isReplacementVerticalSlatProduct(item.product.tags);
+        const skylightProduct = isSkylightProduct({
+          category: item.product.category,
+          tags: item.product.tags,
+          name: item.product.name,
+          slug: item.product.slug,
+        });
 
         // Convert to inches (handles cm/fractions)
-        const widthInches = isReplacementVerticalSlat
-          ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+        const widthInches = skylightProduct
+          ? getSkylightPricingDimensions().widthInches
+          : isReplacementVerticalSlat
+            ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+            : getTotalInches(
+                config.width,
+                config.widthFraction,
+                config.widthUnit
+              );
+        const heightInches = skylightProduct
+          ? getSkylightPricingDimensions().heightInches
           : getTotalInches(
-              config.width,
-              config.widthFraction,
-              config.widthUnit
+              config.height,
+              config.heightFraction,
+              config.heightUnit
             );
-        const heightInches = getTotalInches(
-          config.height,
-          config.heightFraction,
-          config.heightUnit
-        );
 
         // Build configuration object for backend (strip non-customization fields)
         const backendConfig: Record<string, string | undefined> = {
@@ -69,6 +117,7 @@ export default function CartPage() {
           headrailColour: config.headrailColour || undefined,
           installationMethod: config.installationMethod || undefined,
           controlOption: config.controlOption || undefined,
+          liningType: config.liningType || undefined,
           stacking: config.stacking || undefined,
           controlSide: config.controlSide || undefined,
           bottomChain: config.bottomChain || undefined,
@@ -77,8 +126,12 @@ export default function CartPage() {
           wrappedCassette: config.wrappedCassette || undefined,
           cassetteMatchingBar: config.cassetteMatchingBar || undefined,
           motorization: config.motorization || undefined,
+          brand: config.brand || undefined,
+          blindType: config.blindType || undefined,
           blindColor: config.blindColor || undefined,
           frameColor: config.frameColor || undefined,
+          handlePosition: config.handlePosition || undefined,
+          numberOfPanels: config.numberOfPanels || undefined,
           openingDirection: config.openingDirection || undefined,
           bottomBar: config.bottomBar || undefined,
           rollStyle: config.rollStyle || undefined,
@@ -112,9 +165,41 @@ export default function CartPage() {
 
   const finalTotal = cart.total;
 
-  const formatConfiguration = (config: any, productTags: string[]) => {
+  const formatConfiguration = (config: any, productTags: string[], productName?: string, productSlug?: string) => {
     const parts = [];
     const usesHeightOnlyVerticalPricing = isReplacementVerticalSlatProduct(productTags);
+    const romanProduct = isRomanProduct(productTags);
+    const easyStickProduct = isEasyStickProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const fauxWoodenProduct = isFauxWoodenProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const perfectFitWoodenProduct = isPerfectFitWoodenProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const perfectFitMetalProduct = isPerfectFitMetalProduct({
+      tags: productTags,
+      name: productName,
+    });
+    const perfectFitShutterProduct = isPerfectFitShutterProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const easyStickSubtype = easyStickProduct
+      ? getEasyStickSubtype({ tags: productTags, name: productName, slug: productSlug })
+      : null;
+    const easyStickLabels = getEasyStickFieldLabels(easyStickSubtype);
+    const perfectFitWoodenLabels = getPerfectFitWoodenFieldLabels();
+    const perfectFitMetalLabels = getPerfectFitMetalFieldLabels();
+    const perfectFitShutterLabels = getPerfectFitShutterFieldLabels();
 
     // Size (always show if available)
     if (usesHeightOnlyVerticalPricing && config.height) {
@@ -137,6 +222,16 @@ export default function CartPage() {
       parts.push(`Blind Name: ${config.blindName}`);
     }
 
+    if (config.brand) {
+      const brandOption = findSkylightBrandOption(config.brand);
+      parts.push(`Brand: ${brandOption?.name || config.brand}`);
+    }
+
+    if (config.blindType) {
+      const blindTypeOption = findSkylightBlindTypeOption(config.blindType);
+      parts.push(`Blind Type: ${blindTypeOption?.code || config.blindType}`);
+    }
+
     // Headrail Type
     if (config.headrail) {
       const headrailOption = HEADRAIL_OPTIONS.find(opt => opt.id === config.headrail);
@@ -152,15 +247,34 @@ export default function CartPage() {
     // Installation Method
     if (config.installationMethod) {
       const methodOption = INSTALLATION_METHOD_OPTIONS.find(opt => opt.id === config.installationMethod) ||
-        ROLLER_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod);
-      parts.push(`Installation: ${methodOption?.name || config.installationMethod}`);
+        ROLLER_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        NO_DRILL_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        EASY_STICK_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        EASY_STICK_FITTING_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        PERFECT_FIT_SHUTTER_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        PERFECT_FIT_WOODEN_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        PERFECT_FIT_METAL_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        ROMAN_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        VENETIAN_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod);
+      parts.push(`${easyStickProduct ? easyStickLabels.installationMethod : perfectFitWoodenProduct ? perfectFitWoodenLabels.installationMethod : perfectFitShutterProduct ? perfectFitShutterLabels.installationMethod : perfectFitMetalProduct ? perfectFitMetalLabels.installationMethod : 'Installation'}: ${methodOption?.name || config.installationMethod}`);
     }
 
     // Control Option
     if (config.controlOption) {
       const controlOpt = CONTROL_OPTIONS.find(opt => opt.id === config.controlOption) ||
-        ROLLER_CONTROL_OPTIONS.find(opt => opt.id === config.controlOption);
-      parts.push(`Control: ${controlOpt?.name || config.controlOption}`);
+        ROLLER_CONTROL_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        WOODEN_TOGGLE_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        EASY_STICK_HONEYCOMB_OPERATION_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        EASY_STICK_WOOD_OPERATION_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        EASY_STICK_SLAT_SIZE_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        PERFECT_FIT_SHUTTER_HANDLE_LOCATION_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        ROMAN_CONTROL_OPTIONS.find(opt => opt.id === config.controlOption);
+      parts.push(`${easyStickProduct ? easyStickLabels.controlOption : perfectFitShutterProduct ? perfectFitShutterLabels.controlOption : fauxWoodenProduct ? 'Toggle' : 'Control'}: ${controlOpt?.name || config.controlOption}`);
+    }
+
+    if (config.liningType) {
+      const liningOption = LINING_TYPE_OPTIONS.find(opt => opt.id === config.liningType);
+      parts.push(`Lining Type: ${liningOption?.name || config.liningType}`);
     }
 
     // Stacking
@@ -171,8 +285,12 @@ export default function CartPage() {
 
     // Control Side
     if (config.controlSide) {
-      const sideOption = CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide);
-      parts.push(`Control Side: ${sideOption?.name || config.controlSide}`);
+      const sideOption = CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        PERFECT_FIT_WOODEN_CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        PERFECT_FIT_METAL_CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        EASY_STICK_METAL_CONTROLS_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        EASY_STICK_WOOD_CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide);
+      parts.push(`${easyStickProduct ? (easyStickLabels.controlSide || 'Control Side') : perfectFitWoodenProduct ? perfectFitWoodenLabels.controlSide : perfectFitMetalProduct ? perfectFitMetalLabels.controlSide : 'Control Side'}: ${sideOption?.name || config.controlSide}`);
     }
 
     // Bottom Chain
@@ -183,14 +301,34 @@ export default function CartPage() {
 
     // Bracket Type
     if (config.bracketType) {
-      const bracketOption = BRACKET_TYPE_OPTIONS.find(opt => opt.id === config.bracketType);
-      parts.push(`Bracket Type: ${bracketOption?.name || config.bracketType}`);
+      const bracketOption = BRACKET_TYPE_OPTIONS.find(opt => opt.id === config.bracketType) ||
+        PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS.find(opt => opt.id === config.bracketType) ||
+        PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS.find(opt => opt.id === config.bracketType) ||
+        PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS.find(opt => opt.id === config.bracketType);
+      parts.push(`${perfectFitWoodenProduct ? perfectFitWoodenLabels.bracketType : perfectFitShutterProduct ? perfectFitShutterLabels.bracketType : perfectFitMetalProduct ? perfectFitMetalLabels.bracketType : 'Bracket Type'}: ${bracketOption?.name || config.bracketType}`);
+    }
+
+    if (config.handlePosition) {
+      parts.push(`${perfectFitShutterLabels.handlePosition}: ${config.handlePosition} mm`);
+    }
+
+    if (config.numberOfPanels) {
+      const panelOption = PERFECT_FIT_SHUTTER_PANEL_OPTIONS.find(opt => opt.id === config.numberOfPanels);
+      parts.push(`${perfectFitShutterLabels.numberOfPanels}: ${panelOption?.name || config.numberOfPanels}`);
     }
 
     // Chain Color
     if (config.chainColor) {
-      const colorOption = CHAIN_COLOR_OPTIONS.find(opt => opt.id === config.chainColor);
+      const colorOption = (romanProduct ? ROMAN_CHAIN_COLOR_OPTIONS : CHAIN_COLOR_OPTIONS)
+        .find(opt => opt.id === config.chainColor);
       parts.push(`Chain Color: ${colorOption?.name || config.chainColor}`);
+    }
+
+    if (config.frameColor) {
+      const frameOption = EASY_STICK_PROFILE_COLOR_OPTIONS.find(opt => opt.id === config.frameColor) ||
+        PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS.find(opt => opt.id === config.frameColor) ||
+        PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS.find(opt => opt.id === config.frameColor);
+      parts.push(`${easyStickProduct ? (easyStickLabels.frameColor || 'Profile Color') : perfectFitWoodenProduct ? perfectFitWoodenLabels.frameColor : perfectFitMetalProduct ? perfectFitMetalLabels.frameColor : 'Frame Color'}: ${frameOption?.name || config.frameColor}`);
     }
 
     // Wrapped Cassette
@@ -218,8 +356,39 @@ export default function CartPage() {
     return parts;
   };
 
-  const getCustomizationCosts = (config: any) => {
+  const getCustomizationCosts = (config: any, productTags: string[], productName?: string, productSlug?: string) => {
     const costs: { label: string; price: number }[] = [];
+    const romanProduct = isRomanProduct(productTags);
+    const easyStickProduct = isEasyStickProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const fauxWoodenProduct = isFauxWoodenProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const perfectFitWoodenProduct = isPerfectFitWoodenProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const perfectFitMetalProduct = isPerfectFitMetalProduct({
+      tags: productTags,
+      name: productName,
+    });
+    const skylightProduct = isSkylightProduct({
+      tags: productTags,
+      name: productName,
+      slug: productSlug,
+    });
+    const easyStickSubtype = easyStickProduct
+      ? getEasyStickSubtype({ tags: productTags, name: productName, slug: productSlug })
+      : null;
+    const easyStickLabels = getEasyStickFieldLabels(easyStickSubtype);
+    const perfectFitWoodenLabels = getPerfectFitWoodenFieldLabels();
+    const perfectFitMetalLabels = getPerfectFitMetalFieldLabels();
 
     // Headrail Colour
     if (config.headrailColour) {
@@ -232,16 +401,35 @@ export default function CartPage() {
     // Installation Method
     if (config.installationMethod) {
       const option = INSTALLATION_METHOD_OPTIONS.find(opt => opt.id === config.installationMethod) ||
-        ROLLER_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod);
+        ROLLER_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        NO_DRILL_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        EASY_STICK_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        EASY_STICK_FITTING_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        PERFECT_FIT_WOODEN_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        PERFECT_FIT_METAL_MEASUREMENT_TYPE_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        ROMAN_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod) ||
+        VENETIAN_INSTALLATION_OPTIONS.find(opt => opt.id === config.installationMethod);
       if (option?.price && option.price > 0) {
-        costs.push({ label: option.name, price: option.price });
+        costs.push({ label: easyStickProduct ? `${easyStickLabels.installationMethod}: ${option.name}` : perfectFitWoodenProduct ? `${perfectFitWoodenLabels.installationMethod}: ${option.name}` : perfectFitMetalProduct ? `${perfectFitMetalLabels.installationMethod}: ${option.name}` : option.name, price: option.price });
       }
     }
 
     // Control Option
     if (config.controlOption) {
       const option = CONTROL_OPTIONS.find(opt => opt.id === config.controlOption) ||
-        ROLLER_CONTROL_OPTIONS.find(opt => opt.id === config.controlOption);
+        ROLLER_CONTROL_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        WOODEN_TOGGLE_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        EASY_STICK_HONEYCOMB_OPERATION_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        EASY_STICK_WOOD_OPERATION_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        EASY_STICK_SLAT_SIZE_OPTIONS.find(opt => opt.id === config.controlOption) ||
+        ROMAN_CONTROL_OPTIONS.find(opt => opt.id === config.controlOption);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: easyStickProduct ? `${easyStickLabels.controlOption}: ${option.name}` : fauxWoodenProduct ? `Toggle: ${option.name}` : option.name, price: option.price });
+      }
+    }
+
+    if (config.liningType) {
+      const option = LINING_TYPE_OPTIONS.find(opt => opt.id === config.liningType);
       if (option?.price && option.price > 0) {
         costs.push({ label: option.name, price: option.price });
       }
@@ -257,9 +445,29 @@ export default function CartPage() {
 
     // Control Side
     if (config.controlSide) {
-      const option = CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide);
+      const option = CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        PERFECT_FIT_WOODEN_CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        PERFECT_FIT_METAL_CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        EASY_STICK_METAL_CONTROLS_OPTIONS.find(opt => opt.id === config.controlSide) ||
+        EASY_STICK_WOOD_CONTROL_SIDE_OPTIONS.find(opt => opt.id === config.controlSide);
       if (option?.price && option.price > 0) {
-        costs.push({ label: option.name, price: option.price });
+        costs.push({ label: easyStickProduct ? `${easyStickLabels.controlSide || 'Control Side'}: ${option.name}` : perfectFitWoodenProduct ? `${perfectFitWoodenLabels.controlSide}: ${option.name}` : perfectFitMetalProduct ? `${perfectFitMetalLabels.controlSide}: ${option.name}` : option.name, price: option.price });
+      }
+    }
+
+    if (config.frameColor) {
+      const option = EASY_STICK_PROFILE_COLOR_OPTIONS.find(opt => opt.id === config.frameColor) ||
+        PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS.find(opt => opt.id === config.frameColor) ||
+        PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS.find(opt => opt.id === config.frameColor);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: easyStickProduct ? `${easyStickLabels.frameColor || 'Profile Color'}: ${option.name}` : perfectFitWoodenProduct ? `${perfectFitWoodenLabels.frameColor}: ${option.name}` : perfectFitMetalProduct ? `${perfectFitMetalLabels.frameColor}: ${option.name}` : option.name, price: option.price });
+      }
+    }
+
+    if (skylightProduct && config.blindType) {
+      const option = findSkylightBlindTypeOption(config.blindType);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: `Blind Type: ${option.code}`, price: option.price });
       }
     }
 
@@ -273,15 +481,18 @@ export default function CartPage() {
 
     // Bracket Type
     if (config.bracketType) {
-      const option = BRACKET_TYPE_OPTIONS.find(opt => opt.id === config.bracketType);
+      const option = BRACKET_TYPE_OPTIONS.find(opt => opt.id === config.bracketType) ||
+        PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS.find(opt => opt.id === config.bracketType) ||
+        PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS.find(opt => opt.id === config.bracketType);
       if (option?.price && option.price > 0) {
-        costs.push({ label: option.name, price: option.price });
+        costs.push({ label: perfectFitWoodenProduct ? `${perfectFitWoodenLabels.bracketType}: ${option.name}` : perfectFitMetalProduct ? `${perfectFitMetalLabels.bracketType}: ${option.name}` : option.name, price: option.price });
       }
     }
 
     // Chain Color
     if (config.chainColor) {
-      const option = CHAIN_COLOR_OPTIONS.find(opt => opt.id === config.chainColor);
+      const option = (romanProduct ? ROMAN_CHAIN_COLOR_OPTIONS : CHAIN_COLOR_OPTIONS)
+        .find(opt => opt.id === config.chainColor);
       if (option?.price && option.price > 0) {
         costs.push({ label: option.name, price: option.price });
       }
@@ -409,7 +620,7 @@ export default function CartPage() {
                           </div>
 
                           <div className="mb-4 space-y-1">
-                            {formatConfiguration(item.configuration, item.product.tags).map((detail, idx) => (
+                            {formatConfiguration(item.configuration, item.product.tags, item.product.name, item.product.slug).map((detail, idx) => (
                               <p key={idx} className="text-[12px] text-muted md:text-[13px]">
                                 {detail}
                               </p>
@@ -417,7 +628,7 @@ export default function CartPage() {
 
                             {/* Show customization costs if any */}
                             {(() => {
-                              const costs = getCustomizationCosts(item.configuration);
+                              const costs = getCustomizationCosts(item.configuration, item.product.tags, item.product.name, item.product.slug);
                               if (costs.length > 0) {
                                 return (
                                   <div className="mt-3 rounded-lg border border-primary/20 bg-primary-light p-3">

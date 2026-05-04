@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { formatPriceWithCurrency } from '@/lib/api';
-import { isElectricalRollerProduct } from '@/lib/electrical-roller';
+import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
 
 interface ProductCardProps {
   product: {
@@ -38,7 +38,7 @@ export default function ProductCard({
   const currency = product.currency || 'GBP';
   const motorizedParam = preselectedMotorization ? '&motorized=true' : '';
   const showMotorizedRemote =
-    preselectedMotorization || isElectricalRollerProduct(product.tags || []);
+    preselectedMotorization || isSpecialMotorizedProduct(product.tags || []);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();

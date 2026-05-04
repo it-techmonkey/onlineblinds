@@ -1,14 +1,59 @@
 import { notFound } from 'next/navigation';
 import { Header, Footer, FAQ } from '@/components';
-import { fetchCategories, fetchProductsByCategory, transformProduct, extractFilterOptions } from '@/lib/api';
+import { fetchCategories, fetchProducts, fetchProductsByCategory, transformProduct, extractFilterOptions } from '@/lib/api';
 import { Product, ApiProduct } from '@/types';
 import CategoryHero from '@/components/collection/CategoryHero';
 import ProductGridWithFilters from '@/components/collection/ProductGridWithFilters';
 import ComingSoon from '@/components/collection/ComingSoon';
-import { ALL_COLLECTION_SLUGS, COLLECTION_DISPLAY_NAMES, COLLECTION_DESCRIPTIONS, NAVIGATION_SLUG_MAPPING, NAVIGATION_TAG_FILTERS, NAVIGATION_CATEGORY_FILTERS } from '@/data/navigation';
+import {
+  ALL_COLLECTION_SLUGS,
+  COLLECTION_DISPLAY_NAMES,
+  COLLECTION_DESCRIPTIONS,
+  CUSTOM_COLLECTION_FILTERS,
+  NAVIGATION_CATEGORY_FILTERS,
+  NAVIGATION_SLUG_MAPPING,
+  NAVIGATION_TAG_FILTERS,
+} from '@/data/navigation';
 
 interface PageProps {
   params: Promise<{ category: string }>;
+}
+
+function matchesCustomCollection(product: ApiProduct, categorySlug: string) {
+  const filter = CUSTOM_COLLECTION_FILTERS[categorySlug];
+  if (!filter) return false;
+
+  const productTagSlugs = product.tags.map((tag) => tag.slug.toLowerCase());
+  const productCategorySlugs = product.categories.map((cat) => cat.slug.toLowerCase());
+  const productSlug = product.slug.toLowerCase();
+
+  if (filter.productSlugsAny?.includes(productSlug)) {
+    return true;
+  }
+
+  if (filter.tagsAll && !filter.tagsAll.every((tag) => productTagSlugs.includes(tag.toLowerCase()))) {
+    return false;
+  }
+
+  if (filter.tagsAny && !filter.tagsAny.some((tag) => productTagSlugs.includes(tag.toLowerCase()))) {
+    return false;
+  }
+
+  if (
+    filter.categorySlugsAll &&
+    !filter.categorySlugsAll.every((category) => productCategorySlugs.includes(category.toLowerCase()))
+  ) {
+    return false;
+  }
+
+  if (
+    filter.categorySlugsAny &&
+    !filter.categorySlugsAny.some((category) => productCategorySlugs.includes(category.toLowerCase()))
+  ) {
+    return false;
+  }
+
+  return true;
 }
 
 // Generate static params from all possible collection slugs
@@ -90,9 +135,10 @@ export default async function CollectionPage({ params }: PageProps) {
   // Find matching backend category using mapped slug
   const backendSlug = mapCategorySlug(categorySlug);
   const backendCategory = backendCategories.find((c) => c.slug === backendSlug);
+  const hasCustomFilter = Boolean(CUSTOM_COLLECTION_FILTERS[categorySlug]);
 
   // If slug is not in our defined list AND not in backend, show 404
-  if (!isValidSlug && !backendCategory) {
+  if (!isValidSlug && !backendCategory && !hasCustomFilter) {
     notFound();
   }
 
@@ -108,7 +154,17 @@ export default async function CollectionPage({ params }: PageProps) {
   let apiProducts: ApiProduct[] = [];
   let products: Product[] = [];
 
-  if (backendCategory) {
+  if (hasCustomFilter) {
+    try {
+      const response = await fetchProducts();
+      apiProducts = response.data.filter((product) => matchesCustomCollection(product, categorySlug));
+      products = apiProducts.map(transformProduct);
+    } catch (error) {
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Error fetching custom collection products:', error);
+      }
+    }
+  } else if (backendCategory) {
     try {
       // Get required tags and categories for this navigation slug
       const requiredTags = NAVIGATION_TAG_FILTERS[categorySlug];
@@ -128,13 +184,14 @@ export default async function CollectionPage({ params }: PageProps) {
   const filterOptions = extractFilterOptions(apiProducts);
 
   // Check if we should show coming soon (no backend category or no products)
-  const showComingSoon = !backendCategory || products.length === 0;
+  const showComingSoon = (!backendCategory && !hasCustomFilter) || products.length === 0;
 
   // Pre-select motorization when browsing motorised collections
   const preselectedMotorization =
     categorySlug === 'motorised-roller-shades' ||
     categorySlug === 'motorised-dual-zebra-shades' ||
-    categorySlug === 'motorised-eclipsecore';
+    categorySlug === 'motorised-eclipsecore' ||
+    categorySlug === 'motorised-blinds';
 
   return (
     <div className="min-h-screen bg-background">

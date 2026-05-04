@@ -5,6 +5,7 @@ export { default as RoomTypeSelector } from './RoomTypeSelector';
 export { default as HeadrailSelector } from './HeadrailSelector';
 export { default as HeadrailColourSelector } from './HeadrailColourSelector';
 export { default as InstallationMethodSelector } from './InstallationMethodSelector';
+export { default as LiningTypeSelector } from './LiningTypeSelector';
 export { default as ControlOptionSelector } from './ControlOptionSelector';
 export { default as StackingSelector } from './StackingSelector';
 export { default as ControlSideSelector } from './ControlSideSelector';

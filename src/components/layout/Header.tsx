@@ -7,6 +7,24 @@ import { useCart } from '@/context/CartContext';
 import { navigationData, NavigationItem, NavigationLink } from '@/data/navigation';
 import { formatPriceWithCurrency } from '@/lib/api';
 
+const badgeClasses: Record<'trending' | 'bestseller', string> = {
+  trending: 'bg-[#def7e5] text-[#166534]',
+  bestseller: 'bg-[#fff1c2] text-[#8a5a00]',
+};
+
+const NavigationLinkLabel = ({ link }: { link: NavigationLink }) => (
+  <span className="inline-flex items-center gap-2">
+    {link.badge && (
+      <span
+        className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] ${badgeClasses[link.badge.variant]}`}
+      >
+        {link.badge.label}
+      </span>
+    )}
+    <span>{link.label}</span>
+  </span>
+);
+
 const MobileMenuItem = ({ item, onClose }: { item: NavigationItem; onClose: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasSubmenu = item.submenu && item.submenu.length > 0;
@@ -52,10 +70,12 @@ const MobileMenuItem = ({ item, onClose }: { item: NavigationItem; onClose: () =
             <li key={i}>
               {link.href ? (
                 <Link href={link.href} className="block py-2 text-[13px] text-muted hover:text-primary transition-colors" onClick={onClose}>
-                  {link.label}
+                  <NavigationLinkLabel link={link} />
                 </Link>
               ) : (
-                <span className="block py-2 text-[13px] text-muted">{link.label}</span>
+                <span className="block py-2 text-[13px] text-muted">
+                  <NavigationLinkLabel link={link} />
+                </span>
               )}
             </li>
           ))}
@@ -133,44 +153,21 @@ const Header = () => {
                     />
                   </button>
                   <div className="invisible absolute left-0 top-full z-50 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                    <div className="min-w-72 rounded-2xl border border-border/90 bg-white p-2 shadow-[0_18px_44px_rgba(15,23,42,0.12)]">
+                    <div className="min-w-80 rounded-2xl border border-border/90 bg-white p-2 shadow-[0_18px_44px_rgba(15,23,42,0.12)]">
                       <ul className="space-y-0.5">
                         {item.submenu.map((link, j) => {
-                          let icon = '/nav-icons/vertical-blinds.webp';
-                          if (item.label === 'Blinds') {
-                            if (link.label.includes('Light filtering Vertical')) icon = '/nav-icons/vertical-blinds.webp';
-                            else if (link.label.includes('Blackout vertical')) icon = '/nav-icons/blackout-blinds.svg';
-                            else if (link.label.includes('All Vertical')) icon = '/nav-icons/vertical-blinds.webp';
-                          } else if (item.label === 'Shades') {
-                            if (link.label.includes('Light filtering roller')) icon = '/nav-icons/roller-blinds.webp';
-                            else if (link.label.includes('Blackout roller')) icon = '/nav-icons/blackout-blinds.svg';
-                            else if (link.label.includes('Waterproof')) icon = '/nav-icons/waterproof-blinds.svg';
-                            else if (link.label.includes('Dual zebra')) icon = '/nav-icons/day-night-blinds.webp';
-                            else if (link.label.includes('All Roller')) icon = '/nav-icons/roller-blinds.webp';
-                          } else if (item.label === 'Motorization') {
-                            if (link.label.includes('roller')) icon = '/nav-icons/roller-blinds.webp';
-                            else if (link.label.includes('Dual')) icon = '/nav-icons/day-night-blinds.webp';
-                            else if (link.label.includes('EclipseCore')) icon = '/nav-icons/blackout-blinds.svg';
-                          } else if (item.label === 'Blackout') {
-                            if (link.label.includes('Roller')) icon = '/nav-icons/blackout-blinds.svg';
-                            else if (link.label.includes('Dual')) icon = '/nav-icons/day-night-blinds.webp';
-                            else if (link.label.includes('Vertical')) icon = '/nav-icons/vertical-blinds.webp';
-                            else if (link.label.includes('EclipseCore')) icon = '/nav-icons/blackout-blinds.svg';
-                          } else if (item.label === 'Shop by') {
-                            if (link.label.includes('Feature')) icon = '/nav-icons/thermal-blinds.svg';
-                            else if (link.label.includes('room')) icon = '/nav-icons/rooms-livingroom.webp';
-                          }
+                          const icon = link.icon || '/nav-icons/roller-blinds.webp';
                           return (
                             <li key={j}>
                               {link.href ? (
                                 <Link href={link.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-neutral-500 transition-all duration-200 hover:bg-primary-light hover:text-primary hover:shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]">
                                   <Image src={icon} alt="" width={16} height={16} className="opacity-50 shrink-0" />
-                                  {link.label}
+                                  <NavigationLinkLabel link={link} />
                                 </Link>
                               ) : (
                                 <span className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] text-neutral-500">
                                   <Image src={icon} alt="" width={16} height={16} className="opacity-50 shrink-0" />
-                                  {link.label}
+                                  <NavigationLinkLabel link={link} />
                                 </span>
                               )}
                             </li>

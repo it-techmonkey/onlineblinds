@@ -77,6 +77,318 @@ export const ROLLER_INSTALLATION_OPTIONS = [
   },
 ];
 
+// Installation method options for metal venetian blinds
+export const VENETIAN_INSTALLATION_OPTIONS = [
+  {
+    id: 'inside-recess',
+    name: 'Inside Recess',
+    description: 'Blinds are sized to fit neatly inside the window recess.',
+    price: 0,
+    image: '/products/installation/insidemountVerticalBlinds.png',
+  },
+  {
+    id: 'exact-size',
+    name: 'Exact Size',
+    description: 'Provide the exact finished blind size you want produced.',
+    price: 0,
+    image: '/products/installation/outsidemountVerticalBlinds.png',
+  },
+];
+
+export const WOODEN_TOGGLE_OPTIONS = [
+  {
+    id: 'matching-plastic-toggle',
+    name: 'Matching Plastic Toggle',
+    description: 'A coordinating plastic toggle supplied as standard.',
+    price: 0,
+    image: '/products/toggle/matching_plastic_toggle.webp',
+  },
+  {
+    id: 'chrome-toggle',
+    name: 'Chrome Toggle',
+    description: 'Upgrade to a chrome toggle finish.',
+    price: 4.99,
+    image: '/products/toggle/chrome_toggle.webp',
+  },
+];
+
+// Installation method options for roman blinds
+export const ROMAN_INSTALLATION_OPTIONS = [
+  {
+    id: 'inside-recess',
+    name: 'Inside Recess',
+    description: 'Blinds are sized to fit neatly inside the window recess.',
+    price: 0,
+    image: '/products/installation/insidemountVerticalBlinds.png',
+  },
+  {
+    id: 'exact-size',
+    name: 'Exact Size',
+    description: 'Provide the exact finished blind size you want produced.',
+    price: 0,
+    image: '/products/installation/outsidemountVerticalBlinds.png',
+  },
+];
+
+// Installation method options for no drill blinds
+export const NO_DRILL_INSTALLATION_OPTIONS = [
+  {
+    id: 'inside-recess',
+    name: 'Inside Recess',
+    description: 'Blinds are sized to fit neatly inside the window recess.',
+    price: 0,
+    image: '/products/installation/rollerInsideMount.png',
+  },
+];
+
+export const EASY_STICK_MEASUREMENT_TYPE_OPTIONS = [
+  {
+    id: 'glass',
+    name: 'Glass',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_HONEYCOMB_OPERATION_OPTIONS = [
+  {
+    id: 'top-down-bottom-up',
+    name: 'Top Down and Bottom Up',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_WOOD_OPERATION_OPTIONS = [
+  {
+    id: 'top-down',
+    name: 'Top Down',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_PROFILE_COLOR_OPTIONS = [
+  {
+    id: 'white',
+    name: 'White',
+    price: 0,
+  },
+  {
+    id: 'anthracite-gray',
+    name: 'Anthracite Gray',
+    price: 0,
+  },
+  {
+    id: 'black',
+    name: 'Black',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_FITTING_OPTIONS = [
+  {
+    id: 'recess',
+    name: 'Recess',
+    price: 0,
+  },
+  {
+    id: 'exact-blind-size',
+    name: 'Exact Blind Size',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_SLAT_SIZE_OPTIONS = [
+  {
+    id: '25-mm',
+    name: '25 mm',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_METAL_CONTROLS_OPTIONS = [
+  {
+    id: 'raise-left-tilt-right',
+    name: 'Raise Left Tilt Right',
+    price: 0,
+  },
+  {
+    id: 'raise-right-tilt-left',
+    name: 'Raise Right Tilt Left',
+    price: 0,
+  },
+];
+
+export const EASY_STICK_WOOD_CONTROL_SIDE_OPTIONS = [
+  {
+    id: 'left-control',
+    name: 'Left Control',
+    price: 0,
+  },
+  {
+    id: 'right-control',
+    name: 'Right Control',
+    price: 0,
+  },
+];
+
+export const PERFECT_FIT_WOODEN_MEASUREMENT_TYPE_OPTIONS = [
+  {
+    id: 'glass-size',
+    name: 'Glass Size',
+    price: 0,
+  },
+];
+
+export const PERFECT_FIT_WOODEN_CONTROL_SIDE_OPTIONS = [
+  {
+    id: 'left-control',
+    name: 'Left Control',
+    price: 0,
+  },
+  {
+    id: 'right-control',
+    name: 'Right Control',
+    price: 0,
+  },
+];
+
+export const PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS = [
+  {
+    id: 'white',
+    name: 'White',
+    price: 0,
+  },
+  {
+    id: 'anthracite-grey',
+    name: 'Anthracite Grey',
+    price: 10.65,
+  },
+  {
+    id: 'black',
+    name: 'Black',
+    price: 10.65,
+  },
+  {
+    id: 'brown',
+    name: 'Brown',
+    price: 10.65,
+  },
+  {
+    id: 'beige',
+    name: 'Beige',
+    price: 10.65,
+  },
+  {
+    id: 'mahogany',
+    name: 'Mahogany',
+    price: 10.65,
+  },
+  {
+    id: 'golden-oak',
+    name: 'Golden Oak',
+    price: 10.65,
+  },
+];
+
+export const PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS = [
+  { id: '20-mm', name: '20 mm', price: 0 },
+  { id: '22-mm', name: '22 mm', price: 0 },
+  { id: '24-mm', name: '24 mm', price: 0 },
+  { id: '26-mm', name: '26 mm', price: 0 },
+  { id: '28-mm', name: '28 mm', price: 0 },
+  { id: '30-mm', name: '30 mm', price: 0 },
+  { id: '32-mm', name: '32 mm', price: 0 },
+  { id: '38-mm', name: '38 mm', price: 0 },
+];
+
+export const PERFECT_FIT_METAL_MEASUREMENT_TYPE_OPTIONS = [
+  {
+    id: 'glass-size',
+    name: 'Glass Size',
+    price: 0,
+  },
+];
+
+export const PERFECT_FIT_METAL_CONTROL_SIDE_OPTIONS = [
+  {
+    id: 'left-control',
+    name: 'Left Control',
+    price: 0,
+  },
+  {
+    id: 'right-control',
+    name: 'Right Control',
+    price: 0,
+  },
+];
+
+export const PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS = [
+  {
+    id: 'white',
+    name: 'White',
+    price: 0,
+  },
+  {
+    id: 'anthracite',
+    name: 'Anthracite',
+    price: 7.13,
+  },
+  {
+    id: 'brown',
+    name: 'Brown',
+    price: 7.13,
+  },
+  {
+    id: 'golden-oak',
+    name: 'Golden Oak',
+    price: 7.13,
+  },
+];
+
+export const PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS = [
+  { id: '20-mm', name: '20 mm', price: 0 },
+  { id: '22-mm', name: '22 mm', price: 0 },
+  { id: '24-mm', name: '24 mm', price: 0 },
+  { id: '26-mm', name: '26 mm', price: 0 },
+  { id: '28-mm', name: '28 mm', price: 0 },
+  { id: '30-mm', name: '30 mm', price: 0 },
+  { id: '32-mm', name: '32 mm', price: 0 },
+  { id: '38-mm', name: '38 mm', price: 0 },
+];
+
+export const PERFECT_FIT_SHUTTER_MEASUREMENT_TYPE_OPTIONS = [
+  {
+    id: 'glass',
+    name: 'Glass',
+    price: 0,
+  },
+];
+
+export const PERFECT_FIT_SHUTTER_HANDLE_LOCATION_OPTIONS = [
+  { id: 'right', name: 'Right', price: 0 },
+  { id: 'left', name: 'Left', price: 0 },
+  { id: 'top', name: 'Top', price: 0 },
+  { id: 'bottom', name: 'Bottom', price: 0 },
+  { id: 'none', name: 'None', price: 0 },
+];
+
+export const PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS = [
+  { id: '18-mm', name: '18 mm', price: 0 },
+  { id: '20-mm', name: '20 mm', price: 0 },
+  { id: '22-mm', name: '22 mm', price: 0 },
+  { id: '24-mm', name: '24 mm', price: 0 },
+  { id: '26-mm', name: '26 mm', price: 0 },
+  { id: '28-mm', name: '28 mm', price: 0 },
+  { id: '30-mm', name: '30 mm', price: 0 },
+];
+
+export const PERFECT_FIT_SHUTTER_PANEL_OPTIONS = [
+  { id: '1-panel', name: '1 Panel', price: 0 },
+  { id: '2-panels', name: '2 Panels', price: 0 },
+  { id: '3-panels', name: '3 Panels', price: 0 },
+  { id: '4-panels', name: '4 Panels', price: 0 },
+  { id: '5-panels', name: '5 Panels', price: 0 },
+];
+
 // Installation method options specifically for dual zebra / day-night shades
 export const ZEBRA_INSTALLATION_OPTIONS = [
   {
@@ -97,6 +409,24 @@ export const ZEBRA_INSTALLATION_OPTIONS = [
 
 // Control options for roller blinds and day/night blinds (Left/Right)
 export const ROLLER_CONTROL_OPTIONS = [
+  {
+    id: 'left',
+    name: 'Left',
+    description: 'Control chain positioned on the left side.',
+    price: 0,
+    image: '/products/controlSide/left.png',
+  },
+  {
+    id: 'right',
+    name: 'Right',
+    description: 'Control chain positioned on the right side.',
+    price: 0,
+    image: '/products/controlSide/right.png',
+  },
+];
+
+// Control options for roman blinds (Left/Right chain side)
+export const ROMAN_CONTROL_OPTIONS = [
   {
     id: 'left',
     name: 'Left',
@@ -261,6 +591,55 @@ export const CHAIN_COLOR_OPTIONS = [
     name: 'Chrome Metal',
     price: 7.00, // $7
     image: '/products/chainColor/chromeMetal.png',
+  },
+];
+
+// Chain color options specific to roman blinds
+export const ROMAN_CHAIN_COLOR_OPTIONS = [
+  {
+    id: 'white-plastic',
+    name: 'White - Plastic',
+    price: 0,
+    image: '/products/chainColor/whitePlastic.png',
+  },
+  {
+    id: 'black-plastic',
+    name: 'Black - Plastic',
+    price: 0,
+    image: '/products/chainColor/blackPlastic.png',
+  },
+  {
+    id: 'antique-plastic',
+    name: 'Antique - Plastic',
+    price: 0,
+    image: '/products/chainColor/anthracitePlastic.png',
+  },
+  {
+    id: 'chrome-metal',
+    name: 'Chrome - Metal',
+    price: 4.99,
+    image: '/products/chainColor/chromeMetal.png',
+  },
+];
+
+export const LINING_TYPE_OPTIONS = [
+  {
+    id: 'standard',
+    name: 'Standard',
+    price: 0,
+    image: '/products/liningType/standard_lining.webp',
+  },
+  {
+    id: 'blackout',
+    name: 'Blackout',
+    price: 11,
+    image: '/products/liningType/blackout_lining.webp',
+  },
+  {
+    id: 'thermal',
+    name: 'Thermal',
+    price: 11,
+    image: '/products/liningType/thermal_lining.webp',
   },
 ];
 

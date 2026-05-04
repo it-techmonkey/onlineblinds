@@ -2,6 +2,11 @@ import { calculateProductPrice, type PricingRequest } from './pricing.service';
 import { getAdminApiUrl, getAdminHeaders, validateShopifyConfig } from './shopify-admin';
 import { getCachedProduct } from './product-cache';
 import { isHeightOnlyVerticalProduct } from '@/lib/vertical-blinds';
+import { isRomanProduct } from '@/lib/roman-blinds';
+import { isSkylightProduct } from '@/lib/skylight';
+import { isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
+import { isPerfectFitShutterProduct } from '@/lib/perfect-fit-shutter';
+import { findSkylightBlindTypeOption, findSkylightBrandOption } from '@/data/skylight';
 
 // ============================================
 // Types
@@ -20,6 +25,7 @@ export interface CheckoutItemRequest {
     headrailColour?: string;
     installationMethod?: string;
     controlOption?: string;
+    liningType?: string;
     stacking?: string;
     controlSide?: string;
     bottomChain?: string;
@@ -28,8 +34,12 @@ export interface CheckoutItemRequest {
     wrappedCassette?: string;
     cassetteMatchingBar?: string;
     motorization?: string;
+    brand?: string;
+    blindType?: string;
     blindColor?: string;
     frameColor?: string;
+    handlePosition?: string;
+    numberOfPanels?: string;
     openingDirection?: string;
     bottomBar?: string;
     rollStyle?: string;
@@ -71,8 +81,13 @@ const DRAFT_ORDER_CURRENCY = 'GBP';
 // Helper Functions
 // ============================================
 
-function configToCustomizations(config: CheckoutItemRequest['configuration']): PricingRequest['customizations'] {
+function configToCustomizations(
+  config: CheckoutItemRequest['configuration'],
+  productTags: string[]
+): PricingRequest['customizations'] {
   const customizations: { category: string; optionId: string }[] = [];
+  const romanProduct = isRomanProduct(productTags);
+  const perfectFitMetalProduct = isPerfectFitMetalProduct({ tags: productTags });
 
   const mappings: Record<string, string> = {
     roomType: 'room-type',
@@ -80,16 +95,19 @@ function configToCustomizations(config: CheckoutItemRequest['configuration']): P
     headrailColour: 'headrail-colour',
     installationMethod: 'installation-method',
     controlOption: 'control-option',
+    liningType: 'lining-type',
     stacking: 'stacking',
     controlSide: 'control-side',
     bottomChain: 'bottom-chain',
     bracketType: 'bracket-type',
-    chainColor: 'chain-color',
+    chainColor: romanProduct ? 'roman-chain-color' : 'chain-color',
     wrappedCassette: 'wrapped-cassette',
     cassetteMatchingBar: 'cassette-bar',
     motorization: 'motorization',
+    brand: 'skylight-brand',
+    blindType: 'skylight-blind-type',
     blindColor: 'blind-color',
-    frameColor: 'frame-color',
+    numberOfPanels: 'number-of-panels',
     openingDirection: 'opening-direction',
     bottomBar: 'bottom-bar',
     rollStyle: 'roll-style',
@@ -102,6 +120,13 @@ function configToCustomizations(config: CheckoutItemRequest['configuration']): P
     }
   }
 
+  if (config.frameColor && config.frameColor !== 'none') {
+    customizations.push({
+      category: perfectFitMetalProduct ? 'perfect-fit-metal-frame-color' : 'frame-color',
+      optionId: config.frameColor,
+    });
+  }
+
   return customizations;
 }
 
@@ -112,11 +137,15 @@ function buildLineItemProperties(
 ): { key: string; value: string }[] {
   const properties: { key: string; value: string }[] = [];
   const heightOnlyVertical = isHeightOnlyVerticalProduct(productTags);
+  const skylightProduct = isSkylightProduct({ tags: productTags });
+  const perfectFitShutterProduct = isPerfectFitShutterProduct({ tags: productTags });
 
-  if (!heightOnlyVertical) {
+  if (!heightOnlyVertical && !skylightProduct) {
     properties.push({ key: 'Width', value: `${item.widthInches} inches` });
   }
-  properties.push({ key: 'Height', value: `${item.heightInches} inches` });
+  if (!skylightProduct) {
+    properties.push({ key: 'Height', value: `${item.heightInches} inches` });
+  }
 
   if (item.configuration.roomType) {
     properties.push({ key: 'Room Type', value: item.configuration.roomType });
@@ -128,18 +157,23 @@ function buildLineItemProperties(
   const labelMap: Record<string, string> = {
     headrail: 'Headrail',
     headrailColour: 'Headrail Colour',
-    installationMethod: 'Installation',
-    controlOption: 'Control Option',
+    installationMethod: perfectFitShutterProduct ? 'Measurement Type' : 'Installation',
+    controlOption: perfectFitShutterProduct ? 'Window Handle Location' : 'Control Option',
+    liningType: 'Lining Type',
     stacking: 'Stacking',
     controlSide: 'Control Side',
     bottomChain: 'Bottom Chain',
-    bracketType: 'Bracket Type',
+    bracketType: perfectFitShutterProduct ? 'Bracket Size' : 'Bracket Type',
     chainColor: 'Chain Color',
     wrappedCassette: 'Wrapped Cassette',
     cassetteMatchingBar: 'Cassette Bar',
     motorization: 'Motorization',
+    brand: 'Brand',
+    blindType: 'Blind Type',
     blindColor: 'Blind Color',
     frameColor: 'Frame Color',
+    handlePosition: 'Handle Position',
+    numberOfPanels: 'Number of Panels',
     openingDirection: 'Opening Direction',
     bottomBar: 'Bottom Bar',
     rollStyle: 'Roll Style',
@@ -148,6 +182,18 @@ function buildLineItemProperties(
   for (const [key, label] of Object.entries(labelMap)) {
     const value = item.configuration[key];
     if (value && value !== 'none') {
+      if (key === 'brand') {
+        properties.push({ key: label, value: findSkylightBrandOption(value)?.name || value });
+        continue;
+      }
+      if (key === 'blindType') {
+        properties.push({ key: label, value: findSkylightBlindTypeOption(value)?.code || value });
+        continue;
+      }
+      if (key === 'handlePosition') {
+        properties.push({ key: label, value: `${value} mm` });
+        continue;
+      }
       properties.push({ key: label, value });
     }
   }
@@ -232,6 +278,7 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     }
 
     const heightOnlyVertical = isHeightOnlyVerticalProduct(cachedProduct.tags);
+    const skylightProduct = isSkylightProduct({ tags: cachedProduct.tags });
 
     if (typeof item.widthInches !== 'number' || (!heightOnlyVertical && item.widthInches <= 0)) {
       throw new CheckoutError('Each item must have a positive widthInches', 400);
@@ -244,7 +291,7 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     }
 
     const productTitle = item.configuration.blindName?.trim() || cachedProduct.title;
-    const customizations = configToCustomizations(item.configuration);
+    const customizations = configToCustomizations(item.configuration, cachedProduct.tags);
 
     const pricing = await calculateProductPrice({
       handle: item.handle,
@@ -263,7 +310,9 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     }
 
     const itemPrice = pricing.totalPrice;
-    const lineItemTitle = heightOnlyVertical
+    const lineItemTitle = skylightProduct
+      ? productTitle
+      : heightOnlyVertical
       ? `${productTitle} – Height ${item.heightInches}"`
       : `${productTitle} – ${item.widthInches}" × ${item.heightInches}"`;
 

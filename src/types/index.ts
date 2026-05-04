@@ -90,6 +90,7 @@ export interface ProductConfiguration {
   headrailColour: string | null;
   installationMethod: string | null;
   controlOption: string | null;
+  liningType: string | null;
   stacking: string | null;
   controlSide: string | null;
   bottomChain: string | null;
@@ -98,8 +99,12 @@ export interface ProductConfiguration {
   wrappedCassette: string | null;
   cassetteMatchingBar: string | null;
   motorization: string | null;
+  brand: string | null;
+  blindType: string | null;
   blindColor: string | null;
   frameColor: string | null;
+  handlePosition: string | null;
+  numberOfPanels: string | null;
   openingDirection: string | null;
   bottomBar: string | null;
   rollStyle: string | null;
@@ -118,6 +123,7 @@ export const DEFAULT_CONFIGURATION: ProductConfiguration = {
   headrailColour: null,
   installationMethod: null,
   controlOption: null,
+  liningType: null,
   stacking: null,
   controlSide: null,
   bottomChain: null,
@@ -126,8 +132,12 @@ export const DEFAULT_CONFIGURATION: ProductConfiguration = {
   wrappedCassette: null,
   cassetteMatchingBar: null,
   motorization: null,
+  brand: null,
+  blindType: null,
   blindColor: null,
   frameColor: null,
+  handlePosition: null,
+  numberOfPanels: null,
   openingDirection: null,
   bottomBar: null,
   rollStyle: null,
@@ -363,4 +373,3 @@ export interface CheckoutResponse {
   }[];
   subtotal: number;
 }
-

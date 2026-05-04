@@ -17,14 +17,34 @@ import {
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
 } from '@/lib/vertical-blinds';
 import {
-  getElectricalRollerRemoteOptions,
-  isElectricalRollerProduct,
+  getMotorizedRemoteOptions,
+  isSpecialMotorizedProduct,
 } from '@/lib/electrical-roller';
+import {
+  getEasyStickFieldLabels,
+  getEasyStickSubtype,
+  isEasyStickProduct,
+} from '@/lib/easy-stick';
+import { isFauxWoodenProduct } from '@/lib/faux-wooden';
+import { getPerfectFitMetalFieldLabels, isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
+import {
+  getPerfectFitShutterFieldLabels,
+  getPerfectFitShutterPanelOption,
+  isPerfectFitShutterHandlePositionRequired,
+  isPerfectFitShutterHandlePositionValid,
+  isPerfectFitShutterProduct,
+  PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM,
+  PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM,
+} from '@/lib/perfect-fit-shutter';
+import { getPerfectFitWoodenFieldLabels, isPerfectFitWoodenProduct } from '@/lib/perfect-fit-wooden';
+import { getSkylightBlindTypeOptions, SKYLIGHT_BRAND_OPTIONS } from '@/data/skylight';
+import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
 import {
   SizeSelector,
   HeadrailSelector,
   HeadrailColourSelector,
   InstallationMethodSelector,
+  LiningTypeSelector,
   ControlOptionSelector,
   StackingSelector,
   ControlSideSelector,
@@ -41,20 +61,47 @@ import {
   HEADRAIL_COLOUR_OPTIONS,
   INSTALLATION_METHOD_OPTIONS,
   ROLLER_INSTALLATION_OPTIONS,
+  NO_DRILL_INSTALLATION_OPTIONS,
+  EASY_STICK_MEASUREMENT_TYPE_OPTIONS,
+  EASY_STICK_HONEYCOMB_OPERATION_OPTIONS,
+  EASY_STICK_WOOD_OPERATION_OPTIONS,
+  EASY_STICK_PROFILE_COLOR_OPTIONS,
+  EASY_STICK_FITTING_OPTIONS,
+  EASY_STICK_SLAT_SIZE_OPTIONS,
+  EASY_STICK_METAL_CONTROLS_OPTIONS,
+  EASY_STICK_WOOD_CONTROL_SIDE_OPTIONS,
+  PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS,
+  PERFECT_FIT_SHUTTER_HANDLE_LOCATION_OPTIONS,
+  PERFECT_FIT_SHUTTER_MEASUREMENT_TYPE_OPTIONS,
+  PERFECT_FIT_WOODEN_MEASUREMENT_TYPE_OPTIONS,
+  PERFECT_FIT_WOODEN_CONTROL_SIDE_OPTIONS,
+  PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS,
+  PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS,
+  PERFECT_FIT_METAL_MEASUREMENT_TYPE_OPTIONS,
+  PERFECT_FIT_METAL_CONTROL_SIDE_OPTIONS,
+  PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS,
+  PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS,
+  ROMAN_INSTALLATION_OPTIONS,
+  VENETIAN_INSTALLATION_OPTIONS,
+  WOODEN_TOGGLE_OPTIONS,
   ZEBRA_INSTALLATION_OPTIONS,
   CONTROL_OPTIONS,
   ROLLER_CONTROL_OPTIONS,
+  ROMAN_CONTROL_OPTIONS,
   VERTICAL_STACKING_OPTIONS,
   CONTROL_SIDE_OPTIONS,
   BOTTOM_CHAIN_OPTIONS,
   BRACKET_TYPE_OPTIONS,
   CHAIN_COLOR_OPTIONS,
+  ROMAN_CHAIN_COLOR_OPTIONS,
+  LINING_TYPE_OPTIONS,
   WRAPPED_CASSETTE_OPTIONS,
   CASSETTE_MATCHING_BAR_OPTIONS,
   ROLLER_CASSETTE_OPTIONS,
   MOTORIZATION_OPTIONS,
   BOTTOM_BAR_OPTIONS,
 } from '@/data/customizations';
+import { isRomanProduct } from '@/lib/roman-blinds';
 
 interface CustomizationModalProps {
   product: Product;
@@ -70,12 +117,12 @@ const CustomizationModal = ({
   onClose,
 }: CustomizationModalProps) => {
   const { addToCart } = useCart();
-  const isElectricalRoller = useMemo(
-    () => isElectricalRollerProduct(product.tags),
+  const isSpecialMotorized = useMemo(
+    () => isSpecialMotorizedProduct(product.tags),
     [product.tags]
   );
-  const electricalRollerMotorizationOptions = useMemo(
-    () => getElectricalRollerRemoteOptions(MOTORIZATION_OPTIONS),
+  const motorizedRemoteOptions = useMemo(
+    () => getMotorizedRemoteOptions(MOTORIZATION_OPTIONS),
     []
   );
 
@@ -134,20 +181,214 @@ const CustomizationModal = ({
   // Determine which options to use based on product category
   const isRollerOrDayNight = useMemo(() => {
     const category = product.category.toLowerCase();
-    return isElectricalRoller || category.includes('roller') || category.includes('day') || category.includes('night');
-  }, [isElectricalRoller, product.category]);
+    return isSpecialMotorized || category.includes('roller') || category.includes('day') || category.includes('night');
+  }, [isSpecialMotorized, product.category]);
 
   const isDayNight = useMemo(() => {
     const category = product.category.toLowerCase();
     return category.includes('day') || category.includes('night') || category.includes('zebra');
   }, [product.category]);
 
-  const installationOptions = isDayNight
+  const isNoDrill = useMemo(() => {
+    const category = product.category.toLowerCase();
+    return category.includes('no drill') || product.tags.includes('no-drill-blinds');
+  }, [product.category, product.tags]);
+
+  const isEasyStick = useMemo(() => {
+    return isEasyStickProduct({
+      category: product.category,
+      tags: product.tags,
+      name: product.name,
+      slug: product.slug,
+    });
+  }, [product.category, product.name, product.slug, product.tags]);
+
+  const easyStickSubtype = useMemo(() => {
+    if (!isEasyStick) {
+      return null;
+    }
+
+    return getEasyStickSubtype({
+      name: product.name,
+      slug: product.slug,
+      tags: product.tags,
+    });
+  }, [isEasyStick, product.name, product.slug, product.tags]);
+
+  const easyStickLabels = useMemo(
+    () => getEasyStickFieldLabels(easyStickSubtype),
+    [easyStickSubtype]
+  );
+
+  const isSkylight = useMemo(() => {
+    return isSkylightProduct({
+      category: product.category,
+      tags: product.tags,
+      name: product.name,
+      slug: product.slug,
+    });
+  }, [product.category, product.name, product.slug, product.tags]);
+
+  const isFauxWooden = useMemo(() => {
+    return isFauxWoodenProduct({
+      category: product.category,
+      tags: product.tags,
+      name: product.name,
+      slug: product.slug,
+    });
+  }, [product.category, product.name, product.slug, product.tags]);
+
+  const isPerfectFitWooden = useMemo(() => {
+    return isPerfectFitWoodenProduct({
+      category: product.category,
+      tags: product.tags,
+      name: product.name,
+      slug: product.slug,
+    });
+  }, [product.category, product.name, product.slug, product.tags]);
+
+  const isPerfectFitShutter = useMemo(() => {
+    return isPerfectFitShutterProduct({
+      category: product.category,
+      tags: product.tags,
+      name: product.name,
+      slug: product.slug,
+    });
+  }, [product.category, product.name, product.slug, product.tags]);
+
+  const isPerfectFitMetal = useMemo(() => {
+    return isPerfectFitMetalProduct({
+      category: product.category,
+      tags: product.tags,
+      name: product.name,
+      slug: product.slug,
+    });
+  }, [product.category, product.name, product.slug, product.tags]);
+
+  const perfectFitWoodenLabels = useMemo(
+    () => getPerfectFitWoodenFieldLabels(),
+    []
+  );
+
+  const perfectFitShutterLabels = useMemo(
+    () => getPerfectFitShutterFieldLabels(),
+    []
+  );
+
+  const perfectFitMetalLabels = useMemo(
+    () => getPerfectFitMetalFieldLabels(),
+    []
+  );
+
+  const skylightBlindTypeOptions = useMemo(
+    () => getSkylightBlindTypeOptions((config.brand as Parameters<typeof getSkylightBlindTypeOptions>[0]) || null),
+    [config.brand]
+  );
+
+  const isVenetian = useMemo(() => {
+    const category = product.category.toLowerCase();
+    return category.includes('venetian');
+  }, [product.category]);
+
+  const isRoman = useMemo(() => {
+    const category = product.category.toLowerCase();
+    return category.includes('roman') || isRomanProduct(product.tags);
+  }, [product.category, product.tags]);
+
+  const standardInstallationOptions = isDayNight
     ? ZEBRA_INSTALLATION_OPTIONS
+    : isPerfectFitShutter
+    ? VENETIAN_INSTALLATION_OPTIONS
+    : isPerfectFitMetal
+    ? VENETIAN_INSTALLATION_OPTIONS
+    : isPerfectFitWooden
+    ? VENETIAN_INSTALLATION_OPTIONS
+    : isFauxWooden
+    ? VENETIAN_INSTALLATION_OPTIONS
+    : isNoDrill
+    ? NO_DRILL_INSTALLATION_OPTIONS
+    : isRoman
+    ? ROMAN_INSTALLATION_OPTIONS
+    : isVenetian
+    ? VENETIAN_INSTALLATION_OPTIONS
     : isRollerOrDayNight
     ? ROLLER_INSTALLATION_OPTIONS
     : INSTALLATION_METHOD_OPTIONS;
-  const controlOptions = isRollerOrDayNight ? ROLLER_CONTROL_OPTIONS : CONTROL_OPTIONS;
+  const installationOptions = isDayNight
+    ? ZEBRA_INSTALLATION_OPTIONS
+    : isPerfectFitShutter
+    ? PERFECT_FIT_SHUTTER_MEASUREMENT_TYPE_OPTIONS
+    : isPerfectFitMetal
+    ? PERFECT_FIT_METAL_MEASUREMENT_TYPE_OPTIONS
+    : isPerfectFitWooden
+    ? PERFECT_FIT_WOODEN_MEASUREMENT_TYPE_OPTIONS
+    : isEasyStick && easyStickSubtype === 'metal'
+    ? EASY_STICK_FITTING_OPTIONS
+    : isEasyStick
+    ? EASY_STICK_MEASUREMENT_TYPE_OPTIONS
+    : isFauxWooden
+    ? VENETIAN_INSTALLATION_OPTIONS
+    : isNoDrill
+    ? NO_DRILL_INSTALLATION_OPTIONS
+    : isRoman
+    ? ROMAN_INSTALLATION_OPTIONS
+    : isVenetian
+    ? VENETIAN_INSTALLATION_OPTIONS
+    : isRollerOrDayNight
+    ? ROLLER_INSTALLATION_OPTIONS
+    : INSTALLATION_METHOD_OPTIONS;
+  const controlOptions = isRoman
+    ? ROMAN_CONTROL_OPTIONS
+    : isPerfectFitShutter
+    ? PERFECT_FIT_SHUTTER_HANDLE_LOCATION_OPTIONS
+    : isFauxWooden
+    ? WOODEN_TOGGLE_OPTIONS
+    : isEasyStick && easyStickSubtype === 'metal'
+    ? EASY_STICK_SLAT_SIZE_OPTIONS
+    : isEasyStick && easyStickSubtype === 'wood'
+    ? EASY_STICK_WOOD_OPERATION_OPTIONS
+    : isEasyStick
+    ? EASY_STICK_HONEYCOMB_OPERATION_OPTIONS
+    : (isRollerOrDayNight || isNoDrill)
+    ? ROLLER_CONTROL_OPTIONS
+    : CONTROL_OPTIONS;
+  const easyStickControlSideOptions = easyStickSubtype === 'metal'
+    ? EASY_STICK_METAL_CONTROLS_OPTIONS
+    : EASY_STICK_WOOD_CONTROL_SIDE_OPTIONS;
+  const controlSideOptions = isPerfectFitWooden
+    ? PERFECT_FIT_WOODEN_CONTROL_SIDE_OPTIONS
+    : isPerfectFitMetal
+    ? PERFECT_FIT_METAL_CONTROL_SIDE_OPTIONS
+    : CONTROL_SIDE_OPTIONS;
+  const frameColorOptions = isPerfectFitWooden
+    ? PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS
+    : isPerfectFitMetal
+    ? PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS
+    : EASY_STICK_PROFILE_COLOR_OPTIONS;
+  const chainColorOptions = isRoman ? ROMAN_CHAIN_COLOR_OPTIONS : CHAIN_COLOR_OPTIONS;
+  const shutterPanelOption = useMemo(() => {
+    if (!isPerfectFitShutter) {
+      return null;
+    }
+
+    const widthMm = getTotalInches(config.width, config.widthFraction, config.widthUnit) * 25.4;
+    return getPerfectFitShutterPanelOption(widthMm);
+  }, [config.width, config.widthFraction, config.widthUnit, isPerfectFitShutter]);
+  const shutterPanelOptions = useMemo(
+    () => (shutterPanelOption ? [shutterPanelOption] : []),
+    [shutterPanelOption]
+  );
+  const shutterHandlePositionRequired = useMemo(
+    () => isPerfectFitShutter && isPerfectFitShutterHandlePositionRequired(config.controlOption),
+    [config.controlOption, isPerfectFitShutter]
+  );
+  const shutterHandlePositionValid = useMemo(
+    () =>
+      !isPerfectFitShutter ||
+      !shutterHandlePositionRequired ||
+      isPerfectFitShutterHandlePositionValid(config.handlePosition),
+    [config.handlePosition, isPerfectFitShutter, shutterHandlePositionRequired]
+  );
 
   // Dynamic stacking options for vertical blinds — combination-specific images per control type
   const stackingOptions = useMemo(() => {
@@ -214,13 +455,13 @@ const CustomizationModal = ({
   }, [config.controlOption]);
 
   useEffect(() => {
-    if (!isElectricalRoller) return;
+    if (!isSpecialMotorized) return;
 
     setConfig((prev) => {
       const nextMotorization =
         prev.motorization && prev.motorization !== 'none'
           ? prev.motorization
-          : electricalRollerMotorizationOptions[0]?.id ?? null;
+          : motorizedRemoteOptions[0]?.id ?? null;
 
       if (
         prev.chainColor === null &&
@@ -237,7 +478,7 @@ const CustomizationModal = ({
         motorization: nextMotorization,
       };
     });
-  }, [electricalRollerMotorizationOptions, isElectricalRoller, setConfig]);
+  }, [motorizedRemoteOptions, isSpecialMotorized, setConfig]);
 
   useEffect(() => {
     if (!usesHeightOnlyVerticalPricing) return;
@@ -269,22 +510,84 @@ const CustomizationModal = ({
     });
   }, [usesHeightOnlyVerticalPricing, setConfig]);
 
+  useEffect(() => {
+    if (!isPerfectFitShutter) return;
+
+    setConfig((prev) => {
+      const nextNumberOfPanels = shutterPanelOption?.id ?? null;
+      const nextHandlePosition = isPerfectFitShutterHandlePositionRequired(prev.controlOption)
+        ? prev.handlePosition
+        : null;
+
+      if (
+        prev.numberOfPanels === nextNumberOfPanels &&
+        prev.handlePosition === nextHandlePosition
+      ) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        numberOfPanels: nextNumberOfPanels,
+        handlePosition: nextHandlePosition,
+      };
+    });
+  }, [isPerfectFitShutter, setConfig, shutterPanelOption]);
+
   // Determine which options should be visible based on product type and selected headrail
   const visibleOptions = useMemo(() => {
+    if (isSkylight) {
+      return {
+        showSize: false,
+        showHeadrail: false,
+        showHeadrailColour: false,
+        showInstallationMethod: false,
+        showControlOption: false,
+        showLiningType: false,
+        showStacking: false,
+        showControlSide: false,
+        showBottomChain: false,
+        showBracketType: false,
+        showChainColor: false,
+        showMotorization: false,
+        showBottomBar: false,
+        showFrameColor: false,
+      };
+    }
+
     // For roller blinds and day/night blinds - use product.features settings
-    if (isRollerOrDayNight) {
+    if (isRollerOrDayNight || isRoman || isVenetian || isNoDrill || isEasyStick || isFauxWooden || isPerfectFitWooden || isPerfectFitShutter || isPerfectFitMetal) {
       return {
         showSize: product.features.hasSize,
         showHeadrail: product.features.hasHeadrail,
         showHeadrailColour: product.features.hasHeadrailColour,
         showInstallationMethod: product.features.hasInstallationMethod,
         showControlOption: product.features.hasControlOption,
+        showLiningType: isRoman,
         showStacking: product.features.hasStacking,
-        showControlSide: product.features.hasControlSide,
+        showControlSide: isEasyStick
+          ? product.features.hasControlSide && (easyStickSubtype === 'metal' || easyStickSubtype === 'wood')
+          : isPerfectFitWooden
+          ? product.features.hasControlSide
+          : isPerfectFitShutter
+          ? product.features.hasControlSide
+          : isPerfectFitMetal
+          ? product.features.hasControlSide
+          : product.features.hasControlSide,
         showBottomChain: product.features.hasBottomChain,
         showBracketType: product.features.hasBracketType,
+        showChainColor: product.features.hasChainColor,
         showMotorization: product.features.hasMotorization,
         showBottomBar: product.features.hasBottomBar,
+        showFrameColor: isEasyStick
+          ? product.features.hasFrameColor && (easyStickSubtype === 'honeycomb' || easyStickSubtype === 'wood')
+          : isPerfectFitWooden
+          ? product.features.hasFrameColor
+          : isPerfectFitShutter
+          ? product.features.hasFrameColor
+          : isPerfectFitMetal
+          ? product.features.hasFrameColor
+          : false,
       };
     }
 
@@ -295,12 +598,15 @@ const CustomizationModal = ({
         showHeadrailColour: false,
         showInstallationMethod: false,
         showControlOption: false,
+        showLiningType: false,
         showStacking: false,
         showControlSide: false,
         showBottomChain: product.features.hasBottomChain,
         showBracketType: false,
+        showChainColor: false,
         showMotorization: product.features.hasMotorization,
         showBottomBar: false,
+        showFrameColor: false,
       };
     }
 
@@ -317,6 +623,7 @@ const CustomizationModal = ({
 
       // Control Option for Classic and Platinum
       showControlOption: product.features.hasControlOption && (config.headrail === 'classic' || config.headrail === 'platinum'),
+      showLiningType: false,
 
       // Stacking for Classic and Platinum
       showStacking: product.features.hasStacking && (config.headrail === 'classic' || config.headrail === 'platinum'),
@@ -332,10 +639,12 @@ const CustomizationModal = ({
 
       // Bracket Type for Classic and Platinum
       showBracketType: product.features.hasBracketType && (config.headrail === 'classic' || config.headrail === 'platinum'),
+      showChainColor: false,
 
       showBottomBar: product.features.hasBottomBar,
+      showFrameColor: false,
     };
-  }, [config.headrail, isReplacementVerticalSlat, isRollerOrDayNight, product.features]);
+  }, [config.headrail, easyStickSubtype, isReplacementVerticalSlat, isRollerOrDayNight, isRoman, isVenetian, isNoDrill, isEasyStick, isFauxWooden, isPerfectFitWooden, isPerfectFitShutter, isPerfectFitMetal, isSkylight, product.features]);
 
   // Build list of selected customizations for pricing
   const selectedCustomizations = useMemo(() => {
@@ -344,27 +653,38 @@ const CustomizationModal = ({
       headrailColour: visibleOptions.showHeadrailColour ? config.headrailColour : null,
       installationMethod: visibleOptions.showInstallationMethod ? config.installationMethod : null,
       controlOption: visibleOptions.showControlOption ? config.controlOption : null,
+      liningType: visibleOptions.showLiningType ? config.liningType : null,
       stacking: visibleOptions.showStacking ? config.stacking : null,
       controlSide: visibleOptions.showControlSide ? config.controlSide : null,
       bottomChain: visibleOptions.showBottomChain ? config.bottomChain : null,
       bracketType: visibleOptions.showBracketType ? config.bracketType : null,
-      chainColor: isElectricalRoller ? null : config.chainColor,
+      chainColor: !visibleOptions.showChainColor || isSpecialMotorized ? null : config.chainColor,
+      chainColorCategory: isRoman ? 'roman-chain-color' : 'chain-color',
+      frameColor: visibleOptions.showFrameColor ? config.frameColor : null,
+      frameColorCategory: isPerfectFitMetal ? 'perfect-fit-metal-frame-color' : 'frame-color',
+      numberOfPanels: isPerfectFitShutter ? config.numberOfPanels : null,
       wrappedCassette: config.wrappedCassette,
       cassetteMatchingBar: config.cassetteMatchingBar,
       isRollerCassette: product.features.hasRollerCassette,
       motorization: config.motorization,
+      brand: config.brand,
+      blindType: config.blindType,
       bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
     });
-  }, [config, visibleOptions, product.features.hasRollerCassette, isElectricalRoller]);
+  }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter]);
 
   // Calculate price using new pricing system
   const priceCalculation = useMemo(() => {
-    const widthInches = isReplacementVerticalSlat
-      ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
-      : getTotalInches(config.width, config.widthFraction, config.widthUnit);
-    const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
+    const widthInches = isSkylight
+      ? getSkylightPricingDimensions().widthInches
+      : isReplacementVerticalSlat
+        ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+        : getTotalInches(config.width, config.widthFraction, config.widthUnit);
+    const heightInches = isSkylight
+      ? getSkylightPricingDimensions().heightInches
+      : getTotalInches(config.height, config.heightFraction, config.heightUnit);
 
-    if (heightInches <= 0) {
+    if (!isSkylight && heightInches <= 0) {
       return null;
     }
     if (!usesHeightOnlyVerticalPricing && (!priceMatrix || widthInches <= 0)) {
@@ -379,7 +699,7 @@ const CustomizationModal = ({
       customizationPricing,
       product.tags
     );
-  }, [config.width, config.widthFraction, config.widthUnit, config.height, config.heightFraction, config.heightUnit, isReplacementVerticalSlat, usesHeightOnlyVerticalPricing, priceMatrix, product.tags, selectedCustomizations, customizationPricing]);
+  }, [config.width, config.widthFraction, config.widthUnit, config.height, config.heightFraction, config.heightUnit, isReplacementVerticalSlat, isSkylight, usesHeightOnlyVerticalPricing, priceMatrix, product.tags, selectedCustomizations, customizationPricing]);
 
   // Get display price - use new pricing system if available, otherwise fallback
   const totalPrice = useMemo(() => {
@@ -420,15 +740,74 @@ const CustomizationModal = ({
     };
   }, [priceMatrix]);
 
+  const isMeasurementOutOfRange = useMemo(() => {
+    if (isSkylight || usesHeightOnlyVerticalPricing || !sizeRanges) {
+      return false;
+    }
+
+    const widthInches = getTotalInches(config.width, config.widthFraction, config.widthUnit);
+    const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
+
+    if (widthInches <= 0 || heightInches <= 0) {
+      return false;
+    }
+
+    return (
+      widthInches < sizeRanges.minWidth ||
+      widthInches > sizeRanges.maxWidth ||
+      heightInches < sizeRanges.minHeight ||
+      heightInches > sizeRanges.maxHeight
+    );
+  }, [config.height, config.heightFraction, config.heightUnit, config.width, config.widthFraction, config.widthUnit, isSkylight, sizeRanges, usesHeightOnlyVerticalPricing]);
+  const isPerfectFitShutterConfigurationIncomplete = useMemo(() => {
+    if (!isPerfectFitShutter) {
+      return false;
+    }
+
+    return (
+      !config.installationMethod ||
+      !config.controlOption ||
+      !config.bracketType ||
+      !config.numberOfPanels ||
+      (shutterHandlePositionRequired && !shutterHandlePositionValid)
+    );
+  }, [
+    config.bracketType,
+    config.controlOption,
+    config.installationMethod,
+    config.numberOfPanels,
+    isPerfectFitShutter,
+    shutterHandlePositionRequired,
+    shutterHandlePositionValid,
+  ]);
+
   // Show minimum price indicator when no dimensions selected
-  const showMinPriceIndicator = usesHeightOnlyVerticalPricing
-    ? config.height === 0
-    : config.width === 0 || config.height === 0;
+  const showMinPriceIndicator = isSkylight
+    ? !config.blindType
+    : usesHeightOnlyVerticalPricing
+      ? config.height === 0
+      : config.width === 0 || config.height === 0;
 
   const handleAddToCart = async () => {
     // Validate dimensions are selected
-    if ((usesHeightOnlyVerticalPricing && config.height === 0) || (!usesHeightOnlyVerticalPricing && (config.width === 0 || config.height === 0))) {
+    if (isSkylight && (!config.brand || !config.blindType)) {
+      alert('Please select a brand and blind type before adding to cart.');
+      return;
+    }
+    if (!isSkylight && ((usesHeightOnlyVerticalPricing && config.height === 0) || (!usesHeightOnlyVerticalPricing && (config.width === 0 || config.height === 0)))) {
       alert(usesHeightOnlyVerticalPricing ? 'Please select height before adding to cart.' : 'Please select width and height before adding to cart.');
+      return;
+    }
+    if (isMeasurementOutOfRange) {
+      alert('Selected measurements are outside the allowed range for this product.');
+      return;
+    }
+    if (isPerfectFitShutterConfigurationIncomplete) {
+      alert(
+        shutterHandlePositionRequired && !shutterHandlePositionValid
+          ? `Handle position must be between ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM} mm and ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm.`
+          : 'Please complete the shutter options before adding to cart.'
+      );
       return;
     }
 
@@ -436,10 +815,14 @@ const CustomizationModal = ({
 
     try {
       // Validate price with backend
-      const widthInches = isReplacementVerticalSlat
-        ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
-        : getTotalInches(config.width, config.widthFraction, config.widthUnit);
-      const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
+      const widthInches = isSkylight
+        ? getSkylightPricingDimensions().widthInches
+        : isReplacementVerticalSlat
+          ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+          : getTotalInches(config.width, config.widthFraction, config.widthUnit);
+      const heightInches = isSkylight
+        ? getSkylightPricingDimensions().heightInches
+        : getTotalInches(config.height, config.heightFraction, config.heightUnit);
 
       const validation = await validateCartPrice(
         {
@@ -520,8 +903,45 @@ const CustomizationModal = ({
               <h2 className="text-lg md:text-xl font-medium text-[#25344d] mb-4 md:mb-6 mt-6 md:mt-8">Configure Your Window Treatment</h2>
 
               <div className="space-y-8 divide-y divide-gray-100">
+                {isSkylight && (
+                  <div className="pt-6 first:pt-0 space-y-6">
+                    <div>
+                      <h3 className="text-sm font-medium text-[#25344d] mb-3">Brand</h3>
+                      <div className="flex flex-wrap gap-3">
+                        {SKYLIGHT_BRAND_OPTIONS.map((option) => (
+                          <button
+                            key={option.id}
+                            onClick={() =>
+                              setConfig((prev) => ({
+                                ...prev,
+                                brand: option.id,
+                                blindType: prev.brand === option.id ? prev.blindType : null,
+                              }))
+                            }
+                            className={`min-w-[96px] rounded-[12px] border px-4 py-3 text-sm font-medium transition-all ${
+                              config.brand === option.id
+                                ? 'border-[#25344d] bg-[#f5f7fb] text-[#25344d] shadow-sm'
+                                : 'border-gray-200 bg-white text-[#4a5565] hover:border-[#8ca0bf] hover:text-[#25344d]'
+                            }`}
+                          >
+                            {option.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <SimpleDropdown
+                      label="Blind Type"
+                      options={skylightBlindTypeOptions}
+                      selectedValue={config.blindType}
+                      onChange={(optionId) => setConfig({ ...config, blindType: optionId })}
+                      placeholder={config.brand ? 'Select blind type' : 'Select brand first'}
+                    />
+                  </div>
+                )}
+
                 {/* Size Selector */}
-                {product.features.hasSize && (
+                {product.features.hasSize && visibleOptions.showSize && (
                   <div className="pt-6 first:pt-0">
                     <SizeSelector
                       width={config.width}
@@ -566,23 +986,140 @@ const CustomizationModal = ({
                 )}
 
                 {/* Installation Method Selector */}
-                {product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
+                {product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && !isEasyStick && !isPerfectFitWooden && !isPerfectFitShutter && !isPerfectFitMetal && (
                   <div className="pt-6 relative z-[45]">
                     <InstallationMethodSelector
-                      options={installationOptions}
+                      options={standardInstallationOptions}
                       selectedMethod={config.installationMethod}
                       onMethodChange={(methodId) => setConfig({ ...config, installationMethod: methodId })}
                     />
                   </div>
                 )}
 
+                {isPerfectFitWooden && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
+                  <div className="pt-6 relative z-[45]">
+                    <SimpleDropdown
+                      label={perfectFitWoodenLabels.installationMethod}
+                      options={installationOptions}
+                      selectedValue={config.installationMethod}
+                      onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
+                      placeholder={`Select ${perfectFitWoodenLabels.installationMethod.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitShutter && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
+                  <div className="pt-6 relative z-[45]">
+                    <SimpleDropdown
+                      label={perfectFitShutterLabels.installationMethod}
+                      options={installationOptions}
+                      selectedValue={config.installationMethod}
+                      onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
+                      placeholder={`Select ${perfectFitShutterLabels.installationMethod.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitMetal && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
+                  <div className="pt-6 relative z-[45]">
+                    <SimpleDropdown
+                      label={perfectFitMetalLabels.installationMethod}
+                      options={installationOptions}
+                      selectedValue={config.installationMethod}
+                      onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
+                      placeholder={`Select ${perfectFitMetalLabels.installationMethod.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isEasyStick && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
+                  <div className="pt-6 relative z-[45]">
+                    <SimpleDropdown
+                      label={easyStickLabels.installationMethod}
+                      options={installationOptions}
+                      selectedValue={config.installationMethod}
+                      onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
+                      placeholder={`Select ${easyStickLabels.installationMethod.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
                 {/* Control Option Selector */}
-                {product.features.hasControlOption && visibleOptions.showControlOption && (
+                {product.features.hasControlOption && visibleOptions.showControlOption && !isEasyStick && !isPerfectFitShutter && (
                   <div className="pt-6 relative z-[40]">
                     <ControlOptionSelector
                       options={controlOptions}
                       selectedOption={config.controlOption}
                       onOptionChange={(optionId) => setConfig({ ...config, controlOption: optionId })}
+                      title={isFauxWooden ? 'Toggle' : 'Control Option'}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitShutter && product.features.hasControlOption && visibleOptions.showControlOption && (
+                  <div className="pt-6 relative z-[40]">
+                    <SimpleDropdown
+                      label={perfectFitShutterLabels.controlOption}
+                      options={controlOptions}
+                      selectedValue={config.controlOption}
+                      onChange={(optionId) =>
+                        setConfig((prev) => ({
+                          ...prev,
+                          controlOption: optionId,
+                          handlePosition: optionId === 'none' ? null : prev.handlePosition,
+                        }))
+                      }
+                      placeholder={`Select ${perfectFitShutterLabels.controlOption.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitShutter && shutterHandlePositionRequired && (
+                  <div className="pt-6 relative z-[39]">
+                    <label className="text-sm font-medium text-[#1f2a44] block mb-3">
+                      {perfectFitShutterLabels.handlePosition}
+                    </label>
+                    <div className={`rounded-xl border px-4 py-3 bg-white shadow-[0_1px_2px_rgba(31,42,68,0.06)] ${shutterHandlePositionRequired && !shutterHandlePositionValid && config.handlePosition ? 'border-[#c24646]' : 'border-[#c4d0e4]'}`}>
+                      <div className="text-[10px] uppercase tracking-wide text-[#8d9ab1] mb-1">In mm</div>
+                      <input
+                        type="number"
+                        min={PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}
+                        max={PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM}
+                        value={config.handlePosition ?? ''}
+                        onChange={(event) =>
+                          setConfig((prev) => ({
+                            ...prev,
+                            handlePosition: event.target.value || null,
+                          }))
+                        }
+                        placeholder={`${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}-${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM}`}
+                        className="w-full bg-transparent border-none p-0 text-base font-medium text-[#1f2a44] focus:outline-none"
+                      />
+                    </div>
+                    <p className="mt-2 text-xs text-[#67748a]">
+                      Allowed range: {PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}-{PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm
+                    </p>
+                  </div>
+                )}
+
+                {isEasyStick && product.features.hasControlOption && visibleOptions.showControlOption && (
+                  <div className="pt-6 relative z-[40]">
+                    <SimpleDropdown
+                      label={easyStickLabels.controlOption}
+                      options={controlOptions}
+                      selectedValue={config.controlOption}
+                      onChange={(optionId) => setConfig({ ...config, controlOption: optionId })}
+                      placeholder={`Select ${easyStickLabels.controlOption.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {visibleOptions.showLiningType && (
+                  <div className="pt-6 relative z-[38]">
+                    <LiningTypeSelector
+                      options={LINING_TYPE_OPTIONS}
+                      selectedLiningType={config.liningType}
+                      onLiningTypeChange={(optionId) => setConfig({ ...config, liningType: optionId })}
                     />
                   </div>
                 )}
@@ -599,12 +1136,48 @@ const CustomizationModal = ({
                 )}
 
                 {/* Control Side Selector */}
-                {product.features.hasControlSide && visibleOptions.showControlSide && (
+                {product.features.hasControlSide && visibleOptions.showControlSide && !isEasyStick && !isPerfectFitWooden && !isPerfectFitMetal && (
                   <div className="pt-6 relative z-[32]">
                     <ControlSideSelector
                       options={CONTROL_SIDE_OPTIONS}
                       selectedSide={config.controlSide}
                       onSideChange={(sideId) => setConfig({ ...config, controlSide: sideId })}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitWooden && product.features.hasControlSide && visibleOptions.showControlSide && (
+                  <div className="pt-6 relative z-[32]">
+                    <SimpleDropdown
+                      label={perfectFitWoodenLabels.controlSide}
+                      options={controlSideOptions}
+                      selectedValue={config.controlSide}
+                      onChange={(optionId) => setConfig({ ...config, controlSide: optionId })}
+                      placeholder={`Select ${perfectFitWoodenLabels.controlSide.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitMetal && product.features.hasControlSide && visibleOptions.showControlSide && (
+                  <div className="pt-6 relative z-[32]">
+                    <SimpleDropdown
+                      label={perfectFitMetalLabels.controlSide}
+                      options={controlSideOptions}
+                      selectedValue={config.controlSide}
+                      onChange={(optionId) => setConfig({ ...config, controlSide: optionId })}
+                      placeholder={`Select ${perfectFitMetalLabels.controlSide.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isEasyStick && product.features.hasControlSide && visibleOptions.showControlSide && (
+                  <div className="pt-6 relative z-[32]">
+                    <SimpleDropdown
+                      label={easyStickLabels.controlSide || 'Control Side'}
+                      options={easyStickControlSideOptions}
+                      selectedValue={config.controlSide}
+                      onChange={(optionId) => setConfig({ ...config, controlSide: optionId })}
+                      placeholder={`Select ${(easyStickLabels.controlSide || 'control side').toLowerCase()}`}
                     />
                   </div>
                 )}
@@ -621,7 +1194,7 @@ const CustomizationModal = ({
                 )}
 
                 {/* Bracket Type Selector */}
-                {product.features.hasBracketType && visibleOptions.showBracketType && (
+                {product.features.hasBracketType && visibleOptions.showBracketType && !isPerfectFitWooden && !isPerfectFitShutter && !isPerfectFitMetal && (
                   <div className="pt-6 relative z-20">
                     <BracketTypeSelector
                       options={BRACKET_TYPE_OPTIONS}
@@ -631,11 +1204,59 @@ const CustomizationModal = ({
                   </div>
                 )}
 
+                {isPerfectFitShutter && product.features.hasBracketType && visibleOptions.showBracketType && (
+                  <div className="pt-6 relative z-20">
+                    <SimpleDropdown
+                      label={perfectFitShutterLabels.bracketType}
+                      options={PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS}
+                      selectedValue={config.bracketType}
+                      onChange={(optionId) => setConfig({ ...config, bracketType: optionId })}
+                      placeholder={`Select ${perfectFitShutterLabels.bracketType.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitWooden && product.features.hasBracketType && visibleOptions.showBracketType && (
+                  <div className="pt-6 relative z-20">
+                    <SimpleDropdown
+                      label={perfectFitWoodenLabels.bracketType}
+                      options={PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS}
+                      selectedValue={config.bracketType}
+                      onChange={(optionId) => setConfig({ ...config, bracketType: optionId })}
+                      placeholder={`Select ${perfectFitWoodenLabels.bracketType.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitShutter && (
+                  <div className="pt-6 relative z-[19]">
+                    <SimpleDropdown
+                      label={perfectFitShutterLabels.numberOfPanels}
+                      options={shutterPanelOptions}
+                      selectedValue={config.numberOfPanels}
+                      onChange={() => undefined}
+                      placeholder="Select size first"
+                    />
+                  </div>
+                )}
+
+                {isPerfectFitMetal && product.features.hasBracketType && visibleOptions.showBracketType && (
+                  <div className="pt-6 relative z-20">
+                    <SimpleDropdown
+                      label={perfectFitMetalLabels.bracketType}
+                      options={PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS}
+                      selectedValue={config.bracketType}
+                      onChange={(optionId) => setConfig({ ...config, bracketType: optionId })}
+                      placeholder={`Select ${perfectFitMetalLabels.bracketType.toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
                 {/* Chain Color Selector */}
-                {product.features.hasChainColor && !isElectricalRoller && (
+                {product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized && (
                   <div className="pt-6 relative z-10">
                     <ChainColorSelector
-                      options={CHAIN_COLOR_OPTIONS}
+                      options={chainColorOptions}
                       selectedColor={config.chainColor}
                       onColorChange={(colorId) => setConfig({ ...config, chainColor: colorId })}
                     />
@@ -690,13 +1311,25 @@ const CustomizationModal = ({
                   </div>
                 )}
 
+                {(isEasyStick || isPerfectFitWooden || isPerfectFitMetal) && product.features.hasFrameColor && visibleOptions.showFrameColor && (
+                  <div className="pt-6 relative z-[2.4]">
+                    <SimpleDropdown
+                      label={isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'Profile Color'}
+                      options={frameColorOptions}
+                      selectedValue={config.frameColor}
+                      onChange={(optionId) => setConfig({ ...config, frameColor: optionId })}
+                      placeholder={`Select ${(isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'profile color').toLowerCase()}`}
+                    />
+                  </div>
+                )}
+
                 {/* Motorization Selector */}
-                {(product.features.hasMotorization || isElectricalRoller) && (
+                {(product.features.hasMotorization || isSpecialMotorized) && (
                   <div className="pt-6 relative z-[2]">
-                    {isElectricalRoller ? (
+                    {isSpecialMotorized ? (
                       <SimpleDropdown
                         label="Remote Control"
-                        options={electricalRollerMotorizationOptions}
+                        options={motorizedRemoteOptions}
                         selectedValue={config.motorization}
                         onChange={(optionId) => setConfig({ ...config, motorization: optionId })}
                         placeholder="Select remote option"
@@ -732,7 +1365,9 @@ const CustomizationModal = ({
               </div>
               {priceCalculation && !showMinPriceIndicator && (
                 <div className="text-xs text-gray-400">
-                  {usesHeightOnlyVerticalPricing
+                  {isSkylight
+                    ? 'Base price plus selected skylight blind type.'
+                    : usesHeightOnlyVerticalPricing
                     ? `Height-only pricing: ${getTotalInches(config.height, config.heightFraction, config.heightUnit).toFixed(2)}"`
                     : `Size: ${priceCalculation.widthBand?.inches}" × ${priceCalculation.heightBand?.inches}"`}
                 </div>
@@ -740,13 +1375,13 @@ const CustomizationModal = ({
             </div>
             <button
               onClick={handleAddToCart}
-              disabled={isValidating || showMinPriceIndicator}
-              className={`py-2.5 md:py-3 px-6 md:px-8 rounded text-sm md:text-base font-medium transition-colors ${isValidating || showMinPriceIndicator
+              disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isPerfectFitShutterConfigurationIncomplete}
+              className={`py-2.5 md:py-3 px-6 md:px-8 rounded text-sm md:text-base font-medium transition-colors ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isPerfectFitShutterConfigurationIncomplete
                 ? 'bg-gray-400 text-white cursor-not-allowed'
                 : 'bg-[#335c99] text-white hover:bg-[#244779]'
                 }`}
             >
-              {isValidating ? 'Adding to Cart...' : 'Add to Cart'}
+              {isValidating ? 'Adding to Cart...' : isMeasurementOutOfRange ? 'Selected Size Not Available' : isPerfectFitShutterConfigurationIncomplete ? 'Complete Shutter Options' : 'Add to Cart'}
             </button>
           </div>
         </div>
