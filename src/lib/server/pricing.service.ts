@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { unstable_cache } from 'next/cache';
 import { prisma } from './database';
 import { getAllCachedProducts } from './product-cache';
 import {
@@ -10,6 +11,8 @@ import {
   getMinimumPriceWithMotorizedUplift,
   getMotorizationBasePrice,
 } from '@/lib/electrical-roller';
+
+const PRICING_CACHE_REVALIDATE_SECONDS = 900;
 
 // ============================================
 // Types
@@ -53,6 +56,16 @@ export interface CustomizationPricingData {
   prices: { widthMm: number | null; price: number }[];
 }
 
+interface CustomizationOptionRecord {
+  category: string;
+  optionId: string;
+  name: string;
+  pricingEntries: Array<{
+    widthBandId: string | null;
+    price: unknown;
+  }>;
+}
+
 // ============================================
 // Helper Functions
 // ============================================
@@ -62,10 +75,12 @@ async function findCeilingWidthBand(widthInches: number, priceBandId: string) {
     prisma.widthBand.findFirst({
       where: { priceCells: { some: { priceBandId } } },
       orderBy: { widthInches: 'asc' },
+      select: { widthInches: true },
     }),
     prisma.widthBand.findFirst({
       where: { priceCells: { some: { priceBandId } } },
       orderBy: { widthInches: 'desc' },
+      select: { widthInches: true },
     }),
   ]);
 
@@ -83,6 +98,11 @@ async function findCeilingWidthBand(widthInches: number, priceBandId: string) {
       priceCells: { some: { priceBandId } },
     },
     orderBy: { widthInches: 'asc' },
+    select: {
+      id: true,
+      widthMm: true,
+      widthInches: true,
+    },
   });
 
   return widthBand;
@@ -93,10 +113,12 @@ async function findCeilingHeightBand(heightInches: number, priceBandId: string) 
     prisma.heightBand.findFirst({
       where: { priceCells: { some: { priceBandId } } },
       orderBy: { heightInches: 'asc' },
+      select: { heightInches: true },
     }),
     prisma.heightBand.findFirst({
       where: { priceCells: { some: { priceBandId } } },
       orderBy: { heightInches: 'desc' },
+      select: { heightInches: true },
     }),
   ]);
 
@@ -114,6 +136,11 @@ async function findCeilingHeightBand(heightInches: number, priceBandId: string) 
       priceCells: { some: { priceBandId } },
     },
     orderBy: { heightInches: 'asc' },
+    select: {
+      id: true,
+      heightMm: true,
+      heightInches: true,
+    },
   });
 
   return heightBand;
@@ -132,6 +159,10 @@ async function resolvePriceBand(handle: string) {
 
   const priceBand = await prisma.priceBand.findUnique({
     where: { name: priceBandName },
+    select: {
+      id: true,
+      name: true,
+    },
   });
 
   if (!priceBand) {
@@ -140,6 +171,306 @@ async function resolvePriceBand(handle: string) {
 
   return priceBand;
 }
+
+async function findCustomizationOption(
+  category: string,
+  optionId: string,
+  widthBandId?: string | null
+): Promise<CustomizationOptionRecord | null> {
+  const categoriesToTry =
+    category === 'cassette-bar'
+      ? [category, 'roller-cassette']
+      : [category];
+
+  for (const categoryName of categoriesToTry) {
+    const option = await prisma.customizationOption.findUnique({
+      where: {
+        category_optionId: {
+          category: categoryName,
+          optionId,
+        },
+      },
+      select: {
+        category: true,
+        optionId: true,
+        name: true,
+        pricingEntries: {
+          where: widthBandId
+            ? {
+                OR: [
+                  { widthBandId: null },
+                  { widthBandId },
+                ],
+              }
+            : { widthBandId: null },
+          select: {
+            widthBandId: true,
+            price: true,
+          },
+        },
+      },
+    });
+
+    if (option) {
+      return option;
+    }
+  }
+
+  return null;
+}
+
+function findMatchingPricingEntry(
+  entries: CustomizationOptionRecord['pricingEntries'],
+  preferredWidthBandId?: string | null
+) {
+  if (preferredWidthBandId) {
+    return (
+      entries.find((entry) => entry.widthBandId === preferredWidthBandId) ??
+      entries.find((entry) => entry.widthBandId === null)
+    );
+  }
+
+  return entries.find((entry) => entry.widthBandId === null);
+}
+
+async function getPriceBandMatrixUncached(priceBandId: string): Promise<PriceBandMatrix | null> {
+  const priceBand = await prisma.priceBand.findUnique({
+    where: { id: priceBandId },
+    select: {
+      id: true,
+      name: true,
+      priceCells: {
+        select: {
+          price: true,
+          widthBand: {
+            select: {
+              id: true,
+              widthMm: true,
+              widthInches: true,
+            },
+          },
+          heightBand: {
+            select: {
+              id: true,
+              heightMm: true,
+              heightInches: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!priceBand) return null;
+
+  const widthBandMap = new Map<string, { id: string; mm: number; inches: number }>();
+  const heightBandMap = new Map<string, { id: string; mm: number; inches: number }>();
+
+  priceBand.priceCells.forEach((cell: any) => {
+    if (!widthBandMap.has(cell.widthBand.id)) {
+      widthBandMap.set(cell.widthBand.id, {
+        id: cell.widthBand.id,
+        mm: cell.widthBand.widthMm,
+        inches: cell.widthBand.widthInches,
+      });
+    }
+    if (!heightBandMap.has(cell.heightBand.id)) {
+      heightBandMap.set(cell.heightBand.id, {
+        id: cell.heightBand.id,
+        mm: cell.heightBand.heightMm,
+        inches: cell.heightBand.heightInches,
+      });
+    }
+  });
+
+  return {
+    id: priceBand.id,
+    name: priceBand.name,
+    widthBands: Array.from(widthBandMap.values()).sort((a, b) => a.inches - b.inches),
+    heightBands: Array.from(heightBandMap.values()).sort((a, b) => a.inches - b.inches),
+    prices: priceBand.priceCells.map((cell: any) => ({
+      widthMm: cell.widthBand.widthMm,
+      heightMm: cell.heightBand.heightMm,
+      price: Number(cell.price),
+    })),
+  };
+}
+
+async function getCustomizationPricingUncached(): Promise<CustomizationPricingData[]> {
+  const options = await prisma.customizationOption.findMany({
+    select: {
+      category: true,
+      optionId: true,
+      name: true,
+      sortOrder: true,
+      pricingEntries: {
+        select: {
+          price: true,
+          widthBand: {
+            select: {
+              widthMm: true,
+            },
+          },
+        },
+        orderBy: { widthBand: { sortOrder: 'asc' } },
+      },
+    },
+    orderBy: [{ category: 'asc' }, { sortOrder: 'asc' }],
+  });
+
+  return options.map((option: any) => ({
+    category: option.category,
+    optionId: option.optionId,
+    name: option.name,
+    prices: option.pricingEntries.map((entry: any) => ({
+      widthMm: entry.widthBand?.widthMm || null,
+      price: Number(entry.price),
+    })),
+  }));
+}
+
+async function getMinimumPricesBatch(priceBandIds: string[]): Promise<Map<string, number>> {
+  if (priceBandIds.length === 0) return new Map();
+
+  const validIds = priceBandIds.filter(Boolean);
+  if (validIds.length === 0) return new Map();
+
+  const priceCells = await prisma.priceCell.findMany({
+    where: { priceBandId: { in: validIds } },
+    select: {
+      priceBandId: true,
+      price: true,
+      widthBand: {
+        select: {
+          widthMm: true,
+        },
+      },
+      heightBand: {
+        select: {
+          heightMm: true,
+        },
+      },
+    },
+  });
+
+  const cellsByBand = new Map<string, typeof priceCells>();
+  priceCells.forEach((cell) => {
+    if (!cellsByBand.has(cell.priceBandId)) {
+      cellsByBand.set(cell.priceBandId, []);
+    }
+    cellsByBand.get(cell.priceBandId)!.push(cell);
+  });
+
+  const result = new Map<string, number>();
+  cellsByBand.forEach((cells, priceBandId) => {
+    if (cells.length === 0) return;
+
+    const sortedCells = [...cells].sort((a, b) => {
+      const areaA = a.widthBand.widthMm * a.heightBand.heightMm;
+      const areaB = b.widthBand.widthMm * b.heightBand.heightMm;
+      if (areaA !== areaB) return areaA - areaB;
+      if (a.widthBand.widthMm !== b.widthBand.widthMm) return a.widthBand.widthMm - b.widthBand.widthMm;
+      return a.heightBand.heightMm - b.heightBand.heightMm;
+    });
+
+    result.set(priceBandId, Number(sortedCells[0].price));
+  });
+
+  return result;
+}
+
+async function getMinimumPricesByHandleUncached(): Promise<Record<string, number>> {
+  const allProducts = await getAllCachedProducts();
+  const result: Record<string, number> = {};
+
+  const bandNames = new Set<string>();
+  for (const handle of Object.keys(allProducts)) {
+    const product = allProducts[handle];
+    const priceBandName =
+      product.priceBandName ??
+      inferVerticalPriceBandNameFromTags(product.tags);
+    if (priceBandName) {
+      bandNames.add(priceBandName);
+    }
+  }
+
+  const priceBands = await prisma.priceBand.findMany({
+    where: { name: { in: Array.from(bandNames) } },
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+  const bandNameToId = new Map(priceBands.map((band) => [band.name, band.id]));
+
+  const minPrices = await getMinimumPricesBatch(priceBands.map((band) => band.id));
+
+  for (const handle of Object.keys(allProducts)) {
+    const product = allProducts[handle];
+    const priceBandName =
+      product.priceBandName ??
+      inferVerticalPriceBandNameFromTags(product.tags);
+    if (!priceBandName) continue;
+    const bandId = bandNameToId.get(priceBandName);
+    if (bandId) {
+      const price = minPrices.get(bandId);
+      if (price !== undefined) {
+        result[handle] = getMinimumPriceWithMotorizedUplift(
+          price,
+          product.tags
+        );
+      }
+    }
+  }
+
+  return result;
+}
+
+const getCachedPriceBandMatrix = unstable_cache(
+  async (priceBandId: string) => getPriceBandMatrixUncached(priceBandId),
+  ['pricing-price-band-matrix'],
+  { revalidate: PRICING_CACHE_REVALIDATE_SECONDS }
+);
+
+const getCachedCustomizationPricing = unstable_cache(
+  async () => getCustomizationPricingUncached(),
+  ['pricing-customization-pricing'],
+  { revalidate: PRICING_CACHE_REVALIDATE_SECONDS }
+);
+
+const getCachedWidthBands = unstable_cache(
+  async () =>
+    prisma.widthBand.findMany({
+      select: {
+        id: true,
+        widthMm: true,
+        widthInches: true,
+      },
+      orderBy: { sortOrder: 'asc' },
+    }),
+  ['pricing-width-bands'],
+  { revalidate: PRICING_CACHE_REVALIDATE_SECONDS }
+);
+
+const getCachedHeightBands = unstable_cache(
+  async () =>
+    prisma.heightBand.findMany({
+      select: {
+        id: true,
+        heightMm: true,
+        heightInches: true,
+      },
+      orderBy: { sortOrder: 'asc' },
+    }),
+  ['pricing-height-bands'],
+  { revalidate: PRICING_CACHE_REVALIDATE_SECONDS }
+);
+
+const getCachedMinimumPricesByHandle = unstable_cache(
+  async () => getMinimumPricesByHandleUncached(),
+  ['pricing-minimum-prices-by-handle'],
+  { revalidate: PRICING_CACHE_REVALIDATE_SECONDS }
+);
 
 // ============================================
 // Service Functions
@@ -163,34 +494,13 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
 
     if (request.customizations && request.customizations.length > 0) {
       for (const customization of request.customizations) {
-        const option = await prisma.customizationOption.findUnique({
-          where: {
-            category_optionId: {
-              category: customization.category,
-              optionId: customization.optionId,
-            },
-          },
-          include: {
-            pricingEntries: {
-              where: { widthBandId: null },
-            },
-          },
-        }) ?? await prisma.customizationOption.findUnique({
-          where: {
-            category_optionId: {
-              category: customization.category === 'cassette-bar' ? 'roller-cassette' : customization.category,
-              optionId: customization.optionId,
-            },
-          },
-          include: {
-            pricingEntries: {
-              where: { widthBandId: null },
-            },
-          },
-        });
+        const option = await findCustomizationOption(
+          customization.category,
+          customization.optionId
+        );
 
         if (option && option.pricingEntries.length > 0) {
-          const pricing = option.pricingEntries.find((p: { widthBandId: string | null; price: unknown }) => p.widthBandId === null);
+          const pricing = findMatchingPricingEntry(option.pricingEntries);
 
           if (pricing) {
             customizationPrices.push({
@@ -244,45 +554,14 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
 
   if (request.customizations && request.customizations.length > 0) {
     for (const customization of request.customizations) {
-      const option = await prisma.customizationOption.findUnique({
-        where: {
-          category_optionId: {
-            category: customization.category,
-            optionId: customization.optionId,
-          },
-        },
-        include: {
-          pricingEntries: {
-            where: {
-              OR: [
-                { widthBandId: null },
-                { widthBandId: widthBand.id },
-              ],
-            },
-          },
-        },
-      }) ?? await prisma.customizationOption.findUnique({
-        where: {
-          category_optionId: {
-            category: customization.category === 'cassette-bar' ? 'roller-cassette' : customization.category,
-            optionId: customization.optionId,
-          },
-        },
-        include: {
-          pricingEntries: {
-            where: {
-              OR: [
-                { widthBandId: null },
-                { widthBandId: widthBand.id },
-              ],
-            },
-          },
-        },
-      });
+      const option = await findCustomizationOption(
+        customization.category,
+        customization.optionId,
+        widthBand.id
+      );
 
       if (option && option.pricingEntries.length > 0) {
-        const pricing = option.pricingEntries.find((p: { widthBandId: string | null; price: unknown }) => p.widthBandId === widthBand.id) ||
-          option.pricingEntries.find((p: { widthBandId: string | null; price: unknown }) => p.widthBandId === null);
+        const pricing = findMatchingPricingEntry(option.pricingEntries, widthBand.id);
 
         if (pricing) {
           customizationPrices.push({
@@ -313,78 +592,19 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
 }
 
 export async function getPriceBandMatrix(priceBandId: string): Promise<PriceBandMatrix | null> {
-  const priceBand = await prisma.priceBand.findUnique({
-    where: { id: priceBandId },
-    include: {
-      priceCells: {
-        include: { widthBand: true, heightBand: true },
-      },
-    },
-  });
-
-  if (!priceBand) return null;
-
-  const widthBandMap = new Map<string, { id: string; mm: number; inches: number }>();
-  const heightBandMap = new Map<string, { id: string; mm: number; inches: number }>();
-
-  priceBand.priceCells.forEach((cell: any) => {
-    if (!widthBandMap.has(cell.widthBand.id)) {
-      widthBandMap.set(cell.widthBand.id, {
-        id: cell.widthBand.id,
-        mm: cell.widthBand.widthMm,
-        inches: cell.widthBand.widthInches,
-      });
-    }
-    if (!heightBandMap.has(cell.heightBand.id)) {
-      heightBandMap.set(cell.heightBand.id, {
-        id: cell.heightBand.id,
-        mm: cell.heightBand.heightMm,
-        inches: cell.heightBand.heightInches,
-      });
-    }
-  });
-
-  return {
-    id: priceBand.id,
-    name: priceBand.name,
-    widthBands: Array.from(widthBandMap.values()).sort((a, b) => a.inches - b.inches),
-    heightBands: Array.from(heightBandMap.values()).sort((a, b) => a.inches - b.inches),
-    prices: priceBand.priceCells.map((cell: any) => ({
-      widthMm: cell.widthBand.widthMm,
-      heightMm: cell.heightBand.heightMm,
-      price: Number(cell.price),
-    })),
-  };
+  return getCachedPriceBandMatrix(priceBandId);
 }
 
 export async function getCustomizationPricing(): Promise<CustomizationPricingData[]> {
-  const options = await prisma.customizationOption.findMany({
-    include: {
-      pricingEntries: {
-        include: { widthBand: true },
-        orderBy: { widthBand: { sortOrder: 'asc' } },
-      },
-    },
-    orderBy: [{ category: 'asc' }, { sortOrder: 'asc' }],
-  });
-
-  return options.map((option: any) => ({
-    category: option.category,
-    optionId: option.optionId,
-    name: option.name,
-    prices: option.pricingEntries.map((entry: any) => ({
-      widthMm: entry.widthBand?.widthMm || null,
-      price: Number(entry.price),
-    })),
-  }));
+  return getCachedCustomizationPricing();
 }
 
 export async function getWidthBands() {
-  return prisma.widthBand.findMany({ orderBy: { sortOrder: 'asc' } });
+  return getCachedWidthBands();
 }
 
 export async function getHeightBands() {
-  return prisma.heightBand.findMany({ orderBy: { sortOrder: 'asc' } });
+  return getCachedHeightBands();
 }
 
 export async function resolveHandleToPriceBand(handle: string) {
@@ -396,44 +616,13 @@ export async function resolveHandleToPriceBand(handle: string) {
 
   if (!priceBandName) return null;
 
-  return prisma.priceBand.findUnique({ where: { name: priceBandName } });
-}
-
-async function getMinimumPricesBatch(priceBandIds: string[]): Promise<Map<string, number>> {
-  if (priceBandIds.length === 0) return new Map();
-
-  const validIds = priceBandIds.filter(Boolean);
-  if (validIds.length === 0) return new Map();
-
-  const priceCells = await prisma.priceCell.findMany({
-    where: { priceBandId: { in: validIds } },
-    include: { widthBand: true, heightBand: true },
+  return prisma.priceBand.findUnique({
+    where: { name: priceBandName },
+    select: {
+      id: true,
+      name: true,
+    },
   });
-
-  const cellsByBand = new Map<string, typeof priceCells>();
-  priceCells.forEach((cell: any) => {
-    if (!cellsByBand.has(cell.priceBandId)) {
-      cellsByBand.set(cell.priceBandId, []);
-    }
-    cellsByBand.get(cell.priceBandId)!.push(cell);
-  });
-
-  const result = new Map<string, number>();
-  cellsByBand.forEach((cells: any[], priceBandId) => {
-    if (cells.length === 0) return;
-
-    const sortedCells = cells.sort((a: any, b: any) => {
-      const areaA = a.widthBand.widthMm * a.heightBand.heightMm;
-      const areaB = b.widthBand.widthMm * b.heightBand.heightMm;
-      if (areaA !== areaB) return areaA - areaB;
-      if (a.widthBand.widthMm !== b.widthBand.widthMm) return a.widthBand.widthMm - b.widthBand.widthMm;
-      return a.heightBand.heightMm - b.heightBand.heightMm;
-    });
-
-    result.set(priceBandId, Number(sortedCells[0].price));
-  });
-
-  return result;
 }
 
 export async function validateCartPrice(
@@ -452,44 +641,5 @@ export async function validateCartPrice(
 }
 
 export async function getMinimumPricesByHandle(): Promise<Record<string, number>> {
-  const allProducts = await getAllCachedProducts();
-  const result: Record<string, number> = {};
-
-  const bandNames = new Set<string>();
-  for (const handle of Object.keys(allProducts)) {
-    const product = allProducts[handle];
-    const priceBandName =
-      product.priceBandName ??
-      inferVerticalPriceBandNameFromTags(product.tags);
-    if (priceBandName) {
-      bandNames.add(priceBandName);
-    }
-  }
-
-  const priceBands = await prisma.priceBand.findMany({
-    where: { name: { in: Array.from(bandNames) } },
-  });
-  const bandNameToId = new Map(priceBands.map(b => [b.name, b.id]));
-
-  const minPrices = await getMinimumPricesBatch(priceBands.map(b => b.id));
-
-  for (const handle of Object.keys(allProducts)) {
-    const product = allProducts[handle];
-    const priceBandName =
-      product.priceBandName ??
-      inferVerticalPriceBandNameFromTags(product.tags);
-    if (!priceBandName) continue;
-    const bandId = bandNameToId.get(priceBandName);
-    if (bandId) {
-      const price = minPrices.get(bandId);
-      if (price !== undefined) {
-        result[handle] = getMinimumPriceWithMotorizedUplift(
-          price,
-          product.tags
-        );
-      }
-    }
-  }
-
-  return result;
+  return getCachedMinimumPricesByHandle();
 }

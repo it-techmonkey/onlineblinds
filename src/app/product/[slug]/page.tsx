@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import { PriceBandMatrix, Product } from '@/types';
+import { CustomizationPricing, PriceBandMatrix, Product } from '@/types';
 import { ProductPage, CustomerReviewsSection, ProductFeatureSection, ProductComparisonSection, HowItWorksSection, ProductRechargeSection, ProductWarrantySection, ProductComparisonTableSection } from '@/components/product';
 import { Header, FAQ, Footer, } from '@/components';
-import { fetchPriceMatrix, fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
+import { fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
+import { getCustomizationPricing, getPriceBandMatrix, resolveHandleToPriceBand } from '@/lib/server/pricing.service';
 import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 
 interface ProductPageProps {
@@ -15,7 +16,7 @@ interface ProductPageProps {
 // Generate static params for all products from backend
 export async function generateStaticParams() {
   try {
-    const response = await fetchProducts({ limit: 1000 });
+    const response = await fetchProducts();
     return response.data.map((product) => ({
       slug: product.slug,
     }));
@@ -64,18 +65,31 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
 
   const product = transformProduct(productData);
   let initialPriceMatrix: PriceBandMatrix | null = null;
+  let initialCustomizationPricing: CustomizationPricing[] = [];
 
   if (!isReplacementVerticalSlatProduct(product.tags)) {
     try {
-      const matrix = await fetchPriceMatrix(product.slug);
-      initialPriceMatrix =
-        matrix.widthBands.length > 0 && matrix.heightBands.length > 0
-          ? matrix
-          : null;
+      const priceBand = await resolveHandleToPriceBand(product.slug);
+
+      if (priceBand) {
+        const matrix = await getPriceBandMatrix(priceBand.id);
+        initialPriceMatrix =
+          matrix && matrix.widthBands.length > 0 && matrix.heightBands.length > 0
+            ? matrix
+            : null;
+      }
     } catch (error) {
       if (process.env.NODE_ENV === 'development') {
         console.error('Error fetching product price matrix:', error);
       }
+    }
+  }
+
+  try {
+    initialCustomizationPricing = await getCustomizationPricing();
+  } catch (error) {
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error fetching customization pricing:', error);
     }
   }
 
@@ -132,6 +146,7 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
             product={product}
             relatedProducts={relatedProducts}
             initialPriceMatrix={initialPriceMatrix}
+            initialCustomizationPricing={initialCustomizationPricing}
           />
         </Suspense>
         {slug !== 'non-driii-honeycomb-blackout-blinds' && (

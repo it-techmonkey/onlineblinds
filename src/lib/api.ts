@@ -218,6 +218,8 @@ export function paginateApiProducts(
   };
 }
 
+const SHOPIFY_STOREFRONT_MAX_PAGE_SIZE = 250;
+
 /**
  * Fetch products from Shopify Storefront API, merged with backend prices.
  * Falls back to backend REST API if Shopify is unavailable.
@@ -227,7 +229,12 @@ export async function fetchProducts(params?: FetchProductsParams): Promise<ApiPr
     const page = Math.max(1, params?.page || 1);
     const limit = typeof params?.limit === 'number' ? Math.max(1, params.limit) : undefined;
 
-    if (limit && (!params?.tags || params.tags.length === 0) && canUseSourcePagination(params?.sortBy)) {
+    if (
+      limit &&
+      limit <= SHOPIFY_STOREFRONT_MAX_PAGE_SIZE &&
+      (!params?.tags || params.tags.length === 0) &&
+      canUseSourcePagination(params?.sortBy)
+    ) {
       const response = await fetchShopifyProductsMergedPage({
         page,
         limit,

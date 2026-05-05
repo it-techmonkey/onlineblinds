@@ -45,7 +45,7 @@ export const navigationData: NavigationItem[] = [
       { label: 'Skylight Blinds', href: '/collections/skylight-blinds', icon: '/nav-icons/skylight-blinds.webp' },
       { label: 'Easy Stick', href: '/collections/easy-stick-blinds', icon: '/nav-icons/no-drill-rollers.webp', badge: TRENDING_BADGE },
       { label: 'No Drill Blinds', href: '/collections/no-drill-blinds', icon: '/nav-icons/no-drill-blinds.svg' },
-      { label: 'Complete Blackout Blinds', href: '/collections/eclipsecore-shades', icon: '/nav-icons/pleated-blind.webp', badge: TRENDING_BADGE },
+      { label: 'Complete Blackout Blinds', href: '/product/non-driii-honeycomb-blackout-blinds', icon: '/nav-icons/pleated-blind.webp', badge: TRENDING_BADGE },
     ],
   },
   {
@@ -62,7 +62,7 @@ export const navigationData: NavigationItem[] = [
       { label: 'Easy Stick', href: '/collections/easy-stick-blinds', icon: '/nav-icons/no-drill-rollers.webp', badge: TRENDING_BADGE },
       { label: 'Perfect Fit Metal', href: '/collections/perfect-fit-metal', icon: '/nav-icons/metal-blinds.webp' },
       { label: 'Perfect Fit Wooden', href: '/collections/perfect-fit-wooden', icon: '/nav-icons/light-wood.webp' },
-      { label: 'Perfect Fit Shutter Blind', href: '/collections/perfect-fit-shutter', icon: '/nav-icons/shutter-blind.webp', badge: BESTSELLER_BADGE },
+      { label: 'Perfect Fit Shutter Blind', href: '/product/sierra-ice-white-perfect-fit-shutter-blind', icon: '/nav-icons/shutter-blind.webp', badge: BESTSELLER_BADGE },
       { label: 'Perfect Fit - Honeycomb', href: '/product/non-driii-honeycomb-blackout-blinds', icon: '/nav-icons/pleated-blind.webp' },
     ],
   },

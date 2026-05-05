@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import * as pricingService from '@/lib/server/pricing.service';
 
+export const revalidate = 900;
+
 interface BandRecord {
   id: string;
   widthMm?: number;

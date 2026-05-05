@@ -114,16 +114,32 @@ import { CONTINUOUS_CHAIN_CARD, CONTINUOUS_CHAIN_CARD_ROLLER, CONTINUOUS_CHAIN_C
 import Image from 'next/image';
 import { isRomanProduct } from '@/lib/roman-blinds';
 
+function withBottomBarPricing(
+  customizations: CustomizationPricingType[]
+): CustomizationPricingType[] {
+  return [
+    ...customizations,
+    ...BOTTOM_BAR_OPTIONS.map((option) => ({
+      category: 'bottom-bar',
+      optionId: option.id,
+      name: option.name,
+      prices: [{ widthMm: null, price: option.price || 0 }],
+    })),
+  ];
+}
+
 interface ProductPageProps {
   product: Product;
   relatedProducts: Product[];
   initialPriceMatrix?: PriceBandMatrix | null;
+  initialCustomizationPricing?: CustomizationPricingType[];
 }
 
 const ProductPage = ({
   product,
   relatedProducts,
   initialPriceMatrix = null,
+  initialCustomizationPricing = [],
 }: ProductPageProps) => {
   const { addToCart } = useCart();
   const searchParams = useSearchParams();
@@ -138,7 +154,9 @@ const ProductPage = ({
 
   // State for pricing data from backend
   const [priceMatrix, setPriceMatrix] = useState<PriceBandMatrix | null>(initialPriceMatrix);
-  const [customizationPricing, setCustomizationPricing] = useState<CustomizationPricingType[]>([]);
+  const [customizationPricing, setCustomizationPricing] = useState<CustomizationPricingType[]>(
+    () => withBottomBarPricing(initialCustomizationPricing)
+  );
   const [isValidating, setIsValidating] = useState(false);
   const customizationFetchingRef = useRef(false);
   const matrixFetchingRef = useRef(false);
@@ -189,11 +207,13 @@ const ProductPage = ({
             : prev.motorization,
       }));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceMotorization, isSpecialMotorized, motorizedRemoteOptions]);
 
   // Fetch customization pricing on mount
   useEffect(() => {
+    if (initialCustomizationPricing.length > 0) {
+      return;
+    }
     if (customizationFetchingRef.current) {
       return;
     }
@@ -206,14 +226,7 @@ const ProductPage = ({
         const customizations = await fetchCustomizationPricing();
 
         if (isMounted) {
-          const bottomBarPricing = BOTTOM_BAR_OPTIONS.map(option => ({
-            category: 'bottom-bar',
-            optionId: option.id,
-            name: option.name,
-            prices: [{ widthMm: null, price: option.price || 0 }]
-          }));
-
-          setCustomizationPricing([...customizations, ...bottomBarPricing]);
+          setCustomizationPricing(withBottomBarPricing(customizations));
         }
       } catch (error) {
         console.error('Failed to load customization pricing:', error);
@@ -230,7 +243,7 @@ const ProductPage = ({
       isMounted = false;
       customizationFetchingRef.current = false;
     };
-  }, [product.slug]);
+  }, [initialCustomizationPricing.length, product.slug]);
 
   // Determine which options to use based on product category
   const isRollerOrDayNight = useMemo(() => {

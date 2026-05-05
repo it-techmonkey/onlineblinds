@@ -314,7 +314,10 @@ const CUSTOMER_FIELDS = `
 
 async function storefrontFetch<T>(
   query: string,
-  variables?: Record<string, unknown>
+  variables?: Record<string, unknown>,
+  options?: {
+    revalidate?: number | false;
+  }
 ): Promise<T> {
   if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_TOKEN) {
     throw new Error(
@@ -333,9 +336,14 @@ async function storefrontFetch<T>(
     body: JSON.stringify({ query, variables }),
   };
 
-  // Use Next.js ISR cache for server-side requests
+  // Use Next.js data cache for normal server-side requests, but allow opting out
+  // for large bulk catalog fetches that exceed the persistent cache size limit.
   if (isServerSide) {
-    fetchOptions.next = { revalidate: 60 };
+    if (options?.revalidate === false) {
+      fetchOptions.cache = 'no-store';
+    } else {
+      fetchOptions.next = { revalidate: options?.revalidate ?? 60 };
+    }
   }
 
   const response = await fetch(STOREFRONT_URL, fetchOptions);
@@ -546,7 +554,8 @@ export async function fetchAllShopifyProducts(
     const data =
       await storefrontFetch<StorefrontProductsResponse>(
         PRODUCTS_QUERY,
-        variables
+        variables,
+        { revalidate: false }
       );
 
     const { edges, pageInfo } = data.products;
@@ -797,7 +806,8 @@ async function fetchAllStorefrontProductsByCollection(handle: string): Promise<S
         after: cursor,
         sortKey: collectionSortKey,
         reverse,
-      }
+      },
+      { revalidate: false }
     );
 
     const connection: StorefrontCollectionProductsConnection | undefined =

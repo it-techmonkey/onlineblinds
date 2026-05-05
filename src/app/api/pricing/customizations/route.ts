@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import * as pricingService from '@/lib/server/pricing.service';
 
+export const revalidate = 900;
+
 export async function GET() {
   try {
     const customizations = await pricingService.getCustomizationPricing();

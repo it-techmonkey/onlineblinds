@@ -51,12 +51,12 @@ const guides = [
         type: 'Measuring',
       },
       {
-        title: 'Zebra Shades – How to Measure',
+        title: 'Day and Night Blinds – How to Measure',
         file: '/guides/how_to_measure_zebra_shades_onlineblinds.pdf',
         type: 'Measuring',
       },
       {
-        title: 'Dual Zebra Shades – Installation Guide',
+        title: 'Day and Night Blinds – Installation Guide',
         file: '/guides/dual_zebra_installation_guide_onlineblinds.pdf',
         type: 'Installation',
       },
