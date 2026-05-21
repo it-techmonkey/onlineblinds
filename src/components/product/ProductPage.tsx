@@ -49,6 +49,7 @@ import {
 import { getPerfectFitWoodenFieldLabels, isPerfectFitWoodenProduct } from '@/lib/perfect-fit-wooden';
 import { getSkylightBlindTypeOptions, SKYLIGHT_BRAND_OPTIONS } from '@/data/skylight';
 import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
+import { trackShopifyProductView } from '@/lib/shopify-analytics';
 import {
   SizeSelector,
   RoomTypeSelector,
@@ -147,6 +148,10 @@ const ProductPage = ({
 }: ProductPageProps) => {
   const { addToCart } = useCart();
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    trackShopifyProductView(product);
+  }, [product]);
 
   const [config, setConfig] = useState<ProductConfiguration>({
     ...DEFAULT_CONFIGURATION,

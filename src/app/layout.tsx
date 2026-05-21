@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { Manrope, Playfair_Display } from 'next/font/google';
+import { Suspense } from 'react';
 import './globals.css';
 import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
 import GlobalPolish from '@/components/ui/GlobalPolish';
+import ShopifyAnalytics from '@/components/analytics/ShopifyAnalytics';
 
 const playfair = Playfair_Display({
   variable: '--font-cormorant',
@@ -32,6 +34,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${manrope.variable} ${playfair.variable} antialiased font-jost`}>
         <GlobalPolish />
+        <Suspense fallback={null}>
+          <ShopifyAnalytics />
+        </Suspense>
         <AuthProvider>
           <CartProvider>
             {children}
