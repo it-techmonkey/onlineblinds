@@ -12,6 +12,10 @@ import {
   getTotalInches,
 } from '@/lib/pricing';
 import {
+  formatMissingCustomizationsMessage,
+  getMissingRequiredCustomizations,
+} from '@/lib/product-customization-validation';
+import {
   getMinimumReplacementVerticalSlatPrice,
   isReplacementVerticalSlatProduct,
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
@@ -780,6 +784,68 @@ const CustomizationModal = ({
     shutterHandlePositionRequired,
     shutterHandlePositionValid,
   ]);
+  const missingRequiredCustomizations = useMemo(() => {
+    return getMissingRequiredCustomizations({
+      product,
+      config,
+      visibleOptions,
+      isSkylight,
+      isRoman,
+      isSpecialMotorized,
+      labels: {
+        installationMethod: isPerfectFitWooden
+          ? perfectFitWoodenLabels.installationMethod
+          : isPerfectFitShutter
+          ? perfectFitShutterLabels.installationMethod
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.installationMethod
+          : isEasyStick
+          ? easyStickLabels.installationMethod
+          : 'Installation method',
+        controlOption: isPerfectFitShutter
+          ? perfectFitShutterLabels.controlOption
+          : isEasyStick
+          ? easyStickLabels.controlOption
+          : isFauxWooden
+          ? 'Toggle'
+          : 'Control option',
+        controlSide: isPerfectFitWooden
+          ? perfectFitWoodenLabels.controlSide
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.controlSide
+          : easyStickLabels.controlSide || 'Control side',
+        bracketType: isPerfectFitShutter
+          ? perfectFitShutterLabels.bracketType
+          : isPerfectFitWooden
+          ? perfectFitWoodenLabels.bracketType
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.bracketType
+          : 'Bracket type',
+        frameColor: isPerfectFitWooden
+          ? perfectFitWoodenLabels.frameColor
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.frameColor
+          : easyStickLabels.frameColor || 'Frame color',
+      },
+    });
+  }, [
+    config,
+    easyStickLabels,
+    isEasyStick,
+    isFauxWooden,
+    isPerfectFitMetal,
+    isPerfectFitShutter,
+    isPerfectFitWooden,
+    isRoman,
+    isSkylight,
+    isSpecialMotorized,
+    perfectFitMetalLabels,
+    perfectFitShutterLabels,
+    perfectFitWoodenLabels,
+    product,
+    visibleOptions,
+  ]);
+  const isRequiredCustomizationIncomplete = missingRequiredCustomizations.length > 0;
 
   // Show minimum price indicator when no dimensions selected
   const showMinPriceIndicator = isSkylight
@@ -800,6 +866,10 @@ const CustomizationModal = ({
     }
     if (isMeasurementOutOfRange) {
       alert('Selected measurements are outside the allowed range for this product.');
+      return;
+    }
+    if (isRequiredCustomizationIncomplete) {
+      alert(formatMissingCustomizationsMessage(missingRequiredCustomizations));
       return;
     }
     if (isPerfectFitShutterConfigurationIncomplete) {
@@ -1375,8 +1445,8 @@ const CustomizationModal = ({
             </div>
             <button
               onClick={handleAddToCart}
-              disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isPerfectFitShutterConfigurationIncomplete}
-              className={`py-2.5 md:py-3 px-6 md:px-8 rounded text-sm md:text-base font-medium transition-colors ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isPerfectFitShutterConfigurationIncomplete
+              disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete}
+              className={`py-2.5 md:py-3 px-6 md:px-8 rounded text-sm md:text-base font-medium transition-colors ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete
                 ? 'bg-gray-400 text-white cursor-not-allowed'
                 : 'bg-[#335c99] text-white hover:bg-[#244779]'
                 }`}

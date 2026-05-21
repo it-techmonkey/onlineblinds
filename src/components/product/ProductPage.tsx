@@ -18,6 +18,10 @@ import {
   getTotalInches,
 } from '@/lib/pricing';
 import {
+  formatMissingCustomizationsMessage,
+  getMissingRequiredCustomizations,
+} from '@/lib/product-customization-validation';
+import {
   getMinimumReplacementVerticalSlatPrice,
   isReplacementVerticalSlatProduct,
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
@@ -898,6 +902,78 @@ const ProductPage = ({
     shutterHandlePositionRequired,
     shutterHandlePositionValid,
   ]);
+  const missingRequiredCustomizations = useMemo(() => {
+    return getMissingRequiredCustomizations({
+      product,
+      config,
+      visibleOptions,
+      isSkylight,
+      isRoman,
+      isSpecialMotorized,
+      selectedOptionalCards,
+      forceMotorization,
+      requireVisibleControlSide:
+        isEasyStick ||
+        isPerfectFitWooden ||
+        isPerfectFitShutter ||
+        isPerfectFitMetal ||
+        (!product.features.hasChainColor && visibleOptions.showControlSide),
+      labels: {
+        installationMethod: isPerfectFitWooden
+          ? perfectFitWoodenLabels.installationMethod
+          : isPerfectFitShutter
+          ? perfectFitShutterLabels.installationMethod
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.installationMethod
+          : isEasyStick
+          ? easyStickLabels.installationMethod
+          : 'Installation method',
+        controlOption: isPerfectFitShutter
+          ? perfectFitShutterLabels.controlOption
+          : isEasyStick
+          ? easyStickLabels.controlOption
+          : isFauxWooden
+          ? 'Toggle'
+          : 'Control option',
+        controlSide: isPerfectFitWooden
+          ? perfectFitWoodenLabels.controlSide
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.controlSide
+          : easyStickLabels.controlSide || 'Control side',
+        bracketType: isPerfectFitShutter
+          ? perfectFitShutterLabels.bracketType
+          : isPerfectFitWooden
+          ? perfectFitWoodenLabels.bracketType
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.bracketType
+          : 'Bracket type',
+        frameColor: isPerfectFitWooden
+          ? perfectFitWoodenLabels.frameColor
+          : isPerfectFitMetal
+          ? perfectFitMetalLabels.frameColor
+          : easyStickLabels.frameColor || 'Frame color',
+      },
+    });
+  }, [
+    config,
+    easyStickLabels,
+    forceMotorization,
+    isEasyStick,
+    isFauxWooden,
+    isPerfectFitMetal,
+    isPerfectFitShutter,
+    isPerfectFitWooden,
+    isRoman,
+    isSkylight,
+    isSpecialMotorized,
+    perfectFitMetalLabels,
+    perfectFitShutterLabels,
+    perfectFitWoodenLabels,
+    product,
+    selectedOptionalCards,
+    visibleOptions,
+  ]);
+  const isRequiredCustomizationIncomplete = missingRequiredCustomizations.length > 0;
 
   const handleAddToCart = async () => {
     // Validate dimensions are selected
@@ -911,6 +987,10 @@ const ProductPage = ({
     }
     if (isMeasurementOutOfRange) {
       alert('Selected measurements are outside the allowed range for this product.');
+      return;
+    }
+    if (isRequiredCustomizationIncomplete) {
+      alert(formatMissingCustomizationsMessage(missingRequiredCustomizations));
       return;
     }
     if (isPerfectFitShutterConfigurationIncomplete) {
@@ -1868,8 +1948,8 @@ const ProductPage = ({
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isPerfectFitShutterConfigurationIncomplete}
-                className={`w-full mt-5 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isPerfectFitShutterConfigurationIncomplete
+                disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete}
+                className={`w-full mt-5 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete
                   ? 'bg-[#98a4bb] text-white cursor-not-allowed'
                   : 'bg-primary text-white hover:bg-primary-dark shadow-[0_10px_20px_rgba(68,87,102,0.24)] hover:shadow-[0_12px_24px_rgba(68,87,102,0.28)]'
                   }`}
