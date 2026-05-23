@@ -45,6 +45,7 @@ import { getSkylightBlindTypeOptions, SKYLIGHT_BRAND_OPTIONS } from '@/data/skyl
 import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
 import {
   SizeSelector,
+  RoomTypeSelector,
   HeadrailSelector,
   HeadrailColourSelector,
   InstallationMethodSelector,
@@ -105,6 +106,7 @@ import {
   MOTORIZATION_OPTIONS,
   BOTTOM_BAR_OPTIONS,
 } from '@/data/customizations';
+import { ROOM_TYPE_OPTIONS } from '@/data/roomTypes';
 import { isRomanProduct } from '@/lib/roman-blinds';
 
 interface CustomizationModalProps {
@@ -1438,6 +1440,16 @@ const CustomizationModal = ({
                     )}
                   </div>
                 )}
+
+                <div className="pt-6 relative z-[1]">
+                  <RoomTypeSelector
+                    options={ROOM_TYPE_OPTIONS}
+                    selectedRoomType={config.roomType}
+                    onRoomTypeChange={(roomTypeId) => setConfig({ ...config, roomType: roomTypeId })}
+                    blindName={config.blindName}
+                    onBlindNameChange={(value) => setConfig({ ...config, blindName: value || null })}
+                  />
+                </div>
               </div>
             </div>
           </div>
