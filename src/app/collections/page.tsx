@@ -1,4 +1,4 @@
-﻿import { Header, Footer, FAQ } from '@/components';
+import { Header, Footer, FAQ } from '@/components';
 import { fetchProducts, transformProduct, extractFilterOptions, CatalogSortOption, PaginationMeta } from '@/lib/api';
 import CategoryHero from '@/components/collection/CategoryHero';
 import ProductGridWithFilters from '@/components/collection/ProductGridWithFilters';
@@ -8,6 +8,8 @@ export const metadata = {
   title: 'All Products | Online Blinds',
   description: 'Browse our complete range of premium window blinds. Find the perfect blinds for your home.',
 };
+
+export const revalidate = 3_600;
 
 interface CollectionsPageProps {
   searchParams?: Promise<{ page?: string; sort?: string }>;

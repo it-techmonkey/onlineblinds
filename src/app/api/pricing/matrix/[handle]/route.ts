@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as pricingService from '@/lib/server/pricing.service';
 
-export const revalidate = 900;
+export const revalidate = false;
 
 export async function GET(
   _request: Request,

@@ -2,7 +2,6 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import pg from 'pg';
 
 export const pricingDataPath = path.join(process.cwd(), 'src', 'data', 'pricing', 'pricing-data.json');
 export const pricingReportPath = path.join(process.cwd(), 'src', 'data', 'pricing', 'pricing-report.json');
@@ -196,120 +195,6 @@ export function validatePricingData(data, options = {}) {
   }
 
   return { errors, warnings };
-}
-
-export async function fetchDbPricingData() {
-  const env = getEnv();
-  const connectionString = env.DATABASE_URL;
-
-  if (!connectionString) {
-    throw new Error('DATABASE_URL is required to export pricing data');
-  }
-
-  const pool = new pg.Pool({
-    connectionString,
-    max: 1,
-    ssl:
-      connectionString.includes('neon.tech') ||
-      connectionString.includes('render.com') ||
-      connectionString.includes('onrender.com')
-        ? { rejectUnauthorized: false }
-        : false,
-  });
-
-  try {
-    const [
-      priceBands,
-      widthBands,
-      heightBands,
-      priceCells,
-      customizationOptions,
-      customizationPricings,
-    ] = await Promise.all([
-      pool.query(`
-        SELECT id, name, description
-        FROM "PriceBand"
-        ORDER BY name ASC
-      `),
-      pool.query(`
-        SELECT id, "widthMm", "widthInches", "sortOrder"
-        FROM "WidthBand"
-        ORDER BY "sortOrder" ASC, "widthInches" ASC
-      `),
-      pool.query(`
-        SELECT id, "heightMm", "heightInches", "sortOrder"
-        FROM "HeightBand"
-        ORDER BY "sortOrder" ASC, "heightInches" ASC
-      `),
-      pool.query(`
-        SELECT id, "priceBandId", "widthBandId", "heightBandId", price
-        FROM "PriceCell"
-        ORDER BY "priceBandId" ASC, "widthBandId" ASC, "heightBandId" ASC
-      `),
-      pool.query(`
-        SELECT id, category, "optionId", name, description, "sortOrder"
-        FROM "CustomizationOption"
-        ORDER BY category ASC, "sortOrder" ASC, "optionId" ASC
-      `),
-      pool.query(`
-        SELECT id, "customizationOptionId", "widthBandId", price, "isPerUnit"
-        FROM "CustomizationPricing"
-        ORDER BY "customizationOptionId" ASC, "widthBandId" ASC NULLS FIRST
-      `),
-    ]);
-
-    const data = {
-      schemaVersion: 1,
-      generatedAt: new Date().toISOString(),
-      source: 'neon-export',
-      priceBands: priceBands.rows.map((row) => ({
-        id: row.id,
-        name: row.name,
-        description: row.description ?? null,
-      })),
-      widthBands: widthBands.rows.map((row) => ({
-        id: row.id,
-        widthMm: Number(row.widthMm),
-        widthInches: Number(row.widthInches),
-        sortOrder: Number(row.sortOrder),
-      })),
-      heightBands: heightBands.rows.map((row) => ({
-        id: row.id,
-        heightMm: Number(row.heightMm),
-        heightInches: Number(row.heightInches),
-        sortOrder: Number(row.sortOrder),
-      })),
-      priceCells: priceCells.rows.map((row) => ({
-        id: row.id,
-        priceBandId: row.priceBandId,
-        widthBandId: row.widthBandId,
-        heightBandId: row.heightBandId,
-        price: Number(row.price),
-      })),
-      customizationOptions: customizationOptions.rows.map((row) => ({
-        id: row.id,
-        category: row.category,
-        optionId: row.optionId,
-        name: row.name,
-        description: row.description ?? null,
-        sortOrder: Number(row.sortOrder),
-      })),
-      customizationPricings: customizationPricings.rows.map((row) => ({
-        id: row.id,
-        customizationOptionId: row.customizationOptionId,
-        widthBandId: row.widthBandId ?? null,
-        price: Number(row.price),
-        isPerUnit: Boolean(row.isPerUnit),
-      })),
-    };
-
-    return {
-      ...data,
-      checksum: checksumPricingData(data),
-    };
-  } finally {
-    await pool.end();
-  }
 }
 
 export function pricingSummary(data) {

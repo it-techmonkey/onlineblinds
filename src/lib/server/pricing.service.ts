@@ -106,8 +106,6 @@ interface PricingDataFile {
   customizationPricings: JsonCustomizationPricing[];
 }
 
-type NeonPricingModule = typeof import('./pricing-neon.service');
-
 interface PricingIndexes {
   priceBandsById: Map<string, JsonPriceBand>;
   priceBandsByName: Map<string, JsonPriceBand>;
@@ -121,14 +119,6 @@ interface PricingIndexes {
 
 const pricingData = pricingDataFile as PricingDataFile;
 let indexes: PricingIndexes | null = null;
-
-function isNeonPricingSource() {
-  return process.env.PRICING_SOURCE === 'neon';
-}
-
-async function neonPricing(): Promise<NeonPricingModule> {
-  return import('./pricing-neon.service');
-}
 
 function key(...parts: Array<string | null>) {
   return parts.map((part) => part ?? '__null__').join('::');
@@ -530,10 +520,6 @@ async function getMinimumPricesByHandleFromJson(): Promise<Record<string, number
 }
 
 export async function calculateProductPrice(request: PricingRequest): Promise<PricingResponse> {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).calculateProductPrice(request);
-  }
-
   const cachedProducts = await getAllCachedProducts();
   const cachedProduct = cachedProducts[request.handle];
 
@@ -627,42 +613,22 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
 }
 
 export async function getPriceBandMatrix(priceBandId: string): Promise<PriceBandMatrix | null> {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).getPriceBandMatrix(priceBandId);
-  }
-
   return getPriceBandMatrixFromJson(priceBandId);
 }
 
 export async function getCustomizationPricing(): Promise<CustomizationPricingData[]> {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).getCustomizationPricing();
-  }
-
   return getCustomizationPricingFromJson();
 }
 
 export async function getWidthBands() {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).getWidthBands();
-  }
-
   return [...pricingData.widthBands].sort(sortWidthBands);
 }
 
 export async function getHeightBands() {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).getHeightBands();
-  }
-
   return [...pricingData.heightBands].sort(sortHeightBands);
 }
 
 export async function resolveHandleToPriceBand(handle: string) {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).resolveHandleToPriceBand(handle);
-  }
-
   try {
     const priceBand = await resolvePriceBand(handle);
     return { id: priceBand.id, name: priceBand.name };
@@ -676,10 +642,6 @@ export async function validateCartPrice(
   submittedPrice: number,
   tolerance: number = 0.01
 ): Promise<{ valid: boolean; calculatedPrice: number; difference: number }> {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).validateCartPrice(request, submittedPrice, tolerance);
-  }
-
   const pricing = await calculateProductPrice(request);
   const difference = Math.abs(pricing.totalPrice - submittedPrice);
 
@@ -691,9 +653,5 @@ export async function validateCartPrice(
 }
 
 export async function getMinimumPricesByHandle(): Promise<Record<string, number>> {
-  if (isNeonPricingSource()) {
-    return (await neonPricing()).getMinimumPricesByHandle();
-  }
-
   return getMinimumPricesByHandleFromJson();
 }

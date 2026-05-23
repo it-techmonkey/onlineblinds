@@ -7,6 +7,8 @@ import { fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
 import { getCustomizationPricing, getPriceBandMatrix, resolveHandleToPriceBand } from '@/lib/server/pricing.service';
 import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 
+export const revalidate = 3_600;
+
 interface ProductPageProps {
   params: Promise<{
     slug: string;

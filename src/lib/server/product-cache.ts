@@ -2,8 +2,12 @@
 import { unstable_cache } from 'next/cache';
 import { shopifyConfig, validateShopifyConfig } from './shopify-admin';
 
+const SHOPIFY_ADMIN_PRODUCT_CACHE_REVALIDATE_SECONDS =
+  Number(process.env.SHOPIFY_ADMIN_PRODUCT_CACHE_REVALIDATE_SECONDS || 3_600);
+
 // Shopify Product Cache
-// Uses Next.js unstable_cache for automatic revalidation instead of in-memory Map
+// Uses Next.js unstable_cache with a long TTL so product-to-price-band metadata
+// does not refresh every few minutes during normal browsing.
 
 export interface CachedProduct {
   priceBandName: string | null;
@@ -86,7 +90,6 @@ async function fetchAllShopifyProducts(): Promise<Record<string, CachedProduct>>
   return cache;
 }
 
-// Cache product data for 10 minutes using Next.js cache
 const getCachedProducts = unstable_cache(
   async () => {
     console.log('[Cache] Refreshing Shopify product cache...');
@@ -95,7 +98,7 @@ const getCachedProducts = unstable_cache(
     return products;
   },
   ['shopify-product-cache'],
-  { revalidate: 600 } // 10 minutes
+  { revalidate: SHOPIFY_ADMIN_PRODUCT_CACHE_REVALIDATE_SECONDS }
 );
 
 export async function getPriceBandNameByHandle(handle: string): Promise<string | null> {

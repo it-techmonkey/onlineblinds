@@ -26,6 +26,8 @@ import {
   NAVIGATION_TAG_FILTERS,
 } from '@/data/navigation';
 
+export const revalidate = 3_600;
+
 interface PageProps {
   params: Promise<{ category: string }>;
   searchParams?: Promise<{ page?: string; sort?: string }>;

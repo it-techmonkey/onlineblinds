@@ -18,6 +18,10 @@ const SHOPIFY_STOREFRONT_TOKEN =
 const SHOPIFY_API_VERSION = '2025-01';
 
 const STOREFRONT_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
+const SHOPIFY_CACHE_REVALIDATE_SECONDS =
+  Number(process.env.SHOPIFY_CACHE_REVALIDATE_SECONDS || 3_600);
+const PRICES_CACHE_TTL = 3_600_000; // 1 hour
+const COUNT_CACHE_TTL = 3_600_000; // 1 hour
 
 // ============================================
 // Storefront GraphQL Types
@@ -342,7 +346,9 @@ async function storefrontFetch<T>(
     if (options?.revalidate === false) {
       fetchOptions.cache = 'no-store';
     } else {
-      fetchOptions.next = { revalidate: options?.revalidate ?? 60 };
+      fetchOptions.next = {
+        revalidate: options?.revalidate ?? SHOPIFY_CACHE_REVALIDATE_SECONDS,
+      };
     }
   }
 
@@ -464,8 +470,6 @@ interface CursorPageInfo {
 }
 
 const countCache = new Map<string, { value: number; expiresAt: number }>();
-const COUNT_CACHE_TTL = 60_000;
-
 function getSortConfig(sortBy: CatalogSortOption = 'best-selling'): {
   productSortKey: 'CREATED_AT' | 'PRICE' | 'TITLE';
   collectionSortKey: 'CREATED' | 'PRICE' | 'TITLE';
@@ -629,8 +633,6 @@ export async function fetchShopifyCollections(): Promise<
  */
 let cachedMinimumPrices: Record<string, number> | null = null;
 let pricesCacheTime = 0;
-const PRICES_CACHE_TTL = 60_000; // 60 seconds
-
 function getApiBaseUrl(): string {
   if (typeof window !== 'undefined') return '';
   const vercelUrl = process.env.VERCEL_URL;
@@ -656,15 +658,16 @@ async function getMinimumPrices(): Promise<Record<string, number>> {
       if (Object.keys(cachedMinimumPrices).length === 0) {
         console.warn(
           '[Pricing] getMinimumPricesByHandle returned no prices. ' +
-          'Check that: (1) price band data is seeded in the DB, ' +
+          'Check that: (1) pricing data is present in src/data/pricing/pricing-data.json, ' +
           '(2) SHOPIFY_ADMIN_ACCESS_TOKEN is set, and ' +
           '(3) the custom.price_band_name metafield is set on Shopify products.'
         );
       }
       pricesCacheTime = now;
       return cachedMinimumPrices;
-    } catch (err: any) {
-      console.error('[Pricing] Failed to fetch minimum prices from DB:', err?.message || err);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : err;
+      console.error('[Pricing] Failed to fetch minimum prices from pricing data:', message);
       cachedMinimumPrices = {};
       pricesCacheTime = now;
       return cachedMinimumPrices;

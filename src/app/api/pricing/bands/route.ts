@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import * as pricingService from '@/lib/server/pricing.service';
 
-export const revalidate = 900;
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 interface BandRecord {
   id: string;
