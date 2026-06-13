@@ -6,6 +6,7 @@ import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
 import GlobalPolish from '@/components/ui/GlobalPolish';
 import ShopifyAnalytics from '@/components/analytics/ShopifyAnalytics';
+import AnnouncementBar from '@/components/layout/AnnouncementBar';
 
 const playfair = Playfair_Display({
   variable: '--font-cormorant',
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <ShopifyAnalytics />
         </Suspense>
+        <AnnouncementBar />
         <AuthProvider>
           <CartProvider>
             {children}

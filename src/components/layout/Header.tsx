@@ -142,7 +142,7 @@ const Header = () => {
             <div key={i} className="group relative flex items-center h-16">
               {item.submenu ? (
                 <>
-                  <button className="relative flex items-center gap-1.5 whitespace-nowrap rounded-md px-3.5 py-2 text-[13.5px] font-medium tracking-[0.01em] text-neutral-500 transition-all duration-200 hover:bg-neutral-50 hover:text-foreground">
+                  <button className="relative flex items-center gap-1.5 whitespace-nowrap rounded-md px-3.5 py-2 text-[13.5px] font-medium tracking-[0.01em] text-neutral-700 transition-all duration-200 hover:bg-neutral-50 hover:text-foreground">
                     {item.label}
                     <Image
                       src="/icons/CaretDown.svg"
@@ -160,12 +160,12 @@ const Header = () => {
                           return (
                             <li key={j}>
                               {link.href ? (
-                                <Link href={link.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-neutral-500 transition-all duration-200 hover:bg-primary-light hover:text-primary hover:shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]">
+                                <Link href={link.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-neutral-700 transition-all duration-200 hover:bg-primary-light hover:text-primary hover:shadow-[inset_0_0_0_1px_rgba(13,148,136,0.12)]">
                                   <Image src={icon} alt="" width={16} height={16} className="opacity-50 shrink-0" />
                                   <NavigationLinkLabel link={link} />
                                 </Link>
                               ) : (
-                                <span className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] text-neutral-500">
+                                <span className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] text-neutral-700">
                                   <Image src={icon} alt="" width={16} height={16} className="opacity-50 shrink-0" />
                                   <NavigationLinkLabel link={link} />
                                 </span>
@@ -178,11 +178,11 @@ const Header = () => {
                   </div>
                 </>
               ) : item.href ? (
-                <Link href={item.href} className="whitespace-nowrap rounded-md px-3.5 py-2 text-[13.5px] font-medium tracking-[0.01em] text-neutral-500 transition-all duration-200 hover:bg-neutral-50 hover:text-foreground">
+                <Link href={item.href} className="whitespace-nowrap rounded-md px-3.5 py-2 text-[13.5px] font-medium tracking-[0.01em] text-neutral-700 transition-all duration-200 hover:bg-neutral-50 hover:text-foreground">
                   {item.label}
                 </Link>
               ) : (
-                <span className="whitespace-nowrap px-3.5 py-2 text-[13.5px] font-medium text-neutral-500">{item.label}</span>
+                <span className="whitespace-nowrap px-3.5 py-2 text-[13.5px] font-medium text-neutral-700">{item.label}</span>
               )}
             </div>
           ))}

@@ -9,6 +9,7 @@ import {
   Footer,
 } from '@/components';
 import TrustBar from '@/components/home/TrustBar';
+import EmailCapture from '@/components/home/EmailCapture';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <BestSelling />
         <Craftsmanship />
         <FreeSamples />
+        <EmailCapture />
         <FAQ />
       </main>
       <Footer />

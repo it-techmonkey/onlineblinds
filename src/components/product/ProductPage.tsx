@@ -118,6 +118,8 @@ import { ROOM_TYPE_OPTIONS } from '@/data/roomTypes';
 import { CONTINUOUS_CHAIN_CARD, CONTINUOUS_CHAIN_CARD_ROLLER, CONTINUOUS_CHAIN_CARD_ZEBRA, CASSETTE_CARD, CASSETTE_CARD_ROLLER, CASSETTE_CARD_ZEBRA, MOTORIZATION_CARD, BOTTOM_BAR_CARD } from '@/data/optionalCustomizations';
 import Image from 'next/image';
 import { isRomanProduct } from '@/lib/roman-blinds';
+import ProductUrgencyBar from './ProductUrgencyBar';
+import ProductTrustStrip from './ProductTrustStrip';
 
 function withBottomBarPricing(
   customizations: CustomizationPricingType[]
@@ -1110,15 +1112,29 @@ const ProductPage = ({
                 </div>
               </div>
 
+              {/* Urgency Bar */}
+              <div className="mb-5 md:mb-6">
+                <ProductUrgencyBar productSlug={product.slug} />
+              </div>
+
               {/* Price Section */}
               <div className="border border-border rounded-[16px] p-4 md:p-6 mb-5 md:mb-6 bg-surface shadow-[0_6px_18px_rgba(31,41,51,0.05)]">
                 <div className="flex flex-col items-center lg:items-start">
-                  <div className="flex items-baseline gap-2 mb-2 md:mb-3">
+                  <div className="flex items-baseline gap-3 mb-2 md:mb-3">
                     <span className="text-2xl md:text-[34px] leading-none font-semibold text-foreground">
                       {showMinPriceIndicator
                         ? formatPriceWithCurrency(formatPrice(product.price), product.currency)
                         : formatPriceWithCurrency(formatPrice(totalPrice), product.currency)
                       }
+                    </span>
+                    <span className="text-base md:text-xl text-muted line-through">
+                      {showMinPriceIndicator
+                        ? formatPriceWithCurrency(formatPrice(Math.round(product.price * 1.67)), product.currency)
+                        : formatPriceWithCurrency(formatPrice(Math.round(totalPrice * 1.67)), product.currency)
+                      }
+                    </span>
+                    <span className="rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-red-700">
+                      Save 40%
                     </span>
                   </div>
                   {priceCalculation && !showMinPriceIndicator && (
