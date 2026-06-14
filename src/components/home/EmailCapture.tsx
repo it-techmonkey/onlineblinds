@@ -31,7 +31,7 @@ const EmailCapture = () => {
               <h2 className="font-display text-[28px] font-semibold leading-tight text-white md:text-[38px]">
                 You&apos;re all set!
               </h2>
-              <p className="max-w-md text-[15px] leading-relaxed text-white/60">
+              <p className="max-w-md text-[15px] leading-relaxed text-white/80">
                 Check your inbox — your £20 discount code is on its way.
               </p>
             </div>
@@ -41,7 +41,7 @@ const EmailCapture = () => {
                 <h2 className="font-display text-[28px] font-semibold leading-tight text-white md:text-[38px]">
                   Ready to Save £20 on Your First Order?
                 </h2>
-                <p className="mx-auto max-w-lg text-center text-[15px] leading-relaxed text-white/60">
+                <p className="mx-auto max-w-lg text-center text-[15px] leading-relaxed text-white/80">
                   Subscribe and we&apos;ll email you a <span className="font-semibold text-white">£20 discount code</span> valid on orders of £200 or more. No spam — just great blinds at better prices.
                 </p>
               </div>
@@ -53,7 +53,7 @@ const EmailCapture = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="h-12 flex-1 rounded-[12px] border border-white/10 bg-white/8 px-4 text-[14px] text-white placeholder:text-white/35 outline-none focus:border-white/30 focus:bg-white/12 transition-colors"
+                  className="h-12 flex-1 rounded-[12px] border border-white/10 bg-white/8 px-4 text-[14px] text-white placeholder:text-white/55 outline-none focus:border-white/30 focus:bg-white/12 transition-colors"
                 />
                 <button
                   type="submit"
@@ -64,7 +64,7 @@ const EmailCapture = () => {
                 </button>
               </form>
 
-              <p className="text-[12px] text-white/35">
+              <p className="text-[12px] text-white/60">
                 By subscribing you agree to receive marketing emails. Unsubscribe anytime.
               </p>
             </>

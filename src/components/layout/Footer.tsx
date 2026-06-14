@@ -19,15 +19,15 @@ const Footer = () => {
                 className="h-auto w-[120px]"
               />
             </Link>
-            <p className="font-jost text-[13.5px] text-white/50 leading-relaxed">
+            <p className="font-jost text-[13.5px] text-white/75 leading-relaxed">
               Premium custom blinds, manufactured in Yorkshire. 15+ years of expertise.
             </p>
             <div className="flex justify-center md:justify-start gap-3">
               <a href="https://www.facebook.com/OnlineBlindsExpressltd" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/40 transition-all duration-200 hover:-translate-y-px hover:border-white/25 hover:bg-white/10 hover:text-white">
-                <Image src="/icons/facebook.svg" alt="Facebook" width={16} height={16} className="filter brightness-0 invert opacity-65" />
+                <Image src="/icons/facebook.svg" alt="Facebook" width={16} height={16} className="filter brightness-0 invert opacity-80" />
               </a>
               <a href="https://www.instagram.com/online_blinds_express_ltd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/40 transition-all duration-200 hover:-translate-y-px hover:border-white/25 hover:bg-white/10 hover:text-white">
-                <Image src="/icons/instagram.svg" alt="Instagram" width={16} height={16} className="filter brightness-0 invert opacity-65" />
+                <Image src="/icons/instagram.svg" alt="Instagram" width={16} height={16} className="filter brightness-0 invert opacity-80" />
               </a>
             </div>
           </div>
@@ -37,7 +37,7 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Shop</p>
               {['Blinds', 'Shades', 'Motorization', 'Blackout', 'Free Samples'].map((l) => (
-                <Link key={l} href="/collections" className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">{l}</Link>
+                <Link key={l} href="/collections" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">{l}</Link>
               ))}
             </div>
             <div className="flex flex-col gap-3">
@@ -53,7 +53,7 @@ const Footer = () => {
                 { label: 'Returns', href: '/refund-policy' },
                 { label: 'Terms', href: '/terms-and-conditions' },
               ].map((l) => (
-                <Link key={l.label} href={l.href} className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">{l.label}</Link>
+                <Link key={l.label} href={l.href} className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">{l.label}</Link>
               ))}
             </div>
           </div>
@@ -61,8 +61,8 @@ const Footer = () => {
           {/* Contact */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Contact</p>
-            <a href="tel:+18326706705" className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">+1 832-670-6705</a>
-            <a href="mailto:sales@onlineblindsexpress.co.uk" className="font-jost text-[13.5px] text-white/50 hover:text-white transition-colors">sales@onlineblindsexpress.co.uk</a>
+            <a href="tel:+18326706705" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">+1 832-670-6705</a>
+            <a href="mailto:sales@onlineblindsexpress.co.uk" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">sales@onlineblindsexpress.co.uk</a>
           </div>
         </div>
       </div>
@@ -70,12 +70,12 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-4 md:flex-row md:px-8">
-          <p className="font-jost text-[12px] text-white/30">© {new Date().getFullYear()} Online Blinds. All Rights Reserved.</p>
+          <p className="font-jost text-[12px] text-white/55">© {new Date().getFullYear()} Online Blinds. All Rights Reserved.</p>
           <div className="flex gap-5">
-            <Link href="/privacy-policy" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Privacy Policy</Link>
-            <Link href="/shipping-policy" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Shipping</Link>
-            <Link href="/refund-policy" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Returns</Link>
-            <Link href="/terms-and-conditions" className="font-jost text-[12px] text-white/30 transition-colors hover:text-white/70">Terms</Link>
+            <Link href="/privacy-policy" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Privacy Policy</Link>
+            <Link href="/shipping-policy" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Shipping</Link>
+            <Link href="/refund-policy" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Returns</Link>
+            <Link href="/terms-and-conditions" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Terms</Link>
           </div>
         </div>
       </div>

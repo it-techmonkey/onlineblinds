@@ -17,10 +17,12 @@ function pad(n: number) {
 const COUPON = 'FINAL10';
 
 const AnnouncementBar = () => {
-  const [seconds, setSeconds] = useState(getSecondsUntilMidnight);
+  // null on server — populated after mount to avoid hydration mismatch
+  const [seconds, setSeconds] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    setSeconds(getSecondsUntilMidnight());
     const interval = setInterval(() => {
       setSeconds(getSecondsUntilMidnight());
     }, 1000);
@@ -34,9 +36,9 @@ const AnnouncementBar = () => {
     });
   };
 
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = seconds % 60;
+  const h = seconds !== null ? Math.floor(seconds / 3600) : 0;
+  const m = seconds !== null ? Math.floor((seconds % 3600) / 60) : 0;
+  const s = seconds !== null ? seconds % 60 : 0;
 
   return (
     <div className="relative z-50 bg-[#b91c1c] text-white">
@@ -91,14 +93,14 @@ const AnnouncementBar = () => {
         <span className="text-[12.5px] font-medium text-white/90">Whilst Stock Lasts</span>
         <span className="text-white/50">|</span>
 
-        {/* Countdown */}
+        {/* Countdown — only rendered after mount to prevent hydration mismatch */}
         <span className="inline-flex items-center gap-1.5 text-[12.5px]">
           <svg className="h-3.5 w-3.5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span className="font-medium text-white/80">Sale ends in</span>
-          <span className="font-black tabular-nums text-white text-[13px]">
-            {pad(h)}:{pad(m)}:{pad(s)}
+          <span className="font-black tabular-nums text-white text-[13px]" suppressHydrationWarning>
+            {seconds !== null ? `${pad(h)}:${pad(m)}:${pad(s)}` : '--:--:--'}
           </span>
         </span>
 
