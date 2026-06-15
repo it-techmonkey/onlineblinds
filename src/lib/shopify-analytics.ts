@@ -9,6 +9,7 @@ import {
 import type {
   ShopifyAddToCartPayload,
   ShopifyAnalyticsProduct,
+  ShopifyCollectionViewPayload,
   ShopifyPageViewPayload,
 } from "@shopify/hydrogen-react";
 import type { Product } from "@/types";
@@ -105,6 +106,27 @@ export function trackShopifyProductView(product: Product) {
   sendShopifyAnalytics(
     {
       eventName: AnalyticsEventName.PRODUCT_VIEW,
+      payload,
+    },
+    shopDomain
+  ).catch(logAnalyticsError);
+}
+
+export function trackShopifyCollectionView(collectionId: string, collectionHandle: string) {
+  const basePayload = getBasePayload();
+  if (!basePayload) return;
+
+  const payload: ShopifyCollectionViewPayload = {
+    ...basePayload,
+    canonicalUrl: window.location.href,
+    pageType: "collection",
+    resourceId: collectionId,
+    collectionHandle,
+  };
+
+  sendShopifyAnalytics(
+    {
+      eventName: AnalyticsEventName.COLLECTION_VIEW,
       payload,
     },
     shopDomain
