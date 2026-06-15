@@ -2074,15 +2074,11 @@ const ProductPage = ({
         productTags={product.tags}
       />
 
-      {/* Reviews Section — hidden */}
-      {false && product.slug !== 'non-driii-honeycomb-blackout-blinds' && (
+      {/* Reviews Section */}
+      {product.slug !== 'non-driii-honeycomb-blackout-blinds' && (
         <section className="px-4 md:px-6 lg:px-16 py-8 md:py-12 bg-surface-soft border-t border-border">
           <div className="max-w-[1320px] mx-auto">
-            <ProductReviews
-              reviews={product.reviews}
-              averageRating={product.rating}
-              totalReviews={product.reviewCount}
-            />
+            <ProductReviews productHandle={product.slug} />
           </div>
         </section>
       )}
