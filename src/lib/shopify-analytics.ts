@@ -9,7 +9,6 @@ import {
 import type {
   ShopifyAddToCartPayload,
   ShopifyAnalyticsProduct,
-  ShopifyCollectionViewPayload,
   ShopifyPageViewPayload,
 } from "@shopify/hydrogen-react";
 import type { Product } from "@/types";
@@ -116,7 +115,7 @@ export function trackShopifyCollectionView(collectionId: string, collectionHandl
   const basePayload = getBasePayload();
   if (!basePayload) return;
 
-  const payload: ShopifyCollectionViewPayload = {
+  const payload: ShopifyPageViewPayload = {
     ...basePayload,
     canonicalUrl: window.location.href,
     pageType: "collection",
