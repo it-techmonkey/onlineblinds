@@ -2,6 +2,7 @@ import { Header, Footer, FAQ } from '@/components';
 import { fetchProducts, transformProduct, extractFilterOptions, CatalogSortOption, PaginationMeta } from '@/lib/api';
 import CategoryHero from '@/components/collection/CategoryHero';
 import ProductGridWithFilters from '@/components/collection/ProductGridWithFilters';
+import CollectionViewTracker from '@/components/analytics/CollectionViewTracker';
 import { Product } from '@/types';
 
 export const metadata = {
@@ -48,6 +49,7 @@ export default async function CollectionsPage({ searchParams }: CollectionsPageP
       <Header />
 
       <main>
+        <CollectionViewTracker collectionId="gid://shopify/Collection/all" collectionHandle="all" />
         <CategoryHero
           title="All Products"
           description="Explore our complete range of premium window blinds. From vertical to roller, find the perfect style to complement your space."

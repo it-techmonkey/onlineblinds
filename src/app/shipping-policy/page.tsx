@@ -11,26 +11,37 @@ const sections = [
     heading: 'Order Processing',
     content: (
       <p>
-        All blinds are made to measure. Manufacturing typically takes <strong>3-5 working days</strong> before dispatch.
-        This timeframe may vary during busy periods, for large orders, or where additional checks are required.
-      </p>
-    ),
-  },
-  {
-    heading: 'Delivery Timeframes',
-    content: (
-      <p>
-        Delivery timeframes are estimates and are not guaranteed. Once your order has been manufactured and dispatched,
-        delivery timing depends on the courier, destination, and any circumstances outside our control.
+        All blinds are made to measure. Manufacturing typically takes <strong>3–5 working days</strong> before dispatch.
+        Once dispatched, your blinds are usually with you within <strong>2–3 working days</strong>, making the total
+        delivery window approximately <strong>7–12 working days</strong> from order date. This timeframe may vary during
+        busy periods or for large orders.
       </p>
     ),
   },
   {
     heading: 'Shipping Costs',
     content: (
+      <>
+        <p>
+          <strong>Free delivery</strong> on all orders over <strong>£250</strong> to UK mainland addresses.
+        </p>
+        <p>
+          A standard charge of <strong>£9.95</strong> applies to orders under £250.
+        </p>
+        <p>
+          Remote area surcharge of <strong>+£9.95</strong> applies to Northern Ireland, Scottish Islands, Isle of Man,
+          and Isle of Wight. Contact us for Channel Islands deliveries (VAT-free).
+        </p>
+      </>
+    ),
+  },
+  {
+    heading: 'Delivery Tracking',
+    content: (
       <p>
-        Shipping costs, where applicable, are shown at checkout before you place your order. Any delivery charge shown at
-        checkout forms part of the total order price.
+        As soon as your order is dispatched, we&apos;ll send you an email with a <strong>tracking number and link</strong>{' '}
+        so you can follow your delivery all the way to your door. If you haven&apos;t received a dispatch email, please
+        check your spam folder or contact us.
       </p>
     ),
   },

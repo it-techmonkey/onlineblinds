@@ -111,6 +111,27 @@ export function trackShopifyProductView(product: Product) {
   ).catch(logAnalyticsError);
 }
 
+export function trackShopifyCollectionView(collectionId: string, collectionHandle: string) {
+  const basePayload = getBasePayload();
+  if (!basePayload) return;
+
+  const payload: ShopifyPageViewPayload = {
+    ...basePayload,
+    canonicalUrl: window.location.href,
+    pageType: "collection",
+    resourceId: collectionId,
+    collectionHandle,
+  };
+
+  sendShopifyAnalytics(
+    {
+      eventName: AnalyticsEventName.COLLECTION_VIEW,
+      payload,
+    },
+    shopDomain
+  ).catch(logAnalyticsError);
+}
+
 export function trackShopifyAddToCart(product: Product, quantity: number = 1) {
   const basePayload = getBasePayload();
   if (!basePayload) return;

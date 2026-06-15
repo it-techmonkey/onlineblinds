@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Header, Footer, FAQ } from '@/components';
+import CollectionViewTracker from '@/components/analytics/CollectionViewTracker';
 import {
   fetchCategories,
   fetchProducts,
@@ -248,6 +249,10 @@ export default async function CollectionPage({ params, searchParams }: PageProps
       <Header />
 
       <main>
+        <CollectionViewTracker
+          collectionId={backendCategory?.id ? `gid://shopify/Collection/${backendCategory.id}` : `gid://shopify/Collection/${categorySlug}`}
+          collectionHandle={categorySlug}
+        />
         <CategoryHero
           title={categoryName}
           slug={categorySlug}
