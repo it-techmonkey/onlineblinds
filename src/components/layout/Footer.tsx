@@ -61,7 +61,6 @@ const Footer = () => {
           {/* Contact */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Contact</p>
-            <a href="tel:+18326706705" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">+1 832-670-6705</a>
             <a href="mailto:sales@onlineblindsexpress.co.uk" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">sales@onlineblindsexpress.co.uk</a>
           </div>
         </div>
