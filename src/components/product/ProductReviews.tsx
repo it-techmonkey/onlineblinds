@@ -491,11 +491,14 @@ function initials(name: string) {
 
 const PHOTOS_PREVIEW_COUNT = 8;
 
+const REVIEWS_PER_PAGE = 4;
+
 const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
   const [data, setData] = useState<JudgeMeReviewsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [photoModal, setPhotoModal] = useState<{ photos: string[]; index: number } | null>(null);
+  const [visibleCount, setVisibleCount] = useState(REVIEWS_PER_PAGE);
 
   const loadReviews = useCallback(async () => {
     setLoading(true);
@@ -542,7 +545,7 @@ const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
       <div className="flex flex-col gap-6">
 
         {/* ── Header card ─────────────────────────────────────────────────────── */}
-        <div className="bg-white rounded-2xl border border-border p-5 md:p-6 shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
+        <div className="bg-surface-soft rounded-2xl border border-border p-5 md:p-6 shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
           {isEmpty ? (
             /* Empty state */
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -605,7 +608,7 @@ const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
 
         {/* ── Write review form (inline) ───────────────────────────────────── */}
         {showForm && (
-          <div className="bg-white rounded-2xl border border-border shadow-[0_4px_14px_rgba(31,41,51,0.04)] overflow-hidden">
+          <div className="bg-surface-soft rounded-2xl border border-border shadow-[0_4px_14px_rgba(31,41,51,0.04)] overflow-hidden">
             <WriteReviewForm
               productHandle={productHandle}
               onClose={() => setShowForm(false)}
@@ -616,7 +619,7 @@ const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
 
         {/* ── Customer photos strip ────────────────────────────────────────── */}
         {allPhotos.length > 0 && (
-          <div className="bg-white rounded-2xl border border-border p-5 md:p-6 shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
+          <div className="bg-surface-soft rounded-2xl border border-border p-5 md:p-6 shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-semibold text-foreground">Customer reviews</h3>
               <p className="text-xs text-muted">Read feedback from customers and share your own experience.</p>
@@ -648,56 +651,73 @@ const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
 
         {/* ── Review list ──────────────────────────────────────────────────── */}
         {!isEmpty && (
-          <div className="bg-white rounded-2xl border border-border shadow-[0_4px_14px_rgba(31,41,51,0.04)] divide-y divide-border">
-            {data!.reviews.map((review) => {
-              const reviewPhotos = review.pictures?.map((p) => p.urls.original) ?? [];
-              return (
-                <div key={review.id} className="p-5 md:p-6 flex flex-col gap-3">
-                  {/* Author row */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-surface-soft border border-border flex items-center justify-center shrink-0">
-                      <span className="text-xs font-semibold text-primary">
-                        {initials(review.reviewer.name)}
-                      </span>
+          <>
+            <div className="bg-surface-soft rounded-2xl border border-border shadow-[0_4px_14px_rgba(31,41,51,0.04)] divide-y divide-border">
+              {data!.reviews.slice(0, visibleCount).map((review) => {
+                const reviewPhotos = review.pictures?.map((p) => p.urls.original) ?? [];
+                return (
+                  <div key={review.id} className="p-5 md:p-6 flex flex-col gap-3">
+                    {/* Author row */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-surface-soft border border-border flex items-center justify-center shrink-0">
+                        <span className="text-xs font-semibold text-primary">
+                          {initials(review.reviewer.name)}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">{review.reviewer.name}</p>
+                        {review.verified && (
+                          <span className="text-[10px] text-green-600 font-medium">Verified purchase</span>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">{review.reviewer.name}</p>
-                      {review.verified && (
-                        <span className="text-[10px] text-green-600 font-medium">Verified purchase</span>
+
+                    {/* Stars + title */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <StarRating rating={review.rating} size="sm" />
+                      {review.title && (
+                        <span className="text-sm font-semibold text-foreground">{review.title}</span>
                       )}
                     </div>
-                  </div>
+                    <p className="text-xs text-muted">{formatDate(review.created_at)}</p>
 
-                  {/* Stars + date + title */}
-                  <div className="flex flex-wrap items-center gap-2">
-                    <StarRating rating={review.rating} size="sm" />
-                    {review.title && (
-                      <span className="text-sm font-semibold text-foreground">{review.title}</span>
+                    {/* Body */}
+                    <p className="text-sm text-foreground leading-relaxed">{review.body}</p>
+
+                    {/* Review photos */}
+                    {reviewPhotos.length > 0 && (
+                      <div className="flex gap-2 flex-wrap mt-1">
+                        {reviewPhotos.map((url, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setPhotoModal({ photos: allPhotos, index: allPhotos.indexOf(url) })}
+                            className="relative w-20 h-20 rounded-xl overflow-hidden border border-border hover:border-primary transition-colors"
+                          >
+                            <Image src={url} alt="Review photo" fill className="object-cover" sizes="80px" />
+                          </button>
+                        ))}
+                      </div>
                     )}
                   </div>
-                  <p className="text-xs text-muted">{formatDate(review.created_at)}</p>
+                );
+              })}
+            </div>
 
-                  {/* Body */}
-                  <p className="text-sm text-foreground leading-relaxed">{review.body}</p>
-
-                  {/* Review photos */}
-                  {reviewPhotos.length > 0 && (
-                    <div className="flex gap-2 flex-wrap mt-1">
-                      {reviewPhotos.map((url, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setPhotoModal({ photos: allPhotos, index: allPhotos.indexOf(url) })}
-                          className="relative w-20 h-20 rounded-xl overflow-hidden border border-border hover:border-primary transition-colors"
-                        >
-                          <Image src={url} alt="Review photo" fill className="object-cover" sizes="80px" />
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+            {/* Load more */}
+            {visibleCount < data!.reviews.length && (
+              <div className="flex flex-col items-center gap-1.5">
+                <button
+                  onClick={() => setVisibleCount((c) => c + REVIEWS_PER_PAGE)}
+                  className="px-6 py-2.5 rounded-full border border-border bg-white text-sm font-semibold text-foreground hover:border-primary hover:text-primary transition-colors shadow-[0_2px_8px_rgba(31,41,51,0.06)]"
+                >
+                  Load more reviews
+                </button>
+                <p className="text-xs text-muted">
+                  Showing {Math.min(visibleCount, data!.reviews.length)} of {data!.reviews.length} reviews
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </>
