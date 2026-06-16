@@ -679,8 +679,6 @@ const ProductReviews = ({ productHandle }: ProductReviewsProps) => {
                         <span className="text-sm font-semibold text-foreground">{review.title}</span>
                       )}
                     </div>
-                    <p className="text-xs text-muted">{formatDate(review.created_at)}</p>
-
                     {/* Body */}
                     <p className="text-sm text-foreground leading-relaxed">{review.body}</p>
 
