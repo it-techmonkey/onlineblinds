@@ -22,7 +22,7 @@ const ProductHeader = ({ name, category, estimatedDelivery }: ProductHeaderProps
       {/* Delivery Row */}
       <div className="flex flex-wrap items-center gap-4">
         <p className="text-sm text-[#67748a]">
-          Estimated Shipping Date: <span className="text-[#25344d] font-medium">{estimatedDelivery}</span>
+          Delivery Time: <span className="text-[#25344d] font-medium">{estimatedDelivery}</span>
         </p>
       </div>
     </div>

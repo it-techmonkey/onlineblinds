@@ -1146,8 +1146,8 @@ const ProductPage = ({
                   </svg>
                 </div>
                 <div className="ml-2 md:ml-3">
-                  <div className="text-[10px] md:text-xs text-muted">Estimated Delivery Date</div>
-                  <div className="text-xs md:text-sm font-semibold text-foreground">12 Working Days</div>
+                  <div className="text-[10px] md:text-xs text-muted">Delivery Time</div>
+                  <div className="text-xs md:text-sm font-semibold text-foreground">{product.estimatedDelivery}</div>
                 </div>
               </div>
 

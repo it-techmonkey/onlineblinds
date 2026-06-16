@@ -3,7 +3,8 @@ import {
   ApiProductsResponse,
   ApiProductResponse,
   Product,
-  DEFAULT_ESTIMATED_DELIVERY,
+  DELIVERY_VERTICAL,
+  DELIVERY_STANDARD,
   DEFAULT_RATING,
   DEFAULT_REVIEW_COUNT,
   SizeBands,
@@ -740,7 +741,9 @@ export function transformProduct(apiProduct: ApiProduct): Product {
     currency: 'GBP',
     rating: DEFAULT_RATING,
     reviewCount: DEFAULT_REVIEW_COUNT,
-    estimatedDelivery: DEFAULT_ESTIMATED_DELIVERY,
+    estimatedDelivery: categorySlugs.some(s => s.toLowerCase() === 'vertical-blinds')
+      ? DELIVERY_VERTICAL
+      : DELIVERY_STANDARD,
     description: apiProduct.description || '',
     images: apiProduct.images.length > 0 ? apiProduct.images : [],
     videos: apiProduct.videos || [],
