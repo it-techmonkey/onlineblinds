@@ -275,7 +275,8 @@ export const DEFAULT_PRODUCT_FEATURES: ProductFeatures = {
   hasRollerCassette: false,
 };
 
-export const DEFAULT_ESTIMATED_DELIVERY = '22 December 2025';
+export const DELIVERY_VERTICAL = '4-7 working days';
+export const DELIVERY_STANDARD = '7-14 working days';
 export const DEFAULT_RATING = 5;
 export const DEFAULT_REVIEW_COUNT = 0;
 

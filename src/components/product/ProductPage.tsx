@@ -121,6 +121,42 @@ import { isRomanProduct } from '@/lib/roman-blinds';
 import ProductUrgencyBar from './ProductUrgencyBar';
 import ProductTrustStrip from './ProductTrustStrip';
 
+// Compact inline star rating shown below the product title
+function ProductRatingBadge({ productSlug }: { productSlug: string }) {
+  const [rating, setRating] = useState<{ avg: number; total: number } | null>(null);
+
+  useEffect(() => {
+    fetch(`/api/reviews/${encodeURIComponent(productSlug)}`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => {
+        if (d && d.totalReviews > 0) setRating({ avg: d.averageRating, total: d.totalReviews });
+      })
+      .catch(() => {});
+  }, [productSlug]);
+
+  if (!rating) return null;
+
+  const stars = [1, 2, 3, 4, 5].map((i) => {
+    const filled = i <= Math.floor(rating.avg);
+    const half = !filled && i === Math.ceil(rating.avg) && !Number.isInteger(rating.avg);
+    return { i, filled, half };
+  });
+
+  return (
+    <div className="flex items-center gap-2 mb-4">
+      <span className="flex items-center gap-0.5 text-gold">
+        {stars.map(({ i, filled, half }) => (
+          <svg key={i} width="15" height="15" viewBox="0 0 24 24" fill={filled || half ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.6" aria-hidden>
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        ))}
+      </span>
+      <span className="text-sm font-semibold text-foreground">{rating.avg.toFixed(1)}</span>
+      <span className="text-sm text-muted">({rating.total} {rating.total === 1 ? 'review' : 'reviews'})</span>
+    </div>
+  );
+}
+
 function withBottomBarPricing(
   customizations: CustomizationPricingType[]
 ): CustomizationPricingType[] {
@@ -1099,6 +1135,9 @@ const ProductPage = ({
                 {product.name}
               </h1>
 
+              {/* Rating badge */}
+              <ProductRatingBadge productSlug={product.slug} />
+
               {/* Shipping Info Box */}
               <div className="flex items-center border border-border rounded-[16px] mb-5 md:mb-6 px-3 md:px-4 py-3 bg-surface shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-surface-soft rounded-[12px] flex items-center justify-center shrink-0">
@@ -1107,8 +1146,8 @@ const ProductPage = ({
                   </svg>
                 </div>
                 <div className="ml-2 md:ml-3">
-                  <div className="text-[10px] md:text-xs text-muted">Estimated Delivery Date</div>
-                  <div className="text-xs md:text-sm font-semibold text-foreground">12 Working Days</div>
+                  <div className="text-[10px] md:text-xs text-muted">Delivery Time</div>
+                  <div className="text-xs md:text-sm font-semibold text-foreground">{product.estimatedDelivery}</div>
                 </div>
               </div>
 
@@ -2074,15 +2113,11 @@ const ProductPage = ({
         productTags={product.tags}
       />
 
-      {/* Reviews Section — hidden */}
-      {false && product.slug !== 'non-driii-honeycomb-blackout-blinds' && (
-        <section className="px-4 md:px-6 lg:px-16 py-8 md:py-12 bg-surface-soft border-t border-border">
+      {/* Reviews Section */}
+      {product.slug !== 'non-driii-honeycomb-blackout-blinds' && (
+        <section className="px-4 md:px-6 lg:px-16 py-8 md:py-12 bg-white border-t border-border">
           <div className="max-w-[1320px] mx-auto">
-            <ProductReviews
-              reviews={product.reviews}
-              averageRating={product.rating}
-              totalReviews={product.reviewCount}
-            />
+            <ProductReviews productHandle={product.slug} />
           </div>
         </section>
       )}
