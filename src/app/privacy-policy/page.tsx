@@ -417,8 +417,8 @@ export default function PrivacyPolicyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <address className="not-italic text-muted">
-                  Carlinghow Mills, Unit C41<br />
-                  Batley, ENG, WF17 8LL<br />
+                  Unit C2, Carlinghow Mills<br />
+                  Batley WF17 8LL<br />
                   United Kingdom
                 </address>
               </div>
