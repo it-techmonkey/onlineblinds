@@ -225,6 +225,22 @@ const sections = [
     ),
   },
   {
+    heading: 'Manufacturing & Distribution',
+    content: (
+      <>
+        <p>
+          Our products are manufactured and distributed globally through our production facilities located in Texas (USA),
+          Leeds (United Kingdom), and Guangzhou (China). These facilities support our international supply chain and enable
+          the efficient fulfillment of customer orders across North America, Europe, Asia, and other global markets.
+        </p>
+        <p>
+          Company reserves the right to manufacture, source, and distribute products from any of its facilities or approved
+          partners as required to meet operational and customer requirements.
+        </p>
+      </>
+    ),
+  },
+  {
     heading: 'Contact Us',
     content: (
       <>
