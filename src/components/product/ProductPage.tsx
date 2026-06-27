@@ -8,6 +8,7 @@ import { useCart } from '@/context/CartContext';
 import ProductGallery from './ProductGallery';
 import ProductReviews from './ProductReviews';
 import RelatedProducts from './RelatedProducts';
+import { getDeliveryDateRange } from '@/lib/delivery';
 import CategoryInfoSection from '@/components/collection/CategoryInfoSection';
 import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
 import { getMeasurementRanges } from '@/lib/measurement-ranges';
@@ -1146,8 +1147,8 @@ const ProductPage = ({
                   </svg>
                 </div>
                 <div className="ml-2 md:ml-3">
-                  <div className="text-[10px] md:text-xs text-muted">Delivery Time</div>
-                  <div className="text-xs md:text-sm font-semibold text-foreground">{product.estimatedDelivery}</div>
+                  <div className="text-[10px] md:text-xs text-muted">Est. Delivery</div>
+                  <div className="text-xs md:text-sm font-semibold text-foreground">{getDeliveryDateRange(product.estimatedDelivery) ?? product.estimatedDelivery}</div>
                 </div>
               </div>
 
