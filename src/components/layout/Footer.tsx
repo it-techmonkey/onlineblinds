@@ -16,7 +16,7 @@ const Footer = () => {
                 alt="Online Blinds"
                 width={120}
                 height={20}
-                className="h-auto w-[120px]"
+                style={{ width: 120, height: 'auto' }}
               />
             </Link>
             <p className="font-jost text-[13.5px] text-white/75 leading-relaxed">

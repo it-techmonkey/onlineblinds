@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { getDeliveryDateRange } from '@/lib/delivery';
 
 interface ProductHeaderProps {
   name: string;
@@ -7,6 +10,8 @@ interface ProductHeaderProps {
 }
 
 const ProductHeader = ({ name, category, estimatedDelivery }: ProductHeaderProps) => {
+  const deliveryDateRange = getDeliveryDateRange(estimatedDelivery);
+
   return (
     <div className="flex flex-col gap-3">
       {/* Breadcrumb */}
@@ -15,14 +20,14 @@ const ProductHeader = ({ name, category, estimatedDelivery }: ProductHeaderProps
         <span>›</span>
         <span className="text-[#25344d]">{name}</span>
       </nav>
-      
+
       {/* Title */}
       <h1 className="text-2xl lg:text-3xl font-medium text-[#25344d]">{name}</h1>
-      
+
       {/* Delivery Row */}
       <div className="flex flex-wrap items-center gap-4">
         <p className="text-sm text-[#67748a]">
-          Delivery Time: <span className="text-[#25344d] font-medium">{estimatedDelivery}</span>
+          Estimated Delivery: <span className="text-[#25344d] font-medium">{deliveryDateRange ?? estimatedDelivery}</span>
         </p>
       </div>
     </div>
@@ -30,4 +35,3 @@ const ProductHeader = ({ name, category, estimatedDelivery }: ProductHeaderProps
 };
 
 export default ProductHeader;
-

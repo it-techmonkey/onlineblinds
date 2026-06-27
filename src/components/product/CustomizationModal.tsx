@@ -6,6 +6,7 @@ import { Product, ProductConfiguration, PriceBandMatrix, CustomizationPricing as
 import { useCart } from '@/context/CartContext';
 import ProductGallery from './ProductGallery';
 import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
+import { getDeliveryDateRange } from '@/lib/delivery';
 import {
   calculateTotalPrice,
   configToCustomizations,
@@ -993,7 +994,7 @@ const CustomizationModal = ({
               {/* Product Title */}
               <h1 className="text-xl md:text-2xl lg:text-3xl font-medium text-[#25344d] mb-2">{product.name}</h1>
               <p className="text-xs md:text-sm text-gray-500 mb-2">
-                Delivery Time: <span className="text-[#335c99] font-medium">{product.estimatedDelivery}</span>
+                Estimated Delivery: <span className="text-[#335c99] font-medium">{getDeliveryDateRange(product.estimatedDelivery) ?? product.estimatedDelivery}</span>
               </p>
 
               {/* Configuration Title */}
