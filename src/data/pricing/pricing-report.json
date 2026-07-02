@@ -1,14 +1,14 @@
 {
   "generatedAt": "2026-05-23T18:46:32.122Z",
   "source": "neon-export",
-  "checksum": "64450272119e40145eb2ea25adf49f1b59aa8c928cc188d37097655d3a9184c8",
+  "checksum": "6b7a1870961befdbb8fd867f70c4dc147b49cabfd58c1e1a044d5ad6b8c5fea8",
   "counts": {
     "priceBands": 62,
     "widthBands": 134,
     "heightBands": 88,
     "priceCells": 9673,
-    "customizationOptions": 236,
-    "customizationPricings": 320
+    "customizationOptions": 239,
+    "customizationPricings": 323
   },
   "priceBandNames": [
     "Day and Night - Band A",

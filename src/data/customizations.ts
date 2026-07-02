@@ -763,10 +763,16 @@ export const BLIND_COLOR_OPTIONS = [
     hex: '#E9E5DF',
   },
   {
-    id: 'anthracite',
-    name: 'Anthracite',
+    id: 'graphite',
+    name: 'Graphite',
     price: 0,
-    hex: '#232833',
+    hex: '#5a6780',
+  },
+  {
+    id: 'blue',
+    name: 'Blue',
+    price: 0,
+    hex: '#4A90D9',
   },
 ];
 
@@ -789,16 +795,32 @@ export const FRAME_COLOR_OPTIONS = [
 // Opening Direction Options
 export const OPENING_DIRECTION_OPTIONS = [
   {
-    id: 'left-right',
-    name: 'Left & Right',
+    id: 'left-to-right',
+    name: 'Left To Right',
+    description: 'The blind stacks on the left and opens to the right.',
     price: 0,
     image: '/products/openingDirection/leftRight.png',
   },
   {
-    id: 'up-down',
-    name: 'Up & Down',
+    id: 'right-to-left',
+    name: 'Right To Left',
+    description: 'The blind stacks on the right and opens to the left.',
     price: 0,
     image: '/products/openingDirection/upDown.png',
+  },
+  {
+    id: 'top-down',
+    name: 'Top Down',
+    description: 'The blind opens from the top to the bottom.',
+    price: 0,
+    image: '/products/openingDirection/upDown.png',
+  },
+  {
+    id: 'split',
+    name: 'Split',
+    description: 'Sideways (Left & Right) or Top Down / Bottom Up.',
+    price: 25,
+    image: '/products/openingDirection/leftRight.png',
   },
 ];
 
