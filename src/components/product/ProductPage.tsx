@@ -10,6 +10,7 @@ import ProductReviews from './ProductReviews';
 import RelatedProducts from './RelatedProducts';
 import { getDeliveryDateRange } from '@/lib/delivery';
 import CategoryInfoSection from '@/components/collection/CategoryInfoSection';
+import { BlackoutFeaturesSection } from './BlackoutFeaturesSection';
 import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
 import { getMeasurementRanges } from '@/lib/measurement-ranges';
 import { PRODUCT_GUIDES } from '@/data/guides';
@@ -2103,6 +2104,9 @@ const ProductPage = ({
           </div>
         </div>
       </section>
+
+      {/* Blackout & Comfort Features - Complete Blackout Blinds only */}
+      {product.slug === 'non-driii-honeycomb-blackout-blinds' && <BlackoutFeaturesSection />}
 
       {/* Product Details Section - Full Width */}
       <CategoryInfoSection

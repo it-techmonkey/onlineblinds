@@ -111,6 +111,23 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
       ),
     });
 
+    if (content.blackoutFeatures && content.blackoutFeatures.length > 0) {
+      items.push({
+        id: 'blackout-features',
+        title: 'Blackout & Comfort Features',
+        content: (
+          <ul className="space-y-1.5 list-none">
+            {content.blackoutFeatures.map((feat, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                <span>{feat}</span>
+              </li>
+            ))}
+          </ul>
+        ),
+      });
+    }
+
     items.push({
       id: 'specifications',
       title: 'Specifications',

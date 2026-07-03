@@ -22,6 +22,8 @@ export interface CategoryContent {
   easyMaintenance: string[];
   /** Paragraphs shown under "Child Safety" */
   childSafety: string[];
+  /** Optional bullet list shown under its own "Blackout & Comfort Features" section */
+  blackoutFeatures?: string[];
 }
 
 const categoryContent: Record<string, CategoryContent> = {
@@ -314,6 +316,11 @@ const categoryContent: Record<string, CategoryContent> = {
     childSafety: [
       'At Online Blinds, safety is a top priority. All of our blinds are designed in accordance with modern child safety standards.',
       'Where cords or chains are used, appropriate child safety devices and installation instructions are included to help keep your home safe.',
+    ],
+    blackoutFeatures: [
+      'Total blackout fabric — enjoy complete darkness anytime with fabric that blocks all external light',
+      'Cordless safety system — a sleek, child- and pet-safe design with no cords or chains',
+      'Energy-efficient thermal pleated fabric — helps keep rooms cooler in summer and warmer in winter',
     ],
   },
 
