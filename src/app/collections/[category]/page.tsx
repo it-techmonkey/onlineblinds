@@ -121,7 +121,7 @@ export default async function CollectionPage({ params, searchParams }: PageProps
   const { category: categorySlug } = await params;
   const resolvedSearchParams = await (searchParams ?? Promise.resolve({} as { page?: string; sort?: string }));
   const page = Math.max(1, Number(resolvedSearchParams.page) || 1);
-  const sortBy = (resolvedSearchParams.sort as CatalogSortOption) || 'best-selling';
+  const sortBy = (resolvedSearchParams.sort as CatalogSortOption) || 'price-low';
   const pageSize = 24;
 
   // Map frontend slug to backend slug if needed
