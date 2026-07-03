@@ -12,6 +12,7 @@ export { default as StarRating } from './StarRating';
 export * from './customization';
 export * from './CustomerReviewsSection';
 export * from './ProductFeatureSection';
+export * from './BlackoutFeaturesSection';
 export * from './ProductComparisonSection';
 export * from './HowItWorksSection';
 export * from './ProductRechargeSection';
