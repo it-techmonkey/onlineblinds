@@ -64,7 +64,7 @@ const MobileMenuItem = ({ item, onClose }: { item: NavigationItem; onClose: () =
           className={`opacity-40 transition-transform duration-250 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-90 pb-3' : 'max-h-0'}`}>
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-250 pb-3' : 'max-h-0'}`}>
         <ul className="pl-3 space-y-0.5">
           {item.submenu && item.submenu.map((link: NavigationLink, i: number) => (
             <li key={i}>

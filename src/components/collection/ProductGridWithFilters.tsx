@@ -25,7 +25,7 @@ export default function ProductGridWithFilters({
   products,
   preselectedMotorization = false,
   pagination,
-  currentSort = 'best-selling',
+  currentSort = 'price-low',
   basePath,
 }: ProductGridWithFiltersProps) {
   const router = useRouter();
@@ -57,7 +57,7 @@ export default function ProductGridWithFilters({
       params.delete('page');
     }
 
-    if (nextSort !== 'best-selling') {
+    if (nextSort !== 'price-low') {
       params.set('sort', nextSort);
     } else {
       params.delete('sort');

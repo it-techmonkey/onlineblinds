@@ -47,26 +47,27 @@ const AnnouncementBar = () => {
         <div className="absolute inset-y-0 -left-full w-1/3 bg-linear-to-r from-transparent via-white/10 to-transparent animate-[shimmer_3.5s_ease-in-out_infinite]" />
       </div>
 
-      <div className="relative mx-auto flex max-w-7xl items-center justify-center gap-2.5 px-8 py-2.5 text-center flex-wrap">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-center gap-1.5 px-3 py-2 text-center flex-nowrap md:flex-wrap md:gap-2.5 md:px-8 md:py-2.5">
 
         {/* Tag icon + headline */}
-        <span className="inline-flex items-center gap-1.5 text-[13px] font-black uppercase tracking-widest text-white">
-          <svg className="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <span className="inline-flex items-center gap-1 whitespace-nowrap text-[10.5px] font-black uppercase tracking-wide text-white md:gap-1.5 md:text-[13px] md:tracking-widest">
+          <svg className="h-3 w-3 shrink-0 md:h-3.5 md:w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
               d="M7 7h.01M7 3H5a2 2 0 00-2 2v2a2 2 0 00.586 1.414l9 9a2 2 0 002.828 0l4-4a2 2 0 000-2.828l-9-9A2 2 0 007 3z" />
           </svg>
-          Up to 60% Off
+          <span className="hidden sm:inline">Up to 60% Off</span>
+          <span className="sm:hidden">60% Off</span>
         </span>
 
         <span className="text-white/50">|</span>
 
         {/* Code + copy button */}
-        <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-white/90">
-          Extra 10% Off with code
+        <span className="inline-flex items-center gap-1.5 whitespace-nowrap text-[12.5px] font-medium text-white/90">
+          <span className="hidden md:inline">Extra 10% Off with code</span>
           <button
             onClick={handleCopy}
             title="Copy code"
-            className="group inline-flex items-center gap-1 rounded border border-white/30 bg-white/15 px-2 py-0.5 font-black tracking-widest text-white transition-all hover:bg-white/25 active:scale-95"
+            className="group inline-flex items-center gap-1 rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-[10.5px] font-black tracking-wide text-white transition-all hover:bg-white/25 active:scale-95 md:px-2 md:text-[13px] md:tracking-widest"
           >
             {COUPON}
             <span className="text-white/60 transition-colors group-hover:text-white">
@@ -87,26 +88,27 @@ const AnnouncementBar = () => {
           )}
         </span>
 
-        <span className="text-white/50">|</span>
-        <span className="text-[12.5px] font-medium text-white/90">Today Only</span>
-        <span className="text-white/50">|</span>
-        <span className="text-[12.5px] font-medium text-white/90">Whilst Stock Lasts</span>
+        <span className="hidden md:inline text-white/50">|</span>
+        <span className="hidden md:inline text-[12.5px] font-medium text-white/90">Today Only</span>
+        <span className="hidden md:inline text-white/50">|</span>
+        <span className="hidden md:inline text-[12.5px] font-medium text-white/90">Whilst Stock Lasts</span>
+
         <span className="text-white/50">|</span>
 
         {/* Countdown — only rendered after mount to prevent hydration mismatch */}
-        <span className="inline-flex items-center gap-1.5 text-[12.5px]">
-          <svg className="h-3.5 w-3.5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12.5px] md:gap-1.5">
+          <svg className="hidden h-3.5 w-3.5 text-white/70 sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <span className="font-medium text-white/80">Sale ends in</span>
-          <span className="font-black tabular-nums text-white text-[13px]" suppressHydrationWarning>
+          <span className="hidden font-medium text-white/80 md:inline">Sale ends in</span>
+          <span className="font-black tabular-nums text-white text-[11px] md:text-[13px]" suppressHydrationWarning>
             {seconds !== null ? `${pad(h)}:${pad(m)}:${pad(s)}` : '--:--:--'}
           </span>
         </span>
 
         <Link
           href="/collections"
-          className="ml-1 rounded-full bg-white px-4 py-1 text-[11px] font-black uppercase tracking-[0.08em] text-[#b91c1c] transition-all hover:bg-white/90 hover:scale-105"
+          className="ml-0.5 shrink-0 whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-[9.5px] font-black uppercase tracking-[0.05em] text-[#b91c1c] transition-all hover:bg-white/90 hover:scale-105 md:ml-1 md:px-4 md:py-1 md:text-[11px] md:tracking-[0.08em]"
         >
           Shop Now
         </Link>
