@@ -36,6 +36,10 @@ export default function ProductCard({
   const router = useRouter();
   const imageUrl = product.image || product.images?.[0] || '';
   const currency = product.currency || 'GBP';
+  // Matches the "Save 40%" treatment on the product page (ProductPage.tsx), which
+  // derives a was-price from a fixed 1.67x multiplier rather than a real compare-at field.
+  const compareAtPrice = product.compareAtPrice ?? Math.round(product.price * 1.67);
+  const discountPercent = Math.round((1 - product.price / compareAtPrice) * 100);
   const motorizedParam = preselectedMotorization ? '&motorized=true' : '';
   const showMotorizedRemote =
     preselectedMotorization || isSpecialMotorizedProduct(product.tags || []);
@@ -93,13 +97,18 @@ export default function ProductCard({
       {/* Info */}
       <div className="flex flex-col gap-1.5 p-4">
         <h3 className="font-jost font-medium text-[14.5px] text-foreground truncate">{product.name}</h3>
-        <div className="flex items-center gap-2 mt-0.5">
+        <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
           <span className="font-jost font-semibold text-[16px] text-foreground">
             {formatPriceWithCurrency(product.price, currency)}
           </span>
-          {showComparePrice && product.compareAtPrice && product.compareAtPrice > product.price && (
+          {showComparePrice && (
             <span className="font-jost text-[13px] text-muted line-through">
-              {formatPriceWithCurrency(product.compareAtPrice, currency)}
+              {formatPriceWithCurrency(compareAtPrice, currency)}
+            </span>
+          )}
+          {showComparePrice && (
+            <span className="rounded-full bg-red-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-red-700">
+              Save {discountPercent}%
             </span>
           )}
         </div>
