@@ -40,7 +40,7 @@ const BestSelling = () => {
           const p = transformProduct(pd);
           return {
             id: p.id, name: p.name, slug: p.slug, price: p.price,
-            compareAtPrice: Math.round(p.price * 1.4), currency: p.currency,
+            currency: p.currency,
             rating: p.rating, image: fallbackImages[i % fallbackImages.length],
             images: p.images, isBestSeller: true,
           };
@@ -89,7 +89,6 @@ const BestSelling = () => {
                 product={p}
                 className="w-full"
                 showBestSellerBadge={false}
-                showComparePrice={false}
               />
             ))}
           </div>
