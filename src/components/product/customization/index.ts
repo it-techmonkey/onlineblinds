@@ -21,3 +21,4 @@ export { default as RollStyleSelector } from './RollStyleSelector';
 export { default as OpeningDirectionSelector } from './OpeningDirectionSelector';
 export { PortalDropdownMenu } from './PortalDropdownMenu';
 export { PortalImageModal } from './PortalImageModal';
+export { default as FieldHighlight } from './FieldHighlight';

@@ -3,15 +3,17 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Product, ProductConfiguration, DEFAULT_CONFIGURATION, PriceBandMatrix, CustomizationPricing as CustomizationPricingType } from '@/types';
+import { Product, ProductConfiguration, DEFAULT_CONFIGURATION, PriceBandMatrix, CustomizationPricing as CustomizationPricingType, CheckoutItemRequest } from '@/types';
 import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 import ProductGallery from './ProductGallery';
 import ProductReviews from './ProductReviews';
 import RelatedProducts from './RelatedProducts';
+import StickyAddToCartBar from './StickyAddToCartBar';
 import { getDeliveryDateRange } from '@/lib/delivery';
 import CategoryInfoSection from '@/components/collection/CategoryInfoSection';
 import { BlackoutFeaturesSection } from './BlackoutFeaturesSection';
-import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice } from '@/lib/api';
+import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice, createCheckout } from '@/lib/api';
 import { getMeasurementRanges } from '@/lib/measurement-ranges';
 import { PRODUCT_GUIDES } from '@/data/guides';
 import {
@@ -66,6 +68,7 @@ import {
   SimpleDropdown,
   RollStyleSelector,
   OpeningDirectionSelector,
+  FieldHighlight,
 } from './customization';
 import {
   HEADRAIL_OPTIONS,
@@ -186,7 +189,8 @@ const ProductPage = ({
   initialPriceMatrix = null,
   initialCustomizationPricing = [],
 }: ProductPageProps) => {
-  const { addToCart } = useCart();
+  const { addToCart, clearCart } = useCart();
+  const { customer } = useAuth();
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -207,8 +211,42 @@ const ProductPage = ({
     () => withBottomBarPricing(initialCustomizationPricing)
   );
   const [isValidating, setIsValidating] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
   const customizationFetchingRef = useRef(false);
   const matrixFetchingRef = useRef(false);
+
+  // Hide the sticky bottom bar while the inline Add to Cart / Buy Now buttons are on screen.
+  const inlineButtonsRef = useRef<HTMLDivElement>(null);
+  const [inlineButtonsVisible, setInlineButtonsVisible] = useState(true);
+
+  useEffect(() => {
+    const node = inlineButtonsRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInlineButtonsVisible(entry.isIntersecting),
+      { rootMargin: '0px' }
+    );
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Tracks which required fields are currently missing/invalid, shown as a red
+  // highlight + helper text and used to scroll the user to the first offender.
+  const [invalidFields, setInvalidFields] = useState<Set<string>>(new Set());
+  const fieldRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const registerFieldRef = (key: string, el: HTMLDivElement | null) => {
+    fieldRefs.current[key] = el;
+  };
+  const clearFieldInvalid = (key: string) => {
+    setInvalidFields((prev) => {
+      if (!prev.has(key)) return prev;
+      const next = new Set(prev);
+      next.delete(key);
+      return next;
+    });
+  };
 
   // Collapsible sections state
   const [isMeasureOpen, setIsMeasureOpen] = useState(true);
@@ -1020,32 +1058,113 @@ const ProductPage = ({
   ]);
   const isRequiredCustomizationIncomplete = missingRequiredCustomizations.length > 0;
 
-  const handleAddToCart = async () => {
-    // Validate dimensions are selected
-    if (isSkylight && (!config.brand || !config.blindType)) {
-      alert('Please select a brand and blind type before adding to cart.');
-      return;
+  // Determines which required fields are currently unmet. Used on click instead of
+  // disabling the buttons, so we can scroll to and highlight the offending fields.
+  const getInvalidFieldKeys = (): Set<string> => {
+    const keys = new Set<string>();
+
+    if (isSkylight) {
+      if (!config.brand) keys.add('brand');
+      if (!config.blindType) keys.add('blindType');
+    } else {
+      if (config.width === 0 && !usesHeightOnlyVerticalPricing) keys.add('width');
+      if (config.height === 0) keys.add('height');
+      if (isMeasurementOutOfRange) {
+        keys.add('width');
+        keys.add('height');
+      }
     }
-    if (!isSkylight && ((usesHeightOnlyVerticalPricing && config.height === 0) || (!usesHeightOnlyVerticalPricing && (config.width === 0 || config.height === 0)))) {
-      alert(usesHeightOnlyVerticalPricing ? 'Please select height before adding to cart.' : 'Please select width and height before adding to cart.');
-      return;
-    }
-    if (isMeasurementOutOfRange) {
-      alert('Selected measurements are outside the allowed range for this product.');
-      return;
-    }
-    if (isRequiredCustomizationIncomplete) {
-      alert(formatMissingCustomizationsMessage(missingRequiredCustomizations));
-      return;
-    }
+
+    missingRequiredCustomizations.forEach((item) => keys.add(item.key));
+
     if (isPerfectFitShutterConfigurationIncomplete) {
-      alert(
-        shutterHandlePositionRequired && !shutterHandlePositionValid
-          ? `Handle position must be between ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM} mm and ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm.`
-          : 'Please complete the shutter options before adding to cart.'
-      );
+      if (!config.installationMethod) keys.add('installationMethod');
+      if (!config.controlOption) keys.add('controlOption');
+      if (!config.bracketType) keys.add('bracketType');
+      if (!config.numberOfPanels) keys.add('numberOfPanels');
+      if (shutterHandlePositionRequired && !shutterHandlePositionValid) keys.add('handlePosition');
+    }
+
+    return keys;
+  };
+
+  // Expands any collapsed section that contains an invalid field, then scrolls to
+  // and highlights every invalid field so the user can see what's missing.
+  const focusInvalidFields = (keys: Set<string>) => {
+    setInvalidFields(keys);
+
+    const measureKeys = new Set(['width', 'height', 'brand', 'blindType']);
+    if (!isMeasureOpen && [...keys].some((key) => measureKeys.has(key))) {
+      setIsMeasureOpen(true);
+    }
+    if (!isCustomizeOpen && [...keys].some((key) => !measureKeys.has(key))) {
+      setIsCustomizeOpen(true);
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const orderedKeys = Object.keys(fieldRefs.current);
+        const firstKey = orderedKeys.find((key) => keys.has(key)) ?? [...keys][0];
+        const el = firstKey ? fieldRefs.current[firstKey] : null;
+        el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  };
+
+  const buildCheckoutItem = (): CheckoutItemRequest => {
+    const widthInches = isSkylight
+      ? getSkylightPricingDimensions().widthInches
+      : isReplacementVerticalSlat
+        ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
+        : getTotalInches(config.width, config.widthFraction, config.widthUnit);
+    const heightInches = isSkylight
+      ? getSkylightPricingDimensions().heightInches
+      : getTotalInches(config.height, config.heightFraction, config.heightUnit);
+
+    const backendConfig: Record<string, string | undefined> = {
+      roomType: config.roomType || undefined,
+      blindName: config.blindName || undefined,
+      headrail: config.headrail || undefined,
+      headrailColour: config.headrailColour || undefined,
+      installationMethod: config.installationMethod || undefined,
+      controlOption: config.controlOption || undefined,
+      liningType: config.liningType || undefined,
+      stacking: config.stacking || undefined,
+      controlSide: config.controlSide || undefined,
+      bottomChain: config.bottomChain || undefined,
+      bracketType: config.bracketType || undefined,
+      chainColor: config.chainColor || undefined,
+      wrappedCassette: config.wrappedCassette || undefined,
+      cassetteMatchingBar: config.cassetteMatchingBar || undefined,
+      motorization: config.motorization || undefined,
+      brand: config.brand || undefined,
+      blindType: config.blindType || undefined,
+      blindColor: config.blindColor || undefined,
+      frameColor: config.frameColor || undefined,
+      handlePosition: config.handlePosition || undefined,
+      numberOfPanels: config.numberOfPanels || undefined,
+      openingDirection: config.openingDirection || undefined,
+      bottomBar: config.bottomBar || undefined,
+      rollStyle: config.rollStyle || undefined,
+    };
+
+    return {
+      handle: product.slug,
+      widthInches,
+      heightInches,
+      quantity: 1,
+      submittedPrice: totalPrice,
+      configuration: backendConfig,
+    };
+  };
+
+  const handleAddToCart = async () => {
+    const invalidKeys = getInvalidFieldKeys();
+    if (invalidKeys.size > 0) {
+      focusInvalidFields(invalidKeys);
       return;
     }
+    setInvalidFields(new Set());
 
     setIsValidating(true);
 
@@ -1103,8 +1222,29 @@ const ProductPage = ({
     }
   };
 
+  const handleBuyNow = async () => {
+    const invalidKeys = getInvalidFieldKeys();
+    if (invalidKeys.size > 0) {
+      focusInvalidFields(invalidKeys);
+      return;
+    }
+    setInvalidFields(new Set());
+
+    setIsCheckingOut(true);
+
+    try {
+      const result = await createCheckout([buildCheckoutItem()], customer?.email || undefined);
+      clearCart();
+      window.location.href = result.checkoutUrl;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Something went wrong starting checkout. Please try again.');
+      setIsCheckingOut(false);
+    }
+  };
+
   return (
-    <div className="bg-white">
+    <div className={`bg-white ${!isSkylight ? 'pb-20 md:pb-24' : ''}`}>
       {/* Breadcrumb */}
       <div className="px-4 md:px-6 lg:px-16 py-4 md:py-5">
         <div className="max-w-[1320px] mx-auto">
@@ -1218,62 +1358,77 @@ const ProductPage = ({
                     <div className="p-4 md:p-6 space-y-6 bg-surface">
                       {/* Size Selector */}
                       {product.features.hasSize && (
-                        <SizeSelector
-                          width={config.width}
-                          widthFraction={config.widthFraction}
-                          height={config.height}
-                          heightFraction={config.heightFraction}
-                          unit={config.widthUnit}
-                          onWidthChange={(value) => setConfig({ ...config, width: value })}
-                          onWidthFractionChange={(value) => setConfig({ ...config, widthFraction: value })}
-                          onHeightChange={(value) => setConfig({ ...config, height: value })}
-                          onHeightFractionChange={(value) => setConfig({ ...config, heightFraction: value })}
-                          onUnitChange={(unit) => setConfig({ ...config, widthUnit: unit, heightUnit: unit })}
-                          minWidth={sizeRanges?.minWidth}
-                          maxWidth={sizeRanges?.maxWidth}
-                          minHeight={sizeRanges?.minHeight}
-                          maxHeight={sizeRanges?.maxHeight}
-                          showWidth={!usesHeightOnlyVerticalPricing}
-                        />
+                        <FieldHighlight
+                          fieldKey={['width', 'height']}
+                          invalid={invalidFields.has('width') || invalidFields.has('height')}
+                          registerRef={registerFieldRef}
+                          message="Please enter a valid size"
+                        >
+                          <SizeSelector
+                            width={config.width}
+                            widthFraction={config.widthFraction}
+                            height={config.height}
+                            heightFraction={config.heightFraction}
+                            unit={config.widthUnit}
+                            onWidthChange={(value) => { setConfig({ ...config, width: value }); clearFieldInvalid('width'); }}
+                            onWidthFractionChange={(value) => setConfig({ ...config, widthFraction: value })}
+                            onHeightChange={(value) => { setConfig({ ...config, height: value }); clearFieldInvalid('height'); }}
+                            onHeightFractionChange={(value) => setConfig({ ...config, heightFraction: value })}
+                            onUnitChange={(unit) => setConfig({ ...config, widthUnit: unit, heightUnit: unit })}
+                            minWidth={sizeRanges?.minWidth}
+                            maxWidth={sizeRanges?.maxWidth}
+                            minHeight={sizeRanges?.minHeight}
+                            maxHeight={sizeRanges?.maxHeight}
+                            showWidth={!usesHeightOnlyVerticalPricing}
+                          />
+                        </FieldHighlight>
                       )}
 
                       {/* Installation Method Selector */}
                       {product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && !isEasyStick && !isPerfectFitWooden && !isPerfectFitShutter && !isPerfectFitMetal && (
-                        <InstallationMethodSelector
-                          options={standardInstallationOptions}
-                          selectedMethod={config.installationMethod}
-                          onMethodChange={(methodId) => setConfig({ ...config, installationMethod: methodId })}
-                        />
+                        <FieldHighlight fieldKey="installationMethod" invalid={invalidFields.has('installationMethod')} registerRef={registerFieldRef}>
+                          <InstallationMethodSelector
+                            options={standardInstallationOptions}
+                            selectedMethod={config.installationMethod}
+                            onMethodChange={(methodId) => { setConfig({ ...config, installationMethod: methodId }); clearFieldInvalid('installationMethod'); }}
+                          />
+                        </FieldHighlight>
                       )}
 
                       {isPerfectFitWooden && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
-                        <SimpleDropdown
-                          label={perfectFitWoodenLabels.installationMethod}
-                          options={installationOptions}
-                          selectedValue={config.installationMethod}
-                          onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
-                          placeholder={`Select ${perfectFitWoodenLabels.installationMethod.toLowerCase()}`}
-                        />
+                        <FieldHighlight fieldKey="installationMethod" invalid={invalidFields.has('installationMethod')} registerRef={registerFieldRef}>
+                          <SimpleDropdown
+                            label={perfectFitWoodenLabels.installationMethod}
+                            options={installationOptions}
+                            selectedValue={config.installationMethod}
+                            onChange={(optionId) => { setConfig({ ...config, installationMethod: optionId }); clearFieldInvalid('installationMethod'); }}
+                            placeholder={`Select ${perfectFitWoodenLabels.installationMethod.toLowerCase()}`}
+                          />
+                        </FieldHighlight>
                       )}
 
                       {isPerfectFitShutter && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
-                        <SimpleDropdown
-                          label={perfectFitShutterLabels.installationMethod}
-                          options={installationOptions}
-                          selectedValue={config.installationMethod}
-                          onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
-                          placeholder={`Select ${perfectFitShutterLabels.installationMethod.toLowerCase()}`}
-                        />
+                        <FieldHighlight fieldKey="installationMethod" invalid={invalidFields.has('installationMethod')} registerRef={registerFieldRef}>
+                          <SimpleDropdown
+                            label={perfectFitShutterLabels.installationMethod}
+                            options={installationOptions}
+                            selectedValue={config.installationMethod}
+                            onChange={(optionId) => { setConfig({ ...config, installationMethod: optionId }); clearFieldInvalid('installationMethod'); }}
+                            placeholder={`Select ${perfectFitShutterLabels.installationMethod.toLowerCase()}`}
+                          />
+                        </FieldHighlight>
                       )}
 
                       {isPerfectFitMetal && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
-                        <SimpleDropdown
-                          label={perfectFitMetalLabels.installationMethod}
-                          options={installationOptions}
-                          selectedValue={config.installationMethod}
-                          onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
-                          placeholder={`Select ${perfectFitMetalLabels.installationMethod.toLowerCase()}`}
-                        />
+                        <FieldHighlight fieldKey="installationMethod" invalid={invalidFields.has('installationMethod')} registerRef={registerFieldRef}>
+                          <SimpleDropdown
+                            label={perfectFitMetalLabels.installationMethod}
+                            options={installationOptions}
+                            selectedValue={config.installationMethod}
+                            onChange={(optionId) => { setConfig({ ...config, installationMethod: optionId }); clearFieldInvalid('installationMethod'); }}
+                            placeholder={`Select ${perfectFitMetalLabels.installationMethod.toLowerCase()}`}
+                          />
+                        </FieldHighlight>
                       )}
 
 
@@ -1326,19 +1481,20 @@ const ProductPage = ({
                       <div className="p-4 md:p-6 space-y-6 divide-y divide-border bg-surface">
                       {isSkylight && (
                         <div className="pt-0 first:pt-0 pb-6 space-y-6">
-                          <div>
+                          <FieldHighlight fieldKey="brand" invalid={invalidFields.has('brand')} registerRef={registerFieldRef}>
                             <h3 className="text-sm font-medium text-foreground mb-3">Brand</h3>
                             <div className="flex flex-wrap gap-3">
                               {SKYLIGHT_BRAND_OPTIONS.map((option) => (
                                 <button
                                   key={option.id}
-                                  onClick={() =>
+                                  onClick={() => {
                                     setConfig((prev) => ({
                                       ...prev,
                                       brand: option.id,
                                       blindType: prev.brand === option.id ? prev.blindType : null,
-                                    }))
-                                  }
+                                    }));
+                                    clearFieldInvalid('brand');
+                                  }}
                                   className={`min-w-[96px] rounded-[12px] border px-4 py-3 text-sm font-medium transition-all ${
                                     config.brand === option.id
                                       ? 'border-primary bg-surface-soft text-foreground shadow-sm'
@@ -1349,176 +1505,204 @@ const ProductPage = ({
                                 </button>
                               ))}
                             </div>
-                          </div>
+                          </FieldHighlight>
 
-                          <SimpleDropdown
-                            label="Blind Type"
-                            options={skylightBlindTypeOptions}
-                            selectedValue={config.blindType}
-                            onChange={(optionId) => setConfig({ ...config, blindType: optionId })}
-                            placeholder={config.brand ? 'Select blind type' : 'Select brand first'}
-                          />
+                          <FieldHighlight fieldKey="blindType" invalid={invalidFields.has('blindType')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label="Blind Type"
+                              options={skylightBlindTypeOptions}
+                              selectedValue={config.blindType}
+                              onChange={(optionId) => { setConfig({ ...config, blindType: optionId }); clearFieldInvalid('blindType'); }}
+                              placeholder={config.brand ? 'Select blind type' : 'Select brand first'}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Headrail Selector */}
                       {product.features.hasHeadrail && (
                         <div className="pt-0 first:pt-0 pb-6">
-                          <HeadrailSelector
-                            options={HEADRAIL_OPTIONS}
-                            selectedHeadrail={config.headrail}
-                            onHeadrailChange={(headrailId) => setConfig({ ...config, headrail: headrailId })}
-                          />
+                          <FieldHighlight fieldKey="headrail" invalid={invalidFields.has('headrail')} registerRef={registerFieldRef}>
+                            <HeadrailSelector
+                              options={HEADRAIL_OPTIONS}
+                              selectedHeadrail={config.headrail}
+                              onHeadrailChange={(headrailId) => { setConfig({ ...config, headrail: headrailId }); clearFieldInvalid('headrail'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Headrail Colour Selector */}
                       {product.features.hasHeadrailColour && visibleOptions.showHeadrailColour && (
                         <div className="pt-6">
-                          <HeadrailColourSelector
-                            options={HEADRAIL_COLOUR_OPTIONS}
-                            selectedColour={config.headrailColour}
-                            onColourChange={(colourId) => setConfig({ ...config, headrailColour: colourId })}
-                          />
+                          <FieldHighlight fieldKey="headrailColour" invalid={invalidFields.has('headrailColour')} registerRef={registerFieldRef}>
+                            <HeadrailColourSelector
+                              options={HEADRAIL_COLOUR_OPTIONS}
+                              selectedColour={config.headrailColour}
+                              onColourChange={(colourId) => { setConfig({ ...config, headrailColour: colourId }); clearFieldInvalid('headrailColour'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Control Option Selector */}
                       {product.features.hasControlOption && visibleOptions.showControlOption && !isRoman && !isEasyStick && !isPerfectFitShutter && (
                         <div className="pt-6">
-                          <ControlOptionSelector
-                            options={controlOptions}
-                            selectedOption={config.controlOption}
-                            onOptionChange={(optionId) => setConfig({ ...config, controlOption: optionId })}
-                            title={isFauxWooden ? 'Toggle' : 'Control Option'}
-                          />
+                          <FieldHighlight fieldKey="controlOption" invalid={invalidFields.has('controlOption')} registerRef={registerFieldRef}>
+                            <ControlOptionSelector
+                              options={controlOptions}
+                              selectedOption={config.controlOption}
+                              onOptionChange={(optionId) => { setConfig({ ...config, controlOption: optionId }); clearFieldInvalid('controlOption'); }}
+                              title={isFauxWooden ? 'Toggle' : 'Control Option'}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitShutter && product.features.hasControlOption && visibleOptions.showControlOption && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitShutterLabels.controlOption}
-                            options={controlOptions}
-                            selectedValue={config.controlOption}
-                            onChange={(optionId) =>
-                              setConfig((prev) => ({
-                                ...prev,
-                                controlOption: optionId,
-                                handlePosition: optionId === 'none' ? null : prev.handlePosition,
-                              }))
-                            }
-                            placeholder={`Select ${perfectFitShutterLabels.controlOption.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="controlOption" invalid={invalidFields.has('controlOption')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitShutterLabels.controlOption}
+                              options={controlOptions}
+                              selectedValue={config.controlOption}
+                              onChange={(optionId) => {
+                                setConfig((prev) => ({
+                                  ...prev,
+                                  controlOption: optionId,
+                                  handlePosition: optionId === 'none' ? null : prev.handlePosition,
+                                }));
+                                clearFieldInvalid('controlOption');
+                              }}
+                              placeholder={`Select ${perfectFitShutterLabels.controlOption.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitShutter && shutterHandlePositionRequired && (
                         <div className="pt-6">
-                          <label className="text-sm font-medium text-foreground block mb-3">
-                            {perfectFitShutterLabels.handlePosition}
-                          </label>
-                          <div className={`rounded-[12px] border px-4 py-3 bg-white shadow-[0_1px_2px_rgba(31,42,68,0.06)] ${shutterHandlePositionRequired && !shutterHandlePositionValid && config.handlePosition ? 'border-[#c24646]' : 'border-border'}`}>
-                            <div className="text-[10px] uppercase tracking-wide text-muted mb-1">In mm</div>
-                            <input
-                              type="number"
-                              min={PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}
-                              max={PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM}
-                              value={config.handlePosition ?? ''}
-                              onChange={(event) =>
-                                setConfig((prev) => ({
-                                  ...prev,
-                                  handlePosition: event.target.value || null,
-                                }))
-                              }
-                              placeholder={`${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}-${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM}`}
-                              className="w-full bg-transparent border-none p-0 text-base font-medium text-foreground focus:outline-none"
-                            />
-                          </div>
-                          <p className="mt-2 text-xs text-muted">
-                            Allowed range: {PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}-{PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm
-                          </p>
+                          <FieldHighlight fieldKey="handlePosition" invalid={invalidFields.has('handlePosition')} registerRef={registerFieldRef} message={`Handle position must be between ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM} mm and ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm`}>
+                            <label className="text-sm font-medium text-foreground block mb-3">
+                              {perfectFitShutterLabels.handlePosition}
+                            </label>
+                            <div className={`rounded-[12px] border px-4 py-3 bg-white shadow-[0_1px_2px_rgba(31,42,68,0.06)] ${shutterHandlePositionRequired && !shutterHandlePositionValid && config.handlePosition ? 'border-[#c24646]' : 'border-border'}`}>
+                              <div className="text-[10px] uppercase tracking-wide text-muted mb-1">In mm</div>
+                              <input
+                                type="number"
+                                min={PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}
+                                max={PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM}
+                                value={config.handlePosition ?? ''}
+                                onChange={(event) => {
+                                  setConfig((prev) => ({
+                                    ...prev,
+                                    handlePosition: event.target.value || null,
+                                  }));
+                                  clearFieldInvalid('handlePosition');
+                                }}
+                                placeholder={`${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}-${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM}`}
+                                className="w-full bg-transparent border-none p-0 text-base font-medium text-foreground focus:outline-none"
+                              />
+                            </div>
+                            <p className="mt-2 text-xs text-muted">
+                              Allowed range: {PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM}-{PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm
+                            </p>
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isEasyStick && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={easyStickLabels.installationMethod}
-                            options={installationOptions}
-                            selectedValue={config.installationMethod}
-                            onChange={(optionId) => setConfig({ ...config, installationMethod: optionId })}
-                            placeholder={`Select ${easyStickLabels.installationMethod.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="installationMethod" invalid={invalidFields.has('installationMethod')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={easyStickLabels.installationMethod}
+                              options={installationOptions}
+                              selectedValue={config.installationMethod}
+                              onChange={(optionId) => { setConfig({ ...config, installationMethod: optionId }); clearFieldInvalid('installationMethod'); }}
+                              placeholder={`Select ${easyStickLabels.installationMethod.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isEasyStick && product.features.hasControlOption && visibleOptions.showControlOption && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={easyStickLabels.controlOption}
-                            options={controlOptions}
-                            selectedValue={config.controlOption}
-                            onChange={(optionId) => setConfig({ ...config, controlOption: optionId })}
-                            placeholder={`Select ${easyStickLabels.controlOption.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="controlOption" invalid={invalidFields.has('controlOption')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={easyStickLabels.controlOption}
+                              options={controlOptions}
+                              selectedValue={config.controlOption}
+                              onChange={(optionId) => { setConfig({ ...config, controlOption: optionId }); clearFieldInvalid('controlOption'); }}
+                              placeholder={`Select ${easyStickLabels.controlOption.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitWooden && product.features.hasControlSide && visibleOptions.showControlSide && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitWoodenLabels.controlSide}
-                            options={controlSideOptions}
-                            selectedValue={config.controlSide}
-                            onChange={(optionId) => setConfig({ ...config, controlSide: optionId })}
-                            placeholder={`Select ${perfectFitWoodenLabels.controlSide.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="controlSide" invalid={invalidFields.has('controlSide')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitWoodenLabels.controlSide}
+                              options={controlSideOptions}
+                              selectedValue={config.controlSide}
+                              onChange={(optionId) => { setConfig({ ...config, controlSide: optionId }); clearFieldInvalid('controlSide'); }}
+                              placeholder={`Select ${perfectFitWoodenLabels.controlSide.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitMetal && product.features.hasControlSide && visibleOptions.showControlSide && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitMetalLabels.controlSide}
-                            options={controlSideOptions}
-                            selectedValue={config.controlSide}
-                            onChange={(optionId) => setConfig({ ...config, controlSide: optionId })}
-                            placeholder={`Select ${perfectFitMetalLabels.controlSide.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="controlSide" invalid={invalidFields.has('controlSide')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitMetalLabels.controlSide}
+                              options={controlSideOptions}
+                              selectedValue={config.controlSide}
+                              onChange={(optionId) => { setConfig({ ...config, controlSide: optionId }); clearFieldInvalid('controlSide'); }}
+                              placeholder={`Select ${perfectFitMetalLabels.controlSide.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isEasyStick && product.features.hasControlSide && visibleOptions.showControlSide && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={easyStickLabels.controlSide || 'Control Side'}
-                            options={easyStickControlSideOptions}
-                            selectedValue={config.controlSide}
-                            onChange={(optionId) => setConfig({ ...config, controlSide: optionId })}
-                            placeholder={`Select ${(easyStickLabels.controlSide || 'control side').toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="controlSide" invalid={invalidFields.has('controlSide')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={easyStickLabels.controlSide || 'Control Side'}
+                              options={easyStickControlSideOptions}
+                              selectedValue={config.controlSide}
+                              onChange={(optionId) => { setConfig({ ...config, controlSide: optionId }); clearFieldInvalid('controlSide'); }}
+                              placeholder={`Select ${(easyStickLabels.controlSide || 'control side').toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {visibleOptions.showLiningType && (
                         <div className="pt-6">
-                          <LiningTypeSelector
-                            options={LINING_TYPE_OPTIONS}
-                            selectedLiningType={config.liningType}
-                            onLiningTypeChange={(liningTypeId) => setConfig({ ...config, liningType: liningTypeId })}
-                          />
+                          <FieldHighlight fieldKey="liningType" invalid={invalidFields.has('liningType')} registerRef={registerFieldRef}>
+                            <LiningTypeSelector
+                              options={LINING_TYPE_OPTIONS}
+                              selectedLiningType={config.liningType}
+                              onLiningTypeChange={(liningTypeId) => { setConfig({ ...config, liningType: liningTypeId }); clearFieldInvalid('liningType'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Stacking Selector */}
                       {product.features.hasStacking && visibleOptions.showStacking && (
                         <div className="pt-6">
-                          <StackingSelector
-                            options={stackingOptions}
-                            selectedStacking={config.stacking}
-                            onStackingChange={(stackingId) => setConfig({ ...config, stacking: stackingId })}
-                          />
+                          <FieldHighlight fieldKey="stacking" invalid={invalidFields.has('stacking')} registerRef={registerFieldRef}>
+                            <StackingSelector
+                              options={stackingOptions}
+                              selectedStacking={config.stacking}
+                              onStackingChange={(stackingId) => { setConfig({ ...config, stacking: stackingId }); clearFieldInvalid('stacking'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
@@ -1526,147 +1710,167 @@ const ProductPage = ({
                       {/* Bottom Chain Selector */}
                       {product.features.hasBottomChain && visibleOptions.showBottomChain && (
                         <div className="pt-6">
-                          <BottomChainSelector
-                            options={BOTTOM_CHAIN_OPTIONS.filter(opt => !('pvcOnly' in opt) || product.features.hasPvcFabric)}
-                            selectedChain={config.bottomChain}
-                            onChainChange={(chainId) => setConfig({ ...config, bottomChain: chainId })}
-                          />
+                          <FieldHighlight fieldKey="bottomChain" invalid={invalidFields.has('bottomChain')} registerRef={registerFieldRef}>
+                            <BottomChainSelector
+                              options={BOTTOM_CHAIN_OPTIONS.filter(opt => !('pvcOnly' in opt) || product.features.hasPvcFabric)}
+                              selectedChain={config.bottomChain}
+                              onChainChange={(chainId) => { setConfig({ ...config, bottomChain: chainId }); clearFieldInvalid('bottomChain'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Bracket Type Selector */}
                       {product.features.hasBracketType && visibleOptions.showBracketType && !isPerfectFitWooden && !isPerfectFitShutter && !isPerfectFitMetal && (
                         <div className="pt-6">
-                          <BracketTypeSelector
-                            options={BRACKET_TYPE_OPTIONS}
-                            selectedBracket={config.bracketType}
-                            onBracketChange={(bracketId) => setConfig({ ...config, bracketType: bracketId })}
-                          />
+                          <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
+                            <BracketTypeSelector
+                              options={BRACKET_TYPE_OPTIONS}
+                              selectedBracket={config.bracketType}
+                              onBracketChange={(bracketId) => { setConfig({ ...config, bracketType: bracketId }); clearFieldInvalid('bracketType'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitShutter && product.features.hasBracketType && visibleOptions.showBracketType && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitShutterLabels.bracketType}
-                            options={PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS}
-                            selectedValue={config.bracketType}
-                            onChange={(optionId) => setConfig({ ...config, bracketType: optionId })}
-                            placeholder={`Select ${perfectFitShutterLabels.bracketType.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitShutterLabels.bracketType}
+                              options={PERFECT_FIT_SHUTTER_BRACKET_SIZE_OPTIONS}
+                              selectedValue={config.bracketType}
+                              onChange={(optionId) => { setConfig({ ...config, bracketType: optionId }); clearFieldInvalid('bracketType'); }}
+                              placeholder={`Select ${perfectFitShutterLabels.bracketType.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitWooden && product.features.hasBracketType && visibleOptions.showBracketType && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitWoodenLabels.bracketType}
-                            options={PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS}
-                            selectedValue={config.bracketType}
-                            onChange={(optionId) => setConfig({ ...config, bracketType: optionId })}
-                            placeholder={`Select ${perfectFitWoodenLabels.bracketType.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitWoodenLabels.bracketType}
+                              options={PERFECT_FIT_WOODEN_BRACKET_SIZE_OPTIONS}
+                              selectedValue={config.bracketType}
+                              onChange={(optionId) => { setConfig({ ...config, bracketType: optionId }); clearFieldInvalid('bracketType'); }}
+                              placeholder={`Select ${perfectFitWoodenLabels.bracketType.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitShutter && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitShutterLabels.numberOfPanels}
-                            options={shutterPanelOptions}
-                            selectedValue={config.numberOfPanels}
-                            onChange={() => undefined}
-                            placeholder="Select size first"
-                          />
+                          <FieldHighlight fieldKey="numberOfPanels" invalid={invalidFields.has('numberOfPanels')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitShutterLabels.numberOfPanels}
+                              options={shutterPanelOptions}
+                              selectedValue={config.numberOfPanels}
+                              onChange={() => undefined}
+                              placeholder="Select size first"
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {isPerfectFitMetal && product.features.hasBracketType && visibleOptions.showBracketType && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={perfectFitMetalLabels.bracketType}
-                            options={PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS}
-                            selectedValue={config.bracketType}
-                            onChange={(optionId) => setConfig({ ...config, bracketType: optionId })}
-                            placeholder={`Select ${perfectFitMetalLabels.bracketType.toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={perfectFitMetalLabels.bracketType}
+                              options={PERFECT_FIT_METAL_BRACKET_SIZE_OPTIONS}
+                              selectedValue={config.bracketType}
+                              onChange={(optionId) => { setConfig({ ...config, bracketType: optionId }); clearFieldInvalid('bracketType'); }}
+                              placeholder={`Select ${perfectFitMetalLabels.bracketType.toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Blind Color Selector */}
                       {product.features.hasBlindColor && visibleOptions.showBlindColor && (
                         <div className="pt-6">
-                          <h3 className="text-sm font-medium text-foreground mb-3">Blind Color</h3>
-                          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-                            {BLIND_COLOR_OPTIONS.map((option) => (
-                              <button
-                                key={option.id}
-                                onClick={() => setConfig({ ...config, blindColor: option.id })}
-                                className={`flex flex-col items-center justify-center p-2 border-2 rounded-[12px] transition-all ${config.blindColor === option.id
-                                  ? 'border-primary bg-surface-soft'
-                                  : 'border-border hover:border-border-strong'
-                                  }`}
-                              >
-                                <div className="w-full aspect-square relative mb-1.5 rounded overflow-hidden shadow-sm">
-                                  <div
-                                    className={`w-full h-full ${option.id === 'white' ? 'border border-gray-100' : ''}`}
-                                    style={{ backgroundColor: option.hex }}
-                                  />
-                                </div>
-                                <span className="text-xs font-medium text-center text-foreground">{option.name}</span>
-                              </button>
-                            ))}
-                          </div>
+                          <FieldHighlight fieldKey="blindColor" invalid={invalidFields.has('blindColor')} registerRef={registerFieldRef}>
+                            <h3 className="text-sm font-medium text-foreground mb-3">Blind Color</h3>
+                            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                              {BLIND_COLOR_OPTIONS.map((option) => (
+                                <button
+                                  key={option.id}
+                                  onClick={() => { setConfig({ ...config, blindColor: option.id }); clearFieldInvalid('blindColor'); }}
+                                  className={`flex flex-col items-center justify-center p-2 border-2 rounded-[12px] transition-all ${config.blindColor === option.id
+                                    ? 'border-primary bg-surface-soft'
+                                    : 'border-border hover:border-border-strong'
+                                    }`}
+                                >
+                                  <div className="w-full aspect-square relative mb-1.5 rounded overflow-hidden shadow-sm">
+                                    <div
+                                      className={`w-full h-full ${option.id === 'white' ? 'border border-gray-100' : ''}`}
+                                      style={{ backgroundColor: option.hex }}
+                                    />
+                                  </div>
+                                  <span className="text-xs font-medium text-center text-foreground">{option.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Frame Color Selector */}
                       {product.features.hasFrameColor && visibleOptions.showFrameColor && !isEasyStick && !isPerfectFitWooden && !isPerfectFitMetal && (
                         <div className="pt-6">
-                          <h3 className="text-sm font-medium text-foreground mb-3">Frame Color</h3>
-                          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-                            {FRAME_COLOR_OPTIONS.map((option) => (
-                              <button
-                                key={option.id}
-                                onClick={() => setConfig({ ...config, frameColor: option.id })}
-                                className={`flex flex-col items-center justify-center p-2 border-2 rounded-[12px] transition-all ${config.frameColor === option.id
-                                  ? 'border-primary bg-surface-soft'
-                                  : 'border-border hover:border-border-strong'
-                                  }`}
-                              >
-                                <div className="w-full aspect-square relative mb-1.5 rounded overflow-hidden shadow-sm">
-                                  <div
-                                    className={`w-full h-full ${option.id === 'white' ? 'border border-gray-100' : ''}`}
-                                    style={{ backgroundColor: option.hex }}
-                                  />
-                                </div>
-                                <span className="text-xs font-medium text-center text-foreground">{option.name}</span>
-                              </button>
-                            ))}
-                          </div>
+                          <FieldHighlight fieldKey="frameColor" invalid={invalidFields.has('frameColor')} registerRef={registerFieldRef}>
+                            <h3 className="text-sm font-medium text-foreground mb-3">Frame Color</h3>
+                            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                              {FRAME_COLOR_OPTIONS.map((option) => (
+                                <button
+                                  key={option.id}
+                                  onClick={() => { setConfig({ ...config, frameColor: option.id }); clearFieldInvalid('frameColor'); }}
+                                  className={`flex flex-col items-center justify-center p-2 border-2 rounded-[12px] transition-all ${config.frameColor === option.id
+                                    ? 'border-primary bg-surface-soft'
+                                    : 'border-border hover:border-border-strong'
+                                    }`}
+                                >
+                                  <div className="w-full aspect-square relative mb-1.5 rounded overflow-hidden shadow-sm">
+                                    <div
+                                      className={`w-full h-full ${option.id === 'white' ? 'border border-gray-100' : ''}`}
+                                      style={{ backgroundColor: option.hex }}
+                                    />
+                                  </div>
+                                  <span className="text-xs font-medium text-center text-foreground">{option.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {(isEasyStick || isPerfectFitWooden || isPerfectFitMetal) && product.features.hasFrameColor && visibleOptions.showFrameColor && (
                         <div className="pt-6">
-                          <SimpleDropdown
-                            label={isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'Profile Color'}
-                            options={frameColorOptions}
-                            selectedValue={config.frameColor}
-                            onChange={(optionId) => setConfig({ ...config, frameColor: optionId })}
-                            placeholder={`Select ${(isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'profile color').toLowerCase()}`}
-                          />
+                          <FieldHighlight fieldKey="frameColor" invalid={invalidFields.has('frameColor')} registerRef={registerFieldRef}>
+                            <SimpleDropdown
+                              label={isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'Profile Color'}
+                              options={frameColorOptions}
+                              selectedValue={config.frameColor}
+                              onChange={(optionId) => { setConfig({ ...config, frameColor: optionId }); clearFieldInvalid('frameColor'); }}
+                              placeholder={`Select ${(isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'profile color').toLowerCase()}`}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
                       {/* Opening Direction Selector */}
                       {product.features.hasOpeningDirection && visibleOptions.showOpeningDirection && (
                         <div className="pt-6">
-                          <OpeningDirectionSelector
-                            options={OPENING_DIRECTION_OPTIONS}
-                            selectedDirection={config.openingDirection}
-                            onDirectionChange={(optionId) => setConfig({ ...config, openingDirection: optionId })}
-                          />
+                          <FieldHighlight fieldKey="openingDirection" invalid={invalidFields.has('openingDirection')} registerRef={registerFieldRef}>
+                            <OpeningDirectionSelector
+                              options={OPENING_DIRECTION_OPTIONS}
+                              selectedDirection={config.openingDirection}
+                              onDirectionChange={(optionId) => { setConfig({ ...config, openingDirection: optionId }); clearFieldInvalid('openingDirection'); }}
+                            />
+                          </FieldHighlight>
                         </div>
                       )}
 
@@ -1730,13 +1934,15 @@ const ProductPage = ({
                                   className="mt-4 space-y-3 pt-3 border-t border-border"
                                   onClick={(e) => e.stopPropagation()}
                                 >
-                                  <SimpleDropdown
-                                    label="Select Bottom Bar"
-                                    options={BOTTOM_BAR_OPTIONS}
-                                    selectedValue={config.bottomBar}
-                                    onChange={(optionId) => setConfig({ ...config, bottomBar: optionId })}
-                                    placeholder="Select bottom bar style"
-                                  />
+                                  <FieldHighlight fieldKey="bottomBar" invalid={invalidFields.has('bottomBar')} registerRef={registerFieldRef}>
+                                    <SimpleDropdown
+                                      label="Select Bottom Bar"
+                                      options={BOTTOM_BAR_OPTIONS}
+                                      selectedValue={config.bottomBar}
+                                      onChange={(optionId) => { setConfig({ ...config, bottomBar: optionId }); clearFieldInvalid('bottomBar'); }}
+                                      placeholder="Select bottom bar style"
+                                    />
+                                  </FieldHighlight>
                                 </div>
                               )}
                             </div>
@@ -1806,24 +2012,31 @@ const ProductPage = ({
                                   className="mt-4 space-y-3 pt-3 border-t border-border"
                                   onClick={(e) => e.stopPropagation()}
                                 >
-                                  <SimpleDropdown
-                                    label="Select Location"
-                                    options={isRoman ? controlOptions : CONTROL_SIDE_OPTIONS}
-                                    selectedValue={isRoman ? config.controlOption : config.controlSide}
-                                    onChange={(sideId) => setConfig({
-                                      ...config,
-                                      controlOption: isRoman ? sideId : config.controlOption,
-                                      controlSide: isRoman ? config.controlSide : sideId,
-                                    })}
-                                    placeholder="Select location"
-                                  />
-                                  <SimpleDropdown
-                                    label="Chain Color"
-                                    options={chainColorOptions}
-                                    selectedValue={config.chainColor}
-                                    onChange={(colorId) => setConfig({ ...config, chainColor: colorId })}
-                                    placeholder="Select chain color"
-                                  />
+                                  <FieldHighlight fieldKey="continuousChainLocation" invalid={invalidFields.has('continuousChainLocation')} registerRef={registerFieldRef}>
+                                    <SimpleDropdown
+                                      label="Select Location"
+                                      options={isRoman ? controlOptions : CONTROL_SIDE_OPTIONS}
+                                      selectedValue={isRoman ? config.controlOption : config.controlSide}
+                                      onChange={(sideId) => {
+                                        setConfig({
+                                          ...config,
+                                          controlOption: isRoman ? sideId : config.controlOption,
+                                          controlSide: isRoman ? config.controlSide : sideId,
+                                        });
+                                        clearFieldInvalid('continuousChainLocation');
+                                      }}
+                                      placeholder="Select location"
+                                    />
+                                  </FieldHighlight>
+                                  <FieldHighlight fieldKey="chainColor" invalid={invalidFields.has('chainColor')} registerRef={registerFieldRef}>
+                                    <SimpleDropdown
+                                      label="Chain Color"
+                                      options={chainColorOptions}
+                                      selectedValue={config.chainColor}
+                                      onChange={(colorId) => { setConfig({ ...config, chainColor: colorId }); clearFieldInvalid('chainColor'); }}
+                                      placeholder="Select chain color"
+                                    />
+                                  </FieldHighlight>
                                 </div>
                               )}
                             </div>
@@ -1891,31 +2104,37 @@ const ProductPage = ({
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   {product.features.hasWrappedCassette && (
-                                    <SimpleDropdown
-                                      label="Cassette Color"
-                                      options={WRAPPED_CASSETTE_OPTIONS}
-                                      selectedValue={config.wrappedCassette}
-                                      onChange={(optionId) => setConfig({ ...config, wrappedCassette: optionId })}
-                                      placeholder="Select cassette color"
-                                    />
+                                    <FieldHighlight fieldKey="wrappedCassette" invalid={invalidFields.has('wrappedCassette')} registerRef={registerFieldRef}>
+                                      <SimpleDropdown
+                                        label="Cassette Color"
+                                        options={WRAPPED_CASSETTE_OPTIONS}
+                                        selectedValue={config.wrappedCassette}
+                                        onChange={(optionId) => { setConfig({ ...config, wrappedCassette: optionId }); clearFieldInvalid('wrappedCassette'); }}
+                                        placeholder="Select cassette color"
+                                      />
+                                    </FieldHighlight>
                                   )}
                                   {product.features.hasCassetteMatchingBar && (
-                                    <SimpleDropdown
-                                      label="Cassette and Bottom Matching Bar"
-                                      options={CASSETTE_MATCHING_BAR_OPTIONS}
-                                      selectedValue={config.cassetteMatchingBar}
-                                      onChange={(optionId) => setConfig({ ...config, cassetteMatchingBar: optionId })}
-                                      placeholder="Select cassette and bottom bar"
-                                    />
+                                    <FieldHighlight fieldKey="cassetteMatchingBar" invalid={invalidFields.has('cassetteMatchingBar')} registerRef={registerFieldRef}>
+                                      <SimpleDropdown
+                                        label="Cassette and Bottom Matching Bar"
+                                        options={CASSETTE_MATCHING_BAR_OPTIONS}
+                                        selectedValue={config.cassetteMatchingBar}
+                                        onChange={(optionId) => { setConfig({ ...config, cassetteMatchingBar: optionId }); clearFieldInvalid('cassetteMatchingBar'); }}
+                                        placeholder="Select cassette and bottom bar"
+                                      />
+                                    </FieldHighlight>
                                   )}
                                   {product.features.hasRollerCassette && (
-                                    <SimpleDropdown
-                                      label="Cassette and Bottom Matching Bar"
-                                      options={ROLLER_CASSETTE_OPTIONS}
-                                      selectedValue={config.cassetteMatchingBar}
-                                      onChange={(optionId) => setConfig({ ...config, cassetteMatchingBar: optionId })}
-                                      placeholder="Select cassette color"
-                                    />
+                                    <FieldHighlight fieldKey="cassetteMatchingBar" invalid={invalidFields.has('cassetteMatchingBar')} registerRef={registerFieldRef}>
+                                      <SimpleDropdown
+                                        label="Cassette and Bottom Matching Bar"
+                                        options={ROLLER_CASSETTE_OPTIONS}
+                                        selectedValue={config.cassetteMatchingBar}
+                                        onChange={(optionId) => { setConfig({ ...config, cassetteMatchingBar: optionId }); clearFieldInvalid('cassetteMatchingBar'); }}
+                                        placeholder="Select cassette color"
+                                      />
+                                    </FieldHighlight>
                                   )}
                                 </div>
                               )}
@@ -1989,13 +2208,15 @@ const ProductPage = ({
                                   className="mt-4 pt-3 border-t border-[#d9dfeb]/50"
                                   onClick={(e) => e.stopPropagation()}
                                 >
-                                  <SimpleDropdown
-                                    label={isSpecialMotorized ? 'Remote Option' : 'Motorization Option'}
-                                    options={isSpecialMotorized ? motorizedRemoteOptions : MOTORIZATION_OPTIONS}
-                                    selectedValue={config.motorization}
-                                    onChange={(optionId) => setConfig({ ...config, motorization: optionId })}
-                                    placeholder={isSpecialMotorized ? 'Select remote option' : 'Select motorization'}
-                                  />
+                                  <FieldHighlight fieldKey="motorization" invalid={invalidFields.has('motorization')} registerRef={registerFieldRef}>
+                                    <SimpleDropdown
+                                      label={isSpecialMotorized ? 'Remote Option' : 'Motorization Option'}
+                                      options={isSpecialMotorized ? motorizedRemoteOptions : MOTORIZATION_OPTIONS}
+                                      selectedValue={config.motorization}
+                                      onChange={(optionId) => { setConfig({ ...config, motorization: optionId }); clearFieldInvalid('motorization'); }}
+                                      placeholder={isSpecialMotorized ? 'Select remote option' : 'Select motorization'}
+                                    />
+                                  </FieldHighlight>
                                 </div>
                               )}
                             </div>
@@ -2009,23 +2230,33 @@ const ProductPage = ({
                 )}
               </div>
 
-              {/* Add to Cart Button */}
-              <button
-                onClick={handleAddToCart}
-                disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete}
-                className={`w-full mt-5 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete
-                  ? 'bg-[#98a4bb] text-white cursor-not-allowed'
-                  : 'bg-primary text-white hover:bg-primary-dark shadow-[0_10px_20px_rgba(68,87,102,0.24)] hover:shadow-[0_12px_24px_rgba(68,87,102,0.28)]'
-                  }`}
-              >
-                {isValidating
-                  ? 'Adding to Cart...'
-                  : isMeasurementOutOfRange
-                  ? 'Selected Size Not Available'
-                  : isPerfectFitShutterConfigurationIncomplete
-                  ? 'Complete Shutter Options'
-                  : `Add to Cart — ${formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}`}
-              </button>
+              <div ref={inlineButtonsRef}>
+                {/* Add to Cart Button */}
+                <button
+                  onClick={handleAddToCart}
+                  disabled={isValidating || isCheckingOut}
+                  className={`w-full mt-5 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || isCheckingOut
+                    ? 'bg-[#98a4bb] text-white cursor-not-allowed'
+                    : 'bg-primary text-white hover:bg-primary-dark shadow-[0_10px_20px_rgba(68,87,102,0.24)] hover:shadow-[0_12px_24px_rgba(68,87,102,0.28)]'
+                    }`}
+                >
+                  {isValidating
+                    ? 'Adding to Cart...'
+                    : `Add to Cart — ${formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}`}
+                </button>
+
+                {/* Buy Now Button */}
+                <button
+                  onClick={handleBuyNow}
+                  disabled={isValidating || isCheckingOut}
+                  className={`w-full mt-3 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all border ${isValidating || isCheckingOut
+                    ? 'border-border bg-surface-soft text-muted cursor-not-allowed'
+                    : 'border-primary text-primary bg-white hover:bg-surface-soft'
+                    }`}
+                >
+                  {isCheckingOut ? 'Redirecting to checkout...' : 'Buy Now'}
+                </button>
+              </div>
 
               {/* Installation & Measurement Guide Buttons */}
               <div className="flex gap-3 mt-3">
@@ -2134,6 +2365,23 @@ const ProductPage = ({
             <RelatedProducts products={relatedProducts} />
           </div>
         </section>
+      )}
+
+      {!isSkylight && !inlineButtonsVisible && (
+        <StickyAddToCartBar
+          productName={product.name}
+          price={formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}
+          compareAtPrice={formatPriceWithCurrency(
+            formatPrice(Math.round((showMinPriceIndicator ? product.price : totalPrice) * 1.67)),
+            product.currency
+          )}
+          onAddToCart={handleAddToCart}
+          addToCartLabel={isValidating ? 'Adding to Cart...' : 'Add to Cart'}
+          addToCartDisabled={isValidating || isCheckingOut}
+          onBuyNow={handleBuyNow}
+          buyNowLabel={isCheckingOut ? 'Redirecting...' : 'Buy Now'}
+          buyNowDisabled={isValidating || isCheckingOut}
+        />
       )}
     </div>
   );
