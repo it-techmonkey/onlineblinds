@@ -1,5 +1,5 @@
 import { Header, Footer, FAQ } from '@/components';
-import { fetchProducts, transformProduct, extractFilterOptions, CatalogSortOption, PaginationMeta } from '@/lib/api';
+import { fetchProducts, transformProduct, extractFilterOptions, assertProductsPriced, CatalogSortOption, PaginationMeta } from '@/lib/api';
 import CategoryHero from '@/components/collection/CategoryHero';
 import ProductGridWithFilters from '@/components/collection/ProductGridWithFilters';
 import CollectionViewTracker from '@/components/analytics/CollectionViewTracker';
@@ -46,6 +46,10 @@ export default async function CollectionsPage({ searchParams }: CollectionsPageP
   } catch (error) {
     console.error('Error fetching products:', error);
   }
+
+  // Abort the (ISR-cached) render if any product came back with a £0 price — that
+  // signals a transient pricing failure, and caching it would freeze bad prices.
+  assertProductsPriced(products);
 
   return (
     <div className="min-h-screen bg-background">

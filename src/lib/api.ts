@@ -200,6 +200,40 @@ export function sortApiProducts(products: ApiProduct[], sortBy: CatalogSortOptio
   return sorted;
 }
 
+/**
+ * Guard used by statically-generated (ISR) pages: if any product resolves to a
+ * non-positive price, the pricing lookup almost certainly failed transiently for
+ * this render. Throwing aborts the render so Next.js does NOT cache a page with
+ * £0 prices baked in — it will retry regeneration instead of freezing a bad
+ * snapshot. Every product has a real (>0) price, so a £0 here is always a signal
+ * of failure, never a legitimate value.
+ *
+ * Deliberately skipped during `next build` (NEXT_PHASE === 'phase-production-build'):
+ * the codebase intentionally tolerates missing data at build time (see the many
+ * `isBuildTime` early-returns), so throwing there would break the whole build. At
+ * runtime ISR regeneration a throw is safe — it just skips caching and serves the
+ * previous good page.
+ *
+ * Only call this from server-side page renders — never from client fetches or the
+ * £0-tolerant live-search path.
+ */
+export function assertProductsPriced<T extends { slug: string; price: number }>(products: T[]): T[] {
+  const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
+  if (isBuildPhase) {
+    return products;
+  }
+
+  const unpriced = products.find((product) => !(Number(product.price) > 0));
+  if (unpriced) {
+    throw new Error(
+      `Aborting render to avoid caching £0 prices: product "${unpriced.slug}" resolved to a ` +
+      `non-positive price (${unpriced.price}). This usually means the pricing lookup failed ` +
+      `transiently; the page will be regenerated instead of caching a bad snapshot.`
+    );
+  }
+  return products;
+}
+
 export function paginateApiProducts(
   products: ApiProduct[],
   page: number = 1,

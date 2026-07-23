@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { CustomizationPricing, PriceBandMatrix, Product } from '@/types';
 import { ProductPage, CustomerReviewsSection, ProductFeatureSection, ProductComparisonSection, HowItWorksSection, ProductRechargeSection, ProductWarrantySection, ProductComparisonTableSection } from '@/components/product';
 import { Header, FAQ, Footer, } from '@/components';
-import { fetchProductBySlug, fetchProducts, transformProduct } from '@/lib/api';
+import { fetchProductBySlug, fetchProducts, transformProduct, assertProductsPriced } from '@/lib/api';
 import { getCustomizationPricing, getPriceBandMatrix, resolveHandleToPriceBand } from '@/lib/server/pricing.service';
 import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 
@@ -69,6 +69,14 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
   }
 
   const product = transformProduct(productData);
+
+  // Abort the (ISR-cached) render if a real product resolved to a £0 price — that
+  // signals a transient pricing failure, and caching it would freeze bad prices.
+  // (Skip the build-time not-found sentinel, which has an empty slug.)
+  if (product.slug) {
+    assertProductsPriced([product]);
+  }
+
   let initialPriceMatrix: PriceBandMatrix | null = null;
   let initialCustomizationPricing: CustomizationPricing[] = [];
 
