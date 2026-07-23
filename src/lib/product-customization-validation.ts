@@ -133,26 +133,44 @@ export function getMissingRequiredCustomizations({
   addMissing(product.features.hasRollStyle && visibleOptions.showRollStyle, config.rollStyle, 'rollStyle', 'Roll style');
 
   if (selectedOptionalCards) {
+    const chainOrMotorizationRequired =
+      product.features.hasChainColor &&
+      visibleOptions.showChainColor &&
+      product.features.hasMotorization &&
+      !forceMotorization &&
+      !isSpecialMotorized;
+    if (
+      chainOrMotorizationRequired &&
+      !selectedOptionalCards.continuousChain &&
+      !selectedOptionalCards.motorization
+    ) {
+      missing.push({ key: 'chainOrMotorization', label: 'Continuous chain or motorization' });
+    }
+
+    const continuousChainRequired =
+      Boolean(selectedOptionalCards.continuousChain) ||
+      Boolean(isRoman && product.features.hasChainColor && visibleOptions.showChainColor);
     addMissing(
-      Boolean(selectedOptionalCards.continuousChain),
+      continuousChainRequired,
       isRoman ? config.controlOption : config.controlSide,
       'continuousChainLocation',
       'Chain location'
     );
     addMissing(
-      Boolean(selectedOptionalCards.continuousChain),
+      continuousChainRequired,
       config.chainColor,
       'chainColor',
       'Chain color'
     );
     addMissing(
-      Boolean(selectedOptionalCards.cassette && product.features.hasWrappedCassette),
+      Boolean(product.features.hasWrappedCassette),
       config.wrappedCassette,
       'wrappedCassette',
       'Cassette color'
     );
     addMissing(
-      Boolean(selectedOptionalCards.cassette && (product.features.hasCassetteMatchingBar || product.features.hasRollerCassette)),
+      Boolean(product.features.hasCassetteMatchingBar) ||
+        Boolean(selectedOptionalCards.cassette && product.features.hasRollerCassette),
       config.cassetteMatchingBar,
       'cassetteMatchingBar',
       'Cassette and bottom bar'

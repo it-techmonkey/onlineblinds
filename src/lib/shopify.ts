@@ -456,6 +456,9 @@ interface PaginatedShopifyProductsParams {
   limit?: number;
   searchQuery?: string;
   sortBy?: CatalogSortOption;
+  // When true, skips the full-catalog count scan used for pagination metadata.
+  // Use for lightweight previews (e.g. live search) that only need `products`.
+  skipTotalCount?: boolean;
 }
 
 interface ShopifyPaginationResult {
@@ -893,7 +896,7 @@ export async function fetchShopifyProductsMergedPage(
   const [sfProducts, minimumPrices, total] = await Promise.all([
     fetchStorefrontProductsPage(params),
     getMinimumPrices(),
-    countProducts(params.searchQuery),
+    params.skipTotalCount ? Promise.resolve(0) : countProducts(params.searchQuery),
   ]);
 
   return {

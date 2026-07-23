@@ -27,7 +27,7 @@ const StackingSelector = ({ options, selectedStacking, onStackingChange }: Stack
                 <h3 className="text-lg font-medium text-[#1f2a44]">Stacking</h3>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {options.map((option) => (
                     <div
                         key={option.id}
@@ -38,35 +38,34 @@ const StackingSelector = ({ options, selectedStacking, onStackingChange }: Stack
                         <button
                             type="button"
                             onClick={() => onStackingChange(option.id)}
-                            className={`relative h-full w-full border rounded-[12px] p-4 transition-all hover:border-[#b8c7df] text-center ${selectedStacking === option.id
+                            className={`relative flex items-center gap-3 h-full w-full border rounded-[12px] p-3 md:p-4 transition-all hover:border-[#b8c7df] text-left md:flex-col md:items-stretch md:text-center ${selectedStacking === option.id
                                     ? 'border-[#335c99] bg-[#eef2f8]'
                                     : 'border-[#cbd6e6] bg-white'
                                 }`}
                         >
                             {option.image && (
-                                <div className="relative h-[80px] w-full mb-3 bg-[#e7eef8] rounded overflow-hidden flex items-center justify-center">
+                                <div className="relative h-16 w-16 shrink-0 md:h-[80px] md:w-full md:mb-3 bg-[#e7eef8] rounded overflow-hidden flex items-center justify-center">
                                     <Image
                                         src={option.image}
                                         alt={option.name}
-                                        width={80}
-                                        height={80}
+                                        fill
                                         className="object-contain"
                                     />
                                 </div>
                             )}
 
-                            <p className="text-sm font-medium text-[#1f2a44]">
+                            <p className="flex-1 text-sm font-medium text-[#1f2a44]">
                                 {option.name}
                             </p>
 
                             {option.price != null && option.price > 0 && (
-                                <span className="absolute top-2 right-2 bg-[#335c99] text-white text-xs px-2 py-1 rounded">
+                                <span className="static shrink-0 md:absolute md:top-2 md:right-2 bg-[#335c99] text-white text-xs px-2 py-1 rounded">
                                     +£{option.price.toFixed(2)}
                                 </span>
                             )}
 
                             {selectedStacking === option.id && (
-                                <div className="absolute top-2 left-2 w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center">
+                                <div className="absolute top-2 right-2 md:right-auto md:left-2 w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center">
                                     <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>

@@ -110,7 +110,7 @@ export default function ProductGridWithFilters({
         </div>
       ) : (
         <>
-          <div className="grid w-full grid-cols-2 gap-x-[24px] gap-y-[24px] md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid w-full grid-cols-1 gap-x-[24px] gap-y-5 md:grid-cols-3 md:gap-y-[24px] lg:grid-cols-4">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -119,6 +119,7 @@ export default function ProductGridWithFilters({
                   image: product.images[0],
                 }}
                 preselectedMotorization={preselectedMotorization}
+                mobileHorizontal
               />
             ))}
           </div>

@@ -25,7 +25,7 @@ const CassetteMatchingBarSelector = ({ options, selectedBar, onBarChange }: Cass
                 <h3 className="text-lg font-medium text-[#1f2a44]">Cassette and Bottom Matching Bar</h3>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {options.map((option) => (
                     <div
                         key={option.id}
@@ -36,14 +36,14 @@ const CassetteMatchingBarSelector = ({ options, selectedBar, onBarChange }: Cass
                         <button
                             type="button"
                             onClick={() => onBarChange(option.id)}
-                            className={`relative border rounded-[12px] p-4 transition-all hover:border-[#b8c7df] flex flex-col items-center text-center h-full w-full ${
+                            className={`relative border rounded-[12px] p-3 md:p-4 transition-all hover:border-[#b8c7df] flex items-center gap-3 text-left h-full w-full md:flex-col md:items-center md:text-center ${
                                 selectedBar === option.id
                                     ? 'border-[#335c99] bg-[#eef2f8] shadow-sm'
                                     : 'border-[#d9dfeb] bg-white hover:shadow-sm'
                             }`}
                         >
                             {/* Image */}
-                            <div className="relative w-full aspect-video mb-3 bg-[#e7eef8] rounded-md overflow-hidden flex items-center justify-center">
+                            <div className="relative h-16 w-16 shrink-0 md:h-auto md:w-full md:aspect-video md:mb-3 bg-[#e7eef8] rounded-md overflow-hidden flex items-center justify-center">
                                 {option.image ? (
                                     <Image
                                         src={option.image}
@@ -59,7 +59,7 @@ const CassetteMatchingBarSelector = ({ options, selectedBar, onBarChange }: Cass
                             </div>
 
                             {/* Label & price */}
-                            <div className="flex flex-col grow justify-between w-full gap-2">
+                            <div className="flex flex-col grow justify-between gap-2 md:w-full">
                                 <span className="text-sm font-medium text-[#1f2a44] leading-tight">
                                     {option.name}
                                 </span>

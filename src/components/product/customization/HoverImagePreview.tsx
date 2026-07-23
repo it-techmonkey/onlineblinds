@@ -18,7 +18,7 @@ const HoverImagePreview = ({
   imageSizes = '260px',
 }: HoverImagePreviewProps) => {
   return (
-    <div className={className}>
+    <div className={`pointer-coarse:hidden ${className}`}>
       <div className="max-w-[280px] rounded-[12px] border border-[#d9dfeb] bg-white p-2 shadow-xl">
         <div className={imageClassName}>
           <Image

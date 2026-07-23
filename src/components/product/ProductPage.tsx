@@ -1093,12 +1093,27 @@ const ProductPage = ({
   const focusInvalidFields = (keys: Set<string>) => {
     setInvalidFields(keys);
 
-    const measureKeys = new Set(['width', 'height', 'brand', 'blindType']);
+    const measureKeys = new Set(['width', 'height', 'brand', 'blindType', 'rollStyle']);
+    if (!isEasyStick) {
+      measureKeys.add('installationMethod');
+    }
     if (!isMeasureOpen && [...keys].some((key) => measureKeys.has(key))) {
       setIsMeasureOpen(true);
     }
     if (!isCustomizeOpen && [...keys].some((key) => !measureKeys.has(key))) {
       setIsCustomizeOpen(true);
+    }
+
+    if (!selectedOptionalCards.cassette && (keys.has('wrappedCassette') || keys.has('cassetteMatchingBar'))) {
+      setSelectedOptionalCards((prev) => ({ ...prev, cassette: true }));
+    }
+
+    if (!selectedOptionalCards.bottomBar && keys.has('bottomBar')) {
+      setSelectedOptionalCards((prev) => ({ ...prev, bottomBar: true }));
+    }
+
+    if (!selectedOptionalCards.continuousChain && (keys.has('continuousChainLocation') || keys.has('chainColor'))) {
+      setSelectedOptionalCards((prev) => ({ ...prev, continuousChain: true }));
     }
 
     requestAnimationFrame(() => {
@@ -1246,7 +1261,7 @@ const ProductPage = ({
   return (
     <div className={`bg-white ${!isSkylight ? 'pb-20 md:pb-24' : ''}`}>
       {/* Breadcrumb */}
-      <div className="px-4 md:px-6 lg:px-16 py-4 md:py-5">
+      <div className="px-4 md:px-6 lg:px-16 py-3 md:py-5">
         <div className="max-w-[1320px] mx-auto">
           <nav className="flex items-center gap-2 text-xs md:text-sm text-muted tracking-[0.02em]">
             <Link href="/collections" className="hover:text-primary transition-colors">Back to Shop</Link>
@@ -1257,9 +1272,9 @@ const ProductPage = ({
       </div>
 
       {/* Main Product Section */}
-      <section className="px-4 md:px-6 lg:px-16 pb-10 md:pb-14">
+      <section className="px-4 md:px-6 lg:px-16 pb-8 md:pb-14">
         <div className="max-w-[1320px] mx-auto">
-          <div className="flex flex-col lg:flex-row gap-7 md:gap-10 lg:gap-12">
+          <div className="flex flex-col lg:flex-row gap-5 md:gap-10 lg:gap-12">
             {/* Left - Gallery with Thumbnails on Left */}
             <div className="w-full lg:w-[52%] lg:sticky lg:top-20 lg:self-start">
               <div className="rounded-[20px] border border-border bg-surface p-3 md:p-4 shadow-[0_8px_26px_rgba(31,41,51,0.06)]">
@@ -1281,7 +1296,7 @@ const ProductPage = ({
               <ProductRatingBadge productSlug={product.slug} />
 
               {/* Shipping Info Box */}
-              <div className="flex items-center border border-border rounded-[16px] mb-5 md:mb-6 px-3 md:px-4 py-3 bg-surface shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
+              <div className="flex items-center border border-border rounded-[16px] mb-4 md:mb-6 px-3 md:px-4 py-2.5 md:py-3 bg-surface shadow-[0_4px_14px_rgba(31,41,51,0.04)]">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-surface-soft rounded-[12px] flex items-center justify-center shrink-0">
                   <svg className="w-5 h-5 md:w-6 md:h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
@@ -1294,12 +1309,12 @@ const ProductPage = ({
               </div>
 
               {/* Urgency Bar */}
-              <div className="mb-5 md:mb-6">
+              <div className="mb-4 md:mb-6">
                 <ProductUrgencyBar productSlug={product.slug} />
               </div>
 
               {/* Price Section */}
-              <div className="border border-border rounded-[16px] p-4 md:p-6 mb-5 md:mb-6 bg-surface shadow-[0_6px_18px_rgba(31,41,51,0.05)]">
+              <div className="border border-border rounded-[16px] p-4 md:p-6 mb-4 md:mb-6 bg-surface shadow-[0_6px_18px_rgba(31,41,51,0.05)]">
                 <div className="flex flex-col items-center lg:items-start">
                   <div className="flex items-baseline gap-3 mb-2 md:mb-3">
                     <span className="text-2xl md:text-[34px] leading-none font-semibold text-foreground">
@@ -1331,7 +1346,7 @@ const ProductPage = ({
               </div>
 
               {/* Customization Sections */}
-              <div className="space-y-5">
+              <div className="space-y-4 md:space-y-5">
                 {/* Measure your windows - Collapsible Section */}
                 {!isSkylight && (
                 <div className="border border-border rounded-[16px] overflow-hidden bg-surface shadow-[0_4px_16px_rgba(31,41,51,0.04)]">
@@ -1355,7 +1370,7 @@ const ProductPage = ({
                   </button>
 
                   {isMeasureOpen && (
-                    <div className="p-4 md:p-6 space-y-6 bg-surface">
+                    <div className="p-4 md:p-6 space-y-4 md:space-y-6 bg-surface">
                       {/* Size Selector */}
                       {product.features.hasSize && (
                         <FieldHighlight
@@ -1444,11 +1459,13 @@ const ProductPage = ({
 
                       {/* Roll Style Selector */}
                       {product.features.hasRollStyle && visibleOptions.showRollStyle && (
-                        <RollStyleSelector
-                          options={ROLL_STYLE_OPTIONS}
-                          selectedRollStyle={config.rollStyle}
-                          onRollStyleChange={(styleId) => setConfig({ ...config, rollStyle: styleId })}
-                        />
+                        <FieldHighlight fieldKey="rollStyle" invalid={invalidFields.has('rollStyle')} registerRef={registerFieldRef}>
+                          <RollStyleSelector
+                            options={ROLL_STYLE_OPTIONS}
+                            selectedRollStyle={config.rollStyle}
+                            onRollStyleChange={(styleId) => setConfig({ ...config, rollStyle: styleId })}
+                          />
+                        </FieldHighlight>
                       )}
                     </div>
                   )}
@@ -1478,9 +1495,9 @@ const ProductPage = ({
                     </button>
 
                     {isCustomizeOpen && (
-                      <div className="p-4 md:p-6 space-y-6 divide-y divide-border bg-surface">
+                      <div className="p-4 md:p-6 space-y-4 md:space-y-6 divide-y divide-border bg-surface">
                       {isSkylight && (
-                        <div className="pt-0 first:pt-0 pb-6 space-y-6">
+                        <div className="pt-0 first:pt-0 pb-4 md:pb-6 space-y-4 md:space-y-6">
                           <FieldHighlight fieldKey="brand" invalid={invalidFields.has('brand')} registerRef={registerFieldRef}>
                             <h3 className="text-sm font-medium text-foreground mb-3">Brand</h3>
                             <div className="flex flex-wrap gap-3">
@@ -1521,7 +1538,7 @@ const ProductPage = ({
 
                       {/* Headrail Selector */}
                       {product.features.hasHeadrail && (
-                        <div className="pt-0 first:pt-0 pb-6">
+                        <div className="pt-0 first:pt-0 pb-4 md:pb-6">
                           <FieldHighlight fieldKey="headrail" invalid={invalidFields.has('headrail')} registerRef={registerFieldRef}>
                             <HeadrailSelector
                               options={HEADRAIL_OPTIONS}
@@ -1534,7 +1551,7 @@ const ProductPage = ({
 
                       {/* Headrail Colour Selector */}
                       {product.features.hasHeadrailColour && visibleOptions.showHeadrailColour && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="headrailColour" invalid={invalidFields.has('headrailColour')} registerRef={registerFieldRef}>
                             <HeadrailColourSelector
                               options={HEADRAIL_COLOUR_OPTIONS}
@@ -1547,7 +1564,7 @@ const ProductPage = ({
 
                       {/* Control Option Selector */}
                       {product.features.hasControlOption && visibleOptions.showControlOption && !isRoman && !isEasyStick && !isPerfectFitShutter && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="controlOption" invalid={invalidFields.has('controlOption')} registerRef={registerFieldRef}>
                             <ControlOptionSelector
                               options={controlOptions}
@@ -1560,7 +1577,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitShutter && product.features.hasControlOption && visibleOptions.showControlOption && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="controlOption" invalid={invalidFields.has('controlOption')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitShutterLabels.controlOption}
@@ -1581,7 +1598,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitShutter && shutterHandlePositionRequired && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="handlePosition" invalid={invalidFields.has('handlePosition')} registerRef={registerFieldRef} message={`Handle position must be between ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MIN_MM} mm and ${PERFECT_FIT_SHUTTER_HANDLE_POSITION_MAX_MM} mm`}>
                             <label className="text-sm font-medium text-foreground block mb-3">
                               {perfectFitShutterLabels.handlePosition}
@@ -1612,7 +1629,7 @@ const ProductPage = ({
                       )}
 
                       {isEasyStick && product.features.hasInstallationMethod && visibleOptions.showInstallationMethod && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="installationMethod" invalid={invalidFields.has('installationMethod')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={easyStickLabels.installationMethod}
@@ -1626,7 +1643,7 @@ const ProductPage = ({
                       )}
 
                       {isEasyStick && product.features.hasControlOption && visibleOptions.showControlOption && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="controlOption" invalid={invalidFields.has('controlOption')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={easyStickLabels.controlOption}
@@ -1640,7 +1657,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitWooden && product.features.hasControlSide && visibleOptions.showControlSide && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="controlSide" invalid={invalidFields.has('controlSide')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitWoodenLabels.controlSide}
@@ -1654,7 +1671,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitMetal && product.features.hasControlSide && visibleOptions.showControlSide && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="controlSide" invalid={invalidFields.has('controlSide')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitMetalLabels.controlSide}
@@ -1668,7 +1685,7 @@ const ProductPage = ({
                       )}
 
                       {isEasyStick && product.features.hasControlSide && visibleOptions.showControlSide && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="controlSide" invalid={invalidFields.has('controlSide')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={easyStickLabels.controlSide || 'Control Side'}
@@ -1682,7 +1699,7 @@ const ProductPage = ({
                       )}
 
                       {visibleOptions.showLiningType && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="liningType" invalid={invalidFields.has('liningType')} registerRef={registerFieldRef}>
                             <LiningTypeSelector
                               options={LINING_TYPE_OPTIONS}
@@ -1695,7 +1712,7 @@ const ProductPage = ({
 
                       {/* Stacking Selector */}
                       {product.features.hasStacking && visibleOptions.showStacking && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="stacking" invalid={invalidFields.has('stacking')} registerRef={registerFieldRef}>
                             <StackingSelector
                               options={stackingOptions}
@@ -1709,7 +1726,7 @@ const ProductPage = ({
 
                       {/* Bottom Chain Selector */}
                       {product.features.hasBottomChain && visibleOptions.showBottomChain && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="bottomChain" invalid={invalidFields.has('bottomChain')} registerRef={registerFieldRef}>
                             <BottomChainSelector
                               options={BOTTOM_CHAIN_OPTIONS.filter(opt => !('pvcOnly' in opt) || product.features.hasPvcFabric)}
@@ -1722,7 +1739,7 @@ const ProductPage = ({
 
                       {/* Bracket Type Selector */}
                       {product.features.hasBracketType && visibleOptions.showBracketType && !isPerfectFitWooden && !isPerfectFitShutter && !isPerfectFitMetal && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
                             <BracketTypeSelector
                               options={BRACKET_TYPE_OPTIONS}
@@ -1734,7 +1751,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitShutter && product.features.hasBracketType && visibleOptions.showBracketType && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitShutterLabels.bracketType}
@@ -1748,7 +1765,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitWooden && product.features.hasBracketType && visibleOptions.showBracketType && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitWoodenLabels.bracketType}
@@ -1762,7 +1779,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitShutter && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="numberOfPanels" invalid={invalidFields.has('numberOfPanels')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitShutterLabels.numberOfPanels}
@@ -1776,7 +1793,7 @@ const ProductPage = ({
                       )}
 
                       {isPerfectFitMetal && product.features.hasBracketType && visibleOptions.showBracketType && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="bracketType" invalid={invalidFields.has('bracketType')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={perfectFitMetalLabels.bracketType}
@@ -1791,10 +1808,10 @@ const ProductPage = ({
 
                       {/* Blind Color Selector */}
                       {product.features.hasBlindColor && visibleOptions.showBlindColor && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="blindColor" invalid={invalidFields.has('blindColor')} registerRef={registerFieldRef}>
                             <h3 className="text-sm font-medium text-foreground mb-3">Blind Color</h3>
-                            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
                               {BLIND_COLOR_OPTIONS.map((option) => (
                                 <button
                                   key={option.id}
@@ -1820,10 +1837,10 @@ const ProductPage = ({
 
                       {/* Frame Color Selector */}
                       {product.features.hasFrameColor && visibleOptions.showFrameColor && !isEasyStick && !isPerfectFitWooden && !isPerfectFitMetal && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="frameColor" invalid={invalidFields.has('frameColor')} registerRef={registerFieldRef}>
                             <h3 className="text-sm font-medium text-foreground mb-3">Frame Color</h3>
-                            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+                            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3">
                               {FRAME_COLOR_OPTIONS.map((option) => (
                                 <button
                                   key={option.id}
@@ -1848,7 +1865,7 @@ const ProductPage = ({
                       )}
 
                       {(isEasyStick || isPerfectFitWooden || isPerfectFitMetal) && product.features.hasFrameColor && visibleOptions.showFrameColor && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="frameColor" invalid={invalidFields.has('frameColor')} registerRef={registerFieldRef}>
                             <SimpleDropdown
                               label={isPerfectFitWooden ? perfectFitWoodenLabels.frameColor : isPerfectFitMetal ? perfectFitMetalLabels.frameColor : easyStickLabels.frameColor || 'Profile Color'}
@@ -1863,7 +1880,7 @@ const ProductPage = ({
 
                       {/* Opening Direction Selector */}
                       {product.features.hasOpeningDirection && visibleOptions.showOpeningDirection && (
-                        <div className="pt-6">
+                        <div className="pt-4 md:pt-6">
                           <FieldHighlight fieldKey="openingDirection" invalid={invalidFields.has('openingDirection')} registerRef={registerFieldRef}>
                             <OpeningDirectionSelector
                               options={OPENING_DIRECTION_OPTIONS}
@@ -1876,8 +1893,8 @@ const ProductPage = ({
 
                       {/* Optional Customization Cards Row */}
                       {hasOptionalCustomizationCards && (
-                      <div className="pt-6 pb-6 border-b border-border">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                      <div className="pt-4 md:pt-6 pb-4 md:pb-6 border-b border-border">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-5">
 
                           {/* Bottom Bar Card - Only for products with hasBottomBar */}
                           {product.features.hasBottomBar && visibleOptions.showBottomBar && (
@@ -1895,7 +1912,9 @@ const ProductPage = ({
                                   });
                                 }
                               }}
-                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.bottomBar
+                              className={`relative border rounded-[12px] p-4 md:p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${invalidFields.has('bottomBar')
+                                ? 'border-[#c24646]'
+                                : selectedOptionalCards.bottomBar
                                 ? 'border-primary bg-surface-soft shadow-sm'
                                 : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
                                 }`}
@@ -1907,26 +1926,29 @@ const ProductPage = ({
                                   </svg>
                                 </div>
                               )}
-                              {BOTTOM_BAR_CARD?.image && (
-                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.bottomBar
-                                  ? 'bg-surface-soft shadow-inner'
-                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
-                                  }`}>
-                                  <Image
-                                    src={BOTTOM_BAR_CARD.image}
-                                    alt={BOTTOM_BAR_CARD.name}
-                                    width={120}
-                                    height={120}
-                                    className="object-contain"
-                                  />
+                              <div className="flex items-center gap-3 md:block">
+                                {BOTTOM_BAR_CARD?.image && (
+                                  <div className={`relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.bottomBar
+                                    ? 'bg-surface-soft shadow-inner'
+                                    : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                    }`}>
+                                    <Image
+                                      src={BOTTOM_BAR_CARD.image}
+                                      alt={BOTTOM_BAR_CARD.name}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                    {BOTTOM_BAR_CARD?.name || 'Bottom Bar Option'}
+                                  </h4>
+                                  {BOTTOM_BAR_CARD?.description && (
+                                    <p className="text-xs text-muted leading-relaxed mb-2">{BOTTOM_BAR_CARD.description}</p>
+                                  )}
                                 </div>
-                              )}
-                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
-                                {BOTTOM_BAR_CARD?.name || 'Bottom Bar Option'}
-                              </h4>
-                              {BOTTOM_BAR_CARD?.description && (
-                                <p className="text-xs text-muted leading-relaxed mb-2">{BOTTOM_BAR_CARD.description}</p>
-                              )}
+                              </div>
 
                               {/* Dropdowns inside the card */}
                               {selectedOptionalCards.bottomBar && (
@@ -1959,6 +1981,7 @@ const ProductPage = ({
                                 });
                                 if (newValue) {
                                   setConfig({ ...config, motorization: null });
+                                  clearFieldInvalid('chainOrMotorization');
                                 } else {
                                   setConfig({
                                     ...config,
@@ -1968,7 +1991,9 @@ const ProductPage = ({
                                   });
                                 }
                               }}
-                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.continuousChain
+                              className={`relative border rounded-[12px] p-4 md:p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${invalidFields.has('chainOrMotorization') || invalidFields.has('continuousChainLocation') || invalidFields.has('chainColor')
+                                ? 'border-[#c24646]'
+                                : selectedOptionalCards.continuousChain
                                 ? 'border-primary bg-surface-soft shadow-sm'
                                 : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
                                 }`}
@@ -1980,26 +2005,29 @@ const ProductPage = ({
                                   </svg>
                                 </div>
                               )}
-                              {continuousChainCard.image && (
-                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.continuousChain
-                                  ? 'bg-surface-soft shadow-inner'
-                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
-                                  }`}>
-                                  <Image
-                                    src={continuousChainCard.image}
-                                    alt={continuousChainCard.name}
-                                    width={120}
-                                    height={120}
-                                    className="object-contain"
-                                  />
+                              <div className="flex items-center gap-3 md:block">
+                                {continuousChainCard.image && (
+                                  <div className={`relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.continuousChain
+                                    ? 'bg-surface-soft shadow-inner'
+                                    : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                    }`}>
+                                    <Image
+                                      src={continuousChainCard.image}
+                                      alt={continuousChainCard.name}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                    {continuousChainCard.name}
+                                  </h4>
+                                  {continuousChainCard.description && (
+                                    <p className="text-xs text-muted leading-relaxed mb-2">{continuousChainCard.description}</p>
+                                  )}
                                 </div>
-                              )}
-                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
-                                {continuousChainCard.name}
-                              </h4>
-                              {continuousChainCard.description && (
-                                <p className="text-xs text-muted leading-relaxed mb-2">{continuousChainCard.description}</p>
-                              )}
+                              </div>
                               {continuousChainCard.price > 0 && (
                                 <span className="absolute bottom-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-[12px] shadow-sm">
                                   +£{continuousChainCard.price.toFixed(2)}
@@ -2059,7 +2087,9 @@ const ProductPage = ({
                                   });
                                 }
                               }}
-                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.cassette
+                              className={`relative border rounded-[12px] p-4 md:p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${invalidFields.has('wrappedCassette') || invalidFields.has('cassetteMatchingBar')
+                                ? 'border-[#c24646]'
+                                : selectedOptionalCards.cassette
                                 ? 'border-primary bg-surface-soft shadow-sm'
                                 : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
                                 }`}
@@ -2071,26 +2101,29 @@ const ProductPage = ({
                                   </svg>
                                 </div>
                               )}
-                              {cassetteCard.image && (
-                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.cassette
-                                  ? 'bg-surface-soft shadow-inner'
-                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
-                                  }`}>
-                                  <Image
-                                    src={cassetteCard.image}
-                                    alt={cassetteCard.name}
-                                    width={120}
-                                    height={120}
-                                    className="object-contain"
-                                  />
+                              <div className="flex items-center gap-3 md:block">
+                                {cassetteCard.image && (
+                                  <div className={`relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.cassette
+                                    ? 'bg-surface-soft shadow-inner'
+                                    : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                    }`}>
+                                    <Image
+                                      src={cassetteCard.image}
+                                      alt={cassetteCard.name}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                    {cassetteCard.name}
+                                  </h4>
+                                  {cassetteCard.description && (
+                                    <p className="text-xs text-muted leading-relaxed mb-2">{cassetteCard.description}</p>
+                                  )}
                                 </div>
-                              )}
-                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
-                                {cassetteCard.name}
-                              </h4>
-                              {cassetteCard.description && (
-                                <p className="text-xs text-muted leading-relaxed mb-2">{cassetteCard.description}</p>
-                              )}
+                              </div>
                               {cassetteCard.price > 0 && (
                                 <span className="absolute bottom-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-[12px] shadow-sm">
                                   +£{cassetteCard.price.toFixed(2)}
@@ -2154,11 +2187,14 @@ const ProductPage = ({
                                 });
                                 if (newValue) {
                                   setConfig({ ...config, chainColor: null, controlSide: null });
+                                  clearFieldInvalid('chainOrMotorization');
                                 } else {
                                   setConfig({ ...config, motorization: null });
                                 }
                               }}
-                              className={`relative border rounded-[12px] p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${selectedOptionalCards.motorization
+                              className={`relative border rounded-[12px] p-4 md:p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${invalidFields.has('motorization') || invalidFields.has('chainOrMotorization')
+                                ? 'border-[#c24646]'
+                                : selectedOptionalCards.motorization
                                 ? 'border-primary bg-surface-soft shadow-sm'
                                 : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
                                 }`}
@@ -2170,32 +2206,35 @@ const ProductPage = ({
                                   </svg>
                                 </div>
                               )}
-                              {MOTORIZATION_CARD.image && (
-                                <div className={`relative h-[120px] w-full mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.motorization
-                                  ? 'bg-surface-soft shadow-inner'
-                                  : 'bg-surface-soft group-hover:bg-surface-contrast'
-                                  }`}>
-                                  <Image
-                                    src={MOTORIZATION_CARD.image}
-                                    alt={MOTORIZATION_CARD.name}
-                                    width={120}
-                                    height={120}
-                                    className="object-contain"
-                                  />
+                              <div className="flex items-center gap-3 md:block">
+                                {MOTORIZATION_CARD.image && (
+                                  <div className={`relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.motorization
+                                    ? 'bg-surface-soft shadow-inner'
+                                    : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                    }`}>
+                                    <Image
+                                      src={MOTORIZATION_CARD.image}
+                                      alt={MOTORIZATION_CARD.name}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                    {isSpecialMotorized ? 'Remote Control' : MOTORIZATION_CARD.name}
+                                  </h4>
+                                  {(isSpecialMotorized
+                                    ? 'Choose the remote control supplied with your electrical roller blind.'
+                                    : MOTORIZATION_CARD.description) && (
+                                    <p className="text-xs text-muted leading-relaxed mb-2">
+                                      {isSpecialMotorized
+                                        ? 'Choose the remote control supplied with your motorised blind.'
+                                        : MOTORIZATION_CARD.description}
+                                    </p>
+                                  )}
                                 </div>
-                              )}
-                              <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
-                                {isSpecialMotorized ? 'Remote Control' : MOTORIZATION_CARD.name}
-                              </h4>
-                              {(isSpecialMotorized
-                                ? 'Choose the remote control supplied with your electrical roller blind.'
-                                : MOTORIZATION_CARD.description) && (
-                                <p className="text-xs text-muted leading-relaxed mb-2">
-                                  {isSpecialMotorized
-                                    ? 'Choose the remote control supplied with your motorised blind.'
-                                    : MOTORIZATION_CARD.description}
-                                </p>
-                              )}
+                              </div>
 
                               {/* Simple Price Text */}
                               <div className="mt-2 text-sm font-medium text-primary">
@@ -2222,6 +2261,18 @@ const ProductPage = ({
                             </div>
                           )}
                         </div>
+                        {invalidFields.has('chainOrMotorization') && (
+                          <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#c24646]">
+                            <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path
+                                fillRule="evenodd"
+                                d="M8.257 3.099c.765-1.36 2.72-1.36 3.486 0l6.28 11.18c.75 1.334-.213 2.987-1.744 2.987H3.72c-1.53 0-2.493-1.653-1.743-2.987l6.28-11.18zM10 7a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 7zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            Please choose either Continuous Chain or Motorization
+                          </p>
+                        )}
                       </div>
                       )}
                       </div>
@@ -2235,7 +2286,7 @@ const ProductPage = ({
                 <button
                   onClick={handleAddToCart}
                   disabled={isValidating || isCheckingOut}
-                  className={`w-full mt-5 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || isCheckingOut
+                  className={`w-full mt-4 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || isCheckingOut
                     ? 'bg-[#98a4bb] text-white cursor-not-allowed'
                     : 'bg-primary text-white hover:bg-primary-dark shadow-[0_10px_20px_rgba(68,87,102,0.24)] hover:shadow-[0_12px_24px_rgba(68,87,102,0.28)]'
                     }`}
@@ -2249,12 +2300,18 @@ const ProductPage = ({
                 <button
                   onClick={handleBuyNow}
                   disabled={isValidating || isCheckingOut}
-                  className={`w-full mt-3 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all border ${isValidating || isCheckingOut
+                  className={`w-full mt-3 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all border flex items-center justify-center gap-2 ${isValidating || isCheckingOut
                     ? 'border-border bg-surface-soft text-muted cursor-not-allowed'
                     : 'border-primary text-primary bg-white hover:bg-surface-soft'
                     }`}
                 >
-                  {isCheckingOut ? 'Redirecting to checkout...' : 'Buy Now'}
+                  {isCheckingOut && (
+                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                    </svg>
+                  )}
+                  Buy Now
                 </button>
               </div>
 
@@ -2279,55 +2336,55 @@ const ProductPage = ({
               </div>
 
               {/* Trust Badges */}
-              <div className="mt-6 border border-border rounded-[16px] p-4 bg-surface shadow-[0_6px_16px_rgba(31,41,51,0.04)]">
+              <div className="mt-5 md:mt-6 border border-border rounded-[16px] p-3 md:p-4 bg-surface shadow-[0_6px_16px_rgba(31,41,51,0.04)]">
                 {/* Payment logos */}
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-3 md:mb-4">
                   <Image
                     src="/products/payment-badge.png"
                     alt="Accepted payment methods"
                     width={500}
                     height={80}
-                    className="h-12 w-auto object-contain"
+                    className="h-10 md:h-12 w-auto object-contain"
                   />
                 </div>
                 {/* Trust cards */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="flex flex-col items-center text-center p-3 border border-border rounded-[12px] bg-surface-soft">
+                <div className="grid grid-cols-3 gap-2 md:gap-3">
+                  <div className="flex flex-col items-center text-center p-2 md:p-3 border border-border rounded-[12px] bg-surface-soft">
                     <Image
                       src="/products/warranty.webp"
                       alt="Warranty"
                       width={48}
                       height={48}
-                      className="w-10 h-10 object-contain mb-2"
+                      className="w-8 h-8 md:w-10 md:h-10 object-contain mb-1.5 md:mb-2"
                     />
-                    <span className="text-xs font-semibold text-foreground leading-tight">Warranty</span>
-                    <span className="text-xs text-muted mt-0.5 leading-tight">
+                    <span className="text-[11px] md:text-xs font-semibold text-foreground leading-tight">Warranty</span>
+                    <span className="text-[10px] md:text-xs text-muted mt-0.5 leading-tight">
                       {product.category.toLowerCase() === 'vertical blinds' && product.tags.includes('waterproof') && product.tags.includes('blackout')
                         ? '10 Years Warranty'
                         : '5 Years Warranty'}
                     </span>
                   </div>
-                  <div className="flex flex-col items-center text-center p-3 border border-border rounded-[12px] bg-surface-soft">
+                  <div className="flex flex-col items-center text-center p-2 md:p-3 border border-border rounded-[12px] bg-surface-soft">
                     <Image
                       src="/products/easyAssembly.webp"
                       alt="Easy Assembly"
                       width={48}
                       height={48}
-                      className="w-10 h-10 object-contain mb-2"
+                      className="w-8 h-8 md:w-10 md:h-10 object-contain mb-1.5 md:mb-2"
                     />
-                    <span className="text-xs font-semibold text-foreground leading-tight">Easy Assembly</span>
-                    <span className="text-xs text-muted mt-0.5 leading-tight">Minimal no hassle assembly. All Fittings included</span>
+                    <span className="text-[11px] md:text-xs font-semibold text-foreground leading-tight">Easy Assembly</span>
+                    <span className="text-[10px] md:text-xs text-muted mt-0.5 leading-tight">Minimal no hassle assembly. All Fittings included</span>
                   </div>
-                  <div className="flex flex-col items-center text-center p-3 border border-border rounded-[12px] bg-surface-soft">
+                  <div className="flex flex-col items-center text-center p-2 md:p-3 border border-border rounded-[12px] bg-surface-soft">
                     <Image
                       src="/products/review.png"
                       alt="Trustpilot reviews"
                       width={80}
                       height={40}
-                      className="w-16 h-auto object-contain mb-2"
+                      className="w-14 md:w-16 h-auto object-contain mb-1.5 md:mb-2"
                     />
-                    <span className="text-xs font-semibold text-foreground leading-tight">Trusted by Customers</span>
-                    <span className="text-xs text-muted mt-0.5 leading-tight">Rated Excellent on Trustpilot</span>
+                    <span className="text-[11px] md:text-xs font-semibold text-foreground leading-tight">Trusted by Customers</span>
+                    <span className="text-[10px] md:text-xs text-muted mt-0.5 leading-tight">Rated Excellent on Trustpilot</span>
                   </div>
                 </div>
               </div>
@@ -2379,7 +2436,8 @@ const ProductPage = ({
           addToCartLabel={isValidating ? 'Adding to Cart...' : 'Add to Cart'}
           addToCartDisabled={isValidating || isCheckingOut}
           onBuyNow={handleBuyNow}
-          buyNowLabel={isCheckingOut ? 'Redirecting...' : 'Buy Now'}
+          buyNowLabel="Buy Now"
+          buyNowLoading={isCheckingOut}
           buyNowDisabled={isValidating || isCheckingOut}
         />
       )}

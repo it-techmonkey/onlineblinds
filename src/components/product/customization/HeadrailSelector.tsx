@@ -30,13 +30,13 @@ const HeadrailSelector = ({ options, selectedHeadrail, onHeadrailChange }: Headr
           >
             <button
               onClick={() => onHeadrailChange(option.id)}
-              className={`relative h-full w-full border rounded-[12px] p-4 transition-all hover:border-[#b8c7df] ${selectedHeadrail === option.id
+              className={`relative flex items-center gap-3 h-full w-full border rounded-[12px] p-3 md:p-4 transition-all hover:border-[#b8c7df] md:flex-col md:items-stretch ${selectedHeadrail === option.id
                 ? 'border-[#335c99] bg-[#eef2f8]'
                 : 'border-[#cbd6e6] bg-white'
                 }`}
             >
               {option.image && (
-                <div className="relative h-[140px] w-full mb-3 bg-[#e7eef8] rounded overflow-hidden">
+                <div className="relative h-16 w-16 shrink-0 md:h-[140px] md:w-full md:mb-3 bg-[#e7eef8] rounded overflow-hidden">
                   <Image
                     src={option.image}
                     alt={option.name}
@@ -46,18 +46,18 @@ const HeadrailSelector = ({ options, selectedHeadrail, onHeadrailChange }: Headr
                 </div>
               )}
 
-              <p className="text-sm font-medium text-[#1f2a44] text-center">
+              <p className="flex-1 text-sm font-medium text-[#1f2a44] text-left md:text-center">
                 {option.name}
               </p>
 
               {option.price != null && option.price > 0 && (
-                <span className="absolute top-2 right-2 bg-[#335c99] text-white text-xs px-2 py-1 rounded">
+                <span className="static shrink-0 md:absolute md:top-2 md:right-2 bg-[#335c99] text-white text-xs px-2 py-1 rounded">
                   +£{option.price.toFixed(2)}
                 </span>
               )}
 
               {selectedHeadrail === option.id && (
-                <div className="absolute top-2 left-2 w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center">
+                <div className="absolute top-2 right-2 md:right-auto md:left-2 w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center">
                   <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>

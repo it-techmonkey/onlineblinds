@@ -157,6 +157,9 @@ interface FetchProductsParams {
   tags?: string[];
   search?: string;
   sortBy?: CatalogSortOption;
+  // Skips the full-catalog count scan used for pagination metadata. Use for
+  // lightweight previews (e.g. live search) that only need the product list.
+  skipTotalCount?: boolean;
 }
 
 export type CatalogSortOption = 'best-selling' | 'price-low' | 'price-high' | 'name-az' | 'name-za';
@@ -245,6 +248,7 @@ export async function fetchProducts(params?: FetchProductsParams): Promise<ApiPr
         limit,
         searchQuery: params?.search,
         sortBy: params?.sortBy,
+        skipTotalCount: params?.skipTotalCount,
       });
 
       const totalPages = Math.ceil(response.total / limit);

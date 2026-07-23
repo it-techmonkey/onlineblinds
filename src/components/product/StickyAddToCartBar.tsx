@@ -13,6 +13,7 @@ interface StickyAddToCartBarProps {
   onBuyNow: () => void;
   buyNowLabel: string;
   buyNowDisabled: boolean;
+  buyNowLoading?: boolean;
 }
 
 const StickyAddToCartBar = ({
@@ -24,6 +25,7 @@ const StickyAddToCartBar = ({
   onBuyNow,
   buyNowLabel,
   buyNowDisabled,
+  buyNowLoading = false,
 }: StickyAddToCartBarProps) => {
   const [mounted, setMounted] = useState(false);
 
@@ -46,12 +48,18 @@ const StickyAddToCartBar = ({
             <button
               onClick={onBuyNow}
               disabled={buyNowDisabled}
-              className={`shrink-0 py-2.5 md:py-2.5 px-4 md:px-6 rounded-[10px] md:rounded-[12px] text-sm md:text-base font-medium transition-all whitespace-nowrap border ${
+              className={`shrink-0 flex items-center justify-center gap-1.5 py-2.5 md:py-2.5 px-4 md:px-6 rounded-[10px] md:rounded-[12px] text-sm md:text-base font-medium transition-all whitespace-nowrap border ${
                 buyNowDisabled
                   ? 'border-border bg-surface-soft text-muted cursor-not-allowed'
                   : 'border-primary text-primary bg-white hover:bg-surface-soft'
               }`}
             >
+              {buyNowLoading && (
+                <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                </svg>
+              )}
               {buyNowLabel}
             </button>
 

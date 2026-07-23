@@ -61,6 +61,7 @@ import {
   SimpleDropdown,
   MotorizationSelector,
   BottomBarSelector,
+  RollStyleSelector,
 } from './customization';
 import {
   HEADRAIL_OPTIONS,
@@ -106,6 +107,7 @@ import {
   ROLLER_CASSETTE_OPTIONS,
   MOTORIZATION_OPTIONS,
   BOTTOM_BAR_OPTIONS,
+  ROLL_STYLE_OPTIONS,
 } from '@/data/customizations';
 import { ROOM_TYPE_OPTIONS } from '@/data/roomTypes';
 import { isRomanProduct } from '@/lib/roman-blinds';
@@ -592,6 +594,7 @@ const CustomizationModal = ({
         showChainColor: product.features.hasChainColor,
         showMotorization: product.features.hasMotorization,
         showBottomBar: product.features.hasBottomBar,
+        showRollStyle: product.features.hasRollStyle,
         showFrameColor: isEasyStick
           ? product.features.hasFrameColor && (easyStickSubtype === 'honeycomb' || easyStickSubtype === 'wood')
           : isPerfectFitWooden
@@ -683,6 +686,7 @@ const CustomizationModal = ({
       brand: config.brand,
       blindType: config.blindType,
       bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
+      rollStyle: visibleOptions.showRollStyle ? config.rollStyle : null,
     });
   }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter]);
 
@@ -1439,6 +1443,17 @@ const CustomizationModal = ({
                         onOptionChange={(optionId) => setConfig({ ...config, motorization: optionId })}
                       />
                     )}
+                  </div>
+                )}
+
+                {/* Roll Style Selector */}
+                {product.features.hasRollStyle && visibleOptions.showRollStyle && (
+                  <div className="pt-6 relative z-[1.5]">
+                    <RollStyleSelector
+                      options={ROLL_STYLE_OPTIONS}
+                      selectedRollStyle={config.rollStyle}
+                      onRollStyleChange={(styleId) => setConfig({ ...config, rollStyle: styleId })}
+                    />
                   </div>
                 )}
 
