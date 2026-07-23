@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import { navigationData, NavigationItem, NavigationLink } from '@/data/navigation';
 import { formatPriceWithCurrency } from '@/lib/api';
+import SearchPopover from './SearchPopover';
 
 const badgeClasses: Record<'trending' | 'bestseller', string> = {
   trending: 'bg-[#def7e5] text-[#166534]',
@@ -89,7 +90,11 @@ const Header = () => {
   const { cart } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [miniCartOpen, setMiniCartOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [headerBottom, setHeaderBottom] = useState<number | null>(null);
   const miniCartRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const cartCount = cart?.itemCount || 0;
   const previewItems = cart.items.slice(0, 3);
 
@@ -98,20 +103,60 @@ const Header = () => {
       if (miniCartRef.current && !miniCartRef.current.contains(event.target as Node)) {
         setMiniCartOpen(false);
       }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setSearchOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleOutside);
     return () => document.removeEventListener('mousedown', handleOutside);
   }, []);
 
+  useLayoutEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+
+    const updateHeaderBottom = () => {
+      if (!mobileQuery.matches) {
+        setHeaderBottom(null);
+        return;
+      }
+      if (headerRef.current) {
+        // Use the header's own rendered height (not its viewport-relative rect,
+        // which would include the announcement bar above it before scrolling) so
+        // the cart popup always sits directly under the icon row, not the promo bar.
+        setHeaderBottom(headerRef.current.offsetHeight);
+      }
+    };
+
+    updateHeaderBottom();
+    window.addEventListener('resize', updateHeaderBottom);
+    return () => {
+      window.removeEventListener('resize', updateHeaderBottom);
+    };
+  }, []);
+
   useEffect(() => {
     if (mobileMenuOpen) {
       setMiniCartOpen(false);
+      setSearchOpen(false);
     }
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    if (miniCartOpen) {
+      setSearchOpen(false);
+    }
+  }, [miniCartOpen]);
+
+  useEffect(() => {
+    if (searchOpen) {
+      setMiniCartOpen(false);
+      setMobileMenuOpen(false);
+    }
+  }, [searchOpen]);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-white/94 shadow-[0_6px_24px_rgba(17,17,17,0.04)] backdrop-blur-xl supports-backdrop-filter:bg-white/88">
+    <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-border/80 bg-white/94 shadow-[0_6px_24px_rgba(17,17,17,0.04)] backdrop-blur-xl supports-backdrop-filter:bg-white/88">
       <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 md:px-8">
 
         {/* Left: Mobile hamburger + Logo */}
@@ -190,13 +235,24 @@ const Header = () => {
 
         {/* Right: Icons */}
         <div className="flex items-center gap-0.5 shrink-0">
-          <Link
-            href="/search"
-            aria-label="Search"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-muted-strong transition-all duration-200 hover:-translate-y-px hover:bg-primary-light hover:text-primary hover:shadow-sm"
-          >
-            <Image src="/icons/search.svg" alt="Search" width={18} height={18} className="opacity-60" />
-          </Link>
+          <div ref={searchRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setSearchOpen((prev) => !prev)}
+              aria-label="Search"
+              aria-expanded={searchOpen}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-muted-strong transition-all duration-200 hover:-translate-y-px hover:bg-primary-light hover:text-primary hover:shadow-sm"
+            >
+              <Image src="/icons/search.svg" alt="Search" width={18} height={18} className="opacity-60" />
+            </button>
+
+            <div
+              className={`fixed left-4 right-4 z-50 mx-auto w-auto max-w-96 md:absolute md:left-auto md:right-0 md:top-full md:mt-2 md:mx-0 md:max-w-none md:w-96 rounded-2xl border border-border bg-white shadow-[0_20px_44px_rgba(15,23,42,0.14)] transition-all duration-200 ${searchOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-1 opacity-0'}`}
+              style={headerBottom !== null ? { top: `${headerBottom + 6}px` } : undefined}
+            >
+              {searchOpen && <SearchPopover onClose={() => setSearchOpen(false)} />}
+            </div>
+          </div>
           <Link
             href="/account"
             aria-label="Account"
@@ -221,7 +277,8 @@ const Header = () => {
             </button>
 
             <div
-              className={`absolute right-0 top-full z-50 mt-2 w-92 max-w-[calc(100vw-1rem)] rounded-2xl border border-border bg-white shadow-[0_20px_44px_rgba(15,23,42,0.14)] transition-all duration-200 ${miniCartOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-1 opacity-0'}`}
+              className={`fixed left-4 right-4 z-50 mx-auto w-auto max-w-92 md:absolute md:left-auto md:right-0 md:top-full md:mt-2 md:mx-0 md:max-w-none md:w-92 rounded-2xl border border-border bg-white shadow-[0_20px_44px_rgba(15,23,42,0.14)] transition-all duration-200 ${miniCartOpen ? 'visible translate-y-0 opacity-100' : 'invisible translate-y-1 opacity-0'}`}
+              style={headerBottom !== null ? { top: `${headerBottom + 6}px` } : undefined}
             >
               <div className="border-b border-border px-4 py-3.5">
                 <div className="flex items-center justify-between">
@@ -325,6 +382,7 @@ const Header = () => {
           </div>
         </>
       )}
+
     </header>
   );
 };
