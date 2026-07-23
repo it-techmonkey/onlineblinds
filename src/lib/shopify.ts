@@ -636,6 +636,10 @@ export async function fetchShopifyCollections(): Promise<
  */
 let cachedMinimumPrices: Record<string, number> | null = null;
 let pricesCacheTime = 0;
+// Last successful, non-empty price map for this instance. Used as a fallback so a
+// transient refresh failure (Admin API blip, timeout) serves slightly-stale-but-
+// correct prices instead of an empty map that would zero out every product.
+let lastGoodMinimumPrices: Record<string, number> | null = null;
 function getApiBaseUrl(): string {
   if (typeof window !== 'undefined') return '';
   const vercelUrl = process.env.VERCEL_URL;
@@ -657,20 +661,44 @@ async function getMinimumPrices(): Promise<Record<string, number>> {
   if (isServerSide) {
     try {
       const pricingService = await import('@/lib/server/pricing.service');
-      cachedMinimumPrices = await pricingService.getMinimumPricesByHandle();
-      if (Object.keys(cachedMinimumPrices).length === 0) {
+      const fresh = await pricingService.getMinimumPricesByHandle();
+
+      if (Object.keys(fresh).length === 0) {
         console.warn(
           '[Pricing] getMinimumPricesByHandle returned no prices. ' +
           'Check that: (1) pricing data is present in src/data/pricing/pricing-data.json, ' +
           '(2) SHOPIFY_ADMIN_ACCESS_TOKEN is set, and ' +
           '(3) the custom.price_band_name metafield is set on Shopify products.'
         );
+        // Prefer the last known-good map over an empty one so a transient failure
+        // does not zero out every price. Only fall through to empty on a genuine
+        // cold start with no prior success (the render-time guard then aborts ISR).
+        if (lastGoodMinimumPrices) {
+          cachedMinimumPrices = lastGoodMinimumPrices;
+          pricesCacheTime = now;
+          return cachedMinimumPrices;
+        }
+      } else if (
+        !lastGoodMinimumPrices ||
+        Object.keys(fresh).length >= Object.keys(lastGoodMinimumPrices).length
+      ) {
+        // Only promote to last-known-good when the fresh map is at least as complete
+        // as the previous one, so a partial fetch never shrinks the fallback.
+        lastGoodMinimumPrices = fresh;
       }
+
+      cachedMinimumPrices = fresh;
       pricesCacheTime = now;
       return cachedMinimumPrices;
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : err;
       console.error('[Pricing] Failed to fetch minimum prices from pricing data:', message);
+      // Serve last known-good prices on transient failure instead of an empty map.
+      if (lastGoodMinimumPrices) {
+        cachedMinimumPrices = lastGoodMinimumPrices;
+        pricesCacheTime = now;
+        return cachedMinimumPrices;
+      }
       cachedMinimumPrices = {};
       pricesCacheTime = now;
       return cachedMinimumPrices;

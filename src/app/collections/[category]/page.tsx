@@ -10,6 +10,7 @@ import {
   extractFilterOptions,
   paginateApiProducts,
   sortApiProducts,
+  assertProductsPriced,
   CatalogSortOption,
   PaginationMeta,
 } from '@/lib/api';
@@ -233,6 +234,10 @@ export default async function CollectionPage({ params, searchParams }: PageProps
       }
     }
   }
+
+  // Abort the (ISR-cached) render if any product came back with a £0 price — that
+  // signals a transient pricing failure, and caching it would freeze bad prices.
+  assertProductsPriced(products);
 
   // Extract filter options from products
   const filterOptions = extractFilterOptions(apiProducts);
