@@ -17,7 +17,7 @@ export interface CachedProduct {
 
 const PRODUCTS_WITH_METAFIELD_QUERY = `
   query ProductsWithMetafield($cursor: String) {
-    products(first: 100, after: $cursor) {
+    products(first: 250, after: $cursor) {
       pageInfo {
         hasNextPage
         endCursor
@@ -41,6 +41,49 @@ function getGraphQLUrl(): string {
   return `https://${domain}/admin/api/${shopifyConfig.apiVersion}/graphql.json`;
 }
 
+const PAGE_MAX_ATTEMPTS = 3;
+
+async function fetchProductPage(cursor: string | null): Promise<any> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= PAGE_MAX_ATTEMPTS; attempt += 1) {
+    try {
+      const response: Response = await fetch(getGraphQLUrl(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': shopifyConfig.adminAccessToken,
+        },
+        body: JSON.stringify({
+          query: PRODUCTS_WITH_METAFIELD_QUERY,
+          variables: { cursor },
+        }),
+        cache: 'no-store',
+      });
+
+      if (!response.ok) {
+        throw new Error(`Shopify GraphQL request failed: ${response.status}`);
+      }
+
+      const json: any = await response.json();
+      const data = json.data?.products;
+
+      if (!data) {
+        throw new Error(`Unexpected GraphQL response: ${JSON.stringify(json.errors || json)}`);
+      }
+
+      return data;
+    } catch (error) {
+      lastError = error;
+      if (attempt < PAGE_MAX_ATTEMPTS) {
+        await new Promise((resolve) => setTimeout(resolve, 300 * attempt));
+      }
+    }
+  }
+
+  throw lastError;
+}
+
 async function fetchAllShopifyProducts(): Promise<Record<string, CachedProduct>> {
   validateShopifyConfig();
 
@@ -49,28 +92,22 @@ async function fetchAllShopifyProducts(): Promise<Record<string, CachedProduct>>
   let hasNextPage = true;
 
   while (hasNextPage) {
-    const response: Response = await fetch(getGraphQLUrl(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Access-Token': shopifyConfig.adminAccessToken,
-      },
-      body: JSON.stringify({
-        query: PRODUCTS_WITH_METAFIELD_QUERY,
-        variables: { cursor },
-      }),
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      throw new Error(`Shopify GraphQL request failed: ${response.status}`);
-    }
-
-    const json: any = await response.json();
-    const data = json.data?.products;
-
-    if (!data) {
-      console.error('[Cache] Unexpected GraphQL response:', JSON.stringify(json.errors || json));
+    let data: any;
+    try {
+      data = await fetchProductPage(cursor);
+    } catch (error) {
+      // If we already fetched some products, return the partial set rather than
+      // discarding everything — a page that keeps most prices is far better than
+      // an empty map that zeroes out every product's price. Only surface a hard
+      // failure when we got nothing at all (so an empty map is never cached as ok).
+      if (Object.keys(cache).length === 0) {
+        throw error;
+      }
+      console.error(
+        `[Cache] Product page fetch failed after ${PAGE_MAX_ATTEMPTS} attempts; ` +
+        `returning ${Object.keys(cache).length} products fetched so far.`,
+        error
+      );
       break;
     }
 

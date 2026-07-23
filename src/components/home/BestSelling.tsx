@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ProductCard } from '@/components/product';
-import { fetchProducts, transformProduct } from '@/lib/api';
+import { fetchProductsByCategoryPage, transformProduct } from '@/lib/api';
+
+const BEST_SELLERS_COLLECTION_HANDLE = 'best-sellers';
 
 interface ProductCardData {
   id: string;
@@ -18,16 +20,6 @@ interface ProductCardData {
   isBestSeller?: boolean;
 }
 
-const fallbackImages = [
-  "/home/products/vertical-blinds-1.jpg",
-  "/home/products/vertical-blinds-2.jpg",
-  "/home/products/vertical-blinds-3.jpg",
-  "/home/products/vertical-blinds-4.jpg",
-  "/home/products/vertical-blinds-5.jpg",
-  "/home/products/blinds.jpeg",
-  "/home/products/vertical-blinds-1.jpg",
-];
-
 const BestSelling = () => {
   const [products, setProducts] = useState<ProductCardData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,13 +27,17 @@ const BestSelling = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const response = await fetchProducts({ limit: 8 });
-        setProducts(response.data.slice(0, 8).map((pd, i) => {
+        const response = await fetchProductsByCategoryPage({
+          categorySlug: BEST_SELLERS_COLLECTION_HANDLE,
+          limit: 8,
+          sortBy: 'best-selling',
+        });
+        setProducts(response.data.slice(0, 8).map((pd) => {
           const p = transformProduct(pd);
           return {
             id: p.id, name: p.name, slug: p.slug, price: p.price,
             currency: p.currency,
-            rating: p.rating, image: fallbackImages[i % fallbackImages.length],
+            rating: p.rating, image: p.images[0],
             images: p.images, isBestSeller: true,
           };
         }));
