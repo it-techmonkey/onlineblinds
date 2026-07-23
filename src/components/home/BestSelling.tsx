@@ -1,6 +1,3 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ProductCard } from '@/components/product';
 import { fetchProductsByCategoryPage, transformProduct } from '@/lib/api';
@@ -20,32 +17,37 @@ interface ProductCardData {
   isBestSeller?: boolean;
 }
 
-const BestSelling = () => {
-  const [products, setProducts] = useState<ProductCardData[]>([]);
-  const [loading, setLoading] = useState(true);
+async function getBestSellers(): Promise<ProductCardData[]> {
+  try {
+    const response = await fetchProductsByCategoryPage({
+      categorySlug: BEST_SELLERS_COLLECTION_HANDLE,
+      limit: 8,
+      sortBy: 'best-selling',
+    });
+    return response.data.slice(0, 8).map((pd) => {
+      const p = transformProduct(pd);
+      return {
+        id: p.id, name: p.name, slug: p.slug, price: p.price,
+        currency: p.currency,
+        rating: p.rating, image: p.images[0],
+        images: p.images, isBestSeller: true,
+      };
+    });
+  } catch (e) {
+    console.error('Failed to load best sellers:', e);
+    return [];
+  }
+}
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const response = await fetchProductsByCategoryPage({
-          categorySlug: BEST_SELLERS_COLLECTION_HANDLE,
-          limit: 8,
-          sortBy: 'best-selling',
-        });
-        setProducts(response.data.slice(0, 8).map((pd) => {
-          const p = transformProduct(pd);
-          return {
-            id: p.id, name: p.name, slug: p.slug, price: p.price,
-            currency: p.currency,
-            rating: p.rating, image: p.images[0],
-            images: p.images, isBestSeller: true,
-          };
-        }));
-      } catch (e) { console.error(e); }
-      finally { setLoading(false); }
-    };
-    load();
-  }, []);
+const BestSelling = async () => {
+  const products = await getBestSellers();
+
+  // If pricing came back broken (any £0), don't render a section full of £0
+  // cards — hide it rather than showing wrong prices. A real product is never £0.
+  const allPriced = products.length > 0 && products.every((p) => p.price > 0);
+  if (!allPriced) {
+    return null;
+  }
 
   return (
     <section className="bg-neutral-50 py-16 md:py-24 border-y border-border/60">
@@ -71,24 +73,16 @@ const BestSelling = () => {
           </Link>
         </div>
 
-        {loading ? (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="h-[380px] rounded-xl animate-shimmer" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {products.map((p) => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                className="w-full"
-                showBestSellerBadge={false}
-              />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {products.map((p) => (
+            <ProductCard
+              key={p.id}
+              product={p}
+              className="w-full"
+              showBestSellerBadge={false}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
