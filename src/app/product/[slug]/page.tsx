@@ -8,6 +8,9 @@ import { getCustomizationPricing, getPriceBandMatrix, resolveHandleToPriceBand }
 import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 
 export const revalidate = 3_600;
+// Give ISR regeneration enough headroom for the Shopify Admin price-band scan
+// so a slow catalog fetch can't time out and bake £0 prices into the page.
+export const maxDuration = 60;
 
 interface ProductPageProps {
   params: Promise<{
