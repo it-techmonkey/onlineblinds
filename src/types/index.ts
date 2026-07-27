@@ -159,14 +159,17 @@ export interface Cart {
   items: CartItem[];
   total: number;
   itemCount: number;
+  installationService: boolean;
+  installationServicePrice: number;
 }
 
 export interface CartContextType {
   cart: Cart;
-  addToCart: (product: Product, configuration: ProductConfiguration) => void;
+  addToCart: (product: Product, configuration: ProductConfiguration, installationService?: boolean) => void;
   updateCartItem: (itemId: string, product: Product, configuration: ProductConfiguration) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
+  setInstallationService: (enabled: boolean) => void;
   clearCart: () => void;
 }
 
@@ -362,6 +365,7 @@ export interface CheckoutRequest {
   items: CheckoutItemRequest[];
   customerEmail?: string;
   note?: string;
+  installationService?: boolean;
 }
 
 export interface CheckoutResponse {

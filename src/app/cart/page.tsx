@@ -5,7 +5,8 @@ import { useAuth } from '@/context/AuthContext';
 import { Header, Footer } from '@/components';
 import { CustomizationModal } from '@/components/product';
 import { formatPriceWithCurrency, createCheckout } from '@/lib/api';
-import { getTotalInches } from '@/lib/pricing';
+import { getTotalInches, getInstallationServicePrice } from '@/lib/pricing';
+import InstallationServiceInfo from '@/components/product/customization/InstallationServiceInfo';
 import { CartItem, CheckoutItemRequest, DEFAULT_CONFIGURATION, Product, ProductConfiguration } from '@/types';
 import {
   isReplacementVerticalSlatProduct,
@@ -70,7 +71,7 @@ import { getEasyStickFieldLabels, getEasyStickSubtype, isEasyStickProduct } from
 import { isRomanProduct } from '@/lib/roman-blinds';
 
 export default function CartPage() {
-  const { cart, removeFromCart, updateCartItem, updateQuantity, clearCart } = useCart();
+  const { cart, removeFromCart, updateCartItem, updateQuantity, setInstallationService, clearCart } = useCart();
   const { customer } = useAuth();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -167,7 +168,7 @@ export default function CartPage() {
         };
       });
 
-      const result = await createCheckout(checkoutItems, customer?.email || undefined);
+      const result = await createCheckout(checkoutItems, customer?.email || undefined, cart.installationService);
 
       // Clear cart before redirecting
       clearCart();
@@ -732,8 +733,27 @@ export default function CartPage() {
                 <div className="space-y-3 mb-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted">Subtotal</span>
-                    <span className="font-medium text-foreground">{formatPriceWithCurrency(cart.total)}</span>
+                    <span className="font-medium text-foreground">
+                      {formatPriceWithCurrency(cart.total - cart.installationServicePrice)}
+                    </span>
                   </div>
+                  <label className="flex items-start justify-between gap-3 text-sm cursor-pointer">
+                    <span className="flex items-start gap-2">
+                      <input
+                        type="checkbox"
+                        checked={cart.installationService}
+                        onChange={(e) => setInstallationService(e.target.checked)}
+                        className="mt-0.5 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+                      />
+                      <span className="flex items-center gap-1.5 text-muted">
+                        Add professional installation
+                        <InstallationServiceInfo />
+                      </span>
+                    </span>
+                    <span className="font-medium text-foreground whitespace-nowrap">
+                      {formatPriceWithCurrency(getInstallationServicePrice(cart.itemCount))}
+                    </span>
+                  </label>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted">Shipping</span>
                     <span className="text-sm italic text-muted">Calculated at checkout</span>

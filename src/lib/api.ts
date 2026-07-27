@@ -612,13 +612,15 @@ interface CheckoutApiResponse {
  */
 export async function createCheckout(
   items: CheckoutItemRequest[],
-  customerEmail?: string
+  customerEmail?: string,
+  installationService?: boolean
 ): Promise<CheckoutResponse> {
   const response = await apiFetch<CheckoutApiResponse>('/api/orders/create-checkout', {
     method: 'POST',
     body: JSON.stringify({
       items,
       customerEmail,
+      installationService,
     }),
   });
 

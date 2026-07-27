@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { PriceOption } from '@/types';
-import HoverImagePreview from './HoverImagePreview';
+import PortalHoverImagePreview from './PortalHoverImagePreview';
 
 interface HeadrailSelectorProps {
   options: PriceOption[];
@@ -12,7 +12,7 @@ interface HeadrailSelectorProps {
 }
 
 const HeadrailSelector = ({ options, selectedHeadrail, onHeadrailChange }: HeadrailSelectorProps) => {
-  const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+  const [hoveredPreview, setHoveredPreview] = useState<{ name: string; image: string; anchorRect: { top: number; left: number; right: number; bottom: number; width: number; height: number } } | null>(null);
 
   return (
     <div className="flex flex-col gap-4">
@@ -25,8 +25,8 @@ const HeadrailSelector = ({ options, selectedHeadrail, onHeadrailChange }: Headr
           <div
             key={option.id}
             className="relative"
-            onMouseEnter={() => setHoveredOption(option.id)}
-            onMouseLeave={() => setHoveredOption(null)}
+            onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
+            onMouseLeave={() => setHoveredPreview(null)}
           >
             <button
               onClick={() => onHeadrailChange(option.id)}
@@ -64,13 +64,10 @@ const HeadrailSelector = ({ options, selectedHeadrail, onHeadrailChange }: Headr
                 </div>
               )}
             </button>
-
-            {hoveredOption === option.id && option.image && (
-              <HoverImagePreview image={option.image} name={option.name} />
-            )}
           </div>
         ))}
       </div>
+      <PortalHoverImagePreview preview={hoveredPreview} />
     </div>
   );
 };

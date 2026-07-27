@@ -7,6 +7,7 @@ import { isSkylightProduct } from '@/lib/skylight';
 import { isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
 import { isPerfectFitShutterProduct } from '@/lib/perfect-fit-shutter';
 import { findSkylightBlindTypeOption, findSkylightBrandOption } from '@/data/skylight';
+import { getInstallationServiceTier } from '@/lib/pricing';
 
 // ============================================
 // Types
@@ -51,6 +52,7 @@ export interface CreateCheckoutRequest {
   items: CheckoutItemRequest[];
   customerEmail?: string;
   note?: string;
+  installationService?: boolean;
 }
 
 export interface CreateCheckoutResponse {
@@ -76,6 +78,9 @@ interface ShopifyDraftOrderLineItem {
 
 const variantIdByHandleCache = new Map<string, number | null>();
 const DRAFT_ORDER_CURRENCY = 'GBP';
+const INSTALLATION_SERVICE_HANDLE = 'installation-service';
+
+let installationServiceVariantsCache: Map<string, number> | null = null;
 
 // ============================================
 // Helper Functions
@@ -242,6 +247,39 @@ async function getPrimaryVariantIdByHandle(handle: string): Promise<number | nul
   }
 }
 
+async function getInstallationServiceVariantId(variantTitle: string): Promise<number | null> {
+  if (!installationServiceVariantsCache) {
+    const url = getAdminApiUrl(
+      `/products.json?handle=${encodeURIComponent(INSTALLATION_SERVICE_HANDLE)}&fields=variants`
+    );
+    const response = await fetch(url, {
+      headers: getAdminHeaders(),
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      console.error(`[OrderService] Failed to fetch "${INSTALLATION_SERVICE_HANDLE}" variants: ${response.status}`);
+      return null;
+    }
+
+    const data = (await response.json()) as {
+      products?: Array<{ variants?: Array<{ id?: number | string; title?: string }> }>;
+    };
+    const variants = data.products?.[0]?.variants || [];
+
+    const map = new Map<string, number>();
+    for (const variant of variants) {
+      const parsed = typeof variant.id === 'string' ? Number(variant.id) : variant.id;
+      if (variant.title && Number.isFinite(parsed) && parsed! > 0) {
+        map.set(variant.title, parsed!);
+      }
+    }
+    installationServiceVariantsCache = map;
+  }
+
+  return installationServiceVariantsCache.get(variantTitle) ?? null;
+}
+
 const PRICE_TOLERANCE = 0.50;
 
 // ============================================
@@ -349,6 +387,39 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     });
 
     subtotal += itemPrice * item.quantity;
+  }
+
+  if (request.installationService) {
+    const totalBlindQuantity = request.items.reduce((sum, item) => sum + item.quantity, 0);
+    const tier = getInstallationServiceTier(totalBlindQuantity);
+    const installationVariantId = await getInstallationServiceVariantId(tier.variantTitle);
+
+    if (!installationVariantId) {
+      throw new CheckoutError(
+        `Installation service product/variant not found (handle: "${INSTALLATION_SERVICE_HANDLE}", tier: "${tier.variantTitle}"). ` +
+        'Run scripts/create-installation-service-product.mjs to create it.',
+        500
+      );
+    }
+
+    lineItems.push({
+      variantId: `gid://shopify/ProductVariant/${installationVariantId}`,
+      priceOverride: {
+        amount: tier.price.toFixed(2),
+        currencyCode: DRAFT_ORDER_CURRENCY,
+      },
+      quantity: 1,
+      customAttributes: [],
+    });
+
+    responseLineItems.push({
+      handle: INSTALLATION_SERVICE_HANDLE,
+      title: 'Installation Service',
+      calculatedPrice: tier.price,
+      quantity: 1,
+    });
+
+    subtotal += tier.price;
   }
 
   const mutation = `

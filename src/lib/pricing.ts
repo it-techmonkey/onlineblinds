@@ -370,3 +370,49 @@ export function getTotalInches(whole: number, fraction: string, unit: 'inches' |
   }
   return whole + parseFraction(fraction);
 }
+
+// ============================================
+// Installation Service
+// ============================================
+
+export type InstallationServiceTier = '1-blind' | '2-5-blinds' | '6-plus-blinds';
+
+export interface InstallationServiceTierInfo {
+  tier: InstallationServiceTier;
+  price: number;
+  variantTitle: string;
+}
+
+// Must stay in sync with the variants created by scripts/create-installation-service-product.mjs
+const INSTALLATION_SERVICE_TIERS: InstallationServiceTierInfo[] = [
+  { tier: '1-blind', price: 40, variantTitle: '1 Blind' },
+  { tier: '2-5-blinds', price: 60, variantTitle: '2-5 Blinds' },
+  { tier: '6-plus-blinds', price: 85, variantTitle: '6+ Blinds' },
+];
+
+/**
+ * Installation service pricing tier for a given number of blinds in the order.
+ */
+export function getInstallationServiceTier(blindQuantity: number): InstallationServiceTierInfo {
+  if (blindQuantity <= 1) return INSTALLATION_SERVICE_TIERS[0];
+  if (blindQuantity <= 5) return INSTALLATION_SERVICE_TIERS[1];
+  return INSTALLATION_SERVICE_TIERS[2];
+}
+
+export function getInstallationServicePrice(blindQuantity: number): number {
+  return getInstallationServiceTier(blindQuantity).price;
+}
+
+/**
+ * Display-friendly breakdown of installation service pricing tiers, for showing
+ * customers the full price ladder (not just the price for their current quantity).
+ */
+export const INSTALLATION_SERVICE_PRICING_TIERS: {
+  label: string;
+  price: number;
+  matches: (blindQuantity: number) => boolean;
+}[] = [
+  { label: '1 blind', price: INSTALLATION_SERVICE_TIERS[0].price, matches: (qty) => qty <= 1 },
+  { label: '2-5 blinds', price: INSTALLATION_SERVICE_TIERS[1].price, matches: (qty) => qty >= 2 && qty <= 5 },
+  { label: '6+ blinds', price: INSTALLATION_SERVICE_TIERS[2].price, matches: (qty) => qty >= 6 },
+];
