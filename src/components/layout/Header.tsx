@@ -341,8 +341,18 @@ const Header = () => {
                   </div>
 
                   <div className="border-t border-border px-4 py-3">
-                    <div className="mb-3 flex items-center justify-between">
+                    <div className="mb-1.5 flex items-center justify-between">
                       <span className="text-[13px] text-muted">Subtotal</span>
+                      <span className="text-[14px] font-medium text-foreground">{formatPriceWithCurrency(cart.total - cart.installationServicePrice)}</span>
+                    </div>
+                    {cart.installationService && (
+                      <div className="mb-1.5 flex items-center justify-between">
+                        <span className="text-[13px] text-muted">Installation Service</span>
+                        <span className="text-[14px] font-medium text-foreground">{formatPriceWithCurrency(cart.installationServicePrice)}</span>
+                      </div>
+                    )}
+                    <div className="mb-3 flex items-center justify-between border-t border-border pt-1.5">
+                      <span className="text-[13px] font-semibold text-foreground">Total</span>
                       <span className="text-[16px] font-semibold text-foreground">{formatPriceWithCurrency(cart.total)}</span>
                     </div>
                     <div className="grid grid-cols-2 gap-2">

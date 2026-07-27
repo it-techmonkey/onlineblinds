@@ -20,7 +20,9 @@ import {
   calculateTotalPrice,
   configToCustomizations,
   getTotalInches,
+  getInstallationServicePrice,
 } from '@/lib/pricing';
+import InstallationServiceInfo from './customization/InstallationServiceInfo';
 import {
   formatMissingCustomizationsMessage,
   getMissingRequiredCustomizations,
@@ -190,6 +192,7 @@ const ProductPage = ({
   initialCustomizationPricing = [],
 }: ProductPageProps) => {
   const { addToCart, clearCart } = useCart();
+  const [wantsInstallation, setWantsInstallation] = useState(false);
   const { customer } = useAuth();
   const searchParams = useSearchParams();
 
@@ -1215,14 +1218,14 @@ const ProductPage = ({
           ...product,
           price: validation.calculatedPrice,
         };
-        addToCart(productWithPrice, config);
+        addToCart(productWithPrice, config, wantsInstallation);
       } else {
         // Price matches, proceed with cart
         const productWithPrice = {
           ...product,
           price: totalPrice,
         };
-        addToCart(productWithPrice, config);
+        addToCart(productWithPrice, config, wantsInstallation);
       }
     } catch (error) {
       console.error('Price validation failed:', error);
@@ -1231,7 +1234,7 @@ const ProductPage = ({
         ...product,
         price: totalPrice,
       };
-      addToCart(productWithPrice, config);
+      addToCart(productWithPrice, config, wantsInstallation);
     } finally {
       setIsValidating(false);
     }
@@ -1248,7 +1251,11 @@ const ProductPage = ({
     setIsCheckingOut(true);
 
     try {
-      const result = await createCheckout([buildCheckoutItem()], customer?.email || undefined);
+      const result = await createCheckout(
+        [buildCheckoutItem()],
+        customer?.email || undefined,
+        wantsInstallation
+      );
       clearCart();
       window.location.href = result.checkoutUrl;
     } catch (error) {
@@ -2280,6 +2287,24 @@ const ProductPage = ({
                   </div>
                 )}
               </div>
+
+              <label className="flex items-start justify-between gap-3 mt-4 md:mt-6 p-3.5 rounded-[12px] border border-border bg-surface cursor-pointer">
+                <span className="flex items-start gap-2.5">
+                  <input
+                    type="checkbox"
+                    checked={wantsInstallation}
+                    onChange={(e) => setWantsInstallation(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+                  />
+                  <span className="flex items-center gap-1.5 text-sm font-medium text-foreground">
+                    Add professional installation
+                    <InstallationServiceInfo currency={product.currency} />
+                  </span>
+                </span>
+                <span className="text-sm font-semibold text-foreground whitespace-nowrap">
+                  {formatPriceWithCurrency(getInstallationServicePrice(1), product.currency)}
+                </span>
+              </label>
 
               <div ref={inlineButtonsRef}>
                 {/* Add to Cart Button */}
