@@ -58,6 +58,10 @@ const sections = [
           Large Day &amp; Night blinds over <strong>1800mm</strong> wide may exhibit a slight wave effect due to size and
           fabric weight restrictions.
         </p>
+        <p>
+          Please note that product images are for illustration purposes only. Actual fabric colours and shades may vary
+          slightly due to screen settings, lighting and photography.
+        </p>
       </>
     ),
   },
