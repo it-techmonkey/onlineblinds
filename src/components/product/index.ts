@@ -18,3 +18,4 @@ export * from './HowItWorksSection';
 export * from './ProductRechargeSection';
 export * from './ProductWarrantySection';
 export * from './ProductComparisonTableSection';
+export * from './InstallationServiceSection';
