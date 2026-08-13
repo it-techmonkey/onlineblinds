@@ -175,11 +175,16 @@ export function validatePricingData(data, options = {}) {
       continue;
     }
 
+    // A band may legitimately leave combinations out when the supplier does not make
+    // that size (e.g. the largest Metal Venetian widths at the longest drops), so a
+    // sparse grid is allowed. More cells than the grid can hold is still a bug.
     const widthIds = new Set(cells.map((cell) => cell.widthBandId));
     const heightIds = new Set(cells.map((cell) => cell.heightBandId));
     const expected = widthIds.size * heightIds.size;
-    if (cells.length !== expected) {
-      errors.push(`Price band "${band.name}" has ${cells.length} cells; expected ${expected}`);
+    if (cells.length > expected) {
+      errors.push(`Price band "${band.name}" has ${cells.length} cells; grid holds at most ${expected}`);
+    } else if (cells.length < expected) {
+      warnings.push(`Price band "${band.name}" has ${expected - cells.length} unavailable size combinations`);
     }
   }
 
