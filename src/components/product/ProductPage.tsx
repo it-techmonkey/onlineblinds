@@ -967,6 +967,30 @@ const ProductPage = ({
       heightInches > sizeRanges.maxHeight
     );
   }, [config.height, config.heightFraction, config.heightUnit, config.width, config.widthFraction, config.widthUnit, isSkylight, sizeRanges, usesHeightOnlyVerticalPricing]);
+
+  // A size can sit inside the band's overall width/height range and still have no
+  // price cell, because some bands leave large width/drop combinations out (the
+  // supplier does not make them). Without this the page falls back to the product's
+  // "from" price, which reads as a valid quote for a size we cannot actually sell.
+  const isSizeUnavailable = useMemo(() => {
+    if (isSkylight || usesHeightOnlyVerticalPricing || !priceMatrix || isMeasurementOutOfRange) {
+      return false;
+    }
+
+    const widthInches = getTotalInches(config.width, config.widthFraction, config.widthUnit);
+    const heightInches = getTotalInches(config.height, config.heightFraction, config.heightUnit);
+
+    if (widthInches <= 0 || heightInches <= 0) {
+      return false;
+    }
+
+    return priceCalculation === null;
+  }, [config.height, config.heightFraction, config.heightUnit, config.width, config.widthFraction, config.widthUnit, isMeasurementOutOfRange, isSkylight, priceCalculation, priceMatrix, usesHeightOnlyVerticalPricing]);
+
+  const sizeFieldMessage = isSizeUnavailable
+    ? 'We cannot make this blind in that width and drop combination. Please adjust your measurements.'
+    : 'Please enter a valid size';
+
   const isPerfectFitShutterConfigurationIncomplete = useMemo(() => {
     if (!isPerfectFitShutter) {
       return false;
@@ -1072,7 +1096,7 @@ const ProductPage = ({
     } else {
       if (config.width === 0 && !usesHeightOnlyVerticalPricing) keys.add('width');
       if (config.height === 0) keys.add('height');
-      if (isMeasurementOutOfRange) {
+      if (isMeasurementOutOfRange || isSizeUnavailable) {
         keys.add('width');
         keys.add('height');
       }
@@ -1323,23 +1347,31 @@ const ProductPage = ({
               {/* Price Section */}
               <div className="border border-border rounded-[16px] p-4 md:p-6 mb-4 md:mb-6 bg-surface shadow-[0_6px_18px_rgba(31,41,51,0.05)]">
                 <div className="flex flex-col items-center lg:items-start">
-                  <div className="flex items-baseline gap-3 mb-2 md:mb-3">
-                    <span className="text-2xl md:text-[34px] leading-none font-semibold text-foreground">
-                      {showMinPriceIndicator
-                        ? formatPriceWithCurrency(formatPrice(product.price), product.currency)
-                        : formatPriceWithCurrency(formatPrice(totalPrice), product.currency)
-                      }
-                    </span>
-                    <span className="text-base md:text-xl text-muted line-through">
-                      {showMinPriceIndicator
-                        ? formatPriceWithCurrency(formatPrice(Math.round(product.price * 1.67)), product.currency)
-                        : formatPriceWithCurrency(formatPrice(Math.round(totalPrice * 1.67)), product.currency)
-                      }
-                    </span>
-                    <span className="rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-red-700">
-                      Save 40%
-                    </span>
-                  </div>
+                  {isSizeUnavailable ? (
+                    <div className="mb-2 md:mb-3">
+                      <span className="text-xl md:text-2xl leading-none font-semibold text-[#c24646]">
+                        Not available in this size
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="flex items-baseline gap-3 mb-2 md:mb-3">
+                      <span className="text-2xl md:text-[34px] leading-none font-semibold text-foreground">
+                        {showMinPriceIndicator
+                          ? formatPriceWithCurrency(formatPrice(product.price), product.currency)
+                          : formatPriceWithCurrency(formatPrice(totalPrice), product.currency)
+                        }
+                      </span>
+                      <span className="text-base md:text-xl text-muted line-through">
+                        {showMinPriceIndicator
+                          ? formatPriceWithCurrency(formatPrice(Math.round(product.price * 1.67)), product.currency)
+                          : formatPriceWithCurrency(formatPrice(Math.round(totalPrice * 1.67)), product.currency)
+                        }
+                      </span>
+                      <span className="rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-red-700">
+                        Save 40%
+                      </span>
+                    </div>
+                  )}
                   {priceCalculation && !showMinPriceIndicator && (
                     <div className="text-xs text-muted mb-1">
                       {isSkylight
@@ -1384,7 +1416,7 @@ const ProductPage = ({
                           fieldKey={['width', 'height']}
                           invalid={invalidFields.has('width') || invalidFields.has('height')}
                           registerRef={registerFieldRef}
-                          message="Please enter a valid size"
+                          message={sizeFieldMessage}
                         >
                           <SizeSelector
                             width={config.width}
@@ -2318,7 +2350,9 @@ const ProductPage = ({
                 >
                   {isValidating
                     ? 'Adding to Cart...'
-                    : `Add to Cart — ${formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}`}
+                    : isSizeUnavailable
+                      ? 'Add to Cart'
+                      : `Add to Cart — ${formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}`}
                 </button>
 
                 {/* Buy Now Button */}
@@ -2452,11 +2486,15 @@ const ProductPage = ({
       {!isSkylight && !inlineButtonsVisible && (
         <StickyAddToCartBar
           productName={product.name}
-          price={formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}
-          compareAtPrice={formatPriceWithCurrency(
-            formatPrice(Math.round((showMinPriceIndicator ? product.price : totalPrice) * 1.67)),
-            product.currency
-          )}
+          price={isSizeUnavailable
+            ? 'Not available in this size'
+            : formatPriceWithCurrency(showMinPriceIndicator ? formatPrice(minimumDisplayedPrice) : formatPrice(totalPrice), product.currency)}
+          compareAtPrice={isSizeUnavailable
+            ? ''
+            : formatPriceWithCurrency(
+              formatPrice(Math.round((showMinPriceIndicator ? product.price : totalPrice) * 1.67)),
+              product.currency
+            )}
           onAddToCart={handleAddToCart}
           addToCartLabel={isValidating ? 'Adding to Cart...' : 'Add to Cart'}
           addToCartDisabled={isValidating || isCheckingOut}
