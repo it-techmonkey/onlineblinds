@@ -231,12 +231,15 @@ function validatePricingData(data: PricingDataFile) {
       continue;
     }
 
+    // Sparse grids are allowed: a band may omit combinations the supplier does not
+    // make, and calculateProductPrice reports those as unavailable. Overfilling the
+    // grid is still a bug.
     const widthIds = new Set(cells.map((cell) => cell.widthBandId));
     const heightIds = new Set(cells.map((cell) => cell.heightBandId));
     const expectedCells = widthIds.size * heightIds.size;
-    if (cells.length !== expectedCells) {
+    if (cells.length > expectedCells) {
       errors.push(
-        `Price band "${priceBand.name}" has ${cells.length} cells but expected ${expectedCells} for its width/height grid`
+        `Price band "${priceBand.name}" has ${cells.length} cells but its width/height grid holds at most ${expectedCells}`
       );
     }
   }
