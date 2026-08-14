@@ -2,17 +2,19 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
+type SizeUnit = 'cm' | 'mm';
+
 interface SizeSelectorProps {
   width: number;
   widthFraction: string;
   height: number;
   heightFraction: string;
-  unit: 'inches' | 'cm';
+  unit: SizeUnit;
   onWidthChange: (value: number) => void;
   onWidthFractionChange: (value: string) => void;
   onHeightChange: (value: number) => void;
   onHeightFractionChange: (value: string) => void;
-  onUnitChange: (unit: 'inches' | 'cm') => void;
+  onUnitChange: (unit: SizeUnit) => void;
   minWidth?: number;
   maxWidth?: number;
   minHeight?: number;
@@ -20,19 +22,13 @@ interface SizeSelectorProps {
   showWidth?: boolean;
 }
 
-const fractions = ['0', '1/16', '1/8', '3/16', '1/4', '5/16', '3/8', '7/16', '1/2', '9/16', '5/8', '11/16', '3/4', '13/16', '7/8', '15/16'];
+// Sub-unit precision under Centimeters — millimeters, 0-9. Millimeters mode has no
+// sub-unit of its own; the whole size is entered directly in mm.
 const millimeters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-function parseFractionValue(value: string, unit: 'inches' | 'cm') {
-  if (!value || value === '0') return 0;
-
-  if (unit === 'cm') {
-    return (parseInt(value, 10) || 0) / 10;
-  }
-
-  const [numerator, denominator] = value.split('/').map(Number);
-  if (!numerator || !denominator) return 0;
-  return numerator / denominator;
+function parseFractionValue(value: string, unit: SizeUnit) {
+  if (unit !== 'cm' || !value || value === '0') return 0;
+  return (parseInt(value, 10) || 0) / 10;
 }
 
 function parseWholeInput(inputValue: string, fallbackValue: number) {
@@ -60,31 +56,23 @@ const SizeSelector = ({
   const [widthInput, setWidthInput] = useState(width > 0 ? String(width) : '');
   const [heightInput, setHeightInput] = useState(height > 0 ? String(height) : '');
 
+  // minWidth/maxWidth/minHeight/maxHeight arrive in inches from the price band
+  // matrix regardless of the selected display unit.
   const widthLimits = useMemo(() => {
-    if (unit === 'inches') {
-      return {
-        min: minWidth ?? 20,
-        max: maxWidth ?? 157,
-        placeholder: `${minWidth ?? 20}-${maxWidth ?? 157}`,
-      };
-    }
-
-    const min = minWidth ? Math.round(minWidth * 2.54) : 50;
-    const max = maxWidth ? Math.round(maxWidth * 2.54) : 400;
+    const factor = unit === 'mm' ? 25.4 : 2.54;
+    const fallbackMin = unit === 'mm' ? 500 : 50;
+    const fallbackMax = unit === 'mm' ? 4000 : 400;
+    const min = minWidth ? Math.round(minWidth * factor) : fallbackMin;
+    const max = maxWidth ? Math.round(maxWidth * factor) : fallbackMax;
     return { min, max, placeholder: `${min}-${max}` };
   }, [unit, minWidth, maxWidth]);
 
   const heightLimits = useMemo(() => {
-    if (unit === 'inches') {
-      return {
-        min: minHeight ?? 20,
-        max: maxHeight ?? 118,
-        placeholder: `${minHeight ?? 20}-${maxHeight ?? 118}`,
-      };
-    }
-
-    const min = minHeight ? Math.round(minHeight * 2.54) : 50;
-    const max = maxHeight ? Math.round(maxHeight * 2.54) : 300;
+    const factor = unit === 'mm' ? 25.4 : 2.54;
+    const fallbackMin = unit === 'mm' ? 500 : 50;
+    const fallbackMax = unit === 'mm' ? 3000 : 300;
+    const min = minHeight ? Math.round(minHeight * factor) : fallbackMin;
+    const max = maxHeight ? Math.round(maxHeight * factor) : fallbackMax;
     return { min, max, placeholder: `${min}-${max}` };
   }, [unit, minHeight, maxHeight]);
 
@@ -166,6 +154,8 @@ const SizeSelector = ({
     setHeightInput(normalized.whole > 0 ? String(normalized.whole) : '');
   };
 
+  const unitLabel = unit === 'mm' ? 'Millimeters' : 'Centimeters';
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -173,20 +163,20 @@ const SizeSelector = ({
 
         <div className="flex bg-[#d9dfeb] p-1 rounded-[12px]">
           <button
-            onClick={() => onUnitChange('inches')}
-            className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
-              unit === 'inches' ? 'bg-white text-[#335c99] shadow-sm' : 'text-[#67748a] hover:text-[#596783]'
-            }`}
-          >
-            Inches
-          </button>
-          <button
             onClick={() => onUnitChange('cm')}
             className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
               unit === 'cm' ? 'bg-white text-[#335c99] shadow-sm' : 'text-[#67748a] hover:text-[#596783]'
             }`}
           >
             Centimeters
+          </button>
+          <button
+            onClick={() => onUnitChange('mm')}
+            className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
+              unit === 'mm' ? 'bg-white text-[#335c99] shadow-sm' : 'text-[#67748a] hover:text-[#596783]'
+            }`}
+          >
+            Millimeters
           </button>
         </div>
       </div>
@@ -203,9 +193,7 @@ const SizeSelector = ({
             <div className="flex gap-3 flex-1">
               <div className="flex-1">
                 <div className="border border-[#c4d0e4] rounded-[12px] px-3 py-2 shadow-[0_1px_2px_rgba(31,42,68,0.06)]">
-                  <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">
-                    {unit === 'inches' ? 'Inches' : 'Centimeters'}
-                  </div>
+                  <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">{unitLabel}</div>
                   <input
                     type="number"
                     step="1"
@@ -219,28 +207,28 @@ const SizeSelector = ({
                   />
                 </div>
               </div>
-              <div className="flex-1">
-                <div className="border border-[#c4d0e4] rounded-[12px] px-3 py-2 shadow-[0_1px_2px_rgba(31,42,68,0.06)]">
-                  <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">
-                    {unit === 'inches' ? 'Sixteenths' : 'Millimeters'}
+              {unit === 'cm' && (
+                <div className="flex-1">
+                  <div className="border border-[#c4d0e4] rounded-[12px] px-3 py-2 shadow-[0_1px_2px_rgba(31,42,68,0.06)]">
+                    <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">Millimeters</div>
+                    <select
+                      value={widthFraction}
+                      onChange={(e) => {
+                        const nextFraction = e.target.value;
+                        onWidthFractionChange(nextFraction);
+                        if (showWidth) {
+                          commitWidthValue(widthInput, nextFraction);
+                        }
+                      }}
+                      className="text-base font-medium text-[#1f2a44] bg-transparent border-none p-0 appearance-none cursor-pointer focus:outline-none w-full"
+                    >
+                      {millimeters.map((millimeter) => (
+                        <option key={millimeter} value={millimeter}>{millimeter} mm</option>
+                      ))}
+                    </select>
                   </div>
-                  <select
-                    value={widthFraction}
-                    onChange={(e) => {
-                      const nextFraction = e.target.value;
-                      onWidthFractionChange(nextFraction);
-                      if (showWidth) {
-                        commitWidthValue(widthInput, nextFraction);
-                      }
-                    }}
-                    className="text-base font-medium text-[#1f2a44] bg-transparent border-none p-0 appearance-none cursor-pointer focus:outline-none w-full"
-                  >
-                    {unit === 'inches'
-                      ? fractions.map((fraction) => <option key={fraction} value={fraction}>{fraction}</option>)
-                      : millimeters.map((millimeter) => <option key={millimeter} value={millimeter}>{millimeter} mm</option>)}
-                  </select>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}
@@ -255,9 +243,7 @@ const SizeSelector = ({
           <div className="flex gap-3 flex-1">
             <div className="flex-1">
               <div className="border border-[#c4d0e4] rounded-[12px] px-3 py-2 shadow-[0_1px_2px_rgba(31,42,68,0.06)]">
-                <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">
-                  {unit === 'inches' ? 'Inches' : 'Centimeters'}
-                </div>
+                <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">{unitLabel}</div>
                 <input
                   type="number"
                   step="1"
@@ -271,34 +257,34 @@ const SizeSelector = ({
                 />
               </div>
             </div>
-            <div className="flex-1">
-              <div className="border border-[#c4d0e4] rounded-[12px] px-3 py-2 shadow-[0_1px_2px_rgba(31,42,68,0.06)]">
-                <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">
-                  {unit === 'inches' ? 'Sixteenths' : 'Millimeters'}
+            {unit === 'cm' && (
+              <div className="flex-1">
+                <div className="border border-[#c4d0e4] rounded-[12px] px-3 py-2 shadow-[0_1px_2px_rgba(31,42,68,0.06)]">
+                  <div className="text-[10px] text-[#8d9ab1] uppercase tracking-wide mb-0.5">Millimeters</div>
+                  <select
+                    value={heightFraction}
+                    onChange={(e) => {
+                      const nextFraction = e.target.value;
+                      onHeightFractionChange(nextFraction);
+                      commitHeightValue(heightInput, nextFraction);
+                    }}
+                    className="text-base font-medium text-[#1f2a44] bg-transparent border-none p-0 appearance-none cursor-pointer focus:outline-none w-full"
+                  >
+                    {millimeters.map((millimeter) => (
+                      <option key={millimeter} value={millimeter}>{millimeter} mm</option>
+                    ))}
+                  </select>
                 </div>
-                <select
-                  value={heightFraction}
-                  onChange={(e) => {
-                    const nextFraction = e.target.value;
-                    onHeightFractionChange(nextFraction);
-                    commitHeightValue(heightInput, nextFraction);
-                  }}
-                  className="text-base font-medium text-[#1f2a44] bg-transparent border-none p-0 appearance-none cursor-pointer focus:outline-none w-full"
-                >
-                  {unit === 'inches'
-                    ? fractions.map((fraction) => <option key={fraction} value={fraction}>{fraction}</option>)
-                    : millimeters.map((millimeter) => <option key={millimeter} value={millimeter}>{millimeter} mm</option>)}
-                </select>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
 
       <p className="text-xs text-[#67748a]">
         Allowed range:
-        {showWidth ? ` Width ${widthLimits.min}-${widthLimits.max} ${unit === 'inches' ? 'in' : 'cm'} ` : ' '}
-        Height {heightLimits.min}-{heightLimits.max} {unit === 'inches' ? 'in' : 'cm'}
+        {showWidth ? ` Width ${widthLimits.min}-${widthLimits.max} ${unit} ` : ' '}
+        Height {heightLimits.min}-{heightLimits.max} {unit}
       </p>
     </div>
   );

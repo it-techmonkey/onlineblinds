@@ -11,6 +11,8 @@ import {
   calculateTotalPrice,
   configToCustomizations,
   getTotalInches,
+  formatMeasurement,
+  formatBandSizeMm,
 } from '@/lib/pricing';
 import {
   formatMissingCustomizationsMessage,
@@ -21,10 +23,7 @@ import {
   isReplacementVerticalSlatProduct,
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
 } from '@/lib/vertical-blinds';
-import {
-  getMotorizedRemoteOptions,
-  isSpecialMotorizedProduct,
-} from '@/lib/electrical-roller';
+import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
 import {
   getEasyStickFieldLabels,
   getEasyStickSubtype,
@@ -59,7 +58,6 @@ import {
   ChainColorSelector,
   WrappedCassetteSelector,
   SimpleDropdown,
-  MotorizationSelector,
   BottomBarSelector,
   RollStyleSelector,
 } from './customization';
@@ -105,7 +103,11 @@ import {
   WRAPPED_CASSETTE_OPTIONS,
   CASSETTE_MATCHING_BAR_OPTIONS,
   ROLLER_CASSETTE_OPTIONS,
+  MATCHING_FABRIC_CASSETTE_OPTIONS,
+  CHROME_UPGRADE_OPTIONS,
+  FABRIC_INSERT_CASSETTE_OPTIONS,
   MOTORIZATION_OPTIONS,
+  MOTORIZED_OPTION_ID,
   BOTTOM_BAR_OPTIONS,
   ROLL_STYLE_OPTIONS,
 } from '@/data/customizations';
@@ -136,10 +138,6 @@ const CustomizationModal = ({
     () => isSpecialMotorizedProduct(product.tags),
     [product.tags]
   );
-  const motorizedRemoteOptions = useMemo(
-    () => getMotorizedRemoteOptions(MOTORIZATION_OPTIONS),
-    []
-  );
 
   // State for pricing data from backend
   const [priceMatrix, setPriceMatrix] = useState<PriceBandMatrix | null>(null);
@@ -163,14 +161,7 @@ const CustomizationModal = ({
         const customizations = await fetchCustomizationPricing();
 
         if (isMounted) {
-          const bottomBarPricing = BOTTOM_BAR_OPTIONS.map(option => ({
-            category: 'bottom-bar',
-            optionId: option.id,
-            name: option.name,
-            prices: [{ widthMm: null, price: option.price || 0 }]
-          }));
-
-          setCustomizationPricing([...customizations, ...bottomBarPricing]);
+          setCustomizationPricing(customizations);
           setPricingLoaded(true);
         }
       } catch (error) {
@@ -476,7 +467,7 @@ const CustomizationModal = ({
       const nextMotorization =
         prev.motorization && prev.motorization !== 'none'
           ? prev.motorization
-          : motorizedRemoteOptions[0]?.id ?? null;
+          : MOTORIZED_OPTION_ID;
 
       if (
         prev.chainColor === null &&
@@ -493,7 +484,7 @@ const CustomizationModal = ({
         motorization: nextMotorization,
       };
     });
-  }, [motorizedRemoteOptions, isSpecialMotorized, setConfig]);
+  }, [isSpecialMotorized, setConfig]);
 
   useEffect(() => {
     if (!usesHeightOnlyVerticalPricing) return;
@@ -676,11 +667,14 @@ const CustomizationModal = ({
       bracketType: visibleOptions.showBracketType ? config.bracketType : null,
       chainColor: !visibleOptions.showChainColor || isSpecialMotorized ? null : config.chainColor,
       chainColorCategory: isRoman ? 'roman-chain-color' : 'chain-color',
+      chromeUpgrade: isDayNight ? config.chromeUpgrade : null,
       frameColor: visibleOptions.showFrameColor ? config.frameColor : null,
       frameColorCategory: isPerfectFitMetal ? 'perfect-fit-metal-frame-color' : 'frame-color',
       numberOfPanels: isPerfectFitShutter ? config.numberOfPanels : null,
       wrappedCassette: config.wrappedCassette,
       cassetteMatchingBar: config.cassetteMatchingBar,
+      sameFabricInsert: isDayNight ? config.sameFabricInsert : null,
+      matchingFabricCassette: product.features.hasRollerCassette ? config.matchingFabricCassette : null,
       isRollerCassette: product.features.hasRollerCassette,
       motorization: config.motorization,
       brand: config.brand,
@@ -688,7 +682,7 @@ const CustomizationModal = ({
       bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
       rollStyle: visibleOptions.showRollStyle ? config.rollStyle : null,
     });
-  }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter]);
+  }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter, isDayNight]);
 
   // Calculate price using new pricing system
   const priceCalculation = useMemo(() => {
@@ -804,6 +798,7 @@ const CustomizationModal = ({
       visibleOptions,
       isSkylight,
       isRoman,
+      isDayNight,
       isSpecialMotorized,
       labels: {
         installationMethod: isPerfectFitWooden
@@ -844,6 +839,7 @@ const CustomizationModal = ({
   }, [
     config,
     easyStickLabels,
+    isDayNight,
     isEasyStick,
     isFauxWooden,
     isPerfectFitMetal,
@@ -1243,7 +1239,15 @@ const CustomizationModal = ({
                     <ControlSideSelector
                       options={CONTROL_SIDE_OPTIONS}
                       selectedSide={config.controlSide}
-                      onSideChange={(sideId) => setConfig({ ...config, controlSide: sideId })}
+                      onSideChange={(sideId) =>
+                        setConfig({
+                          ...config,
+                          controlSide: sideId,
+                          // Day & Night: choosing a control side means the customer isn't
+                          // motorizing — mirrors the exclusivity on the product page.
+                          motorization: isDayNight ? null : config.motorization,
+                        })
+                      }
                     />
                   </div>
                 )}
@@ -1354,13 +1358,39 @@ const CustomizationModal = ({
                   </div>
                 )}
 
-                {/* Chain Color Selector */}
+                {/* Chain Color Selector (Day & Night: Upgrade to Chrome toggle instead) */}
                 {product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized && (
                   <div className="pt-6 relative z-10">
-                    <ChainColorSelector
-                      options={chainColorOptions}
-                      selectedColor={config.chainColor}
-                      onColorChange={(colorId) => setConfig({ ...config, chainColor: colorId })}
+                    {isDayNight ? (
+                      <SimpleDropdown
+                        label="Upgrade to Chrome"
+                        options={CHROME_UPGRADE_OPTIONS}
+                        selectedValue={config.chromeUpgrade}
+                        onChange={(optionId) =>
+                          setConfig({ ...config, chromeUpgrade: optionId, motorization: null })
+                        }
+                        placeholder="Select an option"
+                      />
+                    ) : (
+                      <ChainColorSelector
+                        options={chainColorOptions}
+                        selectedColor={config.chainColor}
+                        onColorChange={(colorId) => setConfig({ ...config, chainColor: colorId })}
+                        showFreeLabel={!isRoman}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {/* Same Fabric Insert in Cassette — Day & Night only, standalone */}
+                {isDayNight && product.features.hasCassetteMatchingBar && (
+                  <div className="pt-6 relative z-[4]">
+                    <SimpleDropdown
+                      label="Same Fabric Insert in Cassette"
+                      options={FABRIC_INSERT_CASSETTE_OPTIONS}
+                      selectedValue={config.sameFabricInsert}
+                      onChange={(optionId) => setConfig({ ...config, sameFabricInsert: optionId })}
+                      placeholder="Select an option"
                     />
                   </div>
                 )}
@@ -1389,15 +1419,22 @@ const CustomizationModal = ({
                   </div>
                 )}
 
-                {/* Roller Cassette Selector */}
+                {/* Roller Cover Cassette Options */}
                 {product.features.hasRollerCassette && (
-                  <div className="pt-6 relative z-[3]">
+                  <div className="pt-6 relative z-[3] space-y-6">
                     <SimpleDropdown
-                      label="Cassette and Bottom Matching Bar"
+                      label="Roller Cover Cassette Options"
                       options={ROLLER_CASSETTE_OPTIONS}
                       selectedValue={config.cassetteMatchingBar}
                       onChange={(barId) => setConfig({ ...config, cassetteMatchingBar: barId })}
                       placeholder="Select cassette color"
+                    />
+                    <SimpleDropdown
+                      label="Matching Fabric on cover cassette"
+                      options={MATCHING_FABRIC_CASSETTE_OPTIONS}
+                      selectedValue={config.matchingFabricCassette}
+                      onChange={(optionId) => setConfig({ ...config, matchingFabricCassette: optionId })}
+                      placeholder="Select an option"
                     />
                   </div>
                 )}
@@ -1425,24 +1462,26 @@ const CustomizationModal = ({
                   </div>
                 )}
 
-                {/* Motorization Selector */}
+                {/* Motorization — the remote-channel picker is gone; this is just the
+                    on/off equivalent of the product page's motorization card. */}
                 {(product.features.hasMotorization || isSpecialMotorized) && (
                   <div className="pt-6 relative z-[2]">
-                    {isSpecialMotorized ? (
-                      <SimpleDropdown
-                        label="Remote Control"
-                        options={motorizedRemoteOptions}
-                        selectedValue={config.motorization}
-                        onChange={(optionId) => setConfig({ ...config, motorization: optionId })}
-                        placeholder="Select remote option"
-                      />
-                    ) : (
-                      <MotorizationSelector
-                        options={MOTORIZATION_OPTIONS}
-                        selectedOption={config.motorization}
-                        onOptionChange={(optionId) => setConfig({ ...config, motorization: optionId })}
-                      />
-                    )}
+                    <SimpleDropdown
+                      label="Motorization"
+                      options={MOTORIZATION_OPTIONS}
+                      selectedValue={config.motorization}
+                      onChange={(optionId) =>
+                        setConfig({
+                          ...config,
+                          motorization: optionId,
+                          // Day & Night: motorizing means no manual control chain —
+                          // mirrors the exclusivity on the product page.
+                          controlSide: isDayNight && optionId !== 'none' ? null : config.controlSide,
+                          chromeUpgrade: isDayNight && optionId !== 'none' ? null : config.chromeUpgrade,
+                        })
+                      }
+                      placeholder="Select motorization"
+                    />
                   </div>
                 )}
 
@@ -1491,8 +1530,8 @@ const CustomizationModal = ({
                   {isSkylight
                     ? 'Base price plus selected skylight blind type.'
                     : usesHeightOnlyVerticalPricing
-                    ? `Height-only pricing: ${getTotalInches(config.height, config.heightFraction, config.heightUnit).toFixed(2)}"`
-                    : `Size: ${priceCalculation.widthBand?.inches}" × ${priceCalculation.heightBand?.inches}"`}
+                    ? `Height-only pricing: ${formatMeasurement(config.height, config.heightFraction, config.heightUnit)}`
+                    : `Size: ${formatBandSizeMm(priceCalculation.widthBand?.mm ?? 0, config.widthUnit)} × ${formatBandSizeMm(priceCalculation.heightBand?.mm ?? 0, config.heightUnit)}`}
                 </div>
               )}
             </div>

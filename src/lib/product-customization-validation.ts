@@ -45,6 +45,7 @@ export function getMissingRequiredCustomizations({
   visibleOptions,
   isSkylight,
   isRoman,
+  isDayNight = false,
   isSpecialMotorized,
   selectedOptionalCards,
   forceMotorization = false,
@@ -56,6 +57,8 @@ export function getMissingRequiredCustomizations({
   visibleOptions: VisibleCustomizationOptions;
   isSkylight: boolean;
   isRoman: boolean;
+  /** Day & Night blinds swap the chain-colour picker for a chrome upgrade toggle, and add a standalone fabric-insert requirement */
+  isDayNight?: boolean;
   isSpecialMotorized: boolean;
   selectedOptionalCards?: OptionalCardSelection;
   forceMotorization?: boolean;
@@ -76,6 +79,9 @@ export function getMissingRequiredCustomizations({
     }
   };
 
+  // Colour is required whenever the Shopify product exposes colour variants —
+  // the chosen colour is what the draft order books at checkout.
+  addMissing((product.colourVariants?.length ?? 0) > 0, config.colour, 'colour', 'Colour');
   addMissing(isSkylight, config.brand, 'brand', 'Brand');
   addMissing(isSkylight, config.blindType, 'blindType', 'Blind type');
   addMissing(product.features.hasHeadrail && visibleOptions.showHeadrail, config.headrail, 'headrail', 'Headrail');
@@ -156,12 +162,11 @@ export function getMissingRequiredCustomizations({
       'continuousChainLocation',
       'Chain location'
     );
-    addMissing(
-      continuousChainRequired,
-      config.chainColor,
-      'chainColor',
-      'Chain color'
-    );
+    if (isDayNight) {
+      addMissing(continuousChainRequired, config.chromeUpgrade, 'chromeUpgrade', 'Chrome upgrade');
+    } else {
+      addMissing(continuousChainRequired, config.chainColor, 'chainColor', 'Chain color');
+    }
     addMissing(
       Boolean(product.features.hasWrappedCassette),
       config.wrappedCassette,
@@ -174,6 +179,18 @@ export function getMissingRequiredCustomizations({
       config.cassetteMatchingBar,
       'cassetteMatchingBar',
       'Cassette and bottom bar'
+    );
+    addMissing(
+      Boolean(isDayNight && product.features.hasCassetteMatchingBar),
+      config.sameFabricInsert,
+      'sameFabricInsert',
+      'Same fabric insert'
+    );
+    addMissing(
+      Boolean(selectedOptionalCards.cassette && product.features.hasRollerCassette),
+      config.matchingFabricCassette,
+      'matchingFabricCassette',
+      'Matching fabric on cover cassette'
     );
     addMissing(
       Boolean(selectedOptionalCards.bottomBar && product.features.hasBottomBar && visibleOptions.showBottomBar),
@@ -191,18 +208,39 @@ export function getMissingRequiredCustomizations({
     return missing;
   }
 
-  addMissing(
-    product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized,
-    config.chainColor,
-    'chainColor',
-    'Chain color'
-  );
+  if (isDayNight) {
+    addMissing(
+      product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized,
+      config.chromeUpgrade,
+      'chromeUpgrade',
+      'Chrome upgrade'
+    );
+  } else {
+    addMissing(
+      product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized,
+      config.chainColor,
+      'chainColor',
+      'Chain color'
+    );
+  }
   addMissing(product.features.hasWrappedCassette, config.wrappedCassette, 'wrappedCassette', 'Cassette color');
   addMissing(
     product.features.hasCassetteMatchingBar || product.features.hasRollerCassette,
     config.cassetteMatchingBar,
     'cassetteMatchingBar',
     'Cassette and bottom bar'
+  );
+  addMissing(
+    isDayNight && product.features.hasCassetteMatchingBar,
+    config.sameFabricInsert,
+    'sameFabricInsert',
+    'Same fabric insert'
+  );
+  addMissing(
+    product.features.hasRollerCassette,
+    config.matchingFabricCassette,
+    'matchingFabricCassette',
+    'Matching fabric on cover cassette'
   );
   addMissing(
     product.features.hasBottomBar && visibleOptions.showBottomBar,

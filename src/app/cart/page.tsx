@@ -5,7 +5,8 @@ import { useAuth } from '@/context/AuthContext';
 import { Header, Footer } from '@/components';
 import { CustomizationModal } from '@/components/product';
 import { formatPriceWithCurrency, createCheckout } from '@/lib/api';
-import { getTotalInches, getInstallationServicePrice } from '@/lib/pricing';
+import { getTotalInches, getInstallationServicePrice, formatMeasurement } from '@/lib/pricing';
+import { buildBackendConfiguration } from '@/lib/checkout-item';
 import InstallationServiceInfo from '@/components/product/customization/InstallationServiceInfo';
 import { CartItem, CheckoutItemRequest, DEFAULT_CONFIGURATION, Product, ProductConfiguration } from '@/types';
 import {
@@ -66,6 +67,10 @@ import {
   LINING_TYPE_OPTIONS,
   WRAPPED_CASSETTE_OPTIONS,
   CASSETTE_MATCHING_BAR_OPTIONS,
+  CHROME_UPGRADE_OPTIONS,
+  FABRIC_INSERT_CASSETTE_OPTIONS,
+  MATCHING_FABRIC_CASSETTE_OPTIONS,
+  MOTORIZATION_OPTIONS,
 } from '@/data/customizations';
 import { getEasyStickFieldLabels, getEasyStickSubtype, isEasyStickProduct } from '@/lib/easy-stick';
 import { isRomanProduct } from '@/lib/roman-blinds';
@@ -131,32 +136,7 @@ export default function CartPage() {
             );
 
         // Build configuration object for backend (strip non-customization fields)
-        const backendConfig: Record<string, string | undefined> = {
-          roomType: config.roomType || undefined,
-          blindName: config.blindName || undefined,
-          headrail: config.headrail || undefined,
-          headrailColour: config.headrailColour || undefined,
-          installationMethod: config.installationMethod || undefined,
-          controlOption: config.controlOption || undefined,
-          liningType: config.liningType || undefined,
-          stacking: config.stacking || undefined,
-          controlSide: config.controlSide || undefined,
-          bottomChain: config.bottomChain || undefined,
-          bracketType: config.bracketType || undefined,
-          chainColor: config.chainColor || undefined,
-          wrappedCassette: config.wrappedCassette || undefined,
-          cassetteMatchingBar: config.cassetteMatchingBar || undefined,
-          motorization: config.motorization || undefined,
-          brand: config.brand || undefined,
-          blindType: config.blindType || undefined,
-          blindColor: config.blindColor || undefined,
-          frameColor: config.frameColor || undefined,
-          handlePosition: config.handlePosition || undefined,
-          numberOfPanels: config.numberOfPanels || undefined,
-          openingDirection: config.openingDirection || undefined,
-          bottomBar: config.bottomBar || undefined,
-          rollStyle: config.rollStyle || undefined,
-        };
+        const backendConfig = buildBackendConfiguration(config);
 
         return {
           handle: item.product.slug,
@@ -224,12 +204,16 @@ export default function CartPage() {
 
     // Size (always show if available)
     if (usesHeightOnlyVerticalPricing && config.height) {
-      const heightStr = `${config.height}${config.heightFraction !== '0' ? ` ${config.heightFraction}` : ''}`;
-      parts.push(`Height: ${heightStr}"`);
+      parts.push(`Height: ${formatMeasurement(config.height, config.heightFraction, config.heightUnit)}`);
     } else if (config.width && config.height) {
-      const widthStr = `${config.width}${config.widthFraction !== '0' ? ` ${config.widthFraction}` : ''}`;
-      const heightStr = `${config.height}${config.heightFraction !== '0' ? ` ${config.heightFraction}` : ''}`;
-      parts.push(`Size: ${widthStr}" × ${heightStr}"`);
+      const widthStr = formatMeasurement(config.width, config.widthFraction, config.widthUnit);
+      const heightStr = formatMeasurement(config.height, config.heightFraction, config.heightUnit);
+      parts.push(`Size: ${widthStr} × ${heightStr}`);
+    }
+
+    // Colour (Shopify variant, for products with a Colour option)
+    if (config.colour) {
+      parts.push(`Colour: ${config.colour}`);
     }
 
     // Room Type
@@ -345,6 +329,12 @@ export default function CartPage() {
       parts.push(`Chain Color: ${colorOption?.name || config.chainColor}`);
     }
 
+    // Chrome Upgrade (Day & Night)
+    if (config.chromeUpgrade) {
+      const chromeOption = CHROME_UPGRADE_OPTIONS.find(opt => opt.id === config.chromeUpgrade);
+      parts.push(`Upgrade to Chrome: ${chromeOption?.name || config.chromeUpgrade}`);
+    }
+
     if (config.frameColor) {
       const frameOption = EASY_STICK_PROFILE_COLOR_OPTIONS.find(opt => opt.id === config.frameColor) ||
         PERFECT_FIT_WOODEN_FRAME_COLOR_OPTIONS.find(opt => opt.id === config.frameColor) ||
@@ -362,6 +352,24 @@ export default function CartPage() {
     if (config.cassetteMatchingBar) {
       const barOption = CASSETTE_MATCHING_BAR_OPTIONS.find(opt => opt.id === config.cassetteMatchingBar);
       parts.push(`Cassette Bar: ${barOption?.name || config.cassetteMatchingBar}`);
+    }
+
+    // Same Fabric Insert in Cassette (Day & Night)
+    if (config.sameFabricInsert) {
+      const insertOption = FABRIC_INSERT_CASSETTE_OPTIONS.find(opt => opt.id === config.sameFabricInsert);
+      parts.push(`Same Fabric Insert: ${insertOption?.name || config.sameFabricInsert}`);
+    }
+
+    // Matching Fabric on cover cassette (Roller)
+    if (config.matchingFabricCassette) {
+      const fabricOption = MATCHING_FABRIC_CASSETTE_OPTIONS.find(opt => opt.id === config.matchingFabricCassette);
+      parts.push(`Matching Fabric on Cover Cassette: ${fabricOption?.name || config.matchingFabricCassette}`);
+    }
+
+    // Motorization
+    if (config.motorization && config.motorization !== 'none') {
+      const motorOption = MOTORIZATION_OPTIONS.find(opt => opt.id === config.motorization);
+      parts.push(`Motorization: ${motorOption?.name || config.motorization}`);
     }
 
     // Legacy fields (for backwards compatibility)
@@ -519,6 +527,14 @@ export default function CartPage() {
       }
     }
 
+    // Chrome Upgrade (Day & Night)
+    if (config.chromeUpgrade) {
+      const option = CHROME_UPGRADE_OPTIONS.find(opt => opt.id === config.chromeUpgrade);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: 'Upgrade to Chrome', price: option.price });
+      }
+    }
+
     // Wrapped Cassette
     if (config.wrappedCassette) {
       const option = WRAPPED_CASSETTE_OPTIONS.find(opt => opt.id === config.wrappedCassette);
@@ -530,6 +546,30 @@ export default function CartPage() {
     // Cassette Matching Bar
     if (config.cassetteMatchingBar) {
       const option = CASSETTE_MATCHING_BAR_OPTIONS.find(opt => opt.id === config.cassetteMatchingBar);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: option.name, price: option.price });
+      }
+    }
+
+    // Same Fabric Insert in Cassette (Day & Night)
+    if (config.sameFabricInsert) {
+      const option = FABRIC_INSERT_CASSETTE_OPTIONS.find(opt => opt.id === config.sameFabricInsert);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: 'Same Fabric Insert in Cassette', price: option.price });
+      }
+    }
+
+    // Matching Fabric on cover cassette (Roller)
+    if (config.matchingFabricCassette) {
+      const option = MATCHING_FABRIC_CASSETTE_OPTIONS.find(opt => opt.id === config.matchingFabricCassette);
+      if (option?.price && option.price > 0) {
+        costs.push({ label: 'Matching Fabric on Cover Cassette', price: option.price });
+      }
+    }
+
+    // Motorization
+    if (config.motorization && config.motorization !== 'none') {
+      const option = MOTORIZATION_OPTIONS.find(opt => opt.id === config.motorization);
       if (option?.price && option.price > 0) {
         costs.push({ label: option.name, price: option.price });
       }

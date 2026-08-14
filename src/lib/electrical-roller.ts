@@ -35,34 +35,31 @@ export function isSpecialMotorizedProduct(tags: string[] = []): boolean {
   return isElectricalRollerProduct(tags) || isElectricalDayNightProduct(tags);
 }
 
-export function getMotorizedRemoteOptions<T extends { id: string }>(
-  options: T[]
-): T[] {
-  return options.filter((option) => option.id !== 'none');
-}
-
-export const getElectricalRollerRemoteOptions = getMotorizedRemoteOptions;
+/**
+ * Flat motorization charge, remote and charging wire included. Customers no longer
+ * pick a remote channel count, so this is the entire motorization price — the
+ * `motorized` sentinel option itself is priced at £0.
+ *
+ * Keep in sync with MOTORIZATION_PRICE in src/data/customizations.ts (display) and
+ * the uplift in scripts/export-shopify-products.mjs (CSV export).
+ */
+export const MOTORIZATION_BASE_PRICE = 75;
 
 export function getMotorizationBasePrice(
-  productTags: string[] = [],
   selectedCustomizations: { category: string; optionId: string }[] = []
 ): number {
   const hasMotorization = selectedCustomizations.some(
     (customization) => customization.category === 'motorization'
   );
 
-  if (!hasMotorization) {
-    return 0;
-  }
-
-  return isSpecialMotorizedProduct(productTags) ? 100 : 95;
+  return hasMotorization ? MOTORIZATION_BASE_PRICE : 0;
 }
 
 export function getMinimumPriceWithMotorizedUplift(
   basePrice: number,
   productTags: string[] = []
 ): number {
-  return isSpecialMotorizedProduct(productTags) ? basePrice + 100 : basePrice;
+  return isSpecialMotorizedProduct(productTags) ? basePrice + MOTORIZATION_BASE_PRICE : basePrice;
 }
 
 export const getMinimumPriceWithElectricalRollerUplift = getMinimumPriceWithMotorizedUplift;

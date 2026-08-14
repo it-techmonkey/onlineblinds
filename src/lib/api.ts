@@ -816,6 +816,7 @@ export function transformProduct(apiProduct: ApiProduct): Product {
       : DELIVERY_STANDARD,
     description: apiProduct.description || '',
     productDetails: parseProductDetails(apiProduct.productDetails),
+    colourVariants: apiProduct.colourVariants ?? [],
     images: apiProduct.images.length > 0 ? apiProduct.images : [],
     videos: apiProduct.videos || [],
     features: features,

@@ -155,7 +155,7 @@ export const CATEGORY_CUSTOMIZATIONS: Record<string, ProductFeatures> = {
         hasSize: true,                    // Dimensions (Width/Height)
         hasHeadrail: false,               // Not used for day/night blinds
         hasHeadrailColour: false,          // Not used for day/night blinds
-        hasInstallationMethod: true,       // Fitting Type (Inside Mount/Outside Mount)
+        hasInstallationMethod: true,       // Fitting Type (Inside Recess/Outside Recess)
         hasControlOption: false,           // Not used for day/night blinds
         hasStacking: false,                // Not in spec
         hasControlSide: true,              // Continuous Chain - Select Location (LEFT/RIGHT)

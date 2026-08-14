@@ -3,6 +3,7 @@ import { getAdminApiUrl, getAdminHeaders, validateShopifyConfig } from './shopif
 import { getCachedProduct } from './product-cache';
 import { isHeightOnlyVerticalProduct } from '@/lib/vertical-blinds';
 import { isRomanProduct } from '@/lib/roman-blinds';
+import { isRollerBlindProduct } from '@/lib/roller-blinds';
 import { isSkylightProduct } from '@/lib/skylight';
 import { isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
 import { isPerfectFitShutterProduct } from '@/lib/perfect-fit-shutter';
@@ -92,6 +93,7 @@ function configToCustomizations(
 ): PricingRequest['customizations'] {
   const customizations: { category: string; optionId: string }[] = [];
   const romanProduct = isRomanProduct(productTags);
+  const rollerProduct = isRollerBlindProduct(productTags);
   const perfectFitMetalProduct = isPerfectFitMetalProduct({ tags: productTags });
 
   const mappings: Record<string, string> = {
@@ -106,8 +108,15 @@ function configToCustomizations(
     bottomChain: 'bottom-chain',
     bracketType: 'bracket-type',
     chainColor: romanProduct ? 'roman-chain-color' : 'chain-color',
+    chromeUpgrade: 'chrome-upgrade',
     wrappedCassette: 'wrapped-cassette',
-    cassetteMatchingBar: 'cassette-bar',
+    // Roller and Day & Night both use white/grey/black cassette ids but price them
+    // from different tables, so the category must be chosen by product type — the
+    // 'cassette-bar' → 'roller-cassette' fallback in pricing.service.ts can never
+    // fire for roller, since 'cassette-bar' always matches first.
+    cassetteMatchingBar: rollerProduct ? 'roller-cassette' : 'cassette-bar',
+    sameFabricInsert: 'fabric-insert-cassette',
+    matchingFabricCassette: 'matching-fabric-cassette',
     motorization: 'motorization',
     brand: 'skylight-brand',
     blindType: 'skylight-blind-type',
@@ -135,6 +144,15 @@ function configToCustomizations(
   return customizations;
 }
 
+/**
+ * The server only ever sees a size in total inches — CheckoutItemRequest doesn't
+ * carry which display unit (cm/mm) the customer used on the size selector. Display
+ * everything in cm here, matching the metric-only frontend.
+ */
+function formatInchesAsCm(inches: number): string {
+  return `${(inches * 2.54).toFixed(1)}cm`;
+}
+
 function buildLineItemProperties(
   item: CheckoutItemRequest,
   calculatedPrice: number,
@@ -146,10 +164,10 @@ function buildLineItemProperties(
   const perfectFitShutterProduct = isPerfectFitShutterProduct({ tags: productTags });
 
   if (!heightOnlyVertical && !skylightProduct) {
-    properties.push({ key: 'Width', value: `${item.widthInches} inches` });
+    properties.push({ key: 'Width', value: formatInchesAsCm(item.widthInches) });
   }
   if (!skylightProduct) {
-    properties.push({ key: 'Height', value: `${item.heightInches} inches` });
+    properties.push({ key: 'Height', value: formatInchesAsCm(item.heightInches) });
   }
 
   if (item.configuration.roomType) {
@@ -160,6 +178,7 @@ function buildLineItemProperties(
   }
 
   const labelMap: Record<string, string> = {
+    colour: 'Colour',
     headrail: 'Headrail',
     headrailColour: 'Headrail Colour',
     installationMethod: perfectFitShutterProduct ? 'Measurement Type' : 'Installation',
@@ -170,8 +189,11 @@ function buildLineItemProperties(
     bottomChain: 'Bottom Chain',
     bracketType: perfectFitShutterProduct ? 'Bracket Size' : 'Bracket Type',
     chainColor: 'Chain Color',
+    chromeUpgrade: 'Chrome Upgrade',
     wrappedCassette: 'Wrapped Cassette',
     cassetteMatchingBar: 'Cassette Bar',
+    sameFabricInsert: 'Same Fabric Insert',
+    matchingFabricCassette: 'Matching Fabric on Cover Cassette',
     motorization: 'Motorization',
     brand: 'Brand',
     blindType: 'Blind Type',
@@ -208,8 +230,19 @@ function buildLineItemProperties(
   return properties;
 }
 
-async function getPrimaryVariantIdByHandle(handle: string): Promise<number | null> {
-  const cached = variantIdByHandleCache.get(handle);
+/**
+ * Resolve the Shopify variant to book for a line item.
+ *
+ * Most products have a single default variant, but products with a `Colour`
+ * option have one variant per colour — for those the customer's chosen colour
+ * must select the matching variant. Taking `variants[0]` would silently book
+ * every order against the first colour.
+ *
+ * The cache is keyed by handle *and* colour for the same reason.
+ */
+async function getVariantIdByHandle(handle: string, colour?: string): Promise<number | null> {
+  const cacheKey = colour ? `${handle}::${colour}` : handle;
+  const cached = variantIdByHandleCache.get(cacheKey);
   if (cached !== undefined) {
     return cached;
   }
@@ -222,14 +255,41 @@ async function getPrimaryVariantIdByHandle(handle: string): Promise<number | nul
     });
 
     if (!response.ok) {
-      variantIdByHandleCache.set(handle, null);
+      variantIdByHandleCache.set(cacheKey, null);
       return null;
     }
 
     const data = (await response.json()) as {
-      products?: Array<{ variants?: Array<{ id?: number | string }> }>;
+      products?: Array<{ variants?: Array<{ id?: number | string; title?: string; option1?: string }> }>;
     };
-    const rawId = data.products?.[0]?.variants?.[0]?.id;
+    const variants = data.products?.[0]?.variants || [];
+
+    // Match on the colour option value. For a multi-variant product we never guess:
+    // booking the wrong colour would put the wrong blind into manufacturing, so an
+    // unmatched or missing colour returns null and the line item is created without
+    // a variant binding instead.
+    const matched = colour
+      ? variants.find(
+          (variant) =>
+            variant.option1?.toLowerCase() === colour.toLowerCase() ||
+            variant.title?.toLowerCase() === colour.toLowerCase()
+        )
+      : undefined;
+
+    const isMultiVariant = variants.length > 1;
+    const selected = isMultiVariant ? matched : variants[0];
+
+    if (isMultiVariant && !matched) {
+      console.error(
+        `[OrderService] "${handle}" has ${variants.length} variants but ` +
+          (colour
+            ? `no variant matches colour "${colour}"`
+            : 'no colour was supplied') +
+          ' — refusing to fall back to the first variant.'
+      );
+    }
+
+    const rawId = selected?.id;
     const parsed =
       typeof rawId === 'number'
         ? rawId
@@ -238,11 +298,11 @@ async function getPrimaryVariantIdByHandle(handle: string): Promise<number | nul
           : NaN;
 
     const variantId = Number.isFinite(parsed) && parsed > 0 ? parsed : null;
-    variantIdByHandleCache.set(handle, variantId);
+    variantIdByHandleCache.set(cacheKey, variantId);
     return variantId;
   } catch (error) {
     console.error(`[OrderService] Failed variant lookup for handle "${handle}":`, error);
-    variantIdByHandleCache.set(handle, null);
+    variantIdByHandleCache.set(cacheKey, null);
     return null;
   }
 }
@@ -351,10 +411,10 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     const lineItemTitle = skylightProduct
       ? productTitle
       : heightOnlyVertical
-      ? `${productTitle} – Height ${item.heightInches}"`
-      : `${productTitle} – ${item.widthInches}" × ${item.heightInches}"`;
+      ? `${productTitle} – Height ${formatInchesAsCm(item.heightInches)}`
+      : `${productTitle} – ${formatInchesAsCm(item.widthInches)} × ${formatInchesAsCm(item.heightInches)}`;
 
-    const variantId = await getPrimaryVariantIdByHandle(item.handle);
+    const variantId = await getVariantIdByHandle(item.handle, item.configuration.colour);
     const customAttributes = buildLineItemProperties(item, itemPrice, cachedProduct.tags);
 
     if (variantId) {

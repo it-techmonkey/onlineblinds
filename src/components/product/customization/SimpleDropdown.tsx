@@ -19,6 +19,12 @@ interface SimpleDropdownProps {
   selectedValue: string | null;
   onChange: (value: string) => void;
   placeholder?: string;
+  /**
+   * Label £0 options as "Free" instead of showing no badge. Opt-in so the many
+   * other £0 options across the site (Inside Recess, White Standard cassette,
+   * Basic bottom bar…) keep their current bare appearance.
+   */
+  showFreeLabel?: boolean;
 }
 
 const DropdownPortal = ({
@@ -28,6 +34,7 @@ const DropdownPortal = ({
   selectedValue,
   onChange,
   onClose,
+  showFreeLabel = false,
 }: {
   isOpen: boolean;
   menuPosition: { top: number; left: number; width: number };
@@ -35,6 +42,7 @@ const DropdownPortal = ({
   selectedValue: string | null;
   onChange: (value: string) => void;
   onClose: () => void;
+  showFreeLabel?: boolean;
 }) => {
   const [hoveredPreview, setHoveredPreview] = useState<{ name: string; image: string; anchorRect: { top: number; left: number; right: number; bottom: number; width: number; height: number } } | null>(null);
   if (!isOpen) return null;
@@ -108,6 +116,10 @@ const DropdownPortal = ({
               <span className="text-xs font-semibold bg-[#335c99] text-white px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap">
                 +£{option.price.toFixed(2)}
               </span>
+            ) : showFreeLabel ? (
+              <span className="text-xs font-semibold bg-[#e7eef8] text-[#335c99] px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap">
+                Free
+              </span>
             ) : null}
 
             {selectedValue === option.id && (
@@ -129,7 +141,7 @@ const DropdownPortal = ({
   );
 };
 
-const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder = 'Select' }: SimpleDropdownProps) => {
+const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder = 'Select', showFreeLabel = false }: SimpleDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -206,6 +218,7 @@ const SimpleDropdown = ({ label, options, selectedValue, onChange, placeholder =
         selectedValue={selectedValue}
         onChange={onChange}
         onClose={() => setIsOpen(false)}
+        showFreeLabel={showFreeLabel}
       />
     </div>
   );

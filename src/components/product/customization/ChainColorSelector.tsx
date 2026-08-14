@@ -14,9 +14,11 @@ interface ChainColorSelectorProps {
     options: ChainColorOption[];
     selectedColor: string | null;
     onColorChange: (colorId: string) => void;
+    /** Label £0 options as "Free". Opt-in so Roman's three free chain colours are unaffected. */
+    showFreeLabel?: boolean;
 }
 
-const ChainColorSelector = ({ options, selectedColor, onColorChange }: ChainColorSelectorProps) => {
+const ChainColorSelector = ({ options, selectedColor, onColorChange, showFreeLabel = false }: ChainColorSelectorProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0, width: 0 });
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -130,11 +132,15 @@ const ChainColorSelector = ({ options, selectedColor, onColorChange }: ChainColo
                                 {option.name}
                             </p>
                         </button>
-                        {option.price && option.price > 0 && (
+                        {option.price && option.price > 0 ? (
                             <span className="text-xs font-semibold bg-[#335c99] text-white px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap">
                                 +£{option.price.toFixed(2)}
                             </span>
-                        )}
+                        ) : showFreeLabel ? (
+                            <span className="text-xs font-semibold bg-[#e7eef8] text-[#335c99] px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap">
+                                Free
+                            </span>
+                        ) : null}
                         {selectedColor === option.id && (
                             <div className="w-5 h-5 shrink-0 flex items-center justify-center">
                                 <div className="w-4 h-4 bg-[#335c99] rounded-sm flex items-center justify-center">

@@ -21,6 +21,8 @@ import {
   configToCustomizations,
   getTotalInches,
   getInstallationServicePrice,
+  formatMeasurement,
+  formatBandSizeMm,
 } from '@/lib/pricing';
 import InstallationServiceInfo from './customization/InstallationServiceInfo';
 import {
@@ -32,10 +34,7 @@ import {
   isReplacementVerticalSlatProduct,
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
 } from '@/lib/vertical-blinds';
-import {
-  getMotorizedRemoteOptions,
-  isSpecialMotorizedProduct,
-} from '@/lib/electrical-roller';
+import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
 import {
   getEasyStickFieldLabels,
   getEasyStickSubtype,
@@ -55,6 +54,7 @@ import {
 import { getPerfectFitWoodenFieldLabels, isPerfectFitWoodenProduct } from '@/lib/perfect-fit-wooden';
 import { getSkylightBlindTypeOptions, SKYLIGHT_BRAND_OPTIONS } from '@/data/skylight';
 import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
+import { buildBackendConfiguration } from '@/lib/checkout-item';
 import { trackShopifyProductView } from '@/lib/shopify-analytics';
 import {
   SizeSelector,
@@ -67,6 +67,7 @@ import {
   StackingSelector,
   BottomChainSelector,
   BracketTypeSelector,
+  ColourSelector,
   SimpleDropdown,
   RollStyleSelector,
   OpeningDirectionSelector,
@@ -114,7 +115,11 @@ import {
   WRAPPED_CASSETTE_OPTIONS,
   CASSETTE_MATCHING_BAR_OPTIONS,
   ROLLER_CASSETTE_OPTIONS,
-  MOTORIZATION_OPTIONS,
+  MATCHING_FABRIC_CASSETTE_OPTIONS,
+  CHROME_UPGRADE_OPTIONS,
+  FABRIC_INSERT_CASSETTE_OPTIONS,
+  MOTORIZATION_PRICE,
+  MOTORIZED_OPTION_ID,
   BLIND_COLOR_OPTIONS,
   FRAME_COLOR_OPTIONS,
   OPENING_DIRECTION_OPTIONS,
@@ -122,7 +127,7 @@ import {
   ROLL_STYLE_OPTIONS
 } from '@/data/customizations';
 import { ROOM_TYPE_OPTIONS } from '@/data/roomTypes';
-import { CONTINUOUS_CHAIN_CARD, CONTINUOUS_CHAIN_CARD_ROLLER, CONTINUOUS_CHAIN_CARD_ZEBRA, CASSETTE_CARD, CASSETTE_CARD_ROLLER, CASSETTE_CARD_ZEBRA, MOTORIZATION_CARD, BOTTOM_BAR_CARD } from '@/data/optionalCustomizations';
+import { CONTINUOUS_CHAIN_CARD, CONTINUOUS_CHAIN_CARD_ROLLER, CONTROL_CARD_ZEBRA, CASSETTE_CARD, CASSETTE_CARD_ROLLER, CASSETTE_CARD_ZEBRA, FABRIC_INSERT_CASSETTE_CARD, MOTORIZATION_CARD, BOTTOM_BAR_CARD } from '@/data/optionalCustomizations';
 import Image from 'next/image';
 import { isRomanProduct } from '@/lib/roman-blinds';
 import ProductUrgencyBar from './ProductUrgencyBar';
@@ -164,20 +169,6 @@ function ProductRatingBadge({ productSlug }: { productSlug: string }) {
   );
 }
 
-function withBottomBarPricing(
-  customizations: CustomizationPricingType[]
-): CustomizationPricingType[] {
-  return [
-    ...customizations,
-    ...BOTTOM_BAR_OPTIONS.map((option) => ({
-      category: 'bottom-bar',
-      optionId: option.id,
-      name: option.name,
-      prices: [{ widthMm: null, price: option.price || 0 }],
-    })),
-  ];
-}
-
 interface ProductPageProps {
   product: Product;
   relatedProducts: Product[];
@@ -208,10 +199,17 @@ const ProductPage = ({
     heightFraction: '0',
   });
 
+  // Colour variants (Shopify `Colour` option). Empty for every product that
+  // doesn't define one, which keeps the selector off everywhere else.
+  const colourVariants = product.colourVariants ?? [];
+  const hasColourVariants = colourVariants.length > 0;
+  const selectedColourImageIndex =
+    colourVariants.find((variant) => variant.colour === config.colour)?.imageIndex ?? null;
+
   // State for pricing data from backend
   const [priceMatrix, setPriceMatrix] = useState<PriceBandMatrix | null>(initialPriceMatrix);
   const [customizationPricing, setCustomizationPricing] = useState<CustomizationPricingType[]>(
-    () => withBottomBarPricing(initialCustomizationPricing)
+    initialCustomizationPricing
   );
   const [isValidating, setIsValidating] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -274,12 +272,8 @@ const ProductPage = ({
     () => isSpecialMotorizedProduct(product.tags),
     [product.tags]
   );
-  const motorizedRemoteOptions = useMemo(
-    () => getMotorizedRemoteOptions(MOTORIZATION_OPTIONS),
-    []
-  );
-
-  // Pre-select motorization when arriving from a motorised collection page
+  // Pre-select motorization when arriving from a motorised collection page, or when
+  // the product is an electrical SKU where motorization is mandatory.
   useEffect(() => {
     if (forceMotorization || isSpecialMotorized) {
       setSelectedOptionalCards((prev) => ({
@@ -290,14 +284,12 @@ const ProductPage = ({
       setConfig((prev) => ({
         ...prev,
         chainColor: null,
+        chromeUpgrade: null,
         controlSide: null,
-        motorization:
-          isSpecialMotorized && !prev.motorization
-            ? motorizedRemoteOptions[0]?.id ?? null
-            : prev.motorization,
+        motorization: prev.motorization ?? MOTORIZED_OPTION_ID,
       }));
     }
-  }, [forceMotorization, isSpecialMotorized, motorizedRemoteOptions]);
+  }, [forceMotorization, isSpecialMotorized]);
 
   // Fetch customization pricing on mount
   useEffect(() => {
@@ -316,7 +308,7 @@ const ProductPage = ({
         const customizations = await fetchCustomizationPricing();
 
         if (isMounted) {
-          setCustomizationPricing(withBottomBarPricing(customizations));
+          setCustomizationPricing(customizations);
         }
       } catch (error) {
         console.error('Failed to load customization pricing:', error);
@@ -572,7 +564,7 @@ const ProductPage = ({
     [config.handlePosition, isPerfectFitShutter, shutterHandlePositionRequired]
   );
   const continuousChainCard = isDayNight
-    ? CONTINUOUS_CHAIN_CARD_ZEBRA
+    ? CONTROL_CARD_ZEBRA
     : (isRollerOrDayNight || isRoman)
     ? CONTINUOUS_CHAIN_CARD_ROLLER
     : CONTINUOUS_CHAIN_CARD;
@@ -877,11 +869,14 @@ const ProductPage = ({
       bracketType: visibleOptions.showBracketType ? config.bracketType : null,
       chainColor: !visibleOptions.showChainColor || isSpecialMotorized ? null : config.chainColor,
       chainColorCategory: isRoman ? 'roman-chain-color' : 'chain-color',
+      chromeUpgrade: isDayNight ? config.chromeUpgrade : null,
       frameColor: visibleOptions.showFrameColor ? config.frameColor : null,
       frameColorCategory: isPerfectFitMetal ? 'perfect-fit-metal-frame-color' : 'frame-color',
       numberOfPanels: isPerfectFitShutter ? config.numberOfPanels : null,
       wrappedCassette: config.wrappedCassette,
       cassetteMatchingBar: config.cassetteMatchingBar,
+      sameFabricInsert: isDayNight ? config.sameFabricInsert : null,
+      matchingFabricCassette: product.features.hasRollerCassette ? config.matchingFabricCassette : null,
       isRollerCassette: product.features.hasRollerCassette,
       motorization: config.motorization,
       brand: config.brand,
@@ -889,7 +884,7 @@ const ProductPage = ({
       bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
       rollStyle: visibleOptions.showRollStyle ? config.rollStyle : null,
     });
-  }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter]);
+  }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter, isDayNight]);
 
   // Calculate price using new pricing system
   const priceCalculation = useMemo(() => {
@@ -1019,6 +1014,7 @@ const ProductPage = ({
       visibleOptions,
       isSkylight,
       isRoman,
+      isDayNight,
       isSpecialMotorized,
       selectedOptionalCards,
       forceMotorization,
@@ -1068,6 +1064,7 @@ const ProductPage = ({
     config,
     easyStickLabels,
     forceMotorization,
+    isDayNight,
     isEasyStick,
     isFauxWooden,
     isPerfectFitMetal,
@@ -1163,32 +1160,7 @@ const ProductPage = ({
       ? getSkylightPricingDimensions().heightInches
       : getTotalInches(config.height, config.heightFraction, config.heightUnit);
 
-    const backendConfig: Record<string, string | undefined> = {
-      roomType: config.roomType || undefined,
-      blindName: config.blindName || undefined,
-      headrail: config.headrail || undefined,
-      headrailColour: config.headrailColour || undefined,
-      installationMethod: config.installationMethod || undefined,
-      controlOption: config.controlOption || undefined,
-      liningType: config.liningType || undefined,
-      stacking: config.stacking || undefined,
-      controlSide: config.controlSide || undefined,
-      bottomChain: config.bottomChain || undefined,
-      bracketType: config.bracketType || undefined,
-      chainColor: config.chainColor || undefined,
-      wrappedCassette: config.wrappedCassette || undefined,
-      cassetteMatchingBar: config.cassetteMatchingBar || undefined,
-      motorization: config.motorization || undefined,
-      brand: config.brand || undefined,
-      blindType: config.blindType || undefined,
-      blindColor: config.blindColor || undefined,
-      frameColor: config.frameColor || undefined,
-      handlePosition: config.handlePosition || undefined,
-      numberOfPanels: config.numberOfPanels || undefined,
-      openingDirection: config.openingDirection || undefined,
-      bottomBar: config.bottomBar || undefined,
-      rollStyle: config.rollStyle || undefined,
-    };
+    const backendConfig = buildBackendConfiguration(config);
 
     return {
       handle: product.slug,
@@ -1309,7 +1281,12 @@ const ProductPage = ({
             {/* Left - Gallery with Thumbnails on Left */}
             <div className="w-full lg:w-[52%] lg:sticky lg:top-20 lg:self-start">
               <div className="rounded-[20px] border border-border bg-surface p-3 md:p-4 shadow-[0_8px_26px_rgba(31,41,51,0.06)]">
-                <ProductGallery images={product.images} videos={product.videos} productName={product.name} />
+                <ProductGallery
+                  images={product.images}
+                  videos={product.videos}
+                  productName={product.name}
+                  activeIndex={selectedColourImageIndex}
+                />
               </div>
             </div>
 
@@ -1377,8 +1354,8 @@ const ProductPage = ({
                       {isSkylight
                         ? 'Base price plus selected skylight blind type.'
                         : usesHeightOnlyVerticalPricing
-                        ? `Height-only pricing: ${getTotalInches(config.height, config.heightFraction, config.heightUnit).toFixed(2)}"`
-                        : `Size: ${priceCalculation.widthBand?.inches}" × ${priceCalculation.heightBand?.inches}"`}
+                        ? `Height-only pricing: ${formatMeasurement(config.height, config.heightFraction, config.heightUnit)}`
+                        : `Size: ${formatBandSizeMm(priceCalculation.widthBand?.mm ?? 0, config.widthUnit)} × ${formatBandSizeMm(priceCalculation.heightBand?.mm ?? 0, config.heightUnit)}`}
                     </div>
                   )}
                 </div>
@@ -1535,6 +1512,20 @@ const ProductPage = ({
 
                     {isCustomizeOpen && (
                       <div className="p-4 md:p-6 space-y-4 md:space-y-6 divide-y divide-border bg-surface">
+                      {hasColourVariants && (
+                        <div className="pt-0 first:pt-0 pb-4 md:pb-6">
+                          <FieldHighlight fieldKey="colour" invalid={invalidFields.has('colour')} registerRef={registerFieldRef}>
+                            <ColourSelector
+                              variants={colourVariants}
+                              selectedColour={config.colour}
+                              onColourChange={(colour) => {
+                                setConfig((prev) => ({ ...prev, colour }));
+                                clearFieldInvalid('colour');
+                              }}
+                            />
+                          </FieldHighlight>
+                        </div>
+                      )}
                       {isSkylight && (
                         <div className="pt-0 first:pt-0 pb-4 md:pb-6 space-y-4 md:space-y-6">
                           <FieldHighlight fieldKey="brand" invalid={invalidFields.has('brand')} registerRef={registerFieldRef}>
@@ -2008,107 +1999,6 @@ const ProductPage = ({
                               )}
                             </div>
                           )}
-                          {/* Continuous Chain - Select Location Card */}
-                          {product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized && (
-                            <div
-                              onClick={() => {
-                                const newValue = !selectedOptionalCards.continuousChain;
-                                setSelectedOptionalCards({
-                                  ...selectedOptionalCards,
-                                  continuousChain: newValue,
-                                  motorization: newValue ? false : selectedOptionalCards.motorization,
-                                });
-                                if (newValue) {
-                                  setConfig({ ...config, motorization: null });
-                                  clearFieldInvalid('chainOrMotorization');
-                                } else {
-                                  setConfig({
-                                    ...config,
-                                    chainColor: null,
-                                    controlSide: isRoman ? config.controlSide : null,
-                                    controlOption: isRoman ? null : config.controlOption,
-                                  });
-                                }
-                              }}
-                              className={`relative border rounded-[12px] p-4 md:p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${invalidFields.has('chainOrMotorization') || invalidFields.has('continuousChainLocation') || invalidFields.has('chainColor')
-                                ? 'border-[#c24646]'
-                                : selectedOptionalCards.continuousChain
-                                ? 'border-primary bg-surface-soft shadow-sm'
-                                : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
-                                }`}
-                            >
-                              {selectedOptionalCards.continuousChain && (
-                                <div className="absolute top-3 right-3 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-sm z-10">
-                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                  </svg>
-                                </div>
-                              )}
-                              <div className="flex items-center gap-3 md:block">
-                                {continuousChainCard.image && (
-                                  <div className={`relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.continuousChain
-                                    ? 'bg-surface-soft shadow-inner'
-                                    : 'bg-surface-soft group-hover:bg-surface-contrast'
-                                    }`}>
-                                    <Image
-                                      src={continuousChainCard.image}
-                                      alt={continuousChainCard.name}
-                                      fill
-                                      className="object-contain"
-                                    />
-                                  </div>
-                                )}
-                                <div className="min-w-0 flex-1">
-                                  <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
-                                    {continuousChainCard.name}
-                                  </h4>
-                                  {continuousChainCard.description && (
-                                    <p className="text-xs text-muted leading-relaxed mb-2">{continuousChainCard.description}</p>
-                                  )}
-                                </div>
-                              </div>
-                              {continuousChainCard.price > 0 && (
-                                <span className="absolute bottom-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-[12px] shadow-sm">
-                                  +£{continuousChainCard.price.toFixed(2)}
-                                </span>
-                              )}
-
-                              {/* Dropdowns inside the card */}
-                              {selectedOptionalCards.continuousChain && (
-                                <div
-                                  className="mt-4 space-y-3 pt-3 border-t border-border"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <FieldHighlight fieldKey="continuousChainLocation" invalid={invalidFields.has('continuousChainLocation')} registerRef={registerFieldRef}>
-                                    <SimpleDropdown
-                                      label="Select Location"
-                                      options={isRoman ? controlOptions : CONTROL_SIDE_OPTIONS}
-                                      selectedValue={isRoman ? config.controlOption : config.controlSide}
-                                      onChange={(sideId) => {
-                                        setConfig({
-                                          ...config,
-                                          controlOption: isRoman ? sideId : config.controlOption,
-                                          controlSide: isRoman ? config.controlSide : sideId,
-                                        });
-                                        clearFieldInvalid('continuousChainLocation');
-                                      }}
-                                      placeholder="Select location"
-                                    />
-                                  </FieldHighlight>
-                                  <FieldHighlight fieldKey="chainColor" invalid={invalidFields.has('chainColor')} registerRef={registerFieldRef}>
-                                    <SimpleDropdown
-                                      label="Chain Color"
-                                      options={chainColorOptions}
-                                      selectedValue={config.chainColor}
-                                      onChange={(colorId) => { setConfig({ ...config, chainColor: colorId }); clearFieldInvalid('chainColor'); }}
-                                      placeholder="Select chain color"
-                                    />
-                                  </FieldHighlight>
-                                </div>
-                              )}
-                            </div>
-                          )}
-
                           {/* Cassette and Bottom Matching Bar Card */}
                           {(product.features.hasWrappedCassette || product.features.hasCassetteMatchingBar || product.features.hasRollerCassette) && (
                             <div
@@ -2122,7 +2012,8 @@ const ProductPage = ({
                                   setConfig({
                                     ...config,
                                     wrappedCassette: null,
-                                    cassetteMatchingBar: null
+                                    cassetteMatchingBar: null,
+                                    matchingFabricCassette: null,
                                   });
                                 }
                               }}
@@ -2198,13 +2089,185 @@ const ProductPage = ({
                                     </FieldHighlight>
                                   )}
                                   {product.features.hasRollerCassette && (
-                                    <FieldHighlight fieldKey="cassetteMatchingBar" invalid={invalidFields.has('cassetteMatchingBar')} registerRef={registerFieldRef}>
+                                    <>
+                                      <FieldHighlight fieldKey="cassetteMatchingBar" invalid={invalidFields.has('cassetteMatchingBar')} registerRef={registerFieldRef}>
+                                        <SimpleDropdown
+                                          label="Roller Cover Cassette Options"
+                                          options={ROLLER_CASSETTE_OPTIONS}
+                                          selectedValue={config.cassetteMatchingBar}
+                                          onChange={(optionId) => { setConfig({ ...config, cassetteMatchingBar: optionId }); clearFieldInvalid('cassetteMatchingBar'); }}
+                                          placeholder="Select cassette color"
+                                        />
+                                      </FieldHighlight>
+                                      <FieldHighlight fieldKey="matchingFabricCassette" invalid={invalidFields.has('matchingFabricCassette')} registerRef={registerFieldRef}>
+                                        <SimpleDropdown
+                                          label="Matching Fabric on cover cassette"
+                                          options={MATCHING_FABRIC_CASSETTE_OPTIONS}
+                                          selectedValue={config.matchingFabricCassette}
+                                          onChange={(optionId) => { setConfig({ ...config, matchingFabricCassette: optionId }); clearFieldInvalid('matchingFabricCassette'); }}
+                                          placeholder="Select an option"
+                                        />
+                                      </FieldHighlight>
+                                    </>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Same Fabric Insert in Cassette — Day & Night only. Same card look as the
+                              other cards, but always open — it's a plain required field, not a toggle. */}
+                          {isDayNight && product.features.hasCassetteMatchingBar && (
+                            <div
+                              className={`relative border rounded-[12px] p-4 md:p-5 h-full flex flex-col ${invalidFields.has('sameFabricInsert')
+                                ? 'border-[#c24646]'
+                                : config.sameFabricInsert
+                                ? 'border-primary bg-surface-soft shadow-sm'
+                                : 'border-border bg-surface'
+                                }`}
+                            >
+                              <div className="flex items-center gap-3 md:block">
+                                {FABRIC_INSERT_CASSETTE_CARD.image && (
+                                  <div className="relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center bg-surface-soft">
+                                    <Image
+                                      src={FABRIC_INSERT_CASSETTE_CARD.image}
+                                      alt={FABRIC_INSERT_CASSETTE_CARD.name}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-base font-semibold text-foreground mb-1.5">
+                                    {FABRIC_INSERT_CASSETTE_CARD.name}
+                                  </h4>
+                                  {FABRIC_INSERT_CASSETTE_CARD.description && (
+                                    <p className="text-xs text-muted leading-relaxed mb-2">{FABRIC_INSERT_CASSETTE_CARD.description}</p>
+                                  )}
+                                </div>
+                              </div>
+
+                              <div className="mt-4 space-y-3 pt-3 border-t border-border">
+                                <FieldHighlight fieldKey="sameFabricInsert" invalid={invalidFields.has('sameFabricInsert')} registerRef={registerFieldRef}>
+                                  <SimpleDropdown
+                                    label="Same Fabric Insert"
+                                    options={FABRIC_INSERT_CASSETTE_OPTIONS}
+                                    selectedValue={config.sameFabricInsert}
+                                    onChange={(optionId) => { setConfig({ ...config, sameFabricInsert: optionId }); clearFieldInvalid('sameFabricInsert'); }}
+                                    placeholder="Select an option"
+                                  />
+                                </FieldHighlight>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Continuous Chain - Select Location Card (Day & Night: "Choose your Control") */}
+                          {product.features.hasChainColor && visibleOptions.showChainColor && !isSpecialMotorized && (
+                            <div
+                              onClick={() => {
+                                const newValue = !selectedOptionalCards.continuousChain;
+                                setSelectedOptionalCards({
+                                  ...selectedOptionalCards,
+                                  continuousChain: newValue,
+                                  motorization: newValue ? false : selectedOptionalCards.motorization,
+                                });
+                                if (newValue) {
+                                  setConfig({ ...config, motorization: null });
+                                  clearFieldInvalid('chainOrMotorization');
+                                } else {
+                                  setConfig({
+                                    ...config,
+                                    chainColor: null,
+                                    chromeUpgrade: null,
+                                    controlSide: isRoman ? config.controlSide : null,
+                                    controlOption: isRoman ? null : config.controlOption,
+                                  });
+                                }
+                              }}
+                              className={`relative border rounded-[12px] p-4 md:p-5 transition-all duration-300 text-left group cursor-pointer h-full flex flex-col ${invalidFields.has('chainOrMotorization') || invalidFields.has('continuousChainLocation') || invalidFields.has('chainColor') || invalidFields.has('chromeUpgrade')
+                                ? 'border-[#c24646]'
+                                : selectedOptionalCards.continuousChain
+                                ? 'border-primary bg-surface-soft shadow-sm'
+                                : 'border-border bg-surface hover:border-border-strong hover:shadow-sm'
+                                }`}
+                            >
+                              {selectedOptionalCards.continuousChain && (
+                                <div className="absolute top-3 right-3 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-sm z-10">
+                                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                </div>
+                              )}
+                              <div className="flex items-center gap-3 md:block">
+                                {continuousChainCard.image && (
+                                  <div className={`relative h-16 w-16 shrink-0 md:h-[120px] md:w-full md:mb-3 rounded-[12px] overflow-hidden flex items-center justify-center transition-all duration-300 ${selectedOptionalCards.continuousChain
+                                    ? 'bg-surface-soft shadow-inner'
+                                    : 'bg-surface-soft group-hover:bg-surface-contrast'
+                                    }`}>
+                                    <Image
+                                      src={continuousChainCard.image}
+                                      alt={continuousChainCard.name}
+                                      fill
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
+                                    {continuousChainCard.name}
+                                  </h4>
+                                  {continuousChainCard.description && (
+                                    <p className="text-xs text-muted leading-relaxed mb-2">{continuousChainCard.description}</p>
+                                  )}
+                                </div>
+                              </div>
+                              {continuousChainCard.price > 0 && (
+                                <span className="absolute bottom-4 right-4 bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded-[12px] shadow-sm">
+                                  +£{continuousChainCard.price.toFixed(2)}
+                                </span>
+                              )}
+
+                              {/* Dropdowns inside the card */}
+                              {selectedOptionalCards.continuousChain && (
+                                <div
+                                  className="mt-4 space-y-3 pt-3 border-t border-border"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <FieldHighlight fieldKey="continuousChainLocation" invalid={invalidFields.has('continuousChainLocation')} registerRef={registerFieldRef}>
+                                    <SimpleDropdown
+                                      label="Select Location"
+                                      options={isRoman ? controlOptions : CONTROL_SIDE_OPTIONS}
+                                      selectedValue={isRoman ? config.controlOption : config.controlSide}
+                                      onChange={(sideId) => {
+                                        setConfig({
+                                          ...config,
+                                          controlOption: isRoman ? sideId : config.controlOption,
+                                          controlSide: isRoman ? config.controlSide : sideId,
+                                        });
+                                        clearFieldInvalid('continuousChainLocation');
+                                      }}
+                                      placeholder="Select location"
+                                    />
+                                  </FieldHighlight>
+                                  {isDayNight ? (
+                                    <FieldHighlight fieldKey="chromeUpgrade" invalid={invalidFields.has('chromeUpgrade')} registerRef={registerFieldRef}>
                                       <SimpleDropdown
-                                        label="Cassette and Bottom Matching Bar"
-                                        options={ROLLER_CASSETTE_OPTIONS}
-                                        selectedValue={config.cassetteMatchingBar}
-                                        onChange={(optionId) => { setConfig({ ...config, cassetteMatchingBar: optionId }); clearFieldInvalid('cassetteMatchingBar'); }}
-                                        placeholder="Select cassette color"
+                                        label="Upgrade to Chrome"
+                                        options={CHROME_UPGRADE_OPTIONS}
+                                        selectedValue={config.chromeUpgrade}
+                                        onChange={(optionId) => { setConfig({ ...config, chromeUpgrade: optionId }); clearFieldInvalid('chromeUpgrade'); }}
+                                        placeholder="Select an option"
+                                      />
+                                    </FieldHighlight>
+                                  ) : (
+                                    <FieldHighlight fieldKey="chainColor" invalid={invalidFields.has('chainColor')} registerRef={registerFieldRef}>
+                                      <SimpleDropdown
+                                        label="Chain Color"
+                                        options={chainColorOptions}
+                                        selectedValue={config.chainColor}
+                                        onChange={(colorId) => { setConfig({ ...config, chainColor: colorId }); clearFieldInvalid('chainColor'); }}
+                                        placeholder="Select chain color"
+                                        showFreeLabel
                                       />
                                     </FieldHighlight>
                                   )}
@@ -2225,8 +2288,17 @@ const ProductPage = ({
                                   continuousChain: newValue ? false : selectedOptionalCards.continuousChain,
                                 });
                                 if (newValue) {
-                                  setConfig({ ...config, chainColor: null, controlSide: null });
+                                  // No remote dropdown any more — selecting the card *is* the
+                                  // choice, so write the sentinel that drives the £75 charge.
+                                  setConfig({
+                                    ...config,
+                                    chainColor: null,
+                                    chromeUpgrade: null,
+                                    controlSide: null,
+                                    motorization: MOTORIZED_OPTION_ID,
+                                  });
                                   clearFieldInvalid('chainOrMotorization');
+                                  clearFieldInvalid('motorization');
                                 } else {
                                   setConfig({ ...config, motorization: null });
                                 }
@@ -2261,42 +2333,18 @@ const ProductPage = ({
                                 )}
                                 <div className="min-w-0 flex-1">
                                   <h4 className="text-base font-semibold text-foreground mb-1.5 pr-8">
-                                    {isSpecialMotorized ? 'Remote Control' : MOTORIZATION_CARD.name}
+                                    {MOTORIZATION_CARD.name}
                                   </h4>
-                                  {(isSpecialMotorized
-                                    ? 'Choose the remote control supplied with your electrical roller blind.'
-                                    : MOTORIZATION_CARD.description) && (
-                                    <p className="text-xs text-muted leading-relaxed mb-2">
-                                      {isSpecialMotorized
-                                        ? 'Choose the remote control supplied with your motorised blind.'
-                                        : MOTORIZATION_CARD.description}
-                                    </p>
-                                  )}
+                                  <p className="text-xs text-muted leading-relaxed mb-2">
+                                    {MOTORIZATION_CARD.description}
+                                  </p>
                                 </div>
                               </div>
 
                               {/* Simple Price Text */}
                               <div className="mt-2 text-sm font-medium text-primary">
-                                {isSpecialMotorized ? '+£100.00 (Motor)' : '+£95.00 (Motor)'}
+                                +£{MOTORIZATION_PRICE.toFixed(2)}
                               </div>
-
-                              {/* Dropdowns inside the card */}
-                              {selectedOptionalCards.motorization && (
-                                <div
-                                  className="mt-4 pt-3 border-t border-[#d9dfeb]/50"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <FieldHighlight fieldKey="motorization" invalid={invalidFields.has('motorization')} registerRef={registerFieldRef}>
-                                    <SimpleDropdown
-                                      label={isSpecialMotorized ? 'Remote Option' : 'Motorization Option'}
-                                      options={isSpecialMotorized ? motorizedRemoteOptions : MOTORIZATION_OPTIONS}
-                                      selectedValue={config.motorization}
-                                      onChange={(optionId) => { setConfig({ ...config, motorization: optionId }); clearFieldInvalid('motorization'); }}
-                                      placeholder={isSpecialMotorized ? 'Select remote option' : 'Select motorization'}
-                                    />
-                                  </FieldHighlight>
-                                </div>
-                              )}
                             </div>
                           )}
                         </div>
