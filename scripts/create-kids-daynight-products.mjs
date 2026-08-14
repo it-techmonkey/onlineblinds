@@ -6,8 +6,9 @@
 // range) so activating them is a one-click change. Note the Next.js storefront reads
 // through the "Online Blinds Express Headless" publication, not "Online Store".
 //
-// Safe to re-run — products that already exist are left alone apart from having their
-// sales-channel publications reconciled.
+// Safe to re-run — products that already exist keep their images, tags and collections,
+// but have their script-owned content (description, SEO, metafields, sales channels)
+// re-synced from the data table below.
 //
 // Usage:
 //   node scripts/create-kids-daynight-products.mjs --dry-run
@@ -42,8 +43,6 @@ const PRODUCTS = [
     seoTitle: 'Kids Alphabet Multicolour Day & Night Blind | Made to Measure',
     seoDescription:
       'Colourful alphabet day and night blind for kids’ bedrooms, nurseries and playrooms. Made to measure with flexible daylight and privacy control.',
-    descriptionHtml:
-      '<p>Make learning part of their everyday space with our Kids Alphabet Multicolour Day &amp; Night Blind. Featuring a colourful alphabet design with playful animals, objects and illustrations, this fun children’s blind is a great choice for kids’ bedrooms, nurseries, playrooms and learning spaces.</p>',
     productDetails: {
       sections: [
         {
@@ -65,12 +64,8 @@ const PRODUCTS = [
             'Each Kids Alphabet Multicolour Day & Night Blind is made to measure for your window, helping provide a smart, neat finish. Simply enter your required measurements when ordering and your blind will be manufactured to your selected size.',
           ],
         },
-        {
-          body: [
-            'Bring colour, learning and practical light control together with the Kids Alphabet Multicolour Day & Night Blind — a playful made-to-measure window blind designed especially for children’s spaces.',
-          ],
-        },
       ],
+      keyFeaturesHeading: 'Why Choose Our Kids Alphabet Blind?',
       keyFeatures: [
         'Fun multicolour alphabet and educational picture design',
         'Ideal for kids’ bedrooms, nurseries and playrooms',
@@ -80,6 +75,8 @@ const PRODUCTS = [
         'Suitable for boys’, girls’ and unisex bedroom themes',
         'A colourful way to add character to a child’s room',
       ],
+      closing:
+        'Bring colour, learning and practical light control together with the Kids Alphabet Multicolour Day & Night Blind — a playful made-to-measure window blind designed especially for children’s spaces.',
     },
   },
 
@@ -93,8 +90,6 @@ const PRODUCTS = [
     seoTitle: 'Cloud Drift Sky Blue Kids Day & Night Blind | Made to Measure',
     seoDescription:
       'Sky blue cloud day and night blind for kids’ bedrooms and nurseries. Made to measure, with alternating sheer and patterned panels for flexible light control.',
-    descriptionHtml:
-      '<p>Create a calm, dreamy space for your little one with the Cloud Drift Sky Blue Kids Day &amp; Night Blind. Featuring a playful pattern of soft sky blue clouds across a light background, this charming children’s blind is a beautiful choice for kids’ bedrooms, nurseries and playrooms.</p>',
     productDetails: {
       sections: [
         {
@@ -124,12 +119,8 @@ const PRODUCTS = [
             'It’s a great choice for parents looking for blue kids blinds, cloud blinds, nursery blinds, children’s bedroom blinds or made-to-measure day and night blinds.',
           ],
         },
-        {
-          body: [
-            'Bring a dreamy sky-inspired look to your child’s room with the Cloud Drift Sky Blue Kids Day & Night Blind — a playful made-to-measure kids blind combining beautiful cloud-patterned fabric with flexible light and privacy control.',
-          ],
-        },
       ],
+      keyFeaturesHeading: 'Why Choose the Cloud Drift Sky Blue Blind?',
       keyFeatures: [
         'Playful sky blue cloud pattern',
         'Ideal for kids’ bedrooms, nurseries and playrooms',
@@ -141,6 +132,8 @@ const PRODUCTS = [
         'Perfect for cloud, sky and pastel bedroom themes',
         'Complements blue, white, grey and neutral interiors',
       ],
+      closing:
+        'Bring a dreamy sky-inspired look to your child’s room with the Cloud Drift Sky Blue Kids Day & Night Blind — a playful made-to-measure kids blind combining beautiful cloud-patterned fabric with flexible light and privacy control.',
     },
   },
 
@@ -154,8 +147,6 @@ const PRODUCTS = [
     seoTitle: 'Cloud Drift Blush Pink Kids Day & Night Blind | Made to Measure',
     seoDescription:
       'Blush pink cloud day and night blind for kids’ bedrooms and nurseries. Made to measure, with alternating sheer and patterned panels for flexible light control.',
-    descriptionHtml:
-      '<p>Create a soft, dreamy space for your little one with the Cloud Drift Blush Pink Kids Day &amp; Night Blind. Featuring a charming pattern of fluffy blush pink clouds across a light background, this playful children’s blind is perfect for adding a gentle splash of colour to kids’ bedrooms, nurseries and playrooms.</p>',
     productDetails: {
       sections: [
         {
@@ -185,12 +176,8 @@ const PRODUCTS = [
             'It’s a beautiful choice for parents searching for pink kids blinds, cloud blinds, nursery blinds or made-to-measure children’s day and night blinds.',
           ],
         },
-        {
-          body: [
-            'Bring a little piece of the sky indoors with the Cloud Drift Blush Pink Kids Day & Night Blind — a charming made-to-measure children’s blind combining a playful cloud design with practical everyday light and privacy control.',
-          ],
-        },
       ],
+      keyFeaturesHeading: 'Why Choose the Cloud Drift Blush Pink Blind?',
       keyFeatures: [
         'Beautiful blush pink cloud pattern',
         'Ideal for kids’ bedrooms, nurseries and playrooms',
@@ -202,6 +189,8 @@ const PRODUCTS = [
         'Complements pink, white, cream and neutral interiors',
         'Fun and stylish alternative to plain children’s blinds',
       ],
+      closing:
+        'Bring a little piece of the sky indoors with the Cloud Drift Blush Pink Kids Day & Night Blind — a charming made-to-measure children’s blind combining a playful cloud design with practical everyday light and privacy control.',
     },
   },
 
@@ -215,8 +204,6 @@ const PRODUCTS = [
     seoTitle: 'Kids Gold Star Day & Night Blind – Starry Night | Made to Measure',
     seoDescription:
       'Gold star day and night blind for kids’ bedrooms and nurseries. Made to measure, with alternating sheer and patterned panels for flexible light and privacy.',
-    descriptionHtml:
-      '<p>Add a touch of warmth and magic to your child’s room with our Kids Gold Star Day &amp; Night Blind – Starry Night. Featuring a playful pattern of gold stars in different sizes across a soft, light background, this beautiful children’s blind is perfect for kids’ bedrooms, nurseries and playrooms.</p>',
     productDetails: {
       sections: [
         {
@@ -247,12 +234,8 @@ const PRODUCTS = [
             'Whether you’re decorating a new nursery, updating a child’s bedroom or creating a fun playroom, the Starry Night Gold Blind combines playful design with practical everyday light control.',
           ],
         },
-        {
-          body: [
-            'Bring stars to their window with the Kids Gold Star Day & Night Blind – Starry Night — a fun and stylish made-to-measure kids blind designed to combine playful bedroom décor with flexible light and privacy control.',
-          ],
-        },
       ],
+      keyFeaturesHeading: 'Why Choose the Starry Night Gold Kids Blind?',
       keyFeatures: [
         'Stylish gold star patterned children’s blind',
         'Ideal for kids’ bedrooms, nurseries and playrooms',
@@ -264,6 +247,8 @@ const PRODUCTS = [
         'Perfect for star, sky and bedtime-themed bedrooms',
         'Warm gold design complements neutral and modern interiors',
       ],
+      closing:
+        'Bring stars to their window with the Kids Gold Star Day & Night Blind – Starry Night — a fun and stylish made-to-measure kids blind designed to combine playful bedroom décor with flexible light and privacy control.',
     },
   },
 
@@ -277,8 +262,6 @@ const PRODUCTS = [
     seoTitle: 'Kids Blue Star Day & Night Blind – Starry Night | Made to Measure',
     seoDescription:
       'Blue star day and night blind for kids’ bedrooms and nurseries. Made to measure, with alternating sheer and patterned panels for flexible light and privacy.',
-    descriptionHtml:
-      '<p>Create a dreamy and playful space with our Kids Blue Star Day &amp; Night Blind – Starry Night. Featuring a charming pattern of blue stars in different sizes across a soft background, this stylish children’s blind is perfect for adding colour and character to a kids’ bedroom, nursery or playroom.</p>',
     productDetails: {
       sections: [
         {
@@ -306,12 +289,8 @@ const PRODUCTS = [
             'The blue star pattern creates a fun yet calming look that can complement space, sky, cloud and bedtime-themed interiors. Pair it with neutral walls and soft furnishings or use it as a colourful feature in your child’s room.',
           ],
         },
-        {
-          body: [
-            'Add a touch of the night sky to your little one’s room with the Kids Blue Star Day & Night Blind – Starry Night, a playful made-to-measure children’s blind combining a beautiful star design with practical day-to-day light control.',
-          ],
-        },
       ],
+      keyFeaturesHeading: 'Why Choose the Starry Night Kids Blind?',
       keyFeatures: [
         'Fun blue star patterned children’s blind',
         'Ideal for kids’ bedrooms, nurseries and playrooms',
@@ -322,6 +301,8 @@ const PRODUCTS = [
         'Complements star, sky and space-themed children’s décor',
         'Stylish and practical alternative to plain kids blinds',
       ],
+      closing:
+        'Add a touch of the night sky to your little one’s room with the Kids Blue Star Day & Night Blind – Starry Night, a playful made-to-measure children’s blind combining a beautiful star design with practical day-to-day light control.',
     },
   },
 
@@ -335,8 +316,6 @@ const PRODUCTS = [
     seoTitle: 'Kids Garden Adventure Day & Night Blind – Little Sky',
     seoDescription:
       'Garden adventure day and night blind for kids’ bedrooms, nurseries and playrooms. Made to measure, with flexible daylight, glare and privacy control.',
-    descriptionHtml:
-      '<p>Bring a world of outdoor adventure into your child’s room with our Kids Garden Adventure Day &amp; Night Blind – Little Sky. Featuring a charming illustrated design of sunshine, trees, playful dogs, scooters, birds and colourful garden scenes, this children’s blind adds a fun and imaginative finishing touch to any bedroom, nursery or playroom.</p>',
     productDetails: {
       sections: [
         {
@@ -364,12 +343,8 @@ const PRODUCTS = [
             'The Little Sky Garden Adventure design combines playful characters with an outdoor theme to encourage imagination while adding colour and personality to the room. It works beautifully in kids’ bedrooms, nurseries, playrooms and children\'s learning spaces.',
           ],
         },
-        {
-          body: [
-            'Add colour, imagination and practical light control to your little one’s space with the Kids Garden Adventure Day & Night Blind – Little Sky, a playful made-to-measure children’s blind designed for modern UK homes.',
-          ],
-        },
       ],
+      keyFeaturesHeading: 'Why Choose the Little Sky Garden Adventure Blind?',
       keyFeatures: [
         'Fun garden and outdoor adventure design',
         'Ideal for kids’ bedrooms, nurseries and playrooms',
@@ -380,9 +355,47 @@ const PRODUCTS = [
         'Colourful trees, sunshine, animals and playful illustrations',
         'Stylish alternative to plain children’s window blinds',
       ],
+      closing:
+        'Add colour, imagination and practical light control to your little one’s space with the Kids Garden Adventure Day & Night Blind – Little Sky, a playful made-to-measure children’s blind designed for modern UK homes.',
     },
   },
 ];
+
+// ============================================================================
+// Copy rendering
+// ============================================================================
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+/**
+ * Render the full prose description for the Shopify product body from the same
+ * structure the storefront renders, so the two can never drift apart.
+ *
+ * The page's meta description comes from the Shopify SEO description, not from
+ * this body — see generateMetadata in src/app/product/[slug]/page.tsx.
+ */
+function buildDescriptionHtml(details) {
+  const parts = [];
+
+  for (const section of details.sections) {
+    if (section.heading) parts.push(`<h3>${escapeHtml(section.heading)}</h3>`);
+    for (const paragraph of section.body) parts.push(`<p>${escapeHtml(paragraph)}</p>`);
+  }
+
+  if (details.keyFeatures?.length) {
+    parts.push(`<h3>${escapeHtml(details.keyFeaturesHeading || 'Key Features')}</h3>`);
+    parts.push(`<ul>${details.keyFeatures.map((f) => `<li>${escapeHtml(f)}</li>`).join('')}</ul>`);
+  }
+
+  if (details.closing) parts.push(`<p>${escapeHtml(details.closing)}</p>`);
+
+  return parts.join('\n');
+}
 
 // ============================================================================
 // Env / transport helpers (same pattern as create-installation-service-product.mjs)
@@ -519,6 +532,25 @@ const PRODUCT_SET_MUTATION = `
         id
         handle
         title
+        status
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+// productUpdate applies a partial update. productSet is declarative and resets
+// anything you leave out — using it to patch an existing product silently flipped
+// status back to the ACTIVE default and published the drafts to the live store.
+const PRODUCT_UPDATE_MUTATION = `
+  mutation ProductUpdate($product: ProductUpdateInput!) {
+    productUpdate(product: $product) {
+      product {
+        id
+        handle
         status
       }
       userErrors {
@@ -735,40 +767,89 @@ async function publishToChannels(url, headers, productId, context) {
   }
 }
 
+/**
+ * Push the copy this script owns — body description, SEO and metafields. Runs on
+ * create and on re-run, so editing the data table above and re-running updates
+ * the live products.
+ *
+ * Uses productUpdate, never productSet: productSet resets every field you omit,
+ * so patching this way would clobber status, tags and anything else not listed.
+ */
+async function syncContent(url, headers, productId, product) {
+  const descriptionHtml = buildDescriptionHtml(product.productDetails);
+
+  const updated = await shopifyGraphql(url, headers, PRODUCT_UPDATE_MUTATION, {
+    product: {
+      id: productId,
+      descriptionHtml,
+      seo: {
+        title: product.seoTitle,
+        description: product.seoDescription,
+      },
+    },
+  });
+  assertNoUserErrors('productUpdate', updated.productUpdate.userErrors);
+  console.log(`    Synced description (${descriptionHtml.length} chars) and SEO fields.`);
+
+  const metafieldResult = await shopifyGraphql(url, headers, METAFIELDS_SET_MUTATION, {
+    metafields: [
+      {
+        ownerId: productId,
+        namespace: 'custom',
+        key: 'price_band_name',
+        type: 'single_line_text_field',
+        value: PRICE_BAND_NAME,
+      },
+      {
+        ownerId: productId,
+        namespace: 'custom',
+        key: 'product_details',
+        type: 'json',
+        value: JSON.stringify(product.productDetails),
+      },
+    ],
+  });
+  assertNoUserErrors('metafieldsSet', metafieldResult.metafieldsSet.userErrors);
+  console.log(`    Set custom.price_band_name = "${PRICE_BAND_NAME}" and custom.product_details.`);
+}
+
 async function createProduct(url, headers, product, context) {
   const existing = await shopifyGraphql(url, headers, PRODUCT_BY_HANDLE_QUERY, {
     handle: product.handle,
   });
 
-  if (existing.productByHandle) {
-    console.log(`  Exists — ${existing.productByHandle.id}; reconciling sales channels only.`);
-    if (!context.dryRun) {
-      await publishToChannels(url, headers, existing.productByHandle.id, context);
+  const images = resolveImages(product);
+  const tags = [...COMMON_TAGS, ...product.colourTags];
+  const descriptionHtml = buildDescriptionHtml(product.productDetails);
+
+  if (context.dryRun) {
+    const details = product.productDetails;
+    console.log(`  Would ${existing.productByHandle ? 'update' : 'create'} "${product.title}"`);
+    console.log(`    handle:      ${product.handle}`);
+    if (!existing.productByHandle) {
+      console.log(`    status:      DRAFT`);
+      console.log(`    productType: ${PRODUCT_TYPE}`);
+      console.log(`    vendor:      ${VENDOR}`);
+      console.log(`    tags:        ${tags.join(', ')}`);
+      console.log(`    collection:  ${TARGET_COLLECTION_HANDLE}`);
+      for (const image of images) {
+        console.log(`    image:       ${path.basename(image.filePath)} -> ${image.uploadName}`);
+      }
     }
+    console.log(`    priceBand:   ${PRICE_BAND_NAME}`);
+    console.log(`    seoTitle:    ${product.seoTitle} (${product.seoTitle.length} chars)`);
+    console.log(`    seoDesc:     ${product.seoDescription.length} chars`);
+    console.log(`    bodyHtml:    ${descriptionHtml.length} chars`);
+    console.log(
+      `    details:     ${details.sections.length} sections, ${details.keyFeatures.length} key features, closing: ${Boolean(details.closing)}`
+    );
     return;
   }
 
-  const images = resolveImages(product);
-  const tags = [...COMMON_TAGS, ...product.colourTags];
-
-  if (context.dryRun) {
-    console.log(`  Would create "${product.title}"`);
-    console.log(`    handle:      ${product.handle}`);
-    console.log(`    status:      DRAFT`);
-    console.log(`    productType: ${PRODUCT_TYPE}`);
-    console.log(`    vendor:      ${VENDOR}`);
-    console.log(`    tags:        ${tags.join(', ')}`);
-    console.log(`    priceBand:   ${PRICE_BAND_NAME}`);
-    console.log(`    collection:  ${TARGET_COLLECTION_HANDLE}`);
-    console.log(`    seoTitle:    ${product.seoTitle} (${product.seoTitle.length} chars)`);
-    console.log(`    seoDesc:     ${product.seoDescription.length} chars`);
-    console.log(`    bodyHtml:    ${product.descriptionHtml.length} chars`);
-    console.log(
-      `    details:     ${product.productDetails.sections.length} sections, ${product.productDetails.keyFeatures.length} key features`
-    );
-    for (const image of images) {
-      console.log(`    image:       ${path.basename(image.filePath)} -> ${image.uploadName}`);
-    }
+  if (existing.productByHandle) {
+    console.log(`  Exists — ${existing.productByHandle.id}; re-syncing content.`);
+    await syncContent(url, headers, existing.productByHandle.id, product);
+    await publishToChannels(url, headers, existing.productByHandle.id, context);
     return;
   }
 
@@ -780,11 +861,6 @@ async function createProduct(url, headers, product, context) {
       productType: PRODUCT_TYPE,
       vendor: VENDOR,
       tags,
-      descriptionHtml: product.descriptionHtml,
-      seo: {
-        title: product.seoTitle,
-        description: product.seoDescription,
-      },
     },
   });
 
@@ -809,26 +885,7 @@ async function createProduct(url, headers, product, context) {
   assertNoUserErrors('productCreateMedia', mediaResult.productCreateMedia.mediaUserErrors);
   console.log(`    Attached ${media.length} images (hero: ${path.basename(images[0].filePath)}).`);
 
-  const metafieldResult = await shopifyGraphql(url, headers, METAFIELDS_SET_MUTATION, {
-    metafields: [
-      {
-        ownerId: productId,
-        namespace: 'custom',
-        key: 'price_band_name',
-        type: 'single_line_text_field',
-        value: PRICE_BAND_NAME,
-      },
-      {
-        ownerId: productId,
-        namespace: 'custom',
-        key: 'product_details',
-        type: 'json',
-        value: JSON.stringify(product.productDetails),
-      },
-    ],
-  });
-  assertNoUserErrors('metafieldsSet', metafieldResult.metafieldsSet.userErrors);
-  console.log(`    Set custom.price_band_name = "${PRICE_BAND_NAME}" and custom.product_details.`);
+  await syncContent(url, headers, productId, product);
 
   const collectionResult = await shopifyGraphql(url, headers, COLLECTION_ADD_PRODUCTS_MUTATION, {
     id: context.collectionId,

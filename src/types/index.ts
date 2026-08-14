@@ -64,7 +64,11 @@ export interface ProductDetailsContent {
     heading?: string;
     body: string[];
   }>;
+  /** Heading above the bullet list, e.g. "Why Choose the Starry Night Kids Blind?" */
+  keyFeaturesHeading?: string;
   keyFeatures?: string[];
+  /** Closing paragraph, rendered after the bullet list */
+  closing?: string;
 }
 
 export interface Product {
@@ -211,6 +215,8 @@ export interface ApiProduct {
   title: string;
   description: string | null;
   descriptionHtml?: string | null;
+  /** Shopify SEO description — preferred over `description` for the page meta tag */
+  seoDescription?: string | null;
   images: string[];
   imageAlts?: string[];
   videos?: string[];

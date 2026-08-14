@@ -44,7 +44,9 @@ export async function generateMetadata({ params }: ProductPageProps) {
 
     return {
       title: `${product.name} | Online Blinds`,
-      description: product.description,
+      // Prefer the Shopify SEO description — the product body is full marketing
+      // copy and far too long for a meta description.
+      description: response.data.seoDescription || product.description,
     };
   } catch {
     return {

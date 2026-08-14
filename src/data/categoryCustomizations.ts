@@ -466,6 +466,34 @@ const SECONDARY_CATEGORIES = [
     'motorized-blinds',
 ];
 
+/** Map backend slug formats to frontend formats */
+const BACKEND_SLUG_MAPPING: Record<string, string> = {
+    'day-night-blinds': 'day-and-night-blinds', // Backend uses 'day-night-blinds' (no 'and')
+    'motorised-eclipsecore': 'eclipsecore-shades', // Legacy mapping
+    'motorized-eclipsecore': 'eclipsecore-shades', // Legacy mapping
+};
+
+/** Lowercase and apply the backend→frontend slug mapping. */
+export function normalizeCategorySlug(slug: string): string {
+    const normalized = slug.toLowerCase().trim();
+    return BACKEND_SLUG_MAPPING[normalized] || normalized;
+}
+
+/**
+ * Pick the core product-type slug out of a product's collection slugs, ignoring
+ * colour and marketing collections ("blue-color", "best-sellers", …).
+ *
+ * Products belong to several collections and Shopify returns them in no useful
+ * order, so callers must not assume the first collection is the product type.
+ */
+export function findPrimaryCategorySlug(slugs: string[]): string | undefined {
+    const mappedSlugs = slugs.map(normalizeCategorySlug);
+
+    return mappedSlugs.includes('no-drill-blinds')
+        ? 'no-drill-blinds'
+        : mappedSlugs.find(slug => PRIMARY_CATEGORIES.includes(slug));
+}
+
 /**
  * Get customization features for a product with potentially multiple categories
  * @param categorySlugOrSlugs - Single category slug (string) or array of category slugs
@@ -479,22 +507,10 @@ export function getCategoryCustomizations(
         ? categorySlugOrSlugs
         : [categorySlugOrSlugs];
 
-    // Normalize all slugs to lowercase
-    const normalizedSlugs = categorySlugs.map(slug => slug.toLowerCase().trim());
-
-    // Map backend slug formats to frontend formats
-    const slugMapping: Record<string, string> = {
-        'day-night-blinds': 'day-and-night-blinds', // Backend uses 'day-night-blinds' (no 'and')
-        'motorised-eclipsecore': 'eclipsecore-shades', // Legacy mapping
-        'motorized-eclipsecore': 'eclipsecore-shades', // Legacy mapping
-    };
-
-    const mappedSlugs = normalizedSlugs.map(slug => slugMapping[slug] || slug);
+    const mappedSlugs = categorySlugs.map(normalizeCategorySlug);
 
     // Find primary category (core product type)
-    const primaryCategory = mappedSlugs.includes('no-drill-blinds')
-        ? 'no-drill-blinds'
-        : mappedSlugs.find(slug => PRIMARY_CATEGORIES.includes(slug));
+    const primaryCategory = findPrimaryCategorySlug(categorySlugs);
 
     // Get base features from primary category
     let features: ProductFeatures;

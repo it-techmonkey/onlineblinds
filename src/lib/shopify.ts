@@ -45,6 +45,10 @@ interface StorefrontProduct {
   description: string;
   title: string;
   descriptionHtml: string;
+  seo: {
+    title: string | null;
+    description: string | null;
+  };
   productType: string;
   vendor: string;
   tags: string[];
@@ -160,6 +164,10 @@ const PRODUCT_FIELDS = `
   title
   description
   descriptionHtml
+  seo {
+    title
+    description
+  }
   productType
   vendor
   tags
@@ -428,6 +436,7 @@ function mapStorefrontProduct(
     title: sfProduct.title,
     description: sfProduct.description || null,
     descriptionHtml: sfProduct.descriptionHtml || null,
+    seoDescription: sfProduct.seo?.description || null,
     images: sfProduct.images.edges.map((edge) => edge.node.url),
     imageAlts: sfProduct.images.edges.map((edge) => edge.node.altText || ''),
     videos: [],

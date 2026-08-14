@@ -17,7 +17,11 @@ import {
   CheckoutItemRequest,
   CheckoutResponse,
 } from '@/types';
-import { getCategoryCustomizations } from '@/data/categoryCustomizations';
+import {
+  getCategoryCustomizations,
+  findPrimaryCategorySlug,
+  normalizeCategorySlug,
+} from '@/data/categoryCustomizations';
 
 const SERVER_API_CACHE_REVALIDATE_SECONDS =
   Number(process.env.SERVER_API_CACHE_REVALIDATE_SECONDS || 3_600);
@@ -749,7 +753,15 @@ export function transformProduct(apiProduct: ApiProduct): Product {
   const tagSlugs = apiProduct.tags.map(t => t.slug.toLowerCase());
   const electricalRoller = isElectricalRollerProduct(tagSlugs);
   const electricalDayNight = isElectricalDayNightProduct(tagSlugs);
-  const userCategory = apiProduct.categories.find((c) => !isSystemCategory(c.name));
+  // Prefer the collection that is the actual product type. Shopify returns
+  // collections in no useful order, so taking the first non-system one lands on
+  // whichever colour/marketing collection happens to sort first ("Blue Colour
+  // Blinds"), which then hides the product type's customization options.
+  const primarySlug = findPrimaryCategorySlug(apiProduct.categories.map((c) => c.slug));
+  const primaryCategory = primarySlug
+    ? apiProduct.categories.find((c) => normalizeCategorySlug(c.slug) === primarySlug)
+    : undefined;
+  const userCategory = primaryCategory ?? apiProduct.categories.find((c) => !isSystemCategory(c.name));
   const categoryName = electricalRoller
     ? 'Motorised Roller Shades'
     : electricalDayNight
