@@ -159,8 +159,11 @@ function isSpecialMotorizedProduct(tags) {
   return tags.some(isElectricalRollerTag) || tags.some(isElectricalDayNightTag);
 }
 
+// Keep in sync with MOTORIZATION_BASE_PRICE in src/lib/electrical-roller.ts
+const MOTORIZATION_BASE_PRICE = 75;
+
 function getMinimumPriceWithMotorizedUplift(basePrice, tags) {
-  return isSpecialMotorizedProduct(tags) ? basePrice + 100 : basePrice;
+  return isSpecialMotorizedProduct(tags) ? basePrice + MOTORIZATION_BASE_PRICE : basePrice;
 }
 
 async function shopifyGraphql(url, headers, query, variables) {

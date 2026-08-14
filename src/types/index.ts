@@ -54,6 +54,24 @@ export interface ProductFeatures {
   hasRollerCassette: boolean;
 }
 
+/** Name of the Shopify product option that drives the colour selector. */
+export const COLOUR_OPTION_NAME = 'Colour';
+
+/**
+ * A selectable colour, backed by a real Shopify variant. Only products that
+ * define a `Colour` option have these; everything else has an empty list and
+ * shows no colour selector.
+ */
+export interface ProductColourVariant {
+  /** Shopify variant GID — resolved to the real variant at checkout */
+  id: string;
+  colour: string;
+  available: boolean;
+  imageUrl: string | null;
+  /** Index of this variant's image within `product.images`, for the gallery */
+  imageIndex: number | null;
+}
+
 /**
  * Per-product "Product Details" copy, from the Shopify `custom.product_details`
  * metafield. When absent the product page falls back to the shared category copy
@@ -84,6 +102,8 @@ export interface Product {
   estimatedDelivery: string;
   description: string;
   productDetails?: ProductDetailsContent | null;
+  /** Empty unless the Shopify product defines a `Colour` option */
+  colourVariants?: ProductColourVariant[];
   images: string[];
   videos?: string[];
   features: ProductFeatures;
@@ -98,12 +118,14 @@ export interface Product {
 export interface ProductConfiguration {
   width: number;
   widthFraction: string;
-  widthUnit: 'inches' | 'cm';
+  widthUnit: 'cm' | 'mm';
   height: number;
   heightFraction: string;
-  heightUnit: 'inches' | 'cm';
+  heightUnit: 'cm' | 'mm';
   roomType: string | null;
   blindName: string | null;
+  /** Selected Shopify colour variant, for products with a `Colour` option */
+  colour: string | null;
   headrail: string | null;
   headrailColour: string | null;
   installationMethod: string | null;
@@ -114,8 +136,14 @@ export interface ProductConfiguration {
   bottomChain: string | null;
   bracketType: string | null;
   chainColor: string | null;
+  /** Day & Night blinds only: 'yes' | 'no' — replaces chainColor's colour picker for this category */
+  chromeUpgrade: string | null;
   wrappedCassette: string | null;
   cassetteMatchingBar: string | null;
+  /** Day & Night blinds only: 'yes' | 'no' */
+  sameFabricInsert: string | null;
+  /** Roller blinds only: 'yes' | 'no' — matching fabric on the cover cassette */
+  matchingFabricCassette: string | null;
   motorization: string | null;
   brand: string | null;
   blindType: string | null;
@@ -131,12 +159,13 @@ export interface ProductConfiguration {
 export const DEFAULT_CONFIGURATION: ProductConfiguration = {
   width: 0,
   widthFraction: '0',
-  widthUnit: 'inches',
+  widthUnit: 'cm',
   height: 0,
   heightFraction: '0',
-  heightUnit: 'inches',
+  heightUnit: 'cm',
   roomType: null,
   blindName: null,
+  colour: null,
   headrail: null,
   headrailColour: null,
   installationMethod: null,
@@ -147,8 +176,11 @@ export const DEFAULT_CONFIGURATION: ProductConfiguration = {
   bottomChain: null,
   bracketType: null,
   chainColor: null,
+  chromeUpgrade: null,
   wrappedCassette: null,
   cassetteMatchingBar: null,
+  sameFabricInsert: null,
+  matchingFabricCassette: null,
   motorization: null,
   brand: null,
   blindType: null,
@@ -217,6 +249,7 @@ export interface ApiProduct {
   descriptionHtml?: string | null;
   /** Shopify SEO description — preferred over `description` for the page meta tag */
   seoDescription?: string | null;
+  colourVariants?: ProductColourVariant[];
   images: string[];
   imageAlts?: string[];
   videos?: string[];

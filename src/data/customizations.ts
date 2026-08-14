@@ -20,14 +20,14 @@ export const HEADRAIL_COLOUR_OPTIONS = [
 export const INSTALLATION_METHOD_OPTIONS = [
   {
     id: 'inside-mount',
-    name: 'Inside Mount',
+    name: 'Inside Recess',
     description: 'Measure inside width (min of 3 measurements) and inside height (max of 3 measurements). Best for deep window frames and a sleek, recessed look.',
     price: 0,
     image: '/products/installation/insidemountVerticalBlinds.png',
   },
   {
     id: 'outside-mount',
-    name: 'Outside Mount',
+    name: 'Outside Recess',
     description: 'Add 3–6" to frame width and 5–10" to frame height. Ideal when window frame depth is less than 2–3 inches.',
     price: 0,
     image: '/products/installation/outsidemountVerticalBlinds.png',
@@ -63,14 +63,14 @@ export const CONTROL_OPTIONS = [
 export const ROLLER_INSTALLATION_OPTIONS = [
   {
     id: 'inside-mount',
-    name: 'Inside Mount',
+    name: 'Inside Recess',
     description: 'Blinds are mounted inside the window recess.',
     price: 0,
     image: '/products/installation/rollerInsideMount.png',
   },
   {
     id: 'outside-mount',
-    name: 'Outside Mount',
+    name: 'Outside Recess',
     description: 'Blinds are mounted outside the window recess on the wall or frame.',
     price: 0,
     image: '/products/installation/rollerOutsideMount.png',
@@ -393,14 +393,14 @@ export const PERFECT_FIT_SHUTTER_PANEL_OPTIONS = [
 export const ZEBRA_INSTALLATION_OPTIONS = [
   {
     id: 'inside-mount',
-    name: 'Inside Mount',
+    name: 'Inside Recess',
     description: 'Shades are mounted inside the window recess.',
     price: 0,
     image: '/products/installation/zebra-insideMount.png',
   },
   {
     id: 'outside-mount',
-    name: 'Outside Mount',
+    name: 'Outside Recess',
     description: 'Shades are mounted outside the window recess on the wall or frame.',
     price: 0,
     image: '/products/installation/zebra-outsideMount.png',
@@ -570,26 +570,26 @@ export const BRACKET_TYPE_OPTIONS = [
 export const CHAIN_COLOR_OPTIONS = [
   {
     id: 'white-plastic',
-    name: 'White',
-    price: 0, // FREE
+    name: 'White Plastic',
+    price: 0, // FREE — surfaced as a "Free" badge via SimpleDropdown's showFreeLabel
     hex: '#ffffff',
   },
   {
     id: 'grey-plastic',
     name: 'Grey',
-    price: 4.00, // $4
+    price: 2.99,
     hex: '#8a8f98',
   },
   {
     id: 'black-plastic',
     name: 'Black',
-    price: 4.00, // $4
+    price: 2.99,
     hex: '#111111',
   },
   {
     id: 'chrome-metal',
-    name: 'Chrome Metal',
-    price: 7.00, // $7
+    name: 'Chrome',
+    price: 3.49,
     hex: '#c8ccd1',
   },
 ];
@@ -659,32 +659,34 @@ export const WRAPPED_CASSETTE_OPTIONS = [
   },
 ];
 
-// Cassette and bottom matching bar options for roller blinds
+// Roller cover cassette options (roller blinds). "Matching Fabric Cassette" was
+// split out of this list into its own MATCHING_FABRIC_CASSETTE_OPTIONS dropdown.
 export const ROLLER_CASSETTE_OPTIONS = [
   {
     id: 'white',
     name: 'Standard White',
-    price: 12.99,
+    price: 7.99,
     image: '/products/cassetteBar/standard-white-cassette-roller.png',
   },
   {
     id: 'grey',
     name: 'Premium Grey',
-    price: 18.50,
+    price: 9.99,
     image: '/products/cassetteBar/grey-cassette-roller.png',
   },
   {
     id: 'black',
     name: 'Premium Black',
-    price: 18.50,
+    price: 9.99,
     image: '/products/cassetteBar/black-cassette-roller.png',
   },
-  {
-    id: 'matching-fabric',
-    name: 'Matching Fabric Cassette',
-    price: 23.99,
-    image: '/products/cassetteBar/premium-fabric-insert-cassette-roller.png',
-  },
+];
+
+// Matching fabric on the cover cassette (roller blinds) — its own dropdown inside
+// the Roller Cover Cassette Options card.
+export const MATCHING_FABRIC_CASSETTE_OPTIONS = [
+  { id: 'no', name: 'No', price: 0 },
+  { id: 'yes', name: 'Yes', price: 5.99 },
 ];
 
 // Cassette and bottom matching bar options (used for day/night blinds)
@@ -698,18 +700,40 @@ export const CASSETTE_MATCHING_BAR_OPTIONS = [
   {
     id: 'black',
     name: 'Black',
-    price: 18.50, // +$18.50
+    price: 7.99,
     image: '/products/cassetteBar/zebra_shade_cassette_and_bottom_bar_black.png',
   },
   {
     id: 'grey',
     name: 'Grey',
-    price: 18.50, // +$18.50
+    price: 7.99,
     image: '/products/cassetteBar/zebra_shade_cassette_and_bottom_bar_grey.png',
   },
 ];
 
+// Chrome upgrade toggle (used for day/night blinds, inside the "Choose your
+// Control" card — replaces the 4-colour chain picker for this category only)
+export const CHROME_UPGRADE_OPTIONS = [
+  { id: 'no', name: 'No', price: 0 },
+  { id: 'yes', name: 'Yes', price: 3.99 },
+];
+
+// Same fabric insert in cassette toggle (used for day/night blinds — a
+// standalone box, separate from the Cassette and Bottom Matching Bar card)
+export const FABRIC_INSERT_CASSETTE_OPTIONS = [
+  { id: 'no', name: 'No', price: 0 },
+  { id: 'yes', name: 'Yes', price: 8.99 },
+];
+
 // Motorization options (used for day/night blinds)
+// Motorization is a flat add-on with the remote included — customers no longer pick
+// a remote channel count, so `motorized` is the single sentinel value written to
+// config.motorization when the motorization card is selected. The £75 itself comes
+// from getMotorizationBasePrice in src/lib/electrical-roller.ts; the price here only
+// feeds the cart cost breakdown.
+export const MOTORIZATION_PRICE = 75;
+export const MOTORIZED_OPTION_ID = 'motorized';
+
 export const MOTORIZATION_OPTIONS = [
   {
     id: 'none',
@@ -719,32 +743,11 @@ export const MOTORIZATION_OPTIONS = [
     image: '/products/motorization/none.png',
   },
   {
-    id: '1ch-remote',
-    name: '1 CH Remote',
-    description: '1 channel remote control (included with motorization)',
-    price: 13.95,
+    id: MOTORIZED_OPTION_ID,
+    name: 'Motorized',
+    description: 'Including remote and charging wire',
+    price: MOTORIZATION_PRICE,
     image: '/products/motorization/1ch.png',
-  },
-  {
-    id: '2ch-remote',
-    name: '2 CH Remote',
-    description: '2 channel remote control',
-    price: 13.95,
-    image: '/products/motorization/2ch.png',
-  },
-  {
-    id: '6ch-remote',
-    name: '6 CH Remote',
-    description: '6 channel remote control',
-    price: 15.95,
-    image: '/products/motorization/6ch.png',
-  },
-  {
-    id: '16ch-remote',
-    name: '16 CH Remote',
-    description: '16 channel remote control',
-    price: 15.95,
-    image: '/products/motorization/16ch.png',
   },
 ];
 
@@ -835,19 +838,19 @@ export const BOTTOM_BAR_OPTIONS = [
   {
     id: 'grey-round-bar',
     name: 'Grey Round Bar',
-    price: 8.00,
+    price: 3.99,
     image: '/products/bottomBar/Grey_round_bar.png',
   },
   {
     id: 'white-round-bar',
     name: 'White Round Bar',
-    price: 8.00,
+    price: 3.99,
     image: '/products/bottomBar/White_round_bar.png',
   },
   {
     id: 'full-fabric-cover-premium-bar',
     name: 'Full Fabric Cover Premium Bar',
-    price: 15.00,
+    price: 6.99,
     image: '/products/bottomBar/covered_bottom_bar_picture.png',
   },
 ];

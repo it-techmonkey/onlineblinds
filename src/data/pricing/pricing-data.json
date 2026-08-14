@@ -70764,7 +70764,7 @@
       "id": "cmke6o0fg006wzo7k2izvp69b",
       "category": "chain-color",
       "optionId": "chrome-metal",
-      "name": "Chrome - Metal",
+      "name": "Chrome",
       "description": null,
       "sortOrder": 0
     },
@@ -70772,7 +70772,7 @@
       "id": "cmke6nzz1006qzo7k3c6q0axt",
       "category": "chain-color",
       "optionId": "white-plastic",
-      "name": "White - Plastic",
+      "name": "White Plastic",
       "description": null,
       "sortOrder": 0
     },
@@ -71060,7 +71060,7 @@
       "id": "cmke6nxfb005szo7kr9c9vasb",
       "category": "installation-method",
       "optionId": "inside-mount",
-      "name": "Inside Mount",
+      "name": "Inside Recess",
       "description": null,
       "sortOrder": 0
     },
@@ -71068,7 +71068,7 @@
       "id": "cmke6nxkl005uzo7ksm7253dc",
       "category": "installation-method",
       "optionId": "outside-mount",
-      "name": "Outside Mount",
+      "name": "Outside Recess",
       "description": null,
       "sortOrder": 0
     },
@@ -72471,6 +72471,94 @@
       "name": "Yes",
       "description": null,
       "sortOrder": 0
+    },
+    {
+      "id": "2d65df0c-6668-4de6-8292-5dd12013709c",
+      "category": "chrome-upgrade",
+      "optionId": "no",
+      "name": "No",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "193f38d4-233a-4f2f-b290-7062e73120ca",
+      "category": "chrome-upgrade",
+      "optionId": "yes",
+      "name": "Yes",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "cd29e727-be8a-4842-a851-f991b7494915",
+      "category": "fabric-insert-cassette",
+      "optionId": "no",
+      "name": "No",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "9cc2e0f6-7768-4f7d-ae42-3034f6be901b",
+      "category": "fabric-insert-cassette",
+      "optionId": "yes",
+      "name": "Yes",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "2494295c-2748-49fe-9f39-4a89224e6121",
+      "category": "bottom-bar",
+      "optionId": "basic",
+      "name": "Basic",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "51e08799-bb73-4dcc-b44a-c2046a444e13",
+      "category": "bottom-bar",
+      "optionId": "grey-round-bar",
+      "name": "Grey Round Bar",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "f2cf6f37-14cb-40c6-9f6b-a2a3e688d091",
+      "category": "bottom-bar",
+      "optionId": "white-round-bar",
+      "name": "White Round Bar",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "af466b2b-0c46-444c-8fbd-2dcf6354da78",
+      "category": "bottom-bar",
+      "optionId": "full-fabric-cover-premium-bar",
+      "name": "Full Fabric Cover Premium Bar",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "4f3c5623-838b-4674-87e4-9d5a04fdb2e5",
+      "category": "matching-fabric-cassette",
+      "optionId": "no",
+      "name": "No",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "3942d23a-8fa4-40eb-b3b5-3ed4eca9fa03",
+      "category": "matching-fabric-cassette",
+      "optionId": "yes",
+      "name": "Yes",
+      "description": null,
+      "sortOrder": 0
+    },
+    {
+      "id": "b7484d8b-1ca8-46eb-8a73-e28b30d17b4a",
+      "category": "motorization",
+      "optionId": "motorized",
+      "name": "Motorized",
+      "description": null,
+      "sortOrder": 0
     }
   ],
   "customizationPricings": [
@@ -73493,7 +73581,7 @@
       "id": "c67dedb1b5fbb4217bfbc1835",
       "customizationOptionId": "c19b0d60af43fb735db7cb046",
       "widthBandId": null,
-      "price": 3.15,
+      "price": 2.99,
       "isPerUnit": false
     },
     {
@@ -73738,7 +73826,7 @@
       "id": "cmke6o06u006tzo7kh5vksuoh",
       "customizationOptionId": "cmke6o041006szo7kwc5a6n3c",
       "widthBandId": null,
-      "price": 3.15,
+      "price": 2.99,
       "isPerUnit": false
     },
     {
@@ -73752,7 +73840,7 @@
       "id": "cmke6o0ia006xzo7kz878rrqo",
       "customizationOptionId": "cmke6o0fg006wzo7k2izvp69b",
       "widthBandId": null,
-      "price": 5.51,
+      "price": 3.49,
       "isPerUnit": false
     },
     {
@@ -73780,14 +73868,14 @@
       "id": "cmke6o1em0075zo7kkar8psem",
       "customizationOptionId": "cmke6o1cd0074zo7k9tw0an6t",
       "widthBandId": null,
-      "price": 14.57,
+      "price": 7.99,
       "isPerUnit": false
     },
     {
       "id": "cmke6o1of0077zo7k6a6wb24e",
       "customizationOptionId": "cmke6o1iq0076zo7k5bmm38l4",
       "widthBandId": null,
-      "price": 14.57,
+      "price": 7.99,
       "isPerUnit": false
     },
     {
@@ -74494,21 +74582,21 @@
       "id": "cmmgajzka0001rc7k5pwd4jfy",
       "customizationOptionId": "cmmgajzdy0000rc7khxnxyw9b",
       "widthBandId": null,
-      "price": 10.23,
+      "price": 7.99,
       "isPerUnit": false
     },
     {
       "id": "cmmgaksva0001yg7ktlqyayt2",
       "customizationOptionId": "cmmgaksq40000yg7kt23xx352",
       "widthBandId": null,
-      "price": 14.57,
+      "price": 9.99,
       "isPerUnit": false
     },
     {
       "id": "cmmgaku1s0003yg7kdoxeqypy",
       "customizationOptionId": "cmmgaktwg0002yg7kit2l01sp",
       "widthBandId": null,
-      "price": 14.57,
+      "price": 9.99,
       "isPerUnit": false
     },
     {
@@ -74734,7 +74822,84 @@
       "widthBandId": null,
       "price": 63.6,
       "isPerUnit": false
+    },
+    {
+      "id": "9d080758-42a1-4334-a713-52dd5ea8b68b",
+      "customizationOptionId": "2d65df0c-6668-4de6-8292-5dd12013709c",
+      "widthBandId": null,
+      "price": 0,
+      "isPerUnit": false
+    },
+    {
+      "id": "98728aa1-675f-4d5e-b016-9db5e22356b7",
+      "customizationOptionId": "193f38d4-233a-4f2f-b290-7062e73120ca",
+      "widthBandId": null,
+      "price": 3.99,
+      "isPerUnit": false
+    },
+    {
+      "id": "95880259-de4b-4730-a9a2-a006f8720c49",
+      "customizationOptionId": "cd29e727-be8a-4842-a851-f991b7494915",
+      "widthBandId": null,
+      "price": 0,
+      "isPerUnit": false
+    },
+    {
+      "id": "dad44577-59fe-453e-ab72-c16052a57224",
+      "customizationOptionId": "9cc2e0f6-7768-4f7d-ae42-3034f6be901b",
+      "widthBandId": null,
+      "price": 8.99,
+      "isPerUnit": false
+    },
+    {
+      "id": "fee23762-6e8a-4fb7-a780-02a6c28ef955",
+      "customizationOptionId": "2494295c-2748-49fe-9f39-4a89224e6121",
+      "widthBandId": null,
+      "price": 0,
+      "isPerUnit": false
+    },
+    {
+      "id": "902823d7-a19c-4c31-bf13-8cc817dd887f",
+      "customizationOptionId": "51e08799-bb73-4dcc-b44a-c2046a444e13",
+      "widthBandId": null,
+      "price": 3.99,
+      "isPerUnit": false
+    },
+    {
+      "id": "73c0a433-ae70-47ad-a63d-ef0592ade1e3",
+      "customizationOptionId": "f2cf6f37-14cb-40c6-9f6b-a2a3e688d091",
+      "widthBandId": null,
+      "price": 3.99,
+      "isPerUnit": false
+    },
+    {
+      "id": "9aea80f2-d790-4ef4-8bfd-f379d76d323d",
+      "customizationOptionId": "af466b2b-0c46-444c-8fbd-2dcf6354da78",
+      "widthBandId": null,
+      "price": 6.99,
+      "isPerUnit": false
+    },
+    {
+      "id": "6de4e989-707e-4356-8af2-519be051927a",
+      "customizationOptionId": "4f3c5623-838b-4674-87e4-9d5a04fdb2e5",
+      "widthBandId": null,
+      "price": 0,
+      "isPerUnit": false
+    },
+    {
+      "id": "46096b51-fad6-4812-997d-cb2c779f8f2e",
+      "customizationOptionId": "3942d23a-8fa4-40eb-b3b5-3ed4eca9fa03",
+      "widthBandId": null,
+      "price": 5.99,
+      "isPerUnit": false
+    },
+    {
+      "id": "af3b4dfa-4099-495f-b435-38c22b624289",
+      "customizationOptionId": "b7484d8b-1ca8-46eb-8a73-e28b30d17b4a",
+      "widthBandId": null,
+      "price": 0,
+      "isPerUnit": false
     }
   ],
-  "checksum": "ccdc9e5f33bd310de84f33affa0cde44cbd8e72aef49b7bc8f0b14491a9af174"
+  "checksum": "1ed53acab941f51c831b16d821a01f9b18ff2cf764518ecce17bd66a134cf6ea"
 }

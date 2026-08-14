@@ -1,14 +1,14 @@
 {
   "generatedAt": "2026-05-23T18:46:32.122Z",
   "source": "neon-export",
-  "checksum": "ccdc9e5f33bd310de84f33affa0cde44cbd8e72aef49b7bc8f0b14491a9af174",
+  "checksum": "1ed53acab941f51c831b16d821a01f9b18ff2cf764518ecce17bd66a134cf6ea",
   "counts": {
     "priceBands": 62,
     "widthBands": 135,
     "heightBands": 88,
     "priceCells": 9843,
-    "customizationOptions": 239,
-    "customizationPricings": 323
+    "customizationOptions": 250,
+    "customizationPricings": 334
   },
   "priceBandNames": [
     "Day and Night - Band A",
@@ -81,5 +81,5 @@
       "Price band \"Metal Venetian - Special Band\" has 21 unavailable size combinations"
     ]
   },
-  "shopifyValidated": true
+  "shopifyValidated": false
 }

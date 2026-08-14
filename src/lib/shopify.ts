@@ -5,7 +5,8 @@
 // collections, tags) directly from Shopify's public Storefront API.
 // Pricing and checkout use local Next.js API routes.
 
-import type { ApiProduct, ApiCategory, ApiTag } from '@/types';
+import type { ApiProduct, ApiCategory, ApiTag, ProductColourVariant } from '@/types';
+import { COLOUR_OPTION_NAME } from '@/types';
 
 // ============================================
 // Configuration
@@ -56,6 +57,21 @@ interface StorefrontProduct {
   updatedAt: string;
   images: {
     edges: Array<{ node: StorefrontImage }>;
+  };
+  options: Array<{
+    name: string;
+    values: string[];
+  }>;
+  variants: {
+    edges: Array<{
+      node: {
+        id: string;
+        title: string;
+        availableForSale: boolean;
+        selectedOptions: Array<{ name: string; value: string }>;
+        image: { url: string } | null;
+      };
+    }>;
   };
   collections: {
     edges: Array<{ node: StorefrontCollection }>;
@@ -181,7 +197,31 @@ const PRODUCT_FIELDS = `
       }
     }
   }
-  collections(first: 10) {
+  options {
+    name
+    values
+  }
+  variants(first: 50) {
+    edges {
+      node {
+        id
+        title
+        availableForSale
+        selectedOptions {
+          name
+          value
+        }
+        image {
+          url
+        }
+      }
+    }
+  }
+  # Must comfortably exceed the number of collections a product can belong to.
+  # A multi-colour product sits in ~9 colour collections plus its product-type and
+  # marketing ones; at first: 10 the product-type collection got truncated out and
+  # the page fell back to a colour collection as the category.
+  collections(first: 50) {
     edges {
       node {
         id
@@ -424,6 +464,36 @@ function mapStorefrontProduct(
       .map((metafield) => [metafield.key, metafield.value])
   );
 
+  const imageUrls = sfProduct.images.edges.map((edge) => edge.node.url);
+
+  // Only products with a Colour option get colour variants; everything else
+  // keeps its single default variant and shows no colour selector.
+  const hasColourOption = (sfProduct.options || []).some(
+    (option) => option.name.toLowerCase() === COLOUR_OPTION_NAME.toLowerCase()
+  );
+
+  const colourVariants: ProductColourVariant[] = hasColourOption
+    ? (sfProduct.variants?.edges || []).flatMap((edge) => {
+        const colour = edge.node.selectedOptions.find(
+          (option) => option.name.toLowerCase() === COLOUR_OPTION_NAME.toLowerCase()
+        )?.value;
+        if (!colour) return [];
+
+        const imageUrl = edge.node.image?.url || null;
+        const imageIndex = imageUrl ? imageUrls.indexOf(imageUrl) : -1;
+
+        return [
+          {
+            id: edge.node.id,
+            colour,
+            available: edge.node.availableForSale,
+            imageUrl,
+            imageIndex: imageIndex >= 0 ? imageIndex : null,
+          },
+        ];
+      })
+    : [];
+
   const parseOptionalNumber = (value: string | undefined): number | null => {
     if (!value) return null;
     const parsed = Number(value);
@@ -437,7 +507,8 @@ function mapStorefrontProduct(
     description: sfProduct.description || null,
     descriptionHtml: sfProduct.descriptionHtml || null,
     seoDescription: sfProduct.seo?.description || null,
-    images: sfProduct.images.edges.map((edge) => edge.node.url),
+    colourVariants,
+    images: imageUrls,
     imageAlts: sfProduct.images.edges.map((edge) => edge.node.altText || ''),
     videos: [],
     price: minimumPrices[sfProduct.handle] || 0,

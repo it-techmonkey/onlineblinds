@@ -230,7 +230,7 @@ export function calculateTotalPrice(
   const customizationTotal = customizationPrices.reduce((sum, c) => sum + c.price, 0);
 
   // Add motorization base price if applicable
-  const motorizationBasePrice = getMotorizationBasePrice(productTags, selectedCustomizations);
+  const motorizationBasePrice = getMotorizationBasePrice(selectedCustomizations);
 
   const totalPrice = dimensionResult.dimensionPrice + customizationTotal + motorizationBasePrice;
 
@@ -259,9 +259,12 @@ export function configToCustomizations(config: {
   bracketType?: string | null;
   chainColor?: string | null;
   chainColorCategory?: string;
+  chromeUpgrade?: string | null;
   frameColorCategory?: string;
   wrappedCassette?: string | null;
   cassetteMatchingBar?: string | null;
+  sameFabricInsert?: string | null;
+  matchingFabricCassette?: string | null;
   isRollerCassette?: boolean;
   motorization?: string | null;
   brand?: string | null;
@@ -305,12 +308,21 @@ export function configToCustomizations(config: {
   if (config.chainColor) {
     customizations.push({ category: config.chainColorCategory ?? 'chain-color', optionId: config.chainColor });
   }
+  if (config.chromeUpgrade) {
+    customizations.push({ category: 'chrome-upgrade', optionId: config.chromeUpgrade });
+  }
   if (config.wrappedCassette) {
     customizations.push({ category: 'wrapped-cassette', optionId: config.wrappedCassette });
   }
   if (config.cassetteMatchingBar) {
     const cassetteCategory = config.isRollerCassette ? 'roller-cassette' : 'cassette-bar';
     customizations.push({ category: cassetteCategory, optionId: config.cassetteMatchingBar });
+  }
+  if (config.sameFabricInsert) {
+    customizations.push({ category: 'fabric-insert-cassette', optionId: config.sameFabricInsert });
+  }
+  if (config.matchingFabricCassette) {
+    customizations.push({ category: 'matching-fabric-cassette', optionId: config.matchingFabricCassette });
   }
   if (config.motorization && config.motorization !== 'none') {
     customizations.push({ category: 'motorization', optionId: config.motorization });
@@ -369,6 +381,26 @@ export function getTotalInches(whole: number, fraction: string, unit: 'inches' |
     return whole / 25.4;
   }
   return whole + parseFraction(fraction);
+}
+
+/**
+ * Format a customer-entered width/height for display in its selected unit.
+ * In cm mode `fraction` is the sub-unit millimeters (0-9), shown as a decimal.
+ */
+export function formatMeasurement(whole: number, fraction: string, unit: 'cm' | 'mm'): string {
+  if (unit === 'mm') {
+    return `${whole} mm`;
+  }
+  const mm = parseInt(fraction, 10) || 0;
+  return mm > 0 ? `${whole}.${mm} cm` : `${whole} cm`;
+}
+
+/**
+ * Format a price band's matched size (stored in mm) for display in the customer's
+ * selected unit.
+ */
+export function formatBandSizeMm(mm: number, unit: 'cm' | 'mm'): string {
+  return unit === 'mm' ? `${Math.round(mm)} mm` : `${(mm / 10).toFixed(1)} cm`;
 }
 
 // ============================================

@@ -8,6 +8,11 @@ interface ProductGalleryProps {
   images: string[];
   videos?: string[];
   productName: string;
+  /**
+   * Jump the gallery to this image. Used by the colour selector so picking a
+   * colour shows that variant's photo; thumbnail clicks still work normally.
+   */
+  activeIndex?: number | null;
 }
 
 interface MediaItem {
@@ -21,9 +26,20 @@ const FALLBACK_MEDIA: MediaItem = {
   url: '/home/products/vertical-blinds-1.jpg',
 };
 
-const ProductGallery = ({ images, videos = [], productName }: ProductGalleryProps) => {
+const ProductGallery = ({ images, videos = [], productName, activeIndex = null }: ProductGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
+
+  // Follow activeIndex when it changes (colour selection), without clobbering a
+  // manual thumbnail click. Adjusting state during render rather than in an effect
+  // avoids the extra render pass — see React's "adjusting state when a prop changes".
+  const [lastActiveIndex, setLastActiveIndex] = useState(activeIndex);
+  if (activeIndex !== lastActiveIndex) {
+    setLastActiveIndex(activeIndex);
+    if (activeIndex != null && activeIndex >= 0) {
+      setSelectedImage(activeIndex);
+    }
+  }
 
   const normalizedMedia: MediaItem[] = [
     ...images,

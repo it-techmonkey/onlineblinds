@@ -600,10 +600,7 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   }
 
   const customizationTotal = customizationPrices.reduce((sum, customization) => sum + customization.price, 0);
-  const motorizationBasePrice = getMotorizationBasePrice(
-    cachedProduct.tags,
-    request.customizations ?? []
-  );
+  const motorizationBasePrice = getMotorizationBasePrice(request.customizations ?? []);
   const totalPrice = dimensionPrice + customizationTotal + motorizationBasePrice;
 
   return {
