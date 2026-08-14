@@ -3,6 +3,7 @@ import {
   ApiProductsResponse,
   ApiProductResponse,
   Product,
+  ProductDetailsContent,
   DELIVERY_VERTICAL,
   DELIVERY_STANDARD,
   DEFAULT_RATING,
@@ -719,6 +720,23 @@ export function formatPriceWithCurrency(price: number, currency: string = 'GBP')
 /** Slug for EclipseCore / honeycomb blackout product - homepage links here; must use eclipsecore-shades features */
 const ECLIPSECORE_HONEYCOMB_SLUG = 'non-driii-honeycomb-blackout-blinds';
 
+/**
+ * Parse the Shopify `custom.product_details` JSON metafield. Returns null for
+ * products without one (the vast majority), which makes the product page fall
+ * back to the shared category copy.
+ */
+function parseProductDetails(raw: string | null | undefined): ProductDetailsContent | null {
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed?.sections)) return null;
+    return parsed as ProductDetailsContent;
+  } catch {
+    return null;
+  }
+}
+
 // Detect Shopify system/internal collections (all-caps names, or containing filter/index markers)
 function isSystemCategory(name: string): boolean {
   return (
@@ -785,6 +803,7 @@ export function transformProduct(apiProduct: ApiProduct): Product {
       ? DELIVERY_VERTICAL
       : DELIVERY_STANDARD,
     description: apiProduct.description || '',
+    productDetails: parseProductDetails(apiProduct.productDetails),
     images: apiProduct.images.length > 0 ? apiProduct.images : [],
     videos: apiProduct.videos || [],
     features: features,

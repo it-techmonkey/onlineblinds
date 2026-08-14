@@ -3,17 +3,37 @@
 import { useState } from 'react';
 import categoryContent from '@/data/categoryContent';
 import { NAVIGATION_SLUG_MAPPING, NAVIGATION_TAG_FILTERS } from '@/data/navigation';
+import type { ProductDetailsContent } from '@/types';
 
 interface CategoryInfoSectionProps {
   categorySlug: string;
   /** Product tag slugs — used on product pages to resolve the most specific content */
   productTags?: string[];
+  /**
+   * Per-product copy from the Shopify `custom.product_details` metafield. When
+   * present it replaces the shared category copy in the Product Details
+   * accordion; every other accordion stays category-level.
+   */
+  productDetails?: ProductDetailsContent | null;
 }
 
 interface AccordionItem {
   id: string;
   title: string;
   content: React.ReactNode;
+}
+
+function BulletList({ items, className }: { items: string[]; className?: string }) {
+  return (
+    <ul className={`space-y-1.5 list-none${className ? ` ${className}` : ''}`}>
+      {items.map((item, i) => (
+        <li key={i} className="flex items-start gap-2">
+          <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 function AccordionRow({ item, isOpen, onToggle }: { item: AccordionItem; isOpen: boolean; onToggle: () => void }) {
@@ -68,7 +88,7 @@ function resolveContentSlug(categorySlug: string, tags: string[]): string {
   return categorySlug;
 }
 
-export default function CategoryInfoSection({ categorySlug, productTags }: CategoryInfoSectionProps) {
+export default function CategoryInfoSection({ categorySlug, productTags, productDetails }: CategoryInfoSectionProps) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   // On product pages productTags is provided — resolve the most specific content.
@@ -86,45 +106,60 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
 
   const items: AccordionItem[] = [];
 
-  // --- Category-specific sections ---
-  if (content) {
+  // Products carrying their own copy (Shopify `custom.product_details`) override the
+  // shared category copy for this one accordion; everything below stays category-level.
+  const hasOwnDetails = Boolean(productDetails?.sections?.length);
+
+  if (hasOwnDetails) {
     items.push({
       id: 'product-details',
       title: 'Product Details',
       content: (
         <div className="space-y-4">
-          {content.productDetails.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-          <div className="pt-1">
-            <p className="mb-2 font-semibold text-foreground">Key Features</p>
-            <ul className="space-y-1.5 list-none">
-              {content.keyFeatures.map((feat, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                  <span>{feat}</span>
-                </li>
+          {productDetails!.sections.map((section, i) => (
+            <div key={i} className="space-y-4">
+              {section.heading && <p className="font-semibold text-foreground">{section.heading}</p>}
+              {section.body.map((para, j) => (
+                <p key={j}>{para}</p>
               ))}
-            </ul>
-          </div>
+            </div>
+          ))}
+          {productDetails!.keyFeatures && productDetails!.keyFeatures.length > 0 && (
+            <div className="pt-1">
+              <p className="mb-2 font-semibold text-foreground">Key Features</p>
+              <BulletList items={productDetails!.keyFeatures} />
+            </div>
+          )}
         </div>
       ),
     });
+  }
+
+  // --- Category-specific sections ---
+  if (content) {
+    if (!hasOwnDetails) {
+      items.push({
+        id: 'product-details',
+        title: 'Product Details',
+        content: (
+          <div className="space-y-4">
+            {content.productDetails.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+            <div className="pt-1">
+              <p className="mb-2 font-semibold text-foreground">Key Features</p>
+              <BulletList items={content.keyFeatures} />
+            </div>
+          </div>
+        ),
+      });
+    }
 
     if (content.blackoutFeatures && content.blackoutFeatures.length > 0) {
       items.push({
         id: 'blackout-features',
         title: 'Blackout & Comfort Features',
-        content: (
-          <ul className="space-y-1.5 list-none">
-            {content.blackoutFeatures.map((feat, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                <span>{feat}</span>
-              </li>
-            ))}
-          </ul>
-        ),
+        content: <BulletList items={content.blackoutFeatures} />,
       });
     }
 
@@ -150,31 +185,13 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
     items.push({
       id: 'perfect-for',
       title: 'Perfect For',
-      content: (
-        <ul className="space-y-1.5 list-none">
-          {content.perfectFor.map((item, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      ),
+      content: <BulletList items={content.perfectFor} />,
     });
 
     items.push({
       id: 'whats-in-the-box',
       title: "What's in the Box?",
-      content: (
-        <ul className="space-y-1.5 list-none">
-          {content.whatsInTheBox.map((item, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      ),
+      content: <BulletList items={content.whatsInTheBox} />,
     });
 
     items.push({
@@ -183,14 +200,7 @@ export default function CategoryInfoSection({ categorySlug, productTags }: Categ
       content: (
         <div className="space-y-2">
           <p>Our blinds are designed to be low maintenance and easy to clean. To keep them looking their best:</p>
-          <ul className="space-y-1.5 list-none mt-2">
-            {content.easyMaintenance.map((tip, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                <span>{tip}</span>
-              </li>
-            ))}
-          </ul>
+          <BulletList items={content.easyMaintenance} className="mt-2" />
         </div>
       ),
     });

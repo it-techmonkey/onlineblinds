@@ -2463,6 +2463,7 @@ const ProductPage = ({
             : product.category.toLowerCase().replace(/\s+/g, '-')
         }
         productTags={product.tags}
+        productDetails={product.productDetails}
       />
 
       {/* Reviews Section */}
