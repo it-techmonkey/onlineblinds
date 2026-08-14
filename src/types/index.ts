@@ -54,6 +54,19 @@ export interface ProductFeatures {
   hasRollerCassette: boolean;
 }
 
+/**
+ * Per-product "Product Details" copy, from the Shopify `custom.product_details`
+ * metafield. When absent the product page falls back to the shared category copy
+ * in `src/data/categoryContent.ts`.
+ */
+export interface ProductDetailsContent {
+  sections: Array<{
+    heading?: string;
+    body: string[];
+  }>;
+  keyFeatures?: string[];
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -66,6 +79,7 @@ export interface Product {
   reviewCount: number;
   estimatedDelivery: string;
   description: string;
+  productDetails?: ProductDetailsContent | null;
   images: string[];
   videos?: string[];
   features: ProductFeatures;
