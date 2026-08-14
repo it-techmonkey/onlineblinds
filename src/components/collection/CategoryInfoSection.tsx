@@ -126,10 +126,13 @@ export default function CategoryInfoSection({ categorySlug, productTags, product
           ))}
           {productDetails!.keyFeatures && productDetails!.keyFeatures.length > 0 && (
             <div className="pt-1">
-              <p className="mb-2 font-semibold text-foreground">Key Features</p>
+              <p className="mb-2 font-semibold text-foreground">
+                {productDetails!.keyFeaturesHeading || 'Key Features'}
+              </p>
               <BulletList items={productDetails!.keyFeatures} />
             </div>
           )}
+          {productDetails!.closing && <p className="pt-1">{productDetails!.closing}</p>}
         </div>
       ),
     });
