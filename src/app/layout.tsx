@@ -7,6 +7,7 @@ import { CartProvider } from '@/context/CartContext';
 import { AuthProvider } from '@/context/AuthContext';
 import GlobalPolish from '@/components/ui/GlobalPolish';
 import ShopifyAnalytics from '@/components/analytics/ShopifyAnalytics';
+import GtmRouteTracker from '@/components/analytics/GtmRouteTracker';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
 
 const lora = Lora({
@@ -36,6 +37,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Create the dataLayer before GTM loads so events pushed by
+            early-mounting components are queued rather than dropped. */}
+        <Script
+          id="gtm-datalayer-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];`,
+          }}
+        />
+
         {/* Google Tag Manager */}
         <Script
           id="gtm-script"
@@ -63,6 +74,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <GlobalPolish />
         <Suspense fallback={null}>
           <ShopifyAnalytics />
+        </Suspense>
+        <Suspense fallback={null}>
+          <GtmRouteTracker />
         </Suspense>
         <AnnouncementBar />
         <AuthProvider>

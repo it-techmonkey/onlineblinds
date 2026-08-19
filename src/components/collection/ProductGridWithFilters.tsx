@@ -23,6 +23,7 @@ interface ProductGridWithFiltersProps {
 
 export default function ProductGridWithFilters({
   products,
+  categoryName,
   preselectedMotorization = false,
   pagination,
   currentSort = 'price-low',
@@ -111,13 +112,16 @@ export default function ProductGridWithFilters({
       ) : (
         <>
           <div className="grid w-full grid-cols-1 gap-x-[24px] gap-y-5 md:grid-cols-3 md:gap-y-[24px] lg:grid-cols-4">
-            {products.map((product) => (
+            {products.map((product, index) => (
               <ProductCard
                 key={product.id}
                 product={{
                   ...product,
                   image: product.images[0],
                 }}
+                listId={categoryName}
+                listName={categoryName}
+                listIndex={index}
                 preselectedMotorization={preselectedMotorization}
                 mobileHorizontal
               />

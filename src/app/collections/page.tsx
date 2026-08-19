@@ -56,7 +56,12 @@ export default async function CollectionsPage({ searchParams }: CollectionsPageP
       <Header />
 
       <main>
-        <CollectionViewTracker collectionId="gid://shopify/Collection/all" collectionHandle="all" />
+        <CollectionViewTracker
+          collectionId="gid://shopify/Collection/all"
+          collectionHandle="all"
+          collectionName="All Products"
+          products={products}
+        />
         <CategoryHero
           title="All Products"
           description="Explore our complete range of premium window blinds. From vertical to roller, find the perfect style to complement your space."

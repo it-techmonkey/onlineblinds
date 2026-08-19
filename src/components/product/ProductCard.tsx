@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { formatPriceWithCurrency } from '@/lib/api';
 import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
+import { pushEcommerceEvent } from '@/lib/gtm';
 
 interface ProductCardProps {
   product: {
@@ -21,6 +22,10 @@ interface ProductCardProps {
     isBestSeller?: boolean;
   };
   className?: string;
+  /** List context for GA4 `select_item`; omitted when the card is not in a list. */
+  listId?: string;
+  listName?: string;
+  listIndex?: number;
   preselectedMotorization?: boolean;
   showBestSellerBadge?: boolean;
   showComparePrice?: boolean;
@@ -30,6 +35,9 @@ interface ProductCardProps {
 export default function ProductCard({
   product,
   className = '',
+  listId,
+  listName,
+  listIndex,
   preselectedMotorization = false,
   showBestSellerBadge = true,
   showComparePrice = true,
@@ -46,15 +54,34 @@ export default function ProductCard({
   const showMotorizedRemote =
     preselectedMotorization || isSpecialMotorizedProduct(product.tags || []);
 
+  const trackSelect = () => {
+    if (!listId) return;
+    pushEcommerceEvent('select_item', {
+      item_list_id: listId,
+      item_list_name: listName || listId,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.name,
+          price: product.price,
+          quantity: 1,
+          ...(typeof listIndex === 'number' ? { index: listIndex } : {}),
+        },
+      ],
+    });
+  };
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    trackSelect();
     router.push(`/product/${product.slug}?customize=true${motorizedParam}`);
   };
 
   return (
     <Link
       href={`/product/${product.slug}${preselectedMotorization ? '?motorized=true' : ''}`}
+      onClick={trackSelect}
       className={`group relative flex overflow-hidden rounded-xl bg-white border border-border transition-all duration-300 md:hover:shadow-[0_12px_32px_rgba(0,0,0,0.09)] md:hover:-translate-y-0.5 ${
         mobileHorizontal ? 'flex-row items-stretch md:flex-col' : 'flex-col'
       } ${className}`}

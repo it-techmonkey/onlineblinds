@@ -1537,6 +1537,8 @@ const CustomizationModal = ({
             </div>
             <button
               onClick={handleSubmitConfiguration}
+              data-gtm={mode === 'edit' ? 'save-configuration' : 'add-to-cart'}
+              data-gtm-location="customization-modal"
               disabled={isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete}
               className={`py-2.5 md:py-3 px-6 md:px-8 rounded text-sm md:text-base font-medium transition-colors ${isValidating || showMinPriceIndicator || isMeasurementOutOfRange || isRequiredCustomizationIncomplete || isPerfectFitShutterConfigurationIncomplete
                 ? 'bg-gray-400 text-white cursor-not-allowed'

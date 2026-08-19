@@ -8,6 +8,7 @@ import { transformProduct, extractFilterOptions, fetchProducts } from '@/lib/api
 import { Product } from '@/types';
 import CategoryHero from '@/components/collection/CategoryHero';
 import ProductGridWithFilters from '@/components/collection/ProductGridWithFilters';
+import { trackSearch, trackViewItemList } from '@/lib/gtm';
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -44,6 +45,12 @@ function SearchContent() {
         const transformedProducts = apiProducts.map(transformProduct);
         setProducts(transformedProducts);
         setFilterOptions(extractFilterOptions(apiProducts));
+
+        // Fired here rather than on submit so the result count is accurate.
+        trackSearch(query, transformedProducts.length);
+        if (transformedProducts.length > 0) {
+          trackViewItemList(transformedProducts, 'search', `Search: ${query}`);
+        }
       } catch (error) {
         console.error('Error searching products:', error);
         setProducts([]);
