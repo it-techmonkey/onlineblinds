@@ -829,6 +829,8 @@ export default function CartPage() {
                 <button
                   onClick={handleCheckout}
                   disabled={isCheckingOut}
+                  data-gtm="begin-checkout"
+                  data-gtm-location="shopping-cart"
                   className="mb-3 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 text-base font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isCheckingOut ? (

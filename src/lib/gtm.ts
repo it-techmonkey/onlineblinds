@@ -170,6 +170,10 @@ export function trackRemoveFromCart(item: CartItem) {
 export function trackViewCart(cartItems: CartItem[], total: number) {
   pushEcommerceEvent("view_cart", {
     value: Number(total.toFixed(2)),
+    // Named for the heading shown on the page, so report rows read the same as
+    // the site: the cart page's breadcrumb says "Shopping Cart".
+    item_list_id: "shopping_cart",
+    item_list_name: "Shopping Cart",
     items: toGtmItems(cartItems),
   });
 }

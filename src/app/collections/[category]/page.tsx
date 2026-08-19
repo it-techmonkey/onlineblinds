@@ -278,6 +278,7 @@ export default async function CollectionPage({ params, searchParams }: PageProps
               products={products}
               filterOptions={filterOptions}
               categoryName={categoryName}
+              listId={categorySlug}
               preselectedMotorization={preselectedMotorization}
               pagination={pagination}
               currentSort={sortBy}

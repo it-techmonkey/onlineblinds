@@ -49,7 +49,11 @@ function SearchContent() {
         // Fired here rather than on submit so the result count is accurate.
         trackSearch(query, transformedProducts.length);
         if (transformedProducts.length > 0) {
-          trackViewItemList(transformedProducts, 'search', `Search: ${query}`);
+          trackViewItemList(
+            transformedProducts,
+            'search_results',
+            `Search Results for "${query}"`
+          );
         }
       } catch (error) {
         console.error('Error searching products:', error);
@@ -116,7 +120,8 @@ function SearchContent() {
                   <ProductGridWithFilters
                     products={products}
                     filterOptions={filterOptions}
-                    categoryName={`Search: ${query}`}
+                    categoryName={`Search Results for "${query}"`}
+                    listId="search_results"
                   />
                 ) : (
                   <div className="rounded-lg border border-border bg-surface py-16 text-center">

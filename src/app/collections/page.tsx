@@ -74,6 +74,7 @@ export default async function CollectionsPage({ searchParams }: CollectionsPageP
               products={products}
               filterOptions={filterOptions}
               categoryName="All Products"
+              listId="all"
               pagination={pagination}
               currentSort={sortBy}
               basePath="/collections"
