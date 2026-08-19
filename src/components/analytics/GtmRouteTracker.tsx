@@ -34,6 +34,17 @@ export default function GtmRouteTracker() {
   // and the replay is the only thing keeping built-in triggers alive.
   const hasNavigated = useRef(false);
 
+  // Fired milestones, kept in a ref so they survive effect re-runs. Query-string
+  // changes (filters, sort, `?customize=true`) re-run the scroll effect many
+  // times per page; local state would reset on each and refire every milestone.
+  const firedMilestones = useRef<Set<number>>(new Set());
+  const firedForPath = useRef<string | null>(null);
+
+  // The scroll effect is keyed on pathname only, so read the URL through a ref
+  // to avoid reporting a stale query string.
+  const urlRef = useRef(url);
+  urlRef.current = url;
+
   // Virtual page view, one per unique route.
   useEffect(() => {
     if (!pathname) return;
@@ -51,11 +62,19 @@ export default function GtmRouteTracker() {
     return () => cancelAnimationFrame(frame);
   }, [pathname, url]);
 
-  // Scroll milestones, reset whenever the route changes.
+  // Scroll milestones, reset only on a real pathname change.
   useEffect(() => {
     if (!pathname) return;
 
-    const fired = new Set<number>();
+    // Keyed on pathname, not the full URL: changing filters or opening the
+    // customiser rewrites the query string but keeps the reader on the same
+    // page, and should not re-arm milestones already reported.
+    if (firedForPath.current !== pathname) {
+      firedForPath.current = pathname;
+      firedMilestones.current = new Set();
+    }
+
+    const fired = firedMilestones.current;
     let ticking = false;
 
     const evaluate = () => {
@@ -69,7 +88,7 @@ export default function GtmRouteTracker() {
         for (const milestone of SCROLL_MILESTONES) {
           if (!fired.has(milestone)) {
             fired.add(milestone);
-            trackScrollDepth(milestone, url, hasNavigated.current);
+            trackScrollDepth(milestone, urlRef.current, hasNavigated.current);
           }
         }
         return;
@@ -80,7 +99,7 @@ export default function GtmRouteTracker() {
       for (const milestone of SCROLL_MILESTONES) {
         if (percent >= milestone && !fired.has(milestone)) {
           fired.add(milestone);
-          trackScrollDepth(milestone, url, hasNavigated.current);
+          trackScrollDepth(milestone, urlRef.current, hasNavigated.current);
         }
       }
     };
@@ -103,7 +122,7 @@ export default function GtmRouteTracker() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [pathname, url]);
+  }, [pathname]);
 
   return null;
 }
