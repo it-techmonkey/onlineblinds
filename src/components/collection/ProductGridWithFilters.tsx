@@ -15,6 +15,11 @@ interface ProductGridWithFiltersProps {
   products: Product[];
   filterOptions: FilterOptions;
   categoryName: string;
+  /**
+   * Stable slug for GA4 `item_list_id`. `categoryName` supplies the
+   * human-readable `item_list_name`, which mirrors the heading on the page.
+   */
+  listId?: string;
   preselectedMotorization?: boolean;
   pagination?: PaginationMeta;
   currentSort?: CatalogSortOption;
@@ -24,6 +29,7 @@ interface ProductGridWithFiltersProps {
 export default function ProductGridWithFilters({
   products,
   categoryName,
+  listId,
   preselectedMotorization = false,
   pagination,
   currentSort = 'price-low',
@@ -119,7 +125,7 @@ export default function ProductGridWithFilters({
                   ...product,
                   image: product.images[0],
                 }}
-                listId={categoryName}
+                listId={listId || categoryName}
                 listName={categoryName}
                 listIndex={index}
                 preselectedMotorization={preselectedMotorization}
