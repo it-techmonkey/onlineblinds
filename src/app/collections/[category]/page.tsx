@@ -260,6 +260,8 @@ export default async function CollectionPage({ params, searchParams }: PageProps
         <CollectionViewTracker
           collectionId={backendCategory?.id ? `gid://shopify/Collection/${backendCategory.id}` : `gid://shopify/Collection/${categorySlug}`}
           collectionHandle={categorySlug}
+          collectionName={categoryName}
+          products={products}
         />
         <CategoryHero
           title={categoryName}

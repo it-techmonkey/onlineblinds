@@ -24,7 +24,8 @@ import {
 import { getPerfectFitWoodenFieldLabels, isPerfectFitWoodenProduct } from '@/lib/perfect-fit-wooden';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { trackBeginCheckout, trackViewCart } from '@/lib/gtm';
 
 import {
   HEADRAIL_OPTIONS,
@@ -84,6 +85,17 @@ export default function CartPage() {
   const [editingItem, setEditingItem] = useState<CartItem | null>(null);
   const [editingConfig, setEditingConfig] = useState<ProductConfiguration>(DEFAULT_CONFIGURATION);
 
+  // The cart hydrates from localStorage after mount, so fire `view_cart` on the
+  // first render that actually has items rather than on the initial empty state.
+  const hasTrackedViewCart = useRef(false);
+  useEffect(() => {
+    if (hasTrackedViewCart.current) return;
+    if (cart.items.length === 0) return;
+
+    hasTrackedViewCart.current = true;
+    trackViewCart(cart.items, cart.total);
+  }, [cart.items, cart.total]);
+
   const openEditModal = (item: CartItem) => {
     setEditingItem(item);
     setEditingConfig({ ...item.configuration });
@@ -104,6 +116,7 @@ export default function CartPage() {
   const handleCheckout = async () => {
     setIsCheckingOut(true);
     setCheckoutError(null);
+    trackBeginCheckout(cart.items, cart.total);
 
     try {
       // Convert cart items to checkout request format

@@ -66,6 +66,8 @@ const StickyAddToCartBar = ({
             <button
               onClick={onAddToCart}
               disabled={addToCartDisabled}
+              data-gtm="add-to-cart"
+              data-gtm-location="sticky-bar"
               className={`shrink-0 py-2.5 md:py-2.5 px-4 md:px-6 rounded-[10px] md:rounded-[12px] text-sm md:text-base font-medium transition-all whitespace-nowrap ${
                 addToCartDisabled
                   ? 'bg-[#98a4bb] text-white cursor-not-allowed'

@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode, useRe
 import { useRouter } from 'next/navigation';
 import { Product, ProductConfiguration, Cart, CartItem, CartContextType } from '@/types';
 import { trackShopifyAddToCart } from '@/lib/shopify-analytics';
+import { trackAddToCart, trackRemoveFromCart } from '@/lib/gtm';
 import { getInstallationServicePrice } from '@/lib/pricing';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -127,6 +128,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       installationService ? () => true : undefined
     );
     trackShopifyAddToCart(product);
+    trackAddToCart(product, 1, configuration);
     router.push('/cart');
   };
 
@@ -145,6 +147,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   };
 
   const removeFromCart = (itemId: string) => {
+    // Read from the committed cart, not the state updater: updaters can run
+    // more than once (StrictMode, re-renders) and would double-fire the event.
+    const removedItem = cart.items.find((item) => item.id === itemId);
+    if (removedItem) {
+      trackRemoveFromCart(removedItem);
+    }
+
     applyCartItems((prevItems) => {
       const updatedItems = prevItems.filter((item) => item.id !== itemId);
       if (updatedItems.length === 0) {

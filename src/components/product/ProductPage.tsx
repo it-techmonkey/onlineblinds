@@ -56,6 +56,7 @@ import { getSkylightBlindTypeOptions, SKYLIGHT_BRAND_OPTIONS } from '@/data/skyl
 import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
 import { buildBackendConfiguration } from '@/lib/checkout-item';
 import { trackShopifyProductView } from '@/lib/shopify-analytics';
+import { trackViewItem } from '@/lib/gtm';
 import {
   SizeSelector,
   RoomTypeSelector,
@@ -189,6 +190,7 @@ const ProductPage = ({
 
   useEffect(() => {
     trackShopifyProductView(product);
+    trackViewItem(product);
   }, [product]);
 
   const [config, setConfig] = useState<ProductConfiguration>({
@@ -2391,6 +2393,8 @@ const ProductPage = ({
                 <button
                   onClick={handleAddToCart}
                   disabled={isValidating || isCheckingOut}
+                  data-gtm="add-to-cart"
+                  data-gtm-location="product-page"
                   className={`w-full mt-4 md:mt-6 py-3 md:py-3.5 px-4 md:px-6 rounded-[14px] text-sm md:text-base font-medium transition-all ${isValidating || isCheckingOut
                     ? 'bg-[#98a4bb] text-white cursor-not-allowed'
                     : 'bg-primary text-white hover:bg-primary-dark shadow-[0_10px_20px_rgba(68,87,102,0.24)] hover:shadow-[0_12px_24px_rgba(68,87,102,0.28)]'
