@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Product, ProductConfiguration, Cart, CartItem, CartContextType } from '@/types';
+import { Product, ProductConfiguration, Cart, CartItem, CartContextType, CartDiscount } from '@/types';
 import { trackShopifyAddToCart } from '@/lib/shopify-analytics';
 import { trackAddToCart, trackRemoveFromCart } from '@/lib/gtm';
 import { getInstallationServicePrice } from '@/lib/pricing';
@@ -10,12 +10,23 @@ import { getInstallationServicePrice } from '@/lib/pricing';
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const defaultCartContext: CartContextType = {
-  cart: { items: [], total: 0, itemCount: 0, installationService: false, installationServicePrice: 0 },
+  cart: {
+    items: [],
+    total: 0,
+    itemCount: 0,
+    installationService: false,
+    installationServicePrice: 0,
+    discount: null,
+    discountAmount: 0,
+  },
   addToCart: () => {},
   updateCartItem: () => {},
   removeFromCart: () => {},
   updateQuantity: () => {},
+  updateItemPrices: () => {},
   setInstallationService: () => {},
+  applyDiscount: () => {},
+  removeDiscount: () => {},
   clearCart: () => {},
 };
 
@@ -34,13 +45,21 @@ interface SerializableCartItem extends Omit<CartItem, 'addedAt'> {
   addedAt: string;
 }
 
-const calculateCartTotals = (items: CartItem[], installationService: boolean) => {
+const calculateCartTotals = (items: CartItem[], installationService: boolean, discount: CartDiscount | null) => {
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const installationServicePrice = installationService ? getInstallationServicePrice(itemCount) : 0;
+  const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const discountAmount = discount
+    ? Math.min(
+        discount.type === 'percentage' ? subtotal * (discount.value / 100) : discount.value,
+        subtotal
+      )
+    : 0;
   return {
-    total: items.reduce((sum, item) => sum + item.product.price * item.quantity, 0) + installationServicePrice,
+    total: subtotal - discountAmount + installationServicePrice,
     itemCount,
     installationServicePrice,
+    discountAmount,
   };
 };
 
@@ -53,6 +72,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     itemCount: 0,
     installationService: false,
     installationServicePrice: 0,
+    discount: null,
+    discountAmount: 0,
   });
 
   const applyCartItems = (
@@ -64,8 +85,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       const installationService = updateInstallationService
         ? updateInstallationService(prev.installationService)
         : prev.installationService;
-      const { total, itemCount, installationServicePrice } = calculateCartTotals(items, installationService);
-      return { items, total, itemCount, installationService, installationServicePrice };
+      const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
+        items,
+        installationService,
+        prev.discount
+      );
+      return { ...prev, items, total, itemCount, installationService, installationServicePrice, discountAmount };
     });
   };
 
@@ -73,7 +98,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   useEffect(() => {
     const loadLocalCart = () => {
       const savedCart = localStorage.getItem(CART_STORAGE_KEY);
-      if (!savedCart) return { items: [], installationService: false };
+      if (!savedCart) return { items: [], installationService: false, discount: null };
 
       try {
         const parsedCart = JSON.parse(savedCart);
@@ -83,18 +108,24 @@ export const CartProvider = ({ children }: CartProviderProps) => {
               addedAt: new Date(item.addedAt),
             }))
           : [];
-        return { items: parsedItems, installationService: Boolean(parsedCart.installationService) };
+        const discount: CartDiscount | null =
+          parsedCart.discount && typeof parsedCart.discount.code === 'string' ? parsedCart.discount : null;
+        return { items: parsedItems, installationService: Boolean(parsedCart.installationService), discount };
       } catch (error) {
         console.error('Error loading local cart:', error);
         localStorage.removeItem(CART_STORAGE_KEY);
-        return { items: [], installationService: false };
+        return { items: [], installationService: false, discount: null };
       }
     };
 
-    const { items: localItems, installationService } = loadLocalCart();
+    const { items: localItems, installationService, discount } = loadLocalCart();
     queueMicrotask(() => {
-      const { total, itemCount, installationServicePrice } = calculateCartTotals(localItems, installationService);
-      setCart({ items: localItems, total, itemCount, installationService, installationServicePrice });
+      const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
+        localItems,
+        installationService,
+        discount
+      );
+      setCart({ items: localItems, total, itemCount, installationService, installationServicePrice, discount, discountAmount });
       hasInitializedRef.current = true;
     });
   }, []);
@@ -174,6 +205,16 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     );
   };
 
+  const updateItemPrices = (updates: { id: string; price: number }[]) => {
+    if (updates.length === 0) return;
+    applyCartItems((prevItems) =>
+      prevItems.map((item) => {
+        const update = updates.find((u) => u.id === item.id);
+        return update ? { ...item, product: { ...item.product, price: update.price } } : item;
+      })
+    );
+  };
+
   const setInstallationService = (enabled: boolean) => {
     applyCartItems(
       (prevItems) => prevItems,
@@ -181,14 +222,55 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     );
   };
 
+  const applyDiscount = (discount: CartDiscount) => {
+    setCart((prev) => {
+      const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
+        prev.items,
+        prev.installationService,
+        discount
+      );
+      return { ...prev, discount, discountAmount, total, itemCount, installationServicePrice };
+    });
+  };
+
+  const removeDiscount = () => {
+    setCart((prev) => {
+      const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
+        prev.items,
+        prev.installationService,
+        null
+      );
+      return { ...prev, discount: null, discountAmount, total, itemCount, installationServicePrice };
+    });
+  };
+
   const clearCart = () => {
-    setCart({ items: [], total: 0, itemCount: 0, installationService: false, installationServicePrice: 0 });
+    setCart({
+      items: [],
+      total: 0,
+      itemCount: 0,
+      installationService: false,
+      installationServicePrice: 0,
+      discount: null,
+      discountAmount: 0,
+    });
     localStorage.removeItem(CART_STORAGE_KEY);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, updateCartItem, removeFromCart, updateQuantity, setInstallationService, clearCart }}
+      value={{
+        cart,
+        addToCart,
+        updateCartItem,
+        removeFromCart,
+        updateQuantity,
+        updateItemPrices,
+        setInstallationService,
+        applyDiscount,
+        removeDiscount,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -205,12 +205,21 @@ export interface CartItem {
   addedAt: Date;
 }
 
+export interface CartDiscount {
+  code: string;
+  title: string;
+  type: 'percentage' | 'fixed_amount';
+  value: number;
+}
+
 export interface Cart {
   items: CartItem[];
   total: number;
   itemCount: number;
   installationService: boolean;
   installationServicePrice: number;
+  discount: CartDiscount | null;
+  discountAmount: number;
 }
 
 export interface CartContextType {
@@ -219,7 +228,10 @@ export interface CartContextType {
   updateCartItem: (itemId: string, product: Product, configuration: ProductConfiguration) => void;
   removeFromCart: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
+  updateItemPrices: (updates: { id: string; price: number }[]) => void;
   setInstallationService: (enabled: boolean) => void;
+  applyDiscount: (discount: CartDiscount) => void;
+  removeDiscount: () => void;
   clearCart: () => void;
 }
 
@@ -401,6 +413,13 @@ export interface PriceValidationResponse {
   difference: number;
 }
 
+export interface CartItemPriceCheck {
+  handle: string;
+  submittedPrice: number;
+  calculatedPrice: number;
+  valid: boolean;
+}
+
 // ============================================
 // Checkout Types
 // ============================================
@@ -419,6 +438,7 @@ export interface CheckoutRequest {
   customerEmail?: string;
   note?: string;
   installationService?: boolean;
+  discountCode?: string;
 }
 
 export interface CheckoutResponse {

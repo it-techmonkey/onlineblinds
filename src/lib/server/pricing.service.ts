@@ -5,10 +5,27 @@ import {
   inferVerticalPriceBandNameFromTags,
   isHeightOnlyVerticalProduct,
 } from '@/lib/vertical-blinds';
+import { isRollerBlindProduct } from '@/lib/roller-blinds';
 import {
   getMinimumPriceWithMotorizedUplift,
   getMotorizationBasePrice,
 } from '@/lib/electrical-roller';
+
+/**
+ * Roller and Day & Night products both offer a white/grey/black cassette, but
+ * priced from different tables ('roller-cassette' vs 'cassette-bar'). The client
+ * picks a category using a per-category static flag (categoryCustomizations.ts),
+ * which can drift from a given product's actual Shopify tags. Re-derive the
+ * category from tags here — the same source of truth checkout uses — so a client
+ * that guessed wrong can never get a different price at add-to-cart than at
+ * checkout for the same product/customizations.
+ */
+function normalizeCustomizationCategory(category: string, productTags: string[]): string {
+  if (category === 'roller-cassette' || category === 'cassette-bar') {
+    return isRollerBlindProduct(productTags) ? 'roller-cassette' : 'cassette-bar';
+  }
+  return category;
+}
 
 export interface PricingRequest {
   handle: string;
@@ -539,7 +556,8 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
     const customizationPrices: PricingResponse['customizationPrices'] = [];
 
     for (const customization of request.customizations ?? []) {
-      const option = findCustomizationOption(customization.category, customization.optionId);
+      const category = normalizeCustomizationCategory(customization.category, cachedProduct.tags);
+      const option = findCustomizationOption(category, customization.optionId);
       const pricing = option ? findMatchingPricingEntry(option.pricingEntries) : null;
 
       if (option && pricing) {
@@ -582,8 +600,9 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   const customizationPrices: PricingResponse['customizationPrices'] = [];
 
   for (const customization of request.customizations ?? []) {
+    const category = normalizeCustomizationCategory(customization.category, cachedProduct.tags);
     const option = findCustomizationOption(
-      customization.category,
+      category,
       customization.optionId,
       widthBand.id
     );

@@ -1,6 +1,7 @@
-import { calculateProductPrice, type PricingRequest } from './pricing.service';
+import { calculateProductPrice, type PricingRequest, type PricingResponse } from './pricing.service';
 import { getAdminApiUrl, getAdminHeaders, validateShopifyConfig } from './shopify-admin';
 import { getCachedProduct } from './product-cache';
+import { resolveDiscountCode } from './discount.service';
 import { isHeightOnlyVerticalProduct } from '@/lib/vertical-blinds';
 import { isRomanProduct } from '@/lib/roman-blinds';
 import { isRollerBlindProduct } from '@/lib/roller-blinds';
@@ -54,6 +55,7 @@ export interface CreateCheckoutRequest {
   customerEmail?: string;
   note?: string;
   installationService?: boolean;
+  discountCode?: string;
 }
 
 export interface CreateCheckoutResponse {
@@ -355,6 +357,76 @@ export class CheckoutError extends Error {
   }
 }
 
+/**
+ * Price a single checkout item the same way regardless of caller — checkout
+ * itself and the cart's pre-checkout price check both go through this, so
+ * they can never compute a different price for the same item.
+ */
+async function computeCheckoutItemPricing(
+  item: CheckoutItemRequest,
+  productTags: string[]
+): Promise<PricingResponse> {
+  const customizations = configToCustomizations(item.configuration, productTags);
+  return calculateProductPrice({
+    handle: item.handle,
+    widthInches: item.widthInches,
+    heightInches: item.heightInches,
+    customizations,
+  });
+}
+
+export interface CartItemPriceCheck {
+  handle: string;
+  submittedPrice: number;
+  calculatedPrice: number;
+  valid: boolean;
+}
+
+/**
+ * Re-check a set of cart items' submitted prices against a fresh calculation,
+ * without creating a draft order. Used by the cart page to catch and correct
+ * stale prices (e.g. after a pricing update) before the customer hits the
+ * price-mismatch guard in createCheckout.
+ */
+export async function validateCartItemPrices(items: CheckoutItemRequest[]): Promise<CartItemPriceCheck[]> {
+  const results: CartItemPriceCheck[] = [];
+
+  for (const item of items) {
+    try {
+      const cachedProduct = await getCachedProduct(item.handle);
+      if (!cachedProduct) {
+        // Let checkout's own handle validation surface this — don't block the
+        // cart from rendering over a lookup issue unrelated to pricing.
+        results.push({
+          handle: item.handle,
+          submittedPrice: item.submittedPrice,
+          calculatedPrice: item.submittedPrice,
+          valid: true,
+        });
+        continue;
+      }
+
+      const pricing = await computeCheckoutItemPricing(item, cachedProduct.tags);
+      results.push({
+        handle: item.handle,
+        submittedPrice: item.submittedPrice,
+        calculatedPrice: pricing.totalPrice,
+        valid: Math.abs(pricing.totalPrice - item.submittedPrice) <= PRICE_TOLERANCE,
+      });
+    } catch (error) {
+      console.error(`[OrderService] Cart price check failed for "${item.handle}":`, error);
+      results.push({
+        handle: item.handle,
+        submittedPrice: item.submittedPrice,
+        calculatedPrice: item.submittedPrice,
+        valid: true,
+      });
+    }
+  }
+
+  return results;
+}
+
 export async function createCheckout(request: CreateCheckoutRequest): Promise<CreateCheckoutResponse> {
   validateShopifyConfig();
 
@@ -389,14 +461,7 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     }
 
     const productTitle = item.configuration.blindName?.trim() || cachedProduct.title;
-    const customizations = configToCustomizations(item.configuration, cachedProduct.tags);
-
-    const pricing = await calculateProductPrice({
-      handle: item.handle,
-      widthInches: item.widthInches,
-      heightInches: item.heightInches,
-      customizations,
-    });
+    const pricing = await computeCheckoutItemPricing(item, cachedProduct.tags);
 
     const priceDifference = Math.abs(pricing.totalPrice - item.submittedPrice);
     if (priceDifference > PRICE_TOLERANCE) {
@@ -482,6 +547,19 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     subtotal += tier.price;
   }
 
+  // Sanity-check the code server-side so an obviously bad one (expired,
+  // inactive, exhausted) fails loudly here instead of silently doing nothing.
+  // The actual redemption below goes through Shopify's own `discountCodes`
+  // field rather than a hand-computed appliedDiscount, so Shopify — not us —
+  // is the authority on eligibility rules we don't replicate (minimum
+  // purchase, applicable products/collections, combination limits, etc.).
+  if (request.discountCode) {
+    const discount = await resolveDiscountCode(request.discountCode);
+    if (!discount) {
+      throw new CheckoutError(`Discount code "${request.discountCode}" is invalid or has expired.`, 422);
+    }
+  }
+
   const mutation = `
     mutation DraftOrderCreate($input: DraftOrderInput!) {
       draftOrderCreate(input: $input) {
@@ -508,6 +586,11 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
           useCustomerDefaultAddress: true,
           note: request.note || '',
           ...(request.customerEmail && { email: request.customerEmail }),
+          ...(request.discountCode && { discountCodes: [request.discountCode] }),
+          // Lets the customer also enter/change a code directly on Shopify's
+          // hosted checkout page — draft order checkouts hide that field by
+          // default, which is exactly the gap this fills.
+          allowDiscountCodesInCheckout: true,
           presentmentCurrencyCode: DRAFT_ORDER_CURRENCY,
         },
       },
