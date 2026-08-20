@@ -14,6 +14,8 @@ import {
   PricingRequest,
   PricingResponse,
   PriceValidationResponse,
+  CartItemPriceCheck,
+  CartDiscount,
   CheckoutItemRequest,
   CheckoutResponse,
 } from '@/types';
@@ -79,7 +81,19 @@ async function apiFetch<T>(endpoint: string, options?: RequestInit, retries: num
       if (!isBuildTime) {
         console.error(`API Error [${response.status}]: ${errorText}`);
       }
-      throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+      // Route handlers return { error: { message } } on failure — surface that
+      // to the caller instead of a bare status code, so the UI can show why the
+      // request actually failed (e.g. a price mismatch or invalid coupon).
+      let message = `API request failed: ${response.status} ${response.statusText}`;
+      try {
+        const parsed = JSON.parse(errorText);
+        if (typeof parsed?.error?.message === 'string' && parsed.error.message.length > 0) {
+          message = parsed.error.message;
+        }
+      } catch {
+        // errorText wasn't JSON — keep the generic message
+      }
+      throw new Error(message);
     }
 
     return response.json();
@@ -618,7 +632,8 @@ interface CheckoutApiResponse {
 export async function createCheckout(
   items: CheckoutItemRequest[],
   customerEmail?: string,
-  installationService?: boolean
+  installationService?: boolean,
+  discountCode?: string
 ): Promise<CheckoutResponse> {
   const response = await apiFetch<CheckoutApiResponse>('/api/orders/create-checkout', {
     method: 'POST',
@@ -626,11 +641,54 @@ export async function createCheckout(
       items,
       customerEmail,
       installationService,
+      discountCode,
     }),
   });
 
   if (!response.success) {
     throw new Error((response as any).error?.message || 'Failed to create checkout');
+  }
+
+  return response.data;
+}
+
+/**
+ * Re-check cart item prices against the current backend pricing data, using
+ * the exact same calculation checkout uses. Lets the cart page catch and
+ * correct stale prices (e.g. after a pricing update) before the customer
+ * hits the price-mismatch guard at checkout.
+ */
+export async function validateCartItemPrices(items: CheckoutItemRequest[]): Promise<CartItemPriceCheck[]> {
+  const response = await apiFetch<{ success: boolean; data: CartItemPriceCheck[]; error?: { message: string } }>(
+    '/api/orders/validate-cart',
+    {
+      method: 'POST',
+      body: JSON.stringify({ items }),
+    }
+  );
+
+  if (!response.success) {
+    throw new Error(response.error?.message || 'Failed to validate cart prices');
+  }
+
+  return response.data;
+}
+
+/**
+ * Look up a discount code against Shopify and return its value, or throw
+ * with a user-facing reason (not found, expired, exhausted, etc.).
+ */
+export async function validateDiscountCode(code: string): Promise<CartDiscount> {
+  const response = await apiFetch<{ success: boolean; data: CartDiscount; error?: { message: string } }>(
+    '/api/discounts/validate',
+    {
+      method: 'POST',
+      body: JSON.stringify({ code }),
+    }
+  );
+
+  if (!response.success) {
+    throw new Error(response.error?.message || 'Invalid discount code');
   }
 
   return response.data;

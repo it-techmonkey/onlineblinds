@@ -4,17 +4,14 @@ import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { Header, Footer } from '@/components';
 import { CustomizationModal } from '@/components/product';
-import { formatPriceWithCurrency, createCheckout } from '@/lib/api';
-import { getTotalInches, getInstallationServicePrice, formatMeasurement } from '@/lib/pricing';
-import { buildBackendConfiguration } from '@/lib/checkout-item';
+import { formatPriceWithCurrency, createCheckout, validateCartItemPrices, validateDiscountCode } from '@/lib/api';
+import { getInstallationServicePrice, formatMeasurement } from '@/lib/pricing';
+import { buildCheckoutItemRequest } from '@/lib/checkout-item';
 import InstallationServiceInfo from '@/components/product/customization/InstallationServiceInfo';
-import { CartItem, CheckoutItemRequest, DEFAULT_CONFIGURATION, Product, ProductConfiguration } from '@/types';
-import {
-  isReplacementVerticalSlatProduct,
-  REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
-} from '@/lib/vertical-blinds';
+import { CartItem, CartDiscount, CheckoutItemRequest, DEFAULT_CONFIGURATION, Product, ProductConfiguration } from '@/types';
+import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 import { findSkylightBlindTypeOption, findSkylightBrandOption } from '@/data/skylight';
-import { getSkylightPricingDimensions, isSkylightProduct } from '@/lib/skylight';
+import { isSkylightProduct } from '@/lib/skylight';
 import { isFauxWoodenProduct } from '@/lib/faux-wooden';
 import { getPerfectFitMetalFieldLabels, isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
 import {
@@ -77,13 +74,29 @@ import { getEasyStickFieldLabels, getEasyStickSubtype, isEasyStickProduct } from
 import { isRomanProduct } from '@/lib/roman-blinds';
 
 export default function CartPage() {
-  const { cart, removeFromCart, updateCartItem, updateQuantity, setInstallationService, clearCart } = useCart();
+  const {
+    cart,
+    removeFromCart,
+    updateCartItem,
+    updateQuantity,
+    updateItemPrices,
+    setInstallationService,
+    applyDiscount,
+    removeDiscount,
+    clearCart,
+  } = useCart();
   const { customer } = useAuth();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [editingItem, setEditingItem] = useState<CartItem | null>(null);
   const [editingConfig, setEditingConfig] = useState<ProductConfiguration>(DEFAULT_CONFIGURATION);
+  const [priceUpdateNotice, setPriceUpdateNotice] = useState<
+    { id: string; name: string; oldPrice: number; newPrice: number }[] | null
+  >(null);
+  const [couponCode, setCouponCode] = useState('');
+  const [couponError, setCouponError] = useState<string | null>(null);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
 
   // The cart hydrates from localStorage after mount, so fire `view_cart` on the
   // first render that actually has items rather than on the initial empty state.
@@ -95,6 +108,70 @@ export default function CartPage() {
     hasTrackedViewCart.current = true;
     trackViewCart(cart.items, cart.total);
   }, [cart.items, cart.total]);
+
+  // Cart items can sit in localStorage indefinitely, so a price baked in at
+  // add-to-cart time can go stale (e.g. after a pricing update) long before
+  // the customer checks out. Re-check once per visit and correct + surface
+  // any drift here, instead of letting it surface as an opaque error at checkout.
+  const hasValidatedPrices = useRef(false);
+  useEffect(() => {
+    if (hasValidatedPrices.current) return;
+    if (cart.items.length === 0) return;
+    hasValidatedPrices.current = true;
+
+    const itemsToCheck = cart.items;
+    (async () => {
+      try {
+        const checkoutItems = itemsToCheck.map(buildCheckoutItemRequest);
+        const results = await validateCartItemPrices(checkoutItems);
+
+        const updates: { id: string; price: number }[] = [];
+        const changed: { id: string; name: string; oldPrice: number; newPrice: number }[] = [];
+
+        itemsToCheck.forEach((item, index) => {
+          const result = results[index];
+          if (result && !result.valid) {
+            updates.push({ id: item.id, price: result.calculatedPrice });
+            changed.push({
+              id: item.id,
+              name: item.product.name,
+              oldPrice: item.product.price,
+              newPrice: result.calculatedPrice,
+            });
+          }
+        });
+
+        if (updates.length > 0) {
+          updateItemPrices(updates);
+          setPriceUpdateNotice(changed);
+        }
+      } catch (error) {
+        console.error('Cart price revalidation failed:', error);
+      }
+    })();
+  }, [cart.items, updateItemPrices]);
+
+  const handleApplyCoupon = async () => {
+    const code = couponCode.trim();
+    if (!code) return;
+
+    setIsApplyingCoupon(true);
+    setCouponError(null);
+    try {
+      const discount = await validateDiscountCode(code);
+      applyDiscount(discount);
+      setCouponCode('');
+    } catch (error: any) {
+      setCouponError(error.message || 'Invalid discount code');
+    } finally {
+      setIsApplyingCoupon(false);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    removeDiscount();
+    setCouponError(null);
+  };
 
   const openEditModal = (item: CartItem) => {
     setEditingItem(item);
@@ -119,49 +196,43 @@ export default function CartPage() {
     trackBeginCheckout(cart.items, cart.total);
 
     try {
-      // Convert cart items to checkout request format
-      const checkoutItems: CheckoutItemRequest[] = cart.items.map((item) => {
-        const config = item.configuration;
-        const isReplacementVerticalSlat = isReplacementVerticalSlatProduct(item.product.tags);
-        const skylightProduct = isSkylightProduct({
-          category: item.product.category,
-          tags: item.product.tags,
-          name: item.product.name,
-          slug: item.product.slug,
-        });
+      const checkoutItems: CheckoutItemRequest[] = cart.items.map(buildCheckoutItemRequest);
 
-        // Convert to inches (handles cm/fractions)
-        const widthInches = skylightProduct
-          ? getSkylightPricingDimensions().widthInches
-          : isReplacementVerticalSlat
-            ? REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES
-            : getTotalInches(
-                config.width,
-                config.widthFraction,
-                config.widthUnit
-              );
-        const heightInches = skylightProduct
-          ? getSkylightPricingDimensions().heightInches
-          : getTotalInches(
-              config.height,
-              config.heightFraction,
-              config.heightUnit
-            );
+      // Re-check prices one more time right before submitting — pricing data
+      // can change while this tab has been sitting open. Catching it here and
+      // asking the customer to confirm beats letting the order fail at
+      // Shopify with an opaque error after they've already left the site.
+      const priceChecks = await validateCartItemPrices(checkoutItems);
+      const staleUpdates: { id: string; price: number }[] = [];
+      const staleItems: { id: string; name: string; oldPrice: number; newPrice: number }[] = [];
 
-        // Build configuration object for backend (strip non-customization fields)
-        const backendConfig = buildBackendConfiguration(config);
-
-        return {
-          handle: item.product.slug,
-          widthInches,
-          heightInches,
-          quantity: item.quantity,
-          submittedPrice: item.product.price,
-          configuration: backendConfig,
-        };
+      cart.items.forEach((item, index) => {
+        const check = priceChecks[index];
+        if (check && !check.valid) {
+          staleUpdates.push({ id: item.id, price: check.calculatedPrice });
+          staleItems.push({
+            id: item.id,
+            name: item.product.name,
+            oldPrice: item.product.price,
+            newPrice: check.calculatedPrice,
+          });
+        }
       });
 
-      const result = await createCheckout(checkoutItems, customer?.email || undefined, cart.installationService);
+      if (staleUpdates.length > 0) {
+        updateItemPrices(staleUpdates);
+        setPriceUpdateNotice(staleItems);
+        setCheckoutError('Some prices in your cart just changed — please review the updated total below and click checkout again.');
+        setIsCheckingOut(false);
+        return;
+      }
+
+      const result = await createCheckout(
+        checkoutItems,
+        customer?.email || undefined,
+        cart.installationService,
+        cart.discount?.code
+      );
 
       // Clear cart before redirecting
       clearCart();
@@ -787,9 +858,17 @@ export default function CartPage() {
                   <div className="flex justify-between text-sm">
                     <span className="text-muted">Subtotal</span>
                     <span className="font-medium text-foreground">
-                      {formatPriceWithCurrency(cart.total - cart.installationServicePrice)}
+                      {formatPriceWithCurrency(cart.total - cart.installationServicePrice + cart.discountAmount)}
                     </span>
                   </div>
+                  {cart.discount && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted">Discount ({cart.discount.code})</span>
+                      <span className="font-medium text-green-700">
+                        -{formatPriceWithCurrency(cart.discountAmount)}
+                      </span>
+                    </div>
+                  )}
                   <label className="flex items-start justify-between gap-3 text-sm cursor-pointer">
                     <span className="flex items-start gap-2">
                       <input
@@ -813,12 +892,77 @@ export default function CartPage() {
                   </div>
                 </div>
 
+                <div className="mb-4 border-t border-border pt-4">
+                  {cart.discount ? (
+                    <div className="flex items-center justify-between gap-3 rounded-lg border border-green-200 bg-green-50 px-3 py-2">
+                      <div className="min-w-0">
+                        <p className="truncate text-xs font-semibold text-green-800">{cart.discount.title}</p>
+                        <p className="text-[11px] text-green-700">Code &quot;{cart.discount.code}&quot; applied</p>
+                      </div>
+                      <button
+                        onClick={handleRemoveCoupon}
+                        className="shrink-0 text-xs font-semibold text-green-800 underline hover:text-green-900"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={couponCode}
+                          onChange={(e) => setCouponCode(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              handleApplyCoupon();
+                            }
+                          }}
+                          placeholder="Discount code"
+                          className="h-10 flex-1 min-w-0 rounded-lg border border-border px-3 text-sm focus:border-primary focus:outline-none"
+                        />
+                        <button
+                          onClick={handleApplyCoupon}
+                          disabled={isApplyingCoupon || !couponCode.trim()}
+                          className="h-10 shrink-0 rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          {isApplyingCoupon ? 'Applying…' : 'Apply'}
+                        </button>
+                      </div>
+                      {couponError && <p className="mt-1.5 text-xs text-red-600">{couponError}</p>}
+                    </div>
+                  )}
+                </div>
+
                 <div className="mb-6 border-t border-border pt-4">
                   <div className="flex justify-between items-baseline">
                     <span className="text-lg font-bold text-foreground">Total</span>
                     <span className="text-2xl font-bold text-primary">{formatPriceWithCurrency(finalTotal)}</span>
                   </div>
                 </div>
+
+                {priceUpdateNotice && priceUpdateNotice.length > 0 && (
+                  <div className="mb-4 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                    <p className="mb-1 text-xs font-semibold text-amber-900">
+                      Some prices in your cart were updated
+                    </p>
+                    <ul className="space-y-0.5 text-xs text-amber-800">
+                      {priceUpdateNotice.map((change) => (
+                        <li key={change.id}>
+                          {change.name}: {formatPriceWithCurrency(change.oldPrice)} →{' '}
+                          {formatPriceWithCurrency(change.newPrice)}
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      onClick={() => setPriceUpdateNotice(null)}
+                      className="mt-2 text-xs font-semibold text-amber-900 underline hover:text-amber-950"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                )}
 
                 {checkoutError && (
                   <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">

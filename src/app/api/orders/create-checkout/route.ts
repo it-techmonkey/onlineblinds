@@ -3,7 +3,7 @@ import { createCheckout, CheckoutError } from '@/lib/server/order.service';
 
 export async function POST(request: Request) {
   try {
-    const { items, customerEmail, note, installationService } = await request.json();
+    const { items, customerEmail, note, installationService, discountCode } = await request.json();
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json(
@@ -12,7 +12,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await createCheckout({ items, customerEmail, note, installationService: Boolean(installationService) });
+    const result = await createCheckout({
+      items,
+      customerEmail,
+      note,
+      installationService: Boolean(installationService),
+      discountCode: typeof discountCode === 'string' && discountCode.trim() ? discountCode.trim() : undefined,
+    });
 
     return NextResponse.json({ success: true, data: result }, { status: 201 });
   } catch (error: unknown) {
