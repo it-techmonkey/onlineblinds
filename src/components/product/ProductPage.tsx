@@ -14,7 +14,14 @@ import { getDeliveryDateRange } from '@/lib/delivery';
 import CategoryInfoSection from '@/components/collection/CategoryInfoSection';
 import { BlackoutFeaturesSection } from './BlackoutFeaturesSection';
 import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizationPricing, validateCartPrice, createCheckout } from '@/lib/api';
-import { getMeasurementRanges } from '@/lib/measurement-ranges';
+import {
+  applyControlSystemLimits,
+  formatControlSystemConflict,
+  getBlindFamily,
+  getControlSystem,
+  getControlSystemSizeConflict,
+  getMeasurementRanges,
+} from '@/lib/measurement-ranges';
 import { PRODUCT_GUIDES } from '@/data/guides';
 import {
   calculateTotalPrice,
@@ -35,6 +42,7 @@ import {
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
 } from '@/lib/vertical-blinds';
 import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
+import { isRollerBlindProduct } from '@/lib/roller-blinds';
 import {
   getEasyStickFieldLabels,
   getEasyStickSubtype,
@@ -339,6 +347,11 @@ const ProductPage = ({
     const category = product.category.toLowerCase();
     return category.includes('day') || category.includes('night') || category.includes('zebra');
   }, [product.category]);
+
+  // Tag-based, not category-based: the `roller-blinds` tag is verified across the
+  // whole roller collection and absent from every Day & Night product, which the
+  // category string alone does not guarantee.
+  const isRoller = useMemo(() => isRollerBlindProduct(product.tags), [product.tags]);
 
   const isNoDrill = useMemo(() => {
     const category = product.category.toLowerCase();
@@ -940,10 +953,30 @@ const ProductPage = ({
       ? config.height === 0
       : config.width === 0 || config.height === 0;
 
-  // Calculate dynamic size ranges from price band
-  const sizeRanges = useMemo(() => {
-    return getMeasurementRanges(priceMatrix);
-  }, [priceMatrix]);
+  // Calculate dynamic size ranges from price band, then narrow them to what the
+  // selected control system can actually be built in (Day & Night blinds only).
+  const bandRanges = useMemo(() => getMeasurementRanges(priceMatrix), [priceMatrix]);
+
+  const blindFamily = useMemo(
+    () => getBlindFamily({ isDayNight, isRoller }),
+    [isDayNight, isRoller]
+  );
+
+  const controlSystem = useMemo(
+    () =>
+      getControlSystem({
+        family: blindFamily,
+        selectedOptionalCards,
+        forceMotorization,
+        isSpecialMotorized,
+      }),
+    [blindFamily, selectedOptionalCards, forceMotorization, isSpecialMotorized]
+  );
+
+  const sizeRanges = useMemo(
+    () => applyControlSystemLimits(bandRanges, blindFamily, controlSystem),
+    [bandRanges, blindFamily, controlSystem]
+  );
 
   const isMeasurementOutOfRange = useMemo(() => {
     if (isSkylight || usesHeightOnlyVerticalPricing || !sizeRanges) {
@@ -984,9 +1017,37 @@ const ProductPage = ({
     return priceCalculation === null;
   }, [config.height, config.heightFraction, config.heightUnit, config.width, config.widthFraction, config.widthUnit, isMeasurementOutOfRange, isSkylight, priceCalculation, priceMatrix, usesHeightOnlyVerticalPricing]);
 
-  const sizeFieldMessage = isSizeUnavailable
-    ? 'We cannot make this blind in that width and drop combination. Please adjust your measurements.'
-    : 'Please enter a valid size';
+  // A size the band can make but the chosen control cannot. Surfaced as soon as the
+  // customer picks the conflicting control, rather than waiting for add-to-cart —
+  // they have already entered a size, so this is a conflict to report, not a blank
+  // field to chase.
+  const controlSizeConflict = useMemo(
+    () =>
+      getControlSystemSizeConflict({
+        base: bandRanges,
+        family: blindFamily,
+        system: controlSystem,
+        widthInches: getTotalInches(config.width, config.widthFraction, config.widthUnit),
+        heightInches: getTotalInches(config.height, config.heightFraction, config.heightUnit),
+      }),
+    [
+      bandRanges,
+      blindFamily,
+      controlSystem,
+      config.width,
+      config.widthFraction,
+      config.widthUnit,
+      config.height,
+      config.heightFraction,
+      config.heightUnit,
+    ]
+  );
+
+  const sizeFieldMessage = controlSizeConflict
+    ? formatControlSystemConflict(controlSizeConflict, config.widthUnit)
+    : isSizeUnavailable
+      ? 'We cannot make this blind in that width and drop combination. Please adjust your measurements.'
+      : 'Please enter a valid size';
 
   const isPerfectFitShutterConfigurationIncomplete = useMemo(() => {
     if (!isPerfectFitShutter) {
@@ -1393,7 +1454,7 @@ const ProductPage = ({
                       {product.features.hasSize && (
                         <FieldHighlight
                           fieldKey={['width', 'height']}
-                          invalid={invalidFields.has('width') || invalidFields.has('height')}
+                          invalid={invalidFields.has('width') || invalidFields.has('height') || Boolean(controlSizeConflict)}
                           registerRef={registerFieldRef}
                           message={sizeFieldMessage}
                         >

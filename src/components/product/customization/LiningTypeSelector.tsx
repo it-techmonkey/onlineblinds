@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import HoverImagePreview from './HoverImagePreview';
+import PortalHoverImagePreview, { type HoverPreview } from './PortalHoverImagePreview';
 
 interface LiningTypeOption {
   id: string;
@@ -22,7 +22,7 @@ const LiningTypeSelector = ({
   selectedLiningType,
   onLiningTypeChange,
 }: LiningTypeSelectorProps) => {
-  const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+  const [hoveredPreview, setHoveredPreview] = useState<HoverPreview | null>(null);
 
   return (
     <div className="flex flex-col gap-4">
@@ -35,8 +35,8 @@ const LiningTypeSelector = ({
           <div
             key={option.id}
             className="relative"
-            onMouseEnter={() => setHoveredOption(option.id)}
-            onMouseLeave={() => setHoveredOption(null)}
+            onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect(), imageClassName: 'relative w-[260px] aspect-[4/3] rounded-md overflow-hidden bg-[#f4f6fa]' })}
+            onMouseLeave={() => setHoveredPreview(null)}
           >
             <button
               type="button"
@@ -74,17 +74,10 @@ const LiningTypeSelector = ({
                 </div>
               )}
             </button>
-
-            {hoveredOption === option.id && option.image && (
-              <HoverImagePreview
-                image={option.image}
-                name={option.name}
-                imageClassName="relative w-[260px] aspect-[4/3] rounded-md overflow-hidden bg-[#f4f6fa]"
-              />
-            )}
           </div>
         ))}
       </div>
+      <PortalHoverImagePreview preview={hoveredPreview} />
     </div>
   );
 };

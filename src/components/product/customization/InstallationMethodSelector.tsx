@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import HoverImagePreview from './HoverImagePreview';
+import PortalHoverImagePreview, { type HoverPreview } from './PortalHoverImagePreview';
 
 interface InstallationMethodOption {
     id: string;
@@ -19,7 +19,7 @@ interface InstallationMethodSelectorProps {
 }
 
 const InstallationMethodSelector = ({ options, selectedMethod, onMethodChange }: InstallationMethodSelectorProps) => {
-    const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+    const [hoveredPreview, setHoveredPreview] = useState<HoverPreview | null>(null);
 
     return (
         <div className="flex flex-col gap-4">
@@ -32,8 +32,8 @@ const InstallationMethodSelector = ({ options, selectedMethod, onMethodChange }:
                     <div
                         key={option.id}
                         className="relative"
-                        onMouseEnter={() => setHoveredOption(option.id)}
-                        onMouseLeave={() => setHoveredOption(null)}
+                        onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect(), imageClassName: 'relative w-[260px] aspect-[4/3] rounded-md overflow-hidden bg-[#eef2f8]' })}
+                        onMouseLeave={() => setHoveredPreview(null)}
                     >
                         <button
                             type="button"
@@ -80,17 +80,10 @@ const InstallationMethodSelector = ({ options, selectedMethod, onMethodChange }:
                                 </div>
                             )}
                         </button>
-
-                        {hoveredOption === option.id && option.image && (
-                            <HoverImagePreview
-                                image={option.image}
-                                name={option.name}
-                                imageClassName="relative w-[260px] aspect-[4/3] rounded-md overflow-hidden bg-[#eef2f8]"
-                            />
-                        )}
                     </div>
                 ))}
             </div>
+            <PortalHoverImagePreview preview={hoveredPreview} />
         </div>
     );
 };

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import HoverImagePreview from './HoverImagePreview';
+import PortalHoverImagePreview, { type HoverPreview } from './PortalHoverImagePreview';
 
 interface RollStyleOption {
     id: string;
@@ -19,7 +19,7 @@ interface RollStyleSelectorProps {
 }
 
 const RollStyleSelector = ({ options, selectedRollStyle, onRollStyleChange }: RollStyleSelectorProps) => {
-    const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+    const [hoveredPreview, setHoveredPreview] = useState<HoverPreview | null>(null);
 
     return (
         <div className="flex flex-col gap-4">
@@ -32,8 +32,8 @@ const RollStyleSelector = ({ options, selectedRollStyle, onRollStyleChange }: Ro
                     <div
                         key={option.id}
                         className="relative"
-                        onMouseEnter={() => setHoveredOption(option.id)}
-                        onMouseLeave={() => setHoveredOption(null)}
+                        onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
+                        onMouseLeave={() => setHoveredPreview(null)}
                     >
                         <button
                             type="button"
@@ -72,13 +72,10 @@ const RollStyleSelector = ({ options, selectedRollStyle, onRollStyleChange }: Ro
                                 </div>
                             )}
                         </button>
-
-                        {hoveredOption === option.id && option.image && (
-                            <HoverImagePreview image={option.image} name={option.name} />
-                        )}
                     </div>
                 ))}
             </div>
+            <PortalHoverImagePreview preview={hoveredPreview} />
         </div>
     );
 };

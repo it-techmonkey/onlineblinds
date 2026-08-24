@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import type { ProductColourVariant } from '@/types';
-import HoverImagePreview from './HoverImagePreview';
+import PortalHoverImagePreview, { type HoverPreview } from './PortalHoverImagePreview';
 
 interface ColourSelectorProps {
     variants: ProductColourVariant[];
@@ -17,7 +17,7 @@ interface ColourSelectorProps {
  * ProductPage.
  */
 const ColourSelector = ({ variants, selectedColour, onColourChange }: ColourSelectorProps) => {
-    const [hoveredColour, setHoveredColour] = useState<string | null>(null);
+    const [hoveredPreview, setHoveredPreview] = useState<HoverPreview | null>(null);
 
     if (variants.length === 0) return null;
 
@@ -35,8 +35,8 @@ const ColourSelector = ({ variants, selectedColour, onColourChange }: ColourSele
                     <div
                         key={variant.id}
                         className="relative"
-                        onMouseEnter={() => setHoveredColour(variant.colour)}
-                        onMouseLeave={() => setHoveredColour(null)}
+                        onMouseEnter={(event) => variant.imageUrl && setHoveredPreview({ name: variant.colour, image: variant.imageUrl, anchorRect: event.currentTarget.getBoundingClientRect() })}
+                        onMouseLeave={() => setHoveredPreview(null)}
                     >
                         <button
                             type="button"
@@ -72,13 +72,10 @@ const ColourSelector = ({ variants, selectedColour, onColourChange }: ColourSele
                                 </div>
                             )}
                         </button>
-
-                        {hoveredColour === variant.colour && variant.imageUrl && (
-                            <HoverImagePreview image={variant.imageUrl} name={variant.colour} />
-                        )}
                     </div>
                 ))}
             </div>
+            <PortalHoverImagePreview preview={hoveredPreview} />
         </div>
     );
 };

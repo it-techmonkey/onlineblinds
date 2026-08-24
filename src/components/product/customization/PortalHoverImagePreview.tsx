@@ -13,12 +13,21 @@ interface HoverAnchorRect {
   height: number;
 }
 
+/**
+ * What a selector stores while a swatch is hovered. `anchorRect` is the hovered
+ * element's viewport rect, captured at mouseenter, which is what lets the preview
+ * be positioned from document.body instead of inside the clipping card.
+ */
+export interface HoverPreview {
+  name: string;
+  image: string;
+  anchorRect: HoverAnchorRect;
+  /** Optional override for the image frame, e.g. a different backing tint. */
+  imageClassName?: string;
+}
+
 interface PortalHoverImagePreviewProps {
-  preview: {
-    name: string;
-    image: string;
-    anchorRect: HoverAnchorRect;
-  } | null;
+  preview: HoverPreview | null;
 }
 
 const PREVIEW_WIDTH = 280;
@@ -54,6 +63,7 @@ const PortalHoverImagePreview = ({ preview }: PortalHoverImagePreviewProps): Rea
         image={preview.image}
         name={preview.name}
         className="relative pointer-events-none"
+        {...(preview.imageClassName ? { imageClassName: preview.imageClassName } : {})}
       />
     </div>,
     document.body
