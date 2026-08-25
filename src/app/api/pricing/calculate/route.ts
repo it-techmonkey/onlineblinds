@@ -40,6 +40,14 @@ export async function POST(request: Request) {
         { status: 404 }
       );
     }
+    // A size outside the supplier's envelope is a bad request, not a server fault —
+    // return the real reason so the caller can show it.
+    if (message.includes('outside the allowed range')) {
+      return NextResponse.json(
+        { success: false, error: { message } },
+        { status: 400 }
+      );
+    }
     console.error('Pricing calculate error:', message);
     return NextResponse.json(
       { success: false, error: { message: 'Internal server error' } },

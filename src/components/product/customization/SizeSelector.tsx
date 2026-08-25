@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { toDisplayBound } from '@/lib/measurement-ranges';
 
 type SizeUnit = 'cm' | 'mm';
 
@@ -58,21 +59,22 @@ const SizeSelector = ({
 
   // minWidth/maxWidth/minHeight/maxHeight arrive in inches from the price band
   // matrix regardless of the selected display unit.
+  // Bounds round inward (see toDisplayBound): the hint, the input min/max and the
+  // blur clamp all read from here, so what the page offers is always acceptable to
+  // validation, which runs in inches.
   const widthLimits = useMemo(() => {
-    const factor = unit === 'mm' ? 25.4 : 2.54;
     const fallbackMin = unit === 'mm' ? 500 : 50;
     const fallbackMax = unit === 'mm' ? 4000 : 400;
-    const min = minWidth ? Math.round(minWidth * factor) : fallbackMin;
-    const max = maxWidth ? Math.round(maxWidth * factor) : fallbackMax;
+    const min = minWidth ? toDisplayBound(minWidth, unit, 'min') : fallbackMin;
+    const max = maxWidth ? toDisplayBound(maxWidth, unit, 'max') : fallbackMax;
     return { min, max, placeholder: `${min}-${max}` };
   }, [unit, minWidth, maxWidth]);
 
   const heightLimits = useMemo(() => {
-    const factor = unit === 'mm' ? 25.4 : 2.54;
     const fallbackMin = unit === 'mm' ? 500 : 50;
     const fallbackMax = unit === 'mm' ? 3000 : 300;
-    const min = minHeight ? Math.round(minHeight * factor) : fallbackMin;
-    const max = maxHeight ? Math.round(maxHeight * factor) : fallbackMax;
+    const min = minHeight ? toDisplayBound(minHeight, unit, 'min') : fallbackMin;
+    const max = maxHeight ? toDisplayBound(maxHeight, unit, 'max') : fallbackMax;
     return { min, max, placeholder: `${min}-${max}` };
   }, [unit, minHeight, maxHeight]);
 

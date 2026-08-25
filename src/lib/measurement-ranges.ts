@@ -1,4 +1,6 @@
 import { PriceBandMatrix } from '@/types';
+import { isDayNightBlindProduct } from './day-night-blinds';
+import { isRollerBlindProduct } from './roller-blinds';
 
 export interface MeasurementRanges {
   minWidth: number;
@@ -52,6 +54,54 @@ const CONTROL_LIMITS: Record<BlindFamily, Partial<Record<ControlSystem, Measurem
     any: { minWidth: 8, maxWidth: 116, minHeight: 11, maxHeight: 144 },
   },
 };
+
+/**
+ * How a family's sheet limits combine with the price band's own range.
+ *
+ * 'sheet-exact' — the sheet is the whole truth: the customer may enter any size the
+ *   sheet allows, even one the price band has no row for. Those sizes are priced by
+ *   clamping to the nearest band (see the `clamp` option on the band lookups in
+ *   `pricing.ts`), which is why widening the range here is safe for this family.
+ * 'intersect'   — the tighter of sheet and band wins, so the range never includes a
+ *   size the band cannot price.
+ */
+const FAMILY_RANGE_POLICY: Record<BlindFamily, 'sheet-exact' | 'intersect'> = {
+  'day-and-night': 'sheet-exact',
+  roller: 'sheet-exact',
+};
+
+/** The raw sheet envelope, independent of any price band. */
+export function getControlSystemLimits(
+  family: BlindFamily | null,
+  system: ControlSystem | null
+): MeasurementRanges | null {
+  if (!family || !system) {
+    return null;
+  }
+  return CONTROL_LIMITS[family][system] ?? null;
+}
+
+/** Whether this family's sizes come from the sheet alone. */
+export function usesSheetExactRange(family: BlindFamily | null): boolean {
+  return !!family && FAMILY_RANGE_POLICY[family] === 'sheet-exact';
+}
+
+/** Resolve the family straight from a product's tags. */
+export function getBlindFamilyFromTags(tags: string[] = []): BlindFamily | null {
+  return getBlindFamily({
+    isDayNight: isDayNightBlindProduct(tags),
+    isRoller: isRollerBlindProduct(tags),
+  });
+}
+
+/**
+ * Whether this product's price lookup should clamp to the band grid rather than
+ * refuse. True exactly when the product's sellable range comes from the sheet, so
+ * the two rules cannot drift apart: any size the sheet allows can always be billed.
+ */
+export function shouldClampToBandGrid(tags: string[] = []): boolean {
+  return usesSheetExactRange(getBlindFamilyFromTags(tags));
+}
 
 /**
  * Which sheet's rules apply, or null for a product neither sheet covers (whose
@@ -108,11 +158,8 @@ export function getControlSystem({
 }
 
 /**
- * Narrow a band-derived range to what the chosen control system can be built in.
- *
- * Takes the tighter of each bound in both directions: the control limits may only
- * ever shrink the range, never widen it. Widening would admit width/drop pairs the
- * price band has no cell for, which the product page treats as unsellable.
+ * Resolve the size range a customer may enter, given the band-derived range and the
+ * control system they are on. See FAMILY_RANGE_POLICY for the two behaviours.
  */
 export function applyControlSystemLimits(
   base: MeasurementRanges | null,
@@ -128,6 +175,14 @@ export function applyControlSystemLimits(
     return base;
   }
 
+  // The sheet governs outright — including below the band's smallest row, where
+  // pricing clamps rather than refuses.
+  if (FAMILY_RANGE_POLICY[family] === 'sheet-exact') {
+    return { ...limits };
+  }
+
+  // Otherwise take the tighter of each bound in both directions: the limits may
+  // only ever shrink the range, never widen it into cells the band cannot price.
   return {
     minWidth: Math.max(base.minWidth, limits.minWidth),
     maxWidth: Math.min(base.maxWidth, limits.maxWidth),
@@ -184,17 +239,20 @@ export function getControlSystemSizeConflict({
   }
 
   const limits = applyControlSystemLimits(base, family, system);
-  if (!limits) {
+  // The widest this family allows under any control. Sizes outside it are not the
+  // chosen control's fault, so they keep the generic out-of-range message.
+  const widest = applyControlSystemLimits(base, family, 'any');
+  if (!limits || !widest) {
     return null;
   }
 
   const within = (value: number, min: number, max: number) => value >= min && value <= max;
 
   const widthConflict =
-    within(widthInches, base.minWidth, base.maxWidth) &&
+    within(widthInches, widest.minWidth, widest.maxWidth) &&
     !within(widthInches, limits.minWidth, limits.maxWidth);
   const heightConflict =
-    within(heightInches, base.minHeight, base.maxHeight) &&
+    within(heightInches, widest.minHeight, widest.maxHeight) &&
     !within(heightInches, limits.minHeight, limits.maxHeight);
 
   if (!widthConflict && !heightConflict) {
@@ -205,6 +263,28 @@ export function getControlSystemSizeConflict({
 }
 
 /**
+ * Convert an inch bound into the unit the customer is typing in, rounding *inward*:
+ * minimums up, maximums down.
+ *
+ * This matters because validation happens in inches while the inputs are cm/mm.
+ * Rounding a minimum to nearest would advertise a bound that fails: roller's 8in
+ * floor is 20.32cm, which displays as "20", but 20cm is 7.87in — under the limit.
+ * Rounding inward keeps the advertised range a subset of what actually validates,
+ * so any size the page says is allowed really is.
+ */
+export function toDisplayBound(inches: number, unit: 'cm' | 'mm', kind: 'min' | 'max'): number {
+  const value = inches * (unit === 'mm' ? 25.4 : 2.54);
+  return kind === 'min' ? Math.ceil(value) : Math.floor(value);
+}
+
+/** Customer-facing copy for a size that no control on this product can make. */
+export function formatOutOfRangeMessage(ranges: MeasurementRanges, unit: 'cm' | 'mm'): string {
+  const w = `${toDisplayBound(ranges.minWidth, unit, 'min')}-${toDisplayBound(ranges.maxWidth, unit, 'max')}`;
+  const h = `${toDisplayBound(ranges.minHeight, unit, 'min')}-${toDisplayBound(ranges.maxHeight, unit, 'max')}`;
+  return `That size is outside the range we can make. Please enter a width of ${w} ${unit} and a height of ${h} ${unit}.`;
+}
+
+/**
  * Turn a conflict into customer-facing copy, in whichever unit they are entering
  * measurements in. Limits are stored in inches; the size inputs display cm or mm.
  */
@@ -212,16 +292,17 @@ export function formatControlSystemConflict(
   conflict: ControlSystemSizeConflict,
   unit: 'cm' | 'mm'
 ): string {
-  const factor = unit === 'mm' ? 25.4 : 2.54;
-  const toDisplay = (inches: number) => Math.round(inches * factor);
-
   const { limits, widthConflict, heightConflict, system } = conflict;
   const bounds: string[] = [];
   if (widthConflict) {
-    bounds.push(`widths between ${toDisplay(limits.minWidth)} and ${toDisplay(limits.maxWidth)} ${unit}`);
+    bounds.push(
+      `widths between ${toDisplayBound(limits.minWidth, unit, 'min')} and ${toDisplayBound(limits.maxWidth, unit, 'max')} ${unit}`
+    );
   }
   if (heightConflict) {
-    bounds.push(`heights between ${toDisplay(limits.minHeight)} and ${toDisplay(limits.maxHeight)} ${unit}`);
+    bounds.push(
+      `heights between ${toDisplayBound(limits.minHeight, unit, 'min')} and ${toDisplayBound(limits.maxHeight, unit, 'max')} ${unit}`
+    );
   }
 
   return `${CONTROL_LABELS[system]} is only available for ${bounds.join(

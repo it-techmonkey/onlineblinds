@@ -27,6 +27,7 @@ import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
 import {
   applyControlSystemLimits,
   formatControlSystemConflict,
+  formatOutOfRangeMessage,
   getBlindFamily,
   getControlSystem,
   getControlSystemSizeConflict,
@@ -1098,7 +1099,7 @@ const CustomizationModal = ({
                       maxHeight={sizeRanges?.maxHeight}
                       showWidth={!usesHeightOnlyVerticalPricing}
                     />
-                    {controlSizeConflict && (
+                    {(controlSizeConflict || (isMeasurementOutOfRange && sizeRanges)) && (
                       <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-[#c24646]">
                         <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path
@@ -1107,7 +1108,9 @@ const CustomizationModal = ({
                             clipRule="evenodd"
                           />
                         </svg>
-                        {formatControlSystemConflict(controlSizeConflict, config.widthUnit)}
+                        {controlSizeConflict
+                          ? formatControlSystemConflict(controlSizeConflict, config.widthUnit)
+                          : formatOutOfRangeMessage(sizeRanges!, config.widthUnit)}
                       </p>
                     )}
                   </div>

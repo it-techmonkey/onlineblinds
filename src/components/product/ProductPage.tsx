@@ -17,6 +17,7 @@ import { formatPrice, formatPriceWithCurrency, fetchPriceMatrix, fetchCustomizat
 import {
   applyControlSystemLimits,
   formatControlSystemConflict,
+  formatOutOfRangeMessage,
   getBlindFamily,
   getControlSystem,
   getControlSystemSizeConflict,
@@ -1043,11 +1044,17 @@ const ProductPage = ({
     ]
   );
 
+  // Most specific reason first: a control clash names the control, an out-of-range
+  // size states the range, and only a blank/zero size falls through to the generic
+  // prompt. Before this, an out-of-range size showed "Please enter a valid size",
+  // which told the customer nothing about what was wrong.
   const sizeFieldMessage = controlSizeConflict
     ? formatControlSystemConflict(controlSizeConflict, config.widthUnit)
-    : isSizeUnavailable
-      ? 'We cannot make this blind in that width and drop combination. Please adjust your measurements.'
-      : 'Please enter a valid size';
+    : isMeasurementOutOfRange && sizeRanges
+      ? formatOutOfRangeMessage(sizeRanges, config.widthUnit)
+      : isSizeUnavailable
+        ? 'We cannot make this blind in that width and drop combination. Please adjust your measurements.'
+        : 'Please enter a valid size';
 
   const isPerfectFitShutterConfigurationIncomplete = useMemo(() => {
     if (!isPerfectFitShutter) {

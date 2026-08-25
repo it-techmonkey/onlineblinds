@@ -7,6 +7,12 @@ import {
 } from '@/lib/vertical-blinds';
 import { isRollerBlindProduct } from '@/lib/roller-blinds';
 import {
+  getBlindFamilyFromTags,
+  getControlSystem,
+  getControlSystemLimits,
+  shouldClampToBandGrid,
+} from '@/lib/measurement-ranges';
+import {
   getMinimumPriceWithMotorizedUplift,
   getMotorizationBasePrice,
 } from '@/lib/electrical-roller';
@@ -347,26 +353,90 @@ function getBandHeightBands(priceBandId: string): JsonHeightBand[] {
   return Array.from(bands.values()).sort(sortHeightBands);
 }
 
-function findCeilingWidthBand(widthInches: number, priceBandId: string): JsonWidthBand | null {
+/**
+ * Enforce the supplier sheet's size envelope server-side.
+ *
+ * The band lookup alone cannot do this: it only knows what the price grid covers,
+ * which is both wider than the sheet at the top (a zebra band runs to 110in, no
+ * control exceeds 96in) and narrower at the bottom. A crafted request could
+ * otherwise book a size no control system can actually build.
+ *
+ * The control system is inferred from the submitted customizations. With no
+ * motorization in the payload this falls back to the union of every control — the
+ * loosest envelope — so an honest order is never rejected for a control we cannot
+ * see, while the blatant out-of-envelope cases are still refused.
+ */
+function assertWithinSheetEnvelope(
+  request: { widthInches: number; heightInches: number; customizations?: { category: string; optionId: string }[] },
+  productTags: string[]
+): void {
+  const family = getBlindFamilyFromTags(productTags);
+  if (!family) return;
+
+  const motorized = (request.customizations ?? []).some(
+    (customization) => customization.category === 'motorization' && customization.optionId !== 'none'
+  );
+
+  const system = getControlSystem({
+    family,
+    selectedOptionalCards: { continuousChain: false, motorization: motorized },
+  });
+  const limits = getControlSystemLimits(family, system);
+  if (!limits) return;
+
+  const { widthInches, heightInches } = request;
+  if (
+    widthInches < limits.minWidth ||
+    widthInches > limits.maxWidth ||
+    heightInches < limits.minHeight ||
+    heightInches > limits.maxHeight
+  ) {
+    throw new Error('Selected measurements are outside the allowed range for this product');
+  }
+}
+
+/**
+ * Mirrors the `clamp` option in `@/lib/pricing` — the client and server must agree
+ * on the billed band or cart validation rejects an honest quote. Zebra shades size
+ * off the supplier sheet, which reaches past the band grid at both ends; those sizes
+ * bill at the nearest band rather than being refused.
+ */
+function findCeilingWidthBand(
+  widthInches: number,
+  priceBandId: string,
+  clamp = false
+): JsonWidthBand | null {
   const widthBands = getBandWidthBands(priceBandId);
   if (widthBands.length === 0) return null;
 
-  const min = widthBands[0].widthInches;
-  const max = widthBands[widthBands.length - 1].widthInches;
-  if (widthInches < min || widthInches > max) return null;
+  const minBand = widthBands[0];
+  const maxBand = widthBands[widthBands.length - 1];
+  if (widthInches < minBand.widthInches) return clamp ? minBand : null;
+  if (widthInches > maxBand.widthInches) return clamp ? maxBand : null;
 
-  return widthBands.find((band) => band.widthInches >= Math.ceil(widthInches)) ?? null;
+  return (
+    widthBands.find((band) => band.widthInches >= Math.ceil(widthInches)) ??
+    (clamp ? maxBand : null)
+  );
 }
 
-function findCeilingHeightBand(heightInches: number, priceBandId: string): JsonHeightBand | null {
+function findCeilingHeightBand(
+  heightInches: number,
+  priceBandId: string,
+  clamp = false
+): JsonHeightBand | null {
   const heightBands = getBandHeightBands(priceBandId);
   if (heightBands.length === 0) return null;
 
-  const min = heightBands[0].heightInches;
-  const max = heightBands[heightBands.length - 1].heightInches;
-  if (heightInches < min || heightInches > max) return null;
+  const minBand = heightBands[0];
+  const maxBand = heightBands[heightBands.length - 1];
+  if (heightInches < minBand.heightInches) return clamp ? minBand : null;
+  if (heightInches > maxBand.heightInches) return clamp ? maxBand : null;
 
-  return heightBands.find((band) => band.heightInches >= Math.ceil(heightInches)) ?? null;
+  return (
+    heightBands.find((band) => band.heightInches >= Math.ceil(heightInches)) ??
+    (clamp ? maxBand : null)
+  );
 }
 
 async function resolvePriceBand(handle: string): Promise<JsonPriceBand> {
@@ -581,8 +651,14 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   }
 
   const priceBand = await resolvePriceBand(request.handle);
-  const widthBand = findCeilingWidthBand(request.widthInches, priceBand.id);
-  const heightBand = findCeilingHeightBand(request.heightInches, priceBand.id);
+
+  // The client is never trusted for sizing. For families whose range comes from the
+  // supplier sheet, enforce that sheet here before anything is priced.
+  assertWithinSheetEnvelope(request, cachedProduct.tags);
+
+  const clampToBandGrid = shouldClampToBandGrid(cachedProduct.tags);
+  const widthBand = findCeilingWidthBand(request.widthInches, priceBand.id, clampToBandGrid);
+  const heightBand = findCeilingHeightBand(request.heightInches, priceBand.id, clampToBandGrid);
 
   if (!widthBand || !heightBand) {
     throw new Error('Selected measurements are outside the allowed range for this product');

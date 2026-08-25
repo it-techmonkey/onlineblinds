@@ -115,13 +115,19 @@ const BottomChainSelector = ({ options, selectedChain, onChainChange }: BottomCh
                 onClose={closeDropdown}
             >
                 {options.map((option) => (
-                    <div
+                    <button
                         key={option.id}
+                        type="button"
+                        onClick={() => {
+                            setHoveredPreview(null);
+                            onChainChange(option.id);
+                            closeDropdown();
+                        }}
+                        onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
+                        onMouseLeave={() => setHoveredPreview(null)}
                         className={`w-full px-4 py-3 text-left hover:bg-[#e7eef8] flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${
                             selectedChain === option.id ? 'bg-[#eef2f8]' : ''
                         }`}
-                        onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
-                        onMouseLeave={() => setHoveredPreview(null)}
                     >
                         {option.image && (
                             <div
@@ -139,27 +145,16 @@ const BottomChainSelector = ({ options, selectedChain, onChainChange }: BottomCh
                             </div>
                         )}
 
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setHoveredPreview(null);
-                                onChainChange(option.id);
-                                closeDropdown();
-                            }}
-                            className="grow min-w-0 text-left"
-                        >
-                            <p className={`text-sm font-medium ${selectedChain === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
-                                {option.name}
-                            </p>
-                        </button>
+                        <p className={`grow min-w-0 text-sm font-medium ${selectedChain === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
+                            {option.name}
+                        </p>
 
                         {option.price && option.price > 0 && (
                             <span className="text-xs font-semibold bg-[#335c99] text-white px-2 py-1 rounded whitespace-nowrap">
                                 +£{option.price.toFixed(2)}
                             </span>
                         )}
-
-                    </div>
+                    </button>
                 ))}
             </PortalDropdownMenu>
             <PortalHoverImagePreview preview={hoveredPreview} />

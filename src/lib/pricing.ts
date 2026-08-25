@@ -4,6 +4,7 @@ import {
   isHeightOnlyVerticalProduct,
 } from './vertical-blinds';
 import { getMotorizationBasePrice } from './electrical-roller';
+import { shouldClampToBandGrid } from './measurement-ranges';
 
 // ============================================
 // Types
@@ -27,10 +28,25 @@ export interface CustomizationPriceResult {
 // ============================================
 
 /**
+ * When a product's sellable size range comes from the supplier sheet rather than the
+ * price band (zebra shades), the sheet can allow sizes the band has no row for. Those
+ * are still sellable, so the lookup clamps to the nearest band instead of refusing:
+ * below the smallest band bills at the smallest band, above the largest bills at the
+ * largest. Off by default, so every other product keeps refusing out-of-band sizes.
+ */
+export interface BandLookupOptions {
+  clamp?: boolean;
+}
+
+/**
  * Find the ceiling width band for a given width in inches
  * Returns the smallest band that can accommodate the width
  */
-export function findCeilingWidthBand(widthInches: number, widthBands: WidthBand[]): WidthBand | null {
+export function findCeilingWidthBand(
+  widthInches: number,
+  widthBands: WidthBand[],
+  { clamp = false }: BandLookupOptions = {}
+): WidthBand | null {
   // Sort bands by inches ascending
   const sortedBands = [...widthBands].sort((a, b) => a.inches - b.inches);
   if (sortedBands.length === 0) {
@@ -39,21 +55,28 @@ export function findCeilingWidthBand(widthInches: number, widthBands: WidthBand[
 
   const minBand = sortedBands[0];
   const maxBand = sortedBands[sortedBands.length - 1];
-  if (widthInches < minBand.inches || widthInches > maxBand.inches) {
-    return null;
+  if (widthInches < minBand.inches) {
+    return clamp ? minBand : null;
+  }
+  if (widthInches > maxBand.inches) {
+    return clamp ? maxBand : null;
   }
 
   // Find the smallest band >= requested width
   const ceilingBand = sortedBands.find(band => band.inches >= Math.ceil(widthInches));
 
-  return ceilingBand || null;
+  return ceilingBand || (clamp ? maxBand : null);
 }
 
 /**
  * Find the ceiling height band for a given height in inches
  * Returns the smallest band that can accommodate the height
  */
-export function findCeilingHeightBand(heightInches: number, heightBands: HeightBand[]): HeightBand | null {
+export function findCeilingHeightBand(
+  heightInches: number,
+  heightBands: HeightBand[],
+  { clamp = false }: BandLookupOptions = {}
+): HeightBand | null {
   // Sort bands by inches ascending
   const sortedBands = [...heightBands].sort((a, b) => a.inches - b.inches);
   if (sortedBands.length === 0) {
@@ -62,14 +85,17 @@ export function findCeilingHeightBand(heightInches: number, heightBands: HeightB
 
   const minBand = sortedBands[0];
   const maxBand = sortedBands[sortedBands.length - 1];
-  if (heightInches < minBand.inches || heightInches > maxBand.inches) {
-    return null;
+  if (heightInches < minBand.inches) {
+    return clamp ? minBand : null;
+  }
+  if (heightInches > maxBand.inches) {
+    return clamp ? maxBand : null;
   }
 
   // Find the smallest band >= requested height
   const ceilingBand = sortedBands.find(band => band.inches >= Math.ceil(heightInches));
 
-  return ceilingBand || null;
+  return ceilingBand || (clamp ? maxBand : null);
 }
 
 // ============================================
@@ -83,10 +109,11 @@ export function findCeilingHeightBand(heightInches: number, heightBands: HeightB
 export function calculateDimensionPrice(
   widthInches: number,
   heightInches: number,
-  priceMatrix: PriceBandMatrix
+  priceMatrix: PriceBandMatrix,
+  options: BandLookupOptions = {}
 ): PriceCalculationResult | null {
-  const widthBand = findCeilingWidthBand(widthInches, priceMatrix.widthBands);
-  const heightBand = findCeilingHeightBand(heightInches, priceMatrix.heightBands);
+  const widthBand = findCeilingWidthBand(widthInches, priceMatrix.widthBands, options);
+  const heightBand = findCeilingHeightBand(heightInches, priceMatrix.heightBands, options);
 
   if (!widthBand || !heightBand) {
     return null;
@@ -204,7 +231,11 @@ export function calculateTotalPrice(
   }
 
   // Calculate dimension price
-  const dimensionResult = calculateDimensionPrice(widthInches, heightInches, priceMatrix);
+  // Zebra and roller size off the supplier sheets, which reach past the band grid
+  // at both ends, so their lookup clamps to the nearest band instead of refusing.
+  const dimensionResult = calculateDimensionPrice(widthInches, heightInches, priceMatrix, {
+    clamp: shouldClampToBandGrid(productTags),
+  });
 
   if (!dimensionResult) {
     return null;

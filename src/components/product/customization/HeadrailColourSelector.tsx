@@ -133,11 +133,17 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                 onClose={closeDropdown}
             >
                 {options.map((option) => (
-                    <div
+                    <button
                         key={option.id}
-                        className={`w-full px-4 py-3 flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedColour === option.id ? 'bg-[#eef2f8]' : 'hover:bg-[#e7eef8]'}`}
+                        type="button"
+                        onClick={() => {
+                            setHoveredPreview(null);
+                            onColourChange(option.id);
+                            closeDropdown();
+                        }}
                         onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
                         onMouseLeave={() => setHoveredPreview(null)}
+                        className={`w-full px-4 py-3 text-left flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedColour === option.id ? 'bg-[#eef2f8]' : 'hover:bg-[#e7eef8]'}`}
                     >
                         {option.image && (
                             <div
@@ -153,22 +159,14 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                             </div>
                         )}
 
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setHoveredPreview(null);
-                                onColourChange(option.id);
-                                closeDropdown();
-                            }}
-                            className="grow min-w-0 text-left"
-                        >
+                        <div className="grow min-w-0 text-left">
                             <p className="text-sm font-medium text-[#1f2a44]">{option.name}</p>
                             {option.price != null && option.price > 0 && (
                                 <p className="text-xs text-[#335c99] font-semibold mt-0.5">
                                     + £{option.price.toFixed(2)}
                                 </p>
                             )}
-                        </button>
+                        </div>
 
                         {selectedColour === option.id && (
                             <div className="w-5 h-5 bg-[#335c99] rounded-full flex items-center justify-center shrink-0">
@@ -177,8 +175,7 @@ const HeadrailColourSelector = ({ options, selectedColour, onColourChange }: Hea
                                 </svg>
                             </div>
                         )}
-
-                    </div>
+                    </button>
                 ))}
             </PortalDropdownMenu>
             <PortalHoverImagePreview preview={hoveredPreview} />

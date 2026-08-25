@@ -109,9 +109,14 @@ const ChainColorSelector = ({ options, selectedColor, onColorChange, showFreeLab
                 onClose={() => setIsOpen(false)}
             >
                 {options.map((option) => (
-                    <div
+                    <button
                         key={option.id}
-                        className={`w-full px-4 py-3 flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedColor === option.id ? 'bg-[#eef2f8]' : 'hover:bg-[#e7eef8]'}`}
+                        type="button"
+                        onClick={() => {
+                            onColorChange(option.id);
+                            setIsOpen(false);
+                        }}
+                        className={`w-full px-4 py-3 text-left flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedColor === option.id ? 'bg-[#eef2f8]' : 'hover:bg-[#e7eef8]'}`}
                     >
                         {option.hex && (
                             <div
@@ -120,18 +125,9 @@ const ChainColorSelector = ({ options, selectedColor, onColorChange, showFreeLab
                                 aria-hidden="true"
                             />
                         )}
-                        <button
-                            type="button"
-                            onClick={() => { 
-                                onColorChange(option.id); 
-                                setIsOpen(false); 
-                            }}
-                            className="grow min-w-0 text-left"
-                        >
-                            <p className={`text-sm font-medium ${selectedColor === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
-                                {option.name}
-                            </p>
-                        </button>
+                        <p className={`grow min-w-0 text-sm font-medium ${selectedColor === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
+                            {option.name}
+                        </p>
                         {option.price && option.price > 0 ? (
                             <span className="text-xs font-semibold bg-[#335c99] text-white px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap">
                                 +£{option.price.toFixed(2)}
@@ -150,8 +146,7 @@ const ChainColorSelector = ({ options, selectedColor, onColorChange, showFreeLab
                                 </div>
                             </div>
                         )}
-
-                    </div>
+                    </button>
                 ))}
             </PortalDropdownMenu>
         </div>

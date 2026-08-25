@@ -77,11 +77,19 @@ const DropdownPortal = ({
         role="listbox"
       >
         {options.map((option) => (
-          <div
+          <button
             key={option.id}
-            className={`px-4 py-3 text-left hover:bg-[#e7eef8] flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedValue === option.id ? 'bg-[#eef2f8]' : ''}`}
+            type="button"
+            onClick={() => {
+              setHoveredPreview(null);
+              onChange(option.id);
+              onClose();
+            }}
             onMouseEnter={(event) => option.image && setHoveredPreview({ name: option.name, image: option.image, anchorRect: event.currentTarget.getBoundingClientRect() })}
             onMouseLeave={() => setHoveredPreview(null)}
+            role="option"
+            aria-selected={selectedValue === option.id}
+            className={`w-full px-4 py-3 text-left hover:bg-[#e7eef8] flex items-center gap-3 border-b border-[#e3e8f1] last:border-0 transition-colors ${selectedValue === option.id ? 'bg-[#eef2f8]' : ''}`}
           >
             {option.hex ? (
               <div
@@ -98,19 +106,9 @@ const DropdownPortal = ({
               </div>
             ) : null}
 
-            <button
-              type="button"
-              onClick={() => {
-                setHoveredPreview(null);
-                onChange(option.id);
-                onClose();
-              }}
-              className="grow min-w-0 flex items-center gap-3 text-left"
-            >
-              <p className={`min-w-0 break-words text-sm font-medium ${selectedValue === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
-                {option.name}
-              </p>
-            </button>
+            <p className={`grow min-w-0 break-words text-sm font-medium ${selectedValue === option.id ? 'text-[#335c99]' : 'text-[#1f2a44]'}`}>
+              {option.name}
+            </p>
 
             {option.price && option.price > 0 ? (
               <span className="text-xs font-semibold bg-[#335c99] text-white px-2.5 py-1 rounded-md shrink-0 whitespace-nowrap">
@@ -131,8 +129,7 @@ const DropdownPortal = ({
                 </div>
               </div>
             )}
-
-          </div>
+          </button>
         ))}
       </div>
       <PortalHoverImagePreview preview={hoveredPreview} />
