@@ -43,6 +43,25 @@ export interface PricingRequest {
   }[];
 }
 
+/**
+ * A pricing failure that is the *request's* fault, not the server's: a size no
+ * control system can build, a width/drop combination the supplier leaves out of
+ * the grid, or a product with no price band.
+ *
+ * It is a distinct type so callers can tell it apart from an infrastructure
+ * failure (Shopify down, bad pricing data) and show the customer the real
+ * reason instead of "Internal server error". Checkout in particular used to
+ * collapse every one of these into an opaque 500 at the Proceed button.
+ */
+export class PricingError extends Error {
+  statusCode: number;
+  constructor(message: string, statusCode: number = 400) {
+    super(message);
+    this.name = 'PricingError';
+    this.statusCode = statusCode;
+  }
+}
+
 export interface PricingResponse {
   dimensionPrice: number;
   customizationPrices: {
@@ -391,7 +410,7 @@ function assertWithinSheetEnvelope(
     heightInches < limits.minHeight ||
     heightInches > limits.maxHeight
   ) {
-    throw new Error('Selected measurements are outside the allowed range for this product');
+    throw new PricingError('Selected measurements are outside the allowed range for this product');
   }
 }
 
@@ -447,12 +466,12 @@ async function resolvePriceBand(handle: string): Promise<JsonPriceBand> {
     inferVerticalPriceBandNameFromTags(cachedProduct?.tags ?? []);
 
   if (!priceBandName) {
-    throw new Error(`Product "${handle}" not found or has no price band assigned`);
+    throw new PricingError(`Product "${handle}" not found or has no price band assigned`, 404);
   }
 
   const priceBand = getIndexes().priceBandsByName.get(priceBandName);
   if (!priceBand) {
-    throw new Error(`Price band "${priceBandName}" not found in pricing data`);
+    throw new PricingError(`Price band "${priceBandName}" not found in pricing data`, 404);
   }
 
   return priceBand;
@@ -614,13 +633,13 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   const cachedProduct = cachedProducts[request.handle];
 
   if (!cachedProduct) {
-    throw new Error(`Product "${request.handle}" not found or has no price band assigned`);
+    throw new PricingError(`Product "${request.handle}" not found or has no price band assigned`, 404);
   }
 
   if (isHeightOnlyVerticalProduct(cachedProduct.tags)) {
     const dimensionPrice = calculateReplacementVerticalSlatPrice(request.heightInches, cachedProduct.tags);
     if (dimensionPrice == null) {
-      throw new Error(`Unable to determine replacement vertical slat pricing for "${request.handle}"`);
+      throw new PricingError(`Unable to determine replacement vertical slat pricing for "${request.handle}"`, 404);
     }
 
     const customizationPrices: PricingResponse['customizationPrices'] = [];
@@ -661,7 +680,7 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   const heightBand = findCeilingHeightBand(request.heightInches, priceBand.id, clampToBandGrid);
 
   if (!widthBand || !heightBand) {
-    throw new Error('Selected measurements are outside the allowed range for this product');
+    throw new PricingError('Selected measurements are outside the allowed range for this product');
   }
 
   const priceCell = getIndexes().priceCellByCompositeKey.get(
@@ -669,7 +688,9 @@ export async function calculateProductPrice(request: PricingRequest): Promise<Pr
   );
 
   if (!priceCell) {
-    throw new Error('Price not found for the given dimensions');
+    throw new PricingError(
+      'We cannot make this blind in that width and drop combination. Please adjust your measurements.'
+    );
   }
 
   const dimensionPrice = Number(priceCell.price);

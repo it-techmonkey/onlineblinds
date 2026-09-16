@@ -18,7 +18,7 @@ import {
   applyControlSystemLimits,
   formatControlSystemConflict,
   formatOutOfRangeMessage,
-  getBlindFamily,
+  getBlindFamilyFromTags,
   getControlSystem,
   getControlSystemSizeConflict,
   getMeasurementRanges,
@@ -43,7 +43,6 @@ import {
   REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES,
 } from '@/lib/vertical-blinds';
 import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
-import { isRollerBlindProduct } from '@/lib/roller-blinds';
 import {
   getEasyStickFieldLabels,
   getEasyStickSubtype,
@@ -192,7 +191,7 @@ const ProductPage = ({
   initialPriceMatrix = null,
   initialCustomizationPricing = [],
 }: ProductPageProps) => {
-  const { addToCart, clearCart } = useCart();
+  const { addToCart } = useCart();
   const [wantsInstallation, setWantsInstallation] = useState(false);
   const { customer } = useAuth();
   const searchParams = useSearchParams();
@@ -348,11 +347,6 @@ const ProductPage = ({
     const category = product.category.toLowerCase();
     return category.includes('day') || category.includes('night') || category.includes('zebra');
   }, [product.category]);
-
-  // Tag-based, not category-based: the `roller-blinds` tag is verified across the
-  // whole roller collection and absent from every Day & Night product, which the
-  // category string alone does not guarantee.
-  const isRoller = useMemo(() => isRollerBlindProduct(product.tags), [product.tags]);
 
   const isNoDrill = useMemo(() => {
     const category = product.category.toLowerCase();
@@ -958,9 +952,15 @@ const ProductPage = ({
   // selected control system can actually be built in (Day & Night blinds only).
   const bandRanges = useMemo(() => getMeasurementRanges(priceMatrix), [priceMatrix]);
 
+  // Tag-based, exactly as the server decides it (pricing.service.ts calls the same
+  // helper). The sizing envelope comes from the supplier sheet per family, so if
+  // the page picked a family from the category name — which is a collection title
+  // and can be anything a zebra product happens to be browsed under — it would
+  // advertise roller's 8-116in width for a Day & Night blind the server caps at
+  // 96in, and the customer would only find out at checkout.
   const blindFamily = useMemo(
-    () => getBlindFamily({ isDayNight, isRoller }),
-    [isDayNight, isRoller]
+    () => getBlindFamilyFromTags(product.tags),
+    [product.tags]
   );
 
   const controlSystem = useMemo(
@@ -1322,7 +1322,8 @@ const ProductPage = ({
         customer?.email || undefined,
         wantsInstallation
       );
-      clearCart();
+      // Buy Now checks out this one item directly — it was never added to the
+      // cart, so the cart (any items already in it) must be left untouched here.
       window.location.href = result.checkoutUrl;
     } catch (error) {
       console.error('Checkout error:', error);

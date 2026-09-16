@@ -84,6 +84,7 @@ export default function CartPage() {
     applyDiscount,
     removeDiscount,
     clearCart,
+    markCheckoutStarted,
   } = useCart();
   const { customer } = useAuth();
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -94,6 +95,12 @@ export default function CartPage() {
   const [priceUpdateNotice, setPriceUpdateNotice] = useState<
     { id: string; name: string; oldPrice: number; newPrice: number }[] | null
   >(null);
+  // Items the backend can no longer price at all — usually a size saved before the
+  // current size limits existed. Checkout would reject the whole order over one of
+  // these, so they are named here and the Proceed button is held until they go.
+  const [unavailableItems, setUnavailableItems] = useState<
+    { id: string; name: string; reason: string }[]
+  >([]);
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setCouponError] = useState<string | null>(null);
   const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
@@ -127,10 +134,22 @@ export default function CartPage() {
 
         const updates: { id: string; price: number }[] = [];
         const changed: { id: string; name: string; oldPrice: number; newPrice: number }[] = [];
+        const unavailable: { id: string; name: string; reason: string }[] = [];
 
         itemsToCheck.forEach((item, index) => {
           const result = results[index];
-          if (result && !result.valid) {
+          if (!result) return;
+
+          if (result.available === false) {
+            unavailable.push({
+              id: item.id,
+              name: item.product.name,
+              reason: result.unavailableReason || 'This item can no longer be made as configured.',
+            });
+            return;
+          }
+
+          if (!result.valid) {
             updates.push({ id: item.id, price: result.calculatedPrice });
             changed.push({
               id: item.id,
@@ -140,6 +159,8 @@ export default function CartPage() {
             });
           }
         });
+
+        setUnavailableItems(unavailable);
 
         if (updates.length > 0) {
           updateItemPrices(updates);
@@ -187,7 +208,16 @@ export default function CartPage() {
     if (!editingItem) return;
 
     updateCartItem(editingItem.id, product, configuration);
+    // The edit may have fixed (or introduced) an unsellable configuration, so let
+    // the revalidation effect run again against the new item set.
+    hasValidatedPrices.current = false;
     closeEditModal();
+  };
+
+  const handleRemoveItem = (itemId: string) => {
+    removeFromCart(itemId);
+    setUnavailableItems((prev) => prev.filter((item) => item.id !== itemId));
+    setCheckoutError(null);
   };
 
   const handleCheckout = async () => {
@@ -205,10 +235,22 @@ export default function CartPage() {
       const priceChecks = await validateCartItemPrices(checkoutItems);
       const staleUpdates: { id: string; price: number }[] = [];
       const staleItems: { id: string; name: string; oldPrice: number; newPrice: number }[] = [];
+      const unavailable: { id: string; name: string; reason: string }[] = [];
 
       cart.items.forEach((item, index) => {
         const check = priceChecks[index];
-        if (check && !check.valid) {
+        if (!check) return;
+
+        if (check.available === false) {
+          unavailable.push({
+            id: item.id,
+            name: item.product.name,
+            reason: check.unavailableReason || 'This item can no longer be made as configured.',
+          });
+          return;
+        }
+
+        if (!check.valid) {
           staleUpdates.push({ id: item.id, price: check.calculatedPrice });
           staleItems.push({
             id: item.id,
@@ -218,6 +260,18 @@ export default function CartPage() {
           });
         }
       });
+
+      setUnavailableItems(unavailable);
+
+      // An unsellable item fails the whole draft order, so stop here and point at
+      // the item rather than letting Shopify reject the order after the fact.
+      if (unavailable.length > 0) {
+        setCheckoutError(
+          'One or more items in your cart can no longer be made as configured. Please edit or remove them below, then try again.'
+        );
+        setIsCheckingOut(false);
+        return;
+      }
 
       if (staleUpdates.length > 0) {
         updateItemPrices(staleUpdates);
@@ -234,8 +288,11 @@ export default function CartPage() {
         cart.discount?.code
       );
 
-      // Clear cart before redirecting
-      clearCart();
+      // Don't clear the cart yet — the customer hasn't paid, only been sent to
+      // Shopify's hosted checkout. Record the draft order so CartProvider can
+      // clear the cart on a later visit once it confirms this was actually
+      // paid; if they abandon checkout, the cart is exactly as they left it.
+      markCheckoutStarted(result.draftOrderId);
 
       // Redirect to Shopify checkout
       window.location.href = result.checkoutUrl;
@@ -761,7 +818,7 @@ export default function CartPage() {
                                 Edit
                               </button>
                               <button
-                                onClick={() => removeFromCart(item.id)}
+                                onClick={() => handleRemoveItem(item.id)}
                                 className="text-muted transition-colors hover:text-red-600"
                                 aria-label="Remove item"
                               >
@@ -964,6 +1021,26 @@ export default function CartPage() {
                   </div>
                 )}
 
+                {unavailableItems.length > 0 && (
+                  <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
+                    <p className="mb-1 text-xs font-semibold text-red-900">
+                      {unavailableItems.length === 1
+                        ? 'One item cannot be made as configured'
+                        : 'Some items cannot be made as configured'}
+                    </p>
+                    <ul className="space-y-0.5 text-xs text-red-800">
+                      {unavailableItems.map((item) => (
+                        <li key={item.id}>
+                          <span className="font-medium">{item.name}</span>: {item.reason}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-2 text-xs text-red-800">
+                      Please edit or remove {unavailableItems.length === 1 ? 'it' : 'them'} to continue.
+                    </p>
+                  </div>
+                )}
+
                 {checkoutError && (
                   <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
                     <p className="text-xs text-red-800">{checkoutError}</p>
@@ -972,7 +1049,7 @@ export default function CartPage() {
 
                 <button
                   onClick={handleCheckout}
-                  disabled={isCheckingOut}
+                  disabled={isCheckingOut || unavailableItems.length > 0}
                   data-gtm="begin-checkout"
                   data-gtm-location="shopping-cart"
                   className="mb-3 flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 text-base font-medium text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-60"

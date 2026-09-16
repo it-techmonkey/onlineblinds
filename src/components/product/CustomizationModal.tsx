@@ -28,12 +28,11 @@ import {
   applyControlSystemLimits,
   formatControlSystemConflict,
   formatOutOfRangeMessage,
-  getBlindFamily,
+  getBlindFamilyFromTags,
   getControlSystem,
   getControlSystemSizeConflict,
   getMeasurementRanges,
 } from '@/lib/measurement-ranges';
-import { isRollerBlindProduct } from '@/lib/roller-blinds';
 import {
   getEasyStickFieldLabels,
   getEasyStickSubtype,
@@ -745,9 +744,15 @@ const CustomizationModal = ({
   // an explicit "No Motorization" means the customer is on the continuous chain.
   const bandRanges = useMemo(() => getMeasurementRanges(priceMatrix), [priceMatrix]);
 
+  // Tag-based, exactly as the server decides it (pricing.service.ts calls the same
+  // helper). The sizing envelope comes from the supplier sheet per family, so if
+  // the page picked a family from the category name — which is a collection title
+  // and can be anything a zebra product happens to be browsed under — it would
+  // advertise roller's 8-116in width for a Day & Night blind the server caps at
+  // 96in, and the customer would only find out at checkout.
   const blindFamily = useMemo(
-    () => getBlindFamily({ isDayNight, isRoller: isRollerBlindProduct(product.tags) }),
-    [isDayNight, product.tags]
+    () => getBlindFamilyFromTags(product.tags),
+    [product.tags]
   );
 
   const controlSystem = useMemo(

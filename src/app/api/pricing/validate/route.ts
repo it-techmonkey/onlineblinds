@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import * as pricingService from '@/lib/server/pricing.service';
+import { PricingError } from '@/lib/server/pricing.service';
+
 
 export async function POST(request: Request) {
   try {
@@ -31,21 +33,17 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, data: validation });
   } catch (error: unknown) {
+    // A size outside the supplier's envelope, a missing price band or a grid gap
+    // is a bad request, not a server fault — return the real reason so the caller
+    // can show it.
+    if (error instanceof PricingError) {
+      return NextResponse.json(
+        { success: false, error: { message: error.message } },
+        { status: error.statusCode }
+      );
+    }
+
     const message = error instanceof Error ? error.message : 'Unknown error';
-    if (message.includes('not found') || message.includes('no price band')) {
-      return NextResponse.json(
-        { success: false, error: { message } },
-        { status: 404 }
-      );
-    }
-    // A size outside the supplier's envelope is a bad request, not a server fault —
-    // return the real reason so the caller can show it.
-    if (message.includes('outside the allowed range')) {
-      return NextResponse.json(
-        { success: false, error: { message } },
-        { status: 400 }
-      );
-    }
     console.error('Pricing validate error:', message);
     return NextResponse.json(
       { success: false, error: { message: 'Internal server error' } },

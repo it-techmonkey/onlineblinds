@@ -6,6 +6,7 @@ import { Product, ProductConfiguration, Cart, CartItem, CartContextType, CartDis
 import { trackShopifyAddToCart } from '@/lib/shopify-analytics';
 import { trackAddToCart, trackRemoveFromCart } from '@/lib/gtm';
 import { getInstallationServicePrice } from '@/lib/pricing';
+import { getDraftOrderStatus } from '@/lib/api';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -28,6 +29,7 @@ const defaultCartContext: CartContextType = {
   applyDiscount: () => {},
   removeDiscount: () => {},
   clearCart: () => {},
+  markCheckoutStarted: () => {},
 };
 
 export const useCart = () => {
@@ -40,9 +42,18 @@ interface CartProviderProps {
 }
 
 const CART_STORAGE_KEY = 'cart';
+// Records a checkout the customer was sent to Shopify's hosted checkout for, so a
+// later visit can tell a completed purchase from an abandoned one and clear the
+// cart only in the first case. See the init effect below for how it's resolved.
+const PENDING_CHECKOUT_STORAGE_KEY = 'cart_pending_checkout';
 
 interface SerializableCartItem extends Omit<CartItem, 'addedAt'> {
   addedAt: string;
+}
+
+interface PendingCheckout {
+  draftOrderId: string;
+  startedAt: string;
 }
 
 const calculateCartTotals = (items: CartItem[], installationService: boolean, discount: CartDiscount | null) => {
@@ -118,16 +129,61 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       }
     };
 
-    const { items: localItems, installationService, discount } = loadLocalCart();
-    queueMicrotask(() => {
+    // If checkout was started on a previous visit, find out whether it actually
+    // completed before deciding whether to keep the cart that was deliberately
+    // left in place when the customer was sent to Shopify. Resolves to true only
+    // for a confirmed purchase — a still-open checkout, an expired/cancelled
+    // draft order, or a lookup failure all leave the cart untouched, since the
+    // safe default is to never discard items the customer didn't buy.
+    const resolvePendingCheckout = async (): Promise<boolean> => {
+      const raw = localStorage.getItem(PENDING_CHECKOUT_STORAGE_KEY);
+      if (!raw) return false;
+
+      let pending: PendingCheckout;
+      try {
+        pending = JSON.parse(raw);
+        if (!pending?.draftOrderId) throw new Error('Missing draftOrderId');
+      } catch (error) {
+        console.error('Error reading pending checkout marker:', error);
+        localStorage.removeItem(PENDING_CHECKOUT_STORAGE_KEY);
+        return false;
+      }
+
+      try {
+        const status = await getDraftOrderStatus(pending.draftOrderId);
+        // Shopify marks a draft order "completed" once its invoice is paid, at
+        // which point it also carries a real order id — check both since either
+        // is sufficient evidence of a real purchase.
+        if (status.status === 'completed' || status.orderId) {
+          localStorage.removeItem(PENDING_CHECKOUT_STORAGE_KEY);
+          return true;
+        }
+        return false;
+      } catch (error) {
+        // Network hiccup or an unrecognized draft order — leave the marker so
+        // this is retried on the next visit rather than guessing either way.
+        console.error('Error checking pending checkout status:', error);
+        return false;
+      }
+    };
+
+    (async () => {
+      const purchased = await resolvePendingCheckout();
+      const { items: localItems, installationService, discount } = purchased
+        ? { items: [], installationService: false, discount: null }
+        : loadLocalCart();
+
       const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
         localItems,
         installationService,
         discount
       );
       setCart({ items: localItems, total, itemCount, installationService, installationServicePrice, discount, discountAmount });
+      if (purchased) {
+        localStorage.removeItem(CART_STORAGE_KEY);
+      }
       hasInitializedRef.current = true;
-    });
+    })();
   }, []);
 
   // Persist cart locally for guests and signed-in users.
@@ -147,7 +203,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     installationService?: boolean
   ) => {
     const newItem: CartItem = {
-      id: `${product.id}-${Date.now()}`,
+      // Date.now() alone is not unique: two adds in the same millisecond (a
+      // double-click, or "add both" flows) produced two items sharing an id, and
+      // editing or removing one then hit both.
+      id: `${product.id}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       product,
       configuration,
       quantity: 1,
@@ -255,6 +314,18 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       discountAmount: 0,
     });
     localStorage.removeItem(CART_STORAGE_KEY);
+    // Nothing left to reconcile a pending checkout against once the cart is
+    // cleared, whether that happened here or via the customer's own "Clear Cart".
+    localStorage.removeItem(PENDING_CHECKOUT_STORAGE_KEY);
+  };
+
+  const markCheckoutStarted = (draftOrderId: string) => {
+    try {
+      const pending: PendingCheckout = { draftOrderId, startedAt: new Date().toISOString() };
+      localStorage.setItem(PENDING_CHECKOUT_STORAGE_KEY, JSON.stringify(pending));
+    } catch (error) {
+      console.error('Error recording checkout start:', error);
+    }
   };
 
   return (
@@ -270,6 +341,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         applyDiscount,
         removeDiscount,
         clearCart,
+        markCheckoutStarted,
       }}
     >
       {children}

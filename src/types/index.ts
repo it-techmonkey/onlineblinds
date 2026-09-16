@@ -233,6 +233,13 @@ export interface CartContextType {
   applyDiscount: (discount: CartDiscount) => void;
   removeDiscount: () => void;
   clearCart: () => void;
+  /**
+   * Record that the customer has been sent to Shopify's hosted checkout for the
+   * current cart, without clearing it. The cart is only cleared once the visitor
+   * returns and this draft order is confirmed paid — see CartProvider — so
+   * abandoning checkout leaves the cart exactly as it was.
+   */
+  markCheckoutStarted: (draftOrderId: string) => void;
 }
 
 // ============================================
@@ -418,6 +425,10 @@ export interface CartItemPriceCheck {
   submittedPrice: number;
   calculatedPrice: number;
   valid: boolean;
+  /** False when the item can no longer be priced at all, so checkout would fail. */
+  available: boolean;
+  /** Why the item is unavailable, in customer-facing wording. */
+  unavailableReason?: string;
 }
 
 // ============================================
@@ -451,4 +462,14 @@ export interface CheckoutResponse {
     quantity: number;
   }[];
   subtotal: number;
+}
+
+export interface DraftOrderStatus {
+  id: string;
+  status: string;
+  orderId: string | null;
+  orderName: string | null;
+  invoiceUrl: string;
+  totalPrice: string;
+  createdAt: string;
 }

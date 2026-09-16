@@ -18,6 +18,7 @@ import {
   CartDiscount,
   CheckoutItemRequest,
   CheckoutResponse,
+  DraftOrderStatus,
 } from '@/types';
 import {
   getCategoryCustomizations,
@@ -647,6 +648,30 @@ export async function createCheckout(
 
   if (!response.success) {
     throw new Error((response as any).error?.message || 'Failed to create checkout');
+  }
+
+  return response.data;
+}
+
+interface DraftOrderStatusApiResponse {
+  success: boolean;
+  data: DraftOrderStatus;
+  error?: { message: string };
+}
+
+/**
+ * Look up whether a draft order created by createCheckout has actually been
+ * paid. Used to decide, after the customer returns to the site, whether the
+ * cart that was left in place when they were sent to Shopify's hosted
+ * checkout can now be cleared.
+ */
+export async function getDraftOrderStatus(draftOrderId: string): Promise<DraftOrderStatus> {
+  const response = await apiFetch<DraftOrderStatusApiResponse>(
+    `/api/orders/status/${encodeURIComponent(draftOrderId)}`
+  );
+
+  if (!response.success) {
+    throw new Error((response as any).error?.message || 'Failed to get order status');
   }
 
   return response.data;

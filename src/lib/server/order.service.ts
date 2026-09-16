@@ -1,4 +1,4 @@
-import { calculateProductPrice, type PricingRequest, type PricingResponse } from './pricing.service';
+import { calculateProductPrice, PricingError, type PricingRequest, type PricingResponse } from './pricing.service';
 import { getAdminApiUrl, getAdminHeaders, validateShopifyConfig } from './shopify-admin';
 import { getCachedProduct } from './product-cache';
 import { resolveDiscountCode } from './discount.service';
@@ -256,8 +256,11 @@ async function getVariantIdByHandle(handle: string, colour?: string): Promise<nu
       cache: 'no-store',
     });
 
+    // Deliberately not cached: a transient Shopify failure would otherwise pin
+    // this handle to "no variant" for the life of the process, and every later
+    // order for it would be booked as an untracked custom line item.
     if (!response.ok) {
-      variantIdByHandleCache.set(cacheKey, null);
+      console.error(`[OrderService] Variant lookup for "${handle}" failed: ${response.status}`);
       return null;
     }
 
@@ -303,8 +306,9 @@ async function getVariantIdByHandle(handle: string, colour?: string): Promise<nu
     variantIdByHandleCache.set(cacheKey, variantId);
     return variantId;
   } catch (error) {
+    // Same reason as the !response.ok branch above — a network blip must not be
+    // remembered as a permanent answer.
     console.error(`[OrderService] Failed variant lookup for handle "${handle}":`, error);
-    variantIdByHandleCache.set(cacheKey, null);
     return null;
   }
 }
@@ -336,10 +340,29 @@ async function getInstallationServiceVariantId(variantTitle: string): Promise<nu
         map.set(variant.title, parsed!);
       }
     }
-    installationServiceVariantsCache = map;
+    // An empty map means the fetch came back without the product (a blip, or the
+    // product not created yet). Caching that would keep installation checkout
+    // broken until the process restarts, even once the product exists.
+    if (map.size > 0) {
+      installationServiceVariantsCache = map;
+    } else {
+      console.error(`[OrderService] "${INSTALLATION_SERVICE_HANDLE}" returned no usable variants.`);
+      return null;
+    }
   }
 
   return installationServiceVariantsCache.get(variantTitle) ?? null;
+}
+
+/**
+ * Shopify's GraphQL admin API returns object ids as GIDs (`gid://shopify/DraftOrder/123`);
+ * the REST admin API — which getDraftOrderStatus below uses — takes the trailing
+ * numeric id instead. Accepts an id already in that plain form unchanged, so this
+ * is safe to run on an id from either API.
+ */
+function toNumericId(id: string): string {
+  const trailingSegment = id.split('/').pop();
+  return trailingSegment || id;
 }
 
 const PRICE_TOLERANCE = 0.50;
@@ -380,6 +403,15 @@ export interface CartItemPriceCheck {
   submittedPrice: number;
   calculatedPrice: number;
   valid: boolean;
+  /**
+   * False when the item can no longer be priced at all — a size outside the
+   * supplier's envelope, a width/drop combination the grid omits, or a product
+   * that lost its price band. Such an item fails checkout outright, so the cart
+   * has to be able to say so *before* the customer hits Proceed.
+   */
+  available: boolean;
+  /** Why the item is unavailable, in customer-facing wording. */
+  unavailableReason?: string;
 }
 
 /**
@@ -402,6 +434,7 @@ export async function validateCartItemPrices(items: CheckoutItemRequest[]): Prom
           submittedPrice: item.submittedPrice,
           calculatedPrice: item.submittedPrice,
           valid: true,
+          available: true,
         });
         continue;
       }
@@ -412,14 +445,34 @@ export async function validateCartItemPrices(items: CheckoutItemRequest[]): Prom
         submittedPrice: item.submittedPrice,
         calculatedPrice: pricing.totalPrice,
         valid: Math.abs(pricing.totalPrice - item.submittedPrice) <= PRICE_TOLERANCE,
+        available: true,
       });
     } catch (error) {
+      // A pricing-domain failure means this item genuinely cannot be sold as
+      // configured — report it so the cart can show which item and why. Marking
+      // it valid (as this used to) only moved the failure to checkout, where it
+      // surfaced as an unexplained "Internal server error".
+      if (error instanceof PricingError) {
+        results.push({
+          handle: item.handle,
+          submittedPrice: item.submittedPrice,
+          calculatedPrice: item.submittedPrice,
+          valid: true,
+          available: false,
+          unavailableReason: error.message,
+        });
+        continue;
+      }
+
+      // An infrastructure blip is not the customer's problem — don't block the
+      // cart over it; checkout will surface a real failure if it persists.
       console.error(`[OrderService] Cart price check failed for "${item.handle}":`, error);
       results.push({
         handle: item.handle,
         submittedPrice: item.submittedPrice,
         calculatedPrice: item.submittedPrice,
         valid: true,
+        available: true,
       });
     }
   }
@@ -446,6 +499,14 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
     if (!cachedProduct) {
       throw new CheckoutError(`Product not found: ${item.handle}`, 404);
     }
+    // Carts persist in localStorage across releases, so an item can arrive
+    // without the configuration shape the current code expects.
+    if (!item.configuration || typeof item.configuration !== 'object') {
+      throw new CheckoutError(
+        `"${cachedProduct.title}" is missing its saved options. Please remove it from your cart and add it again.`,
+        400
+      );
+    }
 
     const heightOnlyVertical = isHeightOnlyVerticalProduct(cachedProduct.tags);
     const skylightProduct = isSkylightProduct({ tags: cachedProduct.tags });
@@ -460,14 +521,40 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
       throw new CheckoutError('Each item must have a quantity >= 1', 400);
     }
 
-    const productTitle = item.configuration.blindName?.trim() || cachedProduct.title;
-    const pricing = await computeCheckoutItemPricing(item, cachedProduct.tags);
+    const productTitle = item.configuration?.blindName?.trim() || cachedProduct.title;
+
+    // Guard the mismatch check below: `Math.abs(NaN) > tolerance` is false, so a
+    // missing or non-numeric submittedPrice would slip past it unnoticed and the
+    // customer would be billed a price their cart never showed them.
+    if (typeof item.submittedPrice !== 'number' || !Number.isFinite(item.submittedPrice)) {
+      throw new CheckoutError(`Each item must have a numeric submittedPrice (item: "${productTitle}")`, 400);
+    }
+
+    let pricing: PricingResponse;
+    try {
+      pricing = await computeCheckoutItemPricing(item, cachedProduct.tags);
+    } catch (error) {
+      // The item itself is unsellable as configured (usually a size saved before
+      // the current size limits existed). Name the item and the reason — this
+      // used to fall through to the route's catch-all and reach the customer as
+      // "Internal server error" with nothing to act on.
+      if (error instanceof PricingError) {
+        throw new CheckoutError(
+          `"${productTitle}" can no longer be made as configured. ${error.message.replace(/\.?$/, '.')} ` +
+          'Please edit or remove that item in your cart and try again.',
+          422
+        );
+      }
+      throw error;
+    }
 
     const priceDifference = Math.abs(pricing.totalPrice - item.submittedPrice);
     if (priceDifference > PRICE_TOLERANCE) {
       throw new CheckoutError(
-        `Price mismatch for "${productTitle}": submitted $${item.submittedPrice.toFixed(2)}, ` +
-        `calculated $${pricing.totalPrice.toFixed(2)} (diff: $${priceDifference.toFixed(2)})`,
+        // The store sells in GBP — showing this back to the customer in dollars
+        // reads as someone else's order.
+        `The price of "${productTitle}" has changed: your cart shows £${item.submittedPrice.toFixed(2)}, ` +
+        `the current price is £${pricing.totalPrice.toFixed(2)}. Please reload your cart and try again.`,
         422
       );
     }
@@ -637,7 +724,10 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
 
   return {
     checkoutUrl: draftOrder.invoiceUrl,
-    draftOrderId: draftOrder.id.toString(),
+    // draftOrder.id is a GraphQL GID (gid://shopify/DraftOrder/123) — getDraftOrderStatus
+    // below calls the REST draft_orders/{id}.json endpoint, which only accepts the
+    // trailing numeric id, so that's what callers get and store.
+    draftOrderId: toNumericId(draftOrder.id),
     lineItems: responseLineItems,
     subtotal,
   };
@@ -654,7 +744,10 @@ export async function getDraftOrderStatus(draftOrderId: string): Promise<{
 }> {
   validateShopifyConfig();
 
-  const url = getAdminApiUrl(`/draft_orders/${draftOrderId}.json`);
+  // Tolerate a caller still holding a GID from before draftOrderId was normalized
+  // to the plain numeric id (e.g. a marker saved to localStorage by an older
+  // build) — this REST endpoint 404s on anything else.
+  const url = getAdminApiUrl(`/draft_orders/${toNumericId(draftOrderId)}.json`);
   const response = await fetch(url, {
     headers: getAdminHeaders(),
     cache: 'no-store',
