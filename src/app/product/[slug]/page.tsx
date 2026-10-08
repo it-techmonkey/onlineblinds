@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import { CustomizationPricing, PriceBandMatrix, Product } from '@/types';
-import { ProductPage, CustomerReviewsSection, ProductFeatureSection, ProductComparisonSection, HowItWorksSection, ProductRechargeSection, ProductWarrantySection, ProductComparisonTableSection, InstallationServiceSection } from '@/components/product';
+import { ProductPage,ProductFeatureSection, ProductComparisonSection, HowItWorksSection, ProductRechargeSection, ProductWarrantySection, ProductComparisonTableSection, InstallationServiceSection } from '@/components/product';
 import { Header, FAQ, Footer, } from '@/components';
 import { fetchProductBySlug, fetchProducts, transformProduct, assertProductsPriced } from '@/lib/api';
 import { getCustomizationPricing, getPriceBandMatrix, resolveHandleToPriceBand } from '@/lib/server/pricing.service';
@@ -172,7 +172,6 @@ export default async function ProductPageRoute({ params }: ProductPageProps) {
         )}
         {slug === 'non-driii-honeycomb-blackout-blinds' && (
           <>
-            <CustomerReviewsSection />
             <ProductFeatureSection />
             <ProductComparisonSection />
             <HowItWorksSection />

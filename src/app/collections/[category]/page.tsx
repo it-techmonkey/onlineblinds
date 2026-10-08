@@ -257,6 +257,8 @@ export default async function CollectionPage({ params, searchParams }: PageProps
       <Header />
 
       <main>
+        {/* Keep empty collections out of search results until they have products */}
+        {showComingSoon && <meta name="robots" content="noindex" />}
         <CollectionViewTracker
           collectionId={backendCategory?.id ? `gid://shopify/Collection/${backendCategory.id}` : `gid://shopify/Collection/${categorySlug}`}
           collectionHandle={categorySlug}

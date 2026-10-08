@@ -6,15 +6,42 @@ const EmailCapture = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [discountCode, setDiscountCode] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(discountCode);
+      setCopied(true);
+    } catch {
+      // Clipboard unavailable — the code is still visible to copy manually.
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
-    // Simulate submission — wire to your email provider / Shopify customer API
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitted(true);
-    setLoading(false);
+    setError('');
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.success) {
+        setError(result?.error?.message || 'We could not subscribe you right now. Please try again later.');
+        return;
+      }
+      setDiscountCode(result.data?.discountCode || '');
+      setSubmitted(true);
+    } catch {
+      setError('We could not subscribe you right now. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -31,9 +58,29 @@ const EmailCapture = () => {
               <h2 className="font-display text-[28px] font-semibold leading-tight text-white md:text-[38px]">
                 You&apos;re all set!
               </h2>
-              <p className="max-w-md text-[15px] leading-relaxed text-white/80">
-                Check your inbox — your £20 discount code is on its way.
-              </p>
+              {discountCode ? (
+                <>
+                  <p className="mx-auto max-w-md text-[15px] leading-relaxed text-white/80">
+                    Here&apos;s your £20 discount code. Enter it in your cart on orders of £200 or more.
+                  </p>
+                  <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
+                    <span className="rounded-[12px] border border-dashed border-white/40 bg-white/8 px-6 py-3 font-jost text-[18px] font-semibold tracking-[0.12em] text-white">
+                      {discountCode}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleCopy}
+                      className="h-12 rounded-[12px] bg-primary px-6 text-[13px] font-semibold uppercase tracking-[0.06em] text-white transition-all hover:bg-primary-dark"
+                    >
+                      {copied ? 'Copied' : 'Copy Code'}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <p className="max-w-md text-[15px] leading-relaxed text-white/80">
+                  Thanks for subscribing — you&apos;re on the list.
+                </p>
+              )}
             </div>
           ) : (
             <>
@@ -42,7 +89,7 @@ const EmailCapture = () => {
                   Ready to Save £20 on Your First Order?
                 </h2>
                 <p className="mx-auto max-w-lg text-center text-[15px] leading-relaxed text-white/80">
-                  Subscribe and we&apos;ll email you a <span className="font-semibold text-white">£20 discount code</span> valid on orders of £200 or more. No spam — just great blinds at better prices.
+                  Subscribe and get a <span className="font-semibold text-white">£20 discount code</span> valid on orders of £200 or more. No spam — just great blinds at better prices.
                 </p>
               </div>
 
@@ -63,6 +110,12 @@ const EmailCapture = () => {
                   {loading ? 'Sending…' : 'Get My £20 Off'}
                 </button>
               </form>
+
+              {error && (
+                <p role="alert" className="text-[13px] text-red-300">
+                  {error}
+                </p>
+              )}
 
               <p className="text-[12px] text-white/60">
                 By subscribing you agree to receive marketing emails. Unsubscribe anytime.

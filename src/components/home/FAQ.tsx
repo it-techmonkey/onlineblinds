@@ -5,9 +5,9 @@ import { useState } from 'react';
 const faqData = [
   { id: 1, question: 'How do I measure my windows for blinds?', answer: 'We provide easy-to-follow measuring guides on our website. Just follow the step-by-step instructions to get the perfect fit for your exact window dimensions.' },
   { id: 2, question: 'Can I order free samples before buying?', answer: 'Yes! We offer up to 10 free samples delivered to your door at zero cost — see and feel the quality before you purchase.' },
-  { id: 3, question: 'How long will delivery take?', answer: 'Standard delivery takes 5–7 business days. Express delivery options are available at checkout.' },
+  { id: 3, question: 'How long will delivery take?', answer: 'All blinds are made to measure. Manufacturing typically takes 3–5 working days before dispatch, and delivery usually takes a further 2–3 working days. See our Shipping Policy for full details.' },
   { id: 4, question: 'Do you offer made-to-measure blinds?', answer: 'Yes, all our blinds are custom made to your exact measurements for a perfect window fit.' },
-  { id: 5, question: 'What is your return policy?', answer: 'As all products are custom-made, returns are accepted only for defective or damaged items. Contact us within 14 days of delivery.' },
+  { id: 5, question: 'What is your return policy?', answer: 'As all products are made to measure, orders cannot be changed or cancelled once in production. Damaged or defective items must be reported within 3 working days of delivery, and we will provide a like-for-like replacement where a fault is confirmed. See our Returns & Refunds Policy for full details.' },
 ];
 
 const FAQ = () => {

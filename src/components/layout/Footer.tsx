@@ -1,5 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { business, businessAddressLines, businessPhoneHref } from '@/data/business';
+
+const shopLinks = [
+  { label: 'Roller Blinds', href: '/collections/roller-blinds' },
+  { label: 'Vertical Blinds', href: '/collections/vertical-blinds' },
+  { label: 'Day & Night Blinds', href: '/collections/day-and-night-blinds' },
+  { label: 'Blackout Blinds', href: '/collections/blackout-blinds' },
+  { label: 'Motorised Blinds', href: '/collections/motorised-blinds' },
+  { label: 'Shop All', href: '/collections' },
+];
+
+const companyRegistration = [
+  business.legalName,
+  business.companyNumber && `Company No. ${business.companyNumber}`,
+  business.vatNumber && `VAT No. ${business.vatNumber}`,
+].filter(Boolean);
 
 const Footer = () => {
   return (
@@ -36,8 +52,8 @@ const Footer = () => {
           <div className="flex justify-center md:justify-start gap-12 md:gap-16">
             <div className="flex flex-col gap-3">
               <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Shop</p>
-              {['Blinds', 'Shades', 'Motorization', 'Blackout', 'Free Samples'].map((l) => (
-                <Link key={l} href="/collections" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">{l}</Link>
+              {shopLinks.map((l) => (
+                <Link key={l.label} href={l.href} className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">{l.label}</Link>
               ))}
             </div>
             <div className="flex flex-col gap-3">
@@ -47,7 +63,7 @@ const Footer = () => {
                 { label: 'Guides', href: '/guides' },
                 { label: 'FAQ', href: '/faq' },
                 { label: 'Warranty', href: '/warranty' },
-                { label: 'Contact', href: '#' },
+                { label: 'Contact', href: '/contact' },
                 { label: 'Privacy', href: '/privacy-policy' },
                 { label: 'Shipping', href: '/shipping-policy' },
                 { label: 'Returns', href: '/refund-policy' },
@@ -61,7 +77,19 @@ const Footer = () => {
           {/* Contact */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <p className="font-jost text-[11px] font-semibold tracking-[0.12em] uppercase text-primary mb-1">Contact</p>
-            <a href="mailto:sales@onlineblindsexpress.co.uk" className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">sales@onlineblindsexpress.co.uk</a>
+            <a href={`mailto:${business.email}`} className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">{business.email}</a>
+            {business.phone && (
+              <a href={businessPhoneHref} className="font-jost text-[13.5px] text-white/70 hover:text-white transition-colors">{business.phone}</a>
+            )}
+            <address className="font-jost text-[13.5px] not-italic leading-relaxed text-white/70">
+              {business.tradingName}
+              {businessAddressLines.map((line) => (
+                <span key={line} className="block">{line}</span>
+              ))}
+            </address>
+            {business.hours && (
+              <p className="font-jost text-[13.5px] text-white/70">{business.hours}</p>
+            )}
           </div>
         </div>
       </div>
@@ -69,8 +97,12 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-4 md:flex-row md:px-8">
-          <p className="font-jost text-[12px] text-white/55">© {new Date().getFullYear()} Online Blinds. All Rights Reserved.</p>
+          <p className="font-jost text-[12px] text-white/55">
+            © {new Date().getFullYear()} {business.tradingName}. All Rights Reserved.
+            {companyRegistration.length > 0 && ` ${companyRegistration.join(' · ')}`}
+          </p>
           <div className="flex gap-5">
+            <Link href="/contact" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Contact</Link>
             <Link href="/privacy-policy" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Privacy Policy</Link>
             <Link href="/shipping-policy" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Shipping</Link>
             <Link href="/refund-policy" className="font-jost text-[12px] text-white/55 transition-colors hover:text-white/90">Returns</Link>

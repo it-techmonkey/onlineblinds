@@ -89,6 +89,10 @@ export const navigationData: NavigationItem[] = [
     label: 'About',
     href: '/about',
   },
+  {
+    label: 'Contact',
+    href: '/contact',
+  },
 ];
 
 // Collection slugs from navigation (for static generation)

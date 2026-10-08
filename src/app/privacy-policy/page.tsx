@@ -405,10 +405,10 @@ export default function PrivacyPolicyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <a
-                  href="mailto:onlineblindsexpressltd@gmail.com"
+                  href="mailto:sales@onlineblindsexpress.co.uk"
                   className="text-primary underline hover:text-primary/80"
                 >
-                  onlineblindsexpressltd@gmail.com
+                  sales@onlineblindsexpress.co.uk
                 </a>
               </div>
               <div className="flex items-start gap-3">

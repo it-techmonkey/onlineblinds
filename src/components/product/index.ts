@@ -10,7 +10,6 @@ export { default as ProductCard } from './ProductCard';
 export { default as CustomizationModal } from './CustomizationModal';
 export { default as StarRating } from './StarRating';
 export * from './customization';
-export * from './CustomerReviewsSection';
 export * from './ProductFeatureSection';
 export * from './BlackoutFeaturesSection';
 export * from './ProductComparisonSection';

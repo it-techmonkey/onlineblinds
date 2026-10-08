@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Header, Footer } from '@/components';
+import { business, businessAddressLines, businessPhoneHref } from '@/data/business';
 
 export const metadata: Metadata = {
   title: 'About Us - Online Blinds | Custom Blinds Made in Yorkshire',
@@ -13,7 +15,7 @@ const stats: Array<{ value: string; label: string; icon: StatIconVariant }> = [
   { value: '15+', label: 'Years of Experience', icon: 'experience' },
   { value: '50K+', label: 'Happy Customers', icon: 'customers' },
   { value: '100%', label: 'Custom Made', icon: 'custom' },
-  { value: '30-Day', label: 'Guarantee', icon: 'guarantee' },
+  { value: '5-Year', label: 'Warranty', icon: 'guarantee' },
 ];
 
 const highlights = [
@@ -38,8 +40,8 @@ const highlights = [
     description: 'Try before you buy. We will send you free fabric samples so you can see the quality and colors in your own home.',
   },
   {
-    title: 'Satisfaction Guaranteed',
-    description: 'Love your blinds or we will make it right. Our 30-day guarantee means you can buy with complete confidence.',
+    title: '5-Year Warranty',
+    description: 'Every blind is backed by a 5-year warranty against manufacturing defects on components and fabrics, so you can buy with complete confidence.',
   },
 ];
 
@@ -172,6 +174,74 @@ export default function AboutPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="bg-surface-soft px-6 py-20 md:px-10 lg:px-14">
+          <div className="mx-auto grid w-full max-w-308 grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
+            <div>
+              <h2 className="font-display text-[32px] leading-10 text-foreground md:text-[36px]">Our Business</h2>
+              <p className="mt-6 text-[16px] leading-6.5 text-muted">
+                {business.tradingName} is a UK made-to-measure blinds retailer based in Batley, West Yorkshire. Every
+                order is manufactured to your measurements and delivered direct to your door.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex h-11 items-center justify-center rounded-[12px] bg-primary px-6 text-[13px] font-semibold uppercase tracking-[0.06em] text-white transition-colors hover:bg-primary-dark"
+              >
+                Contact Us
+              </Link>
+            </div>
+
+            <dl className="space-y-5 text-[15px] leading-6.5">
+              <div>
+                <dt className="font-medium text-foreground">Address</dt>
+                <dd className="mt-1 text-muted">
+                  <address className="not-italic">
+                    {business.legalName || business.tradingName}
+                    {businessAddressLines.map((line) => (
+                      <span key={line} className="block">{line}</span>
+                    ))}
+                  </address>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-medium text-foreground">Email</dt>
+                <dd className="mt-1">
+                  <a href={`mailto:${business.email}`} className="text-primary underline hover:text-primary/80">
+                    {business.email}
+                  </a>
+                </dd>
+              </div>
+              {business.phone && (
+                <div>
+                  <dt className="font-medium text-foreground">Phone</dt>
+                  <dd className="mt-1">
+                    <a href={businessPhoneHref} className="text-primary underline hover:text-primary/80">
+                      {business.phone}
+                    </a>
+                  </dd>
+                </div>
+              )}
+              {business.hours && (
+                <div>
+                  <dt className="font-medium text-foreground">Opening Hours</dt>
+                  <dd className="mt-1 text-muted">{business.hours}</dd>
+                </div>
+              )}
+              {business.companyNumber && (
+                <div>
+                  <dt className="font-medium text-foreground">Company Number</dt>
+                  <dd className="mt-1 text-muted">{business.companyNumber}</dd>
+                </div>
+              )}
+              {business.vatNumber && (
+                <div>
+                  <dt className="font-medium text-foreground">VAT Number</dt>
+                  <dd className="mt-1 text-muted">{business.vatNumber}</dd>
+                </div>
+              )}
+            </dl>
           </div>
         </section>
       </main>
