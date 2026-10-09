@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ProductCard } from '@/components/product';
 import { fetchProductsByCategoryPage, transformProduct } from '@/lib/api';
+import PumpkinIcon from '@/components/ui/PumpkinIcon';
+import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
 const BEST_SELLERS_COLLECTION_HANDLE = 'best-sellers';
 
@@ -56,10 +58,13 @@ const BestSelling = async () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2.5">
               <span className="block w-6 h-0.5 bg-primary rounded-full" />
-              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-primary">Bestsellers</p>
+              {HALLOWEEN_ENABLED && <PumpkinIcon className="h-4 w-4 text-primary" />}
+              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-primary">
+                {HALLOWEEN_ENABLED ? halloween.bestSellers.eyebrow : 'Bestsellers'}
+              </p>
             </div>
             <h2 className="font-display font-semibold text-[36px] md:text-[40px] leading-[1.1] tracking-tight text-foreground">
-              Best Selling Products
+              {HALLOWEEN_ENABLED ? halloween.bestSellers.heading : 'Best Selling Products'}
             </h2>
           </div>
           <Link

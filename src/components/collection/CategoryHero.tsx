@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import PumpkinIcon from '@/components/ui/PumpkinIcon';
+import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
 interface CategoryHeroProps {
   title: string;
@@ -122,6 +124,14 @@ export default function CategoryHero({ title, slug, description, productCount }:
                 Fast Delivery
               </div>
             </div>
+            {HALLOWEEN_ENABLED && (
+              <div className="flex items-center gap-[6px] rounded-full border border-white/18 bg-white/10 px-3 py-1.5 backdrop-blur-sm">
+                <PumpkinIcon className="h-[16px] w-[16px] text-white" />
+                <div className="font-jost text-[14px] font-normal text-white/78 leading-[20px]">
+                  {halloween.categoryChip}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

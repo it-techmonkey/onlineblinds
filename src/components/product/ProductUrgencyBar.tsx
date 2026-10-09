@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { HALLOWEEN_ENABLED, halloween, getHalloweenSecondsLeft } from '@/data/seasonalTheme';
 
 function getSecondsUntilMidnight() {
   const now = new Date();
@@ -23,18 +24,21 @@ function seededViewers(slug: string) {
 
 const COUPON = 'FINAL10';
 
+// Halloween counts down to the real end of the sale; otherwise to midnight tonight.
+const getSecondsLeft = HALLOWEEN_ENABLED ? getHalloweenSecondsLeft : getSecondsUntilMidnight;
+
 interface ProductUrgencyBarProps {
   productSlug: string;
 }
 
 const ProductUrgencyBar = ({ productSlug }: ProductUrgencyBarProps) => {
-  const [seconds, setSeconds] = useState(getSecondsUntilMidnight);
+  const [seconds, setSeconds] = useState(getSecondsLeft);
   const [viewers, setViewers] = useState(() => seededViewers(productSlug));
   const [copied, setCopied] = useState(false);
   const biasRef = useRef(0);
 
   useEffect(() => {
-    const tick = setInterval(() => setSeconds(getSecondsUntilMidnight()), 1000);
+    const tick = setInterval(() => setSeconds(getSecondsLeft()), 1000);
     return () => clearInterval(tick);
   }, []);
 
@@ -62,9 +66,13 @@ const ProductUrgencyBar = ({ productSlug }: ProductUrgencyBarProps) => {
     });
   };
 
-  const h = Math.floor(seconds / 3600);
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
+
+  // Halloween end date has passed but the theme is still switched on
+  const saleEnded = HALLOWEEN_ENABLED && seconds === 0;
 
   return (
     <div className="flex flex-col gap-2.5">
@@ -79,13 +87,17 @@ const ProductUrgencyBar = ({ productSlug }: ProductUrgencyBarProps) => {
         </div>
 
         <div className="flex flex-1 flex-wrap items-center gap-x-2 gap-y-0.5">
-          <span className="text-[13px] font-medium text-foreground">
-            Sale ends in{' '}
-            <span className="font-black tabular-nums text-red-600">
-              {pad(h)}:{pad(m)}:{pad(s)}
-            </span>
-          </span>
-          <span className="text-muted">·</span>
+          {!saleEnded && (
+            <>
+              <span className="text-[13px] font-medium text-foreground">
+                {HALLOWEEN_ENABLED ? halloween.urgencyLabel : 'Sale ends in'}{' '}
+                <span className="font-black tabular-nums text-red-600">
+                  {d > 0 && `${d}d `}{pad(h)}:{pad(m)}:{pad(s)}
+                </span>
+              </span>
+              <span className="text-muted">·</span>
+            </>
+          )}
           <span className="text-[13px] text-muted">Use code</span>
 
           {/* Copyable code pill */}

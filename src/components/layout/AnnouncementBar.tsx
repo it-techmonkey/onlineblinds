@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import PumpkinIcon from '@/components/ui/PumpkinIcon';
+import { HALLOWEEN_ENABLED, halloween, getHalloweenSecondsLeft } from '@/data/seasonalTheme';
 
 function getSecondsUntilMidnight() {
   const now = new Date();
@@ -16,15 +18,18 @@ function pad(n: number) {
 
 const COUPON = 'FINAL10';
 
+// Halloween counts down to the real end of the sale; otherwise to midnight tonight.
+const getSecondsLeft = HALLOWEEN_ENABLED ? getHalloweenSecondsLeft : getSecondsUntilMidnight;
+
 const AnnouncementBar = () => {
   // null on server — populated after mount to avoid hydration mismatch
   const [seconds, setSeconds] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setSeconds(getSecondsUntilMidnight());
+    setSeconds(getSecondsLeft());
     const interval = setInterval(() => {
-      setSeconds(getSecondsUntilMidnight());
+      setSeconds(getSecondsLeft());
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -36,9 +41,13 @@ const AnnouncementBar = () => {
     });
   };
 
-  const h = seconds !== null ? Math.floor(seconds / 3600) : 0;
+  const d = seconds !== null ? Math.floor(seconds / 86400) : 0;
+  const h = seconds !== null ? Math.floor((seconds % 86400) / 3600) : 0;
   const m = seconds !== null ? Math.floor((seconds % 3600) / 60) : 0;
   const s = seconds !== null ? seconds % 60 : 0;
+
+  // Halloween end date has passed but the theme is still switched on
+  const saleEnded = HALLOWEEN_ENABLED && seconds === 0;
 
   return (
     <div className="relative z-50 bg-[#b91c1c] text-white">
@@ -47,19 +56,32 @@ const AnnouncementBar = () => {
         <div className="absolute inset-y-0 -left-full w-1/3 bg-linear-to-r from-transparent via-white/10 to-transparent animate-[shimmer_3.5s_ease-in-out_infinite]" />
       </div>
 
-      <div className="relative mx-auto flex max-w-7xl items-center justify-center gap-1.5 px-3 py-2 text-center flex-nowrap md:flex-wrap md:gap-2.5 md:px-8 md:py-2.5">
+      <div
+        className={`relative mx-auto flex max-w-7xl items-center justify-center gap-1.5 px-3 py-2 text-center md:flex-wrap md:gap-2.5 md:px-8 md:py-2.5 ${
+          HALLOWEEN_ENABLED ? 'flex-wrap gap-y-1' : 'flex-nowrap'
+        }`}
+      >
 
         {/* Tag icon + headline */}
-        <span className="inline-flex items-center gap-1 whitespace-nowrap text-[10.5px] font-black uppercase tracking-wide text-white md:gap-1.5 md:text-[13px] md:tracking-widest">
-          <svg className="h-3 w-3 shrink-0 md:h-3.5 md:w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
-              d="M7 7h.01M7 3H5a2 2 0 00-2 2v2a2 2 0 00.586 1.414l9 9a2 2 0 002.828 0l4-4a2 2 0 000-2.828l-9-9A2 2 0 007 3z" />
-          </svg>
-          <span className="hidden sm:inline">Up to 60% Off</span>
-          <span className="sm:hidden">60% Off</span>
-        </span>
+        {HALLOWEEN_ENABLED ? (
+          // The longer headline takes its own row on mobile
+          <span className="inline-flex w-full items-center justify-center gap-1 whitespace-nowrap text-[10.5px] font-black uppercase tracking-wide text-white sm:w-auto md:gap-1.5 md:text-[13px] md:tracking-widest">
+            <PumpkinIcon className="h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
+            <span className="hidden sm:inline">{halloween.announcement.headline}</span>
+            <span className="sm:hidden">{halloween.announcement.headlineMobile}</span>
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1 whitespace-nowrap text-[10.5px] font-black uppercase tracking-wide text-white md:gap-1.5 md:text-[13px] md:tracking-widest">
+            <svg className="h-3 w-3 shrink-0 md:h-3.5 md:w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
+                d="M7 7h.01M7 3H5a2 2 0 00-2 2v2a2 2 0 00.586 1.414l9 9a2 2 0 002.828 0l4-4a2 2 0 000-2.828l-9-9A2 2 0 007 3z" />
+            </svg>
+            <span className="hidden sm:inline">Up to 60% Off</span>
+            <span className="sm:hidden">60% Off</span>
+          </span>
+        )}
 
-        <span className="text-white/50">|</span>
+        <span className={`text-white/50 ${HALLOWEEN_ENABLED ? 'hidden sm:inline' : ''}`}>|</span>
 
         {/* Code + copy button */}
         <span className="inline-flex items-center gap-1.5 whitespace-nowrap text-[12.5px] font-medium text-white/90">
@@ -88,23 +110,33 @@ const AnnouncementBar = () => {
           )}
         </span>
 
-        <span className="hidden md:inline text-white/50">|</span>
-        <span className="hidden md:inline text-[12.5px] font-medium text-white/90">Today Only</span>
+        {!saleEnded && (
+          <>
+            <span className="hidden md:inline text-white/50">|</span>
+            <span className="hidden md:inline text-[12.5px] font-medium text-white/90">
+              {HALLOWEEN_ENABLED ? halloween.endsLabel : 'Today Only'}
+            </span>
+          </>
+        )}
         <span className="hidden md:inline text-white/50">|</span>
         <span className="hidden md:inline text-[12.5px] font-medium text-white/90">Whilst Stock Lasts</span>
 
-        <span className="text-white/50">|</span>
+        {!saleEnded && (
+          <>
+            <span className="text-white/50">|</span>
 
-        {/* Countdown — only rendered after mount to prevent hydration mismatch */}
-        <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12.5px] md:gap-1.5">
-          <svg className="hidden h-3.5 w-3.5 text-white/70 sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span className="hidden font-medium text-white/80 md:inline">Sale ends in</span>
-          <span className="font-black tabular-nums text-white text-[11px] md:text-[13px]" suppressHydrationWarning>
-            {seconds !== null ? `${pad(h)}:${pad(m)}:${pad(s)}` : '--:--:--'}
-          </span>
-        </span>
+            {/* Countdown — only rendered after mount to prevent hydration mismatch */}
+            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12.5px] md:gap-1.5">
+              <svg className="hidden h-3.5 w-3.5 text-white/70 sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="hidden font-medium text-white/80 md:inline">Sale ends in</span>
+              <span className="font-black tabular-nums text-white text-[11px] md:text-[13px]" suppressHydrationWarning>
+                {seconds !== null ? `${d > 0 ? `${d}d ` : ''}${pad(h)}:${pad(m)}:${pad(s)}` : '--:--:--'}
+              </span>
+            </span>
+          </>
+        )}
 
         <Link
           href="/collections"

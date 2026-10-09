@@ -3,8 +3,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
-const slides = [
+interface Slide {
+  src: string;
+  /** Shown instead when `src` fails to load. */
+  fallbackSrc?: string;
+  alt: string;
+  eyebrow: string;
+  title: string;
+  buttonText: string;
+  href: string;
+}
+
+const defaultSlides: Slide[] = [
   {
     src: '/home/hero/hero-img1.webp',
     alt: 'Premium Vertical Blinds',
@@ -31,11 +43,14 @@ const slides = [
   },
 ];
 
+const slides: Slide[] = HALLOWEEN_ENABLED ? halloween.heroSlides : defaultSlides;
+
 const INTERVAL_MS = 6000;
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [animKey, setAnimKey] = useState(0);
+  const [failed, setFailed] = useState<Record<number, boolean>>({});
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startTimer = () => {
@@ -49,6 +64,16 @@ const Hero = () => {
     startTimer();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Probe slides that have a fallback so a missing image swaps cleanly
+  useEffect(() => {
+    slides.forEach((slide, i) => {
+      if (!slide.fallbackSrc) return;
+      const probe = new window.Image();
+      probe.onerror = () => setFailed((prev) => ({ ...prev, [i]: true }));
+      probe.src = slide.src;
+    });
   }, []);
 
   const handleNav = (index: number) => {
@@ -66,7 +91,7 @@ const Hero = () => {
           className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
         >
           <Image
-            src={slide.src}
+            src={failed[i] && slide.fallbackSrc ? slide.fallbackSrc : slide.src}
             alt={slide.alt}
             fill
             className={`object-cover transition-transform duration-8000 ease-out ${i === current ? 'scale-105' : 'scale-100'}`}

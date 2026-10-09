@@ -23,6 +23,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { trackBeginCheckout, trackViewCart } from '@/lib/gtm';
+import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
 import {
   HEADRAIL_OPTIONS,
@@ -965,6 +966,9 @@ export default function CartPage() {
                     </div>
                   ) : (
                     <div>
+                      {HALLOWEEN_ENABLED && (
+                        <p className="mb-2 text-xs font-medium text-muted-strong">{halloween.cartHint}</p>
+                      )}
                       <div className="flex gap-2">
                         <input
                           type="text"

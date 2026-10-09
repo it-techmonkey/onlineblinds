@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import PumpkinIcon from '@/components/ui/PumpkinIcon';
+import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
 const EmailCapture = () => {
   const [email, setEmail] = useState('');
@@ -49,8 +51,9 @@ const EmailCapture = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col items-center text-center gap-6 md:gap-8">
           {/* Badge */}
-          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">
-            Exclusive Offer
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">
+            {HALLOWEEN_ENABLED && <PumpkinIcon className="h-3.5 w-3.5" />}
+            {HALLOWEEN_ENABLED ? halloween.emailCapture.badge : 'Exclusive Offer'}
           </span>
 
           {submitted ? (
@@ -86,7 +89,7 @@ const EmailCapture = () => {
             <>
               <div className="space-y-3 text-center">
                 <h2 className="font-display text-[28px] font-semibold leading-tight text-white md:text-[38px]">
-                  Ready to Save £20 on Your First Order?
+                  {HALLOWEEN_ENABLED ? halloween.emailCapture.heading : 'Ready to Save £20 on Your First Order?'}
                 </h2>
                 <p className="mx-auto max-w-lg text-center text-[15px] leading-relaxed text-white/80">
                   Subscribe and get a <span className="font-semibold text-white">£20 discount code</span> valid on orders of £200 or more. No spam — just great blinds at better prices.

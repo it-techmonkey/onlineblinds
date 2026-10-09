@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { formatPriceWithCurrency } from '@/lib/api';
 import { isSpecialMotorizedProduct } from '@/lib/electrical-roller';
 import { pushEcommerceEvent } from '@/lib/gtm';
+import PumpkinIcon from '@/components/ui/PumpkinIcon';
+import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
 interface ProductCardProps {
   product: {
@@ -123,6 +125,17 @@ export default function ProductCard({
             }`}
           >
             Best Seller
+          </div>
+        )}
+        {/* Halloween sale tag (hidden on the small mobileHorizontal thumbnail) */}
+        {HALLOWEEN_ENABLED && showComparePrice && (
+          <div
+            className={`absolute top-3 right-3 items-center gap-1 rounded-full bg-foreground/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white ${
+              mobileHorizontal ? 'hidden md:inline-flex' : 'inline-flex'
+            }`}
+          >
+            <PumpkinIcon className="h-3 w-3" />
+            {halloween.productCardTag}
           </div>
         )}
         {/* Hover CTA (desktop only when mobileHorizontal) */}
