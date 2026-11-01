@@ -1,6 +1,7 @@
 import { PriceBandMatrix } from '@/types';
 import { isDayNightBlindProduct } from './day-night-blinds';
 import { isRollerBlindProduct } from './roller-blinds';
+import { getEasyStickSubtype } from './easy-stick';
 
 export interface MeasurementRanges {
   minWidth: number;
@@ -29,9 +30,29 @@ export function getMeasurementRanges(priceMatrix: PriceBandMatrix | null): Measu
  *
  * All limits in inches, from the supplier product information sheets.
  */
-export type BlindFamily = 'day-and-night' | 'roller';
+export type BlindFamily =
+  | 'day-and-night'
+  | 'roller'
+  | 'easy-stick-metal'
+  | 'easy-stick-honeycomb'
+  | 'easy-stick-wood';
 
 export type ControlSystem = 'ccl' | 'motorized' | 'any';
+
+// Easy Stick blinds have no control systems, so one size range applies whatever
+// is selected. Given in millimetres by the owner (2026-11-01). Each bound is
+// widened by a hair so float noise from cm/mm-to-inch conversion can never
+// reject (or mis-display) the exact limit, e.g. 24cm against a 240mm minimum.
+const MM_EDGE = 1e-9;
+function sameForEveryControl(mm: { minWidth: number; maxWidth: number; minHeight: number; maxHeight: number }) {
+  const inches: MeasurementRanges = {
+    minWidth: mm.minWidth / 25.4 - MM_EDGE,
+    maxWidth: mm.maxWidth / 25.4 + MM_EDGE,
+    minHeight: mm.minHeight / 25.4 - MM_EDGE,
+    maxHeight: mm.maxHeight / 25.4 + MM_EDGE,
+  };
+  return { ccl: inches, motorized: inches, any: inches };
+}
 
 const CONTROL_LIMITS: Record<BlindFamily, Partial<Record<ControlSystem, MeasurementRanges>>> = {
   // Zebra / Day & Night sheet (page 19).
@@ -53,6 +74,10 @@ const CONTROL_LIMITS: Record<BlindFamily, Partial<Record<ControlSystem, Measurem
     motorized: { minWidth: 22, maxWidth: 116, minHeight: 11, maxHeight: 144 },
     any: { minWidth: 8, maxWidth: 116, minHeight: 11, maxHeight: 144 },
   },
+  'easy-stick-metal': sameForEveryControl({ minWidth: 200, maxWidth: 1060, minHeight: 200, maxHeight: 2200 }),
+  // Easy Stick pleated (the Apollo honeycomb products).
+  'easy-stick-honeycomb': sameForEveryControl({ minWidth: 150, maxWidth: 1060, minHeight: 150, maxHeight: 2200 }),
+  'easy-stick-wood': sameForEveryControl({ minWidth: 240, maxWidth: 1060, minHeight: 200, maxHeight: 2200 }),
 };
 
 /**
@@ -68,6 +93,10 @@ const CONTROL_LIMITS: Record<BlindFamily, Partial<Record<ControlSystem, Measurem
 const FAMILY_RANGE_POLICY: Record<BlindFamily, 'sheet-exact' | 'intersect'> = {
   'day-and-night': 'sheet-exact',
   roller: 'sheet-exact',
+  // Sizes below the price table's smallest row are charged that row's price.
+  'easy-stick-metal': 'sheet-exact',
+  'easy-stick-honeycomb': 'sheet-exact',
+  'easy-stick-wood': 'sheet-exact',
 };
 
 /** The raw sheet envelope, independent of any price band. */
@@ -88,6 +117,11 @@ export function usesSheetExactRange(family: BlindFamily | null): boolean {
 
 /** Resolve the family straight from a product's tags. */
 export function getBlindFamilyFromTags(tags: string[] = []): BlindFamily | null {
+  const normalized = tags.map((tag) => tag.toLowerCase().trim().replace(/[-_\s]+/g, '-'));
+  if (normalized.includes('easy-stick-blinds')) {
+    const subtype = getEasyStickSubtype({ tags: normalized });
+    if (subtype) return `easy-stick-${subtype}`;
+  }
   return getBlindFamily({
     isDayNight: isDayNightBlindProduct(tags),
     isRoller: isRollerBlindProduct(tags),

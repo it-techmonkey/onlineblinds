@@ -43,3 +43,7 @@ apply_gbp_migration.py
 /pricebands
 /priceband_maps
 .venv
+
+# Local Shopify migration tools and read-only store snapshots
+/.shopify-work/
+/shopify-theme/.shopify/
