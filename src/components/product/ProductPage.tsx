@@ -52,7 +52,8 @@ import { isFauxWoodenProduct } from '@/lib/faux-wooden';
 import { getPerfectFitMetalFieldLabels, isPerfectFitMetalProduct } from '@/lib/perfect-fit-metal';
 import {
   getPerfectFitShutterFieldLabels,
-  getPerfectFitShutterPanelOption,
+  getPerfectFitShutterPanelOptions,
+  getPerfectFitShutterPanelSelection,
   isPerfectFitShutterHandlePositionRequired,
   isPerfectFitShutterHandlePositionValid,
   isPerfectFitShutterProduct,
@@ -550,18 +551,16 @@ const ProductPage = ({
     ? PERFECT_FIT_METAL_FRAME_COLOR_OPTIONS
     : EASY_STICK_PROFILE_COLOR_OPTIONS;
   const chainColorOptions = isRoman ? ROMAN_CHAIN_COLOR_OPTIONS : CHAIN_COLOR_OPTIONS;
-  const shutterPanelOption = useMemo(() => {
+  // A saved choice (e.g. editing a basket item) counts as the customer's own.
+  const shutterPanelsChosenRef = useRef(Boolean(config.numberOfPanels));
+  const shutterPanelOptions = useMemo(() => {
     if (!isPerfectFitShutter) {
-      return null;
+      return [];
     }
 
     const widthMm = getTotalInches(config.width, config.widthFraction, config.widthUnit) * 25.4;
-    return getPerfectFitShutterPanelOption(widthMm);
+    return getPerfectFitShutterPanelOptions(widthMm);
   }, [config.width, config.widthFraction, config.widthUnit, isPerfectFitShutter]);
-  const shutterPanelOptions = useMemo(
-    () => (shutterPanelOption ? [shutterPanelOption] : []),
-    [shutterPanelOption]
-  );
   const shutterHandlePositionRequired = useMemo(
     () => isPerfectFitShutter && isPerfectFitShutterHandlePositionRequired(config.controlOption),
     [config.controlOption, isPerfectFitShutter]
@@ -682,7 +681,8 @@ const ProductPage = ({
     if (!isPerfectFitShutter) return;
 
     setConfig((prev) => {
-      const nextNumberOfPanels = shutterPanelOption?.id ?? null;
+      if (shutterPanelOptions.length === 1) shutterPanelsChosenRef.current = false;
+      const nextNumberOfPanels = getPerfectFitShutterPanelSelection(prev.numberOfPanels, shutterPanelOptions, shutterPanelsChosenRef.current);
       const nextHandlePosition = isPerfectFitShutterHandlePositionRequired(prev.controlOption)
         ? prev.handlePosition
         : null;
@@ -700,7 +700,7 @@ const ProductPage = ({
         handlePosition: nextHandlePosition,
       };
     });
-  }, [isPerfectFitShutter, shutterPanelOption]);
+  }, [isPerfectFitShutter, shutterPanelOptions]);
 
   // Determine which options should be visible based on product type and selected headrail
   const visibleOptions = useMemo(() => {
@@ -1886,8 +1886,8 @@ const ProductPage = ({
                               label={perfectFitShutterLabels.numberOfPanels}
                               options={shutterPanelOptions}
                               selectedValue={config.numberOfPanels}
-                              onChange={() => undefined}
-                              placeholder="Select size first"
+                              onChange={(optionId) => { shutterPanelsChosenRef.current = true; setConfig((prev) => ({ ...prev, numberOfPanels: optionId })); clearFieldInvalid('numberOfPanels'); }}
+                              placeholder={shutterPanelOptions.length ? 'Select number of panels' : 'Select size first'}
                             />
                           </FieldHighlight>
                         </div>

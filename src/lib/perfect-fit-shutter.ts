@@ -13,12 +13,12 @@ export const PERFECT_FIT_SHUTTER_PANEL_OPTIONS = [
   { id: '5-panels', name: '5 Panels', price: 0 },
 ];
 
-const PANEL_SEQUENCE_RANGES_MM = [
-  { maxWidthMm: 750, optionId: '1-panel' },
-  { maxWidthMm: 1500, optionId: '2-panels' },
-  { maxWidthMm: 2250, optionId: '3-panels' },
-  { maxWidthMm: 3000, optionId: '4-panels' },
-  { maxWidthMm: 3750, optionId: '5-panels' },
+// Panel choices by total width: up to 950mm is 1 panel, 951-1500mm is 2 panels,
+// and above 1500mm the customer chooses 2 or 3 panels.
+const PANEL_RANGES_MM = [
+  { maxWidthMm: 950, optionIds: ['1-panel'] },
+  { maxWidthMm: 1500, optionIds: ['2-panels'] },
+  { maxWidthMm: Infinity, optionIds: ['2-panels', '3-panels'] },
 ];
 
 export function isPerfectFitShutterProduct(params: {
@@ -52,20 +52,30 @@ export function getPerfectFitShutterFieldLabels() {
   };
 }
 
-export function getPerfectFitShutterPanelOption(widthMm: number) {
+export function getPerfectFitShutterPanelOptions(widthMm: number) {
   if (!Number.isFinite(widthMm) || widthMm <= 0) {
-    return null;
+    return [];
   }
 
-  const matchingRange = PANEL_SEQUENCE_RANGES_MM.find((range) => widthMm <= range.maxWidthMm);
-  if (!matchingRange) {
-    return null;
-  }
-
-  return (
-    PERFECT_FIT_SHUTTER_PANEL_OPTIONS.find((option) => option.id === matchingRange.optionId) ??
-    null
+  // Widths entered in cm or inches are converted through inches, so round off
+  // tiny float errors (95cm must stay 950mm, not 950.0000001mm).
+  const roundedMm = Math.round(widthMm * 100) / 100;
+  const matchingRange = PANEL_RANGES_MM.find((range) => roundedMm <= range.maxWidthMm);
+  return PERFECT_FIT_SHUTTER_PANEL_OPTIONS.filter((option) =>
+    matchingRange?.optionIds.includes(option.id)
   );
+}
+
+// One allowed choice is filled in automatically. With several, only a choice the
+// customer made themselves is kept (while still allowed); an automatic one is
+// cleared so they must choose before adding to basket.
+export function getPerfectFitShutterPanelSelection(
+  current: string | null,
+  options: { id: string }[],
+  chosenByCustomer: boolean
+) {
+  if (options.length === 1) return options[0].id;
+  return chosenByCustomer && options.some((option) => option.id === current) ? current : null;
 }
 
 export function isPerfectFitShutterHandlePositionRequired(controlOption: string | null | undefined) {
