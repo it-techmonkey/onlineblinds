@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "roller-band-d",
+    "configUuid": "clp9w6g4woxo",
+    "description": "OB Preview - Roller - Band D",
+    "products": 27
+  },
+  {
+    "slug": "roller-band-a",
+    "configUuid": "cl7fe0ynjdb5",
+    "description": "OB Preview - Roller - Band A",
+    "products": 52
+  },
+  {
+    "slug": "roller-band-e",
+    "configUuid": "cl4lrlfsd3dh",
+    "description": "OB Preview - Roller - Band E",
+    "products": 71
+  },
+  {
+    "slug": "roller-band-premium",
+    "configUuid": "clcut0odhtav",
+    "description": "OB Preview - Roller - Band Premium",
+    "products": 56
+  },
+  {
+    "slug": "roller-band-f",
+    "configUuid": "cl8yf7oenxla",
+    "description": "OB Preview - Roller - Band F",
+    "products": 87
+  },
+  {
+    "slug": "roller-band-g",
+    "configUuid": "cl3gblrtj21m",
+    "description": "OB Preview - Roller - Band G",
+    "products": 40
+  },
+  {
+    "slug": "roller-band-c",
+    "configUuid": "clt6kee0jwos",
+    "description": "OB Preview - Roller - Band C",
+    "products": 5
+  },
+  {
+    "slug": "roller-band-e-electrical",
+    "configUuid": "clofjawbez2z",
+    "description": "OB Preview - Roller - Band E - Electrical",
+    "products": 69
+  },
+  {
+    "slug": "roller-band-g-electrical",
+    "configUuid": "clytln2towwg",
+    "description": "OB Preview - Roller - Band G - Electrical",
+    "products": 40
+  },
+  {
+    "slug": "roller-band-f-electrical",
+    "configUuid": "cloytnzqnh7e",
+    "description": "OB Preview - Roller - Band F - Electrical",
+    "products": 88
+  },
+  {
+    "slug": "roller-band-d-electrical",
+    "configUuid": "clwepvsu5qgp",
+    "description": "OB Preview - Roller - Band D - Electrical",
+    "products": 25
+  },
+  {
+    "slug": "roller-band-premium-electrical",
+    "configUuid": "clqqyzmcbs84",
+    "description": "OB Preview - Roller - Band Premium - Electrical",
+    "products": 57
+  },
+  {
+    "slug": "roller-band-c-electrical",
+    "configUuid": "cl528jm5xsxb",
+    "description": "OB Preview - Roller - Band C - Electrical",
+    "products": 5
+  },
+  {
+    "slug": "roller-band-a-electrical",
+    "configUuid": "clems839a1fl",
+    "description": "OB Preview - Roller - Band A - Electrical",
+    "products": 26
+  }
+]

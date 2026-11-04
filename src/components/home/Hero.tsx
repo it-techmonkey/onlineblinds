@@ -3,12 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
+import { BLACK_FRIDAY_PROMOTION, PROMO_COUPONS, findPromoCoupon } from '@/data/promotions';
+import { useBlackFridaySale } from '@/hooks/useBlackFridaySale';
+import { usePromoCode } from '@/hooks/usePromoCode';
 
-interface Slide {
+interface HeroSlide {
   src: string;
-  /** Shown instead when `src` fails to load. */
-  fallbackSrc?: string;
   alt: string;
   eyebrow: string;
   title: string;
@@ -16,7 +16,7 @@ interface Slide {
   href: string;
 }
 
-const defaultSlides: Slide[] = [
+const defaultSlides: HeroSlide[] = [
   {
     src: '/home/hero/hero-img1.webp',
     alt: 'Premium Vertical Blinds',
@@ -43,38 +43,41 @@ const defaultSlides: Slide[] = [
   },
 ];
 
-const slides: Slide[] = HALLOWEEN_ENABLED ? halloween.heroSlides : defaultSlides;
-
 const INTERVAL_MS = 6000;
 
-const Hero = () => {
+const blackFridaySlides: HeroSlide[] = defaultSlides.map((slide, index) => ({
+  ...slide,
+  eyebrow: index === 0 ? 'Made to measure. Priced to love.' : slide.eyebrow,
+  ...(index === 0 ? {
+    title: 'Black Friday.\nBeautiful savings.',
+    buttonText: 'Shop Black Friday',
+    href: '/collections',
+  } : {}),
+}));
+
+// Shopify's editor can provide its own slides; campaign details stay separate
+// from that content so merchant headings, images and links are preserved.
+const Hero = ({ customSlides, interval = INTERVAL_MS }: { customSlides?: HeroSlide[]; interval?: number }) => {
+  const sale = useBlackFridaySale();
+  const [code] = usePromoCode();
+  const coupon = findPromoCoupon(code) ?? PROMO_COUPONS[0];
+  const slides = customSlides?.length ? customSlides : sale.active ? blackFridaySlides : defaultSlides;
   const [current, setCurrent] = useState(0);
   const [animKey, setAnimKey] = useState(0);
-  const [failed, setFailed] = useState<Record<number, boolean>>({});
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setCurrent((prev) => { setAnimKey((k) => k + 1); return (prev + 1) % slides.length; });
-    }, INTERVAL_MS);
+    }, interval);
   };
 
   useEffect(() => {
     startTimer();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Probe slides that have a fallback so a missing image swaps cleanly
-  useEffect(() => {
-    slides.forEach((slide, i) => {
-      if (!slide.fallbackSrc) return;
-      const probe = new window.Image();
-      probe.onerror = () => setFailed((prev) => ({ ...prev, [i]: true }));
-      probe.src = slide.src;
-    });
-  }, []);
+  }, [interval, slides.length]);
 
   const handleNav = (index: number) => {
     setCurrent(index);
@@ -83,7 +86,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-130 sm:h-155 md:h-175 w-full overflow-hidden bg-neutral-100">
+    <section className="relative h-130 sm:h-155 md:h-175 w-full overflow-hidden bg-[#191919]">
       {/* Images with subtle zoom */}
       {slides.map((slide, i) => (
         <div
@@ -91,32 +94,45 @@ const Hero = () => {
           className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
         >
           <Image
-            src={failed[i] && slide.fallbackSrc ? slide.fallbackSrc : slide.src}
+            src={slide.src}
             alt={slide.alt}
             fill
-            className={`object-cover transition-transform duration-8000 ease-out ${i === current ? 'scale-105' : 'scale-100'}`}
+            sizes="100vw"
+            className={`object-cover transition-transform duration-8000 ease-out motion-reduce:transition-none ${i === current ? 'scale-105' : 'scale-100'}`}
             priority={i === 0}
           />
         </div>
       ))}
 
       {/* Minimal overlay for legible text */}
-      <div className="absolute inset-0 z-10 bg-linear-to-r from-black/70 via-black/45 to-black/20" />
+      <div className={`absolute inset-0 z-10 bg-linear-to-r ${sale.active ? 'from-[#111111]/85 via-[#111111]/55 to-[#111111]/10' : 'from-black/70 via-black/45 to-black/20'}`} />
 
       {/* Content */}
       <div className="absolute inset-0 z-20 flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <div key={animKey} className="animate-slide-up-fade flex flex-col gap-4 max-w-75 sm:max-w-115 md:max-w-140">
-            <p className="font-jost text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-primary/95 bg-white/90 rounded-full px-3 py-1 self-start">
-              {slides[current].eyebrow}
+        <div className="w-full max-w-7xl mx-auto px-5 sm:px-16 md:px-20">
+          <div key={animKey} className="animate-slide-up-fade motion-reduce:animate-none flex flex-col gap-4 max-w-85 sm:max-w-115 md:max-w-150">
+            <p className={`font-jost text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase rounded-full px-3 py-1.5 self-start ${sale.active ? 'inline-flex items-center gap-2 border border-white/20 bg-[#191919]/60 text-white' : 'text-primary/95 bg-white/90'}`}>
+              {sale.active && <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-red-400" />}
+              {sale.active ? `${BLACK_FRIDAY_PROMOTION.name} sale` : slides[current].eyebrow}
             </p>
 
             <h1
-              className="font-display font-semibold text-[42px] sm:text-[52px] md:text-[72px] text-white leading-[0.98] tracking-[-0.02em]"
+              className="font-display font-semibold text-[40px] sm:text-[52px] md:text-[68px] text-white leading-[1.05] tracking-[-0.02em]"
               style={{ whiteSpace: 'pre-line' }}
             >
               {slides[current].title}
             </h1>
+
+            {sale.active && (
+              <div className="space-y-2 border-l-2 border-primary pl-4">
+                <p className="text-[24px] font-semibold leading-tight tracking-tight text-white sm:text-[28px]">
+                  {BLACK_FRIDAY_PROMOTION.headline}
+                </p>
+                <p className="text-[12px] text-white/80 sm:text-[14px]">
+                  Plus an extra {coupon.percentOff}% off with <span className="font-semibold tracking-wider text-white">{coupon.code}</span>
+                </p>
+              </div>
+            )}
 
             <Link
               href={slides[current].href}
@@ -165,7 +181,7 @@ const Hero = () => {
               <span
                 className="absolute inset-0 bg-primary rounded-full"
                 style={{
-                  animation: `slide-progress ${INTERVAL_MS}ms linear forwards`,
+                  animation: `slide-progress ${interval}ms linear forwards`,
                 }}
               />
             )}

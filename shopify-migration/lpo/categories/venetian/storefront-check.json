@@ -1,0 +1,608 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 60,
+  "results": [
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "base",
+      "expected": 106.48,
+      "error": null,
+      "actual": 106.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "mm",
+      "expected": 106.48,
+      "error": null,
+      "actual": 106.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "fractions",
+      "expected": 128.08,
+      "error": null,
+      "actual": 128.08,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "cassette",
+      "expected": 120.46000000000001,
+      "error": null,
+      "actual": 120.46,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "chain + bottom bar",
+      "expected": 113.96000000000001,
+      "error": null,
+      "actual": 113.96,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "motorised",
+      "expected": 220.06,
+      "error": null,
+      "actual": 220.06,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "large",
+      "expected": 396.87,
+      "error": null,
+      "actual": 396.87,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Special Band",
+      "product": "sunrise",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "base",
+      "expected": 96.8,
+      "error": null,
+      "actual": 96.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "mm",
+      "expected": 96.8,
+      "error": null,
+      "actual": 96.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "fractions",
+      "expected": 116.44,
+      "error": null,
+      "actual": 116.44,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "cassette",
+      "expected": 110.78,
+      "error": null,
+      "actual": 110.78,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "chain + bottom bar",
+      "expected": 104.28,
+      "error": null,
+      "actual": 104.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "motorised",
+      "expected": 206.87,
+      "error": null,
+      "actual": 206.87,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "large",
+      "expected": 361.51,
+      "error": null,
+      "actual": 361.51,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Metal Venetian - Normal Band",
+      "product": "sand",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "base",
+      "expected": 171.34,
+      "error": null,
+      "actual": 171.34,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "mm",
+      "expected": 171.34,
+      "error": null,
+      "actual": 171.34,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "fractions",
+      "expected": 187.11,
+      "error": null,
+      "actual": 187.11,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "cassette",
+      "expected": 185.32,
+      "error": null,
+      "actual": 185.32,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "chain + bottom bar",
+      "expected": 178.82,
+      "error": null,
+      "actual": 178.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "motorised",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Wooden Band",
+      "product": "tawny-perfect-fit",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "base",
+      "expected": 115.44,
+      "error": null,
+      "actual": 115.44,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "mm",
+      "expected": 115.44,
+      "error": null,
+      "actual": 115.44,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "fractions",
+      "expected": 126.07,
+      "error": null,
+      "actual": 126.07,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "cassette",
+      "expected": 129.42,
+      "error": null,
+      "actual": 129.42,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "chain + bottom bar",
+      "expected": 122.92,
+      "error": null,
+      "actual": 122.92,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "motorised",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "product": "sand-perfect-fit-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "base",
+      "expected": 125.83,
+      "error": null,
+      "actual": 125.83,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "mm",
+      "expected": 125.83,
+      "error": null,
+      "actual": 125.83,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "fractions",
+      "expected": 137.41,
+      "error": null,
+      "actual": 137.41,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "cassette",
+      "expected": 139.81,
+      "error": null,
+      "actual": 139.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "chain + bottom bar",
+      "expected": 133.31,
+      "error": null,
+      "actual": 133.31,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "motorised",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "product": "calico-perfect-fit-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "base",
+      "expected": 247.81,
+      "error": null,
+      "actual": 247.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "mm",
+      "expected": 247.81,
+      "error": null,
+      "actual": 247.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "fractions",
+      "expected": 267.97,
+      "error": null,
+      "actual": 267.97,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "cassette",
+      "expected": 261.79,
+      "error": null,
+      "actual": 261.79,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "chain + bottom bar",
+      "expected": 255.29,
+      "error": null,
+      "actual": 255.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "motorised",
+      "expected": 391.46,
+      "error": null,
+      "actual": 391.46,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Perfect Fit Shutters Lite",
+      "product": "sierra-ice-white-perfect-fit-shutter-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

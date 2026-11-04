@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-04",
+  "category": "easy-stick",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "easy-stick-metal-venetian-25mm",
+      "bandId": "329a7f7c-c184-4cf1-80ae-b4f27d6a3ced",
+      "band": "Easy Stick - Metal Venetian 25MM",
+      "description": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "representative": "tr4470-mild-offwhite",
+      "schema": {
+        "kind": "band",
+        "bandId": "329a7f7c-c184-4cf1-80ae-b4f27d6a3ced",
+        "clamp": true,
+        "any": {
+          "minWidth": 7.874015747031496,
+          "maxWidth": 41.73228346556693,
+          "minHeight": 7.874015747031496,
+          "maxHeight": 86.61417322934646
+        },
+        "motor": {
+          "minWidth": 7.874015747031496,
+          "maxWidth": 41.73228346556693,
+          "minHeight": 7.874015747031496,
+          "maxHeight": 86.61417322934646
+        },
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736719606144",
+          "type": "product",
+          "title": "Easy Stick TR4470 Mild Off White Metal",
+          "handle": "tr4470-mild-offwhite"
+        },
+        {
+          "id": "15736719737216",
+          "type": "product",
+          "title": "Easy Stick TR1651 Grey Metal",
+          "handle": "tr1651-grey"
+        },
+        {
+          "id": "15736719835520",
+          "type": "product",
+          "title": "Easy Stick TR 7113 Steel Metal",
+          "handle": "tr-7113-steel"
+        },
+        {
+          "id": "15736719999360",
+          "type": "product",
+          "title": "Easy Stick TR4413 Cream Metal",
+          "handle": "tr4413-cream"
+        },
+        {
+          "id": "15736720064896",
+          "type": "product",
+          "title": "Easy Stick TR9457 BRUSHED Steel Metal",
+          "handle": "tr9457-brushed-steel"
+        },
+        {
+          "id": "15736720228736",
+          "type": "product",
+          "title": "Easy Stick TR1858 Black Metal",
+          "handle": "easy-stick-tr1858-black"
+        },
+        {
+          "id": "15736720458112",
+          "type": "product",
+          "title": "Easy Stick TR 0196 Matt White Metal",
+          "handle": "easy-stick-tr-0196-matt-white"
+        },
+        {
+          "id": "15736720654720",
+          "type": "product",
+          "title": "Easy Stick TR 0116 White Gloss Metal",
+          "handle": "easy-stick-tr-0116-white-gloss"
+        }
+      ]
+    },
+    {
+      "slug": "easy-stick-wood-venetian-25mm",
+      "bandId": "21a2ffb4-3d95-47b8-a2e8-8d5466d7f879",
+      "band": "Easy Stick - Wood Venetian 25MM",
+      "description": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "representative": "onyx-real-wood",
+      "schema": {
+        "kind": "band",
+        "bandId": "21a2ffb4-3d95-47b8-a2e8-8d5466d7f879",
+        "clamp": true,
+        "any": {
+          "minWidth": 9.448818896637796,
+          "maxWidth": 41.73228346556693,
+          "minHeight": 7.874015747031496,
+          "maxHeight": 86.61417322934646
+        },
+        "motor": {
+          "minWidth": 9.448818896637796,
+          "maxWidth": 41.73228346556693,
+          "minHeight": 7.874015747031496,
+          "maxHeight": 86.61417322934646
+        },
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736720851328",
+          "type": "product",
+          "title": "Easy Stick ONYX REAL WOOD",
+          "handle": "onyx-real-wood"
+        },
+        {
+          "id": "15736720949632",
+          "type": "product",
+          "title": "Easy Stick GRAPHITE REAL WOOD",
+          "handle": "graphite-real-wood"
+        },
+        {
+          "id": "15736721080704",
+          "type": "product",
+          "title": "Easy Stick CHALK REAL WOOD",
+          "handle": "chalk-real-wood"
+        },
+        {
+          "id": "15736721310080",
+          "type": "product",
+          "title": "Easy Stick FLINT REAL WOOD",
+          "handle": "flint-real-wood"
+        },
+        {
+          "id": "15736721375616",
+          "type": "product",
+          "title": "Easy Stick ABSOLUTE WHITE REAL WOOD",
+          "handle": "absolute-white-real-wood"
+        }
+      ]
+    },
+    {
+      "slug": "easy-stick-honeycomb",
+      "bandId": "7536b5ae-8260-4031-a741-d60705e9bc34",
+      "band": "Easy Stick - Honeycomb",
+      "description": "OB Preview - Easy Stick - Honeycomb",
+      "representative": "easy-stick-blackout-appollo-steel",
+      "schema": {
+        "kind": "band",
+        "bandId": "7536b5ae-8260-4031-a741-d60705e9bc34",
+        "clamp": true,
+        "any": {
+          "minWidth": 5.905511810023622,
+          "maxWidth": 41.73228346556693,
+          "minHeight": 5.905511810023622,
+          "maxHeight": 86.61417322934646
+        },
+        "motor": {
+          "minWidth": 5.905511810023622,
+          "maxWidth": 41.73228346556693,
+          "minHeight": 5.905511810023622,
+          "maxHeight": 86.61417322934646
+        },
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736721768832",
+          "type": "product",
+          "title": "Easy Stick Blackout  Appollo Steel",
+          "handle": "easy-stick-blackout-appollo-steel"
+        },
+        {
+          "id": "15736722686336",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Citron",
+          "handle": "easy-stick-blackout-appollo-citron"
+        },
+        {
+          "id": "15736724095360",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Dawn",
+          "handle": "easy-stick-blackout-appollo-dawn"
+        },
+        {
+          "id": "15736724521344",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo White",
+          "handle": "easy-stick-blackout-appollo-white"
+        },
+        {
+          "id": "15736724849024",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Raven",
+          "handle": "easy-stick-blackout-appollo-raven"
+        },
+        {
+          "id": "15736725111168",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Grey",
+          "handle": "easy-stick-blackout-appollo-grey"
+        },
+        {
+          "id": "15736725832064",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Mouse",
+          "handle": "easy-stick-blackout-appollo-mouse"
+        },
+        {
+          "id": "15736725995904",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Cream",
+          "handle": "easy-stick-blackout-appollo-cream"
+        },
+        {
+          "id": "15736726094208",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Iron",
+          "handle": "easy-stick-blackout-appollo-iron"
+        },
+        {
+          "id": "15736726192512",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Jeans",
+          "handle": "easy-stick-blackout-appollo-jeans"
+        },
+        {
+          "id": "15736726258048",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Jaffa",
+          "handle": "easy-stick-blackout-appollo-jaffa"
+        },
+        {
+          "id": "15736726487424",
+          "type": "product",
+          "title": "Easy Stick Blackout Appollo Grass",
+          "handle": "easy-stick-blackout-appollo-grass"
+        },
+        {
+          "id": "15736727208320",
+          "type": "product",
+          "title": "Easy Stick Blackout Apollo Cloud",
+          "handle": "easy-stick-blackout-apollo-cloud"
+        }
+      ]
+    }
+  ]
+}

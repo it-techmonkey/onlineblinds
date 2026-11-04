@@ -1,0 +1,11 @@
+<div data-ob-island="collection-design" data-ob-client="true"><script type="application/json" data-ob-props>{"handle":{{ collection.handle | json }}}</script>
+<div class="flex flex-col gap-[32px] items-start max-w-[1280px] px-[24px] py-[40px] mx-auto w-full">
+  {% paginate collection.products by 24 %}
+  <div data-ob-fallback="collection-grid"><script type="application/json" data-ob-props>{"products":[{% for card_product in collection.products %}{% render 'ob-card-json', card_product: card_product %}{% unless forloop.last %},{% endunless %}{% endfor %}],"categoryName":{{ collection.title | json }},"listId":{{ collection.handle | json }},"basePath":{{ collection.url | json }},"currentSort":{{ collection.sort_by | default: collection.default_sort_by | json }},"pagination":{"page":{{ paginate.current_page }},"limit":24,"total":{{ paginate.items }},"totalPages":{{ paginate.pages }},"hasNextPage":{% if paginate.next %}true{% else %}false{% endif %},"hasPreviousPage":{% if paginate.previous %}true{% else %}false{% endif %}}}</script>
+    <p class="mb-6">{{ collection.products_count }} products</p><div class="ob-grid">{% for card_product in collection.products %}{% render 'ob-product-card', card_product: card_product %}{% else %}<p>No products found.</p>{% endfor %}</div>
+    <nav class="ob-pagination" aria-label="Pagination">{{ paginate | default_pagination }}</nav>
+  </div>{% endpaginate %}
+</div>
+</div>
+{% render 'ob-collection-faq' %}
+{% schema %}{"name":"Online Blinds collection","settings":[]}{% endschema %}

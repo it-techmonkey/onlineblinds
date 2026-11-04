@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "eclipsecore-band",
+      "band": "Eclipsecore Band",
+      "kind": "band",
+      "products": 1,
+      "compared": 84424,
+      "rejected": 19546,
+      "formulaBytes": 8140,
+      "formulaSha256": "58b4dcae3d68c2ba9e51e9d5498debf943f21b57bcff872e021ae81a52d3456a"
+    }
+  ]
+}

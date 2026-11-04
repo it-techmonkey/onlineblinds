@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-28",
+  "existingListsModified": false,
+  "results": [
+    {
+      "description": "OB Preview - Day and Night - Band D",
+      "band": "Day and Night - Band D",
+      "cells": 264,
+      "created": false,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Dayandnight - Band A",
+      "band": "Dayandnight - Band A",
+      "cells": 264,
+      "created": false,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Day and Night - Band C",
+      "band": "Day and Night - Band C",
+      "cells": 264,
+      "created": false,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Day and Night - Band A",
+      "band": "Day and Night - Band A",
+      "cells": 264,
+      "created": false,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Day and Night - Band F",
+      "band": "Day and Night - Band F",
+      "cells": 264,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Day and Night - Band E",
+      "band": "Day and Night - Band E",
+      "cells": 264,
+      "created": true,
+      "savedValuesMatchSource": true
+    }
+  ]
+}

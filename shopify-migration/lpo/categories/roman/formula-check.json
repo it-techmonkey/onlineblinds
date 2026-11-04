@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "roman-eb-band-b",
+      "band": "Roman EB - Band B",
+      "kind": "band",
+      "products": 48,
+      "compared": 18756,
+      "rejected": 7824,
+      "formulaBytes": 4139,
+      "formulaSha256": "cce0872d76c55e086c87a618d6ac1c6b0c8294dd7b48d3293a34fe92e705505e"
+    },
+    {
+      "slug": "roman-eb-band-d",
+      "band": "Roman EB - Band D",
+      "kind": "band",
+      "products": 75,
+      "compared": 19188,
+      "rejected": 8040,
+      "formulaBytes": 4145,
+      "formulaSha256": "2faca9b638de5147dae7bbcffb9c43ac04abd015ac07f04c335614e9e64df86b"
+    },
+    {
+      "slug": "roman-eb-band-a",
+      "band": "Roman EB - Band A",
+      "kind": "band",
+      "products": 51,
+      "compared": 18804,
+      "rejected": 7848,
+      "formulaBytes": 4140,
+      "formulaSha256": "c70f98775ecd3d16604e1207003dc3ca2921c6ee5e1d6e11696028fe885f3db1"
+    },
+    {
+      "slug": "roman-eb-band-c",
+      "band": "Roman EB - Band C",
+      "kind": "band",
+      "products": 7,
+      "compared": 18100,
+      "rejected": 7496,
+      "formulaBytes": 4144,
+      "formulaSha256": "3dfb8d47157033fc6c5b3487ebacf23ffdafdc5cb3a4fe1e8f8757b7f77344b5"
+    },
+    {
+      "slug": "roman-eb-band-aa",
+      "band": "Roman EB - Band AA",
+      "kind": "band",
+      "products": 26,
+      "compared": 18404,
+      "rejected": 7648,
+      "formulaBytes": 4141,
+      "formulaSha256": "56b4c96c8db37811984a50bf369c5433d839d0f6e9b313add6e0a73d3a810d36"
+    },
+    {
+      "slug": "roman-arena-band-e",
+      "band": "Roman Arena - Band E",
+      "kind": "band",
+      "products": 15,
+      "compared": 16108,
+      "rejected": 6078,
+      "formulaBytes": 3951,
+      "formulaSha256": "414ceabbed3fa4a612d497ab5de95c30fddb64b8fb14f3217df9e483c3805213"
+    },
+    {
+      "slug": "roman-arena-band-d",
+      "band": "Roman Arena - Band D",
+      "kind": "band",
+      "products": 12,
+      "compared": 16060,
+      "rejected": 6066,
+      "formulaBytes": 3909,
+      "formulaSha256": "583f9ff2f134830b84d5569c867691ec1f03f00ba4bc210d3bcf8a0c44bd0790"
+    },
+    {
+      "slug": "roman-arena-band-g",
+      "band": "Roman Arena - Band G",
+      "kind": "band",
+      "products": 11,
+      "compared": 16044,
+      "rejected": 6062,
+      "formulaBytes": 3993,
+      "formulaSha256": "803fe0326b135b2c13782e9eb1f793e389c075f675f3f7c76dfa44275e314a01"
+    },
+    {
+      "slug": "roman-arena-band-f",
+      "band": "Roman Arena - Band F",
+      "kind": "band",
+      "products": 12,
+      "compared": 16060,
+      "rejected": 6066,
+      "formulaBytes": 4005,
+      "formulaSha256": "9d504cbcf605f174aad5328f0b958ba57ea7857d8f38a69775623cddc05090ab"
+    }
+  ]
+}

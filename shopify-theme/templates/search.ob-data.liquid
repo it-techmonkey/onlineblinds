@@ -1,0 +1,4 @@
+{% layout none %}
+{% paginate search.results by 50 %}
+{"handles":[{% assign emitted = false %}{% for result in search.results %}{% if result.object_type == 'product' %}{% if emitted %},{% endif %}{{ result.handle | json }}{% assign emitted = true %}{% endif %}{% endfor %}],"next":{% if paginate.next %}true{% else %}false{% endif %}}
+{% endpaginate %}

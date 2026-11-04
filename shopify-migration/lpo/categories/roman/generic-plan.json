@@ -1,0 +1,1702 @@
+{
+  "date": "2026-11-04",
+  "category": "roman",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "roman-eb-band-b",
+      "bandId": "d2fd9dd0-6ca5-4b3c-a398-81095fa3494b",
+      "band": "Roman EB - Band B",
+      "description": "OB Preview - Roman EB - Band B",
+      "representative": "eb-tirana-ochre-roman-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "d2fd9dd0-6ca5-4b3c-a398-81095fa3494b",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736213700992",
+          "type": "product",
+          "title": "EB Tirana Ochre Roman Blind",
+          "handle": "eb-tirana-ochre-roman-blind"
+        },
+        {
+          "id": "15736213733760",
+          "type": "product",
+          "title": "EB Tirana Blue Roman Blind",
+          "handle": "eb-tirana-blue-roman-blind"
+        },
+        {
+          "id": "15736275894656",
+          "type": "product",
+          "title": "EB Litie umber Roman_Blind",
+          "handle": "eb-litie-umber-roman_blind"
+        },
+        {
+          "id": "15736276124032",
+          "type": "product",
+          "title": "EB Litie turtle Roman_Blind",
+          "handle": "eb-litie-turtle-roman_blind"
+        },
+        {
+          "id": "15736276353408",
+          "type": "product",
+          "title": "EB Litie pecan Roman_Blind",
+          "handle": "eb-litie-pecan-roman_blind"
+        },
+        {
+          "id": "15736276550016",
+          "type": "product",
+          "title": "EB Litie mushroom Roman_Blind",
+          "handle": "eb-litie-mushroom-roman_blind"
+        },
+        {
+          "id": "15736276779392",
+          "type": "product",
+          "title": "EB Litie mouse CURTAIN Roman Blind",
+          "handle": "eb-litie-mouse-curtain-roman-blind"
+        },
+        {
+          "id": "15736277074304",
+          "type": "product",
+          "title": "EB Litie maroon_Roman Blind",
+          "handle": "eb-litie-maroon_roman-blind"
+        },
+        {
+          "id": "15736277401984",
+          "type": "product",
+          "title": "EB Litie luna_Roman Blind",
+          "handle": "eb-litie-luna_roman-blind"
+        },
+        {
+          "id": "15736277696896",
+          "type": "product",
+          "title": "EB Litie honey Roman Blind",
+          "handle": "eb-litie-honey-roman-blind"
+        },
+        {
+          "id": "15736277991808",
+          "type": "product",
+          "title": "EB Litie cruise Roman_Blind",
+          "handle": "eb-litie-cruise-roman_blind"
+        },
+        {
+          "id": "15736278188416",
+          "type": "product",
+          "title": "EB Litie chalk_Roman Blind",
+          "handle": "eb-litie-chalk_roman-blind"
+        },
+        {
+          "id": "15736278385024",
+          "type": "product",
+          "title": "EB Litie baltic Roman_Blind",
+          "handle": "eb-litie-baltic-roman_blind"
+        },
+        {
+          "id": "15736283595136",
+          "type": "product",
+          "title": "EB Jive - Ochre Blind Roman Blind",
+          "handle": "eb-jive-ochre-blind-roman-blind"
+        },
+        {
+          "id": "15736283758976",
+          "type": "product",
+          "title": "EB Jive - Blue Blind Roman Blind",
+          "handle": "eb-jive-blue-blind-roman-blind"
+        },
+        {
+          "id": "15736283922816",
+          "type": "product",
+          "title": "EB Izmir Teal Silver Roman Blind",
+          "handle": "eb-izmir-teal-silver-roman-blind"
+        },
+        {
+          "id": "15736284053888",
+          "type": "product",
+          "title": "EB Izmir Teal gold Roman Blind",
+          "handle": "eb-izmir-teal-gold-roman-blind"
+        },
+        {
+          "id": "15736284184960",
+          "type": "product",
+          "title": "EB Izmir Shadow Roman Blind",
+          "handle": "eb-izmir-shadow-roman-blind"
+        },
+        {
+          "id": "15736284414336",
+          "type": "product",
+          "title": "EB Izmir Oatmeal Roman Blind",
+          "handle": "eb-izmir-oatmeal-roman-blind"
+        },
+        {
+          "id": "15736284643712",
+          "type": "product",
+          "title": "EB Izmir Mink Roman Blind",
+          "handle": "eb-izmir-mink-roman-blind"
+        },
+        {
+          "id": "15736284938624",
+          "type": "product",
+          "title": "EB Izmir Midnight Roman Blind",
+          "handle": "eb-izmir-midnight-roman-blind"
+        },
+        {
+          "id": "15736285200768",
+          "type": "product",
+          "title": "EB Izmir Mid Blue Roman Blind",
+          "handle": "eb-izmir-mid-blue-roman-blind"
+        },
+        {
+          "id": "15736285397376",
+          "type": "product",
+          "title": "EB Izmir Jade Roman Blind",
+          "handle": "eb-izmir-jade-roman-blind"
+        },
+        {
+          "id": "15736285561216",
+          "type": "product",
+          "title": "EB Izmir Glacier Roman Blind",
+          "handle": "eb-izmir-glacier-roman-blind"
+        },
+        {
+          "id": "15736285757824",
+          "type": "product",
+          "title": "EB Izmir Dark Brown Roman Blind",
+          "handle": "eb-izmir-dark-brown-roman-blind"
+        },
+        {
+          "id": "15736285888896",
+          "type": "product",
+          "title": "EB Izmir Blush Rose Gold Roman Blind",
+          "handle": "eb-izmir-blush-rose-gold-roman-blind"
+        },
+        {
+          "id": "15736288117120",
+          "type": "product",
+          "title": "EB Herringbone Wheat Roman Blind",
+          "handle": "eb-herringbone-wheat-roman-blind"
+        },
+        {
+          "id": "15736288313728",
+          "type": "product",
+          "title": "EB Herringbone Sage Roman Blind",
+          "handle": "eb-herringbone-sage-roman-blind"
+        },
+        {
+          "id": "15736288510336",
+          "type": "product",
+          "title": "EB Herringbone Oyster Roman Blind",
+          "handle": "eb-herringbone-oyster-roman-blind"
+        },
+        {
+          "id": "15736288674176",
+          "type": "product",
+          "title": "EB Herringbone Chilli Roman Blind",
+          "handle": "eb-herringbone-chilli-roman-blind"
+        },
+        {
+          "id": "15736288870784",
+          "type": "product",
+          "title": "EB Herringbone Charcoal Roman Blind",
+          "handle": "eb-herringbone-charcoal-roman-blind"
+        },
+        {
+          "id": "15736301584768",
+          "type": "product",
+          "title": "EB Bracken Terracotta Roman Blind",
+          "handle": "eb-bracken-terracotta-roman-blind"
+        },
+        {
+          "id": "15736301715840",
+          "type": "product",
+          "title": "EB Bracken Silver Roman Blind",
+          "handle": "eb-bracken-silver-roman-blind"
+        },
+        {
+          "id": "15736301879680",
+          "type": "product",
+          "title": "EB Bracken Ochre Roman Blind",
+          "handle": "eb-bracken-ochre-roman-blind"
+        },
+        {
+          "id": "15736302043520",
+          "type": "product",
+          "title": "EB Bracken Heather Roman Blind",
+          "handle": "eb-bracken-heather-roman-blind"
+        },
+        {
+          "id": "15736302207360",
+          "type": "product",
+          "title": "EB Bracken Green Roman Blind",
+          "handle": "eb-bracken-green-roman-blind"
+        },
+        {
+          "id": "15736302371200",
+          "type": "product",
+          "title": "EB Boucle Terrazzo Roman Blind",
+          "handle": "eb-boucle-terrazzo-roman-blind"
+        },
+        {
+          "id": "15736302535040",
+          "type": "product",
+          "title": "EB Boucle Stratosphere",
+          "handle": "boucle-stratosphere"
+        },
+        {
+          "id": "15736302698880",
+          "type": "product",
+          "title": "EB Boucle Muscari Roman Blind",
+          "handle": "eb-boucle-muscari-roman-blind"
+        },
+        {
+          "id": "15736302862720",
+          "type": "product",
+          "title": "EB Boucle Frost Roman Blind",
+          "handle": "eb-boucle-frost-roman-blind"
+        },
+        {
+          "id": "15736303059328",
+          "type": "product",
+          "title": "EB Boucle Dijon Roman Blind",
+          "handle": "eb-boucle-dijon-roman-blind"
+        },
+        {
+          "id": "15736303288704",
+          "type": "product",
+          "title": "EB Boucle Cosmic Dust Roman Blind",
+          "handle": "eb-boucle-cosmic-dust-roman-blind"
+        },
+        {
+          "id": "15736303518080",
+          "type": "product",
+          "title": "EB Boucle Copper Blush Roman Blind",
+          "handle": "eb-boucle-copper-blush-roman-blind"
+        },
+        {
+          "id": "15736303681920",
+          "type": "product",
+          "title": "EB Boucle Confetti Roman Blind",
+          "handle": "eb-boucle-confetti-roman-blind"
+        },
+        {
+          "id": "15736303911296",
+          "type": "product",
+          "title": "EB Boucle Chamois Roman Blind",
+          "handle": "eb-boucle-chamois-roman-blind"
+        },
+        {
+          "id": "15736304140672",
+          "type": "product",
+          "title": "EB Boucle Amazonite Roman Blind",
+          "handle": "eb-boucle-amazonite-roman-blind"
+        },
+        {
+          "id": "15736306499968",
+          "type": "product",
+          "title": "EB Aztec - Wedgewood Blind",
+          "handle": "eb-aztec-wedgewood-blind"
+        },
+        {
+          "id": "15736306696576",
+          "type": "product",
+          "title": "EB Aztec - Moss Blind",
+          "handle": "eb-aztec-moss-blind"
+        }
+      ]
+    },
+    {
+      "slug": "roman-eb-band-d",
+      "bandId": "0d38333b-5aaf-4986-8647-00b166316d02",
+      "band": "Roman EB - Band D",
+      "description": "OB Preview - Roman EB - Band D",
+      "representative": "eb-serene-terracotta-roman-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "0d38333b-5aaf-4986-8647-00b166316d02",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736213766528",
+          "type": "product",
+          "title": "EB Serene Terracotta Roman Blind",
+          "handle": "eb-serene-terracotta-roman-blind"
+        },
+        {
+          "id": "15736213832064",
+          "type": "product",
+          "title": "EB Serene Silver Roman Blind",
+          "handle": "eb-serene-silver-roman-blind"
+        },
+        {
+          "id": "15736213864832",
+          "type": "product",
+          "title": "EB Serene Navy Roman Blind",
+          "handle": "serene-navy-roman-blind"
+        },
+        {
+          "id": "15736213930368",
+          "type": "product",
+          "title": "EB Serene Blush Roman Blind",
+          "handle": "eb-serene-blush-blind-roman"
+        },
+        {
+          "id": "15736214028672",
+          "type": "product",
+          "title": "EB Santorini Ochre Roman Blind",
+          "handle": "eb-santorini-ochre-roman-blind"
+        },
+        {
+          "id": "15736214126976",
+          "type": "product",
+          "title": "EB Santorini Navy Roman Blind",
+          "handle": "eb-santorini-navy-roman-blind"
+        },
+        {
+          "id": "15736214258048",
+          "type": "product",
+          "title": "EB Santorini Grey Roman Blind",
+          "handle": "eb-santorini-grey-roman-blind"
+        },
+        {
+          "id": "15736214356352",
+          "type": "product",
+          "title": "EB Nora Taupe Roman Blind",
+          "handle": "eb-nora-taupe-roman-blind"
+        },
+        {
+          "id": "15736214389120",
+          "type": "product",
+          "title": "EB Nora Smoke Roman Blind",
+          "handle": "eb-nora-smoke-roman-blind"
+        },
+        {
+          "id": "15736214421888",
+          "type": "product",
+          "title": "EB Nora Silver Roman Blind",
+          "handle": "eb-nora-silver-roman-blind"
+        },
+        {
+          "id": "15736214454656",
+          "type": "product",
+          "title": "EB Nora Sandstone Roman Blind",
+          "handle": "eb-nora-sandstone-roman-blind"
+        },
+        {
+          "id": "15736214520192",
+          "type": "product",
+          "title": "EB Nora Natural Roman Blind",
+          "handle": "eb-nora-natural-roman-blind"
+        },
+        {
+          "id": "15736214552960",
+          "type": "product",
+          "title": "EB Nora Ivory Roman Blind",
+          "handle": "eb-nora-ivory-roman-blind"
+        },
+        {
+          "id": "15736214585728",
+          "type": "product",
+          "title": "EB Nora Gold Roman Blind",
+          "handle": "eb-nora-gold-roman-blind"
+        },
+        {
+          "id": "15736214618496",
+          "type": "product",
+          "title": "EB Nora DuckEgg Roman Blind",
+          "handle": "eb-nora-duckegg-roman-blind"
+        },
+        {
+          "id": "15736214651264",
+          "type": "product",
+          "title": "EB Nora Denim Roman Blind",
+          "handle": "eb-nora-denim-roman-blind"
+        },
+        {
+          "id": "15736214749568",
+          "type": "product",
+          "title": "EB Nora Cream Roman Blind",
+          "handle": "eb-nora-cream-roman-blind"
+        },
+        {
+          "id": "15736214847872",
+          "type": "product",
+          "title": "EB Nora Caramel Roman Blind",
+          "handle": "eb-nora-caramel-roman-blind"
+        },
+        {
+          "id": "15736275370368",
+          "type": "product",
+          "title": "EB Marrakech - Natural Roman Blind",
+          "handle": "eb-marrakech-natural-roman-blind"
+        },
+        {
+          "id": "15736275534208",
+          "type": "product",
+          "title": "EB Marrakech - Grey Roman Blind",
+          "handle": "eb-marrakech-grey-roman-blind"
+        },
+        {
+          "id": "15736275730816",
+          "type": "product",
+          "title": "EB Marrakech - Duck Egg Roman Blind",
+          "handle": "eb-marrakech-duck-egg-roman-blind"
+        },
+        {
+          "id": "15736280482176",
+          "type": "product",
+          "title": "EB Karina White Roman Blind",
+          "handle": "eb-karina-white-roman-blind"
+        },
+        {
+          "id": "15736280646016",
+          "type": "product",
+          "title": "EB Karina Taupe Roman Blind",
+          "handle": "eb-karina-taupe-roman-blind"
+        },
+        {
+          "id": "15736280842624",
+          "type": "product",
+          "title": "EB Karina Smoke Roman Blind",
+          "handle": "eb-karina-smoke-roman-blind"
+        },
+        {
+          "id": "15736281072000",
+          "type": "product",
+          "title": "EB Karina Silver Roman Blind",
+          "handle": "eb-karina-silver-roman-blind"
+        },
+        {
+          "id": "15736281301376",
+          "type": "product",
+          "title": "EB Karina Shell Roman Blind",
+          "handle": "eb-karina-shell-roman-blind"
+        },
+        {
+          "id": "15736281629056",
+          "type": "product",
+          "title": "EB Karina Sandstone Roman Blind",
+          "handle": "eb-karina-sandstone-roman-blind"
+        },
+        {
+          "id": "15736281956736",
+          "type": "product",
+          "title": "EB Karina Natural Roman Blind",
+          "handle": "eb-karina-natural-roman-blind"
+        },
+        {
+          "id": "15736282186112",
+          "type": "product",
+          "title": "EB Karina Ivory Roman Blind",
+          "handle": "eb-karina-ivory-roman-blind"
+        },
+        {
+          "id": "15736282481024",
+          "type": "product",
+          "title": "EB Karina Gold Roman Blind",
+          "handle": "eb-karina-gold-roman-blind"
+        },
+        {
+          "id": "15736282743168",
+          "type": "product",
+          "title": "EB Karina DuckEgg Roman Blind",
+          "handle": "eb-karina-duckegg-roman-blind"
+        },
+        {
+          "id": "15736282972544",
+          "type": "product",
+          "title": "EB Karina Denim Roman Blind",
+          "handle": "eb-karina-denim-roman-blind"
+        },
+        {
+          "id": "15736283136384",
+          "type": "product",
+          "title": "EB Karina Cream Roman Blind",
+          "handle": "eb-karina-cream-roman-blind"
+        },
+        {
+          "id": "15736283267456",
+          "type": "product",
+          "title": "EB Karina Caramel Roman Blind",
+          "handle": "eb-karina-caramel-roman-blind"
+        },
+        {
+          "id": "15736283464064",
+          "type": "product",
+          "title": "EB Karina Aqua Roman Blind",
+          "handle": "eb-karina-aqua-roman-blind"
+        },
+        {
+          "id": "15736289100160",
+          "type": "product",
+          "title": "EB Geo Wine Roman Roman Blind",
+          "handle": "eb-geo-wine-roman-roman-blind"
+        },
+        {
+          "id": "15736289296768",
+          "type": "product",
+          "title": "EB Geo Navy Roman Roman Blind",
+          "handle": "eb-geo-navy-roman-roman-blind"
+        },
+        {
+          "id": "15736289460608",
+          "type": "product",
+          "title": "EB Geo Natural Roman Roman Blind",
+          "handle": "eb-geo-natural-roman-roman-blind"
+        },
+        {
+          "id": "15736296178048",
+          "type": "product",
+          "title": "EB Celina White Roman Blind",
+          "handle": "eb-celina-white-roman-blind"
+        },
+        {
+          "id": "15736296472960",
+          "type": "product",
+          "title": "EB Celina Taupe Roman Blind",
+          "handle": "eb-celina-taupe-roman-blind"
+        },
+        {
+          "id": "15736296767872",
+          "type": "product",
+          "title": "EB Celina Smoke Roman Blind",
+          "handle": "eb-celina-smoke-roman-blind"
+        },
+        {
+          "id": "15736296964480",
+          "type": "product",
+          "title": "EB Celina Silver Roman Blind",
+          "handle": "eb-celina-silver-roman-blind"
+        },
+        {
+          "id": "15736297292160",
+          "type": "product",
+          "title": "EB Celina Shell Roman Blind",
+          "handle": "eb-celina-shell-roman-blind"
+        },
+        {
+          "id": "15736297554304",
+          "type": "product",
+          "title": "EB Celina Sandstone Roman Blind",
+          "handle": "eb-celina-sandstone-roman-blind"
+        },
+        {
+          "id": "15736297881984",
+          "type": "product",
+          "title": "EB Celina Natural Roman Blind",
+          "handle": "eb-celina-natural-roman-blind"
+        },
+        {
+          "id": "15736298176896",
+          "type": "product",
+          "title": "EB Celina Ivory Roman Blind",
+          "handle": "eb-celina-ivory-roman-blind"
+        },
+        {
+          "id": "15736298439040",
+          "type": "product",
+          "title": "EB Celina Gold Roman Blind",
+          "handle": "eb-celina-gold-roman-blind"
+        },
+        {
+          "id": "15736298602880",
+          "type": "product",
+          "title": "EB Celina Cream Roman Blind",
+          "handle": "eb-celina-cream-roman-blind"
+        },
+        {
+          "id": "15736298799488",
+          "type": "product",
+          "title": "EB Celina Caramel Roman Blind",
+          "handle": "eb-celina-caramel-roman-blind"
+        },
+        {
+          "id": "15736298996096",
+          "type": "product",
+          "title": "EB Celina Aqua Roman Blind",
+          "handle": "eb-celina-aqua-roman-blind"
+        },
+        {
+          "id": "15736304370048",
+          "type": "product",
+          "title": "EB Bali White Roman Blind",
+          "handle": "eb-bali-white-roman-blind"
+        },
+        {
+          "id": "15736304533888",
+          "type": "product",
+          "title": "EB Bali Taupe Roman Blind",
+          "handle": "eb-bali-taupe-roman-blind"
+        },
+        {
+          "id": "15736304763264",
+          "type": "product",
+          "title": "EB Bali Smoke Roman Blind",
+          "handle": "eb-bali-smoke-roman-blind"
+        },
+        {
+          "id": "15736304927104",
+          "type": "product",
+          "title": "EB Bali Silver Roman Blind",
+          "handle": "eb-bali-silver-roman-blind"
+        },
+        {
+          "id": "15736305156480",
+          "type": "product",
+          "title": "EB Bali Shell Roman Blind",
+          "handle": "eb-bali-shell-roman-blind"
+        },
+        {
+          "id": "15736305385856",
+          "type": "product",
+          "title": "EB Bali Sandstone Roman Blind",
+          "handle": "eb-bali-sandstone-roman-blind"
+        },
+        {
+          "id": "15736305549696",
+          "type": "product",
+          "title": "EB Bali Natural Roman Blind",
+          "handle": "eb-bali-natural-roman-blind"
+        },
+        {
+          "id": "15736305713536",
+          "type": "product",
+          "title": "EB Bali Ivory Roman Blind",
+          "handle": "eb-bali-ivory-roman-blind"
+        },
+        {
+          "id": "15736305910144",
+          "type": "product",
+          "title": "EB Bali Gold Roman Blind",
+          "handle": "eb-bali-gold-roman-blind"
+        },
+        {
+          "id": "15736306106752",
+          "type": "product",
+          "title": "EB Bali DuckEgg Roman Blind",
+          "handle": "eb-bali-duckegg-roman-blind"
+        },
+        {
+          "id": "15736306270592",
+          "type": "product",
+          "title": "EB Bali Denim Roman Blind",
+          "handle": "eb-bali-denim-roman-blind"
+        },
+        {
+          "id": "15736312889728",
+          "type": "product",
+          "title": "EB Alhambra White Roman Blind",
+          "handle": "eb-alhambra-white-roman-blind"
+        },
+        {
+          "id": "15736313184640",
+          "type": "product",
+          "title": "EB Alhambra Taupe Roman Blind",
+          "handle": "eb-alhambra-taupe-roman-blind"
+        },
+        {
+          "id": "15736313446784",
+          "type": "product",
+          "title": "EB Alhambra Smoke Roman Blind",
+          "handle": "eb-alhambra-smoke-roman-blind"
+        },
+        {
+          "id": "15736313741696",
+          "type": "product",
+          "title": "EB Alhambra Silver Roman Blind",
+          "handle": "eb-alhambra-silver-roman-blind"
+        },
+        {
+          "id": "15736314069376",
+          "type": "product",
+          "title": "EB Alhambra Shell Roman Blind",
+          "handle": "eb-alhambra-shell-roman-blind"
+        },
+        {
+          "id": "15736314265984",
+          "type": "product",
+          "title": "EB Alhambra Sandstone Roman Blind",
+          "handle": "eb-alhambra-sandstone-roman-blind"
+        },
+        {
+          "id": "15736314429824",
+          "type": "product",
+          "title": "EB Alhambra Natural Roman Blind",
+          "handle": "eb-alhambra-natural-roman-blind"
+        },
+        {
+          "id": "15736314593664",
+          "type": "product",
+          "title": "EB Alhambra Ivory Roman Blind",
+          "handle": "eb-alhambra-ivory-roman-blind"
+        },
+        {
+          "id": "15736314757504",
+          "type": "product",
+          "title": "Eb Alhambra Gold Roman Blind",
+          "handle": "eb-alhambra-gold-roman-blind"
+        },
+        {
+          "id": "15736314823040",
+          "type": "product",
+          "title": "EB Alhambra DuckEgg Roman Blind",
+          "handle": "eb-alhambra-duckegg-roman-blind"
+        },
+        {
+          "id": "15736314921344",
+          "type": "product",
+          "title": "EB Alhambra Denim Roman Blind",
+          "handle": "eb-alhambra-denim-roman-blind"
+        },
+        {
+          "id": "15736315117952",
+          "type": "product",
+          "title": "EB Alhambra Cream Roman Blind",
+          "handle": "eb-alhambra-cream-roman-blind"
+        },
+        {
+          "id": "15736315347328",
+          "type": "product",
+          "title": "EB Alhambra Caramel Roman Blind",
+          "handle": "eb-alhambra-caramel-roman-blind"
+        },
+        {
+          "id": "15736315511168",
+          "type": "product",
+          "title": "EB Alhambra Aqua Roman Blind",
+          "handle": "eb-alhambra-aqua-roman-blind"
+        }
+      ]
+    },
+    {
+      "slug": "roman-eb-band-a",
+      "bandId": "56ca12cc-94b0-41a3-ac9f-921355f19008",
+      "band": "Roman EB - Band A",
+      "description": "OB Preview - Roman EB - Band A",
+      "representative": "eb-mersin-truffle-roman-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "56ca12cc-94b0-41a3-ac9f-921355f19008",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736214946176",
+          "type": "product",
+          "title": "EB Mersin Truffle Roman Blind",
+          "handle": "eb-mersin-truffle-roman-blind"
+        },
+        {
+          "id": "15736215077248",
+          "type": "product",
+          "title": "Eb Mersin Silver Roman Blind",
+          "handle": "eb-mersin-silver-roman-blind"
+        },
+        {
+          "id": "15736215175552",
+          "type": "product",
+          "title": "EB Mersin Red Roman Blind",
+          "handle": "eb-mersin-red-roman-blind"
+        },
+        {
+          "id": "15736215241088",
+          "type": "product",
+          "title": "EB Mersin Pink Roman Blind",
+          "handle": "eb-mersin-pink-roman-blind"
+        },
+        {
+          "id": "15736215273856",
+          "type": "product",
+          "title": "EB Mersin Pacific Roman Blind",
+          "handle": "eb-mersin-pacific-roman-blind"
+        },
+        {
+          "id": "15736215306624",
+          "type": "product",
+          "title": "EB Mersin Olive Roman Blind",
+          "handle": "eb-mersin-olive-roman-blind"
+        },
+        {
+          "id": "15736215339392",
+          "type": "product",
+          "title": "EB Mersin Ocean Roman Blind",
+          "handle": "eb-mersin-ocean-roman-blind"
+        },
+        {
+          "id": "15736215372160",
+          "type": "product",
+          "title": "EB Mersin Mink Roman Blind",
+          "handle": "eb-mersin-mink-roman-blind"
+        },
+        {
+          "id": "15736215404928",
+          "type": "product",
+          "title": "EB Mersin Marine Roman Blind",
+          "handle": "eb-mersin-marine-roman-blind"
+        },
+        {
+          "id": "15736215437696",
+          "type": "product",
+          "title": "EB Mersin Marigold Roman Blind",
+          "handle": "eb-mersin-marigold-roman-blind"
+        },
+        {
+          "id": "15736215470464",
+          "type": "product",
+          "title": "EB Mersin Lilac Roman Blind",
+          "handle": "eb-mersin-lilac-roman-blind"
+        },
+        {
+          "id": "15736215503232",
+          "type": "product",
+          "title": "EB Mersin Grey Roman Blind",
+          "handle": "eb-mersin-grey-roman-blind"
+        },
+        {
+          "id": "15736215536000",
+          "type": "product",
+          "title": "EB Mersin Forest Roman Blind",
+          "handle": "eb-mersin-forest-roman-blind"
+        },
+        {
+          "id": "15736274190720",
+          "type": "product",
+          "title": "EB Mersin Copper Roman Blind",
+          "handle": "eb-mersin-copper-roman-blind"
+        },
+        {
+          "id": "15736274780544",
+          "type": "product",
+          "title": "EB Mersin Chocolate Roman Blind",
+          "handle": "eb-mersin-chocolate-roman-blind"
+        },
+        {
+          "id": "15736275042688",
+          "type": "product",
+          "title": "EB Mersin Black Roman Blind",
+          "handle": "eb-mersin-black-roman-blind"
+        },
+        {
+          "id": "15736275206528",
+          "type": "product",
+          "title": "EB Mersin Asphalt Roman Blind",
+          "handle": "eb-mersin-asphalt-roman-blind"
+        },
+        {
+          "id": "15736286052736",
+          "type": "product",
+          "title": "EB Istanbul Stone Roman Blind",
+          "handle": "eb-istanbul-stone-roman-blind"
+        },
+        {
+          "id": "15736286249344",
+          "type": "product",
+          "title": "EB Istanbul Steel Roman Blind",
+          "handle": "eb-istanbul-steel-roman-blind"
+        },
+        {
+          "id": "15736286445952",
+          "type": "product",
+          "title": "EB Istanbul Silver Roman Blind",
+          "handle": "eb-istanbul-silver-roman-blind"
+        },
+        {
+          "id": "15736286609792",
+          "type": "product",
+          "title": "EB Istanbul Platinum Roman Blind",
+          "handle": "eb-istanbul-platinum-roman-blind"
+        },
+        {
+          "id": "15736286839168",
+          "type": "product",
+          "title": "EB Istanbul Peacock Roman Blind",
+          "handle": "eb-istanbul-peacock-roman-blind"
+        },
+        {
+          "id": "15736287068544",
+          "type": "product",
+          "title": "EB Istanbul Ocean Roman Blind",
+          "handle": "eb-istanbul-ocean-roman-blind"
+        },
+        {
+          "id": "15736287297920",
+          "type": "product",
+          "title": "EB Istanbul Oatmeal Roman Blind",
+          "handle": "eb-istanbul-oatmeal-roman-blind"
+        },
+        {
+          "id": "15736287592832",
+          "type": "product",
+          "title": "EB Istanbul Mink Roman Blind",
+          "handle": "eb-istanbul-mink-roman-blind"
+        },
+        {
+          "id": "15736287822208",
+          "type": "product",
+          "title": "EB Istanbul Gunmetal Roman Blind",
+          "handle": "eb-istanbul-gunmetal-roman-blind"
+        },
+        {
+          "id": "15736289722752",
+          "type": "product",
+          "title": "EB Dalyan Wine Roman Blind",
+          "handle": "eb-dalyan-wine-roman-blind"
+        },
+        {
+          "id": "15736289886592",
+          "type": "product",
+          "title": "EB Dalyan Truffle Roman Blind",
+          "handle": "eb-dalyan-truffle-roman-blind"
+        },
+        {
+          "id": "15736290083200",
+          "type": "product",
+          "title": "EB Dalyan Thistle Roman Blind",
+          "handle": "eb-dalyan-thistle-roman-blind"
+        },
+        {
+          "id": "15736290345344",
+          "type": "product",
+          "title": "EB Dalyan Steel Roman Blind",
+          "handle": "eb-dalyan-steel-roman-blind"
+        },
+        {
+          "id": "15736290607488",
+          "type": "product",
+          "title": "EB Dalyan Sapphire Roman Blind",
+          "handle": "eb-dalyan-sapphire-roman-blind"
+        },
+        {
+          "id": "15736290902400",
+          "type": "product",
+          "title": "EB Dalyan Raven Roman Blind",
+          "handle": "eb-dalyan-raven-roman-blind"
+        },
+        {
+          "id": "15736291164544",
+          "type": "product",
+          "title": "EB Dalyan Pewter Roman Blind",
+          "handle": "eb-dalyan-pewter-roman-blind"
+        },
+        {
+          "id": "15736291721600",
+          "type": "product",
+          "title": "EB Dalyan Olive Roman Blind",
+          "handle": "eb-dalyan-olive-roman-blind"
+        },
+        {
+          "id": "15736292049280",
+          "type": "product",
+          "title": "EB Dalyan Mustard Roman Blind",
+          "handle": "eb-dalyan-mustard-roman-blind"
+        },
+        {
+          "id": "15736292409728",
+          "type": "product",
+          "title": "EB Dalyan Mink Roman Blind",
+          "handle": "eb-dalyan-mink-roman-blind"
+        },
+        {
+          "id": "15736292737408",
+          "type": "product",
+          "title": "EB Dalyan Marine Roman Blind",
+          "handle": "eb-dalyan-marine-roman-blind"
+        },
+        {
+          "id": "15736292966784",
+          "type": "product",
+          "title": "EB Dalyan Lilac Roman Blind",
+          "handle": "eb-dalyan-lilac-roman-blind"
+        },
+        {
+          "id": "15736293228928",
+          "type": "product",
+          "title": "EB Dalyan Latte Roman Blind",
+          "handle": "eb-dalyan-latte-roman-blind"
+        },
+        {
+          "id": "15736293491072",
+          "type": "product",
+          "title": "EB Dalyan Graphite Roman Blind",
+          "handle": "eb-dalyan-graphite-roman-blind"
+        },
+        {
+          "id": "15736293785984",
+          "type": "product",
+          "title": "EB Dalyan Gold Roman Blind",
+          "handle": "eb-dalyan-gold-roman-blind"
+        },
+        {
+          "id": "15736294113664",
+          "type": "product",
+          "title": "EB Dalyan Claret Roman Blind",
+          "handle": "eb-dalyan-claret-roman-blind"
+        },
+        {
+          "id": "15736307024256",
+          "type": "product",
+          "title": "EB Ankara Tumeric Roman Blind",
+          "handle": "eb-ankara-tumeric-roman-blind"
+        },
+        {
+          "id": "15736307253632",
+          "type": "product",
+          "title": "EB Ankara Pink Roman Blind",
+          "handle": "eb-ankara-pink-roman-blind"
+        },
+        {
+          "id": "15736307614080",
+          "type": "product",
+          "title": "EB Ankara Oxblood Roman Blind",
+          "handle": "eb-ankara-oxblood-roman-blind"
+        },
+        {
+          "id": "15736307941760",
+          "type": "product",
+          "title": "EB Ankara Mink Roman Blind",
+          "handle": "eb-ankara-mink-roman-blind"
+        },
+        {
+          "id": "15736308269440",
+          "type": "product",
+          "title": "EB Ankara Emerald Roman Blind",
+          "handle": "eb-ankara-emerald-roman-blind"
+        },
+        {
+          "id": "15736308597120",
+          "type": "product",
+          "title": "EB Ankara Charcoal Roman Blind",
+          "handle": "eb-ankara-charcoal-roman-blind"
+        },
+        {
+          "id": "15736308859264",
+          "type": "product",
+          "title": "EB Ankara Blue Roman Blind",
+          "handle": "eb-ankara-blue-roman-blind"
+        },
+        {
+          "id": "15736312398208",
+          "type": "product",
+          "title": "EB Ankara Armour Roman Blind",
+          "handle": "eb-ankara-armour-roman-blind"
+        },
+        {
+          "id": "15736312594816",
+          "type": "product",
+          "title": "EB Ankara Almond Roman Blind",
+          "handle": "eb-ankara-almond-roman-blind"
+        }
+      ]
+    },
+    {
+      "slug": "roman-eb-band-c",
+      "bandId": "78fae267-b7f5-4dcc-b3df-55552af151e0",
+      "band": "Roman EB - Band C",
+      "description": "OB Preview - Roman EB - Band C",
+      "representative": "eb-lavico-terracotta-roman-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "78fae267-b7f5-4dcc-b3df-55552af151e0",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736278679936",
+          "type": "product",
+          "title": "EB Lavico Terracotta Roman Blind",
+          "handle": "eb-lavico-terracotta-roman-blind"
+        },
+        {
+          "id": "15736278942080",
+          "type": "product",
+          "title": "EB Lavico Natural Roman Blind",
+          "handle": "eb-lavico-natural-roman-blind"
+        },
+        {
+          "id": "15736279236992",
+          "type": "product",
+          "title": "EB Lavico Grey Roman Roman Blind",
+          "handle": "eb-lavico-grey-roman-roman-blind"
+        },
+        {
+          "id": "15736279531904",
+          "type": "product",
+          "title": "EB Lavico Blue Roman Roman Blind",
+          "handle": "eb-lavico-blue-roman-roman-blind"
+        },
+        {
+          "id": "15736279794048",
+          "type": "product",
+          "title": "EB Kufic Terracotta Roman Blind",
+          "handle": "eb-kufic-terracotta-roman-blind"
+        },
+        {
+          "id": "15736280023424",
+          "type": "product",
+          "title": "EB Kufic Grey Roman Blind",
+          "handle": "eb-kufic-grey-roman-blind"
+        },
+        {
+          "id": "15736280252800",
+          "type": "product",
+          "title": "EB Kufic Biscuit Roman Blind",
+          "handle": "eb-kufic-biscuit-roman-blind"
+        }
+      ]
+    },
+    {
+      "slug": "roman-eb-band-aa",
+      "bandId": "62c6e1a9-7e38-4d99-bf1b-6a92c0583861",
+      "band": "Roman EB - Band AA",
+      "description": "OB Preview - Roman EB - Band AA",
+      "representative": "eb-chenille-teal-roman-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "62c6e1a9-7e38-4d99-bf1b-6a92c0583861",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736294441344",
+          "type": "product",
+          "title": "EB Chenille Teal Roman Blind",
+          "handle": "eb-chenille-teal-roman-blind"
+        },
+        {
+          "id": "15736294769024",
+          "type": "product",
+          "title": "EB Chenille Purple Roman Blind",
+          "handle": "eb-chenille-purple-roman-blind"
+        },
+        {
+          "id": "15736294965632",
+          "type": "product",
+          "title": "EB Chenille Mink Roman Blind",
+          "handle": "eb-chenille-mink-roman-blind"
+        },
+        {
+          "id": "15736295227776",
+          "type": "product",
+          "title": "EB Chenille Duck Egg Roman Blind",
+          "handle": "eb-chenille-duck-egg-roman-blind"
+        },
+        {
+          "id": "15736295489920",
+          "type": "product",
+          "title": "EB Chenille Chocolate Roman Blind",
+          "handle": "eb-chenille-chocolate-roman-blind"
+        },
+        {
+          "id": "15736295752064",
+          "type": "product",
+          "title": "EB Chenille Charcoal Roman Blind",
+          "handle": "eb-chenille-charcoal-roman-blind"
+        },
+        {
+          "id": "15736295948672",
+          "type": "product",
+          "title": "EB Chenille Black Roman Blind",
+          "handle": "eb-chenille-black-roman-blind"
+        },
+        {
+          "id": "15736299192704",
+          "type": "product",
+          "title": "EB Bursa Velvet Blue Roman Blind",
+          "handle": "eb-bursa-velvet-blue-roman-blind"
+        },
+        {
+          "id": "15736299389312",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Turquoise Roman Blind",
+          "handle": "eb-bursa-soft-velvet-turquoise-roman-blind"
+        },
+        {
+          "id": "15736299553152",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Steel Roman Blind",
+          "handle": "eb-bursa-soft-velvet-steel-roman-blind"
+        },
+        {
+          "id": "15736299749760",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Sky",
+          "handle": "bursa-soft-velvet-sky"
+        },
+        {
+          "id": "15736299913600",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Pink Roman Blind",
+          "handle": "eb-bursa-soft-velvet-pink-roman-blind"
+        },
+        {
+          "id": "15736300241280",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Mustard Roman Blind",
+          "handle": "eb-bursa-soft-velvet-mustard-roman-blind"
+        },
+        {
+          "id": "15736300470656",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Mocca Roman Blind",
+          "handle": "eb-bursa-soft-velvet-mocca-roman-blind"
+        },
+        {
+          "id": "15736300732800",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Mink Roman Blind",
+          "handle": "eb-bursa-soft-velvet-mink-roman-blind"
+        },
+        {
+          "id": "15736300962176",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Emerald Roman Blind",
+          "handle": "eb-bursa-soft-velvet-emerald-roman-blind"
+        },
+        {
+          "id": "15736301257088",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Claret Roman Blind",
+          "handle": "eb-bursa-soft-velvet-claret-roman-blind"
+        },
+        {
+          "id": "15736301420928",
+          "type": "product",
+          "title": "EB Bursa Soft Velvet Burnt Orange Roman Blind",
+          "handle": "eb-bursa-soft-velvet-burnt-orange-roman-blind"
+        },
+        {
+          "id": "15736315773312",
+          "type": "product",
+          "title": "EB Adana Truffle Roman Blind",
+          "handle": "eb-adana-truffle-roman-blind"
+        },
+        {
+          "id": "15736316035456",
+          "type": "product",
+          "title": "EB Adana Slate Grey Roman Blind",
+          "handle": "eb-adana-slate-grey-roman-blind"
+        },
+        {
+          "id": "15736316297600",
+          "type": "product",
+          "title": "EB Adana Silver Roman Blind",
+          "handle": "eb-adana-silver-roman-blind"
+        },
+        {
+          "id": "15736316559744",
+          "type": "product",
+          "title": "EB Adana Sand Roman Blind",
+          "handle": "eb-adana-sand-roman-blind"
+        },
+        {
+          "id": "15736316952960",
+          "type": "product",
+          "title": "EB Adana Plum Roman Blind",
+          "handle": "eb-adana-plum-roman-blind"
+        },
+        {
+          "id": "15736317149568",
+          "type": "product",
+          "title": "EB Adana Charcoal Roman Blind",
+          "handle": "eb-adana-charcoal-roman-blind"
+        },
+        {
+          "id": "15736317346176",
+          "type": "product",
+          "title": "EB Adana Blue Roman Blind",
+          "handle": "eb-adana-blue-roman-blind"
+        },
+        {
+          "id": "15736317575552",
+          "type": "product",
+          "title": "EB Adana Black Roman Blind",
+          "handle": "eb-adana-black-roman-blind"
+        }
+      ]
+    },
+    {
+      "slug": "roman-arena-band-e",
+      "bandId": "bd25ebb8-5c7d-4965-b486-b5776c987a45",
+      "band": "Roman Arena - Band E",
+      "description": "OB Preview - Roman Arena - Band E",
+      "representative": "celebrate-pastel",
+      "schema": {
+        "kind": "band",
+        "bandId": "bd25ebb8-5c7d-4965-b486-b5776c987a45",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736318001536",
+          "type": "product",
+          "title": "Arena Celebrate Pastel Roman Blind",
+          "handle": "celebrate-pastel"
+        },
+        {
+          "id": "15736318361984",
+          "type": "product",
+          "title": "Arena Celebrate Multi Roman Blind",
+          "handle": "celebrate-multi"
+        },
+        {
+          "id": "15736318755200",
+          "type": "product",
+          "title": "Arena Amora Brass Roman Blind",
+          "handle": "amora-brass"
+        },
+        {
+          "id": "15736319181184",
+          "type": "product",
+          "title": "Arena Amora Nightshade Roman Blind",
+          "handle": "amora-nightshade"
+        },
+        {
+          "id": "15736320524672",
+          "type": "product",
+          "title": "Arena Amora Twilight Roman Blind",
+          "handle": "amora-twilight"
+        },
+        {
+          "id": "15736320852352",
+          "type": "product",
+          "title": "Arena Roscoe Shadow Roman Blind",
+          "handle": "roscoe-shadow"
+        },
+        {
+          "id": "15736321114496",
+          "type": "product",
+          "title": "Arena Roscoe Seaglass Roman Blind",
+          "handle": "roscoe-seaglass"
+        },
+        {
+          "id": "15736321442176",
+          "type": "product",
+          "title": "Arena Roscoe Multi Roman Blind",
+          "handle": "roscoe-multi"
+        },
+        {
+          "id": "15736321966464",
+          "type": "product",
+          "title": "Arena Roscoe Mimosa Roman Blind",
+          "handle": "roscoe-mimosa"
+        },
+        {
+          "id": "15736322589056",
+          "type": "product",
+          "title": "Arena Roscoe Blush Roman Blind",
+          "handle": "roscoe-blush"
+        },
+        {
+          "id": "15736323211648",
+          "type": "product",
+          "title": "Arena Roscoe Berry Roman Blind",
+          "handle": "roscoe-berry"
+        },
+        {
+          "id": "15736355488128",
+          "type": "product",
+          "title": "Arena Sleepy Sky Pastel Roman Blind",
+          "handle": "sleepy-sky-pastel"
+        },
+        {
+          "id": "15736356077952",
+          "type": "product",
+          "title": "Arena Rainbow Multi Roman Blind",
+          "handle": "rainbow-multi"
+        },
+        {
+          "id": "15736365384064",
+          "type": "product",
+          "title": "Arena Amora Charcoal Roman Blind",
+          "handle": "amora-charcoal"
+        },
+        {
+          "id": "15736366203264",
+          "type": "product",
+          "title": "Arena Amora Teal Roman Blind",
+          "handle": "amora-teal"
+        }
+      ]
+    },
+    {
+      "slug": "roman-arena-band-d",
+      "bandId": "e40fde98-3834-4439-8781-70dcf43f3273",
+      "band": "Roman Arena - Band D",
+      "description": "OB Preview - Roman Arena - Band D",
+      "representative": "little-star-sorbet",
+      "schema": {
+        "kind": "band",
+        "bandId": "e40fde98-3834-4439-8781-70dcf43f3273",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736319672704",
+          "type": "product",
+          "title": "Arena Little Star Sorbet Roman Blind",
+          "handle": "little-star-sorbet"
+        },
+        {
+          "id": "15736319967616",
+          "type": "product",
+          "title": "Arena Little Star Silver Roman Blind",
+          "handle": "little-star-silver"
+        },
+        {
+          "id": "15736320262528",
+          "type": "product",
+          "title": "Arena Little Star Joy Roman Blind",
+          "handle": "little-star-joy"
+        },
+        {
+          "id": "15736330682752",
+          "type": "product",
+          "title": "Arena Torazza Teal Roman Blind",
+          "handle": "torazza-teal"
+        },
+        {
+          "id": "15736355750272",
+          "type": "product",
+          "title": "Arena Safari Friends Jungle Roman Blind",
+          "handle": "safari-friends-jungle"
+        },
+        {
+          "id": "15736360042880",
+          "type": "product",
+          "title": "Arena Amira Topaz Roman Blind",
+          "handle": "amira-topaz"
+        },
+        {
+          "id": "15736360599936",
+          "type": "product",
+          "title": "Arena Amira Sunset Roman Blind",
+          "handle": "amira-sunset"
+        },
+        {
+          "id": "15736361124224",
+          "type": "product",
+          "title": "Arena Amira Silver Roman Blind",
+          "handle": "amira-silver"
+        },
+        {
+          "id": "15736361714048",
+          "type": "product",
+          "title": "Arena Amira Rosella Roman Blind",
+          "handle": "amira-rosella"
+        },
+        {
+          "id": "15736362402176",
+          "type": "product",
+          "title": "Arena Amira Rosa Roman Blind",
+          "handle": "amira-rosa"
+        },
+        {
+          "id": "15736363188608",
+          "type": "product",
+          "title": "Arena Amira Mineral Roman Blind",
+          "handle": "amira-mineral"
+        },
+        {
+          "id": "15736363975040",
+          "type": "product",
+          "title": "Arena Amira Cranberry Roman Blind",
+          "handle": "amira-cranberry"
+        }
+      ]
+    },
+    {
+      "slug": "roman-arena-band-g",
+      "bandId": "043ed48f-c965-4c50-8da1-ab468e525d2c",
+      "band": "Roman Arena - Band G",
+      "description": "OB Preview - Roman Arena - Band G",
+      "representative": "machu-slate",
+      "schema": {
+        "kind": "band",
+        "bandId": "043ed48f-c965-4c50-8da1-ab468e525d2c",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736323899776",
+          "type": "product",
+          "title": "Arena Machu Slate Roman Blind",
+          "handle": "machu-slate"
+        },
+        {
+          "id": "15736324292992",
+          "type": "product",
+          "title": "Arena Machu Blush Roman Blind",
+          "handle": "machu-blush"
+        },
+        {
+          "id": "15736324882816",
+          "type": "product",
+          "title": "Arena Ripple Teal Roman Blind",
+          "handle": "ripple-teal"
+        },
+        {
+          "id": "15736325472640",
+          "type": "product",
+          "title": "Arena Ripple Shadow Roman Blind",
+          "handle": "ripple-shadow"
+        },
+        {
+          "id": "15736325833088",
+          "type": "product",
+          "title": "Arena Ripple Alabaster Roman Blind",
+          "handle": "ripple-alabaster"
+        },
+        {
+          "id": "15736326259072",
+          "type": "product",
+          "title": "Arena Quinta Natural Roman Blind",
+          "handle": "quinta-natural"
+        },
+        {
+          "id": "15736326685056",
+          "type": "product",
+          "title": "Arena Quinta Mustard Roman Blind",
+          "handle": "quinta-mustard"
+        },
+        {
+          "id": "15736327340416",
+          "type": "product",
+          "title": "Arena Quinta Midnight Roman Blind",
+          "handle": "quinta-midnight"
+        },
+        {
+          "id": "15736327897472",
+          "type": "product",
+          "title": "Arena Quinta Lagoon Roman Blind",
+          "handle": "quinta-lagoon"
+        },
+        {
+          "id": "15736328454528",
+          "type": "product",
+          "title": "Arena Quinta Dusk Roman Blind",
+          "handle": "quinta-dusk"
+        },
+        {
+          "id": "15736328782208",
+          "type": "product",
+          "title": "Arena Quinta Cinnamon Roman Blind",
+          "handle": "quinta-cinnamon"
+        }
+      ]
+    },
+    {
+      "slug": "roman-arena-band-f",
+      "bandId": "35b8babd-cb50-4233-a3cb-c959cc56e048",
+      "band": "Roman Arena - Band F",
+      "description": "OB Preview - Roman Arena - Band F",
+      "representative": "laguna-sorbet",
+      "schema": {
+        "kind": "band",
+        "bandId": "35b8babd-cb50-4233-a3cb-c959cc56e048",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736329044352",
+          "type": "product",
+          "title": "Arena Laguna Sorbet Roman Blind",
+          "handle": "laguna-sorbet"
+        },
+        {
+          "id": "15736329306496",
+          "type": "product",
+          "title": "Arena Laguna Malachite Roman Blind",
+          "handle": "laguna-malachite"
+        },
+        {
+          "id": "15736329568640",
+          "type": "product",
+          "title": "Arena Laguna Henna Roman Blind",
+          "handle": "laguna-henna"
+        },
+        {
+          "id": "15736329929088",
+          "type": "product",
+          "title": "Arena Laguna Ember  Roman Blind",
+          "handle": "laguna-ember"
+        },
+        {
+          "id": "15736330289536",
+          "type": "product",
+          "title": "Arena Laguna Ebony Roman Blind",
+          "handle": "laguna-ebony"
+        },
+        {
+          "id": "15736356602240",
+          "type": "product",
+          "title": "Arena Skyler Verdigris Roman Blind",
+          "handle": "skyler-verdigris"
+        },
+        {
+          "id": "15736357224832",
+          "type": "product",
+          "title": "Arena Skyler Shadow Roman Blind",
+          "handle": "skyler-shadow"
+        },
+        {
+          "id": "15736357880192",
+          "type": "product",
+          "title": "Arena Skyler Plum Roman Blind",
+          "handle": "skyler-plum"
+        },
+        {
+          "id": "15736358568320",
+          "type": "product",
+          "title": "Arena Skyler Magenta Roman Blind",
+          "handle": "skyler-magenta"
+        },
+        {
+          "id": "15736359027072",
+          "type": "product",
+          "title": "Arena Skyler Golden Roman Blind",
+          "handle": "skyler-golden"
+        },
+        {
+          "id": "15736359485824",
+          "type": "product",
+          "title": "Arena Skyler Breeze Roman Blind",
+          "handle": "skyler-breeze"
+        },
+        {
+          "id": "15736364663168",
+          "type": "product",
+          "title": "Arena Coparo Ice Roman Blind",
+          "handle": "coparo-ice"
+        }
+      ]
+    }
+  ]
+}

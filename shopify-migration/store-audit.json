@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-23T04:14:51.902Z",
+  "products": {
+    "count": 1886,
+    "changed": [
+      {
+        "id": "gid://shopify/Product/15736795332992",
+        "fields": [
+          "updatedAt"
+        ]
+      }
+    ],
+    "added": []
+  },
+  "collections": {
+    "count": 59,
+    "changed": [],
+    "added": []
+  },
+  "originalThemes": {
+    "count": 10,
+    "changed": []
+  },
+  "previewRole": "UNPUBLISHED"
+}

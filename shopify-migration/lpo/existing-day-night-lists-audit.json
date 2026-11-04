@@ -1,0 +1,835 @@
+{
+  "date": "2026-10-28",
+  "family": "Day & Night",
+  "scope": "Exported Assets cells at the same physical coordinates compared with current source matrix prices. Inches labels use the exported one-decimal precision; lookup semantics must also be checked before reuse. Originals are not edited.",
+  "lists": [
+    {
+      "band": "Day and Night - Band A",
+      "list": "Day & Night Band A",
+      "unit": "mm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 39.396375,
+          "sourcePrice": 169.06
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 44.863875,
+          "sourcePrice": 177.5
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 20
+    },
+    {
+      "band": "Day and Night - Band A",
+      "list": "Day & Night Band A CM",
+      "unit": "cm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 39.396375,
+          "sourcePrice": 169.06
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 44.863875,
+          "sourcePrice": 177.5
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 20
+    },
+    {
+      "band": "Day and Night - Band A",
+      "list": "Day & Night Band A Inches",
+      "unit": "inches",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 39.396375,
+          "sourcePrice": 169.06
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 44.863875,
+          "sourcePrice": 177.5
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 20
+    },
+    {
+      "band": "Day and Night - Band B",
+      "list": "Day & Night Band B",
+      "unit": "mm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 54.887625,
+          "sourcePrice": 191.63
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 64.000125,
+          "sourcePrice": 204.17
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Day and Night - Band B",
+      "list": "Day & Night Band B CM",
+      "unit": "cm",
+      "matchingCoordinates": 143,
+      "priceMismatches": 143,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 54.887625,
+          "sourcePrice": 191.63
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 64.000125,
+          "sourcePrice": 204.17
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Day and Night - Band B",
+      "list": "Day & Night Band B Inches",
+      "unit": "inches",
+      "matchingCoordinates": 143,
+      "priceMismatches": 143,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 54.887625,
+          "sourcePrice": 191.63
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 64.000125,
+          "sourcePrice": 204.17
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Day and Night - Band C",
+      "list": "Day & Night Band C",
+      "unit": "mm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 85.0095,
+          "sourcePrice": 235.52
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 101.2095,
+          "sourcePrice": 256.04
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 16
+    },
+    {
+      "band": "Day and Night - Band C",
+      "list": "Day & Night Band C CM",
+      "unit": "cm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 85.0095,
+          "sourcePrice": 235.52
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 101.2095,
+          "sourcePrice": 256.04
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 16
+    },
+    {
+      "band": "Day and Night - Band C",
+      "list": "Day & Night Band C Inches",
+      "unit": "inches",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 85.0095,
+          "sourcePrice": 235.52
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 101.2095,
+          "sourcePrice": 256.04
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 16
+    },
+    {
+      "band": "Day and Night - Band D",
+      "list": "Day & Night Band D",
+      "unit": "mm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 108.246375,
+          "sourcePrice": 269.38
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 129.913875,
+          "sourcePrice": 296.06
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 30
+    },
+    {
+      "band": "Day and Night - Band D",
+      "list": "Day & Night Band D CM",
+      "unit": "cm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 108.246375,
+          "sourcePrice": 269.38
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 129.913875,
+          "sourcePrice": 296.06
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 30
+    },
+    {
+      "band": "Day and Night - Band D",
+      "list": "Day & Night Band D Inches",
+      "unit": "inches",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 108.246375,
+          "sourcePrice": 269.38
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 129.913875,
+          "sourcePrice": 296.06
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 30
+    },
+    {
+      "band": "Day and Night - Band E",
+      "list": "Day & Night Band E",
+      "unit": "mm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 130.4505,
+          "sourcePrice": 301.74
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 157.3425,
+          "sourcePrice": 334.29
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 22
+    },
+    {
+      "band": "Day and Night - Band E",
+      "list": "Day & Night Band E CM",
+      "unit": "cm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 130.4505,
+          "sourcePrice": 301.74
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 157.3425,
+          "sourcePrice": 334.29
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 22
+    },
+    {
+      "band": "Day and Night - Band E",
+      "list": "Day & Night Band E Inches",
+      "unit": "inches",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 130.4505,
+          "sourcePrice": 301.74
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 157.3425,
+          "sourcePrice": 334.29
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 22
+    },
+    {
+      "band": "Day and Night - Band F",
+      "list": "Day & Night Band F",
+      "unit": "mm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 158.4208125,
+          "sourcePrice": 342.49
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 191.8940625,
+          "sourcePrice": 382.46
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 28
+    },
+    {
+      "band": "Day and Night - Band F",
+      "list": "Day & Night Band F CM",
+      "unit": "cm",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 158.4208125,
+          "sourcePrice": 342.49
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 191.8940625,
+          "sourcePrice": 382.46
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 28
+    },
+    {
+      "band": "Day and Night - Band F",
+      "list": "Day & Night Band F Inches",
+      "unit": "inches",
+      "matchingCoordinates": 264,
+      "priceMismatches": 264,
+      "examples": [
+        {
+          "widthMm": 2400,
+          "heightMm": 2200,
+          "listPrice": 158.4208125,
+          "sourcePrice": 342.49
+        },
+        {
+          "widthMm": 2400,
+          "heightMm": 2600,
+          "listPrice": 191.8940625,
+          "sourcePrice": 382.46
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 28
+    },
+    {
+      "band": "Dayandnight - Band A",
+      "list": "Day & Night Band A",
+      "unit": "mm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 11.086875,
+          "sourcePrice": 129.39
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 19.288125,
+          "sourcePrice": 142.04
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 5
+    },
+    {
+      "band": "Dayandnight - Band A",
+      "list": "Day & Night Band A CM",
+      "unit": "cm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 11.086875,
+          "sourcePrice": 129.39
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 19.288125,
+          "sourcePrice": 142.04
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 5
+    },
+    {
+      "band": "Dayandnight - Band A",
+      "list": "Day & Night Band A Inches",
+      "unit": "inches",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 11.086875,
+          "sourcePrice": 129.39
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 19.288125,
+          "sourcePrice": 142.04
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 5
+    },
+    {
+      "band": "Dayandnight - Band B",
+      "list": "Day & Night Band B",
+      "unit": "mm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 15.643125,
+          "sourcePrice": 139.65
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 29.311875,
+          "sourcePrice": 158.46
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band B",
+      "list": "Day & Night Band B CM",
+      "unit": "cm",
+      "matchingCoordinates": 6,
+      "priceMismatches": 6,
+      "examples": [
+        {
+          "widthMm": 2000,
+          "heightMm": 1000,
+          "listPrice": 24.148125,
+          "sourcePrice": 149.91
+        },
+        {
+          "widthMm": 2000,
+          "heightMm": 1600,
+          "listPrice": 37.816875,
+          "sourcePrice": 168.72
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band B",
+      "list": "Day & Night Band B Inches",
+      "unit": "inches",
+      "matchingCoordinates": 6,
+      "priceMismatches": 6,
+      "examples": [
+        {
+          "widthMm": 2000,
+          "heightMm": 1000,
+          "listPrice": 24.148125,
+          "sourcePrice": 149.91
+        },
+        {
+          "widthMm": 2000,
+          "heightMm": 1600,
+          "listPrice": 37.816875,
+          "sourcePrice": 168.72
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band C",
+      "list": "Day & Night Band C",
+      "unit": "mm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 24.5025,
+          "sourcePrice": 159.6
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 48.8025,
+          "sourcePrice": 190.38
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band C",
+      "list": "Day & Night Band C CM",
+      "unit": "cm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 24.5025,
+          "sourcePrice": 159.6
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 48.8025,
+          "sourcePrice": 190.38
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band C",
+      "list": "Day & Night Band C Inches",
+      "unit": "inches",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 24.5025,
+          "sourcePrice": 159.6
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 48.8025,
+          "sourcePrice": 190.38
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band D",
+      "list": "Day & Night Band D",
+      "unit": "mm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 31.336875,
+          "sourcePrice": 174.99
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 63.838125,
+          "sourcePrice": 215
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band D",
+      "list": "Day & Night Band D CM",
+      "unit": "cm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 31.336875,
+          "sourcePrice": 174.99
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 63.838125,
+          "sourcePrice": 215
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band D",
+      "list": "Day & Night Band D Inches",
+      "unit": "inches",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 31.336875,
+          "sourcePrice": 174.99
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 63.838125,
+          "sourcePrice": 215
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band E",
+      "list": "Day & Night Band E",
+      "unit": "mm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 37.8675,
+          "sourcePrice": 189.7
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 78.2055,
+          "sourcePrice": 238.53
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band E",
+      "list": "Day & Night Band E CM",
+      "unit": "cm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 37.8675,
+          "sourcePrice": 189.7
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 78.2055,
+          "sourcePrice": 238.53
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band E",
+      "list": "Day & Night Band E Inches",
+      "unit": "inches",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 37.8675,
+          "sourcePrice": 189.7
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 78.2055,
+          "sourcePrice": 238.53
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band F",
+      "list": "Day & Night Band F",
+      "unit": "mm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 46.0940625,
+          "sourcePrice": 208.22
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 96.3039375,
+          "sourcePrice": 268.17
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band F",
+      "list": "Day & Night Band F CM",
+      "unit": "cm",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 46.0940625,
+          "sourcePrice": 208.22
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 96.3039375,
+          "sourcePrice": 268.17
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Dayandnight - Band F",
+      "list": "Day & Night Band F Inches",
+      "unit": "inches",
+      "matchingCoordinates": 10,
+      "priceMismatches": 10,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 46.0940625,
+          "sourcePrice": 208.22
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1600,
+          "listPrice": 96.3039375,
+          "sourcePrice": 268.17
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    }
+  ]
+}

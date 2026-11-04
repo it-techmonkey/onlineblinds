@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "skylight-blinds-base-band",
+      "band": "Skylight Blinds - Base Band",
+      "kind": "skylight",
+      "products": 10,
+      "compared": 2164,
+      "rejected": 0,
+      "formulaBytes": 5033,
+      "formulaSha256": "4375944edb01b03a27d0556a17422044248be79492d016e81c5b7b58d3cdbce3"
+    }
+  ]
+}

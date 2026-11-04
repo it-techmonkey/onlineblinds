@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-04",
+  "category": "skylight",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "skylight-blinds-base-band",
+      "bandId": "43ae9066-e6e6-4d13-8fe6-5c3ade68ed6c",
+      "band": "Skylight Blinds - Base Band",
+      "description": "OB Preview - Skylight Blinds - Base Band",
+      "representative": "blackout-soft-sky",
+      "schema": {
+        "kind": "skylight",
+        "bandId": "43ae9066-e6e6-4d13-8fe6-5c3ade68ed6c",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736779637120",
+          "type": "product",
+          "title": "Blackout Soft Sky Skylight Blind",
+          "handle": "blackout-soft-sky"
+        },
+        {
+          "id": "15736779735424",
+          "type": "product",
+          "title": "Blackout Turf Skylight Blind",
+          "handle": "blackout-turf"
+        },
+        {
+          "id": "15736780063104",
+          "type": "product",
+          "title": "Blackout Delicate Cream Skylight Blind",
+          "handle": "blackout-delicate-cream"
+        },
+        {
+          "id": "15736780259712",
+          "type": "product",
+          "title": "Blackout Latte Skylight Blind",
+          "handle": "blackout-latte"
+        },
+        {
+          "id": "15736780423552",
+          "type": "product",
+          "title": "Blackout Smouldering Charcoal Skylight Blind",
+          "handle": "blackout-smouldering-charcoal"
+        },
+        {
+          "id": "15736780882304",
+          "type": "product",
+          "title": "Blackout Shiraz Skylight Blind",
+          "handle": "blackout-shiraz"
+        },
+        {
+          "id": "15736781046144",
+          "type": "product",
+          "title": "Blackout Midnight Blue Skylight Blind",
+          "handle": "blackout-midnight-blue"
+        },
+        {
+          "id": "15736781177216",
+          "type": "product",
+          "title": "Jet Black Blackout Skylight Blind",
+          "handle": "jet-black-blackout"
+        },
+        {
+          "id": "15736781439360",
+          "type": "product",
+          "title": "Blackout Blossom White Skylight Blind",
+          "handle": "blackout-blossom-white"
+        },
+        {
+          "id": "15736781701504",
+          "type": "product",
+          "title": "Blackout Light Grey Skylight Blind",
+          "handle": "blackout-light-grey"
+        }
+      ]
+    }
+  ]
+}

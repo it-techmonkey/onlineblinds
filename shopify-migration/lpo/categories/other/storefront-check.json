@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 10,
+  "results": [
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "base",
+      "expected": 160,
+      "error": null,
+      "actual": 160,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "mm",
+      "expected": 160,
+      "error": null,
+      "actual": 160,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "fractions",
+      "expected": 183.3,
+      "error": null,
+      "actual": 183.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "cassette",
+      "expected": 173.98,
+      "error": null,
+      "actual": 173.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "chain + bottom bar",
+      "expected": 167.48,
+      "error": null,
+      "actual": 167.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "motorised",
+      "expected": 268,
+      "error": null,
+      "actual": 268,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "too large",
+      "expected": 491,
+      "error": null,
+      "actual": 491,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Eclipsecore Band",
+      "product": "non-driii-honeycomb-blackout-blinds",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

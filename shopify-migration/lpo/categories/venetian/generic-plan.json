@@ -1,0 +1,1465 @@
+{
+  "date": "2026-11-04",
+  "category": "venetian",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "metal-venetian-special-band",
+      "bandId": "eba34cd1-f34d-4511-9558-883c5cb0da30",
+      "band": "Metal Venetian - Special Band",
+      "description": "OB Preview - Metal Venetian - Special Band",
+      "representative": "sunrise",
+      "schema": {
+        "kind": "band",
+        "bandId": "eba34cd1-f34d-4511-9558-883c5cb0da30",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736076435840",
+          "type": "product",
+          "title": "Sunrise Metal Venetian Blind - 25mm",
+          "handle": "sunrise"
+        },
+        {
+          "id": "15736076829056",
+          "type": "product",
+          "title": "Sugar Maple Metal Venetian Blind",
+          "handle": "sugar-maple"
+        },
+        {
+          "id": "15736076960128",
+          "type": "product",
+          "title": "Scottish Pine Metal  Venetian Blind - 25mm",
+          "handle": "scottish-pine"
+        },
+        {
+          "id": "15736078270848",
+          "type": "product",
+          "title": "White Shimmer Metal Venetian Blind - 25mm",
+          "handle": "white-shimmer"
+        },
+        {
+          "id": "15736078303616",
+          "type": "product",
+          "title": "White Metal Venetian Blind - 25mm",
+          "handle": "white"
+        },
+        {
+          "id": "15736078369152",
+          "type": "product",
+          "title": "Snowflake Metal Venetian Blind - 25mm",
+          "handle": "snowflake"
+        },
+        {
+          "id": "15736078926208",
+          "type": "product",
+          "title": "Silver Lustre Metal Venetian Blind",
+          "handle": "silver-lustre"
+        },
+        {
+          "id": "15736079253888",
+          "type": "product",
+          "title": "Silver Metal Venetian Blind - 25mm",
+          "handle": "silver"
+        },
+        {
+          "id": "15736079450496",
+          "type": "product",
+          "title": "Shiny Silver Metal Venetian Blind - 25mm",
+          "handle": "shiny-silver"
+        },
+        {
+          "id": "15736079843712",
+          "type": "product",
+          "title": "Pinstripe Metal Venetian Blind - 25mm",
+          "handle": "pinstripe"
+        },
+        {
+          "id": "15736080859520",
+          "type": "product",
+          "title": "Ice Pink Metal Venetian Blind - 25mm",
+          "handle": "ice-pink"
+        },
+        {
+          "id": "15736080925056",
+          "type": "product",
+          "title": "Spring Blush Metal Venetian Blind - 25mm",
+          "handle": "spring-blush"
+        },
+        {
+          "id": "15736081383808",
+          "type": "product",
+          "title": "Ice Blue Metal Venetian Blind - 25mm",
+          "handle": "ice-blue"
+        },
+        {
+          "id": "15736081744256",
+          "type": "product",
+          "title": "Glacier Metal Venetian Blind - 25mm",
+          "handle": "glacier"
+        },
+        {
+          "id": "15736081908096",
+          "type": "product",
+          "title": "Cool Sky Metal Venetian Blind",
+          "handle": "cool-sky"
+        },
+        {
+          "id": "15736082071936",
+          "type": "product",
+          "title": "Champagne Metal  Venetian Blind -25mm",
+          "handle": "champagne"
+        },
+        {
+          "id": "15736083251584",
+          "type": "product",
+          "title": "Alpine Metal  Venetian Blind - 25mm",
+          "handle": "alpine"
+        },
+        {
+          "id": "15736083317120",
+          "type": "product",
+          "title": "Peppermint Metal Venetian Blind - 25mm",
+          "handle": "peppermint"
+        },
+        {
+          "id": "15736083415424",
+          "type": "product",
+          "title": "Fern Green Metal  Venetian Blind - 25mm",
+          "handle": "fern-green"
+        },
+        {
+          "id": "15736083546496",
+          "type": "product",
+          "title": "Soft Stone Metal Venetian Blind - 25mm",
+          "handle": "soft-stone"
+        },
+        {
+          "id": "15736083677568",
+          "type": "product",
+          "title": "Mercury Metal Venetian Blind",
+          "handle": "mercury"
+        },
+        {
+          "id": "15736083775872",
+          "type": "product",
+          "title": "Elderberry Metal Venetian Blind - 25mm",
+          "handle": "elderberry"
+        },
+        {
+          "id": "15736083808640",
+          "type": "product",
+          "title": "Creamy Apricot Metal Venetian Blind - 25mm",
+          "handle": "creamy-apricot"
+        },
+        {
+          "id": "15736083939712",
+          "type": "product",
+          "title": "Classic Stripe Metal  Venetian Blind",
+          "handle": "classic-stripe"
+        },
+        {
+          "id": "15736090395008",
+          "type": "product",
+          "title": "Calico Metal Venetian Blind - 25mm",
+          "handle": "calico"
+        },
+        {
+          "id": "15736091672960",
+          "type": "product",
+          "title": "Mahogany Metal Venetian Blind - 25mm",
+          "handle": "mahogany"
+        },
+        {
+          "id": "15736091967872",
+          "type": "product",
+          "title": "Hornbeam Metal Venetian Blind - 25mm",
+          "handle": "hornbeam"
+        },
+        {
+          "id": "15736092262784",
+          "type": "product",
+          "title": "Conker Metal Venetian Blind - 25mm",
+          "handle": "conker"
+        },
+        {
+          "id": "15736092426624",
+          "type": "product",
+          "title": "Chestnut Metal  Venetian Blind - 25mm",
+          "handle": "chestnut"
+        },
+        {
+          "id": "15736092524928",
+          "type": "product",
+          "title": "Cherry Metal  Venetian Blind",
+          "handle": "cherry"
+        },
+        {
+          "id": "15736092656000",
+          "type": "product",
+          "title": "American Elm Metal Venetian Blind - 25mm",
+          "handle": "american-elm"
+        },
+        {
+          "id": "15736092885376",
+          "type": "product",
+          "title": "Midnight Blue Metal Venetian Blind - 25mm",
+          "handle": "midnight-blue"
+        },
+        {
+          "id": "15736092983680",
+          "type": "product",
+          "title": "Blue Haze Metal  Venetian Blind",
+          "handle": "blue-haze"
+        },
+        {
+          "id": "15736093016448",
+          "type": "product",
+          "title": "Sparkle Black Metal Venetian Blind - 25mm",
+          "handle": "sparkle-black"
+        },
+        {
+          "id": "15736093213056",
+          "type": "product",
+          "title": "Black Gloss Metal  Venetian Blind - 25mm",
+          "handle": "black-gloss"
+        },
+        {
+          "id": "15736093278592",
+          "type": "product",
+          "title": "Barely Black Metal Venetian Blind",
+          "handle": "barely-black"
+        }
+      ]
+    },
+    {
+      "slug": "metal-venetian-normal-band",
+      "bandId": "d7595ffe-bf9d-45f2-95b7-9479cc3ccb3b",
+      "band": "Metal Venetian - Normal Band",
+      "description": "OB Preview - Metal Venetian - Normal Band",
+      "representative": "sand",
+      "schema": {
+        "kind": "band",
+        "bandId": "d7595ffe-bf9d-45f2-95b7-9479cc3ccb3b",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736077156736",
+          "type": "product",
+          "title": "Sand Metal Venetian Blind",
+          "handle": "sand"
+        },
+        {
+          "id": "15736077681024",
+          "type": "product",
+          "title": "Praline Metal Venetian Blind",
+          "handle": "praline"
+        },
+        {
+          "id": "15736078008704",
+          "type": "product",
+          "title": "Marigold Metal Venetian Blind",
+          "handle": "marigold"
+        },
+        {
+          "id": "15736078041472",
+          "type": "product",
+          "title": "Indian Yellow Metal Venetian Blind",
+          "handle": "indian-yellow"
+        },
+        {
+          "id": "15736078107008",
+          "type": "product",
+          "title": "Honey Metal Venetian Blind - 25mm",
+          "handle": "honey"
+        },
+        {
+          "id": "15736078139776",
+          "type": "product",
+          "title": "Hessian Metal Venetian Blind - 25mm",
+          "handle": "hessian"
+        },
+        {
+          "id": "15736078172544",
+          "type": "product",
+          "title": "Harvest Metal Venetian Blind - 25mm",
+          "handle": "harvest"
+        },
+        {
+          "id": "15736078205312",
+          "type": "product",
+          "title": "Golden Yellow Metal Venetian Blind",
+          "handle": "golden-yellow"
+        },
+        {
+          "id": "15736078238080",
+          "type": "product",
+          "title": "Buttercup Metal  Venetian Blind - 25mm",
+          "handle": "buttercup"
+        },
+        {
+          "id": "15736078401920",
+          "type": "product",
+          "title": "Polar Metal Venetian Blind - 25mm",
+          "handle": "polar"
+        },
+        {
+          "id": "15736078434688",
+          "type": "product",
+          "title": "Oyster White Metal Venetian Blind - 25mm",
+          "handle": "oyster-white"
+        },
+        {
+          "id": "15736078467456",
+          "type": "product",
+          "title": "Gloss White Metal Venetian Blind - 25mm",
+          "handle": "gloss-white"
+        },
+        {
+          "id": "15736078532992",
+          "type": "product",
+          "title": "Classic White Metal  Venetian Blind - 25mm",
+          "handle": "classic-white"
+        },
+        {
+          "id": "15736078565760",
+          "type": "product",
+          "title": "Wild Plum Metal Venetian Blind - 25mm",
+          "handle": "wild-plum"
+        },
+        {
+          "id": "15736078598528",
+          "type": "product",
+          "title": "Damson Metal Venetian Blind - 25mm",
+          "handle": "damson"
+        },
+        {
+          "id": "15736078664064",
+          "type": "product",
+          "title": "Silver Pitch Metal Venetian Blind - 25mm",
+          "handle": "silver-pitch"
+        },
+        {
+          "id": "15736079647104",
+          "type": "product",
+          "title": "Satin Silver Metal Venetian Blind",
+          "handle": "satin-silver"
+        },
+        {
+          "id": "15736080007552",
+          "type": "product",
+          "title": "Frosted Silver Metal Venetian Blind",
+          "handle": "frosted-silver"
+        },
+        {
+          "id": "15736080171392",
+          "type": "product",
+          "title": "Brushed Silver Metal  Venetian Blind",
+          "handle": "brushed-silver"
+        },
+        {
+          "id": "15736080368000",
+          "type": "product",
+          "title": "Brushed Nickel Metal  Venetian Blind - 25mm",
+          "handle": "brushed-nickel"
+        },
+        {
+          "id": "15736080564608",
+          "type": "product",
+          "title": "Antique Silver Metal  Venetian Blind - 25mm",
+          "handle": "antique-silver"
+        },
+        {
+          "id": "15736080630144",
+          "type": "product",
+          "title": "Scarlet Metal Venetian Blind",
+          "handle": "scarlet"
+        },
+        {
+          "id": "15736080662912",
+          "type": "product",
+          "title": "Russet Metal Venetian Blind",
+          "handle": "russet"
+        },
+        {
+          "id": "15736080695680",
+          "type": "product",
+          "title": "Dorothy Metal  Venetian Blind",
+          "handle": "dorothy"
+        },
+        {
+          "id": "15736080761216",
+          "type": "product",
+          "title": "Brick Metal  Venetian Blind - 25mm",
+          "handle": "brick"
+        },
+        {
+          "id": "15736080793984",
+          "type": "product",
+          "title": "Sugar Pink Metal Venetian Blind",
+          "handle": "sugar-pink"
+        },
+        {
+          "id": "15736080826752",
+          "type": "product",
+          "title": "Pretty Pink Metal Venetian Blind - 25mm",
+          "handle": "pretty-pink"
+        },
+        {
+          "id": "15736080892288",
+          "type": "product",
+          "title": "Fuschia Metal Venetian Blind",
+          "handle": "fuchsia"
+        },
+        {
+          "id": "15736080957824",
+          "type": "product",
+          "title": "Soft Orange Metal Venetian Blind - 25mm",
+          "handle": "soft-orange"
+        },
+        {
+          "id": "15736080990592",
+          "type": "product",
+          "title": "Orange Metal Venetian Blind - 25mm",
+          "handle": "orange"
+        },
+        {
+          "id": "15736081023360",
+          "type": "product",
+          "title": "Melon Metal Venetian Blind - 25mm",
+          "handle": "melon"
+        },
+        {
+          "id": "15736081056128",
+          "type": "product",
+          "title": "Mellow Peach Metal Venetian Blind",
+          "handle": "mellow-peach"
+        },
+        {
+          "id": "15736081121664",
+          "type": "product",
+          "title": "Burnt Orange Metal  Venetian Blind",
+          "handle": "burnt-orange"
+        },
+        {
+          "id": "15736082203008",
+          "type": "product",
+          "title": "Twilight Grey Metal Venetian Blind - 25mm",
+          "handle": "twilight-grey"
+        },
+        {
+          "id": "15736082432384",
+          "type": "product",
+          "title": "Mid Grey Metal Venetian Blind - 25mm",
+          "handle": "mid-grey"
+        },
+        {
+          "id": "15736082661760",
+          "type": "product",
+          "title": "Graphite Metal Venetian Blind - 25mm",
+          "handle": "graphite"
+        },
+        {
+          "id": "15736082760064",
+          "type": "product",
+          "title": "Dusty Grey Metal  Venetian Blind - 25mm",
+          "handle": "dusty-grey"
+        },
+        {
+          "id": "15736082956672",
+          "type": "product",
+          "title": "Charcoal Grey Metal  Venetian Blind - 25mm",
+          "handle": "charcoal-grey"
+        },
+        {
+          "id": "15736083153280",
+          "type": "product",
+          "title": "Ash Metal  Venetian Blind - 25mm",
+          "handle": "ash"
+        },
+        {
+          "id": "15736083284352",
+          "type": "product",
+          "title": "Pistachio Metal Venetian Blind - 25mm",
+          "handle": "pistachio"
+        },
+        {
+          "id": "15736083349888",
+          "type": "product",
+          "title": "Khaki Metal Venetian Blind - 25mm",
+          "handle": "khaki"
+        },
+        {
+          "id": "15736083382656",
+          "type": "product",
+          "title": "Fresh Apple Metal Venetian Blind",
+          "handle": "fresh-apple"
+        },
+        {
+          "id": "15736083448192",
+          "type": "product",
+          "title": "Everglades Metal Venetian Blind",
+          "handle": "everglades"
+        },
+        {
+          "id": "15736083480960",
+          "type": "product",
+          "title": "Electric Aqua Metal Venetian Blind",
+          "handle": "electric-aqua"
+        },
+        {
+          "id": "15736083513728",
+          "type": "product",
+          "title": "Deep Ivy Metal Venetian Blind - 25mm",
+          "handle": "deep-ivy"
+        },
+        {
+          "id": "15736083579264",
+          "type": "product",
+          "title": "Off White Metal Venetian Blind - 25mm",
+          "handle": "off-white"
+        },
+        {
+          "id": "15736083612032",
+          "type": "product",
+          "title": "Oatmeal Metal Venetian Blind - 25mm",
+          "handle": "oatmeal"
+        },
+        {
+          "id": "15736083644800",
+          "type": "product",
+          "title": "Mint Cream Metal Venetian Blind - 25mm",
+          "handle": "mint-cream"
+        },
+        {
+          "id": "15736083710336",
+          "type": "product",
+          "title": "Melba Metal Venetian Blind",
+          "handle": "melba"
+        },
+        {
+          "id": "15736083743104",
+          "type": "product",
+          "title": "Magnolia Metal Venetian Blind - 25mm",
+          "handle": "magnolia"
+        },
+        {
+          "id": "15736083841408",
+          "type": "product",
+          "title": "Cream Metal Venetian Blind - 25mm",
+          "handle": "cream"
+        },
+        {
+          "id": "15736084267392",
+          "type": "product",
+          "title": "Chalk White Metal  Venetian Blind - 25mm",
+          "handle": "chalk-white"
+        },
+        {
+          "id": "15736090427776",
+          "type": "product",
+          "title": "Gold Copper Metal Venetian Blind - 25mm",
+          "handle": "gold-copper-metal-venetian-blind-25-mm"
+        },
+        {
+          "id": "15736090493312",
+          "type": "product",
+          "title": "Copper Metal Venetian Blind - 25mm",
+          "handle": "copper"
+        },
+        {
+          "id": "15736090788224",
+          "type": "product",
+          "title": "Brushed Copper Metal  Venetian  - 25mm",
+          "handle": "brushed-copper"
+        },
+        {
+          "id": "15736090919296",
+          "type": "product",
+          "title": "Walnut Metal Venetian Blind",
+          "handle": "walnut"
+        },
+        {
+          "id": "15736091115904",
+          "type": "product",
+          "title": "Soft Brown Metal Venetian Blind",
+          "handle": "soft-brown"
+        },
+        {
+          "id": "15736091279744",
+          "type": "product",
+          "title": "Natural Taupe Metal Venetian Blind - 25mm",
+          "handle": "natural-taupe"
+        },
+        {
+          "id": "15736091509120",
+          "type": "product",
+          "title": "Mushroom Metal Venetian Blind - 25mm",
+          "handle": "mushroom"
+        },
+        {
+          "id": "15736091804032",
+          "type": "product",
+          "title": "Latte Metal Venetian Blind - 25mm",
+          "handle": "latte"
+        },
+        {
+          "id": "15736092131712",
+          "type": "product",
+          "title": "Fruitwood Metal Venetian Blind - 25mm",
+          "handle": "fruitwood"
+        },
+        {
+          "id": "15736092590464",
+          "type": "product",
+          "title": "Caramel Metal  Venetian Blind",
+          "handle": "caramel"
+        },
+        {
+          "id": "15736092623232",
+          "type": "product",
+          "title": "Bronze Metal Venetian Blind - 25mm",
+          "handle": "bronze"
+        },
+        {
+          "id": "15736092688768",
+          "type": "product",
+          "title": "Sparkle Blue Metal Venetian Blind - 25mm",
+          "handle": "sparkle-blue"
+        },
+        {
+          "id": "15736092721536",
+          "type": "product",
+          "title": "Sea Blue Metal Venetian Blind - 25mm",
+          "handle": "sea-blue"
+        },
+        {
+          "id": "15736092754304",
+          "type": "product",
+          "title": "Sapphire Metal Venetian Blind - 25mm",
+          "handle": "sapphire"
+        },
+        {
+          "id": "15736092819840",
+          "type": "product",
+          "title": "Oxford Blue Metal Venetian Blind - 25mm",
+          "handle": "oxford-blue-1"
+        },
+        {
+          "id": "15736092852608",
+          "type": "product",
+          "title": "Oriental Blue Metal Venetian Blind - 25mm",
+          "handle": "oriental-blue"
+        },
+        {
+          "id": "15736092950912",
+          "type": "product",
+          "title": "Cool Aqua Metal  Venetian Blind - 25mm",
+          "handle": "cool-aqua"
+        },
+        {
+          "id": "15736093049216",
+          "type": "product",
+          "title": "Pitch Black Metal Venetian Blind - 25mm",
+          "handle": "pitch-black"
+        },
+        {
+          "id": "15736093114752",
+          "type": "product",
+          "title": "Mocha Metal Venetian Blind - 25mm",
+          "handle": "mocha"
+        },
+        {
+          "id": "15736093147520",
+          "type": "product",
+          "title": "Jet Metal Venetian Blind - 25mm",
+          "handle": "jet"
+        }
+      ]
+    },
+    {
+      "slug": "perfect-fit-wooden-band",
+      "bandId": "45bfb5c0-c586-46e2-915c-57eb00750fc3",
+      "band": "Perfect Fit Wooden Band",
+      "description": "OB Preview - Perfect Fit Wooden Band",
+      "representative": "tawny-perfect-fit",
+      "schema": {
+        "kind": "band",
+        "bandId": "45bfb5c0-c586-46e2-915c-57eb00750fc3",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736846418304",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Tawny - 25mm",
+          "handle": "tawny-perfect-fit"
+        },
+        {
+          "id": "15736846549376",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Pure White - 25mm",
+          "handle": "pure-white-perfect-fit"
+        },
+        {
+          "id": "15736846614912",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Oregon - 25mm",
+          "handle": "oregon-perfect-fit"
+        },
+        {
+          "id": "15736846877056",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Kalm Grey - 25mm",
+          "handle": "kalm-grey-perfect-fit"
+        },
+        {
+          "id": "15736847008128",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Honey Oak - 25mm",
+          "handle": "honey-oak-perfect-fit"
+        },
+        {
+          "id": "15736847106432",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Hazel - 25mm",
+          "handle": "hazel-perfect-fit"
+        },
+        {
+          "id": "15736849072512",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden Blind - Ash Grey - 25mm",
+          "handle": "ash-grey-perfect-fit"
+        },
+        {
+          "id": "15736849957248",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Polar Off White - 25mm",
+          "handle": "polar-off-white-perfect-fit"
+        },
+        {
+          "id": "15736850416000",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Morena Beige - 25mm",
+          "handle": "morena-beige-perfect-fit"
+        },
+        {
+          "id": "15736850940288",
+          "type": "product",
+          "title": "Perfect Fit No Drill Wooden blind - Mirren Cream - 25mm",
+          "handle": "mirren-cream-perfect-fit"
+        }
+      ]
+    },
+    {
+      "slug": "perfect-fit-metal-venetians-standard",
+      "bandId": "4cb2831d-8d62-497d-814a-73324bd289f6",
+      "band": "Perfect Fit Metal Venetians - Standard",
+      "description": "OB Preview - Perfect Fit Metal Venetians - Standard",
+      "representative": "sand-perfect-fit-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "4cb2831d-8d62-497d-814a-73324bd289f6",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736871354752",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sand - 25mm",
+          "handle": "sand-perfect-fit-blind"
+        },
+        {
+          "id": "15736872305024",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Latte - 25mm",
+          "handle": "latte-perfect-fit-blind"
+        },
+        {
+          "id": "15736872894848",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Khaki - 25mm",
+          "handle": "khaki-perfect-fit-blind"
+        },
+        {
+          "id": "15736873025920",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Jet - 25mm",
+          "handle": "jet-perfect-fit-blind"
+        },
+        {
+          "id": "15736873255296",
+          "type": "product",
+          "title": "Perfect Fit No Drill metal Blind - Honey - 25mm",
+          "handle": "honey-perfect-fit-blind"
+        },
+        {
+          "id": "15736873484672",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Cream  - 25mm",
+          "handle": "cream-perfect-fit-blind"
+        },
+        {
+          "id": "15736873582976",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Brick - 25mm",
+          "handle": "brick-perfect-fit-blind"
+        },
+        {
+          "id": "15736873877888",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Ash - 25mm",
+          "handle": "ash-perfect-fit-blind"
+        },
+        {
+          "id": "15736874074496",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - White - 25mm",
+          "handle": "white-perfect-fit-blind"
+        },
+        {
+          "id": "15736874140032",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Polar - 25mm",
+          "handle": "polar-perfect-fit-blind"
+        },
+        {
+          "id": "15736874205568",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Mocha - 25mm",
+          "handle": "mocha-perfect-fit-blind"
+        },
+        {
+          "id": "15736875090304",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Melon - 25mm",
+          "handle": "melon-perfect-fit-blind"
+        },
+        {
+          "id": "15736879382912",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Melba - 25mm",
+          "handle": "melba-perfect-fit-blind"
+        },
+        {
+          "id": "15736880333184",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Bronze - 25mm",
+          "handle": "bronze-perfect-fit-blind"
+        },
+        {
+          "id": "15736881054080",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Walnut - 25mm",
+          "handle": "walnut-perfect-fit-blind"
+        },
+        {
+          "id": "15736881578368",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Silver - 25mm",
+          "handle": "silver-perfect-fit-blind"
+        },
+        {
+          "id": "15736881643904",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Russet - 25mm",
+          "handle": "russet-perfect-fit-blind"
+        },
+        {
+          "id": "15736881774976",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Orange - 25mm",
+          "handle": "orange-perfect-fit-blind"
+        },
+        {
+          "id": "15736882069888",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Damson  - 25mm",
+          "handle": "damson-perfect-fit-blind"
+        },
+        {
+          "id": "15736882102656",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Copper - 25mm",
+          "handle": "copper-perfect-fit-blind"
+        },
+        {
+          "id": "15736882692480",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Oatmeal - 25mm",
+          "handle": "oatmeal-perfect-fit-blind"
+        },
+        {
+          "id": "15736883020160",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Hessian - 25mm",
+          "handle": "hessian-perfect-fit-blind"
+        },
+        {
+          "id": "15736883478912",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Harvest - 25mm",
+          "handle": "harvest-perfect-fit-blind"
+        },
+        {
+          "id": "15736884593024",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Fuschia  - 25mm",
+          "handle": "fuschia-perfect-fit-blind"
+        },
+        {
+          "id": "15736885051776",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Dorothy  - 25mm",
+          "handle": "dorothy-perfect-fit-blind"
+        },
+        {
+          "id": "15736885313920",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Caramel - 25mm",
+          "handle": "caramel-perfect-fit-blind"
+        },
+        {
+          "id": "15736886198656",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Scarlet - 25mm",
+          "handle": "scarlet-perfect-fit-blind"
+        },
+        {
+          "id": "15736886264192",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Praline - 25mm",
+          "handle": "praline-perfect-fit-blind"
+        },
+        {
+          "id": "15736886362496",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Ice Blue - 25mm",
+          "handle": "ice-blue-perfect-fit-blind"
+        },
+        {
+          "id": "15736886755712",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Graphite - 25mm",
+          "handle": "graphite-perfect-fit-blind"
+        },
+        {
+          "id": "15736886821248",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Deep Ivy  - 25mm",
+          "handle": "deep-ivy-perfect-fit-blind"
+        },
+        {
+          "id": "15736887345536",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sea Blue - 25mm",
+          "handle": "sea-blue-perfect-fit-blind"
+        },
+        {
+          "id": "15736887443840",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Sapphire - 25mm",
+          "handle": "sapphire-perfect-fit-blind"
+        },
+        {
+          "id": "15736887705984",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Mushroom - 25mm",
+          "handle": "mushroom-perfect-fit-blind"
+        },
+        {
+          "id": "15736888328576",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Mid Grey - 25mm",
+          "handle": "mid-grey-perfect-fit-blind"
+        },
+        {
+          "id": "15736888787328",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Marigold - 25mm",
+          "handle": "marigold-perfect-fit-blind"
+        },
+        {
+          "id": "15736889278848",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Mahogany - 25mm",
+          "handle": "mahogany-perfect-fit-blind"
+        },
+        {
+          "id": "15736889573760",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Magnolia - 25mm",
+          "handle": "magnolia-perfect-fit-blind"
+        },
+        {
+          "id": "15736890392960",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Pistachio - 25mm",
+          "handle": "pistachio-perfect-fit-blind"
+        },
+        {
+          "id": "15736890556800",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Off White - 25mm",
+          "handle": "off-white-perfect-fit-blind"
+        },
+        {
+          "id": "15736890753408",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Fruitwood  - 25mm",
+          "handle": "fruitwood-perfect-fit-blind"
+        },
+        {
+          "id": "15736891015552",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Cool Aqua - 25mm",
+          "handle": "cool-aqua-perfect-fit-blind"
+        },
+        {
+          "id": "15736891081088",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Champagne - 25mm",
+          "handle": "champagne-perfect-fit-blind"
+        },
+        {
+          "id": "15736891343232",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Buttercup - 25mm",
+          "handle": "buttercup-perfect-fit-blind"
+        },
+        {
+          "id": "15736891572608",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Blue Haze - 25mm",
+          "handle": "blue-haze-perfect-fit-blind"
+        },
+        {
+          "id": "15736891605376",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Wild Plum - 25mm",
+          "handle": "wild-plum-perfect-fit-blind"
+        },
+        {
+          "id": "15736891670912",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Soft Brown - 25mm",
+          "handle": "soft-brown-perfect-fit-blind"
+        },
+        {
+          "id": "15736892981632",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Mint Cream - 25mm",
+          "handle": "mint-cream-perfect-fit-blind"
+        },
+        {
+          "id": "15736893866368",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Everglades  - 25mm",
+          "handle": "everglades-perfect-fit-blind"
+        },
+        {
+          "id": "15736894685568",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Dusty Grey  - 25mm",
+          "handle": "dusty-grey-perfect-fit-blind"
+        },
+        {
+          "id": "15736894849408",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sugar Pink - 25mm",
+          "handle": "sugar-pink-perfect-fit-blind"
+        },
+        {
+          "id": "15736895144320",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Oxford Blue - 25mm",
+          "handle": "oxford-blue-perfect-fit-blind"
+        },
+        {
+          "id": "15736895340928",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Gold Copper - 25mm",
+          "handle": "gold-copper-perfect-fit-blind"
+        },
+        {
+          "id": "15736895373696",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Gloss White  - 25mm",
+          "handle": "gloss-white-perfect-fit-blind"
+        },
+        {
+          "id": "15736895472000",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Fresh Apple  - 25mm",
+          "handle": "fresh-apple-perfect-fit-blind"
+        },
+        {
+          "id": "15736895865216",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+          "handle": "chalk-white-perfect-fit-blind"
+        },
+        {
+          "id": "15736895996288",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Black Gloss - 25mm",
+          "handle": "black-gloss-perfect-fit-blind"
+        },
+        {
+          "id": "15736896881024",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Soft Orange - 25mm",
+          "handle": "soft-orange-perfect-fit-blind"
+        },
+        {
+          "id": "15736897372544",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Pretty Pink - 25mm",
+          "handle": "pretty-pink-perfect-fit-blind"
+        },
+        {
+          "id": "15736897896832",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Pitch Black - 25mm",
+          "handle": "pitch-black-perfect-fit-blind"
+        },
+        {
+          "id": "15736898519424",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+          "handle": "oyster-white-perfect-fit-blind"
+        },
+        {
+          "id": "15736898879872",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Mellow Peach - 25mm",
+          "handle": "mellow-peach-perfect-fit-blind"
+        },
+        {
+          "id": "15736900059520",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sparkle Blue - 25mm",
+          "handle": "sparkle-blue-perfect-fit-blind"
+        },
+        {
+          "id": "15736900256128",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Silver Pitch - 25mm",
+          "handle": "silver-pitch-perfect-fit-blind"
+        },
+        {
+          "id": "15736900518272",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Satin Silver - 25mm",
+          "handle": "satin-silver-perfect-fit-blind"
+        },
+        {
+          "id": "15736900682112",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Electric Aqua  - 25mm",
+          "handle": "electric-aqua-perfect-fit-blind"
+        },
+        {
+          "id": "15736900944256",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+          "handle": "classic-white-perfect-fit-blind"
+        },
+        {
+          "id": "15736900977024",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Charcoal Grey - 25mm",
+          "handle": "charcoal-grey-perfect-fit-blind"
+        },
+        {
+          "id": "15736902386048",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Oriental Blue - 25mm",
+          "handle": "oriental-blue-perfect-fit-blind"
+        },
+        {
+          "id": "15736902943104",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Natural Taupe - 25mm",
+          "handle": "natural-taupe-perfect-fit-blind"
+        },
+        {
+          "id": "15736903467392",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Indian Yellow - 25mm",
+          "handle": "indian-yellow-perfect-fit-blind"
+        },
+        {
+          "id": "15736904155520",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Twilight Grey - 25mm",
+          "handle": "twilight-grey-perfect-fit-blind"
+        },
+        {
+          "id": "15736904843648",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Brushed Silver - 25mm",
+          "handle": "brushed-silver-perfect-fit-blind"
+        },
+        {
+          "id": "15736905007488",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Brushed Nickel - 25mm",
+          "handle": "brushed-nickel-perfect-fit-blind"
+        },
+        {
+          "id": "15736905630080",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Antique Silver - 25mm",
+          "handle": "antique-silver-perfect-fit-blind"
+        },
+        {
+          "id": "15736905859456",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Glistening Gold - 25mm",
+          "handle": "glistening-gold-perfect-fit-blind"
+        },
+        {
+          "id": "15736905990528",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Frosted Silver  - 25mm",
+          "handle": "frosted-silver-perfect-fit-blind"
+        }
+      ]
+    },
+    {
+      "slug": "perfect-fit-metal-venetians-special-effect",
+      "bandId": "c8f0efae-4c91-4432-9bde-0337a9fef8e2",
+      "band": "Perfect Fit Metal Venetians - Special Effect",
+      "description": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+      "representative": "calico-perfect-fit-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "c8f0efae-4c91-4432-9bde-0337a9fef8e2",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736879808896",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Calico - 25mm",
+          "handle": "calico-perfect-fit-blind"
+        },
+        {
+          "id": "15736880660864",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Alpine - 25mm",
+          "handle": "alpine-perfect-fit-blind"
+        },
+        {
+          "id": "15736882233728",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Conker - 25mm",
+          "handle": "conker-perfect-fit-blind"
+        },
+        {
+          "id": "15736882594176",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Cherry - 25mm",
+          "handle": "cherry-perfect-fit-blind"
+        },
+        {
+          "id": "15736882823552",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Mercy  Mellow Peach - 25mm",
+          "handle": "mercury-perfect-fit-blind"
+        },
+        {
+          "id": "15736884068736",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Glacier  - 25mm",
+          "handle": "glacier-perfect-fit-blind"
+        },
+        {
+          "id": "15736885838208",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sunrise - 25mm",
+          "handle": "sunrise-perfect-fit-blind"
+        },
+        {
+          "id": "15736886690176",
+          "type": "product",
+          "title": "Perfect Fit Metal No Drill Blind - Hornbeam - 25mm",
+          "handle": "hornbeam-perfect-fit-blind"
+        },
+        {
+          "id": "15736887083392",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Cool Sky - 25mm",
+          "handle": "cool-sky-perfect-fit-blind"
+        },
+        {
+          "id": "15736887312768",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Chestnut - 25mm",
+          "handle": "chestnut-perfect-fit-blind"
+        },
+        {
+          "id": "15736889835904",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Ice Pink - 25mm",
+          "handle": "ice-pink-perfect-fit-blind"
+        },
+        {
+          "id": "15736890524032",
+          "type": "product",
+          "title": "Perfect Fit Metal Blind - Pinstripe - 25mm",
+          "handle": "pinstripe-perfect-fit-blind"
+        },
+        {
+          "id": "15736891933056",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Snowflake - 25mm",
+          "handle": "snowflake-perfect-fit-blind"
+        },
+        {
+          "id": "15736892424576",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Peppermint - 25mm",
+          "handle": "peppermint-perfect-fit-blind"
+        },
+        {
+          "id": "15736893505920",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Fern Green  - 25mm",
+          "handle": "fern-green-perfect-fit-blind"
+        },
+        {
+          "id": "15736894128512",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Elderberry  - 25mm",
+          "handle": "elderberry-perfect-fit-blind"
+        },
+        {
+          "id": "15736894882176",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Soft Stone - 25mm",
+          "handle": "soft-stone-perfect-fit-blind"
+        },
+        {
+          "id": "15736896029056",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sugar Maple - 25mm",
+          "handle": "sugar-maple-perfect-fit-blind"
+        },
+        {
+          "id": "15736899240320",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Barely Black - 25mm",
+          "handle": "barely-black-perfect-fit-blind"
+        },
+        {
+          "id": "15736899633536",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - American Elm - 25mm",
+          "handle": "american-elm-perfect-fit-blind"
+        },
+        {
+          "id": "15736899961216",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Spring Blush - 25mm",
+          "handle": "spring-blush-perfect-fit-blind"
+        },
+        {
+          "id": "15736900485504",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Shiny Silver - 25mm",
+          "handle": "shiny-silver-perfect-fit-blind"
+        },
+        {
+          "id": "15736901009792",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Sparkle Black - 25mm",
+          "handle": "sparkle-black-perfect-fit-blind"
+        },
+        {
+          "id": "15736901140864",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Silver Lustre - 25mm",
+          "handle": "silver-lustre-perfect-fit-blind"
+        },
+        {
+          "id": "15736901894528",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Scottish Pine - 25mm",
+          "handle": "scottish-pine-perfect-fit-blind"
+        },
+        {
+          "id": "15736903205248",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Midnight Blue - 25mm",
+          "handle": "midnight-blue-perfect-fit-blind"
+        },
+        {
+          "id": "15736903893376",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+          "handle": "white-shimmer-perfect-fit-blind"
+        },
+        {
+          "id": "15736904253824",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Creamy Apricot  - 25mm",
+          "handle": "creamy-apricot-perfect-fit-blind"
+        },
+        {
+          "id": "15736904614272",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Classic Stripe - 25mm",
+          "handle": "classic-stripe-perfect-fit-blind"
+        },
+        {
+          "id": "15736905204096",
+          "type": "product",
+          "title": "Perfect Fit No Drill Metal Blind - Brushed Copper - 25mm",
+          "handle": "brushed-copper-perfect-fit-blind"
+        }
+      ]
+    },
+    {
+      "slug": "perfect-fit-shutters-lite",
+      "bandId": "64e038a2-4783-4710-9aea-7fc93bb7dfba",
+      "band": "Perfect Fit Shutters Lite",
+      "description": "OB Preview - Perfect Fit Shutters Lite",
+      "representative": "sierra-ice-white-perfect-fit-shutter-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "64e038a2-4783-4710-9aea-7fc93bb7dfba",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736984797568",
+          "type": "product",
+          "title": "Sierra, Ice White - Perfect Fit No Drill/Clip On Shutter",
+          "handle": "sierra-ice-white-perfect-fit-shutter-blind"
+        }
+      ]
+    }
+  ]
+}

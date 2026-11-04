@@ -1,0 +1,37 @@
+[
+  {
+    "handle": "faux-wooden-blinds",
+    "status": 200,
+    "heading": "Faux Wooden Blinds",
+    "themeId": 200474362240,
+    "role": "unpublished"
+  },
+  {
+    "handle": "skylight-blinds",
+    "status": 200,
+    "heading": "Skylight Blinds",
+    "themeId": 200474362240,
+    "role": "unpublished"
+  },
+  {
+    "handle": "easy-stick-blinds",
+    "status": 200,
+    "heading": "Easy Stick",
+    "themeId": 200474362240,
+    "role": "unpublished"
+  },
+  {
+    "handle": "perfect-fit-metal",
+    "status": 200,
+    "heading": "Perfect Fit Metal",
+    "themeId": 200474362240,
+    "role": "unpublished"
+  },
+  {
+    "handle": "perfect-fit-wooden",
+    "status": 200,
+    "heading": "Perfect Fit Wooden",
+    "themeId": 200474362240,
+    "role": "unpublished"
+  }
+]

@@ -1,0 +1,23 @@
+var D={"w":[20,30,39,49,59,69,79,89,98,108,118,128,138,148,157],"h":[20,30,39,49,59,69,79,89,98,108,118],"v":[61.1,67.49,73.86,80.25,86.63,93.01,99.39,105.78,112.15,118.54,124.91,131.3,137.68,144.06,150.44,62.96,70.15,77.35,84.55,91.74,98.94,106.14,113.32,120.53,127.71,134.91,142.11,149.3,156.5,163.69,64.81,72.83,80.84,88.85,96.85,104.86,112.88,120.89,128.89,136.9,144.91,152.93,160.93,168.94,176.95,66.68,75.5,84.32,93.15,101.96,110.79,119.61,128.44,137.26,146.09,154.91,163.73,172.55,181.38,190.2,68.54,78.18,87.81,97.45,107.09,116.71,126.35,135.99,145.63,155.26,164.9,174.54,184.18,193.81,203.45,70.39,80.84,91.29,101.74,112.2,122.65,133.1,143.55,154,164.45,174.9,185.35,195.8,206.25,216.71,72.25,83.51,94.78,106.04,117.31,128.57,139.84,151.1,162.38,173.64,184.9,196.16,207.43,218.7,229.96,74.1,86.19,98.26,110.34,122.43,134.5,146.58,158.66,170.74,182.81,194.9,206.98,219.05,231.14,243.21,75.96,88.85,101.75,114.64,127.54,140.43,153.32,166.21,179.11,192,204.9,217.79,230.69,243.58,256.46,77.83,91.53,105.24,118.94,132.65,146.35,160.06,173.78,187.48,201.19,214.89,228.6,242.31,256.01,269.73,79.68,94.2,108.73,123.24,137.76,152.29,166.8,181.33,195.85,210.38,224.89,239.41,253.94,268.45,282.98],"k":0,"m":[20,157,20,118],"z":[20,157,20,118],"r":0,"t":{"bottom-chain":{"black-weights":0.59,"grey-weights":0.59,"white-chainless":0.39,"pet-friendly":0.39},"chain-color":{"black-plastic":2.99,"chrome-metal":3.49,"grey-plastic":2.99},"colour-weight-chain":{"colour-weight-chain":[1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5]},"control-option":{"chrome-toggle":4.99},"fhw-metal-weights":{"fhw-metal-weights":[2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5,16.5]},"frame-color":{"anthracite-grey":10.65,"black":10.65,"brown":10.65,"beige":10.65,"mahogany":10.65,"golden-oak":10.65},"headrail-colour":{"vouge-white":9.53,"vouge-silver":11.43,"vouge-anthracite":10.95,"vouge-gold":11.43,"vouge-black":10.95,"vouge-brown":10.95},"lining-type":{"blackout":11,"thermal":11},"metal-bottom-chain":{"metal-bottom-chain":[1.5,2.4,3.3,3.6,4.2,5.1,6,6.9,7.6,8.1,9,9.9,10,11.1,12]},"motorization":{"1ch-remote":10.98,"2ch-remote":10.98,"6ch-remote":12.56,"16ch-remote":12.56},"opening-direction":{"split":25},"perfect-fit-metal-frame-color":{"anthracite":7.13,"brown":7.13,"golden-oak":7.13},"roman-chain-color":{"chrome-metal":4.99},"vogue-system":{"blk-anth-brwn":[16,16,16,20,20,25,25,29,29,32,32,36,36,41,41],"champgn-gld":[18,18,18,22,22,28,28,32,32,36,36,41,41,46,46],"white":[2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5,13.5,14.5,15.5,16.5]},"wrapped-cassette":{"yes":15.75},"chrome-upgrade":{"yes":3.99},"fabric-insert-cassette":{"yes":8.99},"bottom-bar":{"grey-round-bar":3.99,"white-round-bar":3.99,"full-fabric-cover-premium-bar":6.99},"matching-fabric-cassette":{"yes":5.99},"cassette-bar":{"black":7.99,"grey":7.99,"matching-fabric":18.89}},"b":75},M=["Please enter a valid size","Selected measurements are outside the allowed range for this product","We cannot make this blind in that width and drop combination. Please adjust your measurements.","The pricing list could not be verified. Please try again."],Q="_";
+function V(n){return options.value(Q+n);}
+var wo=options.option&&options.option(Q+'width');
+if(wo&&Array.isArray(wo.errors))wo.errors=wo.errors.filter(function(m){return m&&M.indexOf(m)<0;});
+var C=String(V('customizations')||'').split('|').filter(function(s){return s;}).map(function(s){var i=s.indexOf(':');return [s.slice(0,i),s.slice(i+1)];});
+function extras(x){var s=0;C.forEach(function(c){var cat=c[0];if(cat==='cassette-bar'||cat==='roller-cassette')cat=D.r?'roller-cassette':'cassette-bar';var p=D.t[cat]&&D.t[cat][c[1]];if(p==null)return;if(typeof p==='object')p=p[x]||0;s+=p;});return s;}
+var unit=V('measurementUnit'),wv=V('width'),hv=V('height');
+if(wv==null||hv==null||String(wv).trim()===''||String(hv).trim()===''||(unit!=='cm'&&unit!=='mm'))return 0;
+var w=Number(wv),h=Number(hv);
+if(!isFinite(w)||!isFinite(h)){options.error(Q+'width',M[0]);return 0;}
+if(unit==='cm'){w+=Number(V('widthFraction')||0)/10;h+=Number(V('heightFraction')||0)/10;}
+var u=unit==='cm'?2.54:25.4;w/=u;h/=u;
+var mot=C.some(function(c){return c[0]==='motorization'&&c[1]!=='none';}),L=mot?D.z:D.m;
+function fail(i){options.error(Q+'width',M[i]);return 0;}
+if(w<L[0]||w>L[1]||h<L[2]||h>L[3])return fail(1);
+function band(a,v){if(v<a[0])return D.k?0:-1;if(v>a[a.length-1])return D.k?a.length-1:-1;var c=Math.ceil(v);for(var i=0;i<a.length;i++)if(a[i]>=c)return i;return D.k?a.length-1:-1;}
+var x=band(D.w,w),y=band(D.h,h);
+if(x<0||y<0)return fail(1);
+var t=D.v[y*D.w.length+x];
+if(!t)return fail(2);
+t+=extras(x);
+if(C.some(function(c){return c[0]==='motorization';}))t+=D.b;
+return Math.round(t*100)/100;

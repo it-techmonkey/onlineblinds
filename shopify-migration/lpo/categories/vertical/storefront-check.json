@@ -1,0 +1,1448 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 144,
+  "results": [
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "base",
+      "expected": 74.52,
+      "error": null,
+      "actual": 74.52,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "mm",
+      "expected": 74.52,
+      "error": null,
+      "actual": 74.52,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "fractions",
+      "expected": 81.39,
+      "error": null,
+      "actual": 81.39,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "cassette",
+      "expected": 88.5,
+      "error": null,
+      "actual": 88.5,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "chain + bottom bar",
+      "expected": 82,
+      "error": null,
+      "actual": 82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "motorised",
+      "expected": 163.63,
+      "error": null,
+      "actual": 163.63,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "large",
+      "expected": 176.29000000000002,
+      "error": null,
+      "actual": 176.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band B",
+      "product": "alabama-linen-vertical-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "base",
+      "expected": 85.55,
+      "error": null,
+      "actual": 85.55,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "mm",
+      "expected": 85.55,
+      "error": null,
+      "actual": 85.55,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "fractions",
+      "expected": 93.45,
+      "error": null,
+      "actual": 93.45,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "cassette",
+      "expected": 99.53,
+      "error": null,
+      "actual": 99.53,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "chain + bottom bar",
+      "expected": 93.03,
+      "error": null,
+      "actual": 93.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "motorised",
+      "expected": 176.76,
+      "error": null,
+      "actual": 176.76,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "large",
+      "expected": 201.22,
+      "error": null,
+      "actual": 201.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band D",
+      "product": "aqualush-beige-vertical-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "base",
+      "expected": 69,
+      "error": null,
+      "actual": 69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "mm",
+      "expected": 69,
+      "error": null,
+      "actual": 69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "fractions",
+      "expected": 75.37,
+      "error": null,
+      "actual": 75.37,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "cassette",
+      "expected": 82.98,
+      "error": null,
+      "actual": 82.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "chain + bottom bar",
+      "expected": 76.48,
+      "error": null,
+      "actual": 76.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "motorised",
+      "expected": 157.07,
+      "error": null,
+      "actual": 157.07,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "large",
+      "expected": 163.82000000000002,
+      "error": null,
+      "actual": 163.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band A",
+      "product": "california-sand-vertical-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "base",
+      "expected": 80.04,
+      "error": null,
+      "actual": 80.04,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "mm",
+      "expected": 80.04,
+      "error": null,
+      "actual": 80.04,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "fractions",
+      "expected": 87.42,
+      "error": null,
+      "actual": 87.42,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "cassette",
+      "expected": 94.02000000000001,
+      "error": null,
+      "actual": 94.02,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "chain + bottom bar",
+      "expected": 87.52000000000001,
+      "error": null,
+      "actual": 87.52,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "motorised",
+      "expected": 170.2,
+      "error": null,
+      "actual": 170.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "large",
+      "expected": 188.75,
+      "error": null,
+      "actual": 188.75,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band C",
+      "product": "daisy-cream-vertical-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "base",
+      "expected": 104.87,
+      "error": null,
+      "actual": 104.87,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "mm",
+      "expected": 104.87,
+      "error": null,
+      "actual": 104.87,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "fractions",
+      "expected": 114.56,
+      "error": null,
+      "actual": 114.56,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "cassette",
+      "expected": 118.85000000000001,
+      "error": null,
+      "actual": 118.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "chain + bottom bar",
+      "expected": 112.35000000000001,
+      "error": null,
+      "actual": 112.35,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "motorised",
+      "expected": 199.74,
+      "error": null,
+      "actual": 199.74,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "large",
+      "expected": 244.85000000000002,
+      "error": null,
+      "actual": 244.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band F",
+      "product": "banlight-duo-fr-beige-1",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "base",
+      "expected": 115.91,
+      "error": null,
+      "actual": 115.91,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "mm",
+      "expected": 115.91,
+      "error": null,
+      "actual": 115.91,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "fractions",
+      "expected": 126.61,
+      "error": null,
+      "actual": 126.61,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "cassette",
+      "expected": 129.89,
+      "error": null,
+      "actual": 129.89,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "chain + bottom bar",
+      "expected": 123.39,
+      "error": null,
+      "actual": 123.39,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "motorised",
+      "expected": 212.87,
+      "error": null,
+      "actual": 212.87,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "large",
+      "expected": 269.78000000000003,
+      "error": null,
+      "actual": 269.78,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Vertical Blind - Band Premium",
+      "product": "boston-fr-black-1",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "base",
+      "expected": 1.59,
+      "error": null,
+      "actual": 1.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "mm",
+      "expected": 1.59,
+      "error": null,
+      "actual": 1.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "fractions",
+      "expected": 1.89,
+      "error": null,
+      "actual": 1.89,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "cassette",
+      "expected": 15.57,
+      "error": null,
+      "actual": 15.57,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "chain + bottom bar",
+      "expected": 9.07,
+      "error": null,
+      "actual": 9.07,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "motorised",
+      "expected": 1.59,
+      "error": null,
+      "actual": 1.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "large",
+      "expected": 10.440000000000001,
+      "error": null,
+      "actual": 10.44,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "too small",
+      "expected": 1.59,
+      "error": null,
+      "actual": 1.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "too large",
+      "expected": 1.59,
+      "error": null,
+      "actual": 1.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "zero",
+      "expected": 1.59,
+      "error": null,
+      "actual": 1.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "slat drop 230cm",
+      "expected": 2.45,
+      "error": null,
+      "actual": 2.45,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "product": "alabama-linen-slat",
+      "case": "slat drop 2400mm",
+      "expected": 2.45,
+      "error": null,
+      "actual": 2.45,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "base",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "mm",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "fractions",
+      "expected": 2.31,
+      "error": null,
+      "actual": 2.31,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "cassette",
+      "expected": 15.97,
+      "error": null,
+      "actual": 15.97,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "chain + bottom bar",
+      "expected": 9.47,
+      "error": null,
+      "actual": 9.47,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "motorised",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "large",
+      "expected": 10.8,
+      "error": null,
+      "actual": 10.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "too small",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "too large",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "zero",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "slat drop 230cm",
+      "expected": 2.81,
+      "error": null,
+      "actual": 2.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "product": "aqualush-beige-slat",
+      "case": "slat drop 2400mm",
+      "expected": 2.81,
+      "error": null,
+      "actual": 2.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "base",
+      "expected": 2.1,
+      "error": null,
+      "actual": 2.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "mm",
+      "expected": 2.1,
+      "error": null,
+      "actual": 2.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "fractions",
+      "expected": 2.49,
+      "error": null,
+      "actual": 2.49,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "cassette",
+      "expected": 16.080000000000002,
+      "error": null,
+      "actual": 16.08,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "chain + bottom bar",
+      "expected": 9.58,
+      "error": null,
+      "actual": 9.58,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "motorised",
+      "expected": 2.1,
+      "error": null,
+      "actual": 2.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "large",
+      "expected": 10.99,
+      "error": null,
+      "actual": 10.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "too small",
+      "expected": 2.1,
+      "error": null,
+      "actual": 2.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "too large",
+      "expected": 2.1,
+      "error": null,
+      "actual": 2.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "zero",
+      "expected": 2.1,
+      "error": null,
+      "actual": 2.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "slat drop 230cm",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "product": "atlantex-asc-cream-1-slat",
+      "case": "slat drop 2400mm",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "base",
+      "expected": 2.7,
+      "error": null,
+      "actual": 2.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "mm",
+      "expected": 2.7,
+      "error": null,
+      "actual": 2.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "fractions",
+      "expected": 3.5,
+      "error": null,
+      "actual": 3.5,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "cassette",
+      "expected": 16.68,
+      "error": null,
+      "actual": 16.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "chain + bottom bar",
+      "expected": 10.18,
+      "error": null,
+      "actual": 10.18,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "motorised",
+      "expected": 2.7,
+      "error": null,
+      "actual": 2.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "large",
+      "expected": 12.29,
+      "error": null,
+      "actual": 12.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "too small",
+      "expected": 2.7,
+      "error": null,
+      "actual": 2.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "too large",
+      "expected": 2.7,
+      "error": null,
+      "actual": 2.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "zero",
+      "expected": 2.7,
+      "error": null,
+      "actual": 2.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "slat drop 230cm",
+      "expected": 4,
+      "error": null,
+      "actual": 4,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "product": "banlight-duo-fr-beige-1-slat",
+      "case": "slat drop 2400mm",
+      "expected": 4,
+      "error": null,
+      "actual": 4,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "base",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "mm",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "fractions",
+      "expected": 3.3,
+      "error": null,
+      "actual": 3.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "cassette",
+      "expected": 16.98,
+      "error": null,
+      "actual": 16.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "chain + bottom bar",
+      "expected": 10.48,
+      "error": null,
+      "actual": 10.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "motorised",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "large",
+      "expected": 11.690000000000001,
+      "error": null,
+      "actual": 11.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "too small",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "too large",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "zero",
+      "expected": 3,
+      "error": null,
+      "actual": 3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "slat drop 230cm",
+      "expected": 3.7,
+      "error": null,
+      "actual": 3.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "product": "boston-fr-black-1-slat",
+      "case": "slat drop 2400mm",
+      "expected": 3.7,
+      "error": null,
+      "actual": 3.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "base",
+      "expected": 1.29,
+      "error": null,
+      "actual": 1.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "mm",
+      "expected": 1.29,
+      "error": null,
+      "actual": 1.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "fractions",
+      "expected": 1.7,
+      "error": null,
+      "actual": 1.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "cassette",
+      "expected": 15.27,
+      "error": null,
+      "actual": 15.27,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "chain + bottom bar",
+      "expected": 8.77,
+      "error": null,
+      "actual": 8.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "motorised",
+      "expected": 1.29,
+      "error": null,
+      "actual": 1.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "large",
+      "expected": 10.29,
+      "error": null,
+      "actual": 10.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "too small",
+      "expected": 1.29,
+      "error": null,
+      "actual": 1.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "too large",
+      "expected": 1.29,
+      "error": null,
+      "actual": 1.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "zero",
+      "expected": 1.29,
+      "error": null,
+      "actual": 1.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "slat drop 230cm",
+      "expected": 2.3,
+      "error": null,
+      "actual": 2.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "product": "california-sand-slat",
+      "case": "slat drop 2400mm",
+      "expected": 2.3,
+      "error": null,
+      "actual": 2.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "base",
+      "expected": 1.82,
+      "error": null,
+      "actual": 1.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "mm",
+      "expected": 1.82,
+      "error": null,
+      "actual": 1.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "fractions",
+      "expected": 1.99,
+      "error": null,
+      "actual": 1.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "cassette",
+      "expected": 15.8,
+      "error": null,
+      "actual": 15.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "chain + bottom bar",
+      "expected": 9.3,
+      "error": null,
+      "actual": 9.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "motorised",
+      "expected": 1.82,
+      "error": null,
+      "actual": 1.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "large",
+      "expected": 10.59,
+      "error": null,
+      "actual": 10.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "too small",
+      "expected": 1.82,
+      "error": null,
+      "actual": 1.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "too large",
+      "expected": 1.82,
+      "error": null,
+      "actual": 1.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "zero",
+      "expected": 1.82,
+      "error": null,
+      "actual": 1.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "slat drop 230cm",
+      "expected": 2.6,
+      "error": null,
+      "actual": 2.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "product": "daisy-cream-slat",
+      "case": "slat drop 2400mm",
+      "expected": 2.6,
+      "error": null,
+      "actual": 2.6,
+      "native": "",
+      "passed": true
+    }
+  ]
+}

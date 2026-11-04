@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ob-hero",
+      "settings": {}
+    },
+    "trust": {
+      "type": "ob-trust",
+      "settings": {}
+    },
+    "categories": {
+      "type": "ob-categories",
+      "settings": {}
+    },
+    "best-sellers": {
+      "type": "ob-best-sellers",
+      "settings": {}
+    },
+    "craftsmanship": {
+      "type": "ob-craftsmanship",
+      "settings": {}
+    },
+    "samples": {
+      "type": "ob-samples",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "ob-newsletter",
+      "settings": {}
+    },
+    "faq": {
+      "type": "ob-faq",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "categories",
+    "best-sellers",
+    "craftsmanship",
+    "samples",
+    "newsletter",
+    "faq"
+  ]
+}

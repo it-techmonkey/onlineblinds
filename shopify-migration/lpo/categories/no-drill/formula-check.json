@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "no-drill-blinds-edit-3",
+      "band": "No Drill Blinds - Edit 3",
+      "kind": "band",
+      "products": 26,
+      "compared": 31944,
+      "rejected": 10930,
+      "formulaBytes": 4972,
+      "formulaSha256": "7ac45f16e5520a6fa436ab8dbeeed8ab525b9b48b5e1c411cd5c1279c0508bf3"
+    },
+    {
+      "slug": "no-drill-blinds-edit-2",
+      "band": "No Drill Blinds - Edit 2",
+      "kind": "band",
+      "products": 21,
+      "compared": 31864,
+      "rejected": 10910,
+      "formulaBytes": 4943,
+      "formulaSha256": "2a95d558a2ee9aa7097a76618b8ad02d60fe7759d68d6a16f744ccc347bcb88b"
+    },
+    {
+      "slug": "no-drill-blinds-edit-1",
+      "band": "No Drill Blinds - Edit 1",
+      "kind": "band",
+      "products": 8,
+      "compared": 31656,
+      "rejected": 10858,
+      "formulaBytes": 4917,
+      "formulaSha256": "993d2e42ecea7da1316727706295ee63a7ee4533ef7908f80268193541b8c39d"
+    }
+  ]
+}

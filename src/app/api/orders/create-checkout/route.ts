@@ -3,7 +3,7 @@ import { createCheckout, CheckoutError } from '@/lib/server/order.service';
 
 export async function POST(request: Request) {
   try {
-    const { items, customerEmail, note, installationService, discountCode } = await request.json();
+    const { items, customerEmail, note, installationService, discountCode, discountCodes } = await request.json();
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json(
@@ -17,7 +17,12 @@ export async function POST(request: Request) {
       customerEmail,
       note,
       installationService: Boolean(installationService),
-      discountCode: typeof discountCode === 'string' && discountCode.trim() ? discountCode.trim() : undefined,
+      // `discountCode` (one code) is still accepted from pages loaded before several codes were allowed.
+      discountCodes: [...(Array.isArray(discountCodes) ? discountCodes : []), discountCode]
+        .filter((code): code is string => typeof code === 'string' && code.trim() !== '')
+        .map((code) => code.trim())
+        .filter((code, index, all) => all.findIndex((other) => other.toUpperCase() === code.toUpperCase()) === index)
+        .slice(0, 5),
     });
 
     return NextResponse.json({ success: true, data: result }, { status: 201 });

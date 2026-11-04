@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "faux-wooden-aqua-wood-with-tape",
+      "band": "Faux Wooden - Aqua Wood With Tape",
+      "kind": "band",
+      "products": 5,
+      "compared": 17768,
+      "rejected": 8120,
+      "formulaBytes": 4090,
+      "formulaSha256": "5f6a6b714271df89e43446ac43b2f8bf8527228d2506f578ab0de75eb879a2d2"
+    },
+    {
+      "slug": "faux-wooden-aqua-wood-no-tape",
+      "band": "Faux Wooden - Aqua Wood No Tape",
+      "kind": "band",
+      "products": 6,
+      "compared": 17784,
+      "rejected": 8128,
+      "formulaBytes": 4159,
+      "formulaSha256": "ddbb13bbd3b58cd46325d78b0d9902fcc426f9bbd6a518fe5cfe8a5e2c39a35c"
+    },
+    {
+      "slug": "faux-wooden-arena-expressions-no-tape",
+      "band": "Faux Wooden - Arena Expressions No Tape",
+      "kind": "band",
+      "products": 20,
+      "compared": 18008,
+      "rejected": 8240,
+      "formulaBytes": 4179,
+      "formulaSha256": "8d7d06b41a7cb1527da9159535af1e303bbd0136255e544810ab2ee6f84140a0"
+    }
+  ]
+}

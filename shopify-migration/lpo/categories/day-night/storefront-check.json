@@ -1,0 +1,948 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO instance on the preview product page; no cart",
+  "passed": true,
+  "total": 94,
+  "results": [
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "base cm",
+      "expected": 202.69,
+      "error": null,
+      "actual": 202.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "mm",
+      "expected": 202.69,
+      "error": null,
+      "actual": 202.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "fractions",
+      "expected": 216.03,
+      "error": null,
+      "actual": 216.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "upgrades",
+      "expected": 223.66,
+      "error": null,
+      "actual": 223.66,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "motorised",
+      "expected": 285.68,
+      "error": null,
+      "actual": 285.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "large",
+      "expected": 283.75,
+      "error": null,
+      "actual": 283.75,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D",
+      "product": "tokyo-black-day-and-night-blinds",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "base cm",
+      "expected": 138.85,
+      "error": null,
+      "actual": 138.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "mm",
+      "expected": 138.85,
+      "error": null,
+      "actual": 138.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "fractions",
+      "expected": 143.07,
+      "error": null,
+      "actual": 143.07,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "upgrades",
+      "expected": 159.82,
+      "error": null,
+      "actual": 159.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "motorised",
+      "expected": 221.84,
+      "error": null,
+      "actual": 221.84,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "large",
+      "expected": 173.28,
+      "error": null,
+      "actual": 173.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Dayandnight - Band A",
+      "product": "plain-soft-white-day-and-night-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "base cm",
+      "expected": 181.15,
+      "error": null,
+      "actual": 181.15,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "mm",
+      "expected": 181.15,
+      "error": null,
+      "actual": 181.15,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "fractions",
+      "expected": 191.41,
+      "error": null,
+      "actual": 191.41,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "upgrades",
+      "expected": 202.12,
+      "error": null,
+      "actual": 202.12,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "motorised",
+      "expected": 264.14,
+      "error": null,
+      "actual": 264.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "large",
+      "expected": 246.81,
+      "error": null,
+      "actual": 246.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C",
+      "product": "dimout-rome-beige-day-and-night-blinds",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "base cm",
+      "expected": 138.85,
+      "error": null,
+      "actual": 138.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "mm",
+      "expected": 138.85,
+      "error": null,
+      "actual": 138.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "fractions",
+      "expected": 143.07,
+      "error": null,
+      "actual": 143.07,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "upgrades",
+      "expected": 159.82,
+      "error": null,
+      "actual": 159.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "motorised",
+      "expected": 221.84,
+      "error": null,
+      "actual": 221.84,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "large",
+      "expected": 174.31,
+      "error": null,
+      "actual": 174.31,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A",
+      "product": "plain-soft-brown-motorised-day-and-night-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "base cm",
+      "expected": 249.22,
+      "error": null,
+      "actual": 249.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "mm",
+      "expected": 249.22,
+      "error": null,
+      "actual": 249.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "fractions",
+      "expected": 269.2,
+      "error": null,
+      "actual": 269.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "upgrades",
+      "expected": 270.19,
+      "error": null,
+      "actual": 270.19,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "motorised",
+      "expected": 332.21,
+      "error": null,
+      "actual": 332.21,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "large",
+      "expected": 363.5,
+      "error": null,
+      "actual": 363.5,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F",
+      "product": "truro-blackout-porcelene-day-and-night-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "base cm",
+      "expected": 223.28,
+      "error": null,
+      "actual": 223.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "mm",
+      "expected": 223.28,
+      "error": null,
+      "actual": 223.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "fractions",
+      "expected": 239.56,
+      "error": null,
+      "actual": 239.56,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "upgrades",
+      "expected": 244.25,
+      "error": null,
+      "actual": 244.25,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "motorised",
+      "expected": 306.27,
+      "error": null,
+      "actual": 306.27,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "large",
+      "expected": 319.04,
+      "error": null,
+      "actual": 319.04,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E",
+      "product": "rose-semi-blackout-white-day-and-night-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "base cm",
+      "expected": 213.85,
+      "error": null,
+      "actual": 213.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "mm",
+      "expected": 213.85,
+      "error": null,
+      "actual": 213.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "fractions",
+      "expected": 218.07,
+      "error": null,
+      "actual": 218.07,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "upgrades",
+      "expected": 230.82999999999998,
+      "error": null,
+      "actual": 230.83,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "large",
+      "expected": 249.31,
+      "error": null,
+      "actual": 249.31,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band A - Electrical",
+      "product": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "base cm",
+      "expected": 277.69,
+      "error": null,
+      "actual": 277.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "mm",
+      "expected": 277.69,
+      "error": null,
+      "actual": 277.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "fractions",
+      "expected": 291.03,
+      "error": null,
+      "actual": 291.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "upgrades",
+      "expected": 294.66999999999996,
+      "error": null,
+      "actual": 294.67,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "large",
+      "expected": 358.75,
+      "error": null,
+      "actual": 358.75,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band D - Electrical",
+      "product": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "base cm",
+      "expected": 256.15,
+      "error": null,
+      "actual": 256.15,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "mm",
+      "expected": 256.15,
+      "error": null,
+      "actual": 256.15,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "fractions",
+      "expected": 266.40999999999997,
+      "error": null,
+      "actual": 266.41,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "upgrades",
+      "expected": 273.13,
+      "error": null,
+      "actual": 273.13,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "large",
+      "expected": 321.81,
+      "error": null,
+      "actual": 321.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band C - Electrical",
+      "product": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "base cm",
+      "expected": 298.28,
+      "error": null,
+      "actual": 298.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "mm",
+      "expected": 298.28,
+      "error": null,
+      "actual": 298.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "fractions",
+      "expected": 314.56,
+      "error": null,
+      "actual": 314.56,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "upgrades",
+      "expected": 315.26,
+      "error": null,
+      "actual": 315.26,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "large",
+      "expected": 394.04,
+      "error": null,
+      "actual": 394.04,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band E - Electrical",
+      "product": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "base cm",
+      "expected": 324.22,
+      "error": null,
+      "actual": 324.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "mm",
+      "expected": 324.22,
+      "error": null,
+      "actual": 324.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "fractions",
+      "expected": 344.2,
+      "error": null,
+      "actual": 344.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "upgrades",
+      "expected": 341.2,
+      "error": null,
+      "actual": 341.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "large",
+      "expected": 438.5,
+      "error": null,
+      "actual": 438.5,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Day and Night - Band F - Electrical",
+      "product": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

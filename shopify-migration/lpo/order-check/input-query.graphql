@@ -1,0 +1,19 @@
+query {
+  order {
+    sourceName
+    lineItems {
+      id
+      title
+      quantity
+      originalTotalSet { shopMoney { amount } }
+      product { id handle }
+      variant { title }
+      customAttributes { key value }
+      lineItemGroup { id quantity customAttributes { key value } }
+    }
+  }
+  shop {
+    pricing { value }
+    products { value }
+  }
+}

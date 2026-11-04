@@ -1,0 +1,13 @@
+{% assign content = section.settings.content %}
+{% if content == 'auto' or content == blank %}{% case page.handle %}
+{% when 'about-us' %}{% assign content = 'about' %}{% when 'contact' %}{% assign content = 'contact' %}
+{% when 'instructions-for-measuring-fitting-guides' %}{% assign content = 'guides' %}
+{% when 'privacy-policy' %}{% assign content = 'privacy' %}{% when 'refunds-return-policy' %}{% assign content = 'refund' %}
+{% when 'shipping-delivery-information' %}{% assign content = 'shipping' %}{% when 'terms-and-conditions' %}{% assign content = 'terms' %}
+{% endcase %}{% endif %}
+{% case content %}
+{% when 'about' %}{% render 'ob-page-about' %}{% when 'contact' %}{% render 'ob-page-contact' %}{% when 'guides' %}{% render 'ob-page-guides' %}
+{% when 'faq-page' %}{% render 'ob-page-faq-page' %}{% when 'warranty' %}{% render 'ob-page-warranty' %}
+{% when 'privacy' %}{% render 'ob-page-privacy' %}{% when 'refund' %}{% render 'ob-page-refund' %}{% when 'shipping' %}{% render 'ob-page-shipping' %}{% when 'terms' %}{% render 'ob-page-terms' %}
+{% else %}<article class="ob-copy"><h1 class="ob-title">{{ page.title | escape }}</h1>{{ page.content }}</article>{% endcase %}
+{% schema %}{"name":"Online Blinds page","settings":[{"type":"select","id":"content","label":"Content","default":"auto","options":[{"value":"auto","label":"Match existing page"},{"value":"faq-page","label":"FAQ"},{"value":"warranty","label":"Warranty"}]}]}{% endschema %}

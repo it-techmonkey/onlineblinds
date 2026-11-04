@@ -9,6 +9,7 @@ import GlobalPolish from '@/components/ui/GlobalPolish';
 import ShopifyAnalytics from '@/components/analytics/ShopifyAnalytics';
 import GtmRouteTracker from '@/components/analytics/GtmRouteTracker';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
+import SignupPopup from '@/components/layout/SignupPopup';
 
 const lora = Lora({
   variable: '--font-cormorant',
@@ -84,6 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             {children}
           </CartProvider>
         </AuthProvider>
+        <SignupPopup />
       </body>
     </html>
   );

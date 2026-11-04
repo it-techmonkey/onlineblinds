@@ -1,0 +1,7 @@
+{%- assign primary = nil -%}
+{%- assign core = 'vertical-blinds,replacement-vertical-blinds-slat,easy-stick-blinds,roller-blinds,roman-blinds,venetian-blinds,day-and-night-blinds,pleated-blinds,faux-wooden-blinds,perfect-fit-wooden,perfect-fit-metal,perfect-fit-shutter,wooden-blinds,skylight-blinds,eclipsecore-shades' | split: ',' -%}
+{%- for category in product.collections -%}
+  {%- if category.handle == 'no-drill-blinds' -%}{%- assign primary = category -%}{%- break -%}{%- endif -%}
+  {%- if primary == nil and core contains category.handle -%}{%- assign primary = category -%}{%- endif -%}
+{%- endfor -%}
+{%- if property == 'handle' -%}{{- primary.handle | default: 'default' -}}{%- else -%}{{- primary.title | default: product.type -}}{%- endif -%}

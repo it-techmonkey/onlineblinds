@@ -1,0 +1,179 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO editor formulas, visible/native errors and its validation-test button. No real cart, checkout or orders created.",
+  "acceptancePassed": true,
+  "checkoutVerified": false,
+  "requests": [],
+  "results": [
+    {
+      "name": "manual",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "millimetres",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "cm precision",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "manual upgrades",
+      "expected": 159.82,
+      "actual": 159.82,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "motorized upgrades",
+      "expected": 230.82999999999998,
+      "actual": 230.83,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "invalid width",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "recovery after width",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "invalid drop",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "recovery after drop",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "invalid millimetres",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "recovery after mm",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    },
+    {
+      "name": "oversize",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "zero width",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "zero drop",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "negative width",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "negative drop",
+      "expected": null,
+      "actual": 0,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "errorDisplayed": true,
+      "lpoValid": false,
+      "nativeError": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "final recovery",
+      "expected": 138.85,
+      "actual": 138.85,
+      "error": null,
+      "errorDisplayed": null,
+      "lpoValid": true,
+      "nativeError": "",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 30,
+  "results": [
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "base",
+      "expected": 76,
+      "error": null,
+      "actual": 76,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "mm",
+      "expected": 76,
+      "error": null,
+      "actual": 76,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "fractions",
+      "expected": 76,
+      "error": null,
+      "actual": 76,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "cassette",
+      "expected": 89.98,
+      "error": null,
+      "actual": 89.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "chain + bottom bar",
+      "expected": 83.48,
+      "error": null,
+      "actual": 83.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "motorised",
+      "expected": 181,
+      "error": null,
+      "actual": 181,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "product": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "base",
+      "expected": 66.68,
+      "error": null,
+      "actual": 66.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "mm",
+      "expected": 66.68,
+      "error": null,
+      "actual": 66.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "fractions",
+      "expected": 66.68,
+      "error": null,
+      "actual": 66.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "cassette",
+      "expected": 80.66000000000001,
+      "error": null,
+      "actual": 80.66,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "chain + bottom bar",
+      "expected": 74.16000000000001,
+      "error": null,
+      "actual": 74.16,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "motorised",
+      "expected": 167.89,
+      "error": null,
+      "actual": 167.89,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "product": "aquawood-night-fall-venetian-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "base",
+      "expected": 100.01,
+      "error": null,
+      "actual": 100.01,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "mm",
+      "expected": 100.01,
+      "error": null,
+      "actual": 100.01,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "fractions",
+      "expected": 100.01,
+      "error": null,
+      "actual": 100.01,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "cassette",
+      "expected": 113.99000000000001,
+      "error": null,
+      "actual": 113.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "chain + bottom bar",
+      "expected": 107.49000000000001,
+      "error": null,
+      "actual": 107.49,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "motorised",
+      "expected": 214.34,
+      "error": null,
+      "actual": 214.34,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "product": "radiance-white",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

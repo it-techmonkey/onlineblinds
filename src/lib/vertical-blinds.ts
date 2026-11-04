@@ -1,3 +1,5 @@
+import { upliftBasePrice } from '@/data/promotions';
+
 export const REPLACEMENT_VERTICAL_SLAT_COLLECTION_SLUG = 'replacement-vertical-blinds-slat';
 export const REPLACEMENT_VERTICAL_SLAT_FIXED_WIDTH_INCHES = 16;
 
@@ -140,7 +142,7 @@ export function calculateReplacementVerticalSlatPrice(heightInches: number, tags
   const tiers = REPLACEMENT_VERTICAL_SLAT_PRICING[bandTag];
   const tier = tiers.find((item) => heightInches <= item.maxInches) ?? tiers[tiers.length - 1];
 
-  return tier?.price ?? null;
+  return tier ? upliftBasePrice(tier.price) : null;
 }
 
 export function getMinimumReplacementVerticalSlatPrice(tags: string[]): number | null {
@@ -154,5 +156,5 @@ export function getMinimumReplacementVerticalSlatPrice(tags: string[]): number |
     return null;
   }
 
-  return Math.min(...tiers.map((tier) => tier.price));
+  return upliftBasePrice(Math.min(...tiers.map((tier) => tier.price)));
 }

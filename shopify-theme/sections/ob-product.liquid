@@ -1,0 +1,42 @@
+{% assign selected_variant = product.selected_or_first_available_variant %}
+{% capture starting_price %}{% render 'ob-minimum-price', product: product %}{% endcapture %}
+{% assign starting_price = starting_price | strip | plus: 0 %}
+{% capture category_handle %}{% render 'ob-product-category', product: product, property: 'handle' %}{% endcapture %}
+{% assign category_handle = category_handle | strip %}
+<section class="ob-product" data-product-id="{{ product.id }}">
+  <div class="ob-product-wrap">
+    {% if request.design_mode and settings.purchasing_enabled == false %}<aside class="ob-editor-note">Migration preview: purchasing stays disabled until Live Product Options and checkout pass price and behavior comparisons. This message is only shown in the theme editor.</aside>{% endif %}
+    <nav class="ob-crumbs" aria-label="Breadcrumb"><a href="{{ routes.all_products_collection_url }}">Back to Shop</a><span>&gt;</span><span class="text-foreground truncate">{{ product.title | escape }}</span></nav>
+    <div class="ob-product-columns">
+      <div class="ob-product-gallery">
+        <div data-ob-island="gallery" data-ob-client="true">
+          <script type="application/json" data-ob-props>{"productName":{{ product.title | json }},"images":[{% for image in product.images %}{{ image | image_url: width: 1600 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
+          {% if product.featured_image %}<div class="ob-gallery-fallback">{{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'eager' }}</div>{% endif %}
+        </div>
+      </div>
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.16em] text-muted mb-2">{% render 'ob-product-category', product: product %}</p>
+        <h1 class="ob-product-title">{{ product.title | escape }}</h1>
+        {{ product.metafields.judgeme.badge }}
+        <div data-ob-island="delivery" data-ob-client="true"><script type="application/json" data-ob-props>{"vertical":{% if category_handle == 'vertical-blinds' %}true{% else %}false{% endif %}}</script></div>
+        <div data-ob-island="urgency" data-ob-client="true"><script type="application/json" data-ob-props>{"productSlug":{{ product.handle | json }}}</script></div>
+        <div class="border border-border rounded-[16px] p-4 md:p-6 mb-4 md:mb-6 bg-surface shadow-[0_6px_18px_rgba(31,41,51,0.05)]">
+          <div class="flex flex-col items-center lg:items-start"><div class="flex items-baseline gap-3 mb-2 md:mb-3"><span class="text-2xl md:text-[34px] leading-none font-semibold text-foreground" data-product-price>{{ starting_price | money }}</span><del class="text-base md:text-xl text-muted">{{ starting_price | times: 1.67 | divided_by: 100.0 | round | times: 100 | money }}</del><span class="rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-red-700">Save 40%</span></div></div>
+        </div>
+        {% form 'product', product, class: 'ob-product-form', data-ob-product-form: '' %}
+          {% if product.has_only_default_variant %}<input type="hidden" name="id" value="{{ selected_variant.id }}">{% else %}
+            <div class="ob-variant"><label for="Variant-{{ section.id }}">Colour</label><select id="Variant-{{ section.id }}" name="id" class="ob-input">{% for variant in product.variants %}<option value="{{ variant.id }}" {% if variant.id == selected_variant.id %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>{{ variant.title | escape }}</option>{% endfor %}</select></div>
+          {% endif %}
+          <div class="ob-options">{% for block in section.blocks %}{% case block.type %}{% when '@app' %}{% render block %}{% endcase %}{% endfor %}</div>
+          <input type="hidden" name="quantity" value="1">
+          <div class="ob-buy"><button type="submit" name="add" class="ob-button" {% unless settings.purchasing_enabled and selected_variant.available %}disabled{% endunless %}>Add to Cart</button><button type="submit" name="add" class="ob-button ob-secondary" {% unless settings.purchasing_enabled and selected_variant.available %}disabled{% endunless %}>Buy Now</button></div>
+        {% endform %}
+        {% render 'ob-product-trust' %}
+      </div>
+    </div>
+  </div>
+</section>
+{% if product.handle == 'non-driii-honeycomb-blackout-blinds' %}{% render 'ob-blackout-features' %}{% endif %}
+<div data-ob-island="category-info" data-ob-client="true"><script type="application/json" data-ob-props>{"categorySlug":{{ category_handle | json }},"productTags":{{ product.tags | json }},"productDetails":{{ product.metafields.custom.product_details.value | default: nil | json }}}</script></div>
+<section class="ob-section"><div class="ob-wrap"><h2 class="ob-title mb-6">Customer Reviews</h2>{{ product.metafields.judgeme.review_widget_ssr_html }}{{ product.metafields.judgeme.widget }}</div></section>
+{% schema %}{"name":"Online Blinds product","settings":[],"blocks":[{"type":"@app"}]}{% endschema %}

@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-28",
+  "scope": "Slim data-driven formulas. Offline: website calculator for every assigned product, and identical output to the previous editor-tested formula on every band edge in cm and mm. Editor/storefront checks are separate.",
+  "messages": [
+    "Please enter a valid size",
+    "Selected measurements are outside the allowed range for this product",
+    "We cannot make this blind in that width and drop combination. Please adjust your measurements.",
+    "The pricing list could not be verified. Please try again."
+  ],
+  "passed": true,
+  "checks": [
+    {
+      "description": "OB Preview - Day and Night - Band D",
+      "configUuid": "cl1vzqb3cqir",
+      "products": 15,
+      "compared": 79392,
+      "rejected": 38456,
+      "comparedWithPreviousFormula": 77376,
+      "formulaBytes": 3625,
+      "previousFormulaBytes": 174723,
+      "formulaSha256": "f16010961ed6368dc49e5a6e59495b6b8843b080ae42bd10bb338ef90f38eddc"
+    },
+    {
+      "description": "OB Preview - Dayandnight - Band A",
+      "configUuid": "clfhanm6jjqw",
+      "products": 5,
+      "compared": 81104,
+      "rejected": 17104,
+      "comparedWithPreviousFormula": 80528,
+      "formulaBytes": 3627,
+      "previousFormulaBytes": 167722,
+      "formulaSha256": "cba8f8a021257e9015b3b67d935da5825cc249e01e33ba4bec0376d7ae0ca09d"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band C",
+      "configUuid": "clbamvaecfuz",
+      "products": 11,
+      "compared": 78816,
+      "rejected": 38216,
+      "comparedWithPreviousFormula": 77376,
+      "formulaBytes": 3622,
+      "previousFormulaBytes": 174711,
+      "formulaSha256": "50591504bdab2e10a94f9967b3e882d6495dde3dda925880426367e4785eb157"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band A",
+      "configUuid": "clcplqcf4p8u",
+      "products": 11,
+      "compared": 78816,
+      "rejected": 38216,
+      "comparedWithPreviousFormula": 77376,
+      "formulaBytes": 3623,
+      "previousFormulaBytes": 174733,
+      "formulaSha256": "68ed7dd1c298363eb2080b67e4c8b69de6467fe1c419047b65173e83c28f8bd6"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band F",
+      "configUuid": "clkjydgrwcu6",
+      "products": 14,
+      "compared": 79248,
+      "rejected": 38396,
+      "comparedWithPreviousFormula": 77376,
+      "formulaBytes": 3619,
+      "previousFormulaBytes": 174686,
+      "formulaSha256": "7822659e61295e41455559f3ba6f53fc8272154728a3f03edbdf839e6917155b"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band E",
+      "configUuid": "clozo16zukd5",
+      "products": 11,
+      "compared": 78816,
+      "rejected": 38216,
+      "comparedWithPreviousFormula": 77376,
+      "formulaBytes": 3617,
+      "previousFormulaBytes": 174683,
+      "formulaSha256": "4bf6cfd740bac334507e60345f32f37f68559a54c1765644c1a5f3cb8377bf21"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band A - Electrical",
+      "configUuid": "clpprllqs5gh",
+      "products": 9,
+      "compared": 39264,
+      "rejected": 19560,
+      "comparedWithPreviousFormula": 38688,
+      "formulaBytes": 3623,
+      "previousFormulaBytes": 174772,
+      "formulaSha256": "ee033fc4735c3d2d82e5d2622491dbeed3510bf357b67f4a463c6714f10d2c41"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band D - Electrical",
+      "configUuid": "clov0r5kwplr",
+      "products": 15,
+      "compared": 39696,
+      "rejected": 19776,
+      "comparedWithPreviousFormula": 38688,
+      "formulaBytes": 3625,
+      "previousFormulaBytes": 174768,
+      "formulaSha256": "88e279139dd4e3305175386cf3ae43c94e940a79395560c783679d32a14a89d7"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band C - Electrical",
+      "configUuid": "clia0qrubxxo",
+      "products": 5,
+      "compared": 38976,
+      "rejected": 19416,
+      "comparedWithPreviousFormula": 38688,
+      "formulaBytes": 3622,
+      "previousFormulaBytes": 174730,
+      "formulaSha256": "a6a90bbb189ea9ec1c125eef840208b4e4c7da6f36def2054a8cee039d46e51b"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band E - Electrical",
+      "configUuid": "clxu0vyu6m5i",
+      "products": 11,
+      "compared": 39408,
+      "rejected": 19632,
+      "comparedWithPreviousFormula": 38688,
+      "formulaBytes": 3617,
+      "previousFormulaBytes": 174760,
+      "formulaSha256": "13525b6ca5d40326f00544846b6b35930988c34dda829c94a40c00987dd7827e"
+    },
+    {
+      "description": "OB Preview - Day and Night - Band F - Electrical",
+      "configUuid": "clp6uikua90o",
+      "products": 14,
+      "compared": 39624,
+      "rejected": 19740,
+      "comparedWithPreviousFormula": 38688,
+      "formulaBytes": 3619,
+      "previousFormulaBytes": 174753,
+      "formulaSha256": "1664b895dcc963e6719e743c071d8c7de74608ec0b274793e088e51df6addf8b"
+    }
+  ]
+}

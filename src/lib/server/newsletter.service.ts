@@ -1,13 +1,13 @@
 import { resolveDiscountCode } from './discount.service';
 import { getAdminApiUrl, getAdminHeaders, validateShopifyConfig } from './shopify-admin';
+// Code revealed after a successful signup (src/data/promotions.ts). Must exist
+// in Shopify as an active "Amount off order" code.
+import { NEWSLETTER_DISCOUNT_CODE } from '@/data/promotions';
 
 // Tag applied to customers created by the storefront newsletter form, so
 // Shopify marketing automations (e.g. the welcome discount email) can target them.
 const NEWSLETTER_TAG = 'newsletter';
 
-// Discount code revealed on the site after a successful signup. Must exist in
-// Shopify as an active "Amount off order" code.
-const NEWSLETTER_DISCOUNT_CODE = process.env.NEWSLETTER_DISCOUNT_CODE || 'WELCOME20';
 
 /**
  * Returns the welcome discount code only if it is currently redeemable in

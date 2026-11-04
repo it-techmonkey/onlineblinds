@@ -1,0 +1,473 @@
+{
+  "date": "2026-10-27",
+  "scope": "Measurement and manual/motorized customization panels on the current website and unpublished theme. Same source React controls retained; LPO native controls are not displayed.",
+  "passed": true,
+  "results": [
+    {
+      "viewport": 1440,
+      "source": {
+        "text": "Measure your windows\nChoose Your Size\nCentimeters\nMillimeters\nWidth\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\nHeight\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\n\nAllowed range: Width 51-279 cm Height 49-279 cm\n\nInstallation Method\n\nInside Recess\n\nShades are mounted inside the window recess.\n\nOutside Recess\n\nShades are mounted outside the window recess on the wall or frame.\n\nBlind Name\nSelect",
+        "font": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "rect": {
+          "width": 606.71875,
+          "height": 763.390625
+        },
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Measure your windows"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Centimeters"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Millimeters"
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Inside RecessShades are mounted inside the window recess."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Outside RecessShades are mounted outside the window recess on the wall or frame."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Select"
+          },
+          {
+            "tag": "INPUT",
+            "type": "text",
+            "label": null,
+            "text": null
+          }
+        ],
+        "overflow": false,
+        "manual": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 606.71875,
+          "height": 872.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "motorized": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 606.71875,
+          "height": 872.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "errors": []
+      },
+      "preview": {
+        "text": "Measure your windows\nChoose Your Size\nCentimeters\nMillimeters\nWidth\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\nHeight\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\n\nAllowed range: Width 51-279 cm Height 49-279 cm\n\nInstallation Method\n\nInside Recess\n\nShades are mounted inside the window recess.\n\nOutside Recess\n\nShades are mounted outside the window recess on the wall or frame.\n\nBlind Name\nSelect",
+        "font": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "rect": {
+          "width": 606.71875,
+          "height": 763.390625
+        },
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Measure your windows"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Centimeters"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Millimeters"
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Inside RecessShades are mounted inside the window recess."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Outside RecessShades are mounted outside the window recess on the wall or frame."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Select"
+          },
+          {
+            "tag": "INPUT",
+            "type": "text",
+            "label": null,
+            "text": null
+          }
+        ],
+        "overflow": false,
+        "manual": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 606.71875,
+          "height": 872.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "motorized": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 606.71875,
+          "height": 872.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "errors": []
+      },
+      "textEqual": true,
+      "controlsEqual": true,
+      "layoutEqual": true,
+      "manualEqual": true,
+      "motorizedEqual": true,
+      "passed": true
+    },
+    {
+      "viewport": 390,
+      "source": {
+        "text": "Measure your windows\nChoose Your Size\nCentimeters\nMillimeters\nWidth\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\nHeight\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\n\nAllowed range: Width 51-279 cm Height 49-279 cm\n\nInstallation Method\n\nInside Recess\n\nShades are mounted inside the window recess.\n\nOutside Recess\n\nShades are mounted outside the window recess on the wall or frame.\n\nBlind Name\nSelect",
+        "font": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "rect": {
+          "width": 358,
+          "height": 748.1875
+        },
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Measure your windows"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Centimeters"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Millimeters"
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Inside RecessShades are mounted inside the window recess."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Outside RecessShades are mounted outside the window recess on the wall or frame."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Select"
+          },
+          {
+            "tag": "INPUT",
+            "type": "text",
+            "label": null,
+            "text": null
+          }
+        ],
+        "overflow": false,
+        "manual": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 358,
+          "height": 749.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "motorized": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 358,
+          "height": 749.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "errors": []
+      },
+      "preview": {
+        "text": "Measure your windows\nChoose Your Size\nCentimeters\nMillimeters\nWidth\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\nHeight\nCENTIMETERS\nMILLIMETERS\n0 mm\n1 mm\n2 mm\n3 mm\n4 mm\n5 mm\n6 mm\n7 mm\n8 mm\n9 mm\n\nAllowed range: Width 51-279 cm Height 49-279 cm\n\nInstallation Method\n\nInside Recess\n\nShades are mounted inside the window recess.\n\nOutside Recess\n\nShades are mounted outside the window recess on the wall or frame.\n\nBlind Name\nSelect",
+        "font": "ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "rect": {
+          "width": 358,
+          "height": 748.1875
+        },
+        "controls": [
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Measure your windows"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Centimeters"
+          },
+          {
+            "tag": "BUTTON",
+            "type": "submit",
+            "label": null,
+            "text": "Millimeters"
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "INPUT",
+            "type": "number",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "SELECT",
+            "type": "select-one",
+            "label": null,
+            "text": null
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Inside RecessShades are mounted inside the window recess."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Outside RecessShades are mounted outside the window recess on the wall or frame."
+          },
+          {
+            "tag": "BUTTON",
+            "type": "button",
+            "label": null,
+            "text": "Select"
+          },
+          {
+            "tag": "INPUT",
+            "type": "text",
+            "label": null,
+            "text": null
+          }
+        ],
+        "overflow": false,
+        "manual": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 358,
+          "height": 749.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "motorized": {
+          "text": "Customize your blind\nCassette and Bottom Matching Bar\n\nSelect cassette color options\n\nSame Fabric Insert in Cassette\n\nMatch the cassette insert to your blind’s fabric\n\nSame Fabric Insert\nSelect an option\nChoose your Control\n\nSelect the location of your control chain\n\nMotorization\n\nIncluding remote and charging wire\n\n+£75.00",
+          "width": 358,
+          "height": 749.296875,
+          "controls": [
+            {
+              "tag": "BUTTON",
+              "type": "submit",
+              "text": "Customize your blind"
+            },
+            {
+              "tag": "BUTTON",
+              "type": "button",
+              "text": "Select an option"
+            }
+          ]
+        },
+        "errors": []
+      },
+      "textEqual": true,
+      "controlsEqual": true,
+      "layoutEqual": true,
+      "manualEqual": true,
+      "motorizedEqual": true,
+      "passed": true
+    }
+  ]
+}

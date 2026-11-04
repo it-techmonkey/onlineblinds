@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "metal-venetian-special-band",
+    "configUuid": "claidmmfywl1",
+    "description": "OB Preview - Metal Venetian - Special Band",
+    "products": 36
+  },
+  {
+    "slug": "metal-venetian-normal-band",
+    "configUuid": "clw5pi9ppsvo",
+    "description": "OB Preview - Metal Venetian - Normal Band",
+    "products": 72
+  },
+  {
+    "slug": "perfect-fit-wooden-band",
+    "configUuid": "cl5qb9la2xns",
+    "description": "OB Preview - Perfect Fit Wooden Band",
+    "products": 10
+  },
+  {
+    "slug": "perfect-fit-metal-venetians-standard",
+    "configUuid": "clgqko6ddpyf",
+    "description": "OB Preview - Perfect Fit Metal Venetians - Standard",
+    "products": 77
+  },
+  {
+    "slug": "perfect-fit-metal-venetians-special-effect",
+    "configUuid": "clnscwbhk1g5",
+    "description": "OB Preview - Perfect Fit Metal Venetians - Special Effect",
+    "products": 30
+  },
+  {
+    "slug": "perfect-fit-shutters-lite",
+    "configUuid": "clsxtevaqtlk",
+    "description": "OB Preview - Perfect Fit Shutters Lite",
+    "products": 1
+  }
+]

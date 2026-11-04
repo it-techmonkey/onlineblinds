@@ -1,0 +1,3386 @@
+{
+  "date": "2026-11-04",
+  "category": "vertical",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "vertical-blind-band-b",
+      "bandId": "cmlddettq0000uc7kzxzlurk3",
+      "band": "Vertical Blind - Band B",
+      "description": "OB Preview - Vertical Blind - Band B",
+      "representative": "alabama-linen-vertical-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "cmlddettq0000uc7kzxzlurk3",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15711241830784",
+          "type": "product",
+          "title": "Alabama Linen Vertical Blind",
+          "handle": "alabama-linen-vertical-blind"
+        },
+        {
+          "id": "15711243043200",
+          "type": "product",
+          "title": "Atlantic Cream Vertical Blind",
+          "handle": "atlantic-cream-vertical-blind"
+        },
+        {
+          "id": "15711243207040",
+          "type": "product",
+          "title": "Atlantic White Vertical Blind",
+          "handle": "atlantic-white-vertical-blind"
+        },
+        {
+          "id": "15711243305344",
+          "type": "product",
+          "title": "Badar Beige Vertical Blind",
+          "handle": "badar-beige-vertical-blind"
+        },
+        {
+          "id": "15711243436416",
+          "type": "product",
+          "title": "Badar Cream Vertical Blind",
+          "handle": "badar-cream-vertical-blind"
+        },
+        {
+          "id": "15711243501952",
+          "type": "product",
+          "title": "Badar Snow Vertical Blind",
+          "handle": "badar-snow-vertical-blind"
+        },
+        {
+          "id": "15711250317696",
+          "type": "product",
+          "title": "Fabian Beige Vertical Blind",
+          "handle": "fabian-beige-vertical-blind"
+        },
+        {
+          "id": "15711250416000",
+          "type": "product",
+          "title": "Fabian Brown Vertical Blind",
+          "handle": "fabian-brown-vertical-blind"
+        },
+        {
+          "id": "15711250547072",
+          "type": "product",
+          "title": "Fabian Cream Vertical Blind",
+          "handle": "fabian-cream-vertical-blind"
+        },
+        {
+          "id": "15711250645376",
+          "type": "product",
+          "title": "Fabian White Vertical Blind",
+          "handle": "fabian-white-vertical-blind"
+        },
+        {
+          "id": "15711258476928",
+          "type": "product",
+          "title": "Marina Black Vertical Blind",
+          "handle": "marina-black-vertical-blind"
+        },
+        {
+          "id": "15711258542464",
+          "type": "product",
+          "title": "Marina Coffee Vertical Blind",
+          "handle": "marina-coffee-vertical-blind"
+        },
+        {
+          "id": "15711258673536",
+          "type": "product",
+          "title": "Marina Gold Vertical Blind",
+          "handle": "marina-gold-vertical-blind"
+        },
+        {
+          "id": "15711258771840",
+          "type": "product",
+          "title": "Marina Harvest Vertical Blind",
+          "handle": "marina-harvest-vertical-blind"
+        },
+        {
+          "id": "15711258870144",
+          "type": "product",
+          "title": "Marina Ivory Vertical Blind",
+          "handle": "marina-ivory-vertical-blind"
+        },
+        {
+          "id": "15711258968448",
+          "type": "product",
+          "title": "Marina White Vertical Blind",
+          "handle": "marina-white-vertical-blind"
+        },
+        {
+          "id": "15711259033984",
+          "type": "product",
+          "title": "Milton Brown Vertical Blind",
+          "handle": "milton-brown-vertical-blind"
+        },
+        {
+          "id": "15711259099520",
+          "type": "product",
+          "title": "Milton Cream Vertical Blind",
+          "handle": "milton-cream-vertical-blind"
+        },
+        {
+          "id": "15711259230592",
+          "type": "product",
+          "title": "Milton White Vertical Blind",
+          "handle": "milton-white-vertical-blind"
+        },
+        {
+          "id": "15711261589888",
+          "type": "product",
+          "title": "Optimum Standard Black Vertical Blind",
+          "handle": "optimum-standard-black-vertical-blind"
+        },
+        {
+          "id": "15711261688192",
+          "type": "product",
+          "title": "Optimum Standard Cream Vertical Blind",
+          "handle": "optimum-standard-cream-vertical-blind"
+        },
+        {
+          "id": "15711261852032",
+          "type": "product",
+          "title": "Optimum Standard Grey Vertical Blind",
+          "handle": "optimum-standard-grey-vertical-blind"
+        },
+        {
+          "id": "15711262015872",
+          "type": "product",
+          "title": "Optimum Standard Magnolia Vertical Blind",
+          "handle": "optimum-standard-magnolia-vertical-blind"
+        },
+        {
+          "id": "15711262114176",
+          "type": "product",
+          "title": "Optimum Standard Snow Vertical Blind",
+          "handle": "optimum-standard-snow-vertical-blind"
+        },
+        {
+          "id": "15711263621504",
+          "type": "product",
+          "title": "Parfait Cream Vertical Blind",
+          "handle": "parfait-cream-vertical-blind"
+        },
+        {
+          "id": "15711263687040",
+          "type": "product",
+          "title": "Parfait White Vertical Blind",
+          "handle": "parfait-white-vertical-blind"
+        },
+        {
+          "id": "15711266800000",
+          "type": "product",
+          "title": "Sunrise Brown Vertical Blind",
+          "handle": "sunrise-brown-vertical-blind"
+        },
+        {
+          "id": "15711266832768",
+          "type": "product",
+          "title": "Sunrise Cream Vertical Blind",
+          "handle": "sunrise-cream-vertical-blind"
+        },
+        {
+          "id": "15711266865536",
+          "type": "product",
+          "title": "Sunrise White Vertical Blind",
+          "handle": "sunrise-white-vertical-blind"
+        },
+        {
+          "id": "15711267946880",
+          "type": "product",
+          "title": "Unity Acorn Vertical Blind",
+          "handle": "unity-acorn-vertical-blind"
+        },
+        {
+          "id": "15711267979648",
+          "type": "product",
+          "title": "Unity Apple Vertical Blind",
+          "handle": "unity-apple-vertical-blind"
+        },
+        {
+          "id": "15711268012416",
+          "type": "product",
+          "title": "Unity Baby Pink Vertical Blind",
+          "handle": "unity-baby-pink-vertical-blind"
+        },
+        {
+          "id": "15711268110720",
+          "type": "product",
+          "title": "Unity Bamboo Vertical Blind",
+          "handle": "unity-bamboo-vertical-blind"
+        },
+        {
+          "id": "15711268176256",
+          "type": "product",
+          "title": "Unity Black Vertical Blind",
+          "handle": "unity-black-vertical-blind"
+        },
+        {
+          "id": "15711268209024",
+          "type": "product",
+          "title": "Unity Brick Vertical Blind",
+          "handle": "unity-brick-vertical-blind"
+        },
+        {
+          "id": "15711268241792",
+          "type": "product",
+          "title": "Unity Champagne Vertical Blind",
+          "handle": "unity-champagne-vertical-blind"
+        },
+        {
+          "id": "15711268274560",
+          "type": "product",
+          "title": "Unity Desert Vertical Blind",
+          "handle": "unity-desert-vertical-blind"
+        },
+        {
+          "id": "15711268307328",
+          "type": "product",
+          "title": "Unity Ice Vertical Blind",
+          "handle": "unity-ice-vertical-blind"
+        },
+        {
+          "id": "15711268405632",
+          "type": "product",
+          "title": "Unity Lime Vertical Blind",
+          "handle": "unity-lime-vertical-blind"
+        },
+        {
+          "id": "15711268438400",
+          "type": "product",
+          "title": "Unity Oak Vertical Blind",
+          "handle": "unity-oak-vertical-blind"
+        },
+        {
+          "id": "15711269847424",
+          "type": "product",
+          "title": "Unity Pond Vertical Blind",
+          "handle": "unity-pond-vertical-blind"
+        },
+        {
+          "id": "15711269912960",
+          "type": "product",
+          "title": "Unity Poppy Vertical Blind",
+          "handle": "unity-poppy-vertical-blind"
+        },
+        {
+          "id": "15711269978496",
+          "type": "product",
+          "title": "Unity Pumpkin Vertical Blind",
+          "handle": "unity-pumpkin-vertical-blind"
+        },
+        {
+          "id": "15711270076800",
+          "type": "product",
+          "title": "Unity Rasberry Vertical Blind",
+          "handle": "unity-rasberry-vertical-blind"
+        },
+        {
+          "id": "15711270109568",
+          "type": "product",
+          "title": "Unity Rose Vertical Blind",
+          "handle": "unity-rose-vertical-blind"
+        },
+        {
+          "id": "15711270142336",
+          "type": "product",
+          "title": "Unity Sand Vertical Blind",
+          "handle": "unity-sand-vertical-blind"
+        },
+        {
+          "id": "15711270175104",
+          "type": "product",
+          "title": "Unity Sky Vertical Blind",
+          "handle": "unity-sky-vertical-blind"
+        },
+        {
+          "id": "15711270207872",
+          "type": "product",
+          "title": "Unity Steel Vertical Blind",
+          "handle": "unity-steel-vertical-blind"
+        },
+        {
+          "id": "15711270240640",
+          "type": "product",
+          "title": "Unity Stone Vertical Blind",
+          "handle": "unity-stone-vertical-blind"
+        },
+        {
+          "id": "15711270306176",
+          "type": "product",
+          "title": "Unity Thunder Vertical Blind",
+          "handle": "unity-thunder-vertical-blind"
+        },
+        {
+          "id": "15711270338944",
+          "type": "product",
+          "title": "Unity Twilight Vertical Blind",
+          "handle": "unity-twilight-vertical-blind"
+        },
+        {
+          "id": "15711270404480",
+          "type": "product",
+          "title": "Unity Willow Vertical Blind",
+          "handle": "unity-willow-vertical-blind"
+        }
+      ]
+    },
+    {
+      "slug": "vertical-blind-band-d",
+      "bandId": "cmlddlw6i0000jk7kvnrord2d",
+      "band": "Vertical Blind - Band D",
+      "description": "OB Preview - Vertical Blind - Band D",
+      "representative": "aqualush-beige-vertical-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "cmlddlw6i0000jk7kvnrord2d",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15711241929088",
+          "type": "product",
+          "title": "Aqualush Beige Vertical Blind",
+          "handle": "aqualush-beige-vertical-blind"
+        },
+        {
+          "id": "15711241961856",
+          "type": "product",
+          "title": "Aqualush Black Vertical Blind",
+          "handle": "aqualush-black-vertical-blind"
+        },
+        {
+          "id": "15711242092928",
+          "type": "product",
+          "title": "Aqualush Carmine Vertical Blind",
+          "handle": "aqualush-carmine-vertical-blind"
+        },
+        {
+          "id": "15711242224000",
+          "type": "product",
+          "title": "Aqualush Cream Vertical Blind",
+          "handle": "aqualush-cream-vertical-blind"
+        },
+        {
+          "id": "15711242355072",
+          "type": "product",
+          "title": "Aqualush Navy Blue Vertical Blind",
+          "handle": "aqualush-navy-blue-vertical-blind"
+        },
+        {
+          "id": "15711242453376",
+          "type": "product",
+          "title": "Aqualush Red Vertical Blind",
+          "handle": "aqualush-red-vertical-blind"
+        },
+        {
+          "id": "15711242551680",
+          "type": "product",
+          "title": "Aqualush Sky Blue Vertical Blind",
+          "handle": "aqualush-sky-blue-vertical-blind"
+        },
+        {
+          "id": "15711242682752",
+          "type": "product",
+          "title": "Aqualush Steel Vertical Blind",
+          "handle": "aqualush-steel-vertical-blind"
+        },
+        {
+          "id": "15711242813824",
+          "type": "product",
+          "title": "Aqualush White Vertical Blind",
+          "handle": "aqualush-white-vertical-blind"
+        },
+        {
+          "id": "15711242944896",
+          "type": "product",
+          "title": "Aqualush Wine Vertical Blind",
+          "handle": "aqualush-wine-vertical-blind"
+        },
+        {
+          "id": "15711244222848",
+          "type": "product",
+          "title": "Cairo Blackout Beige Vertical Blind",
+          "handle": "cairo-blackout-beige-vertical-blind"
+        },
+        {
+          "id": "15711244386688",
+          "type": "product",
+          "title": "Cairo Blackout Black Vertical Blind",
+          "handle": "cairo-blackout-black-vertical-blind"
+        },
+        {
+          "id": "15711244484992",
+          "type": "product",
+          "title": "Cairo Blackout Blue Vertical Blind",
+          "handle": "cairo-blackout-blue-vertical-blind"
+        },
+        {
+          "id": "15711244583296",
+          "type": "product",
+          "title": "Cairo Blackout Brown Vertical Blind",
+          "handle": "cairo-blackout-brown-vertical-blind"
+        },
+        {
+          "id": "15711244714368",
+          "type": "product",
+          "title": "Cairo Blackout Burgundy Vertical Blind",
+          "handle": "cairo-blackout-burgundy-vertical-blind"
+        },
+        {
+          "id": "15711244878208",
+          "type": "product",
+          "title": "Cairo Blackout Chocolate Vertical Blind",
+          "handle": "cairo-blackout-chocolate-vertical-blind"
+        },
+        {
+          "id": "15711245009280",
+          "type": "product",
+          "title": "Cairo Blackout Cream Vertical Blind",
+          "handle": "cairo-blackout-cream-vertical-blind"
+        },
+        {
+          "id": "15711245107584",
+          "type": "product",
+          "title": "Cairo Blackout Dusk Vertical Blind",
+          "handle": "cairo-blackout-dusk-vertical-blind"
+        },
+        {
+          "id": "15711245205888",
+          "type": "product",
+          "title": "Cairo Blackout Green Vertical Blind",
+          "handle": "cairo-blackout-green-vertical-blind"
+        },
+        {
+          "id": "15711245402496",
+          "type": "product",
+          "title": "Cairo Blackout Grey Vertical Blind",
+          "handle": "cairo-blackout-grey-vertical-blind"
+        },
+        {
+          "id": "15711245533568",
+          "type": "product",
+          "title": "Cairo Blackout Mustard Vertical Blind",
+          "handle": "cairo-blackout-mustard-vertical-blind"
+        },
+        {
+          "id": "15711245631872",
+          "type": "product",
+          "title": "Cairo Blackout Orange Vertical Blind",
+          "handle": "cairo-blackout-orange-vertical-blind"
+        },
+        {
+          "id": "15711245795712",
+          "type": "product",
+          "title": "Cairo Blackout Pink Vertical Blind",
+          "handle": "cairo-blackout-pink-vertical-blind"
+        },
+        {
+          "id": "15711245926784",
+          "type": "product",
+          "title": "Cairo Blackout Purple Vertical Blind",
+          "handle": "cairo-blackout-purple-vertical-blind"
+        },
+        {
+          "id": "15711246123392",
+          "type": "product",
+          "title": "Cairo Blackout Rasberry Vertical Blind",
+          "handle": "cairo-blackout-rasberry-vertical-blind"
+        },
+        {
+          "id": "15711246320000",
+          "type": "product",
+          "title": "Cairo Blackout Red Vertical Blind",
+          "handle": "cairo-blackout-red-vertical-blind"
+        },
+        {
+          "id": "15711246483840",
+          "type": "product",
+          "title": "Cairo Blackout Silver Vertical Blind",
+          "handle": "cairo-blackout-silver-vertical-blind"
+        },
+        {
+          "id": "15711246647680",
+          "type": "product",
+          "title": "Cairo Blackout White Vertical Blind",
+          "handle": "cairo-blackout-white-vertical-blind"
+        },
+        {
+          "id": "15711251661184",
+          "type": "product",
+          "title": "Fiesta Beige - PVC Blackout Waterproof Vertical Blind",
+          "handle": "fiesta-beige-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711251825024",
+          "type": "product",
+          "title": "Fiesta Cream - PVC Blackout Waterproof Vertical Blind",
+          "handle": "fiesta-cream-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252021632",
+          "type": "product",
+          "title": "Fiesta Grey - PVC Blackout Waterproof Vertical Blind",
+          "handle": "fiesta-grey-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252185472",
+          "type": "product",
+          "title": "Fiesta Steel - PVC Blackout Waterproof Vertical Blind",
+          "handle": "fiesta-steel-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252316544",
+          "type": "product",
+          "title": "Fiesta White - PVC Blackout Waterproof Vertical Blind",
+          "handle": "fiesta-white-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252447616",
+          "type": "product",
+          "title": "Gravity Beige - PVC Blackout Waterproof Vertical Blind",
+          "handle": "gravity-beige-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252578688",
+          "type": "product",
+          "title": "Gravity Black - PVC Blackout Waterproof Vertical Blind",
+          "handle": "gravity-black-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252742528",
+          "type": "product",
+          "title": "Gravity Brown - PVC Blackout Waterproof Vertical Blind",
+          "handle": "gravity-brown-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711252906368",
+          "type": "product",
+          "title": "Gravity Cream - PVC Blackout Waterproof Vertical Blind",
+          "handle": "gravity-cream-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711253070208",
+          "type": "product",
+          "title": "Gravity Grey - PVC Blackout Waterproof Vertical Blind",
+          "handle": "gravity-grey-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711253168512",
+          "type": "product",
+          "title": "Gravity Steel - PVC Blackout Waterproof Vertical Blind",
+          "handle": "gravity-steel-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711253299584",
+          "type": "product",
+          "title": "Gravity White - PVC Blackout WaterproofVertical Blind",
+          "handle": "gravity-white-pvc-blackout-waterproofvertical-blind"
+        },
+        {
+          "id": "15711254020480",
+          "type": "product",
+          "title": "Havana PVC Beige Vertical Blind",
+          "handle": "havana-pvc-beige-vertical-blind"
+        },
+        {
+          "id": "15711254184320",
+          "type": "product",
+          "title": "Havana PVC Black Vertical Blind",
+          "handle": "havana-pvc-black-vertical-blind"
+        },
+        {
+          "id": "15711254348160",
+          "type": "product",
+          "title": "Havana PVC Cream Vertical Blind",
+          "handle": "havana-pvc-cream-vertical-blind"
+        },
+        {
+          "id": "15711254479232",
+          "type": "product",
+          "title": "Havana PVC Grey Vertical Blind",
+          "handle": "havana-pvc-grey-vertical-blind"
+        },
+        {
+          "id": "15711254577536",
+          "type": "product",
+          "title": "Havana PVC White Vertical Blind",
+          "handle": "havana-pvc-white-vertical-blind"
+        },
+        {
+          "id": "15711255265664",
+          "type": "product",
+          "title": "Jaguar Beige Vertical Blind",
+          "handle": "jaguar-beige-vertical-blind"
+        },
+        {
+          "id": "15711255363968",
+          "type": "product",
+          "title": "Jaguar Black Vertical Blind",
+          "handle": "jaguar-black-vertical-blind"
+        },
+        {
+          "id": "15711255527808",
+          "type": "product",
+          "title": "Jaguar Brown Vertical Blind",
+          "handle": "jaguar-brown-vertical-blind"
+        },
+        {
+          "id": "15711255658880",
+          "type": "product",
+          "title": "Jaguar Cream Vertical Blind",
+          "handle": "jaguar-cream-vertical-blind"
+        },
+        {
+          "id": "15711255822720",
+          "type": "product",
+          "title": "Jaguar Grey Vertical Blind",
+          "handle": "jaguar-grey-vertical-blind"
+        },
+        {
+          "id": "15711255986560",
+          "type": "product",
+          "title": "Jaguar White Vertical Blind",
+          "handle": "jaguar-white-vertical-blind"
+        },
+        {
+          "id": "15711256084864",
+          "type": "product",
+          "title": "Kia Beige Vertical Blind",
+          "handle": "kia-beige-vertical-blind"
+        },
+        {
+          "id": "15711256215936",
+          "type": "product",
+          "title": "Kia Black Vertical Blind",
+          "handle": "kia-black-vertical-blind"
+        },
+        {
+          "id": "15711256379776",
+          "type": "product",
+          "title": "Kia Brown Vertical Blind",
+          "handle": "kia-brown-vertical-blind"
+        },
+        {
+          "id": "15711256478080",
+          "type": "product",
+          "title": "Kia Cream Vertical Blind",
+          "handle": "kia-cream-vertical-blind"
+        },
+        {
+          "id": "15711256641920",
+          "type": "product",
+          "title": "Kia Red Vertical Blind",
+          "handle": "kia-red-vertical-blind"
+        },
+        {
+          "id": "15711256740224",
+          "type": "product",
+          "title": "Kia White Vertical Blind",
+          "handle": "kia-white-vertical-blind"
+        },
+        {
+          "id": "15711256904064",
+          "type": "product",
+          "title": "Lahore Black Vertical Blind",
+          "handle": "lahore-black-vertical-blind"
+        },
+        {
+          "id": "15711257067904",
+          "type": "product",
+          "title": "Lahore Cream Vertical Blind",
+          "handle": "lahore-cream-vertical-blind"
+        },
+        {
+          "id": "15711257297280",
+          "type": "product",
+          "title": "Lahore Grey Vertical Blind",
+          "handle": "lahore-grey-vertical-blind"
+        },
+        {
+          "id": "15711257493888",
+          "type": "product",
+          "title": "Lahore Ivory Vertical Blind",
+          "handle": "lahore-ivory-vertical-blind"
+        },
+        {
+          "id": "15711257592192",
+          "type": "product",
+          "title": "Lahore Silver Vertical Blind",
+          "handle": "lahore-silver-vertical-blind"
+        },
+        {
+          "id": "15711257657728",
+          "type": "product",
+          "title": "Lahore White Vertical Blind",
+          "handle": "lahore-white-vertical-blind"
+        },
+        {
+          "id": "15711259722112",
+          "type": "product",
+          "title": "Oasis Black Vertical Blind",
+          "handle": "oasis-black-vertical-blind"
+        },
+        {
+          "id": "15711259853184",
+          "type": "product",
+          "title": "Oasis Brown Vertical Blind",
+          "handle": "oasis-brown-vertical-blind"
+        },
+        {
+          "id": "15711259984256",
+          "type": "product",
+          "title": "Oasis Charcoal1 Vertical Blind",
+          "handle": "oasis-charcoal1-vertical-blind"
+        },
+        {
+          "id": "15711260082560",
+          "type": "product",
+          "title": "Oasis Cream Vertical Blind",
+          "handle": "oasis-cream-vertical-blind"
+        },
+        {
+          "id": "15711260180864",
+          "type": "product",
+          "title": "Oasis Grey Vertical Blind",
+          "handle": "oasis-grey-vertical-blind"
+        },
+        {
+          "id": "15711260279168",
+          "type": "product",
+          "title": "Oasis Purple Vertical Blind",
+          "handle": "oasis-purple-vertical-blind"
+        },
+        {
+          "id": "15711260475776",
+          "type": "product",
+          "title": "Oasis Purple1 Vertical Blind",
+          "handle": "oasis-purple1-vertical-blind"
+        },
+        {
+          "id": "15711260606848",
+          "type": "product",
+          "title": "Oasis Rock Vertical Blind",
+          "handle": "oasis-rock-vertical-blind"
+        },
+        {
+          "id": "15711260672384",
+          "type": "product",
+          "title": "Oasis Silver1 Vertical Blind",
+          "handle": "oasis-silver1-vertical-blind"
+        },
+        {
+          "id": "15711260836224",
+          "type": "product",
+          "title": "Oasis White Vertical Blind",
+          "handle": "oasis-white-vertical-blind"
+        },
+        {
+          "id": "15711265259904",
+          "type": "product",
+          "title": "Raindrop Blockout Black Vertical Blind",
+          "handle": "raindrop-blockout-black-vertical-blind"
+        },
+        {
+          "id": "15711265325440",
+          "type": "product",
+          "title": "Raindrop Blockout Cappucino Vertical Blind",
+          "handle": "raindrop-blockout-cappucino-vertical-blind"
+        },
+        {
+          "id": "15711265390976",
+          "type": "product",
+          "title": "Raindrop Blockout Red Vertical Blind",
+          "handle": "raindrop-blockout-red-vertical-blind"
+        },
+        {
+          "id": "15711265456512",
+          "type": "product",
+          "title": "Raindrop Blockout Storm Vertical Blind",
+          "handle": "raindrop-blockout-storm-vertical-blind"
+        },
+        {
+          "id": "15711265522048",
+          "type": "product",
+          "title": "Raindrop Blockout White Vertical Blind",
+          "handle": "raindrop-blockout-white-vertical-blind"
+        },
+        {
+          "id": "15711265653120",
+          "type": "product",
+          "title": "Rita Beige Vertical Blind",
+          "handle": "rita-beige-vertical-blind"
+        },
+        {
+          "id": "15711265751424",
+          "type": "product",
+          "title": "Rita Black Vertical Blind",
+          "handle": "rita-black-vertical-blind"
+        },
+        {
+          "id": "15711265816960",
+          "type": "product",
+          "title": "Rita Cream Vertical Blind",
+          "handle": "rita-cream-vertical-blind"
+        },
+        {
+          "id": "15711265980800",
+          "type": "product",
+          "title": "Rita Grey Vertical Blind",
+          "handle": "rita-grey-vertical-blind"
+        },
+        {
+          "id": "15711266046336",
+          "type": "product",
+          "title": "Rita Snow Vertical Blind",
+          "handle": "rita-snow-vertical-blind"
+        },
+        {
+          "id": "15711267193216",
+          "type": "product",
+          "title": "Symphony Black Out Black Vertical Blind",
+          "handle": "symphony-black-out-black-vertical-blind"
+        },
+        {
+          "id": "15711267324288",
+          "type": "product",
+          "title": "Symphony Black Out Cream Vertical Blind",
+          "handle": "symphony-black-out-cream-vertical-blind"
+        },
+        {
+          "id": "15711267357056",
+          "type": "product",
+          "title": "Symphony Black Out Grey Vertical Blind",
+          "handle": "symphony-black-out-grey-vertical-blind"
+        },
+        {
+          "id": "15711267389824",
+          "type": "product",
+          "title": "Symphony Black Out White Vertical Blind",
+          "handle": "symphony-black-out-white-vertical-blind"
+        },
+        {
+          "id": "15711267422592",
+          "type": "product",
+          "title": "Tango Apple - PVC Blackout Vertical Blind",
+          "handle": "tango-apple-pvc-blackout-vertical-blind"
+        },
+        {
+          "id": "15711267455360",
+          "type": "product",
+          "title": "Tango Cherry - PVC Blackout Waterproof Vertical Blind",
+          "handle": "tango-cherry-pvc-blackout-waterproof-vertical-blind"
+        },
+        {
+          "id": "15711267488128",
+          "type": "product",
+          "title": "Tango Steel - PVC Blackout Waterproof Vertical Blind",
+          "handle": "tango-steel-pvc-blackout-waterproof-vertical-blind"
+        }
+      ]
+    },
+    {
+      "slug": "vertical-blind-band-a",
+      "bandId": "cmke6ngm5000qzo7krc9ths3d",
+      "band": "Vertical Blind - Band A",
+      "description": "OB Preview - Vertical Blind - Band A",
+      "representative": "california-sand-vertical-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "cmke6ngm5000qzo7krc9ths3d",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15711246811520",
+          "type": "product",
+          "title": "California Sand Vertical Blind",
+          "handle": "california-sand-vertical-blind"
+        },
+        {
+          "id": "15711246975360",
+          "type": "product",
+          "title": "California Sky Vertical Blind",
+          "handle": "california-sky-vertical-blind"
+        },
+        {
+          "id": "15711247139200",
+          "type": "product",
+          "title": "California Steel Vertical Blind",
+          "handle": "california-steel-vertical-blind"
+        },
+        {
+          "id": "15711247335808",
+          "type": "product",
+          "title": "California White Vertical Blind",
+          "handle": "california-white-vertical-blind"
+        },
+        {
+          "id": "15711247958400",
+          "type": "product",
+          "title": "Cloud Cream Vertical Blind",
+          "handle": "cloud-cream-vertical-blind"
+        },
+        {
+          "id": "15711248122240",
+          "type": "product",
+          "title": "Cloud White Vertical Blind",
+          "handle": "cloud-white-vertical-blind"
+        },
+        {
+          "id": "15711249465728",
+          "type": "product",
+          "title": "Dolphin Beige Vertical Blind",
+          "handle": "dolphin-beige-vertical-blind"
+        },
+        {
+          "id": "15711249564032",
+          "type": "product",
+          "title": "Dolphin Black Vertical Blind",
+          "handle": "dolphin-black-vertical-blind"
+        },
+        {
+          "id": "15711249727872",
+          "type": "product",
+          "title": "Dolphin Brown Vertical Blind",
+          "handle": "dolphin-brown-vertical-blind"
+        },
+        {
+          "id": "15711249858944",
+          "type": "product",
+          "title": "Dolphin Grey Vertical Blind",
+          "handle": "dolphin-grey-vertical-blind"
+        },
+        {
+          "id": "15711250055552",
+          "type": "product",
+          "title": "Dolphin Ivory Cream Vertical Blind",
+          "handle": "dolphin-ivory-cream-vertical-blind"
+        },
+        {
+          "id": "15711250186624",
+          "type": "product",
+          "title": "Dolphin White Vertical Blind",
+          "handle": "dolphin-white-vertical-blind"
+        },
+        {
+          "id": "15711250776448",
+          "type": "product",
+          "title": "Feather Weave Beige Vertical Blind",
+          "handle": "feather-weave-beige-vertical-blind"
+        },
+        {
+          "id": "15711250940288",
+          "type": "product",
+          "title": "Feather Weave Black Vertical Blind",
+          "handle": "feather-weave-black-vertical-blind"
+        },
+        {
+          "id": "15711251104128",
+          "type": "product",
+          "title": "Feather Weave Chantilly Vertical Blind",
+          "handle": "feather-weave-chantilly-vertical-blind"
+        },
+        {
+          "id": "15711251235200",
+          "type": "product",
+          "title": "Feather Weave Cream Vertical Blind",
+          "handle": "feather-weave-cream-vertical-blind"
+        },
+        {
+          "id": "15711251366272",
+          "type": "product",
+          "title": "Feather Weave Mist Vertical Blind",
+          "handle": "feather-weave-mist-vertical-blind"
+        },
+        {
+          "id": "15711251497344",
+          "type": "product",
+          "title": "Feather Weave White Vertical Blind",
+          "handle": "feather-weave-white-vertical-blind"
+        },
+        {
+          "id": "15711253397888",
+          "type": "product",
+          "title": "Hambrook Black Vertical Blind",
+          "handle": "hambrook-black-vertical-blind"
+        },
+        {
+          "id": "15711253496192",
+          "type": "product",
+          "title": "Hambrook Brown Vertical Blind",
+          "handle": "hambrook-brown-vertical-blind"
+        },
+        {
+          "id": "15711253594496",
+          "type": "product",
+          "title": "Hambrook Cream Vertical Blind",
+          "handle": "hambrook-cream-vertical-blind"
+        },
+        {
+          "id": "15711253791104",
+          "type": "product",
+          "title": "Hambrook Red Vertical Blind",
+          "handle": "hambrook-red-vertical-blind"
+        },
+        {
+          "id": "15711253889408",
+          "type": "product",
+          "title": "Hambrook Snow Vertical Blind",
+          "handle": "hambrook-snow-vertical-blind"
+        },
+        {
+          "id": "15711254774144",
+          "type": "product",
+          "title": "Henley Beige Vertical Blind",
+          "handle": "henley-beige-vertical-blind"
+        },
+        {
+          "id": "15711255003520",
+          "type": "product",
+          "title": "Henley Cream Vertical Blind",
+          "handle": "henley-cream-vertical-blind"
+        },
+        {
+          "id": "15711255167360",
+          "type": "product",
+          "title": "Henley White Vertical Blind",
+          "handle": "henley-white-vertical-blind"
+        },
+        {
+          "id": "15711262540160",
+          "type": "product",
+          "title": "Pacific Candy Vertical Blind",
+          "handle": "pacific-candy-vertical-blind"
+        },
+        {
+          "id": "15711262638464",
+          "type": "product",
+          "title": "Pacific Dawn Vertical Blind",
+          "handle": "pacific-dawn-vertical-blind"
+        },
+        {
+          "id": "15711262704000",
+          "type": "product",
+          "title": "Pacific Ivory Vertical Blind",
+          "handle": "pacific-ivory-vertical-blind"
+        },
+        {
+          "id": "15711262900608",
+          "type": "product",
+          "title": "Pacific Jade Vertical Blind",
+          "handle": "pacific-jade-vertical-blind"
+        },
+        {
+          "id": "15711262998912",
+          "type": "product",
+          "title": "Pacific Mist Vertical Blind",
+          "handle": "pacific-mist-vertical-blind"
+        },
+        {
+          "id": "15711263195520",
+          "type": "product",
+          "title": "Pacific Mocha Vertical Blind",
+          "handle": "pacific-mocha-vertical-blind"
+        },
+        {
+          "id": "15711263293824",
+          "type": "product",
+          "title": "Pacific Sand Vertical Blind",
+          "handle": "pacific-sand-vertical-blind"
+        },
+        {
+          "id": "15711263392128",
+          "type": "product",
+          "title": "Pacific Sky Vertical Blind",
+          "handle": "pacific-sky-vertical-blind"
+        },
+        {
+          "id": "15711263555968",
+          "type": "product",
+          "title": "Pacific White Vertical Blind",
+          "handle": "pacific-white-vertical-blind"
+        },
+        {
+          "id": "15711266079104",
+          "type": "product",
+          "title": "Rome Beige Vertical Blind",
+          "handle": "rome-beige-vertical-blind"
+        },
+        {
+          "id": "15711266177408",
+          "type": "product",
+          "title": "Rome Caramel Vertical Blind",
+          "handle": "rome-caramel-vertical-blind"
+        },
+        {
+          "id": "15711266308480",
+          "type": "product",
+          "title": "Rome Grey Vertical Blind",
+          "handle": "rome-grey-vertical-blind"
+        },
+        {
+          "id": "15711266439552",
+          "type": "product",
+          "title": "Rome Snow Vertical Blind",
+          "handle": "rome-snow-vertical-blind"
+        },
+        {
+          "id": "15711266603392",
+          "type": "product",
+          "title": "Stripe Black Vertical Blind",
+          "handle": "stripe-black-vertical-blind"
+        },
+        {
+          "id": "15711266668928",
+          "type": "product",
+          "title": "Stripe Ivory Vertical Blind",
+          "handle": "stripe-ivory-vertical-blind"
+        },
+        {
+          "id": "15711266701696",
+          "type": "product",
+          "title": "Stripe White Vertical Blind",
+          "handle": "stripe-white-vertical-blind"
+        },
+        {
+          "id": "15711266931072",
+          "type": "product",
+          "title": "Sweet Beige Vertical Blind",
+          "handle": "sweet-beige-vertical-blind"
+        },
+        {
+          "id": "15711266963840",
+          "type": "product",
+          "title": "Sweet Cream Vertical Blind",
+          "handle": "sweet-cream-vertical-blind"
+        },
+        {
+          "id": "15711267029376",
+          "type": "product",
+          "title": "Sweet Snow Vertical Blind",
+          "handle": "sweet-snow-vertical-blind"
+        },
+        {
+          "id": "15711267160448",
+          "type": "product",
+          "title": "Sweet Toffee Vertical Blind",
+          "handle": "sweet-toffee-vertical-blind"
+        }
+      ]
+    },
+    {
+      "slug": "vertical-blind-band-c",
+      "bandId": "cmlddisya0000d07k793woblj",
+      "band": "Vertical Blind - Band C",
+      "description": "OB Preview - Vertical Blind - Band C",
+      "representative": "daisy-cream-vertical-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "cmlddisya0000d07k793woblj",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15711248286080",
+          "type": "product",
+          "title": "Daisy Cream Vertical Blind",
+          "handle": "daisy-cream-vertical-blind"
+        },
+        {
+          "id": "15711248482688",
+          "type": "product",
+          "title": "Daisy White Vertical Blind",
+          "handle": "daisy-white-vertical-blind"
+        },
+        {
+          "id": "15711257854336",
+          "type": "product",
+          "title": "Lyon Beige Vertical Blind",
+          "handle": "lyon-beige-vertical-blind"
+        },
+        {
+          "id": "15711257919872",
+          "type": "product",
+          "title": "Lyon Black Vertical Blind",
+          "handle": "lyon-black-vertical-blind"
+        },
+        {
+          "id": "15711258050944",
+          "type": "product",
+          "title": "Lyon Brown Vertical Blind",
+          "handle": "lyon-brown-vertical-blind"
+        },
+        {
+          "id": "15711258182016",
+          "type": "product",
+          "title": "Lyon Cream Vertical Blind",
+          "handle": "lyon-cream-vertical-blind"
+        },
+        {
+          "id": "15711258247552",
+          "type": "product",
+          "title": "Lyon Red Vertical Blind",
+          "handle": "lyon-red-vertical-blind"
+        },
+        {
+          "id": "15711258345856",
+          "type": "product",
+          "title": "Lyon White Vertical Blind",
+          "handle": "lyon-white-vertical-blind"
+        },
+        {
+          "id": "15711259296128",
+          "type": "product",
+          "title": "Mumbai Callco Vertical Blind",
+          "handle": "mumbai-callco-vertical-blind"
+        },
+        {
+          "id": "15711259427200",
+          "type": "product",
+          "title": "Mumbai Cotton Vertical Blind",
+          "handle": "mumbai-cotton-vertical-blind"
+        },
+        {
+          "id": "15711259623808",
+          "type": "product",
+          "title": "Mumbai Linen Vertical Blind",
+          "handle": "mumbai-linen-vertical-blind"
+        },
+        {
+          "id": "15711261032832",
+          "type": "product",
+          "title": "Opera Cream Vertical Blind",
+          "handle": "opera-cream-vertical-blind"
+        },
+        {
+          "id": "15711261262208",
+          "type": "product",
+          "title": "Opera Grey Vertical Blind",
+          "handle": "opera-grey-vertical-blind"
+        },
+        {
+          "id": "15711261393280",
+          "type": "product",
+          "title": "Opera White Vertical Blind",
+          "handle": "opera-white-vertical-blind"
+        }
+      ]
+    },
+    {
+      "slug": "vertical-blind-band-f",
+      "bandId": "170ac658-74d3-40fa-8942-a115a424f30b",
+      "band": "Vertical Blind - Band F",
+      "description": "OB Preview - Vertical Blind - Band F",
+      "representative": "banlight-duo-fr-beige-1",
+      "schema": {
+        "kind": "band",
+        "bandId": "170ac658-74d3-40fa-8942-a115a424f30b",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15733264712064",
+          "type": "product",
+          "title": "Banlight Duo Fr Beige Vertical Blind",
+          "handle": "banlight-duo-fr-beige-1"
+        },
+        {
+          "id": "15733265269120",
+          "type": "product",
+          "title": "Banlight Duo Fr Black Vertical Blind",
+          "handle": "banlight-duo-fr-black-1"
+        },
+        {
+          "id": "15733265695104",
+          "type": "product",
+          "title": "Banlight Duo Fr Bright White Vertical Blind",
+          "handle": "banlight-duo-fr-bright-white-1"
+        },
+        {
+          "id": "15733266973056",
+          "type": "product",
+          "title": "Banlight Duo Fr Calico Vertical Blind",
+          "handle": "banlight-duo-fr-calico-1"
+        },
+        {
+          "id": "15733268808064",
+          "type": "product",
+          "title": "Banlight Duo Fr Charcoal Vertical Blind",
+          "handle": "banlight-duo-fr-charcoal-1"
+        },
+        {
+          "id": "15733269201280",
+          "type": "product",
+          "title": "Banlight Duo Fr Linen Vertical Blind",
+          "handle": "banlight-duo-fr-linen-1"
+        },
+        {
+          "id": "15733270086016",
+          "type": "product",
+          "title": "Banlight Duo Fr Navy Vertical Blind",
+          "handle": "banlight-duo-fr-navy-1"
+        },
+        {
+          "id": "15733271036288",
+          "type": "product",
+          "title": "Banlight Duo Fr Silver Vertical Blind",
+          "handle": "banlight-duo-fr-silver-1"
+        },
+        {
+          "id": "15733271724416",
+          "type": "product",
+          "title": "Jasmine Asc Bamboo Vertical Blind",
+          "handle": "jasmine-asc-bamboo"
+        },
+        {
+          "id": "15733271855488",
+          "type": "product",
+          "title": "Jasmine Asc Ice Vertical Blind",
+          "handle": "jasmine-asc-ice"
+        }
+      ]
+    },
+    {
+      "slug": "vertical-blind-band-premium",
+      "bandId": "856b2843-ae28-41d5-b3b1-7ece7501b16f",
+      "band": "Vertical Blind - Band Premium",
+      "description": "OB Preview - Vertical Blind - Band Premium",
+      "representative": "boston-fr-black-1",
+      "schema": {
+        "kind": "band",
+        "bandId": "856b2843-ae28-41d5-b3b1-7ece7501b16f",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15733271134592",
+          "type": "product",
+          "title": "Boston Fr Black Vertical Blind",
+          "handle": "boston-fr-black-1"
+        },
+        {
+          "id": "15733271232896",
+          "type": "product",
+          "title": "Boston Fr Ecru Vertical Blind",
+          "handle": "boston-fr-ecru-1"
+        },
+        {
+          "id": "15733271429504",
+          "type": "product",
+          "title": "Boston Fr Shadow Vertical Blind",
+          "handle": "boston-fr-shadow-1"
+        },
+        {
+          "id": "15733271560576",
+          "type": "product",
+          "title": "Boston Fr Silk Vertical Blind",
+          "handle": "boston-fr-silk-1"
+        },
+        {
+          "id": "15733271986560",
+          "type": "product",
+          "title": "Marine Light Grey Vertical Blind",
+          "handle": "marine-light-grey-1"
+        },
+        {
+          "id": "15733272052096",
+          "type": "product",
+          "title": "Marine White Vertical Blind",
+          "handle": "marine-white-1"
+        },
+        {
+          "id": "15733272084864",
+          "type": "product",
+          "title": "Reflection Fr Ecru Vertical Blind",
+          "handle": "reflection-fr-ecru-1"
+        },
+        {
+          "id": "15733272150400",
+          "type": "product",
+          "title": "Reflection Fr Silk Vertical Blind",
+          "handle": "reflection-fr-silk-1"
+        },
+        {
+          "id": "15733272314240",
+          "type": "product",
+          "title": "Stella Fr Ivory Vertical Blind",
+          "handle": "stella-fr-ivory-1"
+        },
+        {
+          "id": "15733272478080",
+          "type": "product",
+          "title": "Stella Fr Vanilla Vertical Blind",
+          "handle": "stella-fr-vanilla-1"
+        },
+        {
+          "id": "15733272838528",
+          "type": "product",
+          "title": "Urban Fr Beige Vertical Blind",
+          "handle": "urban-fr-beige-1"
+        },
+        {
+          "id": "15733273493888",
+          "type": "product",
+          "title": "Urban Fr Black Vertical Blind",
+          "handle": "urban-fr-black-1"
+        },
+        {
+          "id": "15733273854336",
+          "type": "product",
+          "title": "Urban Fr Blue Vertical Blind",
+          "handle": "urban-fr-blue-1"
+        },
+        {
+          "id": "15733274149248",
+          "type": "product",
+          "title": "Urban Fr Bright White Vertical Blind",
+          "handle": "urban-fr-bright-white-1"
+        },
+        {
+          "id": "15733274378624",
+          "type": "product",
+          "title": "Urban Fr Cream Vertical Blind",
+          "handle": "urban-fr-cream-1"
+        },
+        {
+          "id": "15733274608000",
+          "type": "product",
+          "title": "Urban Fr Ecru Vertical Blind",
+          "handle": "urban-fr-ecru-1"
+        },
+        {
+          "id": "15733274870144",
+          "type": "product",
+          "title": "Urban Fr Grey Vertical Blind",
+          "handle": "urban-fr-grey-1"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-b",
+      "bandId": "ea0cf477-1b44-40c1-92de-33c9c894a45f",
+      "band": "Replacement Vertical Blinds Slat - Band B",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band B",
+      "representative": "alabama-linen-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 43,
+            "price": 1.61
+          },
+          {
+            "maxInches": 59,
+            "price": 1.99
+          },
+          {
+            "maxInches": 83,
+            "price": 2.36
+          },
+          {
+            "maxInches": null,
+            "price": 3.06
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733427143040",
+          "type": "product",
+          "title": "Alabama Linen Vertical Replacement Blind Slat",
+          "handle": "alabama-linen-slat"
+        },
+        {
+          "id": "15733428879744",
+          "type": "product",
+          "title": "Atlantic Cream Vertical Replacement Blind Slat",
+          "handle": "atlantic-cream-slat"
+        },
+        {
+          "id": "15733429010816",
+          "type": "product",
+          "title": "Atlantic White Vertical Replacement Blind Slat",
+          "handle": "atlantic-white-slat"
+        },
+        {
+          "id": "15733429141888",
+          "type": "product",
+          "title": "Badar Beige Vertical Replacement Blind Slat",
+          "handle": "badar-beige-slat"
+        },
+        {
+          "id": "15733429272960",
+          "type": "product",
+          "title": "Badar Cream Vertical Replacement Blind Slat",
+          "handle": "badar-cream-slat"
+        },
+        {
+          "id": "15733429436800",
+          "type": "product",
+          "title": "Badar Snow Vertical Replacement Blind Slat",
+          "handle": "badar-snow-slat"
+        },
+        {
+          "id": "15733432484224",
+          "type": "product",
+          "title": "Cross Stich Ivory Vertical Replacement Blind Slat",
+          "handle": "cross-stich-ivory-slat"
+        },
+        {
+          "id": "15733432549760",
+          "type": "product",
+          "title": "Cross Stich White Vertical Replacement Blind Slat",
+          "handle": "cross-stich-white-slat"
+        },
+        {
+          "id": "15733432975744",
+          "type": "product",
+          "title": "Everest Blue Vertical Replacement Blind Slat",
+          "handle": "everest-blue-slat"
+        },
+        {
+          "id": "15733433008512",
+          "type": "product",
+          "title": "Everest Ivory Vertical Replacement Blind Slat",
+          "handle": "everest-ivory-slat"
+        },
+        {
+          "id": "15733433074048",
+          "type": "product",
+          "title": "Everest Navy Vertical Replacement Blind Slat",
+          "handle": "everest-navy-slat"
+        },
+        {
+          "id": "15733433106816",
+          "type": "product",
+          "title": "Everest Rock Vertical Replacement Blind Slat",
+          "handle": "everest-rock-slat"
+        },
+        {
+          "id": "15733433139584",
+          "type": "product",
+          "title": "Everest Snow Vertical Replacement Blind Slat",
+          "handle": "everest-snow-slat"
+        },
+        {
+          "id": "15733433172352",
+          "type": "product",
+          "title": "Fabian Beige Vertical Replacement Blind Slat",
+          "handle": "fabian-beige-slat"
+        },
+        {
+          "id": "15733433205120",
+          "type": "product",
+          "title": "Fabian Brown Vertical Replacement Blind Slat",
+          "handle": "fabian-brown-slat"
+        },
+        {
+          "id": "15733433270656",
+          "type": "product",
+          "title": "Fabian Cream Vertical Replacement Blind Slat",
+          "handle": "fabian-cream-slat"
+        },
+        {
+          "id": "15733433303424",
+          "type": "product",
+          "title": "Fabian White Vertical Replacement Blind Slat",
+          "handle": "fabian-white-slat"
+        },
+        {
+          "id": "15733439005056",
+          "type": "product",
+          "title": "Marina Black Vertical Replacement Blind Slat",
+          "handle": "marina-black-slat"
+        },
+        {
+          "id": "15733439168896",
+          "type": "product",
+          "title": "Marina Coffee Vertical Replacement Blind Slat",
+          "handle": "marina-coffee-slat"
+        },
+        {
+          "id": "15733439332736",
+          "type": "product",
+          "title": "Marina Gold Vertical Replacement Blind Slat",
+          "handle": "marina-gold-slat"
+        },
+        {
+          "id": "15733439496576",
+          "type": "product",
+          "title": "Marina Harvest Vertical Replacement Blind Slat",
+          "handle": "marina-harvest-slat"
+        },
+        {
+          "id": "15733439627648",
+          "type": "product",
+          "title": "Marina Ivory Vertical Replacement Blind Slat",
+          "handle": "marina-ivory-slat"
+        },
+        {
+          "id": "15733439725952",
+          "type": "product",
+          "title": "Marina White Vertical Replacement Blind Slat",
+          "handle": "marina-white-slat"
+        },
+        {
+          "id": "15733440020864",
+          "type": "product",
+          "title": "Milton Brown Vertical Replacement Blind Slat",
+          "handle": "milton-brown-slat"
+        },
+        {
+          "id": "15733440119168",
+          "type": "product",
+          "title": "Milton Cream Vertical Replacement Blind Slat",
+          "handle": "milton-cream-slat"
+        },
+        {
+          "id": "15733440217472",
+          "type": "product",
+          "title": "Milton White Vertical Replacement Blind Slat",
+          "handle": "milton-white-slat"
+        },
+        {
+          "id": "15733440708992",
+          "type": "product",
+          "title": "Narsissus Beige Vertical Replacement Blind Slat",
+          "handle": "narsissus-beige-slat"
+        },
+        {
+          "id": "15733440872832",
+          "type": "product",
+          "title": "Narsissus Cream Vertical Replacement Blind Slat",
+          "handle": "narsissus-cream-slat"
+        },
+        {
+          "id": "15733441102208",
+          "type": "product",
+          "title": "Narsissus White Vertical Replacement Blind Slat",
+          "handle": "narsissus-white-slat"
+        },
+        {
+          "id": "15733444641152",
+          "type": "product",
+          "title": "Optimum Standard Black Vertical Replacement Blind Slat",
+          "handle": "optimum-standard-black-slat"
+        },
+        {
+          "id": "15733444772224",
+          "type": "product",
+          "title": "Optimum Standard Cream Vertical Replacement Blind Slat",
+          "handle": "optimum-standard-cream-slat"
+        },
+        {
+          "id": "15733444903296",
+          "type": "product",
+          "title": "Optimum Standard Grey Vertical Replacement Blind Slat",
+          "handle": "optimum-standard-grey-slat"
+        },
+        {
+          "id": "15733445263744",
+          "type": "product",
+          "title": "Optimum Standard Magnolia Vertical Replacement Blind Slat",
+          "handle": "optimum-standard-magnolia-slat"
+        },
+        {
+          "id": "15733445394816",
+          "type": "product",
+          "title": "Optimum Standard Snow Vertical Replacement Blind Slat",
+          "handle": "optimum-standard-snow-slat"
+        },
+        {
+          "id": "15733447426432",
+          "type": "product",
+          "title": "Parfait Cream Vertical Replacement Blind Slat",
+          "handle": "parfait-cream-slat"
+        },
+        {
+          "id": "15733447721344",
+          "type": "product",
+          "title": "Parfait White Vertical Replacement Blind Slat",
+          "handle": "parfait-white-slat"
+        },
+        {
+          "id": "15733447983488",
+          "type": "product",
+          "title": "Pheonix White Vertical Replacement Blind Slat",
+          "handle": "pheonix-white-slat"
+        },
+        {
+          "id": "15733452767616",
+          "type": "product",
+          "title": "Sherwodd Toffee Vertical Replacement Blind Slat",
+          "handle": "sherwodd-toffee-slat"
+        },
+        {
+          "id": "15733453947264",
+          "type": "product",
+          "title": "Sunrise Brown Vertical Replacement Blind Slat",
+          "handle": "sunrise-brown-slat"
+        },
+        {
+          "id": "15733454176640",
+          "type": "product",
+          "title": "Sunrise Cream Vertical Replacement Blind Slat",
+          "handle": "sunrise-cream-slat"
+        },
+        {
+          "id": "15733454373248",
+          "type": "product",
+          "title": "Sunrise White Vertical Replacement Blind Slat",
+          "handle": "sunrise-white-slat"
+        },
+        {
+          "id": "15733456372096",
+          "type": "product",
+          "title": "Unity Acorn Vertical Replacement Blind Slat",
+          "handle": "unity-acorn-slat"
+        },
+        {
+          "id": "15733456568704",
+          "type": "product",
+          "title": "Unity Apple Vertical Replacement Blind Slat",
+          "handle": "unity-apple-slat"
+        },
+        {
+          "id": "15733456798080",
+          "type": "product",
+          "title": "Unity Baby Pink Vertical Replacement Blind Slat",
+          "handle": "unity-baby-pink-slat"
+        },
+        {
+          "id": "15733456994688",
+          "type": "product",
+          "title": "Unity Bamboo Vertical Replacement Blind Slat",
+          "handle": "unity-bamboo-slat"
+        },
+        {
+          "id": "15733457158528",
+          "type": "product",
+          "title": "Unity Black Vertical Replacement Blind Slat",
+          "handle": "unity-black-slat"
+        },
+        {
+          "id": "15733457289600",
+          "type": "product",
+          "title": "Unity Brick Vertical Replacement Blind Slat",
+          "handle": "unity-brick-slat"
+        },
+        {
+          "id": "15733457486208",
+          "type": "product",
+          "title": "Unity Champagne Vertical Replacement Blind Slat",
+          "handle": "unity-champagne-slat"
+        },
+        {
+          "id": "15733457650048",
+          "type": "product",
+          "title": "Unity Deep Vertical Replacement Blind Slat",
+          "handle": "unity-deep-slat"
+        },
+        {
+          "id": "15733457781120",
+          "type": "product",
+          "title": "Unity Desert Vertical Replacement Blind Slat",
+          "handle": "unity-desert-slat"
+        },
+        {
+          "id": "15733457944960",
+          "type": "product",
+          "title": "Unity Ice Vertical Replacement Blind Slat",
+          "handle": "unity-ice-slat"
+        },
+        {
+          "id": "15733458108800",
+          "type": "product",
+          "title": "Unity Lilac Vertical Replacement Blind Slat",
+          "handle": "unity-lilac-slat"
+        },
+        {
+          "id": "15733458305408",
+          "type": "product",
+          "title": "Unity Lime Vertical Replacement Blind Slat",
+          "handle": "unity-lime-slat"
+        },
+        {
+          "id": "15733458534784",
+          "type": "product",
+          "title": "Unity Oak Vertical Replacement Blind Slat",
+          "handle": "unity-oak-slat"
+        },
+        {
+          "id": "15733458764160",
+          "type": "product",
+          "title": "Unity Pond Vertical Replacement Blind Slat",
+          "handle": "unity-pond-slat"
+        },
+        {
+          "id": "15733458895232",
+          "type": "product",
+          "title": "Unity Poppy Vertical Replacement Blind Slat",
+          "handle": "unity-poppy-slat"
+        },
+        {
+          "id": "15733459059072",
+          "type": "product",
+          "title": "Unity Pumpkin Vertical Replacement Blind Slat",
+          "handle": "unity-pumpkin-slat"
+        },
+        {
+          "id": "15733459288448",
+          "type": "product",
+          "title": "Unity Rasberry Vertical Replacement Blind Slat",
+          "handle": "unity-rasberry-slat"
+        },
+        {
+          "id": "15733459452288",
+          "type": "product",
+          "title": "Unity Rose Vertical Replacement Blind Slat",
+          "handle": "unity-rose-slat"
+        },
+        {
+          "id": "15733459648896",
+          "type": "product",
+          "title": "Unity Sand Vertical Replacement Blind Slat",
+          "handle": "unity-sand-slat"
+        },
+        {
+          "id": "15733459812736",
+          "type": "product",
+          "title": "Unity Sky Vertical Replacement Blind Slat",
+          "handle": "unity-sky-slat"
+        },
+        {
+          "id": "15733459911040",
+          "type": "product",
+          "title": "Unity Steel Vertical Replacement Blind Slat",
+          "handle": "unity-steel-slat"
+        },
+        {
+          "id": "15733460074880",
+          "type": "product",
+          "title": "Unity Stone Vertical Replacement Blind Slat",
+          "handle": "unity-stone-slat"
+        },
+        {
+          "id": "15733460205952",
+          "type": "product",
+          "title": "Unity Thunder Vertical Replacement Blind Slat",
+          "handle": "unity-thunder-slat"
+        },
+        {
+          "id": "15733460337024",
+          "type": "product",
+          "title": "Unity Twilight Vertical Replacement Blind Slat",
+          "handle": "unity-twilight-slat"
+        },
+        {
+          "id": "15733460566400",
+          "type": "product",
+          "title": "Unity Willow Vertical Replacement Blind Slat",
+          "handle": "unity-willow-slat"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-d",
+      "bandId": "804103a5-f771-4be7-9c1f-cbdbbacef431",
+      "band": "Replacement Vertical Blinds Slat - Band D",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band D",
+      "representative": "aqualush-beige-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 43,
+            "price": 2.19
+          },
+          {
+            "maxInches": 59,
+            "price": 2.49
+          },
+          {
+            "maxInches": 83,
+            "price": 2.89
+          },
+          {
+            "maxInches": null,
+            "price": 3.51
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733427339648",
+          "type": "product",
+          "title": "Aqualush Beige Vertical Blind Slat",
+          "handle": "aqualush-beige-slat"
+        },
+        {
+          "id": "15733427536256",
+          "type": "product",
+          "title": "Aqualush Black Vertical Blind Slat",
+          "handle": "aqualush-black-slat"
+        },
+        {
+          "id": "15733427667328",
+          "type": "product",
+          "title": "Aqualush Carmine Vertical Blind Slat",
+          "handle": "aqualush-carmine-slat"
+        },
+        {
+          "id": "15733427798400",
+          "type": "product",
+          "title": "Aqualush Cream Vertical Blind Slat",
+          "handle": "aqualush-cream-slat"
+        },
+        {
+          "id": "15733427962240",
+          "type": "product",
+          "title": "Aqualush Navy Blue Vertical Blind Slat",
+          "handle": "aqualush-navy-blue-slat"
+        },
+        {
+          "id": "15733428093312",
+          "type": "product",
+          "title": "Aqualush Red Vertical Blind Slat",
+          "handle": "aqualush-red-slat"
+        },
+        {
+          "id": "15733428224384",
+          "type": "product",
+          "title": "Aqualush Sky Blue Vertical Blind Slat",
+          "handle": "aqualush-sky-blue-slat"
+        },
+        {
+          "id": "15733428355456",
+          "type": "product",
+          "title": "Aqualush Steel Vertical Blind Slat",
+          "handle": "aqualush-steel-slat"
+        },
+        {
+          "id": "15733428420992",
+          "type": "product",
+          "title": "Aqualush White Vertical Blind Slat",
+          "handle": "aqualush-white-slat"
+        },
+        {
+          "id": "15733428453760",
+          "type": "product",
+          "title": "Aqualush Wine Vertical Blind Slat",
+          "handle": "aqualush-wine-slat"
+        },
+        {
+          "id": "15733430681984",
+          "type": "product",
+          "title": "Cairo Blackout Beige Vertical Replacement Blind Slat",
+          "handle": "cairo-beige-slat"
+        },
+        {
+          "id": "15733430747520",
+          "type": "product",
+          "title": "Cairo Blackout Black Vertical Replacement Blind Slat",
+          "handle": "cairo-black-slat"
+        },
+        {
+          "id": "15733430878592",
+          "type": "product",
+          "title": "Cairo Blackout Blue Vertical Replacement Blind Slat",
+          "handle": "cairo-blue-slat"
+        },
+        {
+          "id": "15733430976896",
+          "type": "product",
+          "title": "Cairo Blackout Brown Vertical Replacement Blind Slat",
+          "handle": "cairo-brown-slat"
+        },
+        {
+          "id": "15733431042432",
+          "type": "product",
+          "title": "Cairo Blackout Burgundy Vertical Replacement Blind Slat",
+          "handle": "cairo-burgundy-slat"
+        },
+        {
+          "id": "15733431173504",
+          "type": "product",
+          "title": "Cairo Blackout Chocolate Vertical Replacement Blind Slat",
+          "handle": "cairo-chocolate-slat"
+        },
+        {
+          "id": "15733431271808",
+          "type": "product",
+          "title": "Cairo Blackout Cream Vertical Replacement Blind Slat",
+          "handle": "cairo-cream-slat"
+        },
+        {
+          "id": "15733431370112",
+          "type": "product",
+          "title": "Cairo Blackout Dusk Vertical Replacement Blind Slat",
+          "handle": "cairo-dusk-slat"
+        },
+        {
+          "id": "15733431468416",
+          "type": "product",
+          "title": "Cairo Blackout Green Vertical Replacement Blind Slat",
+          "handle": "cairo-green-slat"
+        },
+        {
+          "id": "15733431632256",
+          "type": "product",
+          "title": "Cairo Blackout Grey Vertical Replacement Blind Slat",
+          "handle": "cairo-grey-slat"
+        },
+        {
+          "id": "15733431730560",
+          "type": "product",
+          "title": "Cairo Blackout Mustard Vertical Replacement Blind Slat",
+          "handle": "cairo-mustard-slat"
+        },
+        {
+          "id": "15733431828864",
+          "type": "product",
+          "title": "Cairo Blackout Orange Vertical Replacement Blind Slat",
+          "handle": "cairo-orange-slat"
+        },
+        {
+          "id": "15733431894400",
+          "type": "product",
+          "title": "Cairo Blackout Pink Vertical Replacement Blind Slat",
+          "handle": "cairo-pink-slat"
+        },
+        {
+          "id": "15733431992704",
+          "type": "product",
+          "title": "Cairo Blackout Purple Vertical Replacement Blind Slat",
+          "handle": "cairo-purple-slat"
+        },
+        {
+          "id": "15733432091008",
+          "type": "product",
+          "title": "Cairo Blackout Rasberry Vertical Replacement Blind Slat",
+          "handle": "cairo-rasberry-slat"
+        },
+        {
+          "id": "15733432123776",
+          "type": "product",
+          "title": "Cairo Blackout Red Vertical Replacement Blind Slat",
+          "handle": "cairo-red-slat"
+        },
+        {
+          "id": "15733432156544",
+          "type": "product",
+          "title": "Cairo Blackout Silver Vertical Replacement Blind Slat",
+          "handle": "cairo-silver-slat"
+        },
+        {
+          "id": "15733432189312",
+          "type": "product",
+          "title": "Cairo Blackout White Vertical Replacement Blind Slat",
+          "handle": "cairo-white-slat"
+        },
+        {
+          "id": "15733433598336",
+          "type": "product",
+          "title": "Fiesta Cream - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "fiesta-cream-pvc-blackout-waterproof-vertical-blind-slat"
+        },
+        {
+          "id": "15733433631104",
+          "type": "product",
+          "title": "Fiesta Grey - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "fiesta-grey-pvc-blackout-waterproof-vertical-blind-slat"
+        },
+        {
+          "id": "15733433696640",
+          "type": "product",
+          "title": "Fiesta Steel - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "fiesta-steel-pvc-blackout-waterproof-vertical-blind-slat"
+        },
+        {
+          "id": "15733433729408",
+          "type": "product",
+          "title": "Fiesta White - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "fiesta-white-pvc-blackout-waterproof-vertical-blind-slat"
+        },
+        {
+          "id": "15733433827712",
+          "type": "product",
+          "title": "Gravity Beige - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-beige-slat"
+        },
+        {
+          "id": "15733433860480",
+          "type": "product",
+          "title": "Gravity Black - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-black-slat"
+        },
+        {
+          "id": "15733433926016",
+          "type": "product",
+          "title": "Gravity Brown - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-brown-slat"
+        },
+        {
+          "id": "15733433958784",
+          "type": "product",
+          "title": "Gravity Cream - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-cream-pvc-blackout-waterproof-vertical-blind-slat"
+        },
+        {
+          "id": "15733433991552",
+          "type": "product",
+          "title": "Gravity Grey - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-grey-slat"
+        },
+        {
+          "id": "15733434024320",
+          "type": "product",
+          "title": "Gravity Steel - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-steel-waterproof-slat"
+        },
+        {
+          "id": "15733434057088",
+          "type": "product",
+          "title": "Gravity White - PVC Blackout Waterproof Vertical Blind Slat",
+          "handle": "gravity-white-pvc-blackout-waterproof-vertical-blind-slat"
+        },
+        {
+          "id": "15733434810752",
+          "type": "product",
+          "title": "Havana PVC Beige Vertical Blind Slat",
+          "handle": "havana-beige-slat"
+        },
+        {
+          "id": "15733434941824",
+          "type": "product",
+          "title": "Havana PVC Black Vertical Blind Slat",
+          "handle": "havana-black-slat"
+        },
+        {
+          "id": "15733435040128",
+          "type": "product",
+          "title": "Havana PVC Cream Vertical Blind Slat",
+          "handle": "havana-cream-slat"
+        },
+        {
+          "id": "15733435105664",
+          "type": "product",
+          "title": "Havana PVC Grey Vertical Blind Slat",
+          "handle": "havana-grey-slat"
+        },
+        {
+          "id": "15733435203968",
+          "type": "product",
+          "title": "Havana PVC White Vertical Blind Slat",
+          "handle": "havana-white-slat"
+        },
+        {
+          "id": "15733435564416",
+          "type": "product",
+          "title": "Jaguar Beige Vertical Replacement Blind Slat",
+          "handle": "jaguar-beige-slat"
+        },
+        {
+          "id": "15733435629952",
+          "type": "product",
+          "title": "Jaguar Black Vertical Replacement Blind Slat",
+          "handle": "jaguar-black-slat"
+        },
+        {
+          "id": "15733435761024",
+          "type": "product",
+          "title": "Jaguar Brown Vertical Replacement Blind Slat",
+          "handle": "jaguar-brown-slat"
+        },
+        {
+          "id": "15733435859328",
+          "type": "product",
+          "title": "Jaguar Cream Vertical Replacement Blind Slat",
+          "handle": "jaguar-cream-slat"
+        },
+        {
+          "id": "15733436023168",
+          "type": "product",
+          "title": "Jaguar Grey Vertical Replacement Blind Slat",
+          "handle": "jaguar-grey-slat"
+        },
+        {
+          "id": "15733436121472",
+          "type": "product",
+          "title": "Jaguar White Vertical Replacement Blind Slat",
+          "handle": "jaguar-white-slat"
+        },
+        {
+          "id": "15733437333888",
+          "type": "product",
+          "title": "Kia Beige Vertical Replacement Blind Slat",
+          "handle": "kia-beige-slat"
+        },
+        {
+          "id": "15733437399424",
+          "type": "product",
+          "title": "Kia Black Vertical Replacement Blind Slat",
+          "handle": "kia-black-slat"
+        },
+        {
+          "id": "15733437530496",
+          "type": "product",
+          "title": "Kia Brown Vertical Replacement Blind Slat",
+          "handle": "kia-brown-slat"
+        },
+        {
+          "id": "15733437563264",
+          "type": "product",
+          "title": "Kia Cream Vertical Replacement Blind Slat",
+          "handle": "kia-cream-slat"
+        },
+        {
+          "id": "15733437661568",
+          "type": "product",
+          "title": "Kia Red Vertical Replacement Blind Slat",
+          "handle": "kia-red-slat"
+        },
+        {
+          "id": "15733437727104",
+          "type": "product",
+          "title": "Kia White Vertical Replacement Blind Slat",
+          "handle": "kia-white-slat"
+        },
+        {
+          "id": "15733437792640",
+          "type": "product",
+          "title": "Lahore Black Vertical Blind Slat",
+          "handle": "lahore-black-slat"
+        },
+        {
+          "id": "15733437858176",
+          "type": "product",
+          "title": "Lahore Cream Vertical Blind Slat",
+          "handle": "lahore-cream-slat"
+        },
+        {
+          "id": "15733437890944",
+          "type": "product",
+          "title": "Lahore Grey Vertical Blind Slat",
+          "handle": "lahore-grey-slat"
+        },
+        {
+          "id": "15733437923712",
+          "type": "product",
+          "title": "Lahore Ivory Vertical Blind Slat",
+          "handle": "lahore-ivory-slat"
+        },
+        {
+          "id": "15733437989248",
+          "type": "product",
+          "title": "Lahore Silver Vertical Blind Slat",
+          "handle": "lahore-silver-slat"
+        },
+        {
+          "id": "15733438022016",
+          "type": "product",
+          "title": "Lahore White Vertical Blind Slat",
+          "handle": "lahore-white-slat"
+        },
+        {
+          "id": "15733441364352",
+          "type": "product",
+          "title": "Oasis Black Vertical Replacement Blind Slat",
+          "handle": "oasis-black-slat"
+        },
+        {
+          "id": "15733441593728",
+          "type": "product",
+          "title": "Oasis Brown Vertical Replacement Blind Slat",
+          "handle": "oasis-brown-slat"
+        },
+        {
+          "id": "15733441823104",
+          "type": "product",
+          "title": "Oasis Charcoal1 Vertical Replacement Blind Slat",
+          "handle": "oasis-charcoal1-slat"
+        },
+        {
+          "id": "15733442052480",
+          "type": "product",
+          "title": "Oasis Cream Vertical Replacement Blind Slat",
+          "handle": "oasis-cream-slat"
+        },
+        {
+          "id": "15733442281856",
+          "type": "product",
+          "title": "Oasis Grey Vertical Replacement Blind Slat",
+          "handle": "oasis-grey-slat"
+        },
+        {
+          "id": "15733442609536",
+          "type": "product",
+          "title": "Oasis Purple Vertical Replacement Blind Slat",
+          "handle": "oasis-purple-slat"
+        },
+        {
+          "id": "15733442806144",
+          "type": "product",
+          "title": "Oasis Purple1 Vertical Replacement Blind Slat",
+          "handle": "oasis-purple1-slat"
+        },
+        {
+          "id": "15733443002752",
+          "type": "product",
+          "title": "Oasis Rock Vertical Replacement Blind Slat",
+          "handle": "oasis-rock-slat"
+        },
+        {
+          "id": "15733443199360",
+          "type": "product",
+          "title": "Oasis Silver1 Vertical Replacement Blind Slat",
+          "handle": "oasis-silver1-slat"
+        },
+        {
+          "id": "15733443330432",
+          "type": "product",
+          "title": "Oasis Snow Vertical Replacement Blind Slat",
+          "handle": "oasis-white-slat"
+        },
+        {
+          "id": "15733448180096",
+          "type": "product",
+          "title": "Raindrop Blockout Black Vertical Replacement Blind Slat",
+          "handle": "raindrop-blockout-black-vertical-replacement-blind-slat"
+        },
+        {
+          "id": "15733448475008",
+          "type": "product",
+          "title": "Raindrop Blockout Cappucino Vertical Replacement Blind Slat",
+          "handle": "raindrop-blockout-cappucino-vertical-replacement-blind-slat"
+        },
+        {
+          "id": "15733448671616",
+          "type": "product",
+          "title": "Raindrop Blockout Red Vertical Replacement Blind Slat",
+          "handle": "raindrop-blockout-red-vertical-replacement-blind-slat"
+        },
+        {
+          "id": "15733448933760",
+          "type": "product",
+          "title": "Raindrop Blockout Storm Vertical Replacement Blind Slat",
+          "handle": "raindrop-blockout-storm-vertical-replacement-blind-slat"
+        },
+        {
+          "id": "15733449326976",
+          "type": "product",
+          "title": "Raindrop Blockout White Vertical Replacement Blind Slat",
+          "handle": "raindrop-blockout-white-vertical-replacement-blind-slat"
+        },
+        {
+          "id": "15733455716736",
+          "type": "product",
+          "title": "Symphony Black Out Black Vertical Replacement Blind Slat",
+          "handle": "symphony-black-out-black-slat"
+        },
+        {
+          "id": "15733455913344",
+          "type": "product",
+          "title": "Symphony Black Out Cream Vertical Replacement Blind Slat",
+          "handle": "symphony-black-out-cream-slat"
+        },
+        {
+          "id": "15733456109952",
+          "type": "product",
+          "title": "Symphony Black Out Grey Vertical Replacement Blind Slat",
+          "handle": "symphony-black-out-grey-slat"
+        },
+        {
+          "id": "15733456273792",
+          "type": "product",
+          "title": "Symphony Blackout White Vertical Replacement Blind Slat",
+          "handle": "symphony-black-out-white-slat"
+        },
+        {
+          "id": "15733462761856",
+          "type": "product",
+          "title": "Westbam Cream Vertical Replacement Blind Slat",
+          "handle": "westbam-cream-slat"
+        },
+        {
+          "id": "15733463122304",
+          "type": "product",
+          "title": "Westbam White Vertical Replacement Blind Slat",
+          "handle": "westbam-white-slat"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-e",
+      "bandId": "802539e8-e1c6-4dbd-9532-3d6e6e4973d6",
+      "band": "Replacement Vertical Blinds Slat - Band E",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band E",
+      "representative": "atlantex-asc-cream-1-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 43,
+            "price": 2.5
+          },
+          {
+            "maxInches": 59,
+            "price": 2.63
+          },
+          {
+            "maxInches": 83,
+            "price": 3.11
+          },
+          {
+            "maxInches": null,
+            "price": 3.75
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733428486528",
+          "type": "product",
+          "title": "Atlantex Asc Cream Vertical Replacement Blind Slat",
+          "handle": "atlantex-asc-cream-1-slat"
+        },
+        {
+          "id": "15733428552064",
+          "type": "product",
+          "title": "Atlantex Asc Grey Vertical Replacement Blind Slat",
+          "handle": "atlantex-asc-grey-1-slat"
+        },
+        {
+          "id": "15733428584832",
+          "type": "product",
+          "title": "Atlantex Asc Silver Vertical Replacement Blind Slat",
+          "handle": "atlantex-asc-silver-1-slat"
+        },
+        {
+          "id": "15733428617600",
+          "type": "product",
+          "title": "Atlantex Asc White Vertical Replacement Blind Slat",
+          "handle": "atlantex-asc-white-1-slat"
+        },
+        {
+          "id": "15733428650368",
+          "type": "product",
+          "title": "Atlantex Cream Vertical Replacement Blind Slat",
+          "handle": "atlantex-cream-1-slat"
+        },
+        {
+          "id": "15733428683136",
+          "type": "product",
+          "title": "Atlantex Grey Vertical Replacement Blind Slat",
+          "handle": "atlantex-grey-1-slat"
+        },
+        {
+          "id": "15733428748672",
+          "type": "product",
+          "title": "Atlantex Silver Vertical Replacement Blind Slat",
+          "handle": "atlantex-silver-1-slat"
+        },
+        {
+          "id": "15733428781440",
+          "type": "product",
+          "title": "Atlantex White Vertical Replacement Blind Slat",
+          "handle": "atlantex-white-1-slat"
+        },
+        {
+          "id": "15733438054784",
+          "type": "product",
+          "title": "Linenweave Charcoal Vertical Replacement Blind Slat",
+          "handle": "linenweave-charcoal-slat"
+        },
+        {
+          "id": "15733438087552",
+          "type": "product",
+          "title": "Linenweave Graphite Vertical Replacement Blind Slat",
+          "handle": "linenweave-graphite-slat"
+        },
+        {
+          "id": "15733438153088",
+          "type": "product",
+          "title": "Linenweave Iron Vertical Replacement Blind Slat",
+          "handle": "linenweave-iron-1-slat"
+        },
+        {
+          "id": "15733438218624",
+          "type": "product",
+          "title": "Linenweave Moonstone Vertical Replacement Blind Slat",
+          "handle": "linenweave-moonstone-slat"
+        },
+        {
+          "id": "15733438251392",
+          "type": "product",
+          "title": "Linenweave Sand Vertical Replacement Blind Slat",
+          "handle": "linenweave-sand-1-slat"
+        },
+        {
+          "id": "15733445820800",
+          "type": "product",
+          "title": "Palette Fr Beige Vertical Replacement Blind Slat",
+          "handle": "palette-fr-beige-slat"
+        },
+        {
+          "id": "15733445853568",
+          "type": "product",
+          "title": "Palette Fr Black Vertical Replacement Blind Slat",
+          "handle": "palette-fr-black-slat"
+        },
+        {
+          "id": "15733445919104",
+          "type": "product",
+          "title": "Palette Fr Bright White Vertical Replacement Blind Slat",
+          "handle": "palette-fr-bright-white-slat"
+        },
+        {
+          "id": "15733445951872",
+          "type": "product",
+          "title": "Palette Fr Calico Vertical Replacement Blind Slat",
+          "handle": "palette-fr-calico-slat"
+        },
+        {
+          "id": "15733446017408",
+          "type": "product",
+          "title": "Palette Fr Charcoal Vertical Replacement Blind Slat",
+          "handle": "palette-fr-charcoal-slat"
+        },
+        {
+          "id": "15733446082944",
+          "type": "product",
+          "title": "Palette Fr Copper Vertical Replacement Blind Slat",
+          "handle": "palette-fr-copper-slat"
+        },
+        {
+          "id": "15733446115712",
+          "type": "product",
+          "title": "Palette Fr Dark Blue Vertical Replacement Blind Slat",
+          "handle": "palette-fr-dark-blue-slat"
+        },
+        {
+          "id": "15733446214016",
+          "type": "product",
+          "title": "Palette Fr Dusky Pink Vertical Replacement Blind Slat",
+          "handle": "palette-fr-dusky-pink-slat"
+        },
+        {
+          "id": "15733446246784",
+          "type": "product",
+          "title": "Palette Fr Forest Green Vertical Replacement Blind Slat",
+          "handle": "palette-fr-forest-green-slat"
+        },
+        {
+          "id": "15733446312320",
+          "type": "product",
+          "title": "Palette Fr Grey Vertical Replacement Blind Slat",
+          "handle": "palette-fr-grey-slat"
+        },
+        {
+          "id": "15733446345088",
+          "type": "product",
+          "title": "Palette Fr Iron Vertical Replacement Blind Slat",
+          "handle": "palette-fr-iron-slat"
+        },
+        {
+          "id": "15733446410624",
+          "type": "product",
+          "title": "Palette Fr Redcurrant Vertical Replacement Blind Slat",
+          "handle": "palette-fr-redcurrant-slat"
+        },
+        {
+          "id": "15733446443392",
+          "type": "product",
+          "title": "Palette Fr Sand Vertical Replacement Blind Slat",
+          "handle": "palette-fr-sand-slat"
+        },
+        {
+          "id": "15733446607232",
+          "type": "product",
+          "title": "Palette Fr Sky Vertical Replacement Blind Slat",
+          "handle": "palette-fr-sky-slat"
+        },
+        {
+          "id": "15733446738304",
+          "type": "product",
+          "title": "Palette Fr Spring Vertical Replacement Blind Slat",
+          "handle": "palette-fr-spring-slat"
+        },
+        {
+          "id": "15733446934912",
+          "type": "product",
+          "title": "Palette Fr Sunshine Vertical Replacement Blind Slat",
+          "handle": "palette-fr-sunshine-slat"
+        },
+        {
+          "id": "15733447164288",
+          "type": "product",
+          "title": "Palette Fr Taupe Vertical Replacement Blind Slat",
+          "handle": "palette-fr-taupe-slat"
+        },
+        {
+          "id": "15733451719040",
+          "type": "product",
+          "title": "Shantung Champagne Vertical Replacement Blind Slat",
+          "handle": "shantung-champagne-slat"
+        },
+        {
+          "id": "15733451948416",
+          "type": "product",
+          "title": "Shantung Leaf Vertical Replacement Blind Slat",
+          "handle": "shantung-leaf-slat"
+        },
+        {
+          "id": "15733452177792",
+          "type": "product",
+          "title": "Shantung Magnolia Vertical Replacement Blind Slat",
+          "handle": "shantung-magnolia-slat"
+        },
+        {
+          "id": "15733452407168",
+          "type": "product",
+          "title": "Shantung Silver Vertical Replacement Blind Slat",
+          "handle": "shantung-silver-slat"
+        },
+        {
+          "id": "15733452571008",
+          "type": "product",
+          "title": "Shantung White Vertical Replacement Blind Slat",
+          "handle": "shantung-white-slat"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-f",
+      "bandId": "b489e0e2-2321-4df5-be22-d12257cf7b11",
+      "band": "Replacement Vertical Blinds Slat - Band F",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band F",
+      "representative": "banlight-duo-fr-beige-1-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 59,
+            "price": 3.38
+          },
+          {
+            "maxInches": 86.6,
+            "price": 4.38
+          },
+          {
+            "maxInches": 110,
+            "price": 5
+          },
+          {
+            "maxInches": null,
+            "price": 5.38
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733429535104",
+          "type": "product",
+          "title": "Banlight Duo Fr Beige Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-beige-1-slat"
+        },
+        {
+          "id": "15733429666176",
+          "type": "product",
+          "title": "Banlight Duo Fr Black Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-black-1-slat"
+        },
+        {
+          "id": "15733429764480",
+          "type": "product",
+          "title": "Banlight Duo Fr Bright White Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-bright-white-1-slat"
+        },
+        {
+          "id": "15733429830016",
+          "type": "product",
+          "title": "Banlight Duo Fr Calico Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-calico-1-slat"
+        },
+        {
+          "id": "15733429928320",
+          "type": "product",
+          "title": "Banlight Duo Fr Charcoal Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-charcoal-1-slat"
+        },
+        {
+          "id": "15733430026624",
+          "type": "product",
+          "title": "Banlight Duo Fr Linen Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-linen-1-slat"
+        },
+        {
+          "id": "15733430124928",
+          "type": "product",
+          "title": "Banlight Duo Fr Navy Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-navy-1-slat"
+        },
+        {
+          "id": "15733430190464",
+          "type": "product",
+          "title": "Banlight Duo Fr Silver Vertical Replacement Blind Slat",
+          "handle": "banlight-duo-fr-silver-1-slat"
+        },
+        {
+          "id": "15733437268352",
+          "type": "product",
+          "title": "Jasmine Asc Bamboo Vertical Replacement Blind Slat",
+          "handle": "jasmine-asc-bamboo-slat"
+        },
+        {
+          "id": "15733437301120",
+          "type": "product",
+          "title": "Jasmine Asc Ice Vertical Replacement Blind Slat",
+          "handle": "jasmine-asc-ice-slat"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-premium",
+      "bandId": "6885dafa-2872-421a-9788-7a787e6e578c",
+      "band": "Replacement Vertical Blinds Slat - Band Premium",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band Premium",
+      "representative": "boston-fr-black-1-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 43,
+            "price": 3.11
+          },
+          {
+            "maxInches": 59,
+            "price": 3.75
+          },
+          {
+            "maxInches": 83,
+            "price": 4.13
+          },
+          {
+            "maxInches": null,
+            "price": 4.63
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733430288768",
+          "type": "product",
+          "title": "Boston Fr Black Vertical Replacement Blind Slat",
+          "handle": "boston-fr-black-1-slat"
+        },
+        {
+          "id": "15733430387072",
+          "type": "product",
+          "title": "Boston Fr Ecru Vertical Replacement Blind Slat",
+          "handle": "boston-fr-ecru-1-slat"
+        },
+        {
+          "id": "15733430485376",
+          "type": "product",
+          "title": "Boston Fr Shadow Vertical Replacement Blind Slat",
+          "handle": "boston-fr-shadow-1-slat"
+        },
+        {
+          "id": "15733430583680",
+          "type": "product",
+          "title": "Boston Fr Silk Vertical Replacement Blind Slat",
+          "handle": "boston-fr-silk-1-slat"
+        },
+        {
+          "id": "15733439857024",
+          "type": "product",
+          "title": "Marine Light Grey Vertical Replacement Blind Slat",
+          "handle": "marine-light-grey-1-slat"
+        },
+        {
+          "id": "15733439922560",
+          "type": "product",
+          "title": "Marine White Vertical Replacement Blind Slat",
+          "handle": "marine-white-1-slat"
+        },
+        {
+          "id": "15733449523584",
+          "type": "product",
+          "title": "Reflection Fr Ecru Vertical Replacement Blind Slat",
+          "handle": "reflection-fr-ecru-1-slat"
+        },
+        {
+          "id": "15733449589120",
+          "type": "product",
+          "title": "Reflection Fr Silk Vertical Replacement Blind Slat",
+          "handle": "reflection-fr-silk-1-slat"
+        },
+        {
+          "id": "15733452964224",
+          "type": "product",
+          "title": "Stella Fr Ivory Vertical Replacement Blind Slat",
+          "handle": "stella-fr-ivory-1-slat"
+        },
+        {
+          "id": "15733453095296",
+          "type": "product",
+          "title": "Stella Fr Vanilla Vertical Replacement Blind Slat",
+          "handle": "stella-fr-vanilla-1-slat"
+        },
+        {
+          "id": "15733460763008",
+          "type": "product",
+          "title": "Urban Fr Beige Vertical Replacement Blind Slat",
+          "handle": "urban-fr-beige-1-slat"
+        },
+        {
+          "id": "15733460861312",
+          "type": "product",
+          "title": "Urban Fr Black Vertical Replacement Blind Slat",
+          "handle": "urban-fr-black-1-slat"
+        },
+        {
+          "id": "15733461025152",
+          "type": "product",
+          "title": "Urban Fr Blue Vertical Replacement Blind Slat",
+          "handle": "urban-fr-blue-1-slat"
+        },
+        {
+          "id": "15733461254528",
+          "type": "product",
+          "title": "Urban Fr Bright White Vertical Replacement Blind Slat",
+          "handle": "urban-fr-bright-white-1-slat"
+        },
+        {
+          "id": "15733461352832",
+          "type": "product",
+          "title": "Urban Fr Cream Vertical Replacement Blind Slat",
+          "handle": "urban-fr-cream-1-slat"
+        },
+        {
+          "id": "15733461451136",
+          "type": "product",
+          "title": "Urban Fr Ecru Vertical Replacement Blind Slat",
+          "handle": "urban-fr-ecru-1-slat"
+        },
+        {
+          "id": "15733461614976",
+          "type": "product",
+          "title": "Urban Fr Grey Vertical Replacement Blind Slat",
+          "handle": "urban-fr-grey-1-slat"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-a",
+      "bandId": "a3e1cd52-bfaa-4c8f-8e42-1fcb0d1d6326",
+      "band": "Replacement Vertical Blinds Slat - Band A",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band A",
+      "representative": "california-sand-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 43,
+            "price": 1.2
+          },
+          {
+            "maxInches": 59,
+            "price": 1.61
+          },
+          {
+            "maxInches": 83,
+            "price": 2.13
+          },
+          {
+            "maxInches": null,
+            "price": 2.88
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733432254848",
+          "type": "product",
+          "title": "California Sand Vertical Replacement Blind Slat",
+          "handle": "california-sand-slat"
+        },
+        {
+          "id": "15733432287616",
+          "type": "product",
+          "title": "California Sky Vertical Replacement Blind Slat",
+          "handle": "california-sky-slat"
+        },
+        {
+          "id": "15733432320384",
+          "type": "product",
+          "title": "California Steel Vertical Replacement Blind Slat",
+          "handle": "california-steel-slat"
+        },
+        {
+          "id": "15733432353152",
+          "type": "product",
+          "title": "California White Vertical Replacement Blind Slat",
+          "handle": "california-white-slat"
+        },
+        {
+          "id": "15733432418688",
+          "type": "product",
+          "title": "Cloud Cream Vertical Replacement Blind Slat",
+          "handle": "cloud-cream-slat"
+        },
+        {
+          "id": "15733432713600",
+          "type": "product",
+          "title": "Dolphin Beige Vertical Replacement Blind Slat",
+          "handle": "dolphin-beige-slat"
+        },
+        {
+          "id": "15733432779136",
+          "type": "product",
+          "title": "Dolphin Black Vertical Replacement Blind Slat",
+          "handle": "dolphin-black-slat"
+        },
+        {
+          "id": "15733432811904",
+          "type": "product",
+          "title": "Dolphin Brown Vertical Replacement Blind Slat",
+          "handle": "dolphin-brown-slat"
+        },
+        {
+          "id": "15733432844672",
+          "type": "product",
+          "title": "Dolphin Ivory Cream Vertical Replacement Blind Slat",
+          "handle": "dolphin-ivory-slat"
+        },
+        {
+          "id": "15733432877440",
+          "type": "product",
+          "title": "Dolphin White Vertical Replacement Blind Slat",
+          "handle": "dolphin-white-slat"
+        },
+        {
+          "id": "15733433368960",
+          "type": "product",
+          "title": "Feather Weave Beige Vertical Replacement Blind Slat",
+          "handle": "feather-weave-beige-slat"
+        },
+        {
+          "id": "15733433401728",
+          "type": "product",
+          "title": "Feather Weave Black Vertical Replacement Blind Slat",
+          "handle": "feather-weave-black-slat"
+        },
+        {
+          "id": "15733433467264",
+          "type": "product",
+          "title": "Feather Weave Chantilly Vertical Replacement Blind Slat",
+          "handle": "feather-weave-chantilly-slat"
+        },
+        {
+          "id": "15733433500032",
+          "type": "product",
+          "title": "Feather Weave Cream Vertical Replacement Blind Slat",
+          "handle": "feather-weave-cream-slat"
+        },
+        {
+          "id": "15733433565568",
+          "type": "product",
+          "title": "Feather Weave Mist Vertical Replacement Blind Slat",
+          "handle": "feather-weave-mist-slat"
+        },
+        {
+          "id": "15733434122624",
+          "type": "product",
+          "title": "Hambrook Black Vertical Replacement Blind Slat",
+          "handle": "hambrook-black-slat"
+        },
+        {
+          "id": "15733434188160",
+          "type": "product",
+          "title": "Hambrook Brown Vertical Replacement Blind Slat",
+          "handle": "hambrook-brown-slat"
+        },
+        {
+          "id": "15733434319232",
+          "type": "product",
+          "title": "Hambrook Cream Vertical Replacement Blind Slat",
+          "handle": "hambrook-cream-slat"
+        },
+        {
+          "id": "15733434483072",
+          "type": "product",
+          "title": "Hambrook Red Vertical Replacement Blind Slat",
+          "handle": "hambrook-red-slat"
+        },
+        {
+          "id": "15733434646912",
+          "type": "product",
+          "title": "Hambrook Snow Vertical Replacement Blind Slat",
+          "handle": "hambrook-snow-slat"
+        },
+        {
+          "id": "15733435302272",
+          "type": "product",
+          "title": "Henley Beige Vertical Replacement Blind Slat",
+          "handle": "henley-beige-slat"
+        },
+        {
+          "id": "15733435400576",
+          "type": "product",
+          "title": "Henley Cream Vertical Replacement Blind Slat",
+          "handle": "henley-cream-slat"
+        },
+        {
+          "id": "15733435466112",
+          "type": "product",
+          "title": "Henley White Vertical Replacement Blind Slat",
+          "handle": "henley-white-slat"
+        },
+        {
+          "id": "15733445460352",
+          "type": "product",
+          "title": "Pacific Candy Vertical Replacement Blind Slat",
+          "handle": "pacific-candy-slat"
+        },
+        {
+          "id": "15733445525888",
+          "type": "product",
+          "title": "Pacific Dawn Vertical Replacement Blind Slat",
+          "handle": "pacific-dawn-slat"
+        },
+        {
+          "id": "15733445591424",
+          "type": "product",
+          "title": "Pacific Ivory Vertical Replacement Blind Slat",
+          "handle": "pacific-ivory-slat"
+        },
+        {
+          "id": "15733445624192",
+          "type": "product",
+          "title": "Pacific Jade Vertical Replacement Blind Slat",
+          "handle": "pacific-jade-slat"
+        },
+        {
+          "id": "15733445656960",
+          "type": "product",
+          "title": "Pacific Mocha Vertical Replacement Blind Slat",
+          "handle": "pacific-mocha-slat"
+        },
+        {
+          "id": "15733445722496",
+          "type": "product",
+          "title": "Pacific Sand Vertical Replacement Blind Slat",
+          "handle": "pacific-sand-slat"
+        },
+        {
+          "id": "15733445788032",
+          "type": "product",
+          "title": "Pacific Sky Vertical Replacement Blind Slat",
+          "handle": "pacific-sky-slat"
+        },
+        {
+          "id": "15733450768768",
+          "type": "product",
+          "title": "Rome Beige Vertical Replacement Blind Slat",
+          "handle": "rome-beige-slat"
+        },
+        {
+          "id": "15733450965376",
+          "type": "product",
+          "title": "Rome Caramel Vertical Replacement Blind Slat",
+          "handle": "rome-caramel-slat"
+        },
+        {
+          "id": "15733451227520",
+          "type": "product",
+          "title": "Rome Grey Vertical Replacement Blind Slat",
+          "handle": "rome-grey-slat"
+        },
+        {
+          "id": "15733451489664",
+          "type": "product",
+          "title": "Rome Snow Vertical Replacement Blind Slat",
+          "handle": "rome-snow-slat"
+        },
+        {
+          "id": "15733453324672",
+          "type": "product",
+          "title": "Stripe Black Vertical Replacement Blind Slat",
+          "handle": "stripe-black-slat"
+        },
+        {
+          "id": "15733453521280",
+          "type": "product",
+          "title": "Stripe Ivory Vertical Replacement Blind Slat",
+          "handle": "stripe-ivory-slat"
+        },
+        {
+          "id": "15733453750656",
+          "type": "product",
+          "title": "Stripe White Vertical Replacement Blind Slat",
+          "handle": "stripe-white-slat"
+        },
+        {
+          "id": "15733454897536",
+          "type": "product",
+          "title": "Sweet Beige Vertical Replacement Blind Slat",
+          "handle": "sweet-beige-slat"
+        },
+        {
+          "id": "15733455126912",
+          "type": "product",
+          "title": "Sweet Cream Vertical Replacement Blind Slat",
+          "handle": "sweet-cream-slat"
+        },
+        {
+          "id": "15733455290752",
+          "type": "product",
+          "title": "Sweet Snow Vertical Replacement Blind Slat",
+          "handle": "sweet-snow-slat"
+        },
+        {
+          "id": "15733455520128",
+          "type": "product",
+          "title": "Sweet Toffee Vertical Replacement Blind Slat",
+          "handle": "sweet-toffee-slat"
+        }
+      ]
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-c",
+      "bandId": "7db29802-3ec6-4774-a7f6-8d26947f0468",
+      "band": "Replacement Vertical Blinds Slat - Band C",
+      "description": "OB Preview - Replacement Vertical Blinds Slat - Band C",
+      "representative": "daisy-cream-slat",
+      "schema": {
+        "kind": "slat",
+        "roller": false,
+        "tiers": [
+          {
+            "maxInches": 43,
+            "price": 1.99
+          },
+          {
+            "maxInches": 59,
+            "price": 2.28
+          },
+          {
+            "maxInches": 83,
+            "price": 2.49
+          },
+          {
+            "maxInches": null,
+            "price": 3.25
+          }
+        ]
+      },
+      "products": [
+        {
+          "id": "15733432582528",
+          "type": "product",
+          "title": "Daisy Cream Vertical Replacement Blind Slat",
+          "handle": "daisy-cream-slat"
+        },
+        {
+          "id": "15733432615296",
+          "type": "product",
+          "title": "Daisy White Vertical Replacement Blind Slat",
+          "handle": "daisy-white-slat"
+        },
+        {
+          "id": "15733432910208",
+          "type": "product",
+          "title": "Emery Cream Vertical Replacement Blind Slat",
+          "handle": "emery-cream-1-slat"
+        },
+        {
+          "id": "15733432942976",
+          "type": "product",
+          "title": "Emery White Vertical Replacement Blind Slat",
+          "handle": "emery-white-slat"
+        },
+        {
+          "id": "15733438284160",
+          "type": "product",
+          "title": "Louisianna Calico Vertical Replacement Blind Slat",
+          "handle": "louisianna-calico-slat"
+        },
+        {
+          "id": "15733438316928",
+          "type": "product",
+          "title": "Louisianna Cotton Vertical Replacement Blind Slat",
+          "handle": "louisianna-cotton-slat"
+        },
+        {
+          "id": "15733438382464",
+          "type": "product",
+          "title": "Louisianna Linen Vertical Replacement Blind Slat",
+          "handle": "louisianna-linen-slat"
+        },
+        {
+          "id": "15733438448000",
+          "type": "product",
+          "title": "Lyon Beige Vertical Replacement Blind Slat",
+          "handle": "lyon-beige-slat"
+        },
+        {
+          "id": "15733438513536",
+          "type": "product",
+          "title": "Lyon Black Vertical Replacement Blind Slat",
+          "handle": "lyon-black-slat"
+        },
+        {
+          "id": "15733438546304",
+          "type": "product",
+          "title": "Lyon Brown Vertical Replacement Blind Slat",
+          "handle": "lyon-brown-slat"
+        },
+        {
+          "id": "15733438579072",
+          "type": "product",
+          "title": "Lyon Cream Vertical Replacement Blind Slat",
+          "handle": "lyon-cream-slat"
+        },
+        {
+          "id": "15733438611840",
+          "type": "product",
+          "title": "Lyon Red Vertical Replacement Blind Slat",
+          "handle": "lyon-red-slat"
+        },
+        {
+          "id": "15733438808448",
+          "type": "product",
+          "title": "Lyon White Vertical Replacement Blind Slat",
+          "handle": "lyon-white-slat"
+        },
+        {
+          "id": "15733440315776",
+          "type": "product",
+          "title": "Mumbai Callco Vertical Replacement Blind Slat",
+          "handle": "mumbai-callco-slat"
+        },
+        {
+          "id": "15733440446848",
+          "type": "product",
+          "title": "Mumbai Cotton Vertical Replacement Blind Slat",
+          "handle": "mumbai-cotton-slat"
+        },
+        {
+          "id": "15733440610688",
+          "type": "product",
+          "title": "Mumbai Linen Vertical Replacement Blind Slat",
+          "handle": "mumbai-linen-slat"
+        },
+        {
+          "id": "15733443592576",
+          "type": "product",
+          "title": "Opera Cream Vertical Replacement Blind Slat",
+          "handle": "opera-cream-slat"
+        },
+        {
+          "id": "15733443821952",
+          "type": "product",
+          "title": "Opera Grey Vertical Replacement Blind Slat",
+          "handle": "opera-grey-slat"
+        },
+        {
+          "id": "15733444477312",
+          "type": "product",
+          "title": "Opera White Vertical Replacement Blind Slat",
+          "handle": "opera-white-slat"
+        },
+        {
+          "id": "15733449818496",
+          "type": "product",
+          "title": "Rita Beige Vertical Replacement Blind Slat",
+          "handle": "rita-beige-slat"
+        },
+        {
+          "id": "15733449982336",
+          "type": "product",
+          "title": "Rita Black Vertical Replacement Blind Slat",
+          "handle": "rita-black-slat"
+        },
+        {
+          "id": "15733450178944",
+          "type": "product",
+          "title": "Rita Cream Vertical Replacement Blind Slat",
+          "handle": "rita-cream-slat"
+        },
+        {
+          "id": "15733450342784",
+          "type": "product",
+          "title": "Rita Grey Vertical Replacement Blind Slat",
+          "handle": "rita-grey-slat"
+        },
+        {
+          "id": "15733450572160",
+          "type": "product",
+          "title": "Rita Snow Vertical Replacement Blind Slat",
+          "handle": "rita-snow-slat"
+        },
+        {
+          "id": "15733454471552",
+          "type": "product",
+          "title": "Swallow Candy Vertical Replacement Blind Slat",
+          "handle": "swallow-candy-slat"
+        },
+        {
+          "id": "15733454733696",
+          "type": "product",
+          "title": "Swallow Ivory Vertical Replacement Blind Slat",
+          "handle": "swallow-ivory-slat"
+        },
+        {
+          "id": "15733461811584",
+          "type": "product",
+          "title": "Venus Beige Vertical Replacement Blind Slat",
+          "handle": "venus-beige-slat"
+        },
+        {
+          "id": "15733462073728",
+          "type": "product",
+          "title": "Venus Cream Vertical Replacement Blind Slat",
+          "handle": "venus-cream-slat"
+        },
+        {
+          "id": "15733462401408",
+          "type": "product",
+          "title": "Venus Snow Vertical Replacement Blind Slat",
+          "handle": "venus-snow-slat"
+        }
+      ]
+    }
+  ]
+}

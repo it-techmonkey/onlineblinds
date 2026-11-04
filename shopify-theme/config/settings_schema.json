@@ -1,0 +1,97 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Online Blinds Preview",
+    "theme_version": "0.1.0",
+    "theme_author": "Online Blinds Express",
+    "theme_documentation_url": "https://onlineblindsexpress.co.uk",
+    "theme_support_url": "https://onlineblindsexpress.co.uk/contact"
+  },
+  {
+    "name": "Preview controls",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "This theme is an unpublished migration preview. Keep purchasing disabled until Live Product Options pricing, samples, installation, shipping and discounts have passed comparison with the existing site."
+      },
+      {
+        "type": "checkbox",
+        "id": "purchasing_enabled",
+        "label": "Enable purchasing after validation",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "lpo_checkout_enabled",
+        "label": "Allow cart and checkout for LPO-priced products",
+        "default": false,
+        "info": "Only products whose price is verified by an active Live Product Options configuration can be added. Other products stay disabled while purchasing above is off."
+      }
+    ]
+  },
+  {
+    "name": "Brand colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Page background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "foreground",
+        "label": "Text",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "primary",
+        "label": "Brand accent",
+        "default": "#800922"
+      },
+      {
+        "type": "color",
+        "id": "primary_dark",
+        "label": "Accent hover",
+        "default": "#5c0619"
+      },
+      {
+        "type": "color",
+        "id": "primary_light",
+        "label": "Light accent",
+        "default": "#fdf2f4"
+      },
+      {
+        "type": "color",
+        "id": "surface",
+        "label": "Card background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "surface_soft",
+        "label": "Soft panels",
+        "default": "#fdf2f4"
+      },
+      {
+        "type": "color",
+        "id": "muted",
+        "label": "Secondary text",
+        "default": "#737373"
+      },
+      {
+        "type": "color",
+        "id": "border",
+        "label": "Borders",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "color",
+        "id": "gold",
+        "label": "Gold accent",
+        "default": "#c9a96e"
+      }
+    ]
+  }
+]

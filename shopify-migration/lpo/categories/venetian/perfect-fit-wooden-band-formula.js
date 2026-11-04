@@ -1,0 +1,23 @@
+var D={"w":[12,16,20,24,28,31,35,41,47],"h":[24,30,36,42,48,54,60,66,72,78,84,87],"v":[125.19,132.07,135.51,146.88,154.74,158.18,163.61,173.45,183.33,128.94,136.02,139.57,151.26,159.38,162.95,168.52,178.66,188.85,131.51,138.76,142.4,154.29,162.56,166.18,171.89,182.23,192.63,134.15,141.54,145.24,157.4,165.81,169.53,175.34,185.89,196.46,138.16,146.71,155.81,164.9,167.86,174.61,201.63,214.18,227.23,144.38,153.31,162.81,172.3,180.08,188.16,210.7,223.81,237.46,150.88,160.23,170.16,180.1,188.21,196.66,220.18,233.89,248.14,157.65,167.41,177.8,188.21,196.65,205.51,230.09,244.44,259.29,164.75,183.28,197.01,210.79,220.28,230.19,237.25,257.44,275.75,173.84,196.88,211.45,226.11,238.5,251.66,260.33,278.25,295.61,183.39,210.48,225.95,241.39,254.65,268.68,283.48,299.02,315.51,193.49,221.14,235.84,250.58,264.38,278.89,294.25,310.41,327.49],"k":0,"m":[12,47,24,87],"z":[12,47,24,87],"r":0,"t":{"bottom-chain":{"black-weights":0.59,"grey-weights":0.59,"white-chainless":0.39,"pet-friendly":0.39},"chain-color":{"black-plastic":2.99,"chrome-metal":3.49,"grey-plastic":2.99},"control-option":{"chrome-toggle":4.99},"frame-color":{"anthracite-grey":10.65,"black":10.65,"brown":10.65,"beige":10.65,"mahogany":10.65,"golden-oak":10.65},"headrail-colour":{"vouge-white":9.53,"vouge-silver":11.43,"vouge-anthracite":10.95,"vouge-gold":11.43,"vouge-black":10.95,"vouge-brown":10.95},"lining-type":{"blackout":11,"thermal":11},"motorization":{"1ch-remote":10.98,"2ch-remote":10.98,"6ch-remote":12.56,"16ch-remote":12.56},"opening-direction":{"split":25},"perfect-fit-metal-frame-color":{"anthracite":7.13,"brown":7.13,"golden-oak":7.13},"roman-chain-color":{"chrome-metal":4.99},"wrapped-cassette":{"yes":15.75},"chrome-upgrade":{"yes":3.99},"fabric-insert-cassette":{"yes":8.99},"bottom-bar":{"grey-round-bar":3.99,"white-round-bar":3.99,"full-fabric-cover-premium-bar":6.99},"matching-fabric-cassette":{"yes":5.99},"cassette-bar":{"black":7.99,"grey":7.99,"matching-fabric":18.89}},"b":75},M=["Please enter a valid size","Selected measurements are outside the allowed range for this product","We cannot make this blind in that width and drop combination. Please adjust your measurements.","The pricing list could not be verified. Please try again."],Q="_";
+function V(n){return options.value(Q+n);}
+var wo=options.option&&options.option(Q+'width');
+if(wo&&Array.isArray(wo.errors))wo.errors=wo.errors.filter(function(m){return m&&M.indexOf(m)<0;});
+var C=String(V('customizations')||'').split('|').filter(function(s){return s;}).map(function(s){var i=s.indexOf(':');return [s.slice(0,i),s.slice(i+1)];});
+function extras(x){var s=0;C.forEach(function(c){var cat=c[0];if(cat==='cassette-bar'||cat==='roller-cassette')cat=D.r?'roller-cassette':'cassette-bar';var p=D.t[cat]&&D.t[cat][c[1]];if(p==null)return;if(typeof p==='object')p=p[x]||0;s+=p;});return s;}
+var unit=V('measurementUnit'),wv=V('width'),hv=V('height');
+if(wv==null||hv==null||String(wv).trim()===''||String(hv).trim()===''||(unit!=='cm'&&unit!=='mm'))return 0;
+var w=Number(wv),h=Number(hv);
+if(!isFinite(w)||!isFinite(h)){options.error(Q+'width',M[0]);return 0;}
+if(unit==='cm'){w+=Number(V('widthFraction')||0)/10;h+=Number(V('heightFraction')||0)/10;}
+var u=unit==='cm'?2.54:25.4;w/=u;h/=u;
+var mot=C.some(function(c){return c[0]==='motorization'&&c[1]!=='none';}),L=mot?D.z:D.m;
+function fail(i){options.error(Q+'width',M[i]);return 0;}
+if(w<L[0]||w>L[1]||h<L[2]||h>L[3])return fail(1);
+function band(a,v){if(v<a[0])return D.k?0:-1;if(v>a[a.length-1])return D.k?a.length-1:-1;var c=Math.ceil(v);for(var i=0;i<a.length;i++)if(a[i]>=c)return i;return D.k?a.length-1:-1;}
+var x=band(D.w,w),y=band(D.h,h);
+if(x<0||y<0)return fail(1);
+var t=D.v[y*D.w.length+x];
+if(!t)return fail(2);
+t+=extras(x);
+if(C.some(function(c){return c[0]==='motorization';}))t+=D.b;
+return Math.round(t*100)/100;

@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "easy-stick-metal-venetian-25mm",
+      "band": "Easy Stick - Metal Venetian 25MM",
+      "kind": "band",
+      "products": 8,
+      "compared": 8444,
+      "rejected": 4664,
+      "formulaBytes": 3306,
+      "formulaSha256": "2e3da5b149d623b3c1ca75143e9418196c9e0f604e92ef64eb9677da1217a968"
+    },
+    {
+      "slug": "easy-stick-wood-venetian-25mm",
+      "band": "Easy Stick - Wood Venetian 25MM",
+      "kind": "band",
+      "products": 5,
+      "compared": 8396,
+      "rejected": 4852,
+      "formulaBytes": 3288,
+      "formulaSha256": "44eb1ef2bb40e139d0ed4f2197cfbda68cf593ef7b8b327c5648f620b84f4831"
+    },
+    {
+      "slug": "easy-stick-honeycomb",
+      "band": "Easy Stick - Honeycomb",
+      "kind": "band",
+      "products": 13,
+      "compared": 8524,
+      "rejected": 4704,
+      "formulaBytes": 3302,
+      "formulaSha256": "3aae118b5fc5cc4df0fdbf5037eb0e0d1f56a181ebb6dce762e907d0f192cd15"
+    }
+  ]
+}

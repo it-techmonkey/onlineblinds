@@ -1,0 +1,123 @@
+[
+  {
+    "description": "OB Preview - Day and Night - Band D",
+    "configUuid": "cl1vzqb3cqir",
+    "products": 15,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "04219307eb07073181d0159cdfad91e60bc3dedd3584009d7f7538231c45d317",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Dayandnight - Band A",
+    "configUuid": "clfhanm6jjqw",
+    "products": 5,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "e5d71abddd34b7cfd2cf758378b8d61c79b7d64cf5f79868e977c09aa2a8a8dd",
+    "formulaBytes": 2250,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band C",
+    "configUuid": "clbamvaecfuz",
+    "products": 11,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "8ecabd91ffdd7b63c27891dc79b709abcbe1422c03444eb75775a99ca6d79328",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band A",
+    "configUuid": "clcplqcf4p8u",
+    "products": 11,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "6f5228721a8c65001c5a5ec1bf9d6af79f95d4bf63aae3efd384b4f0ffb80767",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band F",
+    "configUuid": "clkjydgrwcu6",
+    "products": 14,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "a416021f96fc466d2c0ed2557f01010cbe07b8ab40ee50287126caa5228a4504",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band E",
+    "configUuid": "clozo16zukd5",
+    "products": 11,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "bc566b0629c3b5a97c5d66a65d108867332ad8449d614cdba11217a5d2c74e1d",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band A - Electrical",
+    "configUuid": "clpprllqs5gh",
+    "products": 9,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "e551b8041702f41c2c67f0b33a3de57391774259411730be1ddaba1e66f707e3",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band D - Electrical",
+    "configUuid": "clov0r5kwplr",
+    "products": 15,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "4853e71a5e7fb79d61351e4b17a3ddf7a72a6ed7f0b8b26f97bcb3e89fa35629",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band C - Electrical",
+    "configUuid": "clia0qrubxxo",
+    "products": 5,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "bc34fd335cf2fa21c4f5bef8e710fc7d707c0454cf1f316a6a9ef35ef174a18e",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band E - Electrical",
+    "configUuid": "clxu0vyu6m5i",
+    "products": 11,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "2bb452ce0a02dbc895fbd06021c3367b14bf70a686f40701b0388e4090f1918f",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  },
+  {
+    "description": "OB Preview - Day and Night - Band F - Electrical",
+    "configUuid": "clp6uikua90o",
+    "products": 14,
+    "inactive": true,
+    "savedTargetingVerified": true,
+    "savedFormulaVerified": true,
+    "formulaSha256": "992c2d24e3c1b22102f7c9ea5eb52fb88026c2bc967a9b34d79ffd2cd7cfd5b7",
+    "formulaBytes": 2248,
+    "updated": "2026-10-28 slim formula via config_update"
+  }
+]

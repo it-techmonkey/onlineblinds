@@ -55,7 +55,7 @@ export interface CreateCheckoutRequest {
   customerEmail?: string;
   note?: string;
   installationService?: boolean;
-  discountCode?: string;
+  discountCodes?: string[];
 }
 
 export interface CreateCheckoutResponse {
@@ -640,10 +640,13 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
   // field rather than a hand-computed appliedDiscount, so Shopify — not us —
   // is the authority on eligibility rules we don't replicate (minimum
   // purchase, applicable products/collections, combination limits, etc.).
-  if (request.discountCode) {
-    const discount = await resolveDiscountCode(request.discountCode);
+  // Several codes can be sent (an announcement bar code plus the newsletter
+  // code); Shopify decides whether they combine and who may use them.
+  const discountCodes = request.discountCodes ?? [];
+  for (const code of discountCodes) {
+    const discount = await resolveDiscountCode(code);
     if (!discount) {
-      throw new CheckoutError(`Discount code "${request.discountCode}" is invalid or has expired.`, 422);
+      throw new CheckoutError(`Discount code "${code}" is invalid or has expired.`, 422);
     }
   }
 
@@ -673,7 +676,7 @@ export async function createCheckout(request: CreateCheckoutRequest): Promise<Cr
           useCustomerDefaultAddress: true,
           note: request.note || '',
           ...(request.customerEmail && { email: request.customerEmail }),
-          ...(request.discountCode && { discountCodes: [request.discountCode] }),
+          ...(discountCodes.length > 0 && { discountCodes }),
           // Lets the customer also enter/change a code directly on Shopify's
           // hosted checkout page — draft order checkouts hide that field by
           // default, which is exactly the gap this fills.

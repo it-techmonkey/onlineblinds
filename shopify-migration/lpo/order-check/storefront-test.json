@@ -1,0 +1,9 @@
+{
+ "date": "2026-10-29",
+ "scope": "Real LPO engine on the preview theme, capture mode (nothing added to the cart)",
+ "configurations": 64,
+ "products": 126,
+ "cases": 256,
+ "passed": 256,
+ "failed": []
+}

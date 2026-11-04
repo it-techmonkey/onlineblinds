@@ -1,0 +1,477 @@
+[
+  {
+    "name": "_width",
+    "type": "number",
+    "label": "Width",
+    "value": "",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "help": "",
+      "validationMsg": "",
+      "priceTemplate": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "placeholder": "",
+      "info": "",
+      "numberSteps": false
+    }
+  },
+  {
+    "name": "_height",
+    "type": "number",
+    "label": "Drop",
+    "value": "",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "help": "",
+      "validationMsg": "",
+      "priceTemplate": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "placeholder": "",
+      "info": "",
+      "numberSteps": false
+    }
+  },
+  {
+    "name": "_measurementUnit",
+    "type": "select",
+    "label": "Measurement unit",
+    "value": "cm",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "textValueSelect": "",
+      "validationMsg": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "valuePriceText": false,
+      "groupDelimiter": "",
+      "help": "",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "info": ""
+    },
+    "values": [
+      {
+        "value": "cm",
+        "text": "cm",
+        "priceFormula": "var D={\"w\":[20,24,28,31,35,39,43,47,51,55,59,63,67,71,75,79,83,87,91,94,98,102,106,110],\"h\":[20,39,47,55,63,71,79,87,94,102,110],\"v\":[161.02,162.31,163.59,164.88,166.15,167.44,168.73,170,171.29,172.56,173.85,175.14,176.41,177.7,178.98,180.26,181.55,182.83,184.11,185.39,186.68,187.96,189.24,190.52,193.09,194.38,195.65,196.94,198.21,199.5,200.79,202.06,203.35,204.63,205.91,207.2,208.48,209.76,211.04,212.33,213.61,214.89,216.18,217.45,218.74,220.03,221.3,222.59,205.91,207.2,208.48,209.76,211.04,212.33,213.61,214.89,216.18,217.45,218.74,220.03,221.3,222.59,223.86,225.15,226.44,227.71,229,230.28,231.56,232.85,234.13,235.41,218.74,220.03,221.3,222.59,223.86,225.15,226.44,227.71,229,230.28,231.56,232.85,234.13,235.41,236.69,237.98,239.26,240.54,241.83,243.1,244.39,245.68,246.95,248.24,231.56,232.85,234.13,235.41,236.69,237.98,239.26,240.54,241.83,243.1,244.39,245.68,246.95,248.24,249.51,250.8,252.09,253.36,254.65,255.93,257.21,258.5,259.77,261.06,244.39,245.68,246.95,248.24,249.51,250.8,252.09,253.36,254.65,255.93,257.21,258.5,259.77,261.06,262.34,263.63,264.91,266.19,267.47,268.75,270.04,271.33,272.6,273.89,257.21,258.5,259.77,261.06,262.34,263.63,264.91,266.19,267.47,268.75,270.04,271.33,272.6,273.89,275.16,276.45,277.74,279.01,280.3,281.58,282.86,284.15,285.43,286.71,270.04,271.33,272.6,273.89,275.16,276.45,277.74,279.01,280.3,281.58,282.86,284.15,285.43,286.71,287.99,289.27,290.56,291.84,293.13,294.4,295.69,296.98,298.25,299.54,282.86,284.15,285.43,286.71,287.99,289.27,290.56,291.84,293.13,294.4,295.69,296.98,298.25,299.54,300.81,302.1,303.39,304.66,305.95,307.23,308.51,309.8,311.08,312.36,295.69,296.98,298.25,299.54,300.81,302.1,303.39,304.66,305.95,307.23,308.51,309.8,311.08,312.36,313.64,314.93,316.21,317.49,318.78,320.05,321.34,322.63,323.9,325.19,308.51,309.8,311.08,312.36,313.64,314.93,316.21,317.49,318.78,320.05,321.34,322.63,323.9,325.19,326.46,327.75,329.04,330.31,331.6,332.88,334.16,335.45,336.73,338.01],\"k\":1,\"m\":[13,96,13,94],\"z\":[24,96,11,94],\"f\":1,\"p\":{\"chromeUpgrade\":{\"yes\":3.99},\"cassetteMatchingBar\":{\"black\":7.99,\"grey\":7.99},\"sameFabricInsert\":{\"yes\":8.99}},\"o\":[\"controlSide\",\"chromeUpgrade\"],\"b\":75},M=[\"Please enter a valid size\",\"Selected measurements are outside the allowed range for this product\",\"We cannot make this blind in that width and drop combination. Please adjust your measurements.\",\"The pricing list could not be verified. Please try again.\"],Q=\"_\";\nfunction V(n){return options.value(Q+n);}\nvar wo=options.option&&options.option(Q+'width');\nif(wo&&Array.isArray(wo.errors))wo.errors=wo.errors.filter(function(m){return m&&M.indexOf(m)<0;});\nvar unit=V('measurementUnit'),wv=V('width'),hv=V('height');\nif(wv==null||hv==null||String(wv).trim()===''||String(hv).trim()===''||(unit!=='cm'&&unit!=='mm'))return 0;\nvar w=Number(wv),h=Number(hv);\nif(!isFinite(w)||!isFinite(h)){options.error(Q+'width',M[0]);return 0;}\nif(unit==='cm'){w+=Number(V('widthFraction')||0)/10;h+=Number(V('heightFraction')||0)/10;}\nvar u=unit==='cm'?2.54:25.4;w/=u;h/=u;\nvar mot=D.f===1||V('motorization')==='motorized',L=mot?D.z:D.m;\nfunction fail(i){options.error(Q+'width',M[i]);return 0;}\nif(w<L[0]||w>L[1]||h<L[2]||h>L[3])return fail(1);\nfunction band(a,v){if(v<a[0])return D.k?0:-1;if(v>a[a.length-1])return D.k?a.length-1:-1;var c=Math.ceil(v);for(var i=0;i<a.length;i++)if(a[i]>=c)return i;return D.k?a.length-1:-1;}\nvar x=band(D.w,w),y=band(D.h,h);\nif(x<0||y<0)return fail(1);\nvar t=D.v[y*D.w.length+x];\nif(!t)return fail(2);\nfor(var n in D.p){if(mot&&D.o.indexOf(n)>=0)continue;var s=V(n);if(s!=null&&D.p[n][s])t+=D.p[n][s];}\nif(mot)t+=D.b;\nreturn Math.round(t*100)/100;",
+        "priceType": 4
+      },
+      {
+        "value": "mm",
+        "text": "mm",
+        "priceFormula": "var D={\"w\":[20,24,28,31,35,39,43,47,51,55,59,63,67,71,75,79,83,87,91,94,98,102,106,110],\"h\":[20,39,47,55,63,71,79,87,94,102,110],\"v\":[161.02,162.31,163.59,164.88,166.15,167.44,168.73,170,171.29,172.56,173.85,175.14,176.41,177.7,178.98,180.26,181.55,182.83,184.11,185.39,186.68,187.96,189.24,190.52,193.09,194.38,195.65,196.94,198.21,199.5,200.79,202.06,203.35,204.63,205.91,207.2,208.48,209.76,211.04,212.33,213.61,214.89,216.18,217.45,218.74,220.03,221.3,222.59,205.91,207.2,208.48,209.76,211.04,212.33,213.61,214.89,216.18,217.45,218.74,220.03,221.3,222.59,223.86,225.15,226.44,227.71,229,230.28,231.56,232.85,234.13,235.41,218.74,220.03,221.3,222.59,223.86,225.15,226.44,227.71,229,230.28,231.56,232.85,234.13,235.41,236.69,237.98,239.26,240.54,241.83,243.1,244.39,245.68,246.95,248.24,231.56,232.85,234.13,235.41,236.69,237.98,239.26,240.54,241.83,243.1,244.39,245.68,246.95,248.24,249.51,250.8,252.09,253.36,254.65,255.93,257.21,258.5,259.77,261.06,244.39,245.68,246.95,248.24,249.51,250.8,252.09,253.36,254.65,255.93,257.21,258.5,259.77,261.06,262.34,263.63,264.91,266.19,267.47,268.75,270.04,271.33,272.6,273.89,257.21,258.5,259.77,261.06,262.34,263.63,264.91,266.19,267.47,268.75,270.04,271.33,272.6,273.89,275.16,276.45,277.74,279.01,280.3,281.58,282.86,284.15,285.43,286.71,270.04,271.33,272.6,273.89,275.16,276.45,277.74,279.01,280.3,281.58,282.86,284.15,285.43,286.71,287.99,289.27,290.56,291.84,293.13,294.4,295.69,296.98,298.25,299.54,282.86,284.15,285.43,286.71,287.99,289.27,290.56,291.84,293.13,294.4,295.69,296.98,298.25,299.54,300.81,302.1,303.39,304.66,305.95,307.23,308.51,309.8,311.08,312.36,295.69,296.98,298.25,299.54,300.81,302.1,303.39,304.66,305.95,307.23,308.51,309.8,311.08,312.36,313.64,314.93,316.21,317.49,318.78,320.05,321.34,322.63,323.9,325.19,308.51,309.8,311.08,312.36,313.64,314.93,316.21,317.49,318.78,320.05,321.34,322.63,323.9,325.19,326.46,327.75,329.04,330.31,331.6,332.88,334.16,335.45,336.73,338.01],\"k\":1,\"m\":[13,96,13,94],\"z\":[24,96,11,94],\"f\":1,\"p\":{\"chromeUpgrade\":{\"yes\":3.99},\"cassetteMatchingBar\":{\"black\":7.99,\"grey\":7.99},\"sameFabricInsert\":{\"yes\":8.99}},\"o\":[\"controlSide\",\"chromeUpgrade\"],\"b\":75},M=[\"Please enter a valid size\",\"Selected measurements are outside the allowed range for this product\",\"We cannot make this blind in that width and drop combination. Please adjust your measurements.\",\"The pricing list could not be verified. Please try again.\"],Q=\"_\";\nfunction V(n){return options.value(Q+n);}\nvar wo=options.option&&options.option(Q+'width');\nif(wo&&Array.isArray(wo.errors))wo.errors=wo.errors.filter(function(m){return m&&M.indexOf(m)<0;});\nvar unit=V('measurementUnit'),wv=V('width'),hv=V('height');\nif(wv==null||hv==null||String(wv).trim()===''||String(hv).trim()===''||(unit!=='cm'&&unit!=='mm'))return 0;\nvar w=Number(wv),h=Number(hv);\nif(!isFinite(w)||!isFinite(h)){options.error(Q+'width',M[0]);return 0;}\nif(unit==='cm'){w+=Number(V('widthFraction')||0)/10;h+=Number(V('heightFraction')||0)/10;}\nvar u=unit==='cm'?2.54:25.4;w/=u;h/=u;\nvar mot=D.f===1||V('motorization')==='motorized',L=mot?D.z:D.m;\nfunction fail(i){options.error(Q+'width',M[i]);return 0;}\nif(w<L[0]||w>L[1]||h<L[2]||h>L[3])return fail(1);\nfunction band(a,v){if(v<a[0])return D.k?0:-1;if(v>a[a.length-1])return D.k?a.length-1:-1;var c=Math.ceil(v);for(var i=0;i<a.length;i++)if(a[i]>=c)return i;return D.k?a.length-1:-1;}\nvar x=band(D.w,w),y=band(D.h,h);\nif(x<0||y<0)return fail(1);\nvar t=D.v[y*D.w.length+x];\nif(!t)return fail(2);\nfor(var n in D.p){if(mot&&D.o.indexOf(n)>=0)continue;var s=V(n);if(s!=null&&D.p[n][s])t+=D.p[n][s];}\nif(mot)t+=D.b;\nreturn Math.round(t*100)/100;",
+        "priceType": 4
+      }
+    ]
+  },
+  {
+    "name": "_installationMethod",
+    "type": "img-swatch",
+    "label": "Installation method",
+    "value": "",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "imgTooltip": false,
+      "textValueSelect": "",
+      "grow": false,
+      "validationMsg": "",
+      "shape": "rect",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "toggle": false,
+      "valuePriceText": false,
+      "groupDelimiter": "",
+      "help": "",
+      "imgText": true,
+      "size": "large",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "items": 2,
+      "info": "",
+      "multiSelect": false
+    },
+    "values": [
+      {
+        "value": "inside-mount",
+        "text": "Inside Recess",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_rND2_zebra-insideMount.png"
+      },
+      {
+        "value": "outside-mount",
+        "text": "Outside Recess",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_WF94_zebra-outsideMount.png"
+      }
+    ]
+  },
+  {
+    "name": "_controlSide",
+    "type": "img-swatch",
+    "label": "Control side",
+    "value": "",
+    "required": true,
+    "conditions": [
+      {
+        "data": "options",
+        "field": "_motorization",
+        "operator": "equals",
+        "value": "none"
+      }
+    ],
+    "params": {
+      "imgTooltip": false,
+      "textValueSelect": "",
+      "grow": false,
+      "validationMsg": "",
+      "shape": "rect",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "toggle": false,
+      "valuePriceText": false,
+      "groupDelimiter": "",
+      "help": "",
+      "imgText": true,
+      "size": "large",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "items": 2,
+      "info": "",
+      "multiSelect": false
+    },
+    "values": [
+      {
+        "value": "left",
+        "text": "Left",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_BC8p_left.png"
+      },
+      {
+        "value": "right",
+        "text": "Right",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_xcl3_right.png"
+      }
+    ]
+  },
+  {
+    "name": "_chromeUpgrade",
+    "type": "select",
+    "label": "Chrome upgrade",
+    "value": "no",
+    "required": true,
+    "conditions": [
+      {
+        "data": "options",
+        "field": "_motorization",
+        "operator": "equals",
+        "value": "none"
+      }
+    ],
+    "params": {
+      "textValueSelect": "",
+      "validationMsg": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "valuePriceText": true,
+      "groupDelimiter": "",
+      "help": "",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "info": ""
+    },
+    "values": [
+      {
+        "value": "no",
+        "text": "No"
+      },
+      {
+        "value": "yes",
+        "text": "Yes"
+      }
+    ]
+  },
+  {
+    "name": "_cassetteMatchingBar",
+    "type": "img-swatch",
+    "label": "Cassette and Bottom Matching Bar",
+    "value": "",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "imgTooltip": false,
+      "textValueSelect": "",
+      "grow": false,
+      "validationMsg": "",
+      "shape": "rect",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "toggle": false,
+      "valuePriceText": false,
+      "groupDelimiter": "",
+      "help": "",
+      "imgText": true,
+      "size": "large",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "items": 3,
+      "info": "",
+      "multiSelect": false
+    },
+    "values": [
+      {
+        "value": "white",
+        "text": "White Standard",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_FjKO_zebra_shade_cassette_and_bottom_bar_white.png"
+      },
+      {
+        "value": "black",
+        "text": "Black",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_bYVh_zebra_shade_cassette_and_bottom_bar_black.png"
+      },
+      {
+        "value": "grey",
+        "text": "Grey",
+        "img": "https://cdn.shopify.com/s/files/1/0822/9627/5263/files/a_z0Rw_zebra_shade_cassette_and_bottom_bar_grey.png"
+      }
+    ]
+  },
+  {
+    "name": "_sameFabricInsert",
+    "type": "select",
+    "label": "Same Fabric Insert in Cassette",
+    "value": "no",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "textValueSelect": "",
+      "validationMsg": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "valuePriceText": true,
+      "groupDelimiter": "",
+      "help": "",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "info": ""
+    },
+    "values": [
+      {
+        "value": "no",
+        "text": "No"
+      },
+      {
+        "value": "yes",
+        "text": "Yes"
+      }
+    ]
+  },
+  {
+    "name": "_motorization",
+    "type": "select",
+    "label": "Motorization",
+    "value": "motorized",
+    "required": true,
+    "conditions": [],
+    "params": {
+      "textValueSelect": "",
+      "validationMsg": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "valuePriceText": true,
+      "groupDelimiter": "",
+      "help": "",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "info": ""
+    },
+    "values": [
+      {
+        "value": "motorized",
+        "text": "Motorization (including remote and charging wire)"
+      }
+    ]
+  },
+  {
+    "name": "_roomType",
+    "type": "select",
+    "label": "Room",
+    "value": "",
+    "required": false,
+    "conditions": [],
+    "params": {
+      "textValueSelect": "",
+      "validationMsg": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "valuePriceText": true,
+      "groupDelimiter": "",
+      "help": "",
+      "priceTemplate": "",
+      "labelValueText": false,
+      "exclude": false,
+      "placeholder": "",
+      "info": ""
+    },
+    "values": [
+      {
+        "value": "bedroom",
+        "text": "Bedroom"
+      },
+      {
+        "value": "family-room",
+        "text": "Family Room"
+      },
+      {
+        "value": "kitchen",
+        "text": "Kitchen"
+      },
+      {
+        "value": "bathroom",
+        "text": "Bathroom"
+      },
+      {
+        "value": "office",
+        "text": "Office"
+      },
+      {
+        "value": "dining-room",
+        "text": "Dining Room"
+      },
+      {
+        "value": "living-room",
+        "text": "Living Room"
+      },
+      {
+        "value": "other",
+        "text": "Other"
+      }
+    ]
+  },
+  {
+    "name": "_blindName",
+    "type": "text",
+    "label": "Blind name",
+    "value": "",
+    "required": false,
+    "conditions": [],
+    "params": {
+      "help": "",
+      "validationMsg": "",
+      "priceTemplate": "",
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "placeholder": "",
+      "info": ""
+    }
+  },
+  {
+    "name": "_widthFraction",
+    "type": "number",
+    "label": "Additional width (mm)",
+    "value": "0",
+    "required": false,
+    "conditions": [
+      {
+        "data": "options",
+        "field": "_measurementUnit",
+        "operator": "equals",
+        "value": "cm"
+      }
+    ],
+    "params": {
+      "validationMsg": "",
+      "max": 9,
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "numberSteps": false,
+      "help": "",
+      "min": 0,
+      "priceTemplate": "",
+      "placeholder": "",
+      "info": ""
+    }
+  },
+  {
+    "name": "_heightFraction",
+    "type": "number",
+    "label": "Additional drop (mm)",
+    "value": "0",
+    "required": false,
+    "conditions": [
+      {
+        "data": "options",
+        "field": "_measurementUnit",
+        "operator": "equals",
+        "value": "cm"
+      }
+    ],
+    "params": {
+      "validationMsg": "",
+      "max": 9,
+      "textClean": "",
+      "autocomplete": "",
+      "priceTextClean": "",
+      "pattern": "",
+      "labelPriceText": false,
+      "numberSteps": false,
+      "help": "",
+      "min": 0,
+      "priceTemplate": "",
+      "placeholder": "",
+      "info": ""
+    }
+  }
+]

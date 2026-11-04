@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-04",
+  "category": "other",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "eclipsecore-band",
+      "bandId": "cmkzul1z4000mxs7kpyiab1wh",
+      "band": "Eclipsecore Band",
+      "description": "OB Preview - Eclipsecore Band",
+      "representative": "non-driii-honeycomb-blackout-blinds",
+      "schema": {
+        "kind": "band",
+        "bandId": "cmkzul1z4000mxs7kpyiab1wh",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15711267586432",
+          "type": "product",
+          "title": "The Viral Honeycomb Complete Blackout Blinds – Insulating, Blockout Noise, Sleep Better",
+          "handle": "non-driii-honeycomb-blackout-blinds"
+        }
+      ]
+    }
+  ]
+}
