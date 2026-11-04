@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "metal-venetian-special-band",
+      "band": "Metal Venetian - Special Band",
+      "kind": "band",
+      "products": 36,
+      "compared": 70124,
+      "rejected": 17284,
+      "formulaBytes": 7329,
+      "formulaSha256": "1d83b91b28d5b3f5fd1ff491c123324498e9559a2e417af27e59688e1abf6a18"
+    },
+    {
+      "slug": "metal-venetian-normal-band",
+      "band": "Metal Venetian - Normal Band",
+      "kind": "band",
+      "products": 72,
+      "compared": 70700,
+      "rejected": 17284,
+      "formulaBytes": 7328,
+      "formulaSha256": "6f9ace291fc48052c3211ebc2dd770c506f1b19823b3c98a908bd8e9d8611437"
+    },
+    {
+      "slug": "perfect-fit-wooden-band",
+      "band": "Perfect Fit Wooden Band",
+      "kind": "band",
+      "products": 10,
+      "compared": 18548,
+      "rejected": 8670,
+      "formulaBytes": 3840,
+      "formulaSha256": "fc73cb0e72f351fff15fd1e35d7d8e0de40369f4acc79277ba8b8c82a69ce109"
+    },
+    {
+      "slug": "perfect-fit-metal-venetians-standard",
+      "band": "Perfect Fit Metal Venetians - Standard",
+      "kind": "band",
+      "products": 77,
+      "compared": 19620,
+      "rejected": 9206,
+      "formulaBytes": 3812,
+      "formulaSha256": "7b40f3bc839922bfe51deee5b09c32d4a5c9cffeb16dffcbbf944f81dbd8c3ef"
+    },
+    {
+      "slug": "perfect-fit-metal-venetians-special-effect",
+      "band": "Perfect Fit Metal Venetians - Special Effect",
+      "kind": "band",
+      "products": 30,
+      "compared": 18868,
+      "rejected": 8830,
+      "formulaBytes": 3823,
+      "formulaSha256": "e9f008aaff0f2cecbd6b95881ac8f476ddc85dbde9cb7737b1c21aafb42dcf21"
+    },
+    {
+      "slug": "perfect-fit-shutters-lite",
+      "band": "Perfect Fit Shutters Lite",
+      "kind": "band",
+      "products": 1,
+      "compared": 46364,
+      "rejected": 13670,
+      "formulaBytes": 6145,
+      "formulaSha256": "af82bd103dcc8b93bed4a6657fbea7ed298ded9445c4cac041c0685bab8673da"
+    }
+  ]
+}

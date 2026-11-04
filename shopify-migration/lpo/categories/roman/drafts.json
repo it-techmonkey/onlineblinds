@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "roman-eb-band-b",
+    "configUuid": "clractl7vidt",
+    "description": "OB Preview - Roman EB - Band B",
+    "products": 48
+  },
+  {
+    "slug": "roman-eb-band-d",
+    "configUuid": "clh1edeurfgd",
+    "description": "OB Preview - Roman EB - Band D",
+    "products": 75
+  },
+  {
+    "slug": "roman-eb-band-a",
+    "configUuid": "clbsy3pannk9",
+    "description": "OB Preview - Roman EB - Band A",
+    "products": 51
+  },
+  {
+    "slug": "roman-eb-band-c",
+    "configUuid": "clkokldfdxs4",
+    "description": "OB Preview - Roman EB - Band C",
+    "products": 7
+  },
+  {
+    "slug": "roman-eb-band-aa",
+    "configUuid": "clkvvsx9kuup",
+    "description": "OB Preview - Roman EB - Band AA",
+    "products": 26
+  },
+  {
+    "slug": "roman-arena-band-e",
+    "configUuid": "cli90ukc5tol",
+    "description": "OB Preview - Roman Arena - Band E",
+    "products": 15
+  },
+  {
+    "slug": "roman-arena-band-d",
+    "configUuid": "cl25pdpmw1kn",
+    "description": "OB Preview - Roman Arena - Band D",
+    "products": 12
+  },
+  {
+    "slug": "roman-arena-band-g",
+    "configUuid": "clkxdfzxvliq",
+    "description": "OB Preview - Roman Arena - Band G",
+    "products": 11
+  },
+  {
+    "slug": "roman-arena-band-f",
+    "configUuid": "clfeodhfjfzr",
+    "description": "OB Preview - Roman Arena - Band F",
+    "products": 12
+  }
+]

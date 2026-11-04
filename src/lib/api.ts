@@ -634,7 +634,7 @@ export async function createCheckout(
   items: CheckoutItemRequest[],
   customerEmail?: string,
   installationService?: boolean,
-  discountCode?: string
+  discountCodes: string[] = []
 ): Promise<CheckoutResponse> {
   const response = await apiFetch<CheckoutApiResponse>('/api/orders/create-checkout', {
     method: 'POST',
@@ -642,7 +642,7 @@ export async function createCheckout(
       items,
       customerEmail,
       installationService,
-      discountCode,
+      discountCodes,
     }),
   });
 

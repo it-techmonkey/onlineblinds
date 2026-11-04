@@ -1,0 +1,1408 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 140,
+  "results": [
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "base",
+      "expected": 76.14,
+      "error": null,
+      "actual": 76.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "mm",
+      "expected": 76.14,
+      "error": null,
+      "actual": 76.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "fractions",
+      "expected": 82.62,
+      "error": null,
+      "actual": 82.62,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "cassette",
+      "expected": 92.12,
+      "error": null,
+      "actual": 92.12,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "chain + bottom bar",
+      "expected": 83.62,
+      "error": null,
+      "actual": 83.62,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "motorised",
+      "expected": 154.64,
+      "error": null,
+      "actual": 154.64,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "large",
+      "expected": 109.58999999999999,
+      "error": null,
+      "actual": 109.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D",
+      "product": "cairo-blackout-beige-roller-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "base",
+      "expected": 55.84,
+      "error": null,
+      "actual": 55.84,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "mm",
+      "expected": 55.84,
+      "error": null,
+      "actual": 55.84,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "fractions",
+      "expected": 60.59,
+      "error": null,
+      "actual": 60.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "cassette",
+      "expected": 71.82000000000001,
+      "error": null,
+      "actual": 71.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "chain + bottom bar",
+      "expected": 63.32000000000001,
+      "error": null,
+      "actual": 63.32,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "motorised",
+      "expected": 133.4,
+      "error": null,
+      "actual": 133.4,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "large",
+      "expected": 83.03,
+      "error": null,
+      "actual": 83.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A",
+      "product": "unity-polaris-acorn-roller-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "base",
+      "expected": 91.37,
+      "error": null,
+      "actual": 91.37,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "mm",
+      "expected": 91.37,
+      "error": null,
+      "actual": 91.37,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "fractions",
+      "expected": 99.14,
+      "error": null,
+      "actual": 99.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "cassette",
+      "expected": 107.35000000000001,
+      "error": null,
+      "actual": 107.35,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "chain + bottom bar",
+      "expected": 98.85000000000001,
+      "error": null,
+      "actual": 98.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "motorised",
+      "expected": 170.57,
+      "error": null,
+      "actual": 170.57,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "large",
+      "expected": 129.51,
+      "error": null,
+      "actual": 129.51,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E",
+      "product": "atlantex-asc-beige",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "base",
+      "expected": 119.29,
+      "error": null,
+      "actual": 119.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "mm",
+      "expected": 119.29,
+      "error": null,
+      "actual": 119.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "fractions",
+      "expected": 129.44,
+      "error": null,
+      "actual": 129.44,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "cassette",
+      "expected": 135.27,
+      "error": null,
+      "actual": 135.27,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "chain + bottom bar",
+      "expected": 126.77000000000001,
+      "error": null,
+      "actual": 126.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "motorised",
+      "expected": 199.76999999999998,
+      "error": null,
+      "actual": 199.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "large",
+      "expected": 166.03,
+      "error": null,
+      "actual": 166.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium",
+      "product": "hudson-blackout-grey",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "base",
+      "expected": 98.98,
+      "error": null,
+      "actual": 98.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "mm",
+      "expected": 98.98,
+      "error": null,
+      "actual": 98.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "fractions",
+      "expected": 107.41,
+      "error": null,
+      "actual": 107.41,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "cassette",
+      "expected": 114.96000000000001,
+      "error": null,
+      "actual": 114.96,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "chain + bottom bar",
+      "expected": 106.46000000000001,
+      "error": null,
+      "actual": 106.46,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "motorised",
+      "expected": 178.53,
+      "error": null,
+      "actual": 178.53,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "large",
+      "expected": 139.47,
+      "error": null,
+      "actual": 139.47,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F",
+      "product": "sawyer-dove",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "base",
+      "expected": 106.6,
+      "error": null,
+      "actual": 106.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "mm",
+      "expected": 106.6,
+      "error": null,
+      "actual": 106.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "fractions",
+      "expected": 115.67,
+      "error": null,
+      "actual": 115.67,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "cassette",
+      "expected": 122.58,
+      "error": null,
+      "actual": 122.58,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "chain + bottom bar",
+      "expected": 114.08,
+      "error": null,
+      "actual": 114.08,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "motorised",
+      "expected": 186.49,
+      "error": null,
+      "actual": 186.49,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "large",
+      "expected": 149.43,
+      "error": null,
+      "actual": 149.43,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G",
+      "product": "strata-asc-snowdrop",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "base",
+      "expected": 71.06,
+      "error": null,
+      "actual": 71.06,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "mm",
+      "expected": 71.06,
+      "error": null,
+      "actual": 71.06,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "fractions",
+      "expected": 77.11,
+      "error": null,
+      "actual": 77.11,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "cassette",
+      "expected": 87.04,
+      "error": null,
+      "actual": 87.04,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "chain + bottom bar",
+      "expected": 78.54,
+      "error": null,
+      "actual": 78.54,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "motorised",
+      "expected": 149.32999999999998,
+      "error": null,
+      "actual": 149.33,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "large",
+      "expected": 102.94999999999999,
+      "error": null,
+      "actual": 102.95,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C",
+      "product": "origin-white",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "base",
+      "expected": 91.37,
+      "error": null,
+      "actual": 91.37,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "mm",
+      "expected": 91.37,
+      "error": null,
+      "actual": 91.37,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "fractions",
+      "expected": 99.14,
+      "error": null,
+      "actual": 99.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "cassette",
+      "expected": 105.35000000000001,
+      "error": null,
+      "actual": 105.35,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "chain + bottom bar",
+      "expected": 98.85000000000001,
+      "error": null,
+      "actual": 98.85,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "motorised",
+      "expected": 170.57,
+      "error": null,
+      "actual": 170.57,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band E - Electrical",
+      "product": "atlantex-beige-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "base",
+      "expected": 106.6,
+      "error": null,
+      "actual": 106.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "mm",
+      "expected": 106.6,
+      "error": null,
+      "actual": 106.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "fractions",
+      "expected": 115.67,
+      "error": null,
+      "actual": 115.67,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "cassette",
+      "expected": 120.58,
+      "error": null,
+      "actual": 120.58,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "chain + bottom bar",
+      "expected": 114.08,
+      "error": null,
+      "actual": 114.08,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "motorised",
+      "expected": 186.49,
+      "error": null,
+      "actual": 186.49,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band G - Electrical",
+      "product": "adina-blush-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "base",
+      "expected": 98.98,
+      "error": null,
+      "actual": 98.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "mm",
+      "expected": 98.98,
+      "error": null,
+      "actual": 98.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "fractions",
+      "expected": 107.41,
+      "error": null,
+      "actual": 107.41,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "cassette",
+      "expected": 112.96000000000001,
+      "error": null,
+      "actual": 112.96,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "chain + bottom bar",
+      "expected": 106.46000000000001,
+      "error": null,
+      "actual": 106.46,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "motorised",
+      "expected": 178.53,
+      "error": null,
+      "actual": 178.53,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band F - Electrical",
+      "product": "dawson-midnight-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "base",
+      "expected": 76.14,
+      "error": null,
+      "actual": 76.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "mm",
+      "expected": 76.14,
+      "error": null,
+      "actual": 76.14,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "fractions",
+      "expected": 82.62,
+      "error": null,
+      "actual": 82.62,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "cassette",
+      "expected": 90.12,
+      "error": null,
+      "actual": 90.12,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "chain + bottom bar",
+      "expected": 83.62,
+      "error": null,
+      "actual": 83.62,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "motorised",
+      "expected": 154.64,
+      "error": null,
+      "actual": 154.64,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band D - Electrical",
+      "product": "elma-lavender-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "base",
+      "expected": 119.29,
+      "error": null,
+      "actual": 119.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "mm",
+      "expected": 119.29,
+      "error": null,
+      "actual": 119.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "fractions",
+      "expected": 129.44,
+      "error": null,
+      "actual": 129.44,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "cassette",
+      "expected": 133.27,
+      "error": null,
+      "actual": 133.27,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "chain + bottom bar",
+      "expected": 126.77000000000001,
+      "error": null,
+      "actual": 126.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "motorised",
+      "expected": 199.76999999999998,
+      "error": null,
+      "actual": 199.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band Premium - Electrical",
+      "product": "hudson-blackout-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "base",
+      "expected": 71.06,
+      "error": null,
+      "actual": 71.06,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "mm",
+      "expected": 71.06,
+      "error": null,
+      "actual": 71.06,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "fractions",
+      "expected": 77.11,
+      "error": null,
+      "actual": 77.11,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "cassette",
+      "expected": 85.04,
+      "error": null,
+      "actual": 85.04,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "chain + bottom bar",
+      "expected": 78.54,
+      "error": null,
+      "actual": 78.54,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "motorised",
+      "expected": 149.32999999999998,
+      "error": null,
+      "actual": 149.33,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band C - Electrical",
+      "product": "origin-cream-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "base",
+      "expected": 55.84,
+      "error": null,
+      "actual": 55.84,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "mm",
+      "expected": 55.84,
+      "error": null,
+      "actual": 55.84,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "fractions",
+      "expected": 60.59,
+      "error": null,
+      "actual": 60.59,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "cassette",
+      "expected": 69.82000000000001,
+      "error": null,
+      "actual": 69.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "chain + bottom bar",
+      "expected": 63.32000000000001,
+      "error": null,
+      "actual": 63.32,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "motorised",
+      "expected": 133.4,
+      "error": null,
+      "actual": 133.4,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roller - Band A - Electrical",
+      "product": "unity-baby-pink-1-electrical",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

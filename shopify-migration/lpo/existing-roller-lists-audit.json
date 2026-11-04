@@ -1,0 +1,559 @@
+{
+  "date": "2026-10-28",
+  "family": "Roller",
+  "scope": "Exported Assets cells at the same physical coordinates compared with current source matrix prices. Inches labels use the exported one-decimal precision; lookup semantics must also be checked before reuse. Originals are not edited.",
+  "lists": [
+    {
+      "band": "Roller - Band A",
+      "list": "Roller Band A",
+      "unit": "mm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 5.236,
+          "sourcePrice": 52.18
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 6.936,
+          "sourcePrice": 54.55
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 78
+    },
+    {
+      "band": "Roller - Band A",
+      "list": "Roller Band A CM",
+      "unit": "cm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 5.236,
+          "sourcePrice": 52.18
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 6.936,
+          "sourcePrice": 54.55
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 78
+    },
+    {
+      "band": "Roller - Band A",
+      "list": "Roller Band A Inches",
+      "unit": "inches",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 5.236,
+          "sourcePrice": 52.18
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 6.936,
+          "sourcePrice": 54.55
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 78
+    },
+    {
+      "band": "Roller - Band B",
+      "list": "Roller Band B",
+      "unit": "mm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 6.936,
+          "sourcePrice": 59.29
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 9.486,
+          "sourcePrice": 61.99
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Roller - Band B",
+      "list": "Roller Band B CM",
+      "unit": "cm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 6.936,
+          "sourcePrice": 59.29
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 9.486,
+          "sourcePrice": 61.99
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Roller - Band B",
+      "list": "Roller Band B Inches",
+      "unit": "inches",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 6.936,
+          "sourcePrice": 59.29
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 9.486,
+          "sourcePrice": 61.99
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 0
+    },
+    {
+      "band": "Roller - Band C",
+      "list": "Roller Band C",
+      "unit": "mm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 8.636,
+          "sourcePrice": 66.41
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 12.036,
+          "sourcePrice": 69.43
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 10
+    },
+    {
+      "band": "Roller - Band C",
+      "list": "Roller Band C CM",
+      "unit": "cm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 8.636,
+          "sourcePrice": 66.41
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 12.036,
+          "sourcePrice": 69.43
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 10
+    },
+    {
+      "band": "Roller - Band C",
+      "list": "Roller Band C Inches",
+      "unit": "inches",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 8.636,
+          "sourcePrice": 66.41
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 12.036,
+          "sourcePrice": 69.43
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 10
+    },
+    {
+      "band": "Roller - Band D",
+      "list": "Roller Band D",
+      "unit": "mm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 13.736,
+          "sourcePrice": 71.15
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 19.686,
+          "sourcePrice": 74.39
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 52
+    },
+    {
+      "band": "Roller - Band D",
+      "list": "Roller Band D CM",
+      "unit": "cm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 13.736,
+          "sourcePrice": 71.15
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 19.686,
+          "sourcePrice": 74.39
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 52
+    },
+    {
+      "band": "Roller - Band D",
+      "list": "Roller Band D Inches",
+      "unit": "inches",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 13.736,
+          "sourcePrice": 71.15
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 19.686,
+          "sourcePrice": 74.39
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 52
+    },
+    {
+      "band": "Roller - Band E",
+      "list": "Roller Band E",
+      "unit": "mm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 18.836,
+          "sourcePrice": 85.38
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 27.336,
+          "sourcePrice": 89.27
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 140
+    },
+    {
+      "band": "Roller - Band E",
+      "list": "Roller Band E CM",
+      "unit": "cm",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 18.836,
+          "sourcePrice": 85.38
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 27.336,
+          "sourcePrice": 89.27
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 140
+    },
+    {
+      "band": "Roller - Band E",
+      "list": "Roller Band E Inches",
+      "unit": "inches",
+      "matchingCoordinates": 45,
+      "priceMismatches": 45,
+      "examples": [
+        {
+          "widthMm": 1000,
+          "heightMm": 1000,
+          "listPrice": 18.836,
+          "sourcePrice": 85.38
+        },
+        {
+          "widthMm": 1000,
+          "heightMm": 1250,
+          "listPrice": 27.336,
+          "sourcePrice": 89.27
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 140
+    },
+    {
+      "band": "Roller - Band F",
+      "list": "Roller Band F",
+      "unit": "mm",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 79.52
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 10.625,
+          "sourcePrice": 83.73
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 175
+    },
+    {
+      "band": "Roller - Band F",
+      "list": "Roller Band F CM",
+      "unit": "cm",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 79.52
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 10.625,
+          "sourcePrice": 83.73
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 175
+    },
+    {
+      "band": "Roller - Band F",
+      "list": "Roller Band F Inches",
+      "unit": "inches",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 79.52
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 10.625,
+          "sourcePrice": 83.73
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 175
+    },
+    {
+      "band": "Roller - Band G",
+      "list": "Roller Band G",
+      "unit": "mm",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 85.64
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 12.75,
+          "sourcePrice": 90.18
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 80
+    },
+    {
+      "band": "Roller - Band G",
+      "list": "Roller Band G CM",
+      "unit": "cm",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 85.64
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 12.75,
+          "sourcePrice": 90.18
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 80
+    },
+    {
+      "band": "Roller - Band G",
+      "list": "Roller Band G Inches",
+      "unit": "inches",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 85.64
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 12.75,
+          "sourcePrice": 90.18
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 80
+    },
+    {
+      "band": "Roller - Band Premium",
+      "list": "Roller Band Premium",
+      "unit": "mm",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 95.83
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 17,
+          "sourcePrice": 100.91
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 113
+    },
+    {
+      "band": "Roller - Band Premium",
+      "list": "Roller Band Premium CM",
+      "unit": "cm",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 95.83
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 17,
+          "sourcePrice": 100.91
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 113
+    },
+    {
+      "band": "Roller - Band Premium",
+      "list": "Roller Band Premium Inches",
+      "unit": "inches",
+      "matchingCoordinates": 88,
+      "priceMismatches": 88,
+      "examples": [
+        {
+          "widthMm": 500,
+          "heightMm": 500,
+          "listPrice": 0,
+          "sourcePrice": 95.83
+        },
+        {
+          "widthMm": 500,
+          "heightMm": 750,
+          "listPrice": 17,
+          "sourcePrice": 100.91
+        }
+      ],
+      "reuseUnchanged": false,
+      "products": 113
+    }
+  ]
+}

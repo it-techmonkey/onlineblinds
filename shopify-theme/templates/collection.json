@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ob-collection",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

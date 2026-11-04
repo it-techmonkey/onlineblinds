@@ -1,0 +1,13 @@
+{% capture ob_price %}{% render 'ob-minimum-price', product: card_product %}{% endcapture %}
+{% assign ob_price = ob_price | strip | plus: 0 %}
+<a href="{{ card_product.url }}" class="ob-card">
+  <div class="ob-card-image">
+    {% if card_product.featured_image %}{{ card_product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '240,360,500,700', sizes: '(min-width: 1024px) 25vw, 50vw' }}{% endif %}
+    <span class="ob-card-cta">Customize &amp; Buy</span>
+  </div>
+  <div class="ob-card-copy">
+    <h3>{{ card_product.title | escape }}</h3>
+    {% if ob_price > 0 %}<p class="ob-price">{{ ob_price | money }} <del>{{ ob_price | times: 1.67 | divided_by: 100.0 | round | times: 100 | money }}</del></p>{% endif %}
+    {% if card_product.metafields.reviews.rating_count.value > 0 %}<p class="text-xs text-muted mt-1">★ {{ card_product.metafields.reviews.rating.value.rating }} ({{ card_product.metafields.reviews.rating_count.value }})</p>{% endif %}
+  </div>
+</a>

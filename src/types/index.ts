@@ -218,7 +218,8 @@ export interface Cart {
   itemCount: number;
   installationService: boolean;
   installationServicePrice: number;
-  discount: CartDiscount | null;
+  /** Applied codes: at most one announcement bar code plus others such as the newsletter code. */
+  discounts: CartDiscount[];
   discountAmount: number;
 }
 
@@ -231,7 +232,7 @@ export interface CartContextType {
   updateItemPrices: (updates: { id: string; price: number }[]) => void;
   setInstallationService: (enabled: boolean) => void;
   applyDiscount: (discount: CartDiscount) => void;
-  removeDiscount: () => void;
+  removeDiscount: (code: string) => void;
   clearCart: () => void;
   /**
    * Record that the customer has been sent to Shopify's hosted checkout for the

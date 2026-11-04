@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-28",
+  "scope": "Theme bridge installed against the real LPO instance in its inactive editor, using public updateValues/getValues and options events. Includes initial handshake and theme section lifecycle. No storefront activation or cart writes.",
+  "passed": true,
+  "results": [
+    {
+      "name": "manual",
+      "expected": 138.85,
+      "valid": true,
+      "quote": {
+        "ready": true,
+        "price": 138.85,
+        "error": null
+      },
+      "values": {
+        "width": 100,
+        "height": 120,
+        "measurementUnit": "cm",
+        "installationMethod": "inside-mount",
+        "controlSide": "left",
+        "chromeUpgrade": "no",
+        "cassetteMatchingBar": "white",
+        "sameFabricInsert": "no",
+        "motorization": "none",
+        "roomType": "bedroom",
+        "blindName": "Preview only",
+        "widthFraction": 0,
+        "heightFraction": 0
+      },
+      "error": "",
+      "passed": true
+    },
+    {
+      "name": "manual upgrades",
+      "expected": 159.82,
+      "valid": true,
+      "quote": {
+        "ready": true,
+        "price": 159.82,
+        "error": null
+      },
+      "values": {
+        "width": 100,
+        "height": 120,
+        "measurementUnit": "cm",
+        "installationMethod": "inside-mount",
+        "controlSide": "left",
+        "chromeUpgrade": "yes",
+        "cassetteMatchingBar": "black",
+        "sameFabricInsert": "yes",
+        "motorization": "none",
+        "roomType": "bedroom",
+        "blindName": "Preview only",
+        "widthFraction": 0,
+        "heightFraction": 0
+      },
+      "error": "",
+      "passed": true
+    },
+    {
+      "name": "motorized",
+      "expected": 230.83,
+      "valid": true,
+      "quote": {
+        "ready": true,
+        "price": 230.83,
+        "error": null
+      },
+      "values": {
+        "width": 100,
+        "height": 120,
+        "measurementUnit": "cm",
+        "installationMethod": "inside-mount",
+        "controlSide": "left",
+        "chromeUpgrade": "no",
+        "cassetteMatchingBar": "black",
+        "sameFabricInsert": "yes",
+        "motorization": "motorized",
+        "roomType": "bedroom",
+        "blindName": "Preview only",
+        "widthFraction": 0,
+        "heightFraction": 0
+      },
+      "error": "",
+      "passed": true
+    },
+    {
+      "name": "invalid width",
+      "expected": 0,
+      "valid": false,
+      "quote": {
+        "ready": false,
+        "price": null,
+        "error": null
+      },
+      "values": {
+        "width": 10,
+        "height": 120,
+        "measurementUnit": "cm",
+        "installationMethod": "inside-mount",
+        "controlSide": "left",
+        "chromeUpgrade": "no",
+        "cassetteMatchingBar": "white",
+        "sameFabricInsert": "no",
+        "motorization": "none",
+        "roomType": "bedroom",
+        "blindName": "Preview only",
+        "widthFraction": 0,
+        "heightFraction": 0
+      },
+      "error": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "name": "recovery",
+      "expected": 138.85,
+      "valid": true,
+      "quote": {
+        "ready": true,
+        "price": 138.85,
+        "error": null
+      },
+      "values": {
+        "width": 100,
+        "height": 120,
+        "measurementUnit": "cm",
+        "installationMethod": "inside-mount",
+        "controlSide": "left",
+        "chromeUpgrade": "no",
+        "cassetteMatchingBar": "white",
+        "sameFabricInsert": "no",
+        "motorization": "none",
+        "roomType": "bedroom",
+        "blindName": "Preview only",
+        "widthFraction": 0,
+        "heightFraction": 0
+      },
+      "error": "",
+      "passed": true
+    },
+    {
+      "name": "mismatched quote",
+      "expected": 150,
+      "valid": true,
+      "quote": {
+        "ready": false,
+        "price": null,
+        "error": "The configured price could not be verified. Please try again."
+      },
+      "values": {
+        "width": 100,
+        "height": 120,
+        "measurementUnit": "cm",
+        "installationMethod": "inside-mount",
+        "controlSide": "left",
+        "chromeUpgrade": "no",
+        "cassetteMatchingBar": "white",
+        "sameFabricInsert": "no",
+        "motorization": "none",
+        "roomType": "bedroom",
+        "blindName": "Preview only",
+        "widthFraction": 0,
+        "heightFraction": 0
+      },
+      "error": "",
+      "passed": true
+    },
+    {
+      "name": "rapid selection recovery",
+      "ready": true,
+      "price": 138.85,
+      "error": null,
+      "passed": true
+    },
+    {
+      "name": "reattach retains latest selection",
+      "ready": true,
+      "price": 138.85,
+      "error": null,
+      "passed": true
+    },
+    {
+      "name": "theme section cleanup",
+      "passed": true
+    }
+  ]
+}

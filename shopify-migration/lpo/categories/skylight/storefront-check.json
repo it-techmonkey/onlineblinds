@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 11,
+  "results": [
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "base",
+      "expected": 20,
+      "error": null,
+      "actual": 20,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "mm",
+      "expected": 20,
+      "error": null,
+      "actual": 20,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "fractions",
+      "expected": 20,
+      "error": null,
+      "actual": 20,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "cassette",
+      "expected": 33.980000000000004,
+      "error": null,
+      "actual": 33.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "chain + bottom bar",
+      "expected": 27.48,
+      "error": null,
+      "actual": 27.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "motorised",
+      "expected": 95,
+      "error": null,
+      "actual": 95,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "large",
+      "expected": 27.990000000000002,
+      "error": null,
+      "actual": 27.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "too small",
+      "expected": 20,
+      "error": null,
+      "actual": 20,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "too large",
+      "expected": 20,
+      "error": null,
+      "actual": 20,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "zero",
+      "expected": 20,
+      "error": null,
+      "actual": 20,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Skylight Blinds - Base Band",
+      "product": "blackout-soft-sky",
+      "case": "skylight type",
+      "expected": 65.6,
+      "error": null,
+      "actual": 65.6,
+      "native": "",
+      "passed": true
+    }
+  ]
+}

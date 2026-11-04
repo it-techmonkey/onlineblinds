@@ -1,0 +1,922 @@
+{
+  "date": "2026-10-28",
+  "category": "Day & Night",
+  "products": 121,
+  "groups": 11,
+  "lists": [
+    {
+      "bandId": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4",
+      "band": "Day and Night - Band D",
+      "description": "OB Preview - Day and Night - Band D",
+      "file": "shopify-migration\\lpo\\categories\\day-night\\day-and-night-band-d.csv",
+      "cells": 264,
+      "columns": 24,
+      "rows": 11
+    },
+    {
+      "bandId": "cmlddug7v00002k7kwiedgyca",
+      "band": "Dayandnight - Band A",
+      "description": "OB Preview - Dayandnight - Band A",
+      "file": "shopify-migration\\lpo\\categories\\day-night\\dayandnight-band-a.csv",
+      "cells": 264,
+      "columns": 24,
+      "rows": 11
+    },
+    {
+      "bandId": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3",
+      "band": "Day and Night - Band C",
+      "description": "OB Preview - Day and Night - Band C",
+      "file": "shopify-migration\\lpo\\categories\\day-night\\day-and-night-band-c.csv",
+      "cells": 264,
+      "columns": 24,
+      "rows": 11
+    },
+    {
+      "bandId": "9781fe1c-14ff-438d-90f7-0772d578b63f",
+      "band": "Day and Night - Band A",
+      "description": "OB Preview - Day and Night - Band A",
+      "file": "shopify-migration\\lpo\\categories\\day-night\\day-and-night-band-a.csv",
+      "cells": 264,
+      "columns": 24,
+      "rows": 11
+    },
+    {
+      "bandId": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe",
+      "band": "Day and Night - Band F",
+      "description": "OB Preview - Day and Night - Band F",
+      "file": "shopify-migration\\lpo\\categories\\day-night\\day-and-night-band-f.csv",
+      "cells": 264,
+      "columns": 24,
+      "rows": 11
+    },
+    {
+      "bandId": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe",
+      "band": "Day and Night - Band E",
+      "description": "OB Preview - Day and Night - Band E",
+      "file": "shopify-migration\\lpo\\categories\\day-night\\day-and-night-band-e.csv",
+      "cells": 264,
+      "columns": 24,
+      "rows": 11
+    }
+  ],
+  "configurations": [
+    {
+      "key": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4-false",
+      "slug": "day-and-night-band-d",
+      "bandId": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4",
+      "band": "Day and Night - Band D",
+      "motorized": false,
+      "description": "OB Preview - Day and Night - Band D",
+      "listDescription": "OB Preview - Day and Night - Band D",
+      "representative": "tokyo-black-day-and-night-blinds",
+      "products": [
+        {
+          "id": "8783514370367",
+          "type": "product",
+          "title": "Tokyo Black - Day and Night Blinds",
+          "handle": "tokyo-black-day-and-night-blinds"
+        },
+        {
+          "id": "15711243534720",
+          "type": "product",
+          "title": "Blackout Pitch Charcoal Grey - Day and Night Blinds",
+          "handle": "blackout-pitch-charcoal-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711243633024",
+          "type": "product",
+          "title": "Blackout Pitch Cream - Day and Night Blinds",
+          "handle": "blackout-pitch-cream-day-and-night-blinds"
+        },
+        {
+          "id": "15711243764096",
+          "type": "product",
+          "title": "Blackout Pitch Grey - Day and Night Blinds",
+          "handle": "blackout-pitch-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711243862400",
+          "type": "product",
+          "title": "Blackout Pitch Silver - Day and Night Blinds",
+          "handle": "blackout-pitch-silver-day-and-night-blinds"
+        },
+        {
+          "id": "15711247565184",
+          "type": "product",
+          "title": "Cashmere Black - Day and Night Blinds",
+          "handle": "cashmere-black-day-and-night-blinds"
+        },
+        {
+          "id": "15711247729024",
+          "type": "product",
+          "title": "Cashmere Grey - Day and Night Blinds",
+          "handle": "cashmere-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711247860096",
+          "type": "product",
+          "title": "Cashmere White - Day and Night Blinds",
+          "handle": "cashmere-white-day-and-night-blinds"
+        },
+        {
+          "id": "15711262212480",
+          "type": "product",
+          "title": "Ozark Black - Day and Night Blinds",
+          "handle": "ozark-black-day-and-night-blinds"
+        },
+        {
+          "id": "15711262278016",
+          "type": "product",
+          "title": "Ozark Grey - Day and Night Blinds",
+          "handle": "ozark-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711262409088",
+          "type": "product",
+          "title": "Ozark White- Day and Night Blinds",
+          "handle": "ozark-white-day-and-night-blinds"
+        },
+        {
+          "id": "15711267684736",
+          "type": "product",
+          "title": "Tokyo Dusk - Day and Night Blinds",
+          "handle": "tokyo-dusk-day-and-night-blinds"
+        },
+        {
+          "id": "15711267717504",
+          "type": "product",
+          "title": "Tokyo Grey - Day and Night Blinds",
+          "handle": "tokyo-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711267750272",
+          "type": "product",
+          "title": "Tokyo Twilight - Day and Night Blinds",
+          "handle": "tokyo-twilight-day-and-night-blinds"
+        },
+        {
+          "id": "15711267848576",
+          "type": "product",
+          "title": "Tokyo White - Day and Night Blinds",
+          "handle": "tokyo-white-day-and-night-blinds"
+        }
+      ]
+    },
+    {
+      "key": "cmlddug7v00002k7kwiedgyca-false",
+      "slug": "dayandnight-band-a",
+      "bandId": "cmlddug7v00002k7kwiedgyca",
+      "band": "Dayandnight - Band A",
+      "motorized": false,
+      "description": "OB Preview - Dayandnight - Band A",
+      "listDescription": "OB Preview - Dayandnight - Band A",
+      "representative": "plain-soft-white-day-and-night-blind",
+      "products": [
+        {
+          "id": "8881709941055",
+          "type": "product",
+          "title": "Plain Soft White Day and Night Blind",
+          "handle": "plain-soft-white-day-and-night-blind"
+        },
+        {
+          "id": "15711263752576",
+          "type": "product",
+          "title": "Plain Soft Black - Day and Night Blinds",
+          "handle": "plain-soft-black-day-and-night-blinds"
+        },
+        {
+          "id": "15711264014720",
+          "type": "product",
+          "title": "Plain Soft Charcoal Grey - Day and Night Blinds",
+          "handle": "plain-soft-charcoal-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711264113024",
+          "type": "product",
+          "title": "Plain Soft Cream - Day and Night Blinds",
+          "handle": "plain-soft-cream-day-and-night-blinds"
+        },
+        {
+          "id": "15711264244096",
+          "type": "product",
+          "title": "Plain Soft Grey - Day & Night Blinds",
+          "handle": "plain-soft-grey-day-night-blinds"
+        }
+      ]
+    },
+    {
+      "key": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3-false",
+      "slug": "day-and-night-band-c",
+      "bandId": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3",
+      "band": "Day and Night - Band C",
+      "motorized": false,
+      "description": "OB Preview - Day and Night - Band C",
+      "listDescription": "OB Preview - Day and Night - Band C",
+      "representative": "dimout-rome-beige-day-and-night-blinds",
+      "products": [
+        {
+          "id": "15711248646528",
+          "type": "product",
+          "title": "Dimout Rome Beige - Day and Night Blinds",
+          "handle": "dimout-rome-beige-day-and-night-blinds"
+        },
+        {
+          "id": "15711248712064",
+          "type": "product",
+          "title": "Dimout Rome Cream - Day and Night Blinds",
+          "handle": "dimout-rome-cream-day-and-night-blinds"
+        },
+        {
+          "id": "15711248908672",
+          "type": "product",
+          "title": "Dimout Rome Grey - Day and Night Blinds",
+          "handle": "dimout-rome-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15711249105280",
+          "type": "product",
+          "title": "Dimout Rome Silver - Day and Night Blinds",
+          "handle": "dimout-rome-silver-day-and-night-blinds"
+        },
+        {
+          "id": "15711249334656",
+          "type": "product",
+          "title": "Dimout Rome White - Day and Night Blinds",
+          "handle": "dimout-rome-white-day-and-night-blinds"
+        },
+        {
+          "id": "15897546981760",
+          "type": "product",
+          "title": "Kids Alphabet Multicolour Day & Night Blind",
+          "handle": "kids-alphabet-multicolour-day-and-night-blind"
+        },
+        {
+          "id": "15897547374976",
+          "type": "product",
+          "title": "Cloud Drift Sky Blue Kids Day & Night Blind",
+          "handle": "cloud-drift-sky-blue-kids-day-and-night-blind"
+        },
+        {
+          "id": "15897547768192",
+          "type": "product",
+          "title": "Cloud Drift Blush Pink Kids Day & Night Blind",
+          "handle": "cloud-drift-blush-pink-kids-day-and-night-blind"
+        },
+        {
+          "id": "15897548128640",
+          "type": "product",
+          "title": "Kids Gold Star Day & Night Blind – Starry Night",
+          "handle": "kids-gold-star-day-and-night-blind-starry-night"
+        },
+        {
+          "id": "15897548521856",
+          "type": "product",
+          "title": "Kids Blue Star Day & Night Blind – Starry Night",
+          "handle": "kids-blue-star-day-and-night-blind-starry-night"
+        },
+        {
+          "id": "15897548882304",
+          "type": "product",
+          "title": "Kids Garden Adventure Day & Night Blind – Little Sky",
+          "handle": "kids-garden-adventure-day-and-night-blind-little-sky"
+        }
+      ]
+    },
+    {
+      "key": "9781fe1c-14ff-438d-90f7-0772d578b63f-false",
+      "slug": "day-and-night-band-a",
+      "bandId": "9781fe1c-14ff-438d-90f7-0772d578b63f",
+      "band": "Day and Night - Band A",
+      "motorized": false,
+      "description": "OB Preview - Day and Night - Band A",
+      "listDescription": "OB Preview - Day and Night - Band A",
+      "representative": "plain-soft-brown-motorised-day-and-night-blind",
+      "products": [
+        {
+          "id": "15711263818112",
+          "type": "product",
+          "title": "Plain Soft Brown Motorised Day and Night Blind",
+          "handle": "plain-soft-brown-motorised-day-and-night-blind"
+        },
+        {
+          "id": "15711263949184",
+          "type": "product",
+          "title": "Plain Soft Brown- Day and Night Blinds",
+          "handle": "plain-soft-brown-day-and-night-blinds"
+        },
+        {
+          "id": "15711264309632",
+          "type": "product",
+          "title": "Plain Soft Purple - Day and Night Blinds",
+          "handle": "plain-soft-purple-day-and-night-blinds"
+        },
+        {
+          "id": "15711264473472",
+          "type": "product",
+          "title": "Plain Soft Silver - Day and Night Blinds",
+          "handle": "plain-soft-silver-day-and-night-blinds"
+        },
+        {
+          "id": "15711264964992",
+          "type": "product",
+          "title": "Plain Soft White Day And Night Blinds",
+          "handle": "plain-soft-white-day-and-night-blinds"
+        },
+        {
+          "id": "15734927294848",
+          "type": "product",
+          "title": "Plain Soft Cream - Day and Night Blinds",
+          "handle": "blackout-plain-soft-cream-day-and-night-blinds"
+        },
+        {
+          "id": "15734928933248",
+          "type": "product",
+          "title": "Plain Soft Grey - Day & Night Blinds",
+          "handle": "blackout-plain-soft-grey-day-night-blinds"
+        },
+        {
+          "id": "15734929129856",
+          "type": "product",
+          "title": "Plain Soft Black - Day and Night Blinds",
+          "handle": "blackout-plain-soft-black-day-and-night-blinds"
+        },
+        {
+          "id": "15734930080128",
+          "type": "product",
+          "title": "Plain Soft White Day and Night Blind",
+          "handle": "plain-soft-white-motorised-day-and-night-blind"
+        },
+        {
+          "id": "15734931947904",
+          "type": "product",
+          "title": "Plain Soft Charcoal Grey - Day and Night Blinds",
+          "handle": "blackout-plain-soft-charcoal-grey-day-and-night-blinds"
+        },
+        {
+          "id": "15898612564352",
+          "type": "product",
+          "title": "Plain Soft - Day and Night Blinds",
+          "handle": "plain-soft-day-and-night-blinds"
+        }
+      ]
+    },
+    {
+      "key": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe-false",
+      "slug": "day-and-night-band-f",
+      "bandId": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe",
+      "band": "Day and Night - Band F",
+      "motorized": false,
+      "description": "OB Preview - Day and Night - Band F",
+      "listDescription": "OB Preview - Day and Night - Band F",
+      "representative": "truro-blackout-porcelene-day-and-night-blind",
+      "products": [
+        {
+          "id": "15734918807936",
+          "type": "product",
+          "title": "Truro Blackout Porcelene Day and Night Blind",
+          "handle": "truro-blackout-porcelene-day-and-night-blind"
+        },
+        {
+          "id": "15734919135616",
+          "type": "product",
+          "title": "Truro Blackout Mid Grey Day and Night Blind",
+          "handle": "truro-blackout-mid-grey-day-and-night-blind"
+        },
+        {
+          "id": "15734919430528",
+          "type": "product",
+          "title": "Truro Blackout Grey Day and Night Blind",
+          "handle": "truro-blackout-grey-day-and-night-blind"
+        },
+        {
+          "id": "15734919725440",
+          "type": "product",
+          "title": "Truro Blackout Black Day and Night Blind",
+          "handle": "truro-blackout-black-day-and-night-blind"
+        },
+        {
+          "id": "15734919922048",
+          "type": "product",
+          "title": "Truro Blackout Bisque Day and Night Blind",
+          "handle": "truro-blackout-bisque-day-and-night-blind"
+        },
+        {
+          "id": "15734920085888",
+          "type": "product",
+          "title": "Truro Blackout Beige Day and Night Blind",
+          "handle": "truro-blackout-beige-day-and-night-blind"
+        },
+        {
+          "id": "15734920249728",
+          "type": "product",
+          "title": "Truro Blackout Aliminium Day and Night Blind",
+          "handle": "truro-blackout-aliminium-day-and-night-blind"
+        },
+        {
+          "id": "15734921068928",
+          "type": "product",
+          "title": "Palma Blackout Stonish Day and Night Blind",
+          "handle": "palma-blackout-stonish-day-and-night-blind"
+        },
+        {
+          "id": "15734921134464",
+          "type": "product",
+          "title": "Palma Blackout Silver Day and Night Blind",
+          "handle": "palma-blackout-silver-day-and-night-blind"
+        },
+        {
+          "id": "15734921167232",
+          "type": "product",
+          "title": "Palma Blackout Espresso Day and Night Blind",
+          "handle": "palma-blackout-espresso-day-and-night-blind"
+        },
+        {
+          "id": "15734921200000",
+          "type": "product",
+          "title": "Palma Blackout Ecru Day and Night Blind",
+          "handle": "palma-blackout-ecru-day-and-night-blind"
+        },
+        {
+          "id": "15734921298304",
+          "type": "product",
+          "title": "Palma Blackout Cobalt Day and Night Blind",
+          "handle": "palma-blackout-cobalt-day-and-night-blind"
+        },
+        {
+          "id": "15734921331072",
+          "type": "product",
+          "title": "Palma Blackout Bisque Day and Night Blind",
+          "handle": "palma-blackout-bisque-day-and-night-blind"
+        },
+        {
+          "id": "15734921757056",
+          "type": "product",
+          "title": "Palma Blackout Light Grey Day and Night Blind",
+          "handle": "palma-blackout-light-grey-day-and-night-blind"
+        }
+      ]
+    },
+    {
+      "key": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe-false",
+      "slug": "day-and-night-band-e",
+      "bandId": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe",
+      "band": "Day and Night - Band E",
+      "motorized": false,
+      "description": "OB Preview - Day and Night - Band E",
+      "listDescription": "OB Preview - Day and Night - Band E",
+      "representative": "rose-semi-blackout-white-day-and-night-blind",
+      "products": [
+        {
+          "id": "15734920413568",
+          "type": "product",
+          "title": "Rose Semi Blackout White Day and Night Blind",
+          "handle": "rose-semi-blackout-white-day-and-night-blind"
+        },
+        {
+          "id": "15734920577408",
+          "type": "product",
+          "title": "Rose Semi Blackout Stone Day and Night Blind",
+          "handle": "rose-semi-blackout-stone-day-and-night-blind"
+        },
+        {
+          "id": "15734920774016",
+          "type": "product",
+          "title": "Rose Semi Blackout Pearl Day and Night Blind",
+          "handle": "rose-semi-blackout-pearl-day-and-night-blind"
+        },
+        {
+          "id": "15734920970624",
+          "type": "product",
+          "title": "Rose Semi Blackout Grey Day and Night Blind",
+          "handle": "rose-semi-blackout-grey-day-and-night-blind"
+        },
+        {
+          "id": "15734921396608",
+          "type": "product",
+          "title": "Rose Semi Blackout Neutral Day and Night Blind",
+          "handle": "rose-semi-blackout-neutral-day-and-night-blind"
+        },
+        {
+          "id": "15734921429376",
+          "type": "product",
+          "title": "Rose Semi Blackout Black Day and Night Blind",
+          "handle": "rose-semi-blackout-black-day-and-night-blind"
+        },
+        {
+          "id": "15734921462144",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Sky Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-sky-day-and-night-blind"
+        },
+        {
+          "id": "15734921527680",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Cream Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-cream-day-and-night-blind"
+        },
+        {
+          "id": "15734921593216",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Beige Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-beige-day-and-night-blind"
+        },
+        {
+          "id": "15734922051968",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout White Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-white-day-and-night-blind"
+        },
+        {
+          "id": "15734922314112",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Silver Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-silver-day-and-night-blind"
+        }
+      ]
+    },
+    {
+      "key": "9781fe1c-14ff-438d-90f7-0772d578b63f-true",
+      "slug": "day-and-night-band-a-electrical",
+      "bandId": "9781fe1c-14ff-438d-90f7-0772d578b63f",
+      "band": "Day and Night - Band A",
+      "motorized": true,
+      "description": "OB Preview - Day and Night - Band A - Electrical",
+      "listDescription": "OB Preview - Day and Night - Band A",
+      "representative": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds",
+      "products": [
+        {
+          "id": "15734953869696",
+          "type": "product",
+          "title": "Plain Soft Charcoal Grey - Electrical Day and Night Blinds",
+          "handle": "blackout-plain-soft-charcoal-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734955442560",
+          "type": "product",
+          "title": "Plain Soft White Electrical Day and Night Blind",
+          "handle": "plain-soft-white-motorised-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734955639168",
+          "type": "product",
+          "title": "Plain Soft White Electrical Day and Night Blinds",
+          "handle": "plain-soft-white-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734956458368",
+          "type": "product",
+          "title": "Plain Soft Black - Electrical Day and Night Blinds",
+          "handle": "blackout-plain-soft-black-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734956687744",
+          "type": "product",
+          "title": "Plain Soft Grey - Day & Night Blinds",
+          "handle": "blackout-plain-soft-grey-electrical-day-night-blinds"
+        },
+        {
+          "id": "15734958489984",
+          "type": "product",
+          "title": "Plain Soft Cream - Electrical Day and Night Blinds",
+          "handle": "blackout-plain-soft-cream-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734959571328",
+          "type": "product",
+          "title": "Plain Soft Silver - Electrical Day and Night Blinds",
+          "handle": "plain-soft-silver-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734960652672",
+          "type": "product",
+          "title": "Plain Soft Purple - Electrical Day and Night Blinds",
+          "handle": "plain-soft-purple-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734961045888",
+          "type": "product",
+          "title": "Plain Soft Brown- Electrical Day and Night Blinds",
+          "handle": "plain-soft-brown-electrical-day-and-night-blinds"
+        }
+      ]
+    },
+    {
+      "key": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4-true",
+      "slug": "day-and-night-band-d-electrical",
+      "bandId": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4",
+      "band": "Day and Night - Band D",
+      "motorized": true,
+      "description": "OB Preview - Day and Night - Band D - Electrical",
+      "listDescription": "OB Preview - Day and Night - Band D",
+      "representative": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds",
+      "products": [
+        {
+          "id": "15734954131840",
+          "type": "product",
+          "title": "Blackout Pitch Charcoal Grey - Electrical Day and Night Blinds",
+          "handle": "blackout-pitch-charcoal-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734954361216",
+          "type": "product",
+          "title": "Blackout Pitch Grey - Electrical Day and Night Blinds",
+          "handle": "blackout-pitch-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734954754432",
+          "type": "product",
+          "title": "Cashmere Grey - Electrical Day and Night Blinds",
+          "handle": "cashmere-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734954918272",
+          "type": "product",
+          "title": "Tokyo Dusk - Electrical Day and Night Blinds",
+          "handle": "tokyo-dusk-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734955147648",
+          "type": "product",
+          "title": "Tokyo Twilight - Electrical Day and Night Blinds",
+          "handle": "tokyo-twilight-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734955278720",
+          "type": "product",
+          "title": "Tokyo Grey - Electrical Day and Night Blinds",
+          "handle": "tokyo-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734956065152",
+          "type": "product",
+          "title": "Cashmere White - Electrical Day and Night Blinds",
+          "handle": "cashmere-white-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734956294528",
+          "type": "product",
+          "title": "Tokyo White - Electrical Day and Night Blinds",
+          "handle": "tokyo-white-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734956917120",
+          "type": "product",
+          "title": "Cashmere Black - Electrical Day and Night Blinds",
+          "handle": "cashmere-black-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734957441408",
+          "type": "product",
+          "title": "Tokyo Black - Electrical Day and Night Blinds",
+          "handle": "tokyo-black-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734957965696",
+          "type": "product",
+          "title": "Blackout Pitch Cream - Electrical Day and Night Blinds",
+          "handle": "blackout-pitch-cream-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734959931776",
+          "type": "product",
+          "title": "Blackout Pitch Silver - Electrical Day and Night Blinds",
+          "handle": "blackout-pitch-silver-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734961406336",
+          "type": "product",
+          "title": "Ozark White- Electrical Day and Night Blinds",
+          "handle": "ozark-white-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734961766784",
+          "type": "product",
+          "title": "Ozark Grey - Electrical Day and Night Blinds",
+          "handle": "ozark-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734961996160",
+          "type": "product",
+          "title": "Ozark Black - Electrical Day and Night Blinds",
+          "handle": "ozark-black-electrical-day-and-night-blinds"
+        }
+      ]
+    },
+    {
+      "key": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3-true",
+      "slug": "day-and-night-band-c-electrical",
+      "bandId": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3",
+      "band": "Day and Night - Band C",
+      "motorized": true,
+      "description": "OB Preview - Day and Night - Band C - Electrical",
+      "listDescription": "OB Preview - Day and Night - Band C",
+      "representative": "dimout-rome-grey-electrical-day-and-night-blinds",
+      "products": [
+        {
+          "id": "15734954590592",
+          "type": "product",
+          "title": "Dimout Rome Grey - Electrical Day and Night Blinds",
+          "handle": "dimout-rome-grey-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734955868544",
+          "type": "product",
+          "title": "Dimout Rome White - Electrical Day and Night Blinds",
+          "handle": "dimout-rome-white-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734958850432",
+          "type": "product",
+          "title": "Dimout Rome Cream - Electrical Day and Night Blinds",
+          "handle": "dimout-rome-cream-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734959210880",
+          "type": "product",
+          "title": "Dimout Rome Beige - Electrical Day and Night Blinds",
+          "handle": "dimout-rome-beige-electrical-day-and-night-blinds"
+        },
+        {
+          "id": "15734960292224",
+          "type": "product",
+          "title": "Dimout Rome Silver - Electrical Day and Night Blinds",
+          "handle": "dimout-rome-silver-electrical-day-and-night-blinds"
+        }
+      ]
+    },
+    {
+      "key": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe-true",
+      "slug": "day-and-night-band-e-electrical",
+      "bandId": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe",
+      "band": "Day and Night - Band E",
+      "motorized": true,
+      "description": "OB Preview - Day and Night - Band E - Electrical",
+      "listDescription": "OB Preview - Day and Night - Band E",
+      "representative": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind",
+      "products": [
+        {
+          "id": "15734962192768",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Silver Electrical Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-silver-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734962454912",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout White Electrical Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-white-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734963175808",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Beige Electrical Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-beige-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734963503488",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Cream Electrical Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-cream-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734963798400",
+          "type": "product",
+          "title": "Rose Omega Semi Blackout Sky Electrical Day and Night Blind",
+          "handle": "rose-omega-semi-blackout-sky-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734964060544",
+          "type": "product",
+          "title": "Rose Semi Blackout Black Electrical Day and Night Blind",
+          "handle": "rose-semi-blackout-black-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734964355456",
+          "type": "product",
+          "title": "Rose Semi Blackout Neutral Electrical Day and Night Blind",
+          "handle": "rose-semi-blackout-neutral-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734966616448",
+          "type": "product",
+          "title": "Rose Semi Blackout Grey Electrical Day and Night Blind",
+          "handle": "rose-semi-blackout-grey-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734966944128",
+          "type": "product",
+          "title": "Rose Semi Blackout Pearl Electrical Day and Night Blind",
+          "handle": "rose-semi-blackout-pearl-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734967632256",
+          "type": "product",
+          "title": "Rose Semi Blackout Stone Electrical Day and Night Blind",
+          "handle": "rose-semi-blackout-stone-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734968156544",
+          "type": "product",
+          "title": "Rose Semi Blackout White Electrical Day and Night Blind",
+          "handle": "rose-semi-blackout-white-electrical-day-and-night-blind"
+        }
+      ]
+    },
+    {
+      "key": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe-true",
+      "slug": "day-and-night-band-f-electrical",
+      "bandId": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe",
+      "band": "Day and Night - Band F",
+      "motorized": true,
+      "description": "OB Preview - Day and Night - Band F - Electrical",
+      "listDescription": "OB Preview - Day and Night - Band F",
+      "representative": "palma-blackout-light-grey-electrical-day-and-night-blind",
+      "products": [
+        {
+          "id": "15734962815360",
+          "type": "product",
+          "title": "Palma Blackout Light Grey Electrical Day and Night Blind",
+          "handle": "palma-blackout-light-grey-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734964683136",
+          "type": "product",
+          "title": "Palma Blackout Bisque Electrical Day and Night Blind",
+          "handle": "palma-blackout-bisque-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734964945280",
+          "type": "product",
+          "title": "Palma Blackout Cobalt Electrical Day and Night Blind",
+          "handle": "palma-blackout-cobalt-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734965305728",
+          "type": "product",
+          "title": "Palma Blackout Ecru Electrical Day and Night Blind",
+          "handle": "palma-blackout-ecru-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734965731712",
+          "type": "product",
+          "title": "Palma Blackout Espresso Electrical Day and Night Blind",
+          "handle": "palma-blackout-espresso-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734966059392",
+          "type": "product",
+          "title": "Palma Blackout Silver Electrical Day and Night Blind",
+          "handle": "palma-blackout-silver-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734966321536",
+          "type": "product",
+          "title": "Palma Blackout Stonish Electrical Day and Night Blind",
+          "handle": "palma-blackout-stonish-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734968549760",
+          "type": "product",
+          "title": "Truro Blackout Aliminium Electrical Day and Night Blind",
+          "handle": "truro-blackout-aliminium-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734969041280",
+          "type": "product",
+          "title": "Truro Blackout Beige Electrical Day and Night Blind",
+          "handle": "truro-blackout-beige-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734969532800",
+          "type": "product",
+          "title": "Truro Blackout Bisque Electrical Day and Night Blind",
+          "handle": "truro-blackout-bisque-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734969958784",
+          "type": "product",
+          "title": "Truro Blackout Black Electrical Day and Night Blind",
+          "handle": "truro-blackout-black-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734970483072",
+          "type": "product",
+          "title": "Truro Blackout Grey Electrical Day and Night Blind",
+          "handle": "truro-blackout-grey-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734970909056",
+          "type": "product",
+          "title": "Truro Blackout Mid Grey Electrical Day and Night Blind",
+          "handle": "truro-blackout-mid-grey-electrical-day-and-night-blind"
+        },
+        {
+          "id": "15734971302272",
+          "type": "product",
+          "title": "Truro Blackout Porcelene Electrical Day and Night Blind",
+          "handle": "truro-blackout-porcelene-electrical-day-and-night-blind"
+        }
+      ]
+    }
+  ]
+}

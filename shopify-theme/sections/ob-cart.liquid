@@ -1,0 +1,5 @@
+﻿<div data-ob-island="cart-design" data-ob-client="true">
+<script type="application/json" data-ob-props>{"cart":{{ cart | json }}}</script>
+{% if cart.item_count == 0 %}{% render 'ob-empty-cart' %}{% else %}<section class="ob-section"><div class="ob-wrap"><h1 class="ob-title">Your Cart</h1>{% for item in cart.items %}<p class="my-4">{{ item.product.title | escape }} × {{ item.quantity }} — {{ item.final_line_price | money }}</p>{% endfor %}<p>Total: {{ cart.total_price | money }}</p></div></section>{% endif %}
+</div>
+{% schema %}{"name":"Online Blinds cart","settings":[]}{% endschema %}

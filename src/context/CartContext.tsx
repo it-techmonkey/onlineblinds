@@ -7,6 +7,7 @@ import { trackShopifyAddToCart } from '@/lib/shopify-analytics';
 import { trackAddToCart, trackRemoveFromCart } from '@/lib/gtm';
 import { getInstallationServicePrice } from '@/lib/pricing';
 import { getDraftOrderStatus } from '@/lib/api';
+import { isPromoCode } from '@/data/promotions';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -17,7 +18,7 @@ const defaultCartContext: CartContextType = {
     itemCount: 0,
     installationService: false,
     installationServicePrice: 0,
-    discount: null,
+    discounts: [],
     discountAmount: 0,
   },
   addToCart: () => {},
@@ -56,22 +57,44 @@ interface PendingCheckout {
   startedAt: string;
 }
 
-const calculateCartTotals = (items: CartItem[], installationService: boolean, discount: CartDiscount | null) => {
+// Matches Shopify's checkout: percentage codes are each taken from the same
+// subtotal (20% + 15% = 35% off), then fixed-amount codes come off what is left.
+const calculateCartTotals = (items: CartItem[], installationService: boolean, discounts: CartDiscount[]) => {
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const installationServicePrice = installationService ? getInstallationServicePrice(itemCount) : 0;
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const discountAmount = discount
-    ? Math.min(
-        discount.type === 'percentage' ? subtotal * (discount.value / 100) : discount.value,
-        subtotal
-      )
-    : 0;
+  const percentOff = discounts
+    .filter((discount) => discount.type === 'percentage')
+    .reduce((sum, discount) => sum + subtotal * (discount.value / 100), 0);
+  const fixedOff = discounts
+    .filter((discount) => discount.type === 'fixed_amount')
+    .reduce((sum, discount) => sum + discount.value, 0);
+  const discountAmount = Math.min(percentOff + fixedOff, subtotal);
   return {
     total: subtotal - discountAmount + installationServicePrice,
     itemCount,
     installationServicePrice,
     discountAmount,
   };
+};
+
+// Only one of the announcement bar codes applies at a time; any other code
+// (such as the newsletter code) is added alongside it.
+const withDiscount = (discounts: CartDiscount[], discount: CartDiscount) => {
+  const code = discount.code.toUpperCase();
+  const kept = discounts.filter(
+    (existing) =>
+      existing.code.toUpperCase() !== code && !(isPromoCode(code) && isPromoCode(existing.code))
+  );
+  return [...kept, discount];
+};
+
+const readSavedDiscounts = (parsedCart: { discounts?: unknown; discount?: unknown }): CartDiscount[] => {
+  const isDiscount = (value: unknown): value is CartDiscount =>
+    Boolean(value) && typeof (value as CartDiscount).code === 'string';
+  if (Array.isArray(parsedCart.discounts)) return parsedCart.discounts.filter(isDiscount);
+  // Carts saved before several codes were allowed.
+  return isDiscount(parsedCart.discount) ? [parsedCart.discount] : [];
 };
 
 export const CartProvider = ({ children }: CartProviderProps) => {
@@ -83,7 +106,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     itemCount: 0,
     installationService: false,
     installationServicePrice: 0,
-    discount: null,
+    discounts: [],
     discountAmount: 0,
   });
 
@@ -99,7 +122,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
         items,
         installationService,
-        prev.discount
+        prev.discounts
       );
       return { ...prev, items, total, itemCount, installationService, installationServicePrice, discountAmount };
     });
@@ -109,7 +132,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   useEffect(() => {
     const loadLocalCart = () => {
       const savedCart = localStorage.getItem(CART_STORAGE_KEY);
-      if (!savedCart) return { items: [], installationService: false, discount: null };
+      if (!savedCart) return { items: [], installationService: false, discounts: [] as CartDiscount[] };
 
       try {
         const parsedCart = JSON.parse(savedCart);
@@ -119,13 +142,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
               addedAt: new Date(item.addedAt),
             }))
           : [];
-        const discount: CartDiscount | null =
-          parsedCart.discount && typeof parsedCart.discount.code === 'string' ? parsedCart.discount : null;
-        return { items: parsedItems, installationService: Boolean(parsedCart.installationService), discount };
+        const discounts = readSavedDiscounts(parsedCart);
+        return { items: parsedItems, installationService: Boolean(parsedCart.installationService), discounts };
       } catch (error) {
         console.error('Error loading local cart:', error);
         localStorage.removeItem(CART_STORAGE_KEY);
-        return { items: [], installationService: false, discount: null };
+        return { items: [], installationService: false, discounts: [] as CartDiscount[] };
       }
     };
 
@@ -169,16 +191,16 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
     (async () => {
       const purchased = await resolvePendingCheckout();
-      const { items: localItems, installationService, discount } = purchased
-        ? { items: [], installationService: false, discount: null }
+      const { items: localItems, installationService, discounts } = purchased
+        ? { items: [], installationService: false, discounts: [] as CartDiscount[] }
         : loadLocalCart();
 
       const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
         localItems,
         installationService,
-        discount
+        discounts
       );
-      setCart({ items: localItems, total, itemCount, installationService, installationServicePrice, discount, discountAmount });
+      setCart({ items: localItems, total, itemCount, installationService, installationServicePrice, discounts, discountAmount });
       if (purchased) {
         localStorage.removeItem(CART_STORAGE_KEY);
       }
@@ -283,23 +305,25 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const applyDiscount = (discount: CartDiscount) => {
     setCart((prev) => {
+      const discounts = withDiscount(prev.discounts, discount);
       const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
         prev.items,
         prev.installationService,
-        discount
+        discounts
       );
-      return { ...prev, discount, discountAmount, total, itemCount, installationServicePrice };
+      return { ...prev, discounts, discountAmount, total, itemCount, installationServicePrice };
     });
   };
 
-  const removeDiscount = () => {
+  const removeDiscount = (code: string) => {
     setCart((prev) => {
+      const discounts = prev.discounts.filter((discount) => discount.code.toUpperCase() !== code.toUpperCase());
       const { total, itemCount, installationServicePrice, discountAmount } = calculateCartTotals(
         prev.items,
         prev.installationService,
-        null
+        discounts
       );
-      return { ...prev, discount: null, discountAmount, total, itemCount, installationServicePrice };
+      return { ...prev, discounts, discountAmount, total, itemCount, installationServicePrice };
     });
   };
 
@@ -310,7 +334,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       itemCount: 0,
       installationService: false,
       installationServicePrice: 0,
-      discount: null,
+      discounts: [],
       discountAmount: 0,
     });
     localStorage.removeItem(CART_STORAGE_KEY);

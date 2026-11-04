@@ -8,6 +8,8 @@ import { formatPriceWithCurrency, createCheckout, validateCartItemPrices, valida
 import { getInstallationServicePrice, formatMeasurement } from '@/lib/pricing';
 import { buildCheckoutItemRequest } from '@/lib/checkout-item';
 import InstallationServiceInfo from '@/components/product/customization/InstallationServiceInfo';
+import { isPromoCode } from '@/data/promotions';
+import { usePromoCode } from '@/hooks/usePromoCode';
 import { CartItem, CartDiscount, CheckoutItemRequest, DEFAULT_CONFIGURATION, Product, ProductConfiguration } from '@/types';
 import { isReplacementVerticalSlatProduct } from '@/lib/vertical-blinds';
 import { findSkylightBlindTypeOption, findSkylightBrandOption } from '@/data/skylight';
@@ -23,7 +25,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { trackBeginCheckout, trackViewCart } from '@/lib/gtm';
-import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
 
 import {
   HEADRAIL_OPTIONS,
@@ -73,6 +74,9 @@ import {
 } from '@/data/customizations';
 import { getEasyStickFieldLabels, getEasyStickSubtype, isEasyStickProduct } from '@/lib/easy-stick';
 import { isRomanProduct } from '@/lib/roman-blinds';
+
+// Set for this visit once the customer removes the announcement bar code.
+const PROMO_DISMISSED_KEY = 'ob-promo-dismissed';
 
 export default function CartPage() {
   const {
@@ -181,7 +185,7 @@ export default function CartPage() {
     setCouponError(null);
     try {
       const discount = await validateDiscountCode(code);
-      applyDiscount(discount);
+      applyDiscount({ ...discount, code: discount.code.toUpperCase() });
       setCouponCode('');
     } catch (error: any) {
       setCouponError(error.message || 'Invalid discount code');
@@ -190,10 +194,32 @@ export default function CartPage() {
     }
   };
 
-  const handleRemoveCoupon = () => {
-    removeDiscount();
+  const handleRemoveCoupon = (code: string) => {
+    // Don't put the announcement bar code straight back after the customer removed it.
+    if (isPromoCode(code)) {
+      try { sessionStorage.setItem(PROMO_DISMISSED_KEY, '1'); } catch {}
+    }
+    removeDiscount(code);
     setCouponError(null);
   };
+
+  // Apply the code picked in the announcement bar, unless one of those codes is
+  // already applied or the customer removed it this visit.
+  const [promoCode] = usePromoCode();
+  const hasItems = cart.items.length > 0;
+  const appliedPromo = cart.discounts.find((discount) => isPromoCode(discount.code))?.code;
+  useEffect(() => {
+    if (!hasItems || appliedPromo?.toUpperCase() === promoCode) return;
+    if (!appliedPromo) {
+      try { if (sessionStorage.getItem(PROMO_DISMISSED_KEY)) return; } catch {}
+    }
+    let cancelled = false;
+    validateDiscountCode(promoCode)
+      .then((discount) => { if (!cancelled) applyDiscount(discount); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasItems, promoCode, appliedPromo]);
 
   const openEditModal = (item: CartItem) => {
     setEditingItem(item);
@@ -286,7 +312,7 @@ export default function CartPage() {
         checkoutItems,
         customer?.email || undefined,
         cart.installationService,
-        cart.discount?.code
+        cart.discounts.map((discount) => discount.code)
       );
 
       // Don't clear the cart yet — the customer hasn't paid, only been sent to
@@ -919,9 +945,9 @@ export default function CartPage() {
                       {formatPriceWithCurrency(cart.total - cart.installationServicePrice + cart.discountAmount)}
                     </span>
                   </div>
-                  {cart.discount && (
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted">Discount ({cart.discount.code})</span>
+                  {cart.discounts.length > 0 && (
+                    <div className="flex justify-between gap-2 text-sm">
+                      <span className="text-muted">Discount ({cart.discounts.map((discount) => discount.code).join(' + ')})</span>
                       <span className="font-medium text-green-700">
                         -{formatPriceWithCurrency(cart.discountAmount)}
                       </span>
@@ -951,49 +977,45 @@ export default function CartPage() {
                 </div>
 
                 <div className="mb-4 border-t border-border pt-4">
-                  {cart.discount ? (
-                    <div className="flex items-center justify-between gap-3 rounded-lg border border-green-200 bg-green-50 px-3 py-2">
+                  {cart.discounts.map((discount) => (
+                    <div key={discount.code} className="mb-2 flex items-center justify-between gap-3 rounded-lg border border-green-200 bg-green-50 px-3 py-2">
                       <div className="min-w-0">
-                        <p className="truncate text-xs font-semibold text-green-800">{cart.discount.title}</p>
-                        <p className="text-[11px] text-green-700">Code &quot;{cart.discount.code}&quot; applied</p>
+                        <p className="truncate text-xs font-semibold text-green-800">{discount.title}</p>
+                        <p className="text-[11px] text-green-700">Code &quot;{discount.code}&quot; applied</p>
                       </div>
                       <button
-                        onClick={handleRemoveCoupon}
+                        onClick={() => handleRemoveCoupon(discount.code)}
                         className="shrink-0 text-xs font-semibold text-green-800 underline hover:text-green-900"
                       >
                         Remove
                       </button>
                     </div>
-                  ) : (
-                    <div>
-                      {HALLOWEEN_ENABLED && (
-                        <p className="mb-2 text-xs font-medium text-muted-strong">{halloween.cartHint}</p>
-                      )}
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          value={couponCode}
-                          onChange={(e) => setCouponCode(e.target.value)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                              e.preventDefault();
-                              handleApplyCoupon();
-                            }
-                          }}
-                          placeholder="Discount code"
-                          className="h-10 flex-1 min-w-0 rounded-lg border border-border px-3 text-sm focus:border-primary focus:outline-none"
-                        />
-                        <button
-                          onClick={handleApplyCoupon}
-                          disabled={isApplyingCoupon || !couponCode.trim()}
-                          className="h-10 shrink-0 rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-50"
-                        >
-                          {isApplyingCoupon ? 'Applying…' : 'Apply'}
-                        </button>
-                      </div>
-                      {couponError && <p className="mt-1.5 text-xs text-red-600">{couponError}</p>}
+                  ))}
+                  <div>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleApplyCoupon();
+                          }
+                        }}
+                        placeholder="Discount code"
+                        className="h-10 flex-1 min-w-0 rounded-lg border border-border px-3 text-sm focus:border-primary focus:outline-none"
+                      />
+                      <button
+                        onClick={handleApplyCoupon}
+                        disabled={isApplyingCoupon || !couponCode.trim()}
+                        className="h-10 shrink-0 rounded-lg border border-border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-surface-muted disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        {isApplyingCoupon ? 'Applying…' : 'Apply'}
+                      </button>
                     </div>
-                  )}
+                    {couponError && <p className="mt-1.5 text-xs text-red-600">{couponError}</p>}
+                  </div>
                 </div>
 
                 <div className="mb-6 border-t border-border pt-4">

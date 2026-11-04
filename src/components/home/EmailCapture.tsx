@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import PumpkinIcon from '@/components/ui/PumpkinIcon';
-import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
+import { NEWSLETTER_PERCENT_OFF } from '@/data/promotions';
+import { markSignupDone } from '@/components/layout/SignupPopup';
 
 const EmailCapture = () => {
   const [email, setEmail] = useState('');
@@ -39,6 +39,7 @@ const EmailCapture = () => {
       }
       setDiscountCode(result.data?.discountCode || '');
       setSubmitted(true);
+      markSignupDone();
     } catch {
       setError('We could not subscribe you right now. Please try again later.');
     } finally {
@@ -51,9 +52,8 @@ const EmailCapture = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="flex flex-col items-center text-center gap-6 md:gap-8">
           {/* Badge */}
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">
-            {HALLOWEEN_ENABLED && <PumpkinIcon className="h-3.5 w-3.5" />}
-            {HALLOWEEN_ENABLED ? halloween.emailCapture.badge : 'Exclusive Offer'}
+          <span className="inline-flex items-center rounded-full border border-white/10 bg-white/8 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">
+            Exclusive Offer
           </span>
 
           {submitted ? (
@@ -64,7 +64,7 @@ const EmailCapture = () => {
               {discountCode ? (
                 <>
                   <p className="mx-auto max-w-md text-[15px] leading-relaxed text-white/80">
-                    Here&apos;s your £20 discount code. Enter it in your cart on orders of £200 or more.
+                    Here&apos;s your {NEWSLETTER_PERCENT_OFF}% discount code. Enter it in your cart, alongside any other code.
                   </p>
                   <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
                     <span className="rounded-[12px] border border-dashed border-white/40 bg-white/8 px-6 py-3 font-jost text-[18px] font-semibold tracking-[0.12em] text-white">
@@ -89,10 +89,10 @@ const EmailCapture = () => {
             <>
               <div className="space-y-3 text-center">
                 <h2 className="font-display text-[28px] font-semibold leading-tight text-white md:text-[38px]">
-                  {HALLOWEEN_ENABLED ? halloween.emailCapture.heading : 'Ready to Save £20 on Your First Order?'}
+                  Sign Up and Get {NEWSLETTER_PERCENT_OFF}% Off
                 </h2>
                 <p className="mx-auto max-w-lg text-center text-[15px] leading-relaxed text-white/80">
-                  Subscribe and get a <span className="font-semibold text-white">£20 discount code</span> valid on orders of £200 or more. No spam — just great blinds at better prices.
+                  Subscribe and get a <span className="font-semibold text-white">{NEWSLETTER_PERCENT_OFF}% discount code</span> you can use on top of other offers. No spam — just great blinds at better prices.
                 </p>
               </div>
 
@@ -110,7 +110,7 @@ const EmailCapture = () => {
                   disabled={loading}
                   className="h-12 shrink-0 rounded-[12px] bg-primary px-6 text-[13px] font-semibold uppercase tracking-[0.06em] text-white transition-all hover:bg-primary-dark disabled:opacity-60"
                 >
-                  {loading ? 'Sending…' : 'Get My £20 Off'}
+                  {loading ? 'Sending…' : `Get My ${NEWSLETTER_PERCENT_OFF}% Off`}
                 </button>
               </form>
 

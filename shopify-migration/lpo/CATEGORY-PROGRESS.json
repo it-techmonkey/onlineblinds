@@ -1,0 +1,160 @@
+{
+ "date": "2026-10-28",
+ "dayNight": {
+  "products": 121,
+  "configurations": 11,
+  "allInactive": false,
+  "coverageVerified": true,
+  "editorChecks": 66,
+  "editorPassed": true,
+  "storefrontConnected": true,
+  "checkoutVerified": "checkout page reached with correct totals (no payment)",
+  "formulaFormat": "slim (about 2.2 KB each, prices from linked Assets lists)",
+  "offlineChecks": 673160,
+  "sharedDesignJsBytes": 4728,
+  "active": 11,
+  "storefrontChecks": 94,
+  "storefrontPassed": true,
+  "orderProperties": "same keys/values as live draft orders (buildLineItemProperties)"
+ },
+ "roller": {
+  "products": 648,
+  "schema": "generic v2 (customization list)",
+  "configurations": 14,
+  "created": 14,
+  "active": 14,
+  "pending": [],
+  "offlineChecks": 219024,
+  "storefrontChecks": 140,
+  "storefrontPassed": true,
+  "checkoutVerified": "checkout page reached, £102.09 = live API"
+ },
+ "assetLibrary": {
+  "total": 154,
+  "migrationLists": 13,
+  "descriptions": [
+   "OB Preview - Roller - Band C",
+   "OB Preview - Roller - Band G",
+   "OB Preview - Roller - Band F",
+   "OB Preview - Roller - Band Premium",
+   "OB Preview - Roller - Band E",
+   "OB Preview - Roller - Band A",
+   "OB Preview - Roller - Band D",
+   "OB Preview - Day and Night - Band A",
+   "OB Preview - Day and Night - Band D",
+   "OB Preview - Dayandnight - Band A",
+   "OB Preview - Day and Night - Band C",
+   "OB Preview - Day and Night - Band F",
+   "OB Preview - Day and Night - Band E"
+  ]
+ },
+ "theme": {
+  "id": 200474362240,
+  "published": false,
+  "bridgeEnabled": true,
+  "purchasingEnabled": false,
+  "lpoCheckoutEnabled": true
+ },
+ "phase5": {
+  "vertical": {
+   "products": 510,
+   "configurations": 13,
+   "created": 13,
+   "offlineChecks": 167936,
+   "offlinePassed": true,
+   "storefrontChecks": 144,
+   "storefrontPassed": true,
+   "pending": [],
+   "checkoutVerified": "Aqualush Beige Vertical 150x180cm £129.53 and Aqualush Beige Slat 200cm £2.90 = live API; stopped at checkout",
+   "active": 13
+  },
+  "roman": {
+   "products": 257,
+   "configurations": 9,
+   "created": 9,
+   "offlineChecks": 157524,
+   "offlinePassed": true,
+   "storefrontChecks": 90,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 9,
+   "checkoutVerified": "EB Serene Terracotta 110x140cm exact size, left, thermal, chrome chain £211.72 = live API (Buy Now)"
+  },
+  "venetian": {
+   "products": 226,
+   "configurations": 6,
+   "created": 6,
+   "offlineChecks": 244224,
+   "offlinePassed": true,
+   "storefrontChecks": 60,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 6,
+   "checkoutVerified": "Sierra Ice White Perfect Fit Shutter 80x120cm glass, right, 20mm, 2 panels £220.18 = live API"
+  },
+  "no-drill": {
+   "products": 55,
+   "configurations": 3,
+   "created": 3,
+   "offlineChecks": 95464,
+   "offlinePassed": true,
+   "storefrontChecks": 30,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 3,
+   "checkoutVerified": "Insta Fit Wisteria 95x130cm inside recess, left £82.04 = live API (Buy Now)"
+  },
+  "faux-wood": {
+   "products": 31,
+   "configurations": 3,
+   "created": 3,
+   "offlineChecks": 53560,
+   "offlinePassed": true,
+   "storefrontChecks": 30,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 3
+  },
+  "easy-stick": {
+   "products": 26,
+   "configurations": 3,
+   "created": 3,
+   "offlineChecks": 19820,
+   "offlinePassed": true,
+   "storefrontChecks": 30,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 3
+  },
+  "skylight": {
+   "products": 10,
+   "configurations": 1,
+   "created": 1,
+   "offlineChecks": 2164,
+   "offlinePassed": true,
+   "storefrontChecks": 11,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 1,
+   "checkoutVerified": "Blackout Soft Sky, Velux 104 £75.20 = live API (Buy Now)"
+  },
+  "other": {
+   "products": 1,
+   "configurations": 1,
+   "created": 1,
+   "offlineChecks": 84424,
+   "offlinePassed": true,
+   "storefrontChecks": 10,
+   "storefrontPassed": true,
+   "pending": [],
+   "active": 1
+  }
+ },
+ "registry": {
+  "handles": 1885,
+  "configs": 64,
+  "excluded": [
+   "installation-service (no price band; Phase 6)"
+  ]
+ }
+}

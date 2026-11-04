@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "main": {
+      "type": "ob-product-design",
+      "settings": {
+        "lpo_pilot_enabled": true
+      },
+      "blocks": {
+        "ob_lpo_engine": {
+          "type": "shopify://apps/live-product-options/blocks/app-block/88bfdf40-5e27-4962-a966-70c8d1e87757",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "ob_lpo_engine"
+      ]
+    },
+    "installation": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "installation",
+        "audience": "standard"
+      }
+    },
+    "faq": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "faq",
+        "audience": "standard"
+      }
+    },
+    "features": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "features",
+        "audience": "honeycomb"
+      }
+    },
+    "comparison": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "comparison",
+        "audience": "honeycomb"
+      }
+    },
+    "steps": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "steps",
+        "audience": "honeycomb"
+      }
+    },
+    "recharge": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "recharge",
+        "audience": "honeycomb"
+      }
+    },
+    "warranty": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "warranty",
+        "audience": "honeycomb"
+      }
+    },
+    "table": {
+      "type": "ob-product-content",
+      "settings": {
+        "kind": "table",
+        "audience": "honeycomb"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "installation",
+    "faq",
+    "features",
+    "comparison",
+    "steps",
+    "recharge",
+    "warranty",
+    "table"
+  ]
+}

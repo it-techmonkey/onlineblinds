@@ -1,0 +1,2 @@
+{% capture card_price %}{% render 'ob-minimum-price', product: card_product %}{% endcapture %}
+{"id":{{ card_product.id | json }},"name":{{ card_product.title | json }},"slug":{{ card_product.handle | json }},"price":{{ card_price | strip | divided_by: 100.0 }},"currency":{{ cart.currency.iso_code | json }},"tags":{{ card_product.tags | json }},"rating":4.5,"image":{{ card_product.featured_image | image_url: width: 700 | json }},"images":[{{ card_product.featured_image | image_url: width: 700 | json }}]}

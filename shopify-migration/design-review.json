@@ -1,0 +1,487 @@
+{
+  "reviewedAt": "2026-10-23",
+  "themeId": "200474362240",
+  "published": false,
+  "scope": "One representative product per family; desktop and mobile. Loading/layout checks and heading comparison, not exact visual or functional parity approval.",
+  "baselinePages": 28,
+  "previewPages": 14,
+  "results": [
+    {
+      "family": "vertical-blinds",
+      "handle": "oasis-rock-vertical-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Details & Specifications",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Details & Specifications",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "replacement-vertical-blinds-slat",
+      "handle": "westbam-white-slat",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "roller-blinds",
+      "handle": "unity-polaris-thunder-roller-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "day-and-night-blinds",
+      "handle": "plain-soft-white-day-and-night-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "roman-blinds",
+      "handle": "eb-mersin-black-roman-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "metal-venetian-blind",
+      "handle": "barely-black",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "faux-wooden-blinds",
+      "handle": "aquawood-white-grain-smooth-venetian-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "no-drill-blinds",
+      "handle": "insta-fit-no-drill-carpi-voile-fog",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "easy-stick-blinds",
+      "handle": "easy-stick-blackout-apollo-cloud",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "perfect-fit-metal",
+      "handle": "classic-white-perfect-fit-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Gloss White  - 25mm"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Gloss White  - 25mm"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "perfect-fit-wooden",
+      "handle": "mirren-cream-perfect-fit",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "perfect-fit-shutter",
+      "handle": "sierra-ice-white-perfect-fit-shutter-blind",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customize your blind",
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Customize your blind",
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "skylight-blinds",
+      "handle": "blackout-light-grey",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Perfect Fit No Drill Metal Blind - Frosted Silver  - 25mm",
+            "Perfect Fit No Drill Metal Blind - Antique Silver - 25mm",
+            "Perfect Fit No Drill Metal Blind - Brushed Nickel - 25mm"
+          ]
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": [
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Perfect Fit No Drill Metal Blind - Frosted Silver  - 25mm",
+            "Perfect Fit No Drill Metal Blind - Antique Silver - 25mm",
+            "Perfect Fit No Drill Metal Blind - Brushed Nickel - 25mm"
+          ]
+        }
+      ]
+    },
+    {
+      "family": "pleated-blinds",
+      "handle": "non-driii-honeycomb-blackout-blinds",
+      "status": 200,
+      "errors": [],
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": []
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "brokenImages": 0,
+          "missingSourceHeadings": []
+        }
+      ]
+    }
+  ],
+  "remaining": [
+    "Restore reviews and related products with actual store data.",
+    "Reconcile vertical product details and perfect-fit-shutter customization.",
+    "Reconcile collection membership and calculated-price sorting.",
+    "Complete conditional interaction and visual parity checks before LPO configuration."
+  ],
+  "restrictions": [
+    "Purchasing disabled",
+    "Theme unpublished",
+    "App configuration deferred"
+  ]
+}

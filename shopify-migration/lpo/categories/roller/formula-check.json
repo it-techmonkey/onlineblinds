@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: every band edge in cm/mm, every customization option, every product.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "roller-band-d",
+      "band": "Roller - Band D",
+      "products": 27,
+      "compared": 15336,
+      "rejected": 4702,
+      "formulaBytes": 4871,
+      "formulaSha256": "b4597e0e7224d07ab36c43603124dc6ede3c4d87c7c48c12eeb7bca25eef54c4"
+    },
+    {
+      "slug": "roller-band-a",
+      "band": "Roller - Band A",
+      "products": 52,
+      "compared": 15736,
+      "rejected": 4741,
+      "formulaBytes": 4823,
+      "formulaSha256": "da91beeb558d3333a2a85b5e39f3d9a8ea68a76c4c8b6f7565621194a9b6cb62"
+    },
+    {
+      "slug": "roller-band-e",
+      "band": "Roller - Band E",
+      "products": 71,
+      "compared": 16040,
+      "rejected": 4781,
+      "formulaBytes": 4901,
+      "formulaSha256": "ff3d4f04b65b3a83f67677dc403dbf734ebcc90fc28dd005e69f6df5438d88ae"
+    },
+    {
+      "slug": "roller-band-premium",
+      "band": "Roller - Band Premium",
+      "products": 56,
+      "compared": 15800,
+      "rejected": 4756,
+      "formulaBytes": 4912,
+      "formulaSha256": "46221faed127c6f233e56bf8075f1b19cb5fa5956eb492f538a8811696059262"
+    },
+    {
+      "slug": "roller-band-f",
+      "band": "Roller - Band F",
+      "products": 87,
+      "compared": 16296,
+      "rejected": 4820,
+      "formulaBytes": 4910,
+      "formulaSha256": "9be555c70065e8c3d5bb043163f1eec8667f2219cb3931fb94c7474475c85959"
+    },
+    {
+      "slug": "roller-band-g",
+      "band": "Roller - Band G",
+      "products": 40,
+      "compared": 15544,
+      "rejected": 4716,
+      "formulaBytes": 4915,
+      "formulaSha256": "4f61634f1219549f6456625f374a0c712c4be20648f53cd7c8e2a8d48345990a"
+    },
+    {
+      "slug": "roller-band-c",
+      "band": "Roller - Band C",
+      "products": 5,
+      "compared": 14984,
+      "rejected": 4665,
+      "formulaBytes": 4858,
+      "formulaSha256": "4e1b38cd3c4139581916cc5b315018d11ab462c7d6c89e9c5fbe44dfa401f52a"
+    },
+    {
+      "slug": "roller-band-e-electrical",
+      "band": "Roller - Band E",
+      "products": 69,
+      "compared": 16008,
+      "rejected": 6066,
+      "formulaBytes": 4884,
+      "formulaSha256": "c796edb4031551f827ef1dfc2d3e4b84afa65d44749dd73f100a6e891be5486d"
+    },
+    {
+      "slug": "roller-band-g-electrical",
+      "band": "Roller - Band G",
+      "products": 40,
+      "compared": 15544,
+      "rejected": 5834,
+      "formulaBytes": 4898,
+      "formulaSha256": "574b14990c552de251d8169c0943d44ae42c54ff17a7771d9e4f81148914e969"
+    },
+    {
+      "slug": "roller-band-f-electrical",
+      "band": "Roller - Band F",
+      "products": 88,
+      "compared": 16312,
+      "rejected": 6218,
+      "formulaBytes": 4893,
+      "formulaSha256": "87ea97125c2fa8536f80b02d20b60a6f034dc47f5955c70b0d931d899c909f0a"
+    },
+    {
+      "slug": "roller-band-d-electrical",
+      "band": "Roller - Band D",
+      "products": 25,
+      "compared": 15304,
+      "rejected": 5714,
+      "formulaBytes": 4854,
+      "formulaSha256": "4769f8db03d5708c52ad4ef559b4878572b2917c4ec1b4b5f7c1aa2ca334bb17"
+    },
+    {
+      "slug": "roller-band-premium-electrical",
+      "band": "Roller - Band Premium",
+      "products": 57,
+      "compared": 15816,
+      "rejected": 5970,
+      "formulaBytes": 4895,
+      "formulaSha256": "107cdcd054773346c71b5c8a136627b8e903c9770976d72b64aac6e6618d8ef5"
+    },
+    {
+      "slug": "roller-band-c-electrical",
+      "band": "Roller - Band C",
+      "products": 5,
+      "compared": 14984,
+      "rejected": 5554,
+      "formulaBytes": 4841,
+      "formulaSha256": "e51063d94ebaa85fb6d24214e1f45f87abda2f316d4dd61d3f96cd9ebed8466e"
+    },
+    {
+      "slug": "roller-band-a-electrical",
+      "band": "Roller - Band A",
+      "products": 26,
+      "compared": 15320,
+      "rejected": 5722,
+      "formulaBytes": 4806,
+      "formulaSha256": "f5bc597b93c3ca4308e67878ecd50ac6527f8c5d16113e702db339496116f64e"
+    }
+  ]
+}

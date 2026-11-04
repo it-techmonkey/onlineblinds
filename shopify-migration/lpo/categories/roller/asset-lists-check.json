@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-28",
+  "existingListsModified": false,
+  "results": [
+    {
+      "description": "OB Preview - Roller - Band D",
+      "band": "Roller - Band D",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Roller - Band A",
+      "band": "Roller - Band A",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Roller - Band E",
+      "band": "Roller - Band E",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Roller - Band Premium",
+      "band": "Roller - Band Premium",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Roller - Band F",
+      "band": "Roller - Band F",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Roller - Band G",
+      "band": "Roller - Band G",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    },
+    {
+      "description": "OB Preview - Roller - Band C",
+      "band": "Roller - Band C",
+      "cells": 88,
+      "created": true,
+      "savedValuesMatchSource": true
+    }
+  ]
+}

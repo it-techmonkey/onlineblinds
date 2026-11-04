@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real product and cart pages on the unpublished preview (theme 200474362240); stopped at the checkout page; carts cleared",
+  "script": "scripts/shopify-preview/lpo-cart-flow-check.mjs",
+  "passed": true,
+  "results": [
+    {"check": "add to cart", "detail": "Cairo Blackout Beige 100 x 120 cm, chain left: page £76.14 = cart £76.14 = live calculator"},
+    {"check": "page state saved on line (_ob_config)", "ok": true},
+    {"check": "quantity up", "detail": "2 x £76.14 = £152.28"},
+    {"check": "installation 2-5 blinds", "detail": "£60 tier line"},
+    {"check": "installation 1 blind", "detail": "tier switched to £40 when quantity went back to 1"},
+    {"check": "invalid discount code rejected", "ok": true},
+    {"check": "FINAL10 applied", "detail": "-£11.61 (10% of blinds + installation, Shopify's own calculation); total £104.53"},
+    {"check": "discount removed", "ok": true},
+    {"check": "edit restores the product page", "detail": "width 100 / drop 120 restored from the cart line"},
+    {"check": "edit updates the line in place", "detail": "width 150 cm -> £79.64 = live calculator; still one blind line"},
+    {"check": "installation kept after edit", "ok": true},
+    {"check": "Buy Now leaves the cart untouched", "ok": true},
+    {"check": "Buy Now separate checkout", "detail": "90 x 110 cm £74.39 + installation £40 on the checkout page"},
+    {"check": "clear cart (confirm dialog)", "ok": true}
+  ],
+  "securityFinding": "A hand-edited cart request with _cl_options_price=100 put the blind in the cart and on the checkout page at £1.00. LPO's cart transform trusts that property. See PILOT-STATUS.md (Phase 6)."
+}

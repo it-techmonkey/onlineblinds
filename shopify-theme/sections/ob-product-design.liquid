@@ -1,0 +1,32 @@
+{% capture starting_price %}{% render 'ob-minimum-price', product: product %}{% endcapture %}
+<script>window.OnlineBlinds.productDesignData={{ 'ob-product-design.json' | asset_url | json }};</script>
+<template id="ob-product-reviews">{{ product.metafields.judgeme.review_widget_ssr_html }}{{ product.metafields.judgeme.widget }}</template>
+<div data-ob-island="product-preview" data-ob-client="true">
+<script type="application/json" data-ob-props>{"product":{
+"id":{{ product.id | append: '' | json }},"name":{{ product.title | json }},"slug":{{ product.handle | json }},"tags":{{ product.tags | json }},
+"price":{{ starting_price | strip | divided_by: 100.0 }},"currency":{{ cart.currency.iso_code | json }},"rating":0,"reviewCount":0,"description":{{ product.description | json }},
+"productDetails":{{ product.metafields.custom.product_details.value | default: nil | json }},
+{% render 'ob-product-categories', product: product %},
+"images":[{% for image in product.images %}{{ image | image_url: width: 1600 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+{% assign colour_position = -1 %}{% for option in product.options_with_values %}{% assign option_name = option.name | downcase %}{% if option_name == 'colour' %}{% assign colour_position = forloop.index0 %}{% endif %}{% endfor %}
+"colourVariants":[{% if colour_position >= 0 %}{% for variant in product.variants %}{"id":{{ variant.id | append: '' | json }},"colour":{{ variant.options[colour_position] | json }},"available":{{ variant.available | json }},"imageUrl":{% if variant.featured_image %}{{ variant.featured_image | image_url: width: 1600 | json }}{% else %}null{% endif %},"imageIndex":{% if variant.featured_image %}{{ variant.featured_image.position | minus: 1 }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}{% endif %}]
+},"showRelated":{{ section.settings.show_related | json }},"relatedProducts":[{% assign related_count = 0 %}{% if section.settings.show_related %}{% for related in section.settings.related_products %}{% unless related.id == product.id %}{% if related_count > 0 %},{% endif %}{% capture related_price %}{% render 'ob-minimum-price', product: related %}{% endcapture %}{"id":{{ related.id | append: '' | json }},"name":{{ related.title | json }},"slug":{{ related.handle | json }},"price":{{ related_price | strip | divided_by: 100.0 }},"currency":{{ cart.currency.iso_code | json }},"images":[{% if related.featured_image %}{{ related.featured_image | image_url: width: 800 | json }}{% endif %}],"tags":{{ related.tags | json }}}{% assign related_count = related_count | plus: 1 %}{% endunless %}{% endfor %}{% endif %}]}</script>
+<section class="ob-section"><div class="ob-wrap"><h1 class="ob-title">{{ product.title | escape }}</h1>{% if product.featured_image %}{{ product.featured_image | image_url: width: 900 | image_tag: loading: 'eager' }}{% endif %}</div></section>
+</div>
+{% capture ob_lpo_config_id %}{% render 'ob-lpo-config-id', product: product %}{% endcapture %}
+{% assign ob_lpo_config_id = ob_lpo_config_id | strip %}
+{% if section.settings.lpo_pilot_enabled and ob_lpo_config_id != blank %}
+<div data-ob-lpo-engine="{{ ob_lpo_config_id | escape }}" aria-hidden="true" inert style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">
+  {% form 'product', product, data-ob-product-form: '', id: 'ob-lpo-pilot-form' %}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+    {% for block in section.blocks %}{% render block %}{% endfor %}
+    {%- comment -%}LPO adds the configured item through its own flow; the visible buttons trigger this one.{%- endcomment -%}
+    <div data-live-cart-add><button type="submit" name="add" data-ob-lpo-add tabindex="-1">Add to cart</button></div>
+  {% endform %}
+  {%- comment -%}Give LPO its own price target so it never rewrites prices in the visible design.{%- endcomment -%}
+  <span data-live-price="{{ product.id }}"></span>
+
+</div>
+{% endif %}
+{% schema %}{"name":"Blinds product design","settings":[{"type":"checkbox","id":"lpo_pilot_enabled","label":"Connect configured LPO categories","default":false,"info":"Requires the LPO app block and matching configurations. Preserves the original controls. Purchasing stays disabled during preview. Draft app configurations are not served on normal storefront visits."},{"type":"checkbox","id":"show_related","label":"Show selected related products","default":true},{"type":"product_list","id":"related_products","label":"Related products","limit":4,"info":"Choose up to four products. Create alternate product templates to use different selections. The current product is excluded."}],"blocks":[{"type":"@app"}]}{% endschema %}

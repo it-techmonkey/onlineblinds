@@ -1,0 +1,7 @@
+{
+  "compared": 84460,
+  "boundaryRejections": 9016,
+  "representativeProductProfiles": 96,
+  "result": "pass",
+  "scope": "Offline formula engine vs existing server calculator. Does not verify LPO configuration, cart or checkout."
+}

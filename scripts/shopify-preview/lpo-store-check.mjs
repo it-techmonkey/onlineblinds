@@ -1,0 +1,11 @@
+import fs from 'node:fs';import path from 'node:path';
+import {readAdmin,work} from './env.mjs';
+const catalog=JSON.parse(fs.readFileSync(path.join(work,'catalog.json')));
+const baseline=JSON.parse(fs.readFileSync(path.join(work,'store-baseline.json')));
+const handle='plain-soft-white-day-and-night-blind';
+const original=catalog.products.find(p=>p.handle===handle);
+const now=await readAdmin('query($id:ID!){product(id:$id){id handle updatedAt variants(first:100){nodes{id price}}} themes(first:20){nodes{id name role updatedAt}}}',{id:original.id});
+const report={date:new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()),pilotProductUnchangedSinceCatalog:now.product.updatedAt===original.updatedAt,variantPrices:now.product.variants.nodes.map(v=>v.price),originalThemesUnchanged:baseline.themes.nodes.every(t=>now.themes.nodes.some(n=>n.id===t.id&&n.role===t.role&&n.name===t.name&&n.updatedAt===t.updatedAt)),publishedTheme:now.themes.nodes.find(t=>t.role==='MAIN')?.name,previewUnpublished:now.themes.nodes.some(t=>t.id.endsWith('/200474362240')&&t.role==='UNPUBLISHED')};
+fs.writeFileSync('shopify-migration/lpo/pilot-store-check.json',JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report));
+if(!report.pilotProductUnchangedSinceCatalog||!report.originalThemesUnchanged||!report.previewUnpublished||report.variantPrices.some(p=>p!=='0.00'))process.exitCode=1;

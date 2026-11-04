@@ -1,0 +1,9 @@
+"The order price check result"
+type Output {
+  "True when every web-order line was charged at least what its order details cost"
+  ok: Boolean!
+  "Number of blind lines checked"
+  checked: Int!
+  "What was found"
+  summary: String!
+}

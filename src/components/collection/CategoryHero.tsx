@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import PumpkinIcon from '@/components/ui/PumpkinIcon';
-import { HALLOWEEN_ENABLED, halloween } from '@/data/seasonalTheme';
+import { BLACK_FRIDAY_PROMOTION } from '@/data/promotions';
+import { useBlackFridaySale } from '@/hooks/useBlackFridaySale';
 
 interface CategoryHeroProps {
   title: string;
@@ -66,6 +66,7 @@ const getHeroImage = (title: string, slug?: string): string => {
 };
 
 export default function CategoryHero({ title, slug, description, productCount }: CategoryHeroProps) {
+  const sale = useBlackFridaySale();
   const image = getHeroImage(title, slug);
   const isComingSoon = productCount === 0;
 
@@ -88,6 +89,12 @@ export default function CategoryHero({ title, slug, description, productCount }:
       {/* Content Container */}
       <div className="absolute inset-0 z-[2] flex items-center justify-center">
         <div className="flex flex-col gap-[8px] items-start max-w-[1280px] px-[24px] w-full">
+          {sale.active && !isComingSoon && !title.startsWith('Search Results') && (
+            <span className="mb-1 inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#191919]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white md:text-[11px]">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-red-400" />
+              {BLACK_FRIDAY_PROMOTION.name} · {BLACK_FRIDAY_PROMOTION.headline}
+            </span>
+          )}
           {/* Product Count Label */}
           <div className="w-full">
             <div className="font-jost font-medium text-[14px] text-white/72 tracking-[0.7px] uppercase leading-[20px]">
@@ -124,14 +131,6 @@ export default function CategoryHero({ title, slug, description, productCount }:
                 Fast Delivery
               </div>
             </div>
-            {HALLOWEEN_ENABLED && (
-              <div className="flex items-center gap-[6px] rounded-full border border-white/18 bg-white/10 px-3 py-1.5 backdrop-blur-sm">
-                <PumpkinIcon className="h-[16px] w-[16px] text-white" />
-                <div className="font-jost text-[14px] font-normal text-white/78 leading-[20px]">
-                  {halloween.categoryChip}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

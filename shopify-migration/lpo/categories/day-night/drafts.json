@@ -1,0 +1,79 @@
+[
+  {
+    "key": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4-false",
+    "slug": "day-and-night-band-d",
+    "configUuid": "cl1vzqb3cqir",
+    "description": "OB Preview - Day and Night - Band D",
+    "products": 15
+  },
+  {
+    "key": "cmlddug7v00002k7kwiedgyca-false",
+    "slug": "dayandnight-band-a",
+    "configUuid": "clfhanm6jjqw",
+    "description": "OB Preview - Dayandnight - Band A",
+    "products": 5
+  },
+  {
+    "key": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3-false",
+    "slug": "day-and-night-band-c",
+    "configUuid": "clbamvaecfuz",
+    "description": "OB Preview - Day and Night - Band C",
+    "products": 11
+  },
+  {
+    "key": "9781fe1c-14ff-438d-90f7-0772d578b63f-false",
+    "slug": "day-and-night-band-a",
+    "configUuid": "clcplqcf4p8u",
+    "description": "OB Preview - Day and Night - Band A",
+    "products": 11
+  },
+  {
+    "key": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe-false",
+    "slug": "day-and-night-band-f",
+    "configUuid": "clkjydgrwcu6",
+    "description": "OB Preview - Day and Night - Band F",
+    "products": 14
+  },
+  {
+    "key": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe-false",
+    "slug": "day-and-night-band-e",
+    "configUuid": "clozo16zukd5",
+    "description": "OB Preview - Day and Night - Band E",
+    "products": 11
+  },
+  {
+    "key": "9781fe1c-14ff-438d-90f7-0772d578b63f-true",
+    "slug": "day-and-night-band-a-electrical",
+    "configUuid": "clpprllqs5gh",
+    "description": "OB Preview - Day and Night - Band A - Electrical",
+    "products": 9
+  },
+  {
+    "key": "268dc283-b275-4f4d-84c2-0ec0db6cf9b4-true",
+    "slug": "day-and-night-band-d-electrical",
+    "configUuid": "clov0r5kwplr",
+    "description": "OB Preview - Day and Night - Band D - Electrical",
+    "products": 15
+  },
+  {
+    "key": "2b59f8fb-f3c3-48e6-ab31-f91dd23ed8a3-true",
+    "slug": "day-and-night-band-c-electrical",
+    "configUuid": "clia0qrubxxo",
+    "description": "OB Preview - Day and Night - Band C - Electrical",
+    "products": 5
+  },
+  {
+    "key": "21faab2c-7a67-4cf3-bee0-6e4f497d27fe-true",
+    "slug": "day-and-night-band-e-electrical",
+    "configUuid": "clxu0vyu6m5i",
+    "description": "OB Preview - Day and Night - Band E - Electrical",
+    "products": 11
+  },
+  {
+    "key": "2d6ff1cc-8996-4a8f-b0d8-f44c111756fe-true",
+    "slug": "day-and-night-band-f-electrical",
+    "configUuid": "clp6uikua90o",
+    "description": "OB Preview - Day and Night - Band F - Electrical",
+    "products": 14
+  }
+]

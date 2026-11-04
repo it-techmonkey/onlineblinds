@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "ob-page",
+      "settings": {
+        "content": "warranty"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

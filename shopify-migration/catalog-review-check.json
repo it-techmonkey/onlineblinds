@@ -1,0 +1,48 @@
+{
+  "collections": [
+    {
+      "slug": "roller-blinds",
+      "sort": "price-low",
+      "page": 1,
+      "products": 24
+    },
+    {
+      "slug": "roller-blinds",
+      "sort": "price-high",
+      "page": 2,
+      "products": 24
+    },
+    {
+      "slug": "blackout-blinds",
+      "sort": "price-low",
+      "page": 1,
+      "products": 24
+    },
+    {
+      "slug": "perfect-fit-blinds",
+      "sort": "name-az",
+      "page": 1,
+      "products": 24
+    },
+    {
+      "slug": "light-filtering-vertical-blinds",
+      "sort": "best-selling",
+      "page": 1,
+      "products": 24
+    }
+  ],
+  "product": {
+    "handle": "oasis-rock-vertical-blind",
+    "related": [
+      "Plain Soft - Day and Night Blinds",
+      "Kids Garden Adventure Day & Night Blind – Little Sky",
+      "Kids Blue Star Day & Night Blind – Starry Night",
+      "Kids Gold Star Day & Night Blind – Starry Night"
+    ],
+    "reviewCount": 8,
+    "specifications": true
+  },
+  "searchSort": true,
+  "errors": [],
+  "writes": []
+}

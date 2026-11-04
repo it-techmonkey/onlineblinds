@@ -1,4 +1,5 @@
 import pricingDataFile from '@/data/pricing/pricing-data.json';
+import { upliftBasePrice } from '@/data/promotions';
 import { getAllCachedProducts } from './product-cache';
 import {
   calculateReplacementVerticalSlatPrice,
@@ -305,7 +306,11 @@ function getIndexes(): PricingIndexes {
   const customizationOptionsByKey = new Map<string, JsonCustomizationOption>();
   const customizationPricingsByOptionId = new Map<string, JsonCustomizationPricing[]>();
 
-  for (const cell of pricingData.priceCells) {
+  // The temporary base price increase (src/data/promotions.ts) is applied once
+  // here, so pricing, the price matrix sent to the page, minimum prices and
+  // checkout all use the same increased cell prices.
+  for (const sourceCell of pricingData.priceCells) {
+    const cell = { ...sourceCell, price: upliftBasePrice(Number(sourceCell.price)) };
     if (!priceCellsByBand.has(cell.priceBandId)) {
       priceCellsByBand.set(cell.priceBandId, []);
     }

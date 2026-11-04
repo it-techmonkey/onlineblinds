@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-04",
+  "category": "faux-wood",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "faux-wooden-aqua-wood-with-tape",
+      "bandId": "3ef9297e-bb6e-4003-959d-a2aa8701a6d8",
+      "band": "Faux Wooden - Aqua Wood With Tape",
+      "description": "OB Preview - Faux Wooden - Aqua Wood With Tape",
+      "representative": "aquawood-white-smooth-faux-wooden-blind-with-tape",
+      "schema": {
+        "kind": "band",
+        "bandId": "3ef9297e-bb6e-4003-959d-a2aa8701a6d8",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736794481024",
+          "type": "product",
+          "title": "Aquawood White Smooth Faux Wooden Blind With Tape - 50mm",
+          "handle": "aquawood-white-smooth-faux-wooden-blind-with-tape"
+        },
+        {
+          "id": "15736794513792",
+          "type": "product",
+          "title": "Aquawood White Grain Faux Wooden Blind With Tape - 50mm",
+          "handle": "aquawood-white-grain-faux-wooden-blind-with-tape"
+        },
+        {
+          "id": "15736794546560",
+          "type": "product",
+          "title": "Aquawood Nigra Faux Wooden Blind With Tape - 50mm",
+          "handle": "aquawood-nigra-faux-wooden-blind-with-tape"
+        },
+        {
+          "id": "15736794644864",
+          "type": "product",
+          "title": "Aquawood Night Fall Faux Wooden Blind With Tape - 50mm",
+          "handle": "aquawood-night-fall-faux-wooden-blind-with-tape"
+        },
+        {
+          "id": "15736794677632",
+          "type": "product",
+          "title": "Aquawood  Grey Faux  Wooden Blind With Tape - 50mm",
+          "handle": "aquawood-grey-wooden-blind-with-tape"
+        }
+      ]
+    },
+    {
+      "slug": "faux-wooden-aqua-wood-no-tape",
+      "bandId": "03988fc3-4927-4a05-bc61-0f25ec4d0266",
+      "band": "Faux Wooden - Aqua Wood No Tape",
+      "description": "OB Preview - Faux Wooden - Aqua Wood No Tape",
+      "representative": "aquawood-night-fall-venetian-blind",
+      "schema": {
+        "kind": "band",
+        "bandId": "03988fc3-4927-4a05-bc61-0f25ec4d0266",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736794907008",
+          "type": "product",
+          "title": "Aquawood Night Fall Faux Wooden Blind - 50mm",
+          "handle": "aquawood-night-fall-venetian-blind"
+        },
+        {
+          "id": "15736795332992",
+          "type": "product",
+          "title": "Aquawood White Grain Faux Wooden Blind - 50mm",
+          "handle": "aquawood-white-grain-smooth-venetian-blind"
+        },
+        {
+          "id": "15736795627904",
+          "type": "product",
+          "title": "Aquawood Grey Faux Wooden Blind - 50mm",
+          "handle": "aquawood-grey-smooth-venetian-blind"
+        },
+        {
+          "id": "15736795857280",
+          "type": "product",
+          "title": "Aquawood White Smooth Faux Wooden Blind - 50mm",
+          "handle": "aquawood-white-smooth-venetian-blind"
+        },
+        {
+          "id": "15736796184960",
+          "type": "product",
+          "title": "Aquawood Nigra Faux Wooden Blind - 50mm",
+          "handle": "aquawood-nigra-venetian-blind"
+        },
+        {
+          "id": "15736799035776",
+          "type": "product",
+          "title": "Antique Faux Wooden Blind - 50mm",
+          "handle": "antique"
+        }
+      ]
+    },
+    {
+      "slug": "faux-wooden-arena-expressions-no-tape",
+      "bandId": "55e4070b-68a9-4e2e-86ea-314dd2c1297d",
+      "band": "Faux Wooden - Arena Expressions No Tape",
+      "description": "OB Preview - Faux Wooden - Arena Expressions No Tape",
+      "representative": "radiance-white",
+      "schema": {
+        "kind": "band",
+        "bandId": "55e4070b-68a9-4e2e-86ea-314dd2c1297d",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736796512640",
+          "type": "product",
+          "title": "Expressions Radiance White Faux Wooden Blind - 50mm",
+          "handle": "radiance-white"
+        },
+        {
+          "id": "15736796774784",
+          "type": "product",
+          "title": "Expressions Snow Faux Wooden Blind - 50mm",
+          "handle": "expressions-snow"
+        },
+        {
+          "id": "15736796938624",
+          "type": "product",
+          "title": "Expressions Highshine White Faux Wooden Blind - 50mm",
+          "handle": "highshine-white"
+        },
+        {
+          "id": "15736797102464",
+          "type": "product",
+          "title": "Expressions Cool White Faux Wooden Blind - 50mm",
+          "handle": "cool-white"
+        },
+        {
+          "id": "15736797364608",
+          "type": "product",
+          "title": "Expressions Zenith White Faux Wooden Blind - 50mm",
+          "handle": "zenith-white"
+        },
+        {
+          "id": "15736797659520",
+          "type": "product",
+          "title": "Expressions Misty Grey Faux Wooden Blind - 50mm",
+          "handle": "misty-grey"
+        },
+        {
+          "id": "15736797823360",
+          "type": "product",
+          "title": "Expressions Raven Black Faux Wooden Blind - 50mm",
+          "handle": "raven-black"
+        },
+        {
+          "id": "15736797888896",
+          "type": "product",
+          "title": "Expressions Cirrus Faux Wooden Blind - 50mm",
+          "handle": "expressions-cirrus"
+        },
+        {
+          "id": "15736797921664",
+          "type": "product",
+          "title": "Expressions Chiffon Faux Wooden Blind - 50mm",
+          "handle": "expressions-chiffon"
+        },
+        {
+          "id": "15736797954432",
+          "type": "product",
+          "title": "Expressions Rustic Oak Faux Wooden Blind - 50mm",
+          "handle": "rustic-oak"
+        },
+        {
+          "id": "15736798118272",
+          "type": "product",
+          "title": "Expressions Medium Oak Faux Wooden Blind - 50mm",
+          "handle": "medium-oak"
+        },
+        {
+          "id": "15736798380416",
+          "type": "product",
+          "title": "Expressions Haze Faux Wooden Blind - 50mm",
+          "handle": "expressions-haze"
+        },
+        {
+          "id": "15736798413184",
+          "type": "product",
+          "title": "Expressions Greige Faux Wooden Blind - 50mm",
+          "handle": "greige"
+        },
+        {
+          "id": "15736798478720",
+          "type": "product",
+          "title": "Expressions Flint Faux Wooden Blind - 50mm",
+          "handle": "flint"
+        },
+        {
+          "id": "15736798544256",
+          "type": "product",
+          "title": "Expressions Astral Faux Wooden Blind - 50mm",
+          "handle": "astral"
+        },
+        {
+          "id": "15736798609792",
+          "type": "product",
+          "title": "Expressions Harbour Grey Faux Wooden Blind - 50mm",
+          "handle": "harbour-grey"
+        },
+        {
+          "id": "15736798806400",
+          "type": "product",
+          "title": "Expressions Graphite Grey Faux Wooden Blind - 50mm",
+          "handle": "graphite-grey"
+        },
+        {
+          "id": "15736799003008",
+          "type": "product",
+          "title": "Expressions Clove Faux Wooden Blind - 50mm",
+          "handle": "clove"
+        },
+        {
+          "id": "15736799101312",
+          "type": "product",
+          "title": "Expressions White Oak Faux Wooden Blind - 50mm",
+          "handle": "white-oak"
+        },
+        {
+          "id": "15736799166848",
+          "type": "product",
+          "title": "Expressions Autumn Gold Faux Wooden Blind - 50mm",
+          "handle": "autumn-gold"
+        }
+      ]
+    }
+  ]
+}

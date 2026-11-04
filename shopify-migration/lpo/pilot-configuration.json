@@ -1,0 +1,294 @@
+{
+  "date": "2026-10-27",
+  "description": "OB Preview - Day & Night",
+  "status": "Draft",
+  "productId": "8881709941055",
+  "handle": "plain-soft-white-day-and-night-blind",
+  "formulaExtension": "Already enabled when inspected; no charge accepted by automation",
+  "fields": [
+    {
+      "name": "width",
+      "type": "number",
+      "label": "Width",
+      "required": true,
+      "value": "",
+      "conditions": [],
+      "values": []
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "label": "Drop",
+      "required": true,
+      "value": "",
+      "conditions": [],
+      "values": []
+    },
+    {
+      "name": "measurementUnit",
+      "type": "select",
+      "label": "Measurement unit",
+      "required": true,
+      "value": "cm",
+      "conditions": [],
+      "values": [
+        {
+          "value": "cm",
+          "text": "cm"
+        },
+        {
+          "value": "mm",
+          "text": "mm"
+        }
+      ]
+    },
+    {
+      "name": "installationMethod",
+      "type": "img-swatch",
+      "label": "Installation method",
+      "required": true,
+      "value": "",
+      "conditions": [],
+      "values": [
+        {
+          "value": "inside-mount",
+          "text": "Inside Recess",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_rND2_zebra-insideMount.png"
+        },
+        {
+          "value": "outside-mount",
+          "text": "Outside Recess",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_WF94_zebra-outsideMount.png"
+        }
+      ]
+    },
+    {
+      "name": "controlSide",
+      "type": "img-swatch",
+      "label": "Control side",
+      "required": true,
+      "value": "",
+      "conditions": [
+        {
+          "data": "options",
+          "field": "motorization",
+          "operator": "equals",
+          "value": "none"
+        }
+      ],
+      "values": [
+        {
+          "value": "left",
+          "text": "Left",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_BC8p_left.png"
+        },
+        {
+          "value": "right",
+          "text": "Right",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_xcl3_right.png"
+        }
+      ]
+    },
+    {
+      "name": "chromeUpgrade",
+      "type": "select",
+      "label": "Chrome upgrade",
+      "required": true,
+      "value": "no",
+      "conditions": [
+        {
+          "data": "options",
+          "field": "motorization",
+          "operator": "equals",
+          "value": "none"
+        }
+      ],
+      "values": [
+        {
+          "value": "no",
+          "text": "No"
+        },
+        {
+          "value": "yes",
+          "text": "Yes"
+        }
+      ]
+    },
+    {
+      "name": "cassetteMatchingBar",
+      "type": "img-swatch",
+      "label": "Cassette and Bottom Matching Bar",
+      "required": true,
+      "value": "",
+      "conditions": [],
+      "values": [
+        {
+          "value": "white",
+          "text": "White Standard",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_FjKO_zebra_shade_cassette_and_bottom_bar_white.png"
+        },
+        {
+          "value": "black",
+          "text": "Black",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_bYVh_zebra_shade_cassette_and_bottom_bar_black.png"
+        },
+        {
+          "value": "grey",
+          "text": "Grey",
+          "image": "https://storage.googleapis.com/cloudlift-app-cloud-prod-assets/online-blinds-express/a_z0Rw_zebra_shade_cassette_and_bottom_bar_grey.png"
+        }
+      ]
+    },
+    {
+      "name": "sameFabricInsert",
+      "type": "select",
+      "label": "Same Fabric Insert in Cassette",
+      "required": true,
+      "value": "no",
+      "conditions": [],
+      "values": [
+        {
+          "value": "no",
+          "text": "No"
+        },
+        {
+          "value": "yes",
+          "text": "Yes"
+        }
+      ]
+    },
+    {
+      "name": "motorization",
+      "type": "select",
+      "label": "Motorization",
+      "required": false,
+      "value": "none",
+      "conditions": [],
+      "values": [
+        {
+          "value": "none",
+          "text": "No Motorization"
+        },
+        {
+          "value": "motorized",
+          "text": "Motorization (including remote and charging wire)"
+        }
+      ]
+    },
+    {
+      "name": "roomType",
+      "type": "select",
+      "label": "Room",
+      "required": false,
+      "value": "",
+      "conditions": [],
+      "values": [
+        {
+          "value": "bedroom",
+          "text": "Bedroom"
+        },
+        {
+          "value": "family-room",
+          "text": "Family Room"
+        },
+        {
+          "value": "kitchen",
+          "text": "Kitchen"
+        },
+        {
+          "value": "bathroom",
+          "text": "Bathroom"
+        },
+        {
+          "value": "office",
+          "text": "Office"
+        },
+        {
+          "value": "dining-room",
+          "text": "Dining Room"
+        },
+        {
+          "value": "living-room",
+          "text": "Living Room"
+        },
+        {
+          "value": "other",
+          "text": "Other"
+        }
+      ]
+    },
+    {
+      "name": "blindName",
+      "type": "text",
+      "label": "Blind name",
+      "required": false,
+      "value": "",
+      "conditions": [],
+      "values": []
+    },
+    {
+      "name": "widthFraction",
+      "type": "number",
+      "label": "Additional width (mm)",
+      "required": false,
+      "value": "0",
+      "conditions": [
+        {
+          "data": "options",
+          "field": "measurementUnit",
+          "operator": "equals",
+          "value": "cm"
+        }
+      ],
+      "values": []
+    },
+    {
+      "name": "heightFraction",
+      "type": "number",
+      "label": "Additional drop (mm)",
+      "required": false,
+      "value": "0",
+      "conditions": [
+        {
+          "data": "options",
+          "field": "measurementUnit",
+          "operator": "equals",
+          "value": "cm"
+        }
+      ],
+      "values": []
+    }
+  ],
+  "formulas": [
+    {
+      "unit": "cm",
+      "length": 167007,
+      "sha256": "da701c41b33b3974351fb83f7da9858131bda4f9708834c41455416fda4bd27a"
+    },
+    {
+      "unit": "mm",
+      "length": 167007,
+      "sha256": "da701c41b33b3974351fb83f7da9858131bda4f9708834c41455416fda4bd27a"
+    }
+  ],
+  "checkoutVerified": false,
+  "themeBridgeImplemented": true,
+  "editorVisibilityChecks": {
+    "cmPrecisionVisible": true,
+    "manualControlsVisible": true,
+    "mmPrecisionHidden": true,
+    "motorizedControlsHidden": true
+  },
+  "editorErrors": [],
+  "configUuid": "clfhanm6jjqw",
+  "mcpEnabled": true,
+  "blocker": null,
+  "validationBlockerResolved": true,
+  "editorAcceptancePassed": true,
+  "themeBridgeTestedInEditor": true,
+  "storefrontBridgeActivated": false,
+  "remaining": "Inactive configuration is not served by the storefront. Isolated storefront/cart/checkout verification and further product families remain pending.",
+  "validationScriptSha256": "a063e45b03f8d53e8ecf014e41c1f0da404c78c6b679262340d0bf10956ccb5a",
+  "artifactStatus": "Historical single-product pilot; superseded by categories/day-night/STATUS.md and saved-configurations.json",
+  "supersededBy": "categories/day-night/STATUS.md"
+}

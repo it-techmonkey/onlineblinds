@@ -1,0 +1,388 @@
+{
+  "date": "2026-11-04",
+  "category": "no-drill",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "no-drill-blinds-edit-3",
+      "bandId": "8dc2378f-63d4-4719-8118-23b4c3809398",
+      "band": "No Drill Blinds - Edit 3",
+      "description": "OB Preview - No Drill Blinds - Edit 3",
+      "representative": "insta-fit-no-drill-adventure-bo-teal",
+      "schema": {
+        "kind": "band",
+        "bandId": "8dc2378f-63d4-4719-8118-23b4c3809398",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736569201024",
+          "type": "product",
+          "title": "Insta Fit No Drill Adventure Blackout Teal Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-adventure-bo-teal"
+        },
+        {
+          "id": "15736569299328",
+          "type": "product",
+          "title": "Insta Fit No Drill Adventure Blackout Gold Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-adventure-bo-gold"
+        },
+        {
+          "id": "15736569430400",
+          "type": "product",
+          "title": "Insta Fit No Drill Adventure Blackout Earth Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-adventure-bo-earth"
+        },
+        {
+          "id": "15736569889152",
+          "type": "product",
+          "title": "Insta Fit No Drill Adventure Blackout Denim Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-adventure-bo-denim"
+        },
+        {
+          "id": "15736569921920",
+          "type": "product",
+          "title": "Insta Fit No Drill Wave Blackout White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wave-bo-white"
+        },
+        {
+          "id": "15736569954688",
+          "type": "product",
+          "title": "Insta Fit No Drill Wave Blackout Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wave-bo-grey"
+        },
+        {
+          "id": "15736570085760",
+          "type": "product",
+          "title": "Insta Fit No Drill Wave Blackout Beige Roller Blinds- Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wave-bo-beige"
+        },
+        {
+          "id": "15736572281216",
+          "type": "product",
+          "title": "Insta Fit No Drill Verbena Blackout Taupe Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-verbena-bo-taupe"
+        },
+        {
+          "id": "15736572576128",
+          "type": "product",
+          "title": "Insta Fit No Drill Verbena Blackout Silver Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-verbena-bo-silver"
+        },
+        {
+          "id": "15736572739968",
+          "type": "product",
+          "title": "Insta Fit No Drill Verbena Blackout Charcoal Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-verbena-bo-charcoal"
+        },
+        {
+          "id": "15736575787392",
+          "type": "product",
+          "title": "Insta Fit No Drill Petunia Blackout White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-petunia-bo-white"
+        },
+        {
+          "id": "15736576147840",
+          "type": "product",
+          "title": "Insta Fit No Drill Petunia Blackout Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-petunia-bo-grey"
+        },
+        {
+          "id": "15736576442752",
+          "type": "product",
+          "title": "Insta Fit No Drill Petunia Blackout Beige Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-petunia-bo-beige"
+        },
+        {
+          "id": "15736576934272",
+          "type": "product",
+          "title": "Insta Fit No Drill Yarrow Blackout Taupe Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-yarrow-bo-taupe"
+        },
+        {
+          "id": "15736577360256",
+          "type": "product",
+          "title": "Insta Fit No Drill Yarrow Blackout Navy Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-yarrow-bo-navy"
+        },
+        {
+          "id": "15736577425792",
+          "type": "product",
+          "title": "Insta Fit No Drill Yarrow Blackout Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-yarrow-bo-grey"
+        },
+        {
+          "id": "15736577589632",
+          "type": "product",
+          "title": "Insta Fit No Drill Yarrow Blackout Aqua Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-yarrow-bo-aqua"
+        },
+        {
+          "id": "15736578048384",
+          "type": "product",
+          "title": "Insta Fit No Drill Simetric Blackout Neutral Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-simetric-bo-neutral"
+        },
+        {
+          "id": "15736578277760",
+          "type": "product",
+          "title": "Insta Fit No Drill Simetric Blackout Navy Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-simetric-bo-navy"
+        },
+        {
+          "id": "15736578539904",
+          "type": "product",
+          "title": "Insta Fit No Drill Simetric Blackout Jade Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-simetric-bo-jade"
+        },
+        {
+          "id": "15736578638208",
+          "type": "product",
+          "title": "Insta Fit No Drill Simetric Blackout Charcoal Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-simetric-bo-charcoal"
+        },
+        {
+          "id": "15736578802048",
+          "type": "product",
+          "title": "Insta Fit No Drill Zinnia Blackout Silver Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-zinnia-bo-silver"
+        },
+        {
+          "id": "15736579490176",
+          "type": "product",
+          "title": "Insta Fit No Drill Zinnia Blackout Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-zinnia-bo-grey"
+        },
+        {
+          "id": "15736579850624",
+          "type": "product",
+          "title": "Insta Fit No Drill Zinnia Blackout Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-zinnia-bo-cream"
+        },
+        {
+          "id": "15736580145536",
+          "type": "product",
+          "title": "Insta Fit No Drill Begonia Blackout White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-begonia-bo-white"
+        },
+        {
+          "id": "15736580505984",
+          "type": "product",
+          "title": "Insta Fit No Drill Begonia Blackout Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-begonia-bo-cream"
+        }
+      ]
+    },
+    {
+      "slug": "no-drill-blinds-edit-2",
+      "bandId": "472db41e-e2ff-46b6-9196-80af533734bd",
+      "band": "No Drill Blinds - Edit 2",
+      "description": "OB Preview - No Drill Blinds - Edit 2",
+      "representative": "insta-fit-no-drill-wisteria-bo-white",
+      "schema": {
+        "kind": "band",
+        "bandId": "472db41e-e2ff-46b6-9196-80af533734bd",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736570741120",
+          "type": "product",
+          "title": "Insta Fit No Drill Wisteria Blackout White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wisteria-bo-white"
+        },
+        {
+          "id": "15736571232640",
+          "type": "product",
+          "title": "Insta Fit No Drill Wisteria Blackout Light Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wisteria-bo-light-grey"
+        },
+        {
+          "id": "15736571625856",
+          "type": "product",
+          "title": "Insta Fit No Drill Wisteria Blackout Dark Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wisteria-bo-dark-grey"
+        },
+        {
+          "id": "15736571986304",
+          "type": "product",
+          "title": "Insta Fit No Drill Wisteria Blackout Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-wisteria-bo-cream"
+        },
+        {
+          "id": "15736573755776",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-white"
+        },
+        {
+          "id": "15736573854080",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout Polar Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-polar"
+        },
+        {
+          "id": "15736573985152",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout Light Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-light-grey"
+        },
+        {
+          "id": "15736574116224",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout Ivory Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-ivory"
+        },
+        {
+          "id": "15736574280064",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout Dark Grey Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-dark-grey"
+        },
+        {
+          "id": "15736574837120",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-cream"
+        },
+        {
+          "id": "15736575263104",
+          "type": "product",
+          "title": "Insta Fit No Drill Iris Blackout Beige Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-iris-bo-beige"
+        },
+        {
+          "id": "15736581390720",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer 8% White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-8-white"
+        },
+        {
+          "id": "15736581456256",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer 8% Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-8-cream"
+        },
+        {
+          "id": "15736581554560",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea Texture White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-texture-white"
+        },
+        {
+          "id": "15736581620096",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea Texture Charcoal Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-texture-charcoal"
+        },
+        {
+          "id": "15736581718400",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer 5% White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-5-white"
+        },
+        {
+          "id": "15736581849472",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer Noir Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-noir"
+        },
+        {
+          "id": "15736582013312",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer Ivory Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-ivory"
+        },
+        {
+          "id": "15736582209920",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer 5% Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-5-cream"
+        },
+        {
+          "id": "15736582340992",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer Cloud Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-cloud"
+        },
+        {
+          "id": "15736582406528",
+          "type": "product",
+          "title": "Insta Fit No Drill Azalea sheer Cream Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-azalea-sheer-cream"
+        }
+      ]
+    },
+    {
+      "slug": "no-drill-blinds-edit-1",
+      "bandId": "22b28559-67a0-4390-83ae-7f85f6c27b29",
+      "band": "No Drill Blinds - Edit 1",
+      "description": "OB Preview - No Drill Blinds - Edit 1",
+      "representative": "insta-fit-no-drill-freesia-white",
+      "schema": {
+        "kind": "band",
+        "bandId": "22b28559-67a0-4390-83ae-7f85f6c27b29",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15736572805504",
+          "type": "product",
+          "title": "Insta Fit No Drill Freesia White Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-freesia-white"
+        },
+        {
+          "id": "15736572903808",
+          "type": "product",
+          "title": "Insta Fit No Drill Freesia Snow Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-freesia-snow"
+        },
+        {
+          "id": "15736573198720",
+          "type": "product",
+          "title": "Insta Fit No Drill Freesia Slate Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-freesia-slate"
+        },
+        {
+          "id": "15736573264256",
+          "type": "product",
+          "title": "Insta Fit No Drill Freesia Silver Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-freesia-silver"
+        },
+        {
+          "id": "15736573329792",
+          "type": "product",
+          "title": "Insta Fit No Drill Freesia Fog Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-freesia-fog"
+        },
+        {
+          "id": "15736573559168",
+          "type": "product",
+          "title": "Insta Fit No Drill Freesia Beige Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-freesia-beige"
+        },
+        {
+          "id": "15736577917312",
+          "type": "product",
+          "title": "Insta Fit No Drill Geo Voile Snow Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-geo-voile-snow"
+        },
+        {
+          "id": "15736580866432",
+          "type": "product",
+          "title": "Insta Fit No Drill Carpi voile Fog Roller Blinds - Fit in 30 Secs",
+          "handle": "insta-fit-no-drill-carpi-voile-fog"
+        }
+      ]
+    }
+  ]
+}

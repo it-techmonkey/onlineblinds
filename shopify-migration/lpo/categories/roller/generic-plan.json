@@ -1,0 +1,4189 @@
+{
+  "date": "2026-11-04",
+  "category": "roller",
+  "schema": 2,
+  "configurations": [
+    {
+      "slug": "roller-band-d",
+      "bandId": "cml0kk2730000ok7kxcbojcca",
+      "band": "Roller - Band D",
+      "description": "OB Preview - Roller - Band D",
+      "representative": "cairo-blackout-beige-roller-blind",
+      "schema": {
+        "bandId": "cml0kk2730000ok7kxcbojcca",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15711244091776",
+          "type": "product",
+          "title": "Cairo Blackout Beige Roller Blind",
+          "handle": "cairo-blackout-beige-roller-blind"
+        },
+        {
+          "id": "15711247434112",
+          "type": "product",
+          "title": "Candice Blossom Roller Blind",
+          "handle": "candice-blossom-roller-blind"
+        },
+        {
+          "id": "15734276981120",
+          "type": "product",
+          "title": "Corsica White Roller Blind",
+          "handle": "corsica-white"
+        },
+        {
+          "id": "15734277308800",
+          "type": "product",
+          "title": "Candence White Roller Blind",
+          "handle": "cadence-white"
+        },
+        {
+          "id": "15734277669248",
+          "type": "product",
+          "title": "Florence White Roller Blind",
+          "handle": "florence-white"
+        },
+        {
+          "id": "15734277800320",
+          "type": "product",
+          "title": "Florence Peach Roller Blind",
+          "handle": "florence-peach"
+        },
+        {
+          "id": "15734277964160",
+          "type": "product",
+          "title": "Florence Green Roller Blind",
+          "handle": "florence-green"
+        },
+        {
+          "id": "15734278095232",
+          "type": "product",
+          "title": "Florence Beige Roller Blind",
+          "handle": "florence-beige"
+        },
+        {
+          "id": "15734279700864",
+          "type": "product",
+          "title": "Corsica Ivory Roller Blind",
+          "handle": "corsica-ivory"
+        },
+        {
+          "id": "15734279995776",
+          "type": "product",
+          "title": "Corsica Grey Roller Blind",
+          "handle": "corsica-grey"
+        },
+        {
+          "id": "15734280257920",
+          "type": "product",
+          "title": "Corsica Cream Roller Blind",
+          "handle": "corsica-cream"
+        },
+        {
+          "id": "15734296904064",
+          "type": "product",
+          "title": "Origin Blackout White Roller Blind",
+          "handle": "origin-blackout-white"
+        },
+        {
+          "id": "15734304014720",
+          "type": "product",
+          "title": "Origin Blackout Grey Roller Blind",
+          "handle": "origin-blackout-grey"
+        },
+        {
+          "id": "15734304244096",
+          "type": "product",
+          "title": "Origin Blackout Dark Grey Roller Blind",
+          "handle": "origin-blackout-dark-grey"
+        },
+        {
+          "id": "15734344941952",
+          "type": "product",
+          "title": "Candence Grey Roller Blind",
+          "handle": "cadence-grey"
+        },
+        {
+          "id": "15734357164416",
+          "type": "product",
+          "title": "Jude Malt Roller Blind",
+          "handle": "jude-malt"
+        },
+        {
+          "id": "15734357328256",
+          "type": "product",
+          "title": "Fleur Mist Roller Blind",
+          "handle": "fleur-mist"
+        },
+        {
+          "id": "15734357426560",
+          "type": "product",
+          "title": "Elma Snowdrop Roller Blind",
+          "handle": "elma-snowdrop"
+        },
+        {
+          "id": "15734357459328",
+          "type": "product",
+          "title": "Elma Chiffon Roller Blind",
+          "handle": "elma-chiffon"
+        },
+        {
+          "id": "15734358933888",
+          "type": "product",
+          "title": "Origin Blackout Black Roller Blind",
+          "handle": "origin-blackout-black"
+        },
+        {
+          "id": "15734359884160",
+          "type": "product",
+          "title": "Stratford Taupe Roller Blind",
+          "handle": "stratford-taupe"
+        },
+        {
+          "id": "15734359916928",
+          "type": "product",
+          "title": "Stratford Cream Roller Blind",
+          "handle": "stratford-cream"
+        },
+        {
+          "id": "15734360080768",
+          "type": "product",
+          "title": "Origin Blackout Cream Roller Blind",
+          "handle": "origin-blackout-cream"
+        },
+        {
+          "id": "15734360211840",
+          "type": "product",
+          "title": "Emery Cream Roller Blind",
+          "handle": "emery-cream"
+        },
+        {
+          "id": "15734363292032",
+          "type": "product",
+          "title": "Cairo Blackout Beige Roller Blind",
+          "handle": "origin-blackout-beige"
+        },
+        {
+          "id": "15734367093120",
+          "type": "product",
+          "title": "Elma Rose Roller Blind",
+          "handle": "elma-rose"
+        },
+        {
+          "id": "15734367355264",
+          "type": "product",
+          "title": "Elma Lavender Roller Blind",
+          "handle": "elma-lavender"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-a",
+      "bandId": "cml0jp5xz00003k7kstj5e8l2",
+      "band": "Roller - Band A",
+      "description": "OB Preview - Roller - Band A",
+      "representative": "unity-polaris-acorn-roller-blind",
+      "schema": {
+        "bandId": "cml0jp5xz00003k7kstj5e8l2",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15711268503936",
+          "type": "product",
+          "title": "Unity Polaris Acorn Roller Blind",
+          "handle": "unity-polaris-acorn-roller-blind"
+        },
+        {
+          "id": "15711268569472",
+          "type": "product",
+          "title": "Unity Polaris Apple Roller Blind",
+          "handle": "unity-polaris-apple-roller-blind"
+        },
+        {
+          "id": "15711268602240",
+          "type": "product",
+          "title": "Unity Polaris Baby Pink Roller Blind",
+          "handle": "unity-polaris-baby-pink-roller-blind"
+        },
+        {
+          "id": "15711268635008",
+          "type": "product",
+          "title": "Unity Polaris Bamboo Roller Blind",
+          "handle": "unity-polaris-bamboo-roller-blind"
+        },
+        {
+          "id": "15711268667776",
+          "type": "product",
+          "title": "Unity Polaris Black Roller Blind",
+          "handle": "unity-polaris-black-roller-blind"
+        },
+        {
+          "id": "15711268766080",
+          "type": "product",
+          "title": "Unity Polaris Brick Roller Blind",
+          "handle": "unity-polaris-brick-roller-blind"
+        },
+        {
+          "id": "15711268798848",
+          "type": "product",
+          "title": "Unity Polaris Champagne Roller Blind",
+          "handle": "unity-polaris-champagne-roller-blind"
+        },
+        {
+          "id": "15711268864384",
+          "type": "product",
+          "title": "Unity Polaris Deep Roller Blind",
+          "handle": "unity-polaris-deep-roller-blind"
+        },
+        {
+          "id": "15711268929920",
+          "type": "product",
+          "title": "Unity Polaris Desert Roller Blind",
+          "handle": "unity-polaris-desert-roller-blind"
+        },
+        {
+          "id": "15711268995456",
+          "type": "product",
+          "title": "Unity Polaris Fog Roller Blind",
+          "handle": "unity-polaris-fog-roller-blind"
+        },
+        {
+          "id": "15711269028224",
+          "type": "product",
+          "title": "Unity Polaris Ice Roller Blind",
+          "handle": "unity-polaris-ice-roller-blind"
+        },
+        {
+          "id": "15711269060992",
+          "type": "product",
+          "title": "Unity Polaris Lilac Roller Blind",
+          "handle": "unity-polaris-lilac-roller-blind"
+        },
+        {
+          "id": "15711269093760",
+          "type": "product",
+          "title": "Unity Polaris Lime Roller Blind",
+          "handle": "unity-polaris-lime-roller-blind"
+        },
+        {
+          "id": "15711269192064",
+          "type": "product",
+          "title": "Unity Polaris Oak Roller Blind",
+          "handle": "unity-polaris-oak-roller-blind"
+        },
+        {
+          "id": "15711269224832",
+          "type": "product",
+          "title": "Unity Polaris Pond Roller Blind",
+          "handle": "unity-polaris-pond-roller-blind"
+        },
+        {
+          "id": "15711269323136",
+          "type": "product",
+          "title": "Unity Polaris Poppy Roller Blind",
+          "handle": "unity-polaris-poppy-roller-blind"
+        },
+        {
+          "id": "15711269355904",
+          "type": "product",
+          "title": "Unity Polaris Pumpkin Roller Blind",
+          "handle": "unity-polaris-pumpkin-roller-blind"
+        },
+        {
+          "id": "15711269388672",
+          "type": "product",
+          "title": "Unity Polaris Rasberry Roller Blind",
+          "handle": "unity-polaris-rasberry-roller-blind"
+        },
+        {
+          "id": "15711269421440",
+          "type": "product",
+          "title": "Unity Polaris Rose Roller Blind",
+          "handle": "unity-polaris-rose-roller-blind"
+        },
+        {
+          "id": "15711269486976",
+          "type": "product",
+          "title": "Unity Polaris Sand Roller Blind",
+          "handle": "unity-polaris-sand-roller-blind"
+        },
+        {
+          "id": "15711269519744",
+          "type": "product",
+          "title": "Unity Polaris Sky Roller Blind",
+          "handle": "unity-polaris-sky-roller-blind"
+        },
+        {
+          "id": "15711269618048",
+          "type": "product",
+          "title": "Unity Polaris Steel Roller Blind",
+          "handle": "unity-polaris-steel-roller-blind"
+        },
+        {
+          "id": "15711269716352",
+          "type": "product",
+          "title": "Unity Polaris Stone Roller Blind",
+          "handle": "unity-polaris-stone-roller-blind"
+        },
+        {
+          "id": "15711269749120",
+          "type": "product",
+          "title": "Unity Polaris Thunder Roller Blind",
+          "handle": "unity-polaris-thunder-roller-blind"
+        },
+        {
+          "id": "15711269781888",
+          "type": "product",
+          "title": "Unity Polaris Twilight Roller Blind",
+          "handle": "unity-polaris-twilight-roller-blind"
+        },
+        {
+          "id": "15711269814656",
+          "type": "product",
+          "title": "Unity Polaris Willow Roller Blind",
+          "handle": "unity-polaris-willow-roller-blind"
+        },
+        {
+          "id": "15734273606016",
+          "type": "product",
+          "title": "Unity Polaris Sky Roller Blind",
+          "handle": "unity-sky-roller-blind"
+        },
+        {
+          "id": "15734273802624",
+          "type": "product",
+          "title": "Unity Polaris Poppy Roller Blind",
+          "handle": "unity-poppy-roller-blind"
+        },
+        {
+          "id": "15734273933696",
+          "type": "product",
+          "title": "Unity Polaris Desert Roller Blind",
+          "handle": "unity-desert-roller-blind"
+        },
+        {
+          "id": "15734274097536",
+          "type": "product",
+          "title": "Unity Polaris Champagne Roller Blind",
+          "handle": "unity-champagne-roller-blind"
+        },
+        {
+          "id": "15734274261376",
+          "type": "product",
+          "title": "Unity Polaris Steel Roller Blind",
+          "handle": "unity-steel-roller-blind"
+        },
+        {
+          "id": "15734274392448",
+          "type": "product",
+          "title": "Unity Polaris Rose Roller Blind",
+          "handle": "unity-rose-roller-blind"
+        },
+        {
+          "id": "15734274556288",
+          "type": "product",
+          "title": "Unity Polaris Oak Roller Blind",
+          "handle": "unity-oak-roller-blind"
+        },
+        {
+          "id": "15734274752896",
+          "type": "product",
+          "title": "Unity Polaris Lime Roller Blind",
+          "handle": "unity-lime-roller-blind"
+        },
+        {
+          "id": "15734274851200",
+          "type": "product",
+          "title": "Unity Polaris Ice Roller Blind",
+          "handle": "unity-ice-roller-blind"
+        },
+        {
+          "id": "15734275015040",
+          "type": "product",
+          "title": "Unity Polaris Fog Roller Blind",
+          "handle": "unity-fog-roller-blind"
+        },
+        {
+          "id": "15734275146112",
+          "type": "product",
+          "title": "Unity Polaris Brick Roller Blind",
+          "handle": "unity-brick-roller-blind"
+        },
+        {
+          "id": "15734275277184",
+          "type": "product",
+          "title": "Unity Polaris Black Roller Blind",
+          "handle": "unity-black-roller-blind"
+        },
+        {
+          "id": "15734275309952",
+          "type": "product",
+          "title": "Unity Polaris Bamboo Roller Blind",
+          "handle": "unity-bamboo-roller-blind"
+        },
+        {
+          "id": "15734275342720",
+          "type": "product",
+          "title": "Unity Polaris Acorn Roller Blind",
+          "handle": "unity-acorn-roller-blind"
+        },
+        {
+          "id": "15734275375488",
+          "type": "product",
+          "title": "Unity Polaris Twilight Roller Blind",
+          "handle": "unity-twilight-roller-blind"
+        },
+        {
+          "id": "15734275408256",
+          "type": "product",
+          "title": "Unity Polaris Sand Roller Blind",
+          "handle": "unity-sand-roller-blind"
+        },
+        {
+          "id": "15734275441024",
+          "type": "product",
+          "title": "Unity Polaris Rasberry Roller Blind",
+          "handle": "unity-rasberry-roller-blind"
+        },
+        {
+          "id": "15734275473792",
+          "type": "product",
+          "title": "Unity Polaris Pumpkin Roller Blind",
+          "handle": "unity-pumpkin-roller-blind"
+        },
+        {
+          "id": "15734275572096",
+          "type": "product",
+          "title": "Unity Polaris Deep Roller Blind",
+          "handle": "unity-deep-roller-blind"
+        },
+        {
+          "id": "15734275604864",
+          "type": "product",
+          "title": "Unity Polaris Apple Roller Blind",
+          "handle": "unity-apple-roller-blind"
+        },
+        {
+          "id": "15734275637632",
+          "type": "product",
+          "title": "Unity Polaris Willow Roller Blind",
+          "handle": "unity-willow-roller-blind"
+        },
+        {
+          "id": "15734275670400",
+          "type": "product",
+          "title": "Unity Polaris Thunder Roller Blind",
+          "handle": "unity-thunder-roller-blind"
+        },
+        {
+          "id": "15734275703168",
+          "type": "product",
+          "title": "Unity Polaris Lilac Roller Blind",
+          "handle": "unity-lilac-roller-blind"
+        },
+        {
+          "id": "15734275735936",
+          "type": "product",
+          "title": "Unity Polaris Stone Roller Blind",
+          "handle": "unity-stone-roller-blind"
+        },
+        {
+          "id": "15734275768704",
+          "type": "product",
+          "title": "Unity Polaris Pond Roller Blind",
+          "handle": "unity-pond-1"
+        },
+        {
+          "id": "15734275801472",
+          "type": "product",
+          "title": "Unity Polaris Baby Pink Roller Blind",
+          "handle": "unity-baby-pink-1"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-e",
+      "bandId": "cmld6nguv0000eo7kcdjirrcd",
+      "band": "Roller - Band E",
+      "description": "OB Preview - Roller - Band E",
+      "representative": "atlantex-asc-beige",
+      "schema": {
+        "bandId": "cmld6nguv0000eo7kcdjirrcd",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15734275834240",
+          "type": "product",
+          "title": "Atlantex Asc Beige Roller Blind",
+          "handle": "atlantex-asc-beige"
+        },
+        {
+          "id": "15734276096384",
+          "type": "product",
+          "title": "Palette Bright White Roller Blind",
+          "handle": "palette-bright-white"
+        },
+        {
+          "id": "15734276653440",
+          "type": "product",
+          "title": "Marine White Roller Blind",
+          "handle": "marine-white"
+        },
+        {
+          "id": "15734278226304",
+          "type": "product",
+          "title": "Devon Porcelain Roller Blind",
+          "handle": "devon-porcelain"
+        },
+        {
+          "id": "15734278357376",
+          "type": "product",
+          "title": "Devon Lace Closeup Roller Blind",
+          "handle": "devon-lace-closeup"
+        },
+        {
+          "id": "15734278422912",
+          "type": "product",
+          "title": "Devon Aluminium Roller Blind",
+          "handle": "devon-aluminium"
+        },
+        {
+          "id": "15734281470336",
+          "type": "product",
+          "title": "Palette Sunshine Roller Blind",
+          "handle": "palette-sunshine"
+        },
+        {
+          "id": "15734283075968",
+          "type": "product",
+          "title": "Atlantex Silver Roller Blind",
+          "handle": "atlantex-silver"
+        },
+        {
+          "id": "15734283403648",
+          "type": "product",
+          "title": "Atlantex Asc Silver Roller Blind",
+          "handle": "atlantex-asc-silver"
+        },
+        {
+          "id": "15734285173120",
+          "type": "product",
+          "title": "Palette Redcurrant Roller Blind",
+          "handle": "palette-redcurrant"
+        },
+        {
+          "id": "15734285697408",
+          "type": "product",
+          "title": "Palette Copper Roller Blind",
+          "handle": "palette-copper"
+        },
+        {
+          "id": "15734286188928",
+          "type": "product",
+          "title": "Atlantex Cherry Roller Blind",
+          "handle": "atlantex-cherry"
+        },
+        {
+          "id": "15734286647680",
+          "type": "product",
+          "title": "Atlantex Asc Cherry Roller Blind",
+          "handle": "atlantex-asc-cherry"
+        },
+        {
+          "id": "15734287237504",
+          "type": "product",
+          "title": "Palette Dusky Pink Roller Blind",
+          "handle": "palette-dusky-pink"
+        },
+        {
+          "id": "15734287729024",
+          "type": "product",
+          "title": "Crossley Lilac Roller Blind",
+          "handle": "crossley-lilac"
+        },
+        {
+          "id": "15734288253312",
+          "type": "product",
+          "title": "Blake Plum Roller Blind",
+          "handle": "blake-plum"
+        },
+        {
+          "id": "15734297985408",
+          "type": "product",
+          "title": "Atlantex White Roller Blind",
+          "handle": "atlantex-white"
+        },
+        {
+          "id": "15734298313088",
+          "type": "product",
+          "title": "Atlantex Asc White Roller Blind",
+          "handle": "atlantex-asc-white"
+        },
+        {
+          "id": "15734302638464",
+          "type": "product",
+          "title": "Palette Iron Roller Blind",
+          "handle": "palette-iron"
+        },
+        {
+          "id": "15734302933376",
+          "type": "product",
+          "title": "Palette Grey Roller Blind",
+          "handle": "palette-grey"
+        },
+        {
+          "id": "15734303195520",
+          "type": "product",
+          "title": "Palette Charcoal Roller Blind",
+          "handle": "palette-charcoal"
+        },
+        {
+          "id": "15734305063296",
+          "type": "product",
+          "title": "Marine Light Grey Roller Blind",
+          "handle": "marine-light-grey"
+        },
+        {
+          "id": "15734305784192",
+          "type": "product",
+          "title": "Linenweave Iron Roller Blind",
+          "handle": "linenweave-iron"
+        },
+        {
+          "id": "15734306996608",
+          "type": "product",
+          "title": "Kaila White Roller Blind",
+          "handle": "kaila-white"
+        },
+        {
+          "id": "15734308307328",
+          "type": "product",
+          "title": "Crossley Sage Roller Blind",
+          "handle": "crossley-sage"
+        },
+        {
+          "id": "15734308995456",
+          "type": "product",
+          "title": "Crossley Mist Roller Blind",
+          "handle": "crossley-mist"
+        },
+        {
+          "id": "15734309519744",
+          "type": "product",
+          "title": "Crossley Graphite Roller Blind",
+          "handle": "crossley-graphite"
+        },
+        {
+          "id": "15734344221056",
+          "type": "product",
+          "title": "Crossley Dove Roller Blind",
+          "handle": "crossley-dove"
+        },
+        {
+          "id": "15734345826688",
+          "type": "product",
+          "title": "Atlantex Grey Roller Blind",
+          "handle": "atlantex-grey"
+        },
+        {
+          "id": "15734346154368",
+          "type": "product",
+          "title": "Atlantex Asc Grey Roller Blind",
+          "handle": "atlantex-asc-grey"
+        },
+        {
+          "id": "15734347202944",
+          "type": "product",
+          "title": "Palette Spring Roller Blind",
+          "handle": "palette-spring"
+        },
+        {
+          "id": "15734347465088",
+          "type": "product",
+          "title": "Palette Forest Green Roller Blind",
+          "handle": "palette-forest-green"
+        },
+        {
+          "id": "15734348054912",
+          "type": "product",
+          "title": "Blake Olive Roller Blind",
+          "handle": "blake-olive"
+        },
+        {
+          "id": "15734348284288",
+          "type": "product",
+          "title": "Atlantex Hunter Green Roller Blind",
+          "handle": "atlantex-hunter-green"
+        },
+        {
+          "id": "15734348611968",
+          "type": "product",
+          "title": "Atlantex Asc Hunter Green Roller Blind",
+          "handle": "atlantex-asc-hunter-green"
+        },
+        {
+          "id": "15734358770048",
+          "type": "product",
+          "title": "Palette Black Roller Blind",
+          "handle": "palette-black"
+        },
+        {
+          "id": "15734359490944",
+          "type": "product",
+          "title": "Atlantex Black Roller Blind",
+          "handle": "atlantex-black"
+        },
+        {
+          "id": "15734359622016",
+          "type": "product",
+          "title": "Atlantex Asc Black Roller Blind",
+          "handle": "atlantex-asc-black"
+        },
+        {
+          "id": "15734360015232",
+          "type": "product",
+          "title": "Palette Calico Roller Blind",
+          "handle": "palette-calico"
+        },
+        {
+          "id": "15734360179072",
+          "type": "product",
+          "title": "Kaila Smoke Roller Blind",
+          "handle": "kaila-smoke"
+        },
+        {
+          "id": "15734360342912",
+          "type": "product",
+          "title": "Blaine Oat Roller Blind",
+          "handle": "blaine-oat"
+        },
+        {
+          "id": "15734360408448",
+          "type": "product",
+          "title": "Atlantex Vanilla Roller Blind",
+          "handle": "atlantex-vanilla"
+        },
+        {
+          "id": "15734360441216",
+          "type": "product",
+          "title": "Atlantex Cream Roller Blind",
+          "handle": "atlantex-cream"
+        },
+        {
+          "id": "15734360473984",
+          "type": "product",
+          "title": "Atlantex Asc Vanilla Roller Blind",
+          "handle": "atlantex-asc-vanilla"
+        },
+        {
+          "id": "15734360506752",
+          "type": "product",
+          "title": "Atlantex Asc Stone Roller Blind",
+          "handle": "atlantex-asc-stone"
+        },
+        {
+          "id": "15734360539520",
+          "type": "product",
+          "title": "Atlantex Asc Cream Roller Blind",
+          "handle": "atlantex-asc-cream"
+        },
+        {
+          "id": "15734360572288",
+          "type": "product",
+          "title": "Palette Dark Blue Roller Blind",
+          "handle": "palette-dark-blue"
+        },
+        {
+          "id": "15734360867200",
+          "type": "product",
+          "title": "Atlantex Navy Roller Blind",
+          "handle": "atlantex-navy"
+        },
+        {
+          "id": "15734361096576",
+          "type": "product",
+          "title": "Atlantex Asc Navy Roller Blind",
+          "handle": "atlantex-asc-navy"
+        },
+        {
+          "id": "15734361850240",
+          "type": "product",
+          "title": "Palette Sky Roller Blind",
+          "handle": "palette-sky"
+        },
+        {
+          "id": "15734361981312",
+          "type": "product",
+          "title": "Atlantex Dark Blue Roller Blind",
+          "handle": "atlantex-dark-blue"
+        },
+        {
+          "id": "15734362177920",
+          "type": "product",
+          "title": "Atlantex Blue Roller Blind",
+          "handle": "atlantex-blue"
+        },
+        {
+          "id": "15734362308992",
+          "type": "product",
+          "title": "Atlantex Asc Dark Blue Roller Blind",
+          "handle": "atlantex-asc-dark-blue"
+        },
+        {
+          "id": "15734362472832",
+          "type": "product",
+          "title": "Atlantex Asc Blue Roller Blind",
+          "handle": "atlantex-asc-blue"
+        },
+        {
+          "id": "15734363128192",
+          "type": "product",
+          "title": "Crossley Spice Roller Blind",
+          "handle": "crossley-spice"
+        },
+        {
+          "id": "15734363160960",
+          "type": "product",
+          "title": "Atlantex Brown Roller Blind",
+          "handle": "atlantex-brown"
+        },
+        {
+          "id": "15734363259264",
+          "type": "product",
+          "title": "Palette Beige Roller Blind",
+          "handle": "palette-beige"
+        },
+        {
+          "id": "15734363390336",
+          "type": "product",
+          "title": "Linenweave Sand Roller Blind",
+          "handle": "linenweave-sand"
+        },
+        {
+          "id": "15734363521408",
+          "type": "product",
+          "title": "Atlantex Stone Roller Blind",
+          "handle": "atlantex-stone"
+        },
+        {
+          "id": "15734363554176",
+          "type": "product",
+          "title": "Atlantex Dark Beige Roller Blind",
+          "handle": "atlantex-dark-beige"
+        },
+        {
+          "id": "15734363586944",
+          "type": "product",
+          "title": "Atlantex Asc Dark Beige Roller Blind",
+          "handle": "atlantex-asc-dark-beige-1"
+        },
+        {
+          "id": "15734365749632",
+          "type": "product",
+          "title": "Zayan Tabacco Roller Blind",
+          "handle": "zayan-tabacco"
+        },
+        {
+          "id": "15734365847936",
+          "type": "product",
+          "title": "Sorrento Midnight Roller Blind",
+          "handle": "sorrento-midnight"
+        },
+        {
+          "id": "15734365880704",
+          "type": "product",
+          "title": "Sorrento Emerald Roller Blind",
+          "handle": "sorrento-emerald"
+        },
+        {
+          "id": "15734366044544",
+          "type": "product",
+          "title": "Ocho White Roller Blind",
+          "handle": "ocho-white"
+        },
+        {
+          "id": "15734366306688",
+          "type": "product",
+          "title": "Isabella White Roller Blind",
+          "handle": "isabella-white"
+        },
+        {
+          "id": "15734366339456",
+          "type": "product",
+          "title": "Isabella Tangerine Roller Blind",
+          "handle": "isabella-tangerine"
+        },
+        {
+          "id": "15734366404992",
+          "type": "product",
+          "title": "Isabella Cotton Roller Blind",
+          "handle": "isabella-cotton"
+        },
+        {
+          "id": "15734368108928",
+          "type": "product",
+          "title": "Atlantex Beige Roller Blind",
+          "handle": "atlantex-beige"
+        },
+        {
+          "id": "15734362931584",
+          "type": "product",
+          "title": "Palette Taupe Roller Blind",
+          "handle": "palette-taupe"
+        },
+        {
+          "id": "15734362997120",
+          "type": "product",
+          "title": "Palette Sand Roller Blind",
+          "handle": "palette-sand"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-premium",
+      "bandId": "741ae972-b467-4355-855f-356109e5c0d6",
+      "band": "Roller - Band Premium",
+      "description": "OB Preview - Roller - Band Premium",
+      "representative": "hudson-blackout-grey",
+      "schema": {
+        "bandId": "741ae972-b467-4355-855f-356109e5c0d6",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15734275867008",
+          "type": "product",
+          "title": "Hudson Blackout Grey Roller Blind",
+          "handle": "hudson-blackout-grey"
+        },
+        {
+          "id": "15734275932544",
+          "type": "product",
+          "title": "Deep Ivy Roller Blind",
+          "handle": "dawson-olive-1"
+        },
+        {
+          "id": "15734276030848",
+          "type": "product",
+          "title": "Panama Pro 3 White Roller Blind",
+          "handle": "panama-pro-3-white"
+        },
+        {
+          "id": "15734276063616",
+          "type": "product",
+          "title": "Panama Pro 1 White Roller Blind",
+          "handle": "panama-pro-1-white"
+        },
+        {
+          "id": "15734276129152",
+          "type": "product",
+          "title": "Orsen White Roller Blind",
+          "handle": "orsen-white"
+        },
+        {
+          "id": "15734277112192",
+          "type": "product",
+          "title": "Carey Blackout White Roller Blind",
+          "handle": "carey-blackout-white"
+        },
+        {
+          "id": "15734291136896",
+          "type": "product",
+          "title": "Lacie Blackout White Roller Blind",
+          "handle": "lacie-blackout-white"
+        },
+        {
+          "id": "15734291431808",
+          "type": "product",
+          "title": "Lacie Blackout Sand Roller Blind",
+          "handle": "lacie-blackout-sand"
+        },
+        {
+          "id": "15734291693952",
+          "type": "product",
+          "title": "Lacie Blackout Grey Roller Blind",
+          "handle": "lacie-blackout-grey"
+        },
+        {
+          "id": "15734293594496",
+          "type": "product",
+          "title": "Panama Pro 3 White Linen Roller Blind",
+          "handle": "panama-pro-3-white-linen"
+        },
+        {
+          "id": "15734293922176",
+          "type": "product",
+          "title": "Panama Pro 3 Linen Roller Blind",
+          "handle": "panama-pro-3-linen"
+        },
+        {
+          "id": "15734294217088",
+          "type": "product",
+          "title": "Panama Pro 1 White Linen Roller Blind",
+          "handle": "panama-pro-1-white-linen"
+        },
+        {
+          "id": "15734295658880",
+          "type": "product",
+          "title": "Panama Pro 3 White Pearl Roller Blind",
+          "handle": "panama-pro-3-white-pearl"
+        },
+        {
+          "id": "15734295986560",
+          "type": "product",
+          "title": "Panama Pro 1 White Pearl Roller Blind",
+          "handle": "panama-pro-1-white-pearl"
+        },
+        {
+          "id": "15734299984256",
+          "type": "product",
+          "title": "Paradiso Everglade Roller Blind",
+          "handle": "paradiso-everglade"
+        },
+        {
+          "id": "15734302146944",
+          "type": "product",
+          "title": "Panama Pro 3  Pearl Roller Blind",
+          "handle": "panama-pro-3-pearl"
+        },
+        {
+          "id": "15734302376320",
+          "type": "product",
+          "title": "Panama Pro 3 Black Pearl Roller Blind",
+          "handle": "panama-pro-3-black-pearl"
+        },
+        {
+          "id": "15734304768384",
+          "type": "product",
+          "title": "Monte Blackout Iron Roller Blind",
+          "handle": "monte-blackout-iron"
+        },
+        {
+          "id": "15734306046336",
+          "type": "product",
+          "title": "Linenweave Blackout Moonstone Roller Blind",
+          "handle": "linenweave-blackout-moonstone"
+        },
+        {
+          "id": "15734306406784",
+          "type": "product",
+          "title": "Linenweave Blackout Charcoal Roller Blind",
+          "handle": "linenweave-blackout-charcoal"
+        },
+        {
+          "id": "15734349922688",
+          "type": "product",
+          "title": "Sailor Indigo Roller Blind",
+          "handle": "sailor-indigo"
+        },
+        {
+          "id": "15734350217600",
+          "type": "product",
+          "title": "Rex Teal Roller Blind",
+          "handle": "rex-teal"
+        },
+        {
+          "id": "15734350446976",
+          "type": "product",
+          "title": "Nellie Grey Roller Blind",
+          "handle": "nellie-grey"
+        },
+        {
+          "id": "15734350741888",
+          "type": "product",
+          "title": "Magical Multi Roller Blind",
+          "handle": "magical-multi"
+        },
+        {
+          "id": "15734351069568",
+          "type": "product",
+          "title": "Magical Grey Roller Blind",
+          "handle": "magical-grey"
+        },
+        {
+          "id": "15734351430016",
+          "type": "product",
+          "title": "In The Jungle Multi Roller Blind",
+          "handle": "in-the-jungle-multi"
+        },
+        {
+          "id": "15734351757696",
+          "type": "product",
+          "title": "Happy Rainbows Multi Roller Blind",
+          "handle": "happy-rainbows-multi"
+        },
+        {
+          "id": "15734352249216",
+          "type": "product",
+          "title": "Flying High Charcoal Roller Blind",
+          "handle": "flying-high-charcoal"
+        },
+        {
+          "id": "15734352773504",
+          "type": "product",
+          "title": "Eunice Candy Roller Blind",
+          "handle": "eunice-candy"
+        },
+        {
+          "id": "15734353297792",
+          "type": "product",
+          "title": "Dory Marine Roller Blind",
+          "handle": "dory-marine"
+        },
+        {
+          "id": "15734353723776",
+          "type": "product",
+          "title": "Bizzie Navy Roller Blind",
+          "handle": "bizzie-navy"
+        },
+        {
+          "id": "15734354051456",
+          "type": "product",
+          "title": "Noelle Silver Roller Blind",
+          "handle": "noelle-silver"
+        },
+        {
+          "id": "15734354411904",
+          "type": "product",
+          "title": "Noelle Ice Roller Blind",
+          "handle": "noelle-ice"
+        },
+        {
+          "id": "15734355919232",
+          "type": "product",
+          "title": "Valentina Blackout Teal Roller Blind",
+          "handle": "valentina-blackout-teal"
+        },
+        {
+          "id": "15734356279680",
+          "type": "product",
+          "title": "Valentina Blackout Poppy Roller Blind",
+          "handle": "valentina-blackout-poppy"
+        },
+        {
+          "id": "15734356705664",
+          "type": "product",
+          "title": "Valentina Blackout Blush Roller Blind",
+          "handle": "valentina-blackout-blush"
+        },
+        {
+          "id": "15734356935040",
+          "type": "product",
+          "title": "Valentina Blackout Amethyst Roller Blind",
+          "handle": "valentina-blackout-amethyst"
+        },
+        {
+          "id": "15734357197184",
+          "type": "product",
+          "title": "Gracie Sunshine Roller Blind",
+          "handle": "gracie-sunshine"
+        },
+        {
+          "id": "15734357361024",
+          "type": "product",
+          "title": "Elora White Roller Blind",
+          "handle": "elora-white"
+        },
+        {
+          "id": "15734357393792",
+          "type": "product",
+          "title": "Elora Grey Roller Blind",
+          "handle": "elora-grey"
+        },
+        {
+          "id": "15734357524864",
+          "type": "product",
+          "title": "Carey Blackout Silver Roller Blind",
+          "handle": "carey-blackout-silver"
+        },
+        {
+          "id": "15734358049152",
+          "type": "product",
+          "title": "Anastasia Blackout Smoke Roller Blind",
+          "handle": "anastasia-blackout-smoke"
+        },
+        {
+          "id": "15734358344064",
+          "type": "product",
+          "title": "Anastasia Blackout Peacock Roller Blind",
+          "handle": "anastasia-blackout-peacock"
+        },
+        {
+          "id": "15734358507904",
+          "type": "product",
+          "title": "Tennessee Jet Roller Blind",
+          "handle": "tennessee-jet"
+        },
+        {
+          "id": "15734358638976",
+          "type": "product",
+          "title": "Panama Pro 3 Black Roller Blind",
+          "handle": "panama-pro-3-black"
+        },
+        {
+          "id": "15734359851392",
+          "type": "product",
+          "title": "Tennessee Parchment Roller Blind",
+          "handle": "tennessee-parchment"
+        },
+        {
+          "id": "15734360113536",
+          "type": "product",
+          "title": "Monte Blackout Grotto Roller Blind",
+          "handle": "monte-blackout-grotto"
+        },
+        {
+          "id": "15734362636672",
+          "type": "product",
+          "title": "Tennessee Smoke Roller Blind",
+          "handle": "tennessee-smoke"
+        },
+        {
+          "id": "15734362734976",
+          "type": "product",
+          "title": "Tennessee Sand Roller Blind",
+          "handle": "tennessee-sand"
+        },
+        {
+          "id": "15734363324800",
+          "type": "product",
+          "title": "Monte Blackout Praline Roller Blind",
+          "handle": "monte-blackout-praline"
+        },
+        {
+          "id": "15734363423104",
+          "type": "product",
+          "title": "Hendrick Beige Roller Blind",
+          "handle": "hendrick-beige"
+        },
+        {
+          "id": "15734366175616",
+          "type": "product",
+          "title": "Maddox Blackout Roller Blind",
+          "handle": "maddox-blackout"
+        },
+        {
+          "id": "15734366208384",
+          "type": "product",
+          "title": "Lydia Pastel Roller Blind",
+          "handle": "lydia-pastel"
+        },
+        {
+          "id": "15734366241152",
+          "type": "product",
+          "title": "Lenny Navy Roller Blind",
+          "handle": "lenny-navy"
+        },
+        {
+          "id": "15734366536064",
+          "type": "product",
+          "title": "Hudson White Roller Blind",
+          "handle": "hudson-white"
+        },
+        {
+          "id": "15734366667136",
+          "type": "product",
+          "title": "Hudson Blackout Roller Blind",
+          "handle": "hudson-blackout"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-f",
+      "bandId": "e345bcab-0e1e-48d6-be97-f25ddae3496f",
+      "band": "Roller - Band F",
+      "description": "OB Preview - Roller - Band F",
+      "representative": "sawyer-dove",
+      "schema": {
+        "bandId": "e345bcab-0e1e-48d6-be97-f25ddae3496f",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15734275998080",
+          "type": "product",
+          "title": "Sawyer Dove Roller Blind",
+          "handle": "sawyer-dove"
+        },
+        {
+          "id": "15734276358528",
+          "type": "product",
+          "title": "Monte Whitewash Roller Blind",
+          "handle": "monte-whitewash"
+        },
+        {
+          "id": "15734276850048",
+          "type": "product",
+          "title": "Cubik Snow Roller Blind",
+          "handle": "cubik-snow"
+        },
+        {
+          "id": "15734277538176",
+          "type": "product",
+          "title": "Banlight Duo Fr Bright White Roller Blind",
+          "handle": "banlight-duo-fr-bright-white"
+        },
+        {
+          "id": "15734278553984",
+          "type": "product",
+          "title": "Romain Turquoisre Roller Blind",
+          "handle": "romain-turquoisre"
+        },
+        {
+          "id": "15734278750592",
+          "type": "product",
+          "title": "Romain Shadow Roller Blind",
+          "handle": "romain-shadow"
+        },
+        {
+          "id": "15734279045504",
+          "type": "product",
+          "title": "Romain Hazelnut Roller Blind",
+          "handle": "romain-hazelnut"
+        },
+        {
+          "id": "15734279405952",
+          "type": "product",
+          "title": "Romain Crimson Roller Blind",
+          "handle": "romain-crimson"
+        },
+        {
+          "id": "15734280552832",
+          "type": "product",
+          "title": "Carrington Ochre Roller Blind",
+          "handle": "carrington-ochre"
+        },
+        {
+          "id": "15734280913280",
+          "type": "product",
+          "title": "Carrington Navy Roller Blind",
+          "handle": "carrington-navy"
+        },
+        {
+          "id": "15734281208192",
+          "type": "product",
+          "title": "Zahra Mustard Roller Blind",
+          "handle": "zahra-mustard"
+        },
+        {
+          "id": "15734281765248",
+          "type": "product",
+          "title": "Makira Mustard Roller Blind",
+          "handle": "makira-mustard"
+        },
+        {
+          "id": "15734282027392",
+          "type": "product",
+          "title": "Quentin Royal Roller Blind",
+          "handle": "quentin-royal"
+        },
+        {
+          "id": "15734282355072",
+          "type": "product",
+          "title": "Quentin Mauve Roller Blind",
+          "handle": "quentin-mauve"
+        },
+        {
+          "id": "15734282846592",
+          "type": "product",
+          "title": "Banlight Duo Fr Silver Roller Blind",
+          "handle": "banlight-duo-fr-silver"
+        },
+        {
+          "id": "15734283993472",
+          "type": "product",
+          "title": "Alta Silver Roller Blind",
+          "handle": "alta-silver"
+        },
+        {
+          "id": "15734284452224",
+          "type": "product",
+          "title": "Zahra Red Roller Blind",
+          "handle": "zahra-red"
+        },
+        {
+          "id": "15734288875904",
+          "type": "product",
+          "title": "Makira Tiger Roller Blind",
+          "handle": "makira-tiger"
+        },
+        {
+          "id": "15734289858944",
+          "type": "product",
+          "title": "Loretta White Roller Blind",
+          "handle": "loretta-white"
+        },
+        {
+          "id": "15734290186624",
+          "type": "product",
+          "title": "Loretta Silver Roller Blind",
+          "handle": "loretta-silver"
+        },
+        {
+          "id": "15734290350464",
+          "type": "product",
+          "title": "Lacie White Roller Blind",
+          "handle": "lacie-white"
+        },
+        {
+          "id": "15734290579840",
+          "type": "product",
+          "title": "Lacie Sand Roller Blind",
+          "handle": "lacie-sand"
+        },
+        {
+          "id": "15734290874752",
+          "type": "product",
+          "title": "Lacie Grey Roller Blind",
+          "handle": "lacie-grey"
+        },
+        {
+          "id": "15734292971904",
+          "type": "product",
+          "title": "Vinnie Ginger Roller Blind",
+          "handle": "vinnie-ginger"
+        },
+        {
+          "id": "15734293299584",
+          "type": "product",
+          "title": "Quentin Linen Roller Blind",
+          "handle": "quentin-linen"
+        },
+        {
+          "id": "15734294512000",
+          "type": "product",
+          "title": "Banlight Duo Fr Linen Roller Blind",
+          "handle": "banlight-duo-fr-linen"
+        },
+        {
+          "id": "15734295003520",
+          "type": "product",
+          "title": "Perrie Snow Roller Blind",
+          "handle": "perrie-snow"
+        },
+        {
+          "id": "15734295331200",
+          "type": "product",
+          "title": "Perrie Milk Roller Blind",
+          "handle": "perrie-milk"
+        },
+        {
+          "id": "15734297624960",
+          "type": "product",
+          "title": "Makira Glacier Roller Blind",
+          "handle": "makira-glacier"
+        },
+        {
+          "id": "15734298739072",
+          "type": "product",
+          "title": "Arundel Ivory Roller Blind",
+          "handle": "arundel-ivory"
+        },
+        {
+          "id": "15734299066752",
+          "type": "product",
+          "title": "Alta Ice Roller Blind",
+          "handle": "alta-ice"
+        },
+        {
+          "id": "15734299558272",
+          "type": "product",
+          "title": "Alta Blackout Frost Roller Blind",
+          "handle": "alta-blackout-frost"
+        },
+        {
+          "id": "15734300377472",
+          "type": "product",
+          "title": "Sawyer Mist Roller Blind",
+          "handle": "sawyer-mist"
+        },
+        {
+          "id": "15734301294976",
+          "type": "product",
+          "title": "Quentin Soot Roller Blind",
+          "handle": "quentin-soot"
+        },
+        {
+          "id": "15734301589888",
+          "type": "product",
+          "title": "Perrie Putty Roller Blind",
+          "handle": "perrie-putty"
+        },
+        {
+          "id": "15734301917568",
+          "type": "product",
+          "title": "Perrie Iron Roller Blind",
+          "handle": "perrie-iron"
+        },
+        {
+          "id": "15734304440704",
+          "type": "product",
+          "title": "Monte Cinder Roller Blind",
+          "handle": "monte-cinder"
+        },
+        {
+          "id": "15734305423744",
+          "type": "product",
+          "title": "Mariella Charcoal Roller Blind",
+          "handle": "mariella-charcoal"
+        },
+        {
+          "id": "15734345499008",
+          "type": "product",
+          "title": "Banlight Duo Fr Charcoal Roller Blind",
+          "handle": "banlight-duo-fr-charcoal"
+        },
+        {
+          "id": "15734346514816",
+          "type": "product",
+          "title": "Alta Blackout Platinum Roller Blind",
+          "handle": "alta-blackout-platinum"
+        },
+        {
+          "id": "15734346875264",
+          "type": "product",
+          "title": "Perrie Forest Roller Blind",
+          "handle": "perrie-forest"
+        },
+        {
+          "id": "15734348906880",
+          "type": "product",
+          "title": "Sawyer Canary Roller Blind",
+          "handle": "sawyer-canary"
+        },
+        {
+          "id": "15734354837888",
+          "type": "product",
+          "title": "Valentina Teal Roller Blind",
+          "handle": "valentina-teal"
+        },
+        {
+          "id": "15734355231104",
+          "type": "product",
+          "title": "Valentina Poppy Roller Blind",
+          "handle": "valentina-poppy"
+        },
+        {
+          "id": "15734355591552",
+          "type": "product",
+          "title": "Valentina Blush Roller Blind",
+          "handle": "valentina-blush"
+        },
+        {
+          "id": "15734356967808",
+          "type": "product",
+          "title": "Valentina Amethyst Roller Blind",
+          "handle": "valentina-amethyst"
+        },
+        {
+          "id": "15734357000576",
+          "type": "product",
+          "title": "Peyton White Roller Blind",
+          "handle": "peyton-white"
+        },
+        {
+          "id": "15734357033344",
+          "type": "product",
+          "title": "Peyton Noir Roller Blind",
+          "handle": "peyton-noir"
+        },
+        {
+          "id": "15734357066112",
+          "type": "product",
+          "title": "Peyton Ivory Roller Blind",
+          "handle": "peyton-ivory"
+        },
+        {
+          "id": "15734357098880",
+          "type": "product",
+          "title": "Peyton Antique Roller Blind",
+          "handle": "peyton-antique"
+        },
+        {
+          "id": "15734357131648",
+          "type": "product",
+          "title": "Molina White Roller Blind",
+          "handle": "molina-white"
+        },
+        {
+          "id": "15734357688704",
+          "type": "product",
+          "title": "Anastasia Smoke Roller Blind",
+          "handle": "anastasia-smoke"
+        },
+        {
+          "id": "15734357721472",
+          "type": "product",
+          "title": "Anastasia Peacock Roller Blind",
+          "handle": "anastasia-peacock"
+        },
+        {
+          "id": "15734359327104",
+          "type": "product",
+          "title": "Banlight Duo Fr Black Roller Blind",
+          "handle": "banlight-duo-fr-black"
+        },
+        {
+          "id": "15734359753088",
+          "type": "product",
+          "title": "Arundel Charcoal Roller Blind",
+          "handle": "arundel-charcoal"
+        },
+        {
+          "id": "15734359949696",
+          "type": "product",
+          "title": "Sawyer Fawn Roller Blind",
+          "handle": "sawyer-fawn"
+        },
+        {
+          "id": "15734360146304",
+          "type": "product",
+          "title": "Makira Cloud Cream Roller Blind",
+          "handle": "makira-cloud-cream"
+        },
+        {
+          "id": "15734360244608",
+          "type": "product",
+          "title": "Cubik Ivory Roller Blind",
+          "handle": "cubik-ivory"
+        },
+        {
+          "id": "15734360375680",
+          "type": "product",
+          "title": "Banlight Duo Fr Calico Roller Blind",
+          "handle": "banlight-duo-fr-calico"
+        },
+        {
+          "id": "15734360605056",
+          "type": "product",
+          "title": "Cubik Navy Roller Blind",
+          "handle": "cubik-navy"
+        },
+        {
+          "id": "15734360637824",
+          "type": "product",
+          "title": "Banlight Duo Fr Navy Roller Blind",
+          "handle": "banlight-duo-fr-navy"
+        },
+        {
+          "id": "15734361457024",
+          "type": "product",
+          "title": "Rowan Blue Roller Blind",
+          "handle": "rowan-blue"
+        },
+        {
+          "id": "15734361588096",
+          "type": "product",
+          "title": "Perrie Marine Roller Blind",
+          "handle": "perrie-marine"
+        },
+        {
+          "id": "15734362767744",
+          "type": "product",
+          "title": "Sawyer Coffee Roller Blind",
+          "handle": "sawyer-coffee"
+        },
+        {
+          "id": "15734362833280",
+          "type": "product",
+          "title": "Perrie Granola Roller Blind",
+          "handle": "perrie-granola"
+        },
+        {
+          "id": "15734363193728",
+          "type": "product",
+          "title": "Perrie Oatmeal Roller Blind",
+          "handle": "perrie-oatmeal"
+        },
+        {
+          "id": "15734363226496",
+          "type": "product",
+          "title": "Perrie Lemon Roller Blind",
+          "handle": "perrie-lemon"
+        },
+        {
+          "id": "15734363357568",
+          "type": "product",
+          "title": "Monte Almond Roller Blind",
+          "handle": "monte-almond"
+        },
+        {
+          "id": "15734363455872",
+          "type": "product",
+          "title": "Banlight Duo Fr Beige Roller Blind",
+          "handle": "banlight-duo-fr-beige"
+        },
+        {
+          "id": "15734363718016",
+          "type": "product",
+          "title": "Urban Fr Grey Roller Blind",
+          "handle": "urban-fr-grey"
+        },
+        {
+          "id": "15734364045696",
+          "type": "product",
+          "title": "Urban Fr Ecru Roller Blind",
+          "handle": "urban-fr-ecru"
+        },
+        {
+          "id": "15734364275072",
+          "type": "product",
+          "title": "Urban Fr Dark Grey Roller Blind",
+          "handle": "urban-fr-dark-grey"
+        },
+        {
+          "id": "15734364406144",
+          "type": "product",
+          "title": "Urban Fr Cream Roller Blind",
+          "handle": "urban-fr-cream"
+        },
+        {
+          "id": "15734364569984",
+          "type": "product",
+          "title": "Urban Fr Bright White Roller Blind",
+          "handle": "urban-fr-bright-white"
+        },
+        {
+          "id": "15734364701056",
+          "type": "product",
+          "title": "Urban Fr Blue Roller Blind",
+          "handle": "urban-fr-blue"
+        },
+        {
+          "id": "15734364864896",
+          "type": "product",
+          "title": "Urban Fr Black Roller Blind",
+          "handle": "urban-fr-black"
+        },
+        {
+          "id": "15734365028736",
+          "type": "product",
+          "title": "Urban Fr Beige Roller Blind",
+          "handle": "urban-fr-beige"
+        },
+        {
+          "id": "15734365782400",
+          "type": "product",
+          "title": "Torin Rose Roller Blind",
+          "handle": "torin-rose"
+        },
+        {
+          "id": "15734365815168",
+          "type": "product",
+          "title": "Torin Ocean Roller Blind",
+          "handle": "torin-ocean"
+        },
+        {
+          "id": "15734365913472",
+          "type": "product",
+          "title": "Sorrell Red Roller Blind",
+          "handle": "sorrell-red"
+        },
+        {
+          "id": "15734365946240",
+          "type": "product",
+          "title": "Sorrell Lavender Roller Blind",
+          "handle": "sorrell-lavender"
+        },
+        {
+          "id": "15734365979008",
+          "type": "product",
+          "title": "Sorrell Grey Roller Blind",
+          "handle": "sorrell-grey"
+        },
+        {
+          "id": "15734366011776",
+          "type": "product",
+          "title": "Selene Apricot Roller Blind",
+          "handle": "selene-apricot"
+        },
+        {
+          "id": "15734366077312",
+          "type": "product",
+          "title": "Maddox Gunmetal Roller Blind",
+          "handle": "maddox-gunmetal"
+        },
+        {
+          "id": "15734366110080",
+          "type": "product",
+          "title": "Maddox Coal Roller Blind",
+          "handle": "maddox-coal"
+        },
+        {
+          "id": "15734367519104",
+          "type": "product",
+          "title": "Dawson Olive Roller Blind",
+          "handle": "dawson-olive"
+        },
+        {
+          "id": "15734367682944",
+          "type": "product",
+          "title": "Dawson Midnight Roller Blind",
+          "handle": "dawson-midnight"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-g",
+      "bandId": "adc46bc8-832e-4f3c-a6e2-9d6ea9c5fe07",
+      "band": "Roller - Band G",
+      "description": "OB Preview - Roller - Band G",
+      "representative": "strata-asc-snowdrop",
+      "schema": {
+        "bandId": "adc46bc8-832e-4f3c-a6e2-9d6ea9c5fe07",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15734278455680",
+          "type": "product",
+          "title": "Strata Asc Snowdrop Roller Blind",
+          "handle": "strata-asc-snowdrop"
+        },
+        {
+          "id": "15734278488448",
+          "type": "product",
+          "title": "Strata Asc Iron Roller Blind",
+          "handle": "strata-asc-iron"
+        },
+        {
+          "id": "15734278521216",
+          "type": "product",
+          "title": "Strata Asc Calico Roller Blind",
+          "handle": "strata-asc-calico"
+        },
+        {
+          "id": "15734282649984",
+          "type": "product",
+          "title": "Gavi Silver Roller Blind",
+          "handle": "gavi-silver"
+        },
+        {
+          "id": "15734289203584",
+          "type": "product",
+          "title": "Sisi Soft Grey Roller Blind",
+          "handle": "sisi-soft-grey"
+        },
+        {
+          "id": "15734289531264",
+          "type": "product",
+          "title": "Serenity Mono Roller Blind",
+          "handle": "serenity-mono"
+        },
+        {
+          "id": "15734291988864",
+          "type": "product",
+          "title": "Clarice Pewter Roller Blind",
+          "handle": "clarice-pewter-1"
+        },
+        {
+          "id": "15734292349312",
+          "type": "product",
+          "title": "Clarice Fern Roller Blind",
+          "handle": "clarice-fern"
+        },
+        {
+          "id": "15734292644224",
+          "type": "product",
+          "title": "Clarice Azure Roller Blind",
+          "handle": "clarice-azure"
+        },
+        {
+          "id": "15734294708608",
+          "type": "product",
+          "title": "Reeva Frost Roller Blind",
+          "handle": "reeva-frost"
+        },
+        {
+          "id": "15734300836224",
+          "type": "product",
+          "title": "Reeva Titanium Roller Blind",
+          "handle": "reeva-titanium"
+        },
+        {
+          "id": "15734306734464",
+          "type": "product",
+          "title": "Kuta Grey Roller Blind",
+          "handle": "kuta-grey"
+        },
+        {
+          "id": "15734307422592",
+          "type": "product",
+          "title": "Hagen Mink Roller Blind",
+          "handle": "hagen-mink"
+        },
+        {
+          "id": "15734307815808",
+          "type": "product",
+          "title": "Gavi Platinum Roller Blind",
+          "handle": "gavi-platinum"
+        },
+        {
+          "id": "15734344614272",
+          "type": "product",
+          "title": "Carey Grey Roller Blind",
+          "handle": "carey-grey"
+        },
+        {
+          "id": "15734345236864",
+          "type": "product",
+          "title": "Boston Fr Shadow Roller Blind",
+          "handle": "boston-fr-shadow"
+        },
+        {
+          "id": "15734347760000",
+          "type": "product",
+          "title": "Darcy Aqua Roller Blind",
+          "handle": "darcy-aqua"
+        },
+        {
+          "id": "15734349267328",
+          "type": "product",
+          "title": "Gavi Gold Roller Blind",
+          "handle": "gavi-gold"
+        },
+        {
+          "id": "15734349627776",
+          "type": "product",
+          "title": "Darcy Gold Roller Blind",
+          "handle": "darcy-gold"
+        },
+        {
+          "id": "15734357229952",
+          "type": "product",
+          "title": "Florintina Rust Roller Blind",
+          "handle": "florintina-rust"
+        },
+        {
+          "id": "15734357262720",
+          "type": "product",
+          "title": "Florentina Iris Roller Blind",
+          "handle": "florentina-iris"
+        },
+        {
+          "id": "15734357295488",
+          "type": "product",
+          "title": "Florentina Indigo Roller Blind",
+          "handle": "florentina-indigo"
+        },
+        {
+          "id": "15734357492096",
+          "type": "product",
+          "title": "Carey Silver Roller Blind",
+          "handle": "carey-silver"
+        },
+        {
+          "id": "15734357557632",
+          "type": "product",
+          "title": "Candice Mint Roller Blind",
+          "handle": "candice-mint"
+        },
+        {
+          "id": "15734357590400",
+          "type": "product",
+          "title": "Candice Blossom Roller Blind",
+          "handle": "candice-blossom"
+        },
+        {
+          "id": "15734359196032",
+          "type": "product",
+          "title": "Boston Fr Black Roller Blind",
+          "handle": "boston-fr-black"
+        },
+        {
+          "id": "15734359982464",
+          "type": "product",
+          "title": "Reeva Biscotti Roller Blind",
+          "handle": "reeva-biscotti"
+        },
+        {
+          "id": "15734360277376",
+          "type": "product",
+          "title": "Boston Fr Silk Roller Blind",
+          "handle": "boston-fr-silk"
+        },
+        {
+          "id": "15734360310144",
+          "type": "product",
+          "title": "Boston Fr Ecru Roller Blind",
+          "handle": "boston-fr-ecru"
+        },
+        {
+          "id": "15734361325952",
+          "type": "product",
+          "title": "Reeva Copper Roller Blind",
+          "handle": "reeva-copper"
+        },
+        {
+          "id": "15734362800512",
+          "type": "product",
+          "title": "Reeva Nutmeg Roller Blind",
+          "handle": "reeva-nutmeg"
+        },
+        {
+          "id": "15734363062656",
+          "type": "product",
+          "title": "Hagen Garnet Roller Blind",
+          "handle": "hagen-garnet"
+        },
+        {
+          "id": "15734365159808",
+          "type": "product",
+          "title": "Stella Fr Vanilla Roller Blind",
+          "handle": "stella-fr-vanilla"
+        },
+        {
+          "id": "15734365290880",
+          "type": "product",
+          "title": "Stella Fr Ivory Roller Blind",
+          "handle": "stella-fr-ivory"
+        },
+        {
+          "id": "15734365421952",
+          "type": "product",
+          "title": "Reflection Fr Silk Roller Blind",
+          "handle": "reflection-fr-silk"
+        },
+        {
+          "id": "15734365553024",
+          "type": "product",
+          "title": "Reflection Fr Ecru Roller Blind",
+          "handle": "reflection-fr-ecru"
+        },
+        {
+          "id": "15734366273920",
+          "type": "product",
+          "title": "Larson Beige Roller Blind",
+          "handle": "larson-beige"
+        },
+        {
+          "id": "15734366798208",
+          "type": "product",
+          "title": "Exotic Pine Roller Blind",
+          "handle": "exotic-pine"
+        },
+        {
+          "id": "15734367814016",
+          "type": "product",
+          "title": "Adina Elephant Roller Blind",
+          "handle": "adina-elephant"
+        },
+        {
+          "id": "15734367977856",
+          "type": "product",
+          "title": "Blush Roller Blind - Adina",
+          "handle": "adina-blush"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-c",
+      "bandId": "cml0kiicw0000bw7klzeb62kw",
+      "band": "Roller - Band C",
+      "description": "OB Preview - Roller - Band C",
+      "representative": "origin-white",
+      "schema": {
+        "bandId": "cml0kiicw0000bw7klzeb62kw",
+        "clamp": true,
+        "any": {
+          "minWidth": 8,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "motor": {
+          "minWidth": 22,
+          "maxWidth": 116,
+          "minHeight": 11,
+          "maxHeight": 144
+        },
+        "roller": true
+      },
+      "products": [
+        {
+          "id": "15734296445312",
+          "type": "product",
+          "title": "Origin White Roller Blind",
+          "handle": "origin-white"
+        },
+        {
+          "id": "15734303457664",
+          "type": "product",
+          "title": "Origin Grey Roller Blind",
+          "handle": "origin-grey"
+        },
+        {
+          "id": "15734303719808",
+          "type": "product",
+          "title": "Origin Dark Grey Roller Blind",
+          "handle": "origin-dark-grey"
+        },
+        {
+          "id": "15734359064960",
+          "type": "product",
+          "title": "Origin Black Roller Blind",
+          "handle": "origin-black"
+        },
+        {
+          "id": "15734360048000",
+          "type": "product",
+          "title": "Origin Cream Roller Blind",
+          "handle": "origin-cream"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-e-electrical",
+      "bandId": "cmld6nguv0000eo7kcdjirrcd",
+      "band": "Roller - Band E",
+      "description": "OB Preview - Roller - Band E - Electrical",
+      "representative": "atlantex-beige-electrical",
+      "schema": {
+        "bandId": "cmld6nguv0000eo7kcdjirrcd",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734414508416",
+          "type": "product",
+          "title": "Atlantex Beige Electrical Roller Blind",
+          "handle": "atlantex-beige-electrical"
+        },
+        {
+          "id": "15734419325312",
+          "type": "product",
+          "title": "Isabella Cotton Electrical Roller Blind",
+          "handle": "isabella-cotton-electrical"
+        },
+        {
+          "id": "15734419784064",
+          "type": "product",
+          "title": "Isabella Tangerine Electrical Roller Blind",
+          "handle": "isabella-tangerine-electrical"
+        },
+        {
+          "id": "15734420046208",
+          "type": "product",
+          "title": "Isabella White Electrical Roller Blind",
+          "handle": "isabella-white-electrical"
+        },
+        {
+          "id": "15734422602112",
+          "type": "product",
+          "title": "Ocho White Electrical Roller Blind",
+          "handle": "ocho-white-electrical"
+        },
+        {
+          "id": "15734424306048",
+          "type": "product",
+          "title": "Sorrento Emerald Electrical Roller Blind",
+          "handle": "sorrento-emerald-electrical"
+        },
+        {
+          "id": "15734425125248",
+          "type": "product",
+          "title": "Sorrento Midnight Electrical Roller Blind",
+          "handle": "sorrento-midnight-electrical"
+        },
+        {
+          "id": "15734426173824",
+          "type": "product",
+          "title": "Zayan Tabacco Electrical Roller Blind",
+          "handle": "zayan-tabacco-electrical"
+        },
+        {
+          "id": "15734431940992",
+          "type": "product",
+          "title": "Atlantex Asc Dark Beige Electrical Roller Blind",
+          "handle": "atlantex-asc-dark-beige-1-electrical"
+        },
+        {
+          "id": "15734432334208",
+          "type": "product",
+          "title": "Atlantex Dark Beige Electrical Roller Blind",
+          "handle": "atlantex-dark-beige-electrical"
+        },
+        {
+          "id": "15734432694656",
+          "type": "product",
+          "title": "Atlantex Stone Electrical Roller Blind",
+          "handle": "atlantex-stone-electrical"
+        },
+        {
+          "id": "15734433612160",
+          "type": "product",
+          "title": "Linenweave Sand Electrical Roller Blind",
+          "handle": "linenweave-sand-electrical"
+        },
+        {
+          "id": "15734434562432",
+          "type": "product",
+          "title": "Palette Beige Electrical Roller Blind",
+          "handle": "palette-beige-electrical"
+        },
+        {
+          "id": "15734435479936",
+          "type": "product",
+          "title": "Atlantex Brown Electrical Roller Blind",
+          "handle": "atlantex-brown-electrical"
+        },
+        {
+          "id": "15734435905920",
+          "type": "product",
+          "title": "Crossley Spice Electrical Roller Blind",
+          "handle": "crossley-spice-electrical"
+        },
+        {
+          "id": "15734436659584",
+          "type": "product",
+          "title": "Palette Sand Electrical Roller Blind",
+          "handle": "palette-sand-electrical"
+        },
+        {
+          "id": "15734436987264",
+          "type": "product",
+          "title": "Palette Taupe Electrical Roller Blind",
+          "handle": "palette-taupe-electrical"
+        },
+        {
+          "id": "15734439444864",
+          "type": "product",
+          "title": "Atlantex Asc Blue Electrical Roller Blind",
+          "handle": "atlantex-asc-blue-electrical"
+        },
+        {
+          "id": "15734439870848",
+          "type": "product",
+          "title": "Atlantex Asc Dark Blue Electrical Roller Blind",
+          "handle": "atlantex-asc-dark-blue-electrical"
+        },
+        {
+          "id": "15734440952192",
+          "type": "product",
+          "title": "Atlantex Blue Electrical Roller Blind",
+          "handle": "atlantex-blue-electrical"
+        },
+        {
+          "id": "15734441673088",
+          "type": "product",
+          "title": "Atlantex Dark Blue Electrical Roller Blind",
+          "handle": "atlantex-dark-blue-electrical"
+        },
+        {
+          "id": "15734442131840",
+          "type": "product",
+          "title": "Palette Sky Electrical Roller Blind",
+          "handle": "palette-sky-electrical"
+        },
+        {
+          "id": "15734444032384",
+          "type": "product",
+          "title": "Atlantex Asc Navy Electrical Roller Blind",
+          "handle": "atlantex-asc-navy-electrical"
+        },
+        {
+          "id": "15734444556672",
+          "type": "product",
+          "title": "Atlantex Navy Electrical Roller Blind",
+          "handle": "atlantex-navy-electrical"
+        },
+        {
+          "id": "15734445769088",
+          "type": "product",
+          "title": "Palette Dark Blue Electrical Roller Blind",
+          "handle": "palette-dark-blue-electrical"
+        },
+        {
+          "id": "15734446031232",
+          "type": "product",
+          "title": "Atlantex Asc Cream Electrical Roller Blind",
+          "handle": "atlantex-asc-cream-electrical"
+        },
+        {
+          "id": "15734446358912",
+          "type": "product",
+          "title": "Atlantex Asc Stone Electrical Roller Blind",
+          "handle": "atlantex-asc-stone-electrical"
+        },
+        {
+          "id": "15734446653824",
+          "type": "product",
+          "title": "Atlantex Asc Vanilla Electrical Roller Blind",
+          "handle": "atlantex-asc-vanilla-electrical"
+        },
+        {
+          "id": "15734447014272",
+          "type": "product",
+          "title": "Atlantex Cream Electrical Roller Blind",
+          "handle": "atlantex-cream-electrical"
+        },
+        {
+          "id": "15734447309184",
+          "type": "product",
+          "title": "Atlantex Vanilla Electrical Roller Blind",
+          "handle": "atlantex-vanilla-electrical"
+        },
+        {
+          "id": "15734447899008",
+          "type": "product",
+          "title": "Blaine Oat Electrical Roller Blind",
+          "handle": "blaine-oat-electrical"
+        },
+        {
+          "id": "15734449373568",
+          "type": "product",
+          "title": "Kaila Smoke Electrical Roller Blind",
+          "handle": "kaila-smoke-electrical"
+        },
+        {
+          "id": "15734450815360",
+          "type": "product",
+          "title": "Palette Calico Electrical Roller Blind",
+          "handle": "palette-calico-electrical"
+        },
+        {
+          "id": "15734454223232",
+          "type": "product",
+          "title": "Atlantex Asc Black Electrical Roller Blind",
+          "handle": "atlantex-asc-black-electrical"
+        },
+        {
+          "id": "15734454780288",
+          "type": "product",
+          "title": "Atlantex Black Electrical Roller Blind",
+          "handle": "atlantex-black-electrical"
+        },
+        {
+          "id": "15734457500032",
+          "type": "product",
+          "title": "Palette Black Electrical Roller Blind",
+          "handle": "palette-black-electrical"
+        },
+        {
+          "id": "15734479126912",
+          "type": "product",
+          "title": "Blake Olive Electrical Roller Blind",
+          "handle": "blake-olive-electrical"
+        },
+        {
+          "id": "15734479978880",
+          "type": "product",
+          "title": "Palette Forest Green Electrical Roller Blind",
+          "handle": "palette-forest-green-electrical"
+        },
+        {
+          "id": "15734480404864",
+          "type": "product",
+          "title": "Palette Spring Electrical Roller Blind",
+          "handle": "palette-spring-electrical"
+        },
+        {
+          "id": "15734482174336",
+          "type": "product",
+          "title": "Atlantex Asc Grey Electrical Roller Blind",
+          "handle": "atlantex-asc-grey-electrical"
+        },
+        {
+          "id": "15734482764160",
+          "type": "product",
+          "title": "Atlantex Grey Electrical Roller Blind",
+          "handle": "atlantex-grey-electrical"
+        },
+        {
+          "id": "15734484533632",
+          "type": "product",
+          "title": "Crossley Dove Electrical Roller Blind",
+          "handle": "crossley-dove-electrical"
+        },
+        {
+          "id": "15734484894080",
+          "type": "product",
+          "title": "Crossley Graphite Electrical Roller Blind",
+          "handle": "crossley-graphite-electrical"
+        },
+        {
+          "id": "15734485483904",
+          "type": "product",
+          "title": "Crossley Mist Electrical Roller Blind",
+          "handle": "crossley-mist-electrical"
+        },
+        {
+          "id": "15734486466944",
+          "type": "product",
+          "title": "Crossley Sage Electrical Roller Blind",
+          "handle": "crossley-sage-electrical"
+        },
+        {
+          "id": "15734487875968",
+          "type": "product",
+          "title": "Kaila White Electrical Roller Blind",
+          "handle": "kaila-white-electrical"
+        },
+        {
+          "id": "15734489416064",
+          "type": "product",
+          "title": "Linenweave Iron Electrical Roller Blind",
+          "handle": "linenweave-iron-electrical"
+        },
+        {
+          "id": "15734490038656",
+          "type": "product",
+          "title": "Marine Light Grey Electrical Roller Blind",
+          "handle": "marine-light-grey-electrical"
+        },
+        {
+          "id": "15734491382144",
+          "type": "product",
+          "title": "Palette Charcoal Electrical Roller Blind",
+          "handle": "palette-charcoal-electrical"
+        },
+        {
+          "id": "15734491545984",
+          "type": "product",
+          "title": "Palette Grey Electrical Roller Blind",
+          "handle": "palette-grey-electrical"
+        },
+        {
+          "id": "15734491709824",
+          "type": "product",
+          "title": "Palette Iron Electrical Roller Blind",
+          "handle": "palette-iron-electrical"
+        },
+        {
+          "id": "15734494134656",
+          "type": "product",
+          "title": "Atlantex Asc White Electrical Roller Blind",
+          "handle": "atlantex-asc-white-electrical"
+        },
+        {
+          "id": "15734494364032",
+          "type": "product",
+          "title": "Atlantex White Electrical Roller Blind",
+          "handle": "atlantex-white-electrical"
+        },
+        {
+          "id": "15734497149312",
+          "type": "product",
+          "title": "Blake Plum Electrical Roller Blind",
+          "handle": "blake-plum-electrical"
+        },
+        {
+          "id": "15734497214848",
+          "type": "product",
+          "title": "Crossley Lilac Electrical Roller Blind",
+          "handle": "crossley-lilac-electrical"
+        },
+        {
+          "id": "15734497247616",
+          "type": "product",
+          "title": "Palette Dusky Pink Electrical Roller Blind",
+          "handle": "palette-dusky-pink-electrical"
+        },
+        {
+          "id": "15734497280384",
+          "type": "product",
+          "title": "Atlantex Asc Cherry Electrical Roller Blind",
+          "handle": "atlantex-asc-cherry-electrical"
+        },
+        {
+          "id": "15734497345920",
+          "type": "product",
+          "title": "Atlantex Cherry Electrical Roller Blind",
+          "handle": "atlantex-cherry-electrical"
+        },
+        {
+          "id": "15734497378688",
+          "type": "product",
+          "title": "Palette Copper Electrical Roller Blind",
+          "handle": "palette-copper-electrical"
+        },
+        {
+          "id": "15734497411456",
+          "type": "product",
+          "title": "Palette Redcurrant Electrical Roller Blind",
+          "handle": "palette-redcurrant-electrical"
+        },
+        {
+          "id": "15734497542528",
+          "type": "product",
+          "title": "Atlantex Asc Silver Electrical Roller Blind",
+          "handle": "atlantex-asc-silver-electrical"
+        },
+        {
+          "id": "15734497575296",
+          "type": "product",
+          "title": "Atlantex Silver Electrical Roller Blind",
+          "handle": "atlantex-silver-electrical"
+        },
+        {
+          "id": "15734498099584",
+          "type": "product",
+          "title": "Palette Sunshine Electrical Roller Blind",
+          "handle": "palette-sunshine-electrical"
+        },
+        {
+          "id": "15734499934592",
+          "type": "product",
+          "title": "Devon Aluminium Electrical Roller Blind",
+          "handle": "devon-aluminium-electrical"
+        },
+        {
+          "id": "15734499967360",
+          "type": "product",
+          "title": "Devon Lace Closeup Electrical Roller Blind",
+          "handle": "devon-lace-closeup-electrical"
+        },
+        {
+          "id": "15734500032896",
+          "type": "product",
+          "title": "Devon Porcelain Electrical Roller Blind",
+          "handle": "devon-porcelain-electrical"
+        },
+        {
+          "id": "15734500458880",
+          "type": "product",
+          "title": "Marine White Electrical Roller Blind",
+          "handle": "marine-white-electrical"
+        },
+        {
+          "id": "15734500589952",
+          "type": "product",
+          "title": "Palette Bright White Electrical Roller Blind",
+          "handle": "palette-bright-white-electrical"
+        },
+        {
+          "id": "15734501441920",
+          "type": "product",
+          "title": "Atlantex Asc Beige Electrical Roller Blind",
+          "handle": "atlantex-asc-beige-electrical"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-g-electrical",
+      "bandId": "adc46bc8-832e-4f3c-a6e2-9d6ea9c5fe07",
+      "band": "Roller - Band G",
+      "description": "OB Preview - Roller - Band G - Electrical",
+      "representative": "adina-blush-electrical",
+      "schema": {
+        "bandId": "adc46bc8-832e-4f3c-a6e2-9d6ea9c5fe07",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734415196544",
+          "type": "product",
+          "title": "Blush Electrical Roller Blind - Adina",
+          "handle": "adina-blush-electrical"
+        },
+        {
+          "id": "15734415688064",
+          "type": "product",
+          "title": "Adina Elephant Electrical Roller Blind",
+          "handle": "adina-elephant-electrical"
+        },
+        {
+          "id": "15734417916288",
+          "type": "product",
+          "title": "Exotic Pine Electrical Roller Blind",
+          "handle": "exotic-pine-electrical"
+        },
+        {
+          "id": "15734420439424",
+          "type": "product",
+          "title": "Larson Beige Electrical Roller Blind",
+          "handle": "larson-beige-electrical"
+        },
+        {
+          "id": "15734426501504",
+          "type": "product",
+          "title": "Reflection Fr Ecru Electrical Roller Blind",
+          "handle": "reflection-fr-ecru-electrical"
+        },
+        {
+          "id": "15734426829184",
+          "type": "product",
+          "title": "Reflection Fr Silk Electrical Roller Blind",
+          "handle": "reflection-fr-silk-electrical"
+        },
+        {
+          "id": "15734427222400",
+          "type": "product",
+          "title": "Stella Fr Ivory Electrical Roller Blind",
+          "handle": "stella-fr-ivory-electrical"
+        },
+        {
+          "id": "15734427746688",
+          "type": "product",
+          "title": "Stella Fr Vanilla Electrical Roller Blind",
+          "handle": "stella-fr-vanilla-electrical"
+        },
+        {
+          "id": "15734436299136",
+          "type": "product",
+          "title": "Hagen Garnet Electrical Roller Blind",
+          "handle": "hagen-garnet-electrical"
+        },
+        {
+          "id": "15734437773696",
+          "type": "product",
+          "title": "Reeva Nutmeg Electrical Roller Blind",
+          "handle": "reeva-nutmeg-electrical"
+        },
+        {
+          "id": "15734443540864",
+          "type": "product",
+          "title": "Reeva Copper Electrical Roller Blind",
+          "handle": "reeva-copper-electrical"
+        },
+        {
+          "id": "15734448226688",
+          "type": "product",
+          "title": "Boston Fr Ecru Electrical Roller Blind",
+          "handle": "boston-fr-ecru-electrical"
+        },
+        {
+          "id": "15734448521600",
+          "type": "product",
+          "title": "Boston Fr Silk Electrical Roller Blind",
+          "handle": "boston-fr-silk-electrical"
+        },
+        {
+          "id": "15734451044736",
+          "type": "product",
+          "title": "Reeva Biscotti Electrical Roller Blind",
+          "handle": "reeva-biscotti-electrical"
+        },
+        {
+          "id": "15734455828864",
+          "type": "product",
+          "title": "Boston Fr Black Electrical Roller Blind",
+          "handle": "boston-fr-black-electrical"
+        },
+        {
+          "id": "15734460088704",
+          "type": "product",
+          "title": "Candice Blossom Electrical Roller Blind",
+          "handle": "candice-blossom-electrical"
+        },
+        {
+          "id": "15734460481920",
+          "type": "product",
+          "title": "Candice Mint Electrical Roller Blind",
+          "handle": "candice-mint-electrical"
+        },
+        {
+          "id": "15734461301120",
+          "type": "product",
+          "title": "Carey Silver Electrical Roller Blind",
+          "handle": "carey-silver-electrical"
+        },
+        {
+          "id": "15734463758720",
+          "type": "product",
+          "title": "Florentina Indigo Electrical Roller Blind",
+          "handle": "florentina-indigo-electrical"
+        },
+        {
+          "id": "15734464184704",
+          "type": "product",
+          "title": "Florentina Iris Electrical Roller Blind",
+          "handle": "florentina-iris-electrical"
+        },
+        {
+          "id": "15734465102208",
+          "type": "product",
+          "title": "Florintina Rust Electrical Roller Blind",
+          "handle": "florintina-rust-electrical"
+        },
+        {
+          "id": "15734477193600",
+          "type": "product",
+          "title": "Darcy Gold Electrical Roller Blind",
+          "handle": "darcy-gold-electrical"
+        },
+        {
+          "id": "15734478111104",
+          "type": "product",
+          "title": "Gavi Gold Electrical Roller Blind",
+          "handle": "gavi-gold-electrical"
+        },
+        {
+          "id": "15734479585664",
+          "type": "product",
+          "title": "Darcy Aqua Electrical Roller Blind",
+          "handle": "darcy-aqua-electrical"
+        },
+        {
+          "id": "15734483419520",
+          "type": "product",
+          "title": "Boston Fr Shadow Electrical Roller Blind",
+          "handle": "boston-fr-shadow-electrical"
+        },
+        {
+          "id": "15734484173184",
+          "type": "product",
+          "title": "Carey Grey Electrical Roller Blind",
+          "handle": "carey-grey-electrical"
+        },
+        {
+          "id": "15734487155072",
+          "type": "product",
+          "title": "Gavi Platinum Electrical Roller Blind",
+          "handle": "gavi-platinum-electrical"
+        },
+        {
+          "id": "15734487515520",
+          "type": "product",
+          "title": "Hagen Mink Electrical Roller Blind",
+          "handle": "hagen-mink-electrical"
+        },
+        {
+          "id": "15734488203648",
+          "type": "product",
+          "title": "Kuta Grey Electrical Roller Blind",
+          "handle": "kuta-grey-electrical"
+        },
+        {
+          "id": "15734492955008",
+          "type": "product",
+          "title": "Reeva Titanium Electrical Roller Blind",
+          "handle": "reeva-titanium-electrical"
+        },
+        {
+          "id": "15734494691712",
+          "type": "product",
+          "title": "Reeva Frost Electrical Roller Blind",
+          "handle": "reeva-frost-electrical"
+        },
+        {
+          "id": "15734495773056",
+          "type": "product",
+          "title": "Clarice Azure Electrical Roller Blind",
+          "handle": "clarice-azure-electrical"
+        },
+        {
+          "id": "15734495936896",
+          "type": "product",
+          "title": "Clarice Fern Electrical Roller Blind",
+          "handle": "clarice-fern-electrical"
+        },
+        {
+          "id": "15734496100736",
+          "type": "product",
+          "title": "Clarice Pewter Electrical Roller Blind",
+          "handle": "clarice-pewter-1-electrical"
+        },
+        {
+          "id": "15734497051008",
+          "type": "product",
+          "title": "Serenity Mono Electrical Roller Blind",
+          "handle": "serenity-mono-electrical"
+        },
+        {
+          "id": "15734497083776",
+          "type": "product",
+          "title": "Sisi Soft Grey Electrical Roller Blind",
+          "handle": "sisi-soft-grey-electrical"
+        },
+        {
+          "id": "15734497640832",
+          "type": "product",
+          "title": "Gavi Silver Electrical Roller Blind",
+          "handle": "gavi-silver-electrical"
+        },
+        {
+          "id": "15734499770752",
+          "type": "product",
+          "title": "Strata Asc Calico Electrical Roller Blind",
+          "handle": "strata-asc-calico-electrical"
+        },
+        {
+          "id": "15734499869056",
+          "type": "product",
+          "title": "Strata Asc Iron Electrical Roller Blind",
+          "handle": "strata-asc-iron-electrical"
+        },
+        {
+          "id": "15734499901824",
+          "type": "product",
+          "title": "Strata Asc Snowdrop Electrical Roller Blind",
+          "handle": "strata-asc-snowdrop-electrical"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-f-electrical",
+      "bandId": "e345bcab-0e1e-48d6-be97-f25ddae3496f",
+      "band": "Roller - Band F",
+      "description": "OB Preview - Roller - Band F - Electrical",
+      "representative": "dawson-midnight-electrical",
+      "schema": {
+        "bandId": "e345bcab-0e1e-48d6-be97-f25ddae3496f",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734416146816",
+          "type": "product",
+          "title": "Dawson Midnight Electrical Roller Blind",
+          "handle": "dawson-midnight-electrical"
+        },
+        {
+          "id": "15734416572800",
+          "type": "product",
+          "title": "Dawson Olive Electrical Roller Blind",
+          "handle": "dawson-olive-electrical"
+        },
+        {
+          "id": "15734421946752",
+          "type": "product",
+          "title": "Maddox Coal Electrical Roller Blind",
+          "handle": "maddox-coal-electrical"
+        },
+        {
+          "id": "15734422274432",
+          "type": "product",
+          "title": "Maddox Gunmetal Electrical Roller Blind",
+          "handle": "maddox-gunmetal-electrical"
+        },
+        {
+          "id": "15734422897024",
+          "type": "product",
+          "title": "Selene Apricot Electrical Roller Blind",
+          "handle": "selene-apricot-electrical"
+        },
+        {
+          "id": "15734423257472",
+          "type": "product",
+          "title": "Sorrell Grey Electrical Roller Blind",
+          "handle": "sorrell-grey-electrical"
+        },
+        {
+          "id": "15734423552384",
+          "type": "product",
+          "title": "Sorrell Lavender Electrical Roller Blind",
+          "handle": "sorrell-lavender-electrical"
+        },
+        {
+          "id": "15734423912832",
+          "type": "product",
+          "title": "Sorrell Red Electrical Roller Blind",
+          "handle": "sorrell-red-electrical"
+        },
+        {
+          "id": "15734425452928",
+          "type": "product",
+          "title": "Torin Ocean Electrical Roller Blind",
+          "handle": "torin-ocean-electrical"
+        },
+        {
+          "id": "15734425780608",
+          "type": "product",
+          "title": "Torin Rose Electrical Roller Blind",
+          "handle": "torin-rose-electrical"
+        },
+        {
+          "id": "15734428336512",
+          "type": "product",
+          "title": "Urban Fr Beige Electrical Roller Blind",
+          "handle": "urban-fr-beige-electrical"
+        },
+        {
+          "id": "15734428828032",
+          "type": "product",
+          "title": "Urban Fr Black Electrical Roller Blind",
+          "handle": "urban-fr-black-electrical"
+        },
+        {
+          "id": "15734429221248",
+          "type": "product",
+          "title": "Urban Fr Blue Electrical Roller Blind",
+          "handle": "urban-fr-blue-electrical"
+        },
+        {
+          "id": "15734429614464",
+          "type": "product",
+          "title": "Urban Fr Bright White Electrical Roller Blind",
+          "handle": "urban-fr-bright-white-electrical"
+        },
+        {
+          "id": "15734430073216",
+          "type": "product",
+          "title": "Urban Fr Cream Electrical Roller Blind",
+          "handle": "urban-fr-cream-electrical"
+        },
+        {
+          "id": "15734430597504",
+          "type": "product",
+          "title": "Urban Fr Dark Grey Electrical Roller Blind",
+          "handle": "urban-fr-dark-grey-electrical"
+        },
+        {
+          "id": "15734430990720",
+          "type": "product",
+          "title": "Urban Fr Ecru Electrical Roller Blind",
+          "handle": "urban-fr-ecru-electrical"
+        },
+        {
+          "id": "15734431580544",
+          "type": "product",
+          "title": "Urban Fr Grey Electrical Roller Blind",
+          "handle": "urban-fr-grey-electrical"
+        },
+        {
+          "id": "15734432989568",
+          "type": "product",
+          "title": "Banlight Duo Fr Beige Electrical Roller Blind",
+          "handle": "banlight-duo-fr-beige-electrical"
+        },
+        {
+          "id": "15734433939840",
+          "type": "product",
+          "title": "Monte Almond Electrical Roller Blind",
+          "handle": "monte-almond-electrical"
+        },
+        {
+          "id": "15734434857344",
+          "type": "product",
+          "title": "Perrie Lemon Electrical Roller Blind",
+          "handle": "perrie-lemon-electrical"
+        },
+        {
+          "id": "15734435119488",
+          "type": "product",
+          "title": "Perrie Oatmeal Electrical Roller Blind",
+          "handle": "perrie-oatmeal-electrical"
+        },
+        {
+          "id": "15734437380480",
+          "type": "product",
+          "title": "Perrie Granola Electrical Roller Blind",
+          "handle": "perrie-granola-electrical"
+        },
+        {
+          "id": "15734438199680",
+          "type": "product",
+          "title": "Sawyer Coffee Electrical Roller Blind",
+          "handle": "sawyer-coffee-electrical"
+        },
+        {
+          "id": "15734442623360",
+          "type": "product",
+          "title": "Perrie Marine Electrical Roller Blind",
+          "handle": "perrie-marine-electrical"
+        },
+        {
+          "id": "15734443114880",
+          "type": "product",
+          "title": "Rowan Blue Electrical Roller Blind",
+          "handle": "rowan-blue-electrical"
+        },
+        {
+          "id": "15734445080960",
+          "type": "product",
+          "title": "Banlight Duo Fr Navy Electrical Roller Blind",
+          "handle": "banlight-duo-fr-navy-electrical"
+        },
+        {
+          "id": "15734445506944",
+          "type": "product",
+          "title": "Cubik Navy Electrical Roller Blind",
+          "handle": "cubik-navy-electrical"
+        },
+        {
+          "id": "15734447604096",
+          "type": "product",
+          "title": "Banlight Duo Fr Calico Electrical Roller Blind",
+          "handle": "banlight-duo-fr-calico-electrical"
+        },
+        {
+          "id": "15734448914816",
+          "type": "product",
+          "title": "Cubik Ivory Electrical Roller Blind",
+          "handle": "cubik-ivory-electrical"
+        },
+        {
+          "id": "15734449668480",
+          "type": "product",
+          "title": "Makira Cloud Cream Electrical Roller Blind",
+          "handle": "makira-cloud-cream-electrical"
+        },
+        {
+          "id": "15734451372416",
+          "type": "product",
+          "title": "Sawyer Fawn Electrical Roller Blind",
+          "handle": "sawyer-fawn-electrical"
+        },
+        {
+          "id": "15734453502336",
+          "type": "product",
+          "title": "Arundel Charcoal Electrical Roller Blind",
+          "handle": "arundel-charcoal-electrical"
+        },
+        {
+          "id": "15734455239040",
+          "type": "product",
+          "title": "Banlight Duo Fr Black Electrical Roller Blind",
+          "handle": "banlight-duo-fr-black-electrical"
+        },
+        {
+          "id": "15734459335040",
+          "type": "product",
+          "title": "Anastasia Peacock Electrical Roller Blind",
+          "handle": "anastasia-peacock-electrical"
+        },
+        {
+          "id": "15734459695488",
+          "type": "product",
+          "title": "Anastasia Smoke Electrical Roller Blind",
+          "handle": "anastasia-smoke-electrical"
+        },
+        {
+          "id": "15734466806144",
+          "type": "product",
+          "title": "Molina White Electrical Roller Blind",
+          "handle": "molina-white-electrical"
+        },
+        {
+          "id": "15734467297664",
+          "type": "product",
+          "title": "Peyton Antique Electrical Roller Blind",
+          "handle": "peyton-antique-electrical"
+        },
+        {
+          "id": "15734467887488",
+          "type": "product",
+          "title": "Peyton Ivory Electrical Roller Blind",
+          "handle": "peyton-ivory-electrical"
+        },
+        {
+          "id": "15734468477312",
+          "type": "product",
+          "title": "Peyton Noir Electrical Roller Blind",
+          "handle": "peyton-noir-electrical"
+        },
+        {
+          "id": "15734468903296",
+          "type": "product",
+          "title": "Peyton White Electrical Roller Blind",
+          "handle": "peyton-white-electrical"
+        },
+        {
+          "id": "15734469493120",
+          "type": "product",
+          "title": "Valentina Amethyst Electrical Roller Blind",
+          "handle": "valentina-amethyst-electrical"
+        },
+        {
+          "id": "15734471557504",
+          "type": "product",
+          "title": "Valentina Blush Electrical Roller Blind",
+          "handle": "valentina-blush-electrical"
+        },
+        {
+          "id": "15734471917952",
+          "type": "product",
+          "title": "Valentina Poppy Electrical Roller Blind",
+          "handle": "valentina-poppy-electrical"
+        },
+        {
+          "id": "15734472311168",
+          "type": "product",
+          "title": "Valentina Teal Electrical Roller Blind",
+          "handle": "valentina-teal-electrical"
+        },
+        {
+          "id": "15734478635392",
+          "type": "product",
+          "title": "Sawyer Canary Electrical Roller Blind",
+          "handle": "sawyer-canary-electrical"
+        },
+        {
+          "id": "15734480961920",
+          "type": "product",
+          "title": "Perrie Forest Electrical Roller Blind",
+          "handle": "perrie-forest-electrical"
+        },
+        {
+          "id": "15734481518976",
+          "type": "product",
+          "title": "Alta Blackout Platinum Electrical Roller Blind",
+          "handle": "alta-blackout-platinum-electrical"
+        },
+        {
+          "id": "15734483059072",
+          "type": "product",
+          "title": "Banlight Duo Fr Charcoal Electrical Roller Blind",
+          "handle": "banlight-duo-fr-charcoal-electrical"
+        },
+        {
+          "id": "15734489710976",
+          "type": "product",
+          "title": "Mariella Charcoal Electrical Roller Blind",
+          "handle": "mariella-charcoal-electrical"
+        },
+        {
+          "id": "15734490366336",
+          "type": "product",
+          "title": "Monte Cinder Electrical Roller Blind",
+          "handle": "monte-cinder-electrical"
+        },
+        {
+          "id": "15734492266880",
+          "type": "product",
+          "title": "Perrie Iron Electrical Roller Blind",
+          "handle": "perrie-iron-electrical"
+        },
+        {
+          "id": "15734492397952",
+          "type": "product",
+          "title": "Perrie Putty Electrical Roller Blind",
+          "handle": "perrie-putty-electrical"
+        },
+        {
+          "id": "15734492561792",
+          "type": "product",
+          "title": "Quentin Soot Electrical Roller Blind",
+          "handle": "quentin-soot-electrical"
+        },
+        {
+          "id": "15734492987776",
+          "type": "product",
+          "title": "Sawyer Mist Electrical Roller Blind",
+          "handle": "sawyer-mist-electrical"
+        },
+        {
+          "id": "15734493479296",
+          "type": "product",
+          "title": "Alta Blackout Frost Electrical Roller Blind",
+          "handle": "alta-blackout-frost-electrical"
+        },
+        {
+          "id": "15734493774208",
+          "type": "product",
+          "title": "Alta Ice Electrical Roller Blind",
+          "handle": "alta-ice-electrical"
+        },
+        {
+          "id": "15734493905280",
+          "type": "product",
+          "title": "Arundel Ivory Electrical Roller Blind",
+          "handle": "arundel-ivory-electrical"
+        },
+        {
+          "id": "15734494396800",
+          "type": "product",
+          "title": "Makira Glacier Electrical Roller Blind",
+          "handle": "makira-glacier-electrical"
+        },
+        {
+          "id": "15734494626176",
+          "type": "product",
+          "title": "Perrie Milk Electrical Roller Blind",
+          "handle": "perrie-milk-electrical"
+        },
+        {
+          "id": "15734494658944",
+          "type": "product",
+          "title": "Perrie Snow Electrical Roller Blind",
+          "handle": "perrie-snow-electrical"
+        },
+        {
+          "id": "15734494724480",
+          "type": "product",
+          "title": "Banlight Duo Fr Linen Electrical Roller Blind",
+          "handle": "banlight-duo-fr-linen-electrical"
+        },
+        {
+          "id": "15734495412608",
+          "type": "product",
+          "title": "Quentin Linen Electrical Roller Blind",
+          "handle": "quentin-linen-electrical"
+        },
+        {
+          "id": "15734495576448",
+          "type": "product",
+          "title": "Vinnie Ginger Electrical Roller Blind",
+          "handle": "vinnie-ginger-electrical"
+        },
+        {
+          "id": "15734496690560",
+          "type": "product",
+          "title": "Lacie Grey Electrical Roller Blind",
+          "handle": "lacie-grey-electrical"
+        },
+        {
+          "id": "15734496854400",
+          "type": "product",
+          "title": "Lacie Sand Electrical Roller Blind",
+          "handle": "lacie-sand-electrical"
+        },
+        {
+          "id": "15734496919936",
+          "type": "product",
+          "title": "Lacie White Electrical Roller Blind",
+          "handle": "lacie-white-electrical"
+        },
+        {
+          "id": "15734496985472",
+          "type": "product",
+          "title": "Loretta Silver Electrical Roller Blind",
+          "handle": "loretta-silver-electrical"
+        },
+        {
+          "id": "15734497018240",
+          "type": "product",
+          "title": "Loretta White Electrical Roller Blind",
+          "handle": "loretta-white-electrical"
+        },
+        {
+          "id": "15734497116544",
+          "type": "product",
+          "title": "Makira Tiger Electrical Roller Blind",
+          "handle": "makira-tiger-electrical"
+        },
+        {
+          "id": "15734497476992",
+          "type": "product",
+          "title": "Zahra Red Electrical Roller Blind",
+          "handle": "zahra-red-electrical"
+        },
+        {
+          "id": "15734497509760",
+          "type": "product",
+          "title": "Alta Silver Electrical Roller Blind",
+          "handle": "alta-silver-electrical"
+        },
+        {
+          "id": "15734497608064",
+          "type": "product",
+          "title": "Banlight Duo Fr Silver Electrical Roller Blind",
+          "handle": "banlight-duo-fr-silver-electrical"
+        },
+        {
+          "id": "15734497673600",
+          "type": "product",
+          "title": "Quentin Mauve Electrical Roller Blind",
+          "handle": "quentin-mauve-electrical"
+        },
+        {
+          "id": "15734497706368",
+          "type": "product",
+          "title": "Quentin Royal Electrical Roller Blind",
+          "handle": "quentin-royal-electrical"
+        },
+        {
+          "id": "15734497837440",
+          "type": "product",
+          "title": "Makira Mustard Electrical Roller Blind",
+          "handle": "makira-mustard-electrical"
+        },
+        {
+          "id": "15734498328960",
+          "type": "product",
+          "title": "Zahra Mustard Electrical Roller Blind",
+          "handle": "zahra-mustard-electrical"
+        },
+        {
+          "id": "15734498492800",
+          "type": "product",
+          "title": "Carrington Navy Electrical Roller Blind",
+          "handle": "carrington-navy-electrical"
+        },
+        {
+          "id": "15734498656640",
+          "type": "product",
+          "title": "Carrington Ochre Electrical Roller Blind",
+          "handle": "carrington-ochre-electrical"
+        },
+        {
+          "id": "15734499180928",
+          "type": "product",
+          "title": "Romain Crimson Electrical Roller Blind",
+          "handle": "romain-crimson-electrical"
+        },
+        {
+          "id": "15734499344768",
+          "type": "product",
+          "title": "Romain Hazelnut Electrical Roller Blind",
+          "handle": "romain-hazelnut-electrical"
+        },
+        {
+          "id": "15734499508608",
+          "type": "product",
+          "title": "Romain Shadow Electrical Roller Blind",
+          "handle": "romain-shadow-electrical"
+        },
+        {
+          "id": "15734499639680",
+          "type": "product",
+          "title": "Romain Turquoisre Electrical Roller Blind",
+          "handle": "romain-turquoisre-electrical"
+        },
+        {
+          "id": "15734500295040",
+          "type": "product",
+          "title": "Banlight Duo Fr Bright White Electrical Roller Blind",
+          "handle": "banlight-duo-fr-bright-white-electrical"
+        },
+        {
+          "id": "15734500426112",
+          "type": "product",
+          "title": "Cubik Snow Electrical Roller Blind",
+          "handle": "cubik-snow-electrical"
+        },
+        {
+          "id": "15734500524416",
+          "type": "product",
+          "title": "Monte Whitewash Electrical Roller Blind",
+          "handle": "monte-whitewash-electrical"
+        },
+        {
+          "id": "15734500786560",
+          "type": "product",
+          "title": "Sawyer Dove Electrical Roller Blind",
+          "handle": "sawyer-dove-electrical"
+        },
+        {
+          "id": "15734500819328",
+          "type": "product",
+          "title": "Dawson Midnight Electrical Roller Blind",
+          "handle": "dawson-midnight-1-electrical"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-d-electrical",
+      "bandId": "cml0kk2730000ok7kxcbojcca",
+      "band": "Roller - Band D",
+      "description": "OB Preview - Roller - Band D - Electrical",
+      "representative": "elma-lavender-electrical",
+      "schema": {
+        "bandId": "cml0kk2730000ok7kxcbojcca",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734417064320",
+          "type": "product",
+          "title": "Elma Lavender Electrical Roller Blind",
+          "handle": "elma-lavender-electrical"
+        },
+        {
+          "id": "15734417523072",
+          "type": "product",
+          "title": "Elma Rose Electrical Roller Blind",
+          "handle": "elma-rose-electrical"
+        },
+        {
+          "id": "15734449176960",
+          "type": "product",
+          "title": "Emery Cream Electrical Roller Blind",
+          "handle": "emery-cream-electrical"
+        },
+        {
+          "id": "15734450225536",
+          "type": "product",
+          "title": "Origin Blackout Cream Electrical Roller Blind",
+          "handle": "origin-blackout-cream-electrical"
+        },
+        {
+          "id": "15734451765632",
+          "type": "product",
+          "title": "Stratford Cream Electrical Roller Blind",
+          "handle": "stratford-cream-electrical"
+        },
+        {
+          "id": "15734452388224",
+          "type": "product",
+          "title": "Stratford Taupe Electrical Roller Blind",
+          "handle": "stratford-taupe-electrical"
+        },
+        {
+          "id": "15734457106816",
+          "type": "product",
+          "title": "Origin Blackout Black Electrical Roller Blind",
+          "handle": "origin-blackout-black-electrical"
+        },
+        {
+          "id": "15734461727104",
+          "type": "product",
+          "title": "Elma Chiffon Electrical Roller Blind",
+          "handle": "elma-chiffon-electrical"
+        },
+        {
+          "id": "15734462185856",
+          "type": "product",
+          "title": "Elma Snowdrop Electrical Roller Blind",
+          "handle": "elma-snowdrop-electrical"
+        },
+        {
+          "id": "15734463365504",
+          "type": "product",
+          "title": "Fleur Mist Electrical Roller Blind",
+          "handle": "fleur-mist-electrical"
+        },
+        {
+          "id": "15734466249088",
+          "type": "product",
+          "title": "Jude Malt Electrical Roller Blind",
+          "handle": "jude-malt-electrical"
+        },
+        {
+          "id": "15734483779968",
+          "type": "product",
+          "title": "Candence Grey Electrical Roller Blind",
+          "handle": "cadence-grey-electrical"
+        },
+        {
+          "id": "15734490661248",
+          "type": "product",
+          "title": "Origin Blackout Dark Grey Electrical Roller Blind",
+          "handle": "origin-blackout-dark-grey-electrical"
+        },
+        {
+          "id": "15734490890624",
+          "type": "product",
+          "title": "Origin Blackout Grey Electrical Roller Blind",
+          "handle": "origin-blackout-grey-electrical"
+        },
+        {
+          "id": "15734494429568",
+          "type": "product",
+          "title": "Origin Blackout White Electrical Roller Blind",
+          "handle": "origin-blackout-white-electrical"
+        },
+        {
+          "id": "15734498787712",
+          "type": "product",
+          "title": "Corsica Cream Electrical Roller Blind",
+          "handle": "corsica-cream-electrical"
+        },
+        {
+          "id": "15734498918784",
+          "type": "product",
+          "title": "Corsica Grey Electrical Roller Blind",
+          "handle": "corsica-grey-electrical"
+        },
+        {
+          "id": "15734499049856",
+          "type": "product",
+          "title": "Corsica Ivory Electrical Roller Blind",
+          "handle": "corsica-ivory-electrical"
+        },
+        {
+          "id": "15734500065664",
+          "type": "product",
+          "title": "Florence Beige Electrical Roller Blind",
+          "handle": "florence-beige-electrical"
+        },
+        {
+          "id": "15734500163968",
+          "type": "product",
+          "title": "Florence Green Electrical Roller Blind",
+          "handle": "florence-green-electrical"
+        },
+        {
+          "id": "15734500229504",
+          "type": "product",
+          "title": "Florence Peach Electrical Roller Blind",
+          "handle": "florence-peach-electrical"
+        },
+        {
+          "id": "15734500262272",
+          "type": "product",
+          "title": "Florence White Electrical Roller Blind",
+          "handle": "florence-white-electrical"
+        },
+        {
+          "id": "15734500327808",
+          "type": "product",
+          "title": "Candence White Electrical Roller Blind",
+          "handle": "cadence-white-electrical"
+        },
+        {
+          "id": "15734500393344",
+          "type": "product",
+          "title": "Corsica White Electrical Roller Blind",
+          "handle": "corsica-white-electrical"
+        },
+        {
+          "id": "15734500884864",
+          "type": "product",
+          "title": "Elma Lavender Electrical Roller Blind",
+          "handle": "elma-lavender-1-electrical"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-premium-electrical",
+      "bandId": "741ae972-b467-4355-855f-356109e5c0d6",
+      "band": "Roller - Band Premium",
+      "description": "OB Preview - Roller - Band Premium - Electrical",
+      "representative": "hudson-blackout-electrical",
+      "schema": {
+        "bandId": "741ae972-b467-4355-855f-356109e5c0d6",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734418473344",
+          "type": "product",
+          "title": "Hudson Blackout Electrical Roller Blind",
+          "handle": "hudson-blackout-electrical"
+        },
+        {
+          "id": "15734418899328",
+          "type": "product",
+          "title": "Hudson White Electrical Roller Blind",
+          "handle": "hudson-white-electrical"
+        },
+        {
+          "id": "15734420767104",
+          "type": "product",
+          "title": "Lenny Navy Electrical Roller Blind",
+          "handle": "lenny-navy-electrical"
+        },
+        {
+          "id": "15734421062016",
+          "type": "product",
+          "title": "Lydia Pastel Electrical Roller Blind",
+          "handle": "lydia-pastel-electrical"
+        },
+        {
+          "id": "15734421455232",
+          "type": "product",
+          "title": "Maddox Blackout Electrical Roller Blind",
+          "handle": "maddox-blackout-electrical"
+        },
+        {
+          "id": "15734421684608",
+          "type": "product",
+          "title": "Maddox Blackout Electrical Roller Blind",
+          "handle": "maddox-blackout-1-electrical"
+        },
+        {
+          "id": "15734433284480",
+          "type": "product",
+          "title": "Hendrick Beige Electrical Roller Blind",
+          "handle": "hendrick-beige-electrical"
+        },
+        {
+          "id": "15734434267520",
+          "type": "product",
+          "title": "Monte Blackout Praline Electrical Roller Blind",
+          "handle": "monte-blackout-praline-electrical"
+        },
+        {
+          "id": "15734438625664",
+          "type": "product",
+          "title": "Tennessee Sand Electrical Roller Blind",
+          "handle": "tennessee-sand-electrical"
+        },
+        {
+          "id": "15734439018880",
+          "type": "product",
+          "title": "Tennessee Smoke Electrical Roller Blind",
+          "handle": "tennessee-smoke-electrical"
+        },
+        {
+          "id": "15734449963392",
+          "type": "product",
+          "title": "Monte Blackout Grotto Electrical Roller Blind",
+          "handle": "monte-blackout-grotto-electrical"
+        },
+        {
+          "id": "15734452912512",
+          "type": "product",
+          "title": "Tennessee Parchment Electrical Roller Blind",
+          "handle": "tennessee-parchment-electrical"
+        },
+        {
+          "id": "15734457926016",
+          "type": "product",
+          "title": "Panama Pro 3 Black Electrical Roller Blind",
+          "handle": "panama-pro-3-black-electrical"
+        },
+        {
+          "id": "15734458188160",
+          "type": "product",
+          "title": "Tennessee Jet Electrical Roller Blind",
+          "handle": "tennessee-jet-electrical"
+        },
+        {
+          "id": "15734458515840",
+          "type": "product",
+          "title": "Anastasia Blackout Peacock Electrical Roller Blind",
+          "handle": "anastasia-blackout-peacock-electrical"
+        },
+        {
+          "id": "15734458941824",
+          "type": "product",
+          "title": "Anastasia Blackout Smoke Electrical Roller Blind",
+          "handle": "anastasia-blackout-smoke-electrical"
+        },
+        {
+          "id": "15734460875136",
+          "type": "product",
+          "title": "Carey Blackout Silver Electrical Roller Blind",
+          "handle": "carey-blackout-silver-electrical"
+        },
+        {
+          "id": "15734462579072",
+          "type": "product",
+          "title": "Elora Grey Electrical Roller Blind",
+          "handle": "elora-grey-electrical"
+        },
+        {
+          "id": "15734462939520",
+          "type": "product",
+          "title": "Elora White Electrical Roller Blind",
+          "handle": "elora-white-electrical"
+        },
+        {
+          "id": "15734465724800",
+          "type": "product",
+          "title": "Gracie Sunshine Electrical Roller Blind",
+          "handle": "gracie-sunshine-electrical"
+        },
+        {
+          "id": "15734469984640",
+          "type": "product",
+          "title": "Valentina Blackout Amethyst Electrical Roller Blind",
+          "handle": "valentina-blackout-amethyst-electrical"
+        },
+        {
+          "id": "15734470476160",
+          "type": "product",
+          "title": "Valentina Blackout Blush Electrical Roller Blind",
+          "handle": "valentina-blackout-blush-electrical"
+        },
+        {
+          "id": "15734470738304",
+          "type": "product",
+          "title": "Valentina Blackout Poppy Electrical Roller Blind",
+          "handle": "valentina-blackout-poppy-electrical"
+        },
+        {
+          "id": "15734471131520",
+          "type": "product",
+          "title": "Valentina Blackout Teal Electrical Roller Blind",
+          "handle": "valentina-blackout-teal-electrical"
+        },
+        {
+          "id": "15734472704384",
+          "type": "product",
+          "title": "Noelle Ice Electrical Roller Blind",
+          "handle": "noelle-ice-electrical"
+        },
+        {
+          "id": "15734472999296",
+          "type": "product",
+          "title": "Noelle Silver Electrical Roller Blind",
+          "handle": "noelle-silver-electrical"
+        },
+        {
+          "id": "15734473326976",
+          "type": "product",
+          "title": "Bizzie Navy Electrical Roller Blind",
+          "handle": "bizzie-navy-electrical"
+        },
+        {
+          "id": "15734473720192",
+          "type": "product",
+          "title": "Dory Marine Electrical Roller Blind",
+          "handle": "dory-marine-electrical"
+        },
+        {
+          "id": "15734474047872",
+          "type": "product",
+          "title": "Eunice Candy Electrical Roller Blind",
+          "handle": "eunice-candy-electrical"
+        },
+        {
+          "id": "15734474342784",
+          "type": "product",
+          "title": "Flying High Charcoal Electrical Roller Blind",
+          "handle": "flying-high-charcoal-electrical"
+        },
+        {
+          "id": "15734474670464",
+          "type": "product",
+          "title": "Happy Rainbows Multi Electrical Roller Blind",
+          "handle": "happy-rainbows-multi-electrical"
+        },
+        {
+          "id": "15734474965376",
+          "type": "product",
+          "title": "In The Jungle Multi Electrical Roller Blind",
+          "handle": "in-the-jungle-multi-electrical"
+        },
+        {
+          "id": "15734475358592",
+          "type": "product",
+          "title": "Magical Grey Electrical Roller Blind",
+          "handle": "magical-grey-electrical"
+        },
+        {
+          "id": "15734475686272",
+          "type": "product",
+          "title": "Magical Multi Electrical Roller Blind",
+          "handle": "magical-multi-electrical"
+        },
+        {
+          "id": "15734476112256",
+          "type": "product",
+          "title": "Nellie Grey Electrical Roller Blind",
+          "handle": "nellie-grey-electrical"
+        },
+        {
+          "id": "15734476472704",
+          "type": "product",
+          "title": "Rex Teal Electrical Roller Blind",
+          "handle": "rex-teal-electrical"
+        },
+        {
+          "id": "15734476833152",
+          "type": "product",
+          "title": "Sailor Indigo Electrical Roller Blind",
+          "handle": "sailor-indigo-electrical"
+        },
+        {
+          "id": "15734488662400",
+          "type": "product",
+          "title": "Linenweave Blackout Charcoal Electrical Roller Blind",
+          "handle": "linenweave-blackout-charcoal-electrical"
+        },
+        {
+          "id": "15734489055616",
+          "type": "product",
+          "title": "Linenweave Blackout Moonstone Electrical Roller Blind",
+          "handle": "linenweave-blackout-moonstone-electrical"
+        },
+        {
+          "id": "15734490169728",
+          "type": "product",
+          "title": "Monte Blackout Iron Electrical Roller Blind",
+          "handle": "monte-blackout-iron-electrical"
+        },
+        {
+          "id": "15734491906432",
+          "type": "product",
+          "title": "Panama Pro 3 Black Pearl Electrical Roller Blind",
+          "handle": "panama-pro-3-black-pearl-electrical"
+        },
+        {
+          "id": "15734492103040",
+          "type": "product",
+          "title": "Panama Pro 3  Pearl Electrical Roller Blind",
+          "handle": "panama-pro-3-pearl-electrical"
+        },
+        {
+          "id": "15734493184384",
+          "type": "product",
+          "title": "Paradiso Everglade Electrical Roller Blind",
+          "handle": "paradiso-everglade-electrical"
+        },
+        {
+          "id": "15734494527872",
+          "type": "product",
+          "title": "Panama Pro 1 White Pearl Electrical Roller Blind",
+          "handle": "panama-pro-1-white-pearl-electrical"
+        },
+        {
+          "id": "15734494593408",
+          "type": "product",
+          "title": "Panama Pro 3 White Pearl Electrical Roller Blind",
+          "handle": "panama-pro-3-white-pearl-electrical"
+        },
+        {
+          "id": "15734494757248",
+          "type": "product",
+          "title": "Panama Pro 1 White Linen Electrical Roller Blind",
+          "handle": "panama-pro-1-white-linen-electrical"
+        },
+        {
+          "id": "15734494790016",
+          "type": "product",
+          "title": "Panama Pro 3 Linen Electrical Roller Blind",
+          "handle": "panama-pro-3-linen-electrical"
+        },
+        {
+          "id": "15734495084928",
+          "type": "product",
+          "title": "Panama Pro 3 White Linen Electrical Roller Blind",
+          "handle": "panama-pro-3-white-linen-electrical"
+        },
+        {
+          "id": "15734496264576",
+          "type": "product",
+          "title": "Lacie Blackout Grey Electrical Roller Blind",
+          "handle": "lacie-blackout-grey-electrical"
+        },
+        {
+          "id": "15734496395648",
+          "type": "product",
+          "title": "Lacie Blackout Sand Electrical Roller Blind",
+          "handle": "lacie-blackout-sand-electrical"
+        },
+        {
+          "id": "15734496559488",
+          "type": "product",
+          "title": "Lacie Blackout White Electrical Roller Blind",
+          "handle": "lacie-blackout-white-electrical"
+        },
+        {
+          "id": "15734500360576",
+          "type": "product",
+          "title": "Carey Blackout White Electrical Roller Blind",
+          "handle": "carey-blackout-white-electrical"
+        },
+        {
+          "id": "15734500557184",
+          "type": "product",
+          "title": "Orsen White Electrical Roller Blind",
+          "handle": "orsen-white-electrical"
+        },
+        {
+          "id": "15734500688256",
+          "type": "product",
+          "title": "Panama Pro 1 White Electrical Roller Blind",
+          "handle": "panama-pro-1-white-electrical"
+        },
+        {
+          "id": "15734500753792",
+          "type": "product",
+          "title": "Panama Pro 3 White Electrical Roller Blind",
+          "handle": "panama-pro-3-white-electrical"
+        },
+        {
+          "id": "15734500852096",
+          "type": "product",
+          "title": "Deep Ivy Electrical Roller Blind",
+          "handle": "dawson-olive-1-electrical"
+        },
+        {
+          "id": "15734501179776",
+          "type": "product",
+          "title": "Hudson Blackout Grey Electrical Roller Blind",
+          "handle": "hudson-blackout-grey-electrical"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-c-electrical",
+      "bandId": "cml0kiicw0000bw7klzeb62kw",
+      "band": "Roller - Band C",
+      "description": "OB Preview - Roller - Band C - Electrical",
+      "representative": "origin-cream-electrical",
+      "schema": {
+        "bandId": "cml0kiicw0000bw7klzeb62kw",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734450553216",
+          "type": "product",
+          "title": "Origin Cream Electrical Roller Blind",
+          "handle": "origin-cream-electrical"
+        },
+        {
+          "id": "15734456451456",
+          "type": "product",
+          "title": "Origin Black Electrical Roller Blind",
+          "handle": "origin-black-electrical"
+        },
+        {
+          "id": "15734491054464",
+          "type": "product",
+          "title": "Origin Dark Grey Electrical Roller Blind",
+          "handle": "origin-dark-grey-electrical"
+        },
+        {
+          "id": "15734491251072",
+          "type": "product",
+          "title": "Origin Grey Electrical Roller Blind",
+          "handle": "origin-grey-electrical"
+        },
+        {
+          "id": "15734494495104",
+          "type": "product",
+          "title": "Origin White Electrical Roller Blind",
+          "handle": "origin-white-electrical"
+        }
+      ]
+    },
+    {
+      "slug": "roller-band-a-electrical",
+      "bandId": "cml0jp5xz00003k7kstj5e8l2",
+      "band": "Roller - Band A",
+      "description": "OB Preview - Roller - Band A - Electrical",
+      "representative": "unity-baby-pink-1-electrical",
+      "schema": {
+        "bandId": "cml0jp5xz00003k7kstj5e8l2",
+        "clamp": false,
+        "any": null,
+        "motor": null,
+        "roller": false
+      },
+      "products": [
+        {
+          "id": "15734501605760",
+          "type": "product",
+          "title": "Unity Polaris Baby Pink Electrical Roller Blind",
+          "handle": "unity-baby-pink-1-electrical"
+        },
+        {
+          "id": "15734501736832",
+          "type": "product",
+          "title": "Unity Polaris Pond Electrical Roller Blind",
+          "handle": "unity-pond-1-electrical"
+        },
+        {
+          "id": "15734501867904",
+          "type": "product",
+          "title": "Unity Polaris Stone Electrical Roller Blind",
+          "handle": "unity-stone-roller-blind-electrical"
+        },
+        {
+          "id": "15734502031744",
+          "type": "product",
+          "title": "Unity Polaris Lilac Electrical Roller Blind",
+          "handle": "unity-lilac-roller-blind-electrical"
+        },
+        {
+          "id": "15734502195584",
+          "type": "product",
+          "title": "Unity Polaris Thunder Electrical Roller Blind",
+          "handle": "unity-thunder-roller-blind-electrical"
+        },
+        {
+          "id": "15734502359424",
+          "type": "product",
+          "title": "Unity Polaris Willow Electrical Roller Blind",
+          "handle": "unity-willow-roller-blind-electrical"
+        },
+        {
+          "id": "15734502556032",
+          "type": "product",
+          "title": "Unity Polaris Apple Electrical Roller Blind",
+          "handle": "unity-apple-roller-blind-electrical"
+        },
+        {
+          "id": "15734502654336",
+          "type": "product",
+          "title": "Unity Polaris Deep Electrical Roller Blind",
+          "handle": "unity-deep-roller-blind-electrical"
+        },
+        {
+          "id": "15734502785408",
+          "type": "product",
+          "title": "Unity Polaris Pumpkin Electrical Roller Blind",
+          "handle": "unity-pumpkin-roller-blind-electrical"
+        },
+        {
+          "id": "15734502916480",
+          "type": "product",
+          "title": "Unity Polaris Rasberry Electrical Roller Blind",
+          "handle": "unity-rasberry-roller-blind-electrical"
+        },
+        {
+          "id": "15734503080320",
+          "type": "product",
+          "title": "Unity Polaris Sand Electrical Roller Blind",
+          "handle": "unity-sand-roller-blind-electrical"
+        },
+        {
+          "id": "15734503145856",
+          "type": "product",
+          "title": "Unity Polaris Twilight Electrical Roller Blind",
+          "handle": "unity-twilight-roller-blind-electrical"
+        },
+        {
+          "id": "15734503178624",
+          "type": "product",
+          "title": "Unity Polaris Acorn Electrical Roller Blind",
+          "handle": "unity-acorn-roller-blind-electrical"
+        },
+        {
+          "id": "15734503211392",
+          "type": "product",
+          "title": "Unity Polaris Bamboo Electrical Roller Blind",
+          "handle": "unity-bamboo-roller-blind-electrical"
+        },
+        {
+          "id": "15734503244160",
+          "type": "product",
+          "title": "Unity Polaris Black Electrical Roller Blind",
+          "handle": "unity-black-roller-blind-electrical"
+        },
+        {
+          "id": "15734503276928",
+          "type": "product",
+          "title": "Unity Polaris Brick Electrical Roller Blind",
+          "handle": "unity-brick-roller-blind-electrical"
+        },
+        {
+          "id": "15734503342464",
+          "type": "product",
+          "title": "Unity Polaris Fog Electrical Roller Blind",
+          "handle": "unity-fog-roller-blind-electrical"
+        },
+        {
+          "id": "15734503375232",
+          "type": "product",
+          "title": "Unity Polaris Ice Electrical Roller Blind",
+          "handle": "unity-ice-roller-blind-electrical"
+        },
+        {
+          "id": "15734503440768",
+          "type": "product",
+          "title": "Unity Polaris Lime Electrical Roller Blind",
+          "handle": "unity-lime-roller-blind-electrical"
+        },
+        {
+          "id": "15734503473536",
+          "type": "product",
+          "title": "Unity Polaris Oak Electrical Roller Blind",
+          "handle": "unity-oak-roller-blind-electrical"
+        },
+        {
+          "id": "15734503506304",
+          "type": "product",
+          "title": "Unity Polaris Rose Electrical Roller Blind",
+          "handle": "unity-rose-roller-blind-electrical"
+        },
+        {
+          "id": "15734503571840",
+          "type": "product",
+          "title": "Unity Polaris Steel Electrical Roller Blind",
+          "handle": "unity-steel-roller-blind-electrical"
+        },
+        {
+          "id": "15734503637376",
+          "type": "product",
+          "title": "Unity Polaris Champagne Electrical Roller Blind",
+          "handle": "unity-champagne-roller-blind-electrical"
+        },
+        {
+          "id": "15734503702912",
+          "type": "product",
+          "title": "Unity Polaris Desert Electrical Roller Blind",
+          "handle": "unity-desert-roller-blind-electrical"
+        },
+        {
+          "id": "15734503735680",
+          "type": "product",
+          "title": "Unity Polaris Poppy Electrical Roller Blind",
+          "handle": "unity-poppy-roller-blind-electrical"
+        },
+        {
+          "id": "15734503768448",
+          "type": "product",
+          "title": "Unity Polaris Sky Electrical Roller Blind",
+          "handle": "unity-sky-roller-blind-electrical"
+        }
+      ]
+    }
+  ]
+}

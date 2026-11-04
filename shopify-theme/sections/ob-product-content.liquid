@@ -1,0 +1,25 @@
+{% assign show_content = true %}
+{% if section.settings.audience == 'honeycomb' and product.handle != 'non-driii-honeycomb-blackout-blinds' %}{% assign show_content = false %}{% endif %}
+{% if section.settings.audience == 'standard' and product.handle == 'non-driii-honeycomb-blackout-blinds' %}{% assign show_content = false %}{% endif %}
+{% if show_content %}
+<div data-ob-island="product-content" data-ob-client="true">
+  <script type="application/json" data-ob-props>{"kind":{{ section.settings.kind | json }}}</script>
+</div>
+{% elsif request.design_mode %}<p class="ob-editor-note">This section is hidden for this product by its audience setting.</p>{% endif %}
+{% schema %}
+{
+  "name":"Product content",
+  "settings":[
+    {"type":"select","id":"kind","label":"Content","default":"installation","options":[
+      {"value":"installation","label":"Installation service"},{"value":"faq","label":"Frequently asked questions"},
+      {"value":"features","label":"Honeycomb features"},{"value":"comparison","label":"Honeycomb comparison"},
+      {"value":"steps","label":"Honeycomb how it works"},{"value":"recharge","label":"Honeycomb recharging"},
+      {"value":"warranty","label":"Honeycomb warranty"},{"value":"table","label":"Honeycomb comparison table"}
+    ]},
+    {"type":"select","id":"audience","label":"Show for","default":"standard","options":[
+      {"value":"standard","label":"Products except honeycomb"},{"value":"honeycomb","label":"Honeycomb only"},{"value":"all","label":"All products"}
+    ]}
+  ],
+  "presets":[{"name":"Product content"}],"enabled_on":{"templates":["product"]}
+}
+{% endschema %}

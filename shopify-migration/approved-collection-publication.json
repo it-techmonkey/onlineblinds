@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-23T17:53:03.135Z",
+  "collections": [
+    {
+      "handle": "faux-wooden-blinds",
+      "channels": [
+        "Online Blinds Express Headless",
+        "Online Store"
+      ]
+    },
+    {
+      "handle": "skylight-blinds",
+      "channels": [
+        "Online Blinds Express Headless",
+        "Online Store"
+      ]
+    },
+    {
+      "handle": "easy-stick-blinds",
+      "channels": [
+        "Online Blinds Express Headless",
+        "Online Store"
+      ]
+    },
+    {
+      "handle": "perfect-fit-metal",
+      "channels": [
+        "Online Blinds Express Headless",
+        "Online Store"
+      ]
+    },
+    {
+      "handle": "perfect-fit-wooden",
+      "channels": [
+        "Online Blinds Express Headless",
+        "Online Store"
+      ]
+    }
+  ],
+  "themesUnchanged": true
+}

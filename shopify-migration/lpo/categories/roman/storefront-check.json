@@ -1,0 +1,908 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 90,
+  "results": [
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "base",
+      "expected": 167.2,
+      "error": null,
+      "actual": 167.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "mm",
+      "expected": 167.2,
+      "error": null,
+      "actual": 167.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "fractions",
+      "expected": 174.69,
+      "error": null,
+      "actual": 174.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "cassette",
+      "expected": 181.17999999999998,
+      "error": null,
+      "actual": 181.18,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "chain + bottom bar",
+      "expected": 174.67999999999998,
+      "error": null,
+      "actual": 174.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "motorised",
+      "expected": 353.46,
+      "error": null,
+      "actual": 353.46,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "large",
+      "expected": 520.86,
+      "error": null,
+      "actual": 520.86,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band B",
+      "product": "eb-tirana-ochre-roman-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "base",
+      "expected": 185.81,
+      "error": null,
+      "actual": 185.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "mm",
+      "expected": 185.81,
+      "error": null,
+      "actual": 185.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "fractions",
+      "expected": 195.73,
+      "error": null,
+      "actual": 195.73,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "cassette",
+      "expected": 199.79,
+      "error": null,
+      "actual": 199.79,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "chain + bottom bar",
+      "expected": 193.29,
+      "error": null,
+      "actual": 193.29,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "motorised",
+      "expected": 390.69,
+      "error": null,
+      "actual": 390.69,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "large",
+      "expected": 635.1,
+      "error": null,
+      "actual": 635.1,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band D",
+      "product": "eb-serene-terracotta-roman-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "base",
+      "expected": 159.22,
+      "error": null,
+      "actual": 159.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "mm",
+      "expected": 159.22,
+      "error": null,
+      "actual": 159.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "fractions",
+      "expected": 165.67,
+      "error": null,
+      "actual": 165.67,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "cassette",
+      "expected": 173.2,
+      "error": null,
+      "actual": 173.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "chain + bottom bar",
+      "expected": 166.7,
+      "error": null,
+      "actual": 166.7,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "motorised",
+      "expected": 337.51,
+      "error": null,
+      "actual": 337.51,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "large",
+      "expected": 471.90000000000003,
+      "error": null,
+      "actual": 471.9,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band A",
+      "product": "eb-mersin-truffle-roman-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "base",
+      "expected": 176.51,
+      "error": null,
+      "actual": 176.51,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "mm",
+      "expected": 176.51,
+      "error": null,
+      "actual": 176.51,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "fractions",
+      "expected": 185.21,
+      "error": null,
+      "actual": 185.21,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "cassette",
+      "expected": 190.48999999999998,
+      "error": null,
+      "actual": 190.49,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "chain + bottom bar",
+      "expected": 183.98999999999998,
+      "error": null,
+      "actual": 183.99,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "motorised",
+      "expected": 372.08,
+      "error": null,
+      "actual": 372.08,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "large",
+      "expected": 577.98,
+      "error": null,
+      "actual": 577.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band C",
+      "product": "eb-lavico-terracotta-roman-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "base",
+      "expected": 149.33,
+      "error": null,
+      "actual": 149.33,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "mm",
+      "expected": 149.33,
+      "error": null,
+      "actual": 149.33,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "fractions",
+      "expected": 154.66,
+      "error": null,
+      "actual": 154.66,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "cassette",
+      "expected": 163.31,
+      "error": null,
+      "actual": 163.31,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "chain + bottom bar",
+      "expected": 156.81,
+      "error": null,
+      "actual": 156.81,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "motorised",
+      "expected": 318.43,
+      "error": null,
+      "actual": 318.43,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "large",
+      "expected": 417.68,
+      "error": null,
+      "actual": 417.68,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman EB - Band AA",
+      "product": "eb-chenille-teal-roman-blind",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "base",
+      "expected": 262.3,
+      "error": null,
+      "actual": 262.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "mm",
+      "expected": 262.3,
+      "error": null,
+      "actual": 262.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "fractions",
+      "expected": 280.6,
+      "error": null,
+      "actual": 280.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "cassette",
+      "expected": 276.28000000000003,
+      "error": null,
+      "actual": 276.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "chain + bottom bar",
+      "expected": 269.78000000000003,
+      "error": null,
+      "actual": 269.78,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "motorised",
+      "expected": 416.6,
+      "error": null,
+      "actual": 416.6,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band E",
+      "product": "celebrate-pastel",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "base",
+      "expected": 249.4,
+      "error": null,
+      "actual": 249.4,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "mm",
+      "expected": 249.4,
+      "error": null,
+      "actual": 249.4,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "fractions",
+      "expected": 266.8,
+      "error": null,
+      "actual": 266.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "cassette",
+      "expected": 263.38,
+      "error": null,
+      "actual": 263.38,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "chain + bottom bar",
+      "expected": 256.88,
+      "error": null,
+      "actual": 256.88,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "motorised",
+      "expected": 399.8,
+      "error": null,
+      "actual": 399.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band D",
+      "product": "little-star-sorbet",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "base",
+      "expected": 334.77,
+      "error": null,
+      "actual": 334.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "mm",
+      "expected": 334.77,
+      "error": null,
+      "actual": 334.77,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "fractions",
+      "expected": 355.26,
+      "error": null,
+      "actual": 355.26,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "cassette",
+      "expected": 348.75,
+      "error": null,
+      "actual": 348.75,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "chain + bottom bar",
+      "expected": 342.25,
+      "error": null,
+      "actual": 342.25,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "motorised",
+      "expected": 505.42,
+      "error": null,
+      "actual": 505.42,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band G",
+      "product": "machu-slate",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "base",
+      "expected": 300.24,
+      "error": null,
+      "actual": 300.24,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "mm",
+      "expected": 300.24,
+      "error": null,
+      "actual": 300.24,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "fractions",
+      "expected": 319.82,
+      "error": null,
+      "actual": 319.82,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "cassette",
+      "expected": 314.22,
+      "error": null,
+      "actual": 314.22,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "chain + bottom bar",
+      "expected": 307.72,
+      "error": null,
+      "actual": 307.72,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "motorised",
+      "expected": 466.62,
+      "error": null,
+      "actual": 466.62,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Roman Arena - Band F",
+      "product": "laguna-sorbet",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

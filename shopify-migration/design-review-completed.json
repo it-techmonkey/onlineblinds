@@ -1,0 +1,867 @@
+{
+  "date": "2026-10-24",
+  "themeId": 200474362240,
+  "scope": "Representative desktop/mobile loading and heading comparison, not full pixel or checkout parity",
+  "results": [
+    {
+      "family": "vertical-blinds",
+      "handle": "oasis-rock-vertical-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Oasis Rock Vertical Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Select Your Headrail",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Details & Specifications",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Oasis Rock Vertical Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Select Your Headrail",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Details & Specifications",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "replacement-vertical-blinds-slat",
+      "handle": "westbam-white-slat",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Westbam White Vertical Replacement Blind Slat",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Bottom Weight / Chain",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Westbam White Vertical Replacement Blind Slat",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Bottom Weight / Chain",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "roller-blinds",
+      "handle": "unity-polaris-thunder-roller-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Unity Polaris Thunder Roller Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Roll Style",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Unity Polaris Thunder Roller Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Roll Style",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "day-and-night-blinds",
+      "handle": "plain-soft-white-day-and-night-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Plain Soft White Day and Night Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Details & Specifications",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Plain Soft White Day and Night Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Details & Specifications",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "roman-blinds",
+      "handle": "eb-mersin-black-roman-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "EB Mersin Black Roman Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Lining Type",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "EB Mersin Black Roman Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Lining Type",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "metal-venetian-blind",
+      "handle": "barely-black",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Barely Black Metal Venetian Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Barely Black Metal Venetian Blind",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "faux-wooden-blinds",
+      "handle": "aquawood-white-grain-smooth-venetian-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Aquawood White Grain Faux Wooden Blind - 50mm",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Toggle",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Aquawood White Grain Faux Wooden Blind - 50mm",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Toggle",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "no-drill-blinds",
+      "handle": "insta-fit-no-drill-carpi-voile-fog",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Insta Fit No Drill Carpi voile Fog Roller Blinds - Fit in 30 Secs",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Control Option",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Insta Fit No Drill Carpi voile Fog Roller Blinds - Fit in 30 Secs",
+            "Measure your windows",
+            "Choose Your Size",
+            "Installation Method",
+            "Blind Name",
+            "Customize your blind",
+            "Control Option",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "easy-stick-blinds",
+      "handle": "easy-stick-blackout-apollo-cloud",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Easy Stick Blackout Apollo Cloud",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Easy Stick Blackout Apollo Cloud",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "perfect-fit-metal",
+      "handle": "classic-white-perfect-fit-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Gloss White  - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Perfect Fit No Drill Metal Blind - Classic White - 25mm",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Perfect Fit No Drill Metal Blind - White Shimmer - 25mm",
+            "Perfect Fit No Drill Metal Blind - Oyster White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Chalk White - 25mm",
+            "Perfect Fit No Drill Metal Blind - Gloss White  - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "perfect-fit-wooden",
+      "handle": "mirren-cream-perfect-fit",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Perfect Fit No Drill Wooden blind - Mirren Cream - 25mm",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Perfect Fit No Drill Wooden blind - Mirren Cream - 25mm",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "perfect-fit-shutter",
+      "handle": "sierra-ice-white-perfect-fit-shutter-blind",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Sierra, Ice White - Perfect Fit No Drill/Clip On Shutter",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Sierra, Ice White - Perfect Fit No Drill/Clip On Shutter",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Customer reviews",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Kids Garden Adventure Day & Night Blind – Little Sky",
+            "Kids Blue Star Day & Night Blind – Starry Night",
+            "Kids Gold Star Day & Night Blind – Starry Night",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "skylight-blinds",
+      "handle": "blackout-light-grey",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "Blackout Light Grey Skylight Blind",
+            "Customize your blind",
+            "Brand",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Perfect Fit No Drill Metal Blind - Frosted Silver  - 25mm",
+            "Perfect Fit No Drill Metal Blind - Antique Silver - 25mm",
+            "Perfect Fit No Drill Metal Blind - Brushed Nickel - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "Blackout Light Grey Skylight Blind",
+            "Customize your blind",
+            "Brand",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "Rating snapshot",
+            "Related Products",
+            "Plain Soft - Day and Night Blinds",
+            "Perfect Fit No Drill Metal Blind - Frosted Silver  - 25mm",
+            "Perfect Fit No Drill Metal Blind - Antique Silver - 25mm",
+            "Perfect Fit No Drill Metal Blind - Brushed Nickel - 25mm",
+            "Professional Blind Installation",
+            "How It Works",
+            "Common Questions"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    },
+    {
+      "family": "pleated-blinds",
+      "handle": "non-driii-honeycomb-blackout-blinds",
+      "site": "preview",
+      "status": 200,
+      "views": [
+        {
+          "view": "desktop",
+          "overflow": false,
+          "headings": [
+            "The Viral Honeycomb Complete Blackout Blinds – Insulating, Blockout Noise, Sleep Better",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Blind Color",
+            "Frame Color",
+            "Opening Direction",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "The Solution to your lack of sleep",
+            "1st Ever Easy Fit blinds design",
+            "90% of adults say outdoor lightexposure persists their sleep",
+            "A 3-in-1 Solution For All!",
+            "HOW IT WORKS?",
+            "Step 1.",
+            "Step 2.",
+            "Step 3.",
+            "Step 4.",
+            "Step 5.",
+            "Step 6.",
+            "Recharge Anytime",
+            "5 Years Warranty Guarantee",
+            "#1 Highest Reviewed Blackout Blinds for Light Sleepers"
+          ],
+          "brokenImages": 0
+        },
+        {
+          "view": "mobile",
+          "overflow": false,
+          "headings": [
+            "The Viral Honeycomb Complete Blackout Blinds – Insulating, Blockout Noise, Sleep Better",
+            "Measure your windows",
+            "Choose Your Size",
+            "Blind Name",
+            "Customize your blind",
+            "Blind Color",
+            "Frame Color",
+            "Opening Direction",
+            "Everything you need to know",
+            "5-Year Manufacturer Guarantee",
+            "Why Choose Online Blinds",
+            "The Solution to your lack of sleep",
+            "1st Ever Easy Fit blinds design",
+            "90% of adults say outdoor lightexposure persists their sleep",
+            "A 3-in-1 Solution For All!",
+            "HOW IT WORKS?",
+            "Step 1.",
+            "Step 2.",
+            "Step 3.",
+            "Step 4.",
+            "Step 5.",
+            "Step 6.",
+            "Recharge Anytime",
+            "5 Years Warranty Guarantee",
+            "#1 Highest Reviewed Blackout Blinds for Light Sleepers"
+          ],
+          "brokenImages": 0
+        }
+      ],
+      "errors": [],
+      "missingSourceHeadings": []
+    }
+  ],
+  "remaining": [
+    "LPO Formula inactive and app configurations not created",
+    "Snapshot refresh or live synchronization before launch",
+    "Review submission, accounts, newsletter discounts and analytics acceptance",
+    "Native search matching parity",
+    "Cart/checkout integration and isolated end-to-end validation",
+    "Explicit owner approval for publishing and domain routing"
+  ]
+}

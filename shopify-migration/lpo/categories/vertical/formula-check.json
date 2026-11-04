@@ -1,0 +1,137 @@
+{
+  "date": "2026-11-04",
+  "scope": "Generic v2 formulas vs website calculator: band edges in cm/mm, every customization option alone and motorised, every product with random option sets.",
+  "passed": true,
+  "checks": [
+    {
+      "slug": "vertical-blind-band-b",
+      "band": "Vertical Blind - Band B",
+      "kind": "band",
+      "products": 52,
+      "compared": 26220,
+      "rejected": 7058,
+      "formulaBytes": 4749,
+      "formulaSha256": "3eebe5c87da8548511381efef37fa60dd235b8cf7232861ba2df3c34db855388"
+    },
+    {
+      "slug": "vertical-blind-band-d",
+      "band": "Vertical Blind - Band D",
+      "kind": "band",
+      "products": 90,
+      "compared": 26828,
+      "rejected": 7210,
+      "formulaBytes": 4774,
+      "formulaSha256": "e18942613ae7b890d5ae2815875127eed7460f135305f9c43b38ff022e9ea0f5"
+    },
+    {
+      "slug": "vertical-blind-band-a",
+      "band": "Vertical Blind - Band A",
+      "kind": "band",
+      "products": 46,
+      "compared": 26124,
+      "rejected": 7034,
+      "formulaBytes": 4743,
+      "formulaSha256": "a7fd936f428b08499854f420731b3670a18dde6856c94e3615fa8706390b16fe"
+    },
+    {
+      "slug": "vertical-blind-band-c",
+      "band": "Vertical Blind - Band C",
+      "kind": "band",
+      "products": 14,
+      "compared": 25612,
+      "rejected": 6906,
+      "formulaBytes": 4754,
+      "formulaSha256": "864e10554d68f2cfd90e6f7f6a6e81d43bc66982cb346a270d75e516c473bcdc"
+    },
+    {
+      "slug": "vertical-blind-band-f",
+      "band": "Vertical Blind - Band F",
+      "kind": "band",
+      "products": 10,
+      "compared": 25548,
+      "rejected": 6890,
+      "formulaBytes": 4739,
+      "formulaSha256": "6da71885cf37d7b9698f28cdaae02e41ec188a50766925763ee658235532cdec"
+    },
+    {
+      "slug": "vertical-blind-band-premium",
+      "band": "Vertical Blind - Band Premium",
+      "kind": "band",
+      "products": 17,
+      "compared": 25660,
+      "rejected": 6918,
+      "formulaBytes": 4762,
+      "formulaSha256": "8ce93592d9f588640c07af0d14134ff2c641318e710378b1384756c126f42620"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-b",
+      "band": "Replacement Vertical Blinds Slat - Band B",
+      "kind": "slat",
+      "products": 66,
+      "compared": 2120,
+      "rejected": 0,
+      "formulaBytes": 2470,
+      "formulaSha256": "dd3507691e83a3e7e7bb082619996e0a19a9fcd035f0299c957648a8a1fecd6d"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-d",
+      "band": "Replacement Vertical Blinds Slat - Band D",
+      "kind": "slat",
+      "products": 83,
+      "compared": 2392,
+      "rejected": 0,
+      "formulaBytes": 2470,
+      "formulaSha256": "c923ebe62ec54577ef6c2bbd83db34719982f939b5eb1b72b58ff6078222d99e"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-e",
+      "band": "Replacement Vertical Blinds Slat - Band E",
+      "kind": "slat",
+      "products": 35,
+      "compared": 1624,
+      "rejected": 0,
+      "formulaBytes": 2469,
+      "formulaSha256": "8c7f063c30385a0b77eaf372f0fa6e1382f599622f657500c8c06cb7383dd982"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-f",
+      "band": "Replacement Vertical Blinds Slat - Band F",
+      "kind": "slat",
+      "products": 10,
+      "compared": 1224,
+      "rejected": 0,
+      "formulaBytes": 2470,
+      "formulaSha256": "f4f2cae7a255cb6a3ed1d069d1d6342660f24353be6bb43c021cd724084e5b28"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-premium",
+      "band": "Replacement Vertical Blinds Slat - Band Premium",
+      "kind": "slat",
+      "products": 17,
+      "compared": 1336,
+      "rejected": 0,
+      "formulaBytes": 2470,
+      "formulaSha256": "717da4cf45564206b90d73a505225660bef53cb4ec1f191572fc169746c9a3e3"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-a",
+      "band": "Replacement Vertical Blinds Slat - Band A",
+      "kind": "slat",
+      "products": 41,
+      "compared": 1720,
+      "rejected": 0,
+      "formulaBytes": 2469,
+      "formulaSha256": "7445af8478c5d927e0adddc2fc8d0063f048e435940cb6009b7be2c578bf656e"
+    },
+    {
+      "slug": "replacement-vertical-blinds-slat-band-c",
+      "band": "Replacement Vertical Blinds Slat - Band C",
+      "kind": "slat",
+      "products": 29,
+      "compared": 1528,
+      "rejected": 0,
+      "formulaBytes": 2470,
+      "formulaSha256": "95b4754fcc99a2e4fb03a902d9e410141fb2ac92cd436e5efd17385780c9e91d"
+    }
+  ]
+}

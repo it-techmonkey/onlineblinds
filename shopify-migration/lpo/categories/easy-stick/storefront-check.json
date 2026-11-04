@@ -1,0 +1,308 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 30,
+  "results": [
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "base",
+      "expected": 106.05,
+      "error": null,
+      "actual": 106.05,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "mm",
+      "expected": 106.05,
+      "error": null,
+      "actual": 106.05,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "fractions",
+      "expected": 106.05,
+      "error": null,
+      "actual": 106.05,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "cassette",
+      "expected": 120.03,
+      "error": null,
+      "actual": 120.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "chain + bottom bar",
+      "expected": 113.53,
+      "error": null,
+      "actual": 113.53,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "motorised",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Metal Venetian 25MM",
+      "product": "tr4470-mild-offwhite",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "base",
+      "expected": 161,
+      "error": null,
+      "actual": 161,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "mm",
+      "expected": 161,
+      "error": null,
+      "actual": 161,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "fractions",
+      "expected": 161,
+      "error": null,
+      "actual": 161,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "cassette",
+      "expected": 174.98,
+      "error": null,
+      "actual": 174.98,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "chain + bottom bar",
+      "expected": 168.48,
+      "error": null,
+      "actual": 168.48,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "motorised",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Wood Venetian 25MM",
+      "product": "onyx-real-wood",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "base",
+      "expected": 206.8,
+      "error": null,
+      "actual": 206.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "mm",
+      "expected": 206.8,
+      "error": null,
+      "actual": 206.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "fractions",
+      "expected": 206.8,
+      "error": null,
+      "actual": 206.8,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "cassette",
+      "expected": 220.78,
+      "error": null,
+      "actual": 220.78,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "chain + bottom bar",
+      "expected": 214.28,
+      "error": null,
+      "actual": 214.28,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "motorised",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - Easy Stick - Honeycomb",
+      "product": "easy-stick-blackout-appollo-steel",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}

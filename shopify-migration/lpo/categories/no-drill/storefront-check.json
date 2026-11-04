@@ -1,0 +1,308 @@
+{
+  "date": "2026-10-28",
+  "scope": "Real LPO on the preview product page; no cart",
+  "passed": true,
+  "total": 30,
+  "results": [
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "base",
+      "expected": 109.05,
+      "error": null,
+      "actual": 109.05,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "mm",
+      "expected": 109.05,
+      "error": null,
+      "actual": 109.05,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "fractions",
+      "expected": 116.08,
+      "error": null,
+      "actual": 116.08,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "cassette",
+      "expected": 123.03,
+      "error": null,
+      "actual": 123.03,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "chain + bottom bar",
+      "expected": 116.53,
+      "error": null,
+      "actual": 116.53,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "motorised",
+      "expected": 198.95999999999998,
+      "error": null,
+      "actual": 198.96,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "large",
+      "expected": 281.57,
+      "error": null,
+      "actual": 281.57,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 3",
+      "product": "insta-fit-no-drill-adventure-bo-teal",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "base",
+      "expected": 85.38,
+      "error": null,
+      "actual": 85.38,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "mm",
+      "expected": 85.38,
+      "error": null,
+      "actual": 85.38,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "fractions",
+      "expected": 89.93,
+      "error": null,
+      "actual": 89.93,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "cassette",
+      "expected": 99.36,
+      "error": null,
+      "actual": 99.36,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "chain + bottom bar",
+      "expected": 92.86,
+      "error": null,
+      "actual": 92.86,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "motorised",
+      "expected": 168.51,
+      "error": null,
+      "actual": 168.51,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "large",
+      "expected": 192.35000000000002,
+      "error": null,
+      "actual": 192.35,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 2",
+      "product": "insta-fit-no-drill-wisteria-bo-white",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "base",
+      "expected": 74.25,
+      "error": null,
+      "actual": 74.25,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "mm",
+      "expected": 74.25,
+      "error": null,
+      "actual": 74.25,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "fractions",
+      "expected": 78.2,
+      "error": null,
+      "actual": 78.2,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "cassette",
+      "expected": 88.23,
+      "error": null,
+      "actual": 88.23,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "chain + bottom bar",
+      "expected": 81.73,
+      "error": null,
+      "actual": 81.73,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "motorised",
+      "expected": 156.31,
+      "error": null,
+      "actual": 156.31,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "large",
+      "expected": 168.3,
+      "error": null,
+      "actual": 168.3,
+      "native": "",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "too small",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "too large",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    },
+    {
+      "config": "OB Preview - No Drill Blinds - Edit 1",
+      "product": "insta-fit-no-drill-freesia-white",
+      "case": "zero",
+      "expected": null,
+      "error": "Selected measurements are outside the allowed range for this product",
+      "actual": 0,
+      "native": "Selected measurements are outside the allowed range for this product",
+      "passed": true
+    }
+  ]
+}
