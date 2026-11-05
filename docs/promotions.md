@@ -20,6 +20,17 @@ Added 4 November 2026. Everything is set in one file, `src/data/promotions.ts`, 
 - **Product/collection follow-up:** removed the separate product countdown/code panel. The product-price code badge remains. `shopify-src/catalog-data.ts` resolves all catalog card prices from the current `window.OnlineBlinds.minimumPrices` map before rendering and sorting; this prevents old collection, search and related-product snapshot prices from disagreeing with product pages after a price sync (e.g. Unity Polaris £44.86 → £56.08).
 - The product/collection fix is live on Shopify. Verified 120 collection cards across ascending/descending sorting, pagination, roller, motorised and vertical collections; 78 search results; four related products; and the linked Unity Polaris product at £56.08. The countdown/code panel is absent and desktop/mobile layouts pass. Results: `.shopify-work/collection-price-live-check.json`.
 
+## Sale presentation — 5 November 2026
+
+- Main banner leads with “Up to 60% off”, followed by made-to-measure messaging, “Take an extra 20% off” and a copyable selected code. The other slides lead with blackout comfort and room transformation. Buttons link directly to shopping destinations.
+- The first banner links to `#black-friday-bestsellers`. That section uses “Shop Black Friday Bestsellers” during the campaign, with a mobile-visible shopping link, then returns to its regular heading at expiry.
+- Product pages show a separate, clearly labelled price with the selected code beneath the standard price. The amount follows the same current price and selected options as the normal product price. It says “From” while showing the starting price. Example: £56.08 standard → £44.86 with a 20% code. No base prices or discount rates were changed.
+- “Final days” appears only in the announcement bar during the last 72 hours (from 28 November, 00:00 UK time). The fixed 30 November deadline remains. Removed hero deadline text and the separate product countdown panel stay removed.
+- Owner instruction: retain the existing viewer-count section. Deploy to Shopify only; Vercel remains out of scope.
+- **Published 5 November:** updated the live theme's storefront JS/CSS, announcement section and bestseller section. Rollback copies: `.shopify-work/black-friday-conversion-2026-11-05/live-backup/`.
+- **Verification:** TypeScript and changed-component lint pass; theme validation reports zero errors (nine existing warnings). Live checks at 320/390/768/1440px cover all three slides, bestseller anchor, code copying/selection, starting and configured code prices (including motorisation), final-72-hour wording and expiry. The viewer-count source is unchanged. Reports and screenshots: `.shopify-work/black-friday-conversion-2026-11-05/`.
+- **Next.js build note:** the default Turbopack build hit the existing Google-font resolver error. Webpack compiled, passed TypeScript and generated 1,995 pages, but emitted catalog-fetch warnings. Vercel was not deployed; the validated Shopify theme build is separate.
+
 ## What is on
 
 | Feature | Where |

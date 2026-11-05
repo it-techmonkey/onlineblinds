@@ -37,6 +37,7 @@ export const DEFAULT_PROMO_CODE = 'BLKFRIDAY60';
 export const BLACK_FRIDAY_PROMOTION = {
   name: 'Black Friday',
   headline: 'Up to 60% off',
+  finalDaysSeconds: 3 * 24 * 60 * 60,
   endsAt: '2026-12-01T00:00:00Z',
   shortDeadlineLabel: 'Ends 30 November',
   deadlineLabel: 'Ends 30 November · 11:59 pm UK time',
@@ -45,6 +46,11 @@ export const BLACK_FRIDAY_PROMOTION = {
 /** A fixed deadline, independent of the visitor's timezone; never resets. */
 export function getBlackFridaySeconds(now: number = Date.now()): number {
   return Math.max(0, Math.ceil((Date.parse(BLACK_FRIDAY_PROMOTION.endsAt) - now) / 1000));
+}
+
+/** Price for the selected blind with one promotional code, rounded to pennies. */
+export function getPromoPrice(price: number, percentOff: number): number {
+  return Math.round((price * (1 - percentOff / 100) + Number.EPSILON) * 100) / 100;
 }
 
 export function formatSaleCountdown(seconds: number): string {
