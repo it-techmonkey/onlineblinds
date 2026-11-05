@@ -48,7 +48,11 @@ const AnnouncementBar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
               d="M7 7h.01M7 3H5a2 2 0 00-2 2v2a2 2 0 00.586 1.414l9 9a2 2 0 002.828 0l4-4a2 2 0 000-2.828l-9-9A2 2 0 007 3z" />
           </svg>
-          {sale.active && <span>{BLACK_FRIDAY_PROMOTION.name}<span className="mx-2 text-white/30">·</span></span>}
+          {sale.active && <span>
+            <span className={sale.finalDays ? 'hidden sm:inline' : undefined}>{BLACK_FRIDAY_PROMOTION.name}</span>
+            {sale.finalDays && <><span className="hidden sm:inline"> · </span><span>Final days</span></>}
+            <span className="mx-2 text-white/30">·</span>
+          </span>}
           <span>{BLACK_FRIDAY_PROMOTION.headline}</span>
         </span>
 
@@ -135,7 +139,7 @@ const AnnouncementBar = () => {
           )}
         </span>
 
-        {/* The same UK deadline is used on product pages. */}
+        {/* Urgency stays in the announcement bar and follows the fixed UK deadline. */}
         {sale.active && <span className="col-start-2 row-start-2 inline-flex items-center justify-end gap-1.5 whitespace-nowrap text-[10px] md:text-[12px]" title={BLACK_FRIDAY_PROMOTION.deadlineLabel}>
           <svg className="hidden h-3.5 w-3.5 text-white/70 sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

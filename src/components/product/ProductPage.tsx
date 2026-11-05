@@ -1403,6 +1403,7 @@ const ProductPage = ({
                       </span>
                     </div>
                   ) : (
+                    <>
                     <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2 mb-2 md:mb-3 lg:justify-start">
                       <span className="text-2xl md:text-[34px] leading-none font-semibold text-foreground">
                         {showMinPriceIndicator
@@ -1419,8 +1420,9 @@ const ProductPage = ({
                       <span className="rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-red-700">
                         Save 40%
                       </span>
-                      <PromoCodeBadge />
                     </div>
+                    <PromoCodeBadge price={showMinPriceIndicator ? product.price : totalPrice} currency={product.currency} from={showMinPriceIndicator} />
+                    </>
                   )}
                   {priceCalculation && !showMinPriceIndicator && (
                     <div className="text-xs text-muted mb-1">
