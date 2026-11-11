@@ -884,6 +884,8 @@ const ProductPage = ({
       frameColor: visibleOptions.showFrameColor ? config.frameColor : null,
       frameColorCategory: isPerfectFitMetal ? 'perfect-fit-metal-frame-color' : 'frame-color',
       numberOfPanels: isPerfectFitShutter ? config.numberOfPanels : null,
+      // Split costs extra; the server and the Shopify order check both price it.
+      openingDirection: product.features.hasOpeningDirection && visibleOptions.showOpeningDirection ? config.openingDirection : null,
       wrappedCassette: config.wrappedCassette,
       cassetteMatchingBar: config.cassetteMatchingBar,
       sameFabricInsert: isDayNight ? config.sameFabricInsert : null,
@@ -895,7 +897,7 @@ const ProductPage = ({
       bottomBar: visibleOptions.showBottomBar ? config.bottomBar : null,
       rollStyle: visibleOptions.showRollStyle ? config.rollStyle : null,
     });
-  }, [config, visibleOptions, product.features.hasRollerCassette, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter, isDayNight]);
+  }, [config, visibleOptions, product.features.hasRollerCassette, product.features.hasOpeningDirection, isRoman, isSpecialMotorized, isPerfectFitMetal, isPerfectFitShutter, isDayNight]);
 
   // Calculate price using new pricing system
   const priceCalculation = useMemo(() => {
